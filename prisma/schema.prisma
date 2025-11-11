@@ -1,0 +1,37 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// prisma/schema.prisma
+model Case {
+  id          String   @id @default(cuid())
+  titulo      String   @map("title")
+  area        String   @map("area")
+  dificultad  Int      @map("difficulty")
+  resumen     String?  @map("summary")
+  contenido   Json?    @map("content")
+  isPublic    Boolean  @map("isPublic")
+  vignette    String?  @map("vignette")
+  createdAt   DateTime @default(now()) @map("createdAt")
+  updatedAt   DateTime @updatedAt      @map("updatedAt")
+  pasos       Paso[]   @relation("CasoPasos")
+  
+  @@map("Case")
+}
+
+model Paso {
+  id        String @id @default(cuid())
+  pregunta  String
+  opciones  Json
+  caso      Case   @relation("CasoPasos", fields: [casoId], references: [id])
+  casoId    String
+  order     Int
+
+  @@map("Paso")
+}

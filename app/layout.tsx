@@ -1,0 +1,77 @@
+// app/layout.tsx
+import './globals.css'; // Lee los estilos base (fondo coral, etc.)
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { Inter } from 'next/font/google';
+import dynamic from 'next/dynamic';
+
+// Importa tu Header (la ruta ./ es correcta)
+const Header = dynamic(() => import('./components/Header'), { ssr: true });
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
+
+// Tu objeto Metadata (asegúrate de que el tipo 'Metadata' esté importado)
+export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://klinik-mat.example'),
+  title: 'KLINIK-MAT — Casos Clínicos',
+  description: 'Simulador de razonamiento clínico en Obstetricia...',
+  keywords: ['obstetricia','casos clínicos','MINSAL','ITS','anticoncepción'],
+  alternates: { canonical: '/' },
+  openGraph: {
+    type: 'website',
+    url: '/',
+    title: 'KLINIK-MAT — Casos Clínicos',
+    description: 'Entrena tu razonamiento clínico en Obstetricia.',
+    images: ['/og.png'],
+  },
+  twitter: { card: 'summary_large_image' },
+};
+
+// Tu componente Layout
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="es" className={`${inter.variable} scroll-smooth`}>
+      {/* El body ya recibe estilos (fondo/color) desde globals.css */}
+      <body>
+        
+        {/* Skip link accesible (color brand) */}
+        <a
+          href="#contenido"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 z-50 rounded-lg bg-brand-600 px-3 py-2 text-sm font-medium text-white shadow-focus"
+        >
+          Ir al contenido
+        </a>
+
+        {/* Header (estilo vidrio) */}
+        <div className="sticky top-0 z-40 backdrop-blur-lg supports-[backdrop-filter]:bg-white/60 border-b border-white/80 shadow-sm">
+          <Header />
+        </div>
+
+        {/* Contenido (clase .container-app) */}
+        <main id="contenido" className="container-app py-8 md:py-10 animate-fade-in">
+          {children}
+        </main>
+
+        {/* Footer (clase .container-app y colores neutral) */}
+        <footer className="border-t border-neutral-200/70 bg-white/80">
+          <div className="container-app py-6 text-xs text-neutral-500">
+            <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+              <p>
+                © {new Date().getFullYear()} · KLINIK-MAT · Formación clínica digital basada en Normas MINSAL y criterios OMS.
+              </p>
+              <nav className="flex items-center gap-4">
+                <Link href="/" className="hover:text-neutral-700 transition-colors">Inicio</Link>
+                <Link href="/recursos" className="hover:text-neutral-700 transition-colors">Recursos</Link>
+                <Link href="/casos" className="hover:text-neutral-700 transition-colors">Casos clínicos</Link>
+              </nav>
+            </div>
+          </div>
+        </footer>
+      </body>
+    </html>
+  );
+}

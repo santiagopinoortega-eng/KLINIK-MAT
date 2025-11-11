@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+    scroll-behavior: smooth;
+  }
+
+  html, body {
+    @apply text-neutral-800 font-sans antialiased;
+    background-color: #f8fafc;
+    background-image: radial-gradient(at 90% 10%, hsla(347, 83%, 84%, 0.3) 0px, transparent 50%),
+                      radial-gradient(at 10% 80%, hsla(347, 73%, 74%, 0.2) 0px, transparent 50%);
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* --- TAMAÑOS BASE REDUCIDOS --- */
+  h1 { @apply text-xl md:text-3xl font-bold mb-3; } /* Más pequeño en móvil */
+  h2 { @apply text-lg md:text-2xl font-semibold mb-2; }
+  h3 { @apply text-base md:text-xl font-semibold mb-2; }
+  p  { @apply text-sm md:text-base text-neutral-600 leading-relaxed; }
+
+  a { 
+    @apply text-brand-600 hover:text-brand-700 hover:underline underline-offset-4 transition-colors; 
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2
+    text-sm font-medium border border-transparent transition-all shadow-sm
+    disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .btn-lg { @apply px-5 py-2.5 text-base; } /* Un poco más compacto */
+  .btn-primary {
+    @apply bg-brand-600 text-white hover:bg-brand-700 active:bg-brand-800
+    focus:outline-none focus:ring-4 focus:ring-brand-100;
+  }
+  .card {
+    @apply rounded-xl border shadow-soft p-5 md:p-8; /* Menos padding en móvil */
+    @apply bg-white/95 border-neutral-100;
+  }
+  @supports (backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px)) {
+    .card {
+      background-color: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-color: rgba(255, 255, 255, 0.8);
+    }
+  }
+  .container-app {
+    @apply container mx-auto px-4 max-w-5xl; /* Un poco más estrecho para lectura */
+  }
+}
+
+@layer utilities {
+  .animate-fade-in { animation: fade-in 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+  @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+}

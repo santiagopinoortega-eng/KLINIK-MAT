@@ -1,0 +1,7 @@
+{
+  "name": "KLINIK-MAT",
+  "containerEnv": {
+    "DATABASE_URL": "${localEnv:DATABASE_URL}",
+    "DATABASE_URL_READONLY": "${localEnv:DATABASE_URL_READONLY}"
+  }
+}
