@@ -6,26 +6,17 @@ import { useEffect, useMemo, useState } from 'react';
 
 type Props = {
   id: string;
-<<<<<<< HEAD
   title: string;
   area: string | null;
   difficulty: number | null;
   summary?: string | null;
-=======
-  titulo: string;
-  area: string | number | null;
-  dificultad: number | null;
-  resumen?: string | null;
->>>>>>> 68bff7b924ecf91be37b4416b61edb52aac487e6
   createdAt?: string;
 };
 
 export default function CaseCard({
-<<<<<<< HEAD
+
   id, title, area, difficulty, summary, createdAt,
-=======
-  id, titulo, area, dificultad, resumen, createdAt,
->>>>>>> 68bff7b924ecf91be37b4416b61edb52aac487e6
+
 }: Props) {
   // Progreso local (no rompe si no existe)
   const [progress, setProgress] = useState<number | null>(null);
@@ -69,11 +60,7 @@ export default function CaseCard({
           {area ? String(area) : 'General'}
         </span>
         <span className="inline-flex items-center rounded-md bg-secondary-200/70 text-secondary-800 px-2 py-0.5 text-xs font-medium">
-<<<<<<< HEAD
           Dificultad {difficulty ?? 1}
-=======
-          Dificultad {dificultad ?? 1}
->>>>>>> 68bff7b924ecf91be37b4416b61edb52aac487e6
         </span>
         {fecha && (
           <span className="ml-auto text-xs text-secondary-500">{fecha}</span>
@@ -82,27 +69,15 @@ export default function CaseCard({
 
       {/* Título */}
       <h3 className="text-ink-800 text-lg font-semibold leading-snug group-hover:text-ink-900">
-<<<<<<< HEAD
         {title}
       </h3>
 
-      {/* Resumen corto */}
       {summary && (
         <p className="mt-2 text-sm text-secondary-600 line-clamp-3">
           {summary}
-=======
-        {titulo}
-      </h3>
-
-      {/* Resumen corto */}
-      {resumen && (
-        <p className="mt-2 text-sm text-secondary-600 line-clamp-3">
-          {resumen}
->>>>>>> 68bff7b924ecf91be37b4416b61edb52aac487e6
         </p>
       )}
 
-      {/* CTA */}
       <Link href={`/casos/${id}`} className="mt-6 btn btn-secondary w-full group-hover:bg-primary-500 group-hover:text-white group-hover:shadow-lg transition-all">
         Resolver caso →
       </Link>

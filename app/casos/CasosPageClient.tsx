@@ -1,20 +1,12 @@
 'use client';
 
-<<<<<<< HEAD
 import { CasoListItem } from '@/services/caso.service';
-=======
->>>>>>> 68bff7b924ecf91be37b4416b61edb52aac487e6
 import { useMemo, useState } from 'react';
 import CaseCard from '@/app/components/CaseCard';
 import Badge from '@/app/components/ui/Badge';
 
-<<<<<<< HEAD
 export default function CasosPageClient({ data }: { data: CasoListItem[] }) {
-=======
-type CasoLite = { id:string; titulo:string; area:string | null; dificultad:number|null; resumen:string|null };
 
-export default function CasosPageClient({ data }: { data: CasoLite[] }) {
->>>>>>> 68bff7b924ecf91be37b4416b61edb52aac487e6
   const [q, setQ] = useState('');
   const [area, setArea] = useState('all');
 
@@ -24,11 +16,11 @@ export default function CasosPageClient({ data }: { data: CasoLite[] }) {
     const s = q.trim().toLowerCase();
     return data.filter(d =>
       (area === 'all' || d.area === area) && // Filter by area
-<<<<<<< HEAD
+
       (!s || d.title.toLowerCase().includes(s) || (d.summary ?? '').toLowerCase().includes(s))
-=======
+
       (!s || d.titulo.toLowerCase().includes(s) || (d.resumen ?? '').toLowerCase().includes(s))
->>>>>>> 68bff7b924ecf91be37b4416b61edb52aac487e6
+
     );
   }, [data, q, area]);
 

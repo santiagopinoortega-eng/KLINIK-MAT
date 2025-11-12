@@ -1,33 +1,42 @@
-import { PrismaClient, UserRole } from '@prisma/client';
+// prisma/seed.ts
+import { PrismaClient, Role } from '@prisma/client'; 
 import { hash } from 'bcryptjs';
 
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log('🌱 Empezando el proceso de seeding...');
+  console.log('🌱 Empezando el proceso de seeding de KLINIK-MAT...');
 
-  // 1. Limpiar la base de datos (opcional, pero recomendado para desarrollo)
-  // El orden es importante para respetar las restricciones de clave foránea.
+  // 1. Limpiar la base de datos (IMPORTANTE: Mantenemos esta limpieza para un entorno de desarrollo/prueba)
+  // El orden es importante para evitar errores de clave foránea.
   console.log('🧹 Limpiando datos existentes...');
+  await prisma.studentResult.deleteMany(); // Limpia resultados antes que usuarios
+  await prisma.session.deleteMany();       // Limpia sesiones de Auth.js
+  await prisma.account.deleteMany();       // Limpia cuentas de Auth.js
+  await prisma.verificationToken.deleteMany(); // Limpia tokens de Auth.js
+  
   await prisma.option.deleteMany();
   await prisma.question.deleteMany();
   await prisma.case.deleteMany();
   await prisma.minsalNorm.deleteMany();
-  await prisma.user.deleteMany();
+  await prisma.user.deleteMany(); 
+  console.log('Datos de desarrollo limpios.');
 
-  // 2. Crear un usuario administrador
-  // En una aplicación real, NUNCA guardes contraseñas en texto plano.
-  // Usamos bcryptjs para generar un hash.
-  const hashedPassword = await hash('admin123', 12);
+
+  // 2. Crear un usuario administrador (La clave para la seguridad)
+  const ADMIN_PASSWORD = 'admin123';
+  const hashedPassword = await hash(ADMIN_PASSWORD, 12); // Hash seguro con costo 12
+  
   const adminUser = await prisma.user.create({
     data: {
       email: 'admin@klinik-mat.cl',
-      name: 'Admin',
-      password: hashedPassword,
-      role: UserRole.ADMIN,
+      name: 'Admin Supervisor',
+      passwordHash: hashedPassword, 
+      role: Role.ADMIN, // Le asignamos el rol de administrador
     },
   });
-  console.log(`👤 Creado usuario administrador: ${adminUser.email}`);
+  console.log(👤 Creado usuario administrador: ${adminUser.email} (Contraseña: ${ADMIN_PASSWORD}));
+
 
   // 3. Crear Normas MINSAL
   const normaMEC = await prisma.minsalNorm.create({
@@ -45,6 +54,7 @@ async function main() {
   });
   console.log('📜 Creadas normas MINSAL de ejemplo.');
 
+
   // 4. Crear un Caso Clínico completo con sus relaciones
   const casoMigrana = await prisma.case.create({
     data: {
@@ -54,11 +64,9 @@ async function main() {
       summary: 'Mujer de 22 años con diagnóstico de migraña con aura busca método anticonceptivo LARC de alta eficacia.',
       isPublic: true,
       vignette: 'Mujer de 22 años, estudiante universitaria, vive en zona rural. Diagnosticada por neurólogo con migraña con aura (escotomas y fosfenos). No fuma. Desea un método LARC de altísima eficacia. Comenta que su amiga usa combinados y le va excelente.',
-      // Conectar el caso con las normas creadas
       norms: {
         connect: [{ id: normaMEC.id }, { id: normaFertilidad.id }],
       },
-      // Crear las preguntas y sus opciones anidadas
       questions: {
         create: [
           {
@@ -66,19 +74,9 @@ async function main() {
             text: '¿Cuál es la opción más segura y alineada a su preferencia (LARC) según los criterios MEC de la OMS?',
             options: {
               create: [
-                { text: 'ACO combinado (etinilestradiol + progestina).', isCorrect: false, feedback: 'Contraindicado (MEC Cat. 4) por aumento del riesgo de ACV isquémico.' },
-                { text: 'Implante subdérmico de etonogestrel.', isCorrect: true, feedback: 'LARC altamente eficaz y sin estrógeno (MEC Cat. 1). Excelente opción.' },
-                { text: 'DIU de Cobre (TCu 380A).', isCorrect: false, feedback: 'Seguro (MEC 1), pero puede aumentar el sangrado y la dismenorrea.' },
-              ],
-            },
-          },
-          {
-            order: 2,
-            text: 'Desde el punto de vista fisiopatológico, ¿por qué el estrógeno es el problema en migraña con aura?',
-            options: {
-              create: [
-                { text: 'Porque aumenta el riesgo trombótico y vasoespástico cerebral.', isCorrect: true, feedback: 'Correcto. El estrógeno promueve mecanismos protrombóticos que elevan el riesgo de ACV.' },
-                { text: 'Porque intensifica el dolor migrañoso.', isCorrect: false, feedback: 'El problema no es la intensidad del dolor, sino el riesgo vascular.' },
+                { text: 'ACO combinado (etinilestradiol + progestina).', isCorrect: false, feedback: 'Contraindicado (MEC Cat. 4) por aumento del riesgo de ACV isquémico. (Riesgo vascular > beneficio anticonceptivo).' },
+                { text: 'Implante subdérmico de etonogestrel.', isCorrect: true, feedback: 'Correcto. LARC altamente eficaz y sin estrógeno (MEC Cat. 1). Es la mejor opción para reducir riesgo vascular.' },
+                { text: 'DIU de Cobre (TCu 380A).', isCorrect: false, feedback: 'Es seguro (MEC 1), pero la paciente solicitó un método de alta eficacia LARC, este no cumple con esa expectativa.' },
               ],
             },
           },
@@ -86,7 +84,7 @@ async function main() {
       },
     },
   });
-  console.log(`🏥 Creado caso clínico: "${casoMigrana.title}"`);
+  console.log(🏥 Creado caso clínico: "${casoMigrana.title}");
 
   console.log('✅ Seeding completado exitosamente.');
 }
@@ -98,4 +96,4 @@ main()
   })
   .finally(async () => {
     await prisma.$disconnect();
-  });
+});

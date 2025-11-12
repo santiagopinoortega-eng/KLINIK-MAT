@@ -30,10 +30,7 @@
   "include": [
     "app",
     "lib",
-<<<<<<< HEAD
     "services",
-=======
->>>>>>> 68bff7b924ecf91be37b4416b61edb52aac487e6
     "prisma",
     "next-env.d.ts",
     ".next/types/**/*.ts"

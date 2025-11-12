@@ -1,25 +1,24 @@
 // scripts/check-env.mjs
-<<<<<<< HEAD
 import { config } from 'dotenv';
 import { existsSync } from 'fs';
 
 // Carga de entorno (si existe localmente)
+// Esto asegura que podemos leer las variables definidas en .env.local
 if (existsSync('.env.local')) {
   config({ path: '.env.local' });
 } else {
   config();
 }
 
-// 1. Definir los requerimientos CLAVE
+// 1. Definir los requerimientos CLAVE (El proyecto no funciona sin ellas)
 const required = [
-  "DATABASE_URL", // ¡ESENCIAL! Sin esto no hay DB.
-  // Podrías añadir NEXTAUTH_SECRET si ya lo estás usando para autenticación
+  "DATABASE_URL", // Conexión a Neon.tech
+  "NEXTAUTH_SECRET", // Clave de seguridad para la gestión de sesiones (Auth.js)
 ];
 
-// 2. Definir los requerimientos CONDICIONALES (Recomendados para escalabilidad)
-// No hacemos fallar el build si faltan, pero advertimos.
+// 2. Definir los requerimientos CONDICIONALES (Recomendados para escalabilidad/arquitectura)
 const recommended = [
-  "DATABASE_URL_READONLY", 
+  "DATABASE_URL_READONLY", // Opcional para la réplica de lectura (prismaRO)
 ];
 
 // --- Lógica de Validación ---
@@ -28,7 +27,7 @@ const recommended = [
 const missingRequired = required.filter(k => !process.env[k]);
 
 if (missingRequired.length) {
-  console.error(`\n❌ ERROR CRÍTICO: Faltan variables esenciales: ${missingRequired.join(", ")}`);
+  console.error(\n❌ ERROR CRÍTICO: Faltan variables esenciales: ${missingRequired.join(", ")});
   console.error("   La compilación se detiene. Asegúrate de que las tienes en .env.local o Vercel Secrets.");
   process.exit(1);
 }
@@ -37,19 +36,8 @@ if (missingRequired.length) {
 const missingRecommended = recommended.filter(k => !process.env[k]);
 
 if (missingRecommended.length) {
-  console.warn(`\n⚠️ Advertencia: Faltan variables recomendadas: ${missingRecommended.join(", ")}`);
+  console.warn(\n⚠️ Advertencia: Faltan variables recomendadas: ${missingRecommended.join(", ")});
   console.warn("   Considera definir DATABASE_URL_READONLY para mejorar la escalabilidad en producción (prismaRO usará DATABASE_URL como fallback).");
 }
 
 console.log("\n✅ Variables de entorno OK");
-=======
-const required = ["DATABASE_URL"];
-const missing = required.filter(k => !process.env[k]);
-if (missing.length) {
-  console.error(`❌ Faltan variables de entorno: ${missing.join(", ")}`);
-  console.error("Crea .env (o define Codespaces/Vercel secrets). Ejemplo en .env.example");
-  process.exit(1);
-} else {
-  console.log("✅ Variables de entorno OK");
-}
->>>>>>> 68bff7b924ecf91be37b4416b61edb52aac487e6

@@ -1,145 +1,150 @@
 // prisma/schema.prisma
-<<<<<<< HEAD
 
-=======
->>>>>>> 68bff7b924ecf91be37b4416b61edb52aac487e6
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-<<<<<<< HEAD
-  // ¡Ojo! Usaremos la URL de solo lectura si está disponible, 
-  // sino la principal. (Ya manejado en lib/prisma.ts)
-  url       = env("DATABASE_URL")
+  provider = "mysql"
+  url      = "mysql://root:root@localhost:3307/prisma"
 }
 
 // ------------------------------------------------------------------
-// 1. Modelo Case (Caso Clínico) - El centro de KLINIK-MAT
+// 1. Modelos de Autenticación (Auth.js / NextAuth.js)
+// ------------------------------------------------------------------
+model User {
+  id              String          @id @default(cuid())
+  email           String          @unique // Campo de login
+  name            String?
+  passwordHash    String?         // Hash de la contraseña (para login por credenciales)
+  role            Role            @default(STUDENT)
+  
+  // Relaciones de Auth.js
+  sessions        Session[]
+  accounts        Account[]
+
+  // Relaciones de KLINIK-MAT
+  results         StudentResult[] // Futuro modelo para guardar el historial de puntajes
+
+  createdAt       DateTime        @default(now()) @map("created_at")
+  updatedAt       DateTime        @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+// ------------------------------------------------------------------
+// 2. Modelos de Contenido Educativo (KLINIK-MAT)
 // ------------------------------------------------------------------
 model Case {
   id              String         @id @default(cuid())
-  title           String         // Nombre del caso (ej: Embarazo Ectópico)
-  area            String         // (ej: Ginecología, Obstetricia)
+  title           String         // Nombre del caso (Ej: Embarazo Ectópico)
+  area            String         // (Ej: Obstetricia, Ginecología)
   difficulty      Int            // 1 (Fácil) - 5 (Difícil)
-  summary         String?        // Breve resumen para el listado de casos
+  summary         String?        
   isPublic        Boolean        @default(false)
-  
-  // Vignette: El cuerpo principal y narrativo del caso clínico
-  vignette        String?        
-  
-  // Relaciones
-  questions       Question[]     @relation("CaseQuestions") // Pasos renombrados a Questions
-  norms           MinsalNorm[]   @relation("CaseNorms")     // Normas MINSAL aplicables
+  vignette        String?        // Descripción narrativa larga
 
-  // Tiempos (Práctica recomendada de nomenclatura: CamelCase en Prisma, Snake_case en DB)
+  questions       Question[]     @relation("CaseQuestions")
+  norms           MinsalNorm[]   @relation("CaseNorms")
+
   createdAt       DateTime       @default(now()) @map("created_at")
   updatedAt       DateTime       @updatedAt @map("updated_at")
 
-  // Renombrando los campos existentes para estandarización
-  @@map("case") 
+  @@map("cases")
 }
 
-// ------------------------------------------------------------------
-// 2. Modelo Question (Pregunta) - Refactorización de 'Paso'
-// ------------------------------------------------------------------
-// Un Case tiene múltiples Questions. Una Question tiene múltiples Options.
 model Question {
   id              String         @id @default(cuid())
   order           Int            // Orden de aparición dentro del caso
-  text            String         // Texto completo de la pregunta
+  text            String         // Texto de la pregunta
 
-  // Relación con el Case (1:N)
   case            Case           @relation("CaseQuestions", fields: [caseId], references: [id])
   caseId          String
   
-  // Relación con Options (1:N)
   options         Option[]       @relation("QuestionOptions")
 
   @@map("questions")
 }
 
-// ------------------------------------------------------------------
-// 3. Modelo Option (Opción de Respuesta) - Nuevo para integridad
-// ------------------------------------------------------------------
-// Esto reemplaza el campo 'opciones' Json en el modelo Paso anterior
 model Option {
   id              String         @id @default(cuid())
   text            String
-  isCorrect       Boolean        @default(false) // La clave para la lógica de corrección
+  isCorrect       Boolean        @default(false) // La clave para el grading
+  feedback        String?        // Explicación para el razonamiento clínico
 
-  // Feedback: Crucial para el aprendizaje clínico (Por qué está bien/mal)
-  feedback        String?        
-
-  // Relación con Question (N:1)
   question        Question       @relation("QuestionOptions", fields: [questionId], references: [id])
   questionId      String
 
   @@map("options")
 }
 
-// ------------------------------------------------------------------
-// 4. Modelo MinsalNorm (Norma MINSAL) - Estandarización
-// ------------------------------------------------------------------
 model MinsalNorm {
   id              String         @id @default(cuid())
-  name            String         @map("nombre")
-  code            String         @unique @map("codigo") // El código debe ser único
-  
-  // Relación N:M con Case
+  name            String         
+  code            String         @unique 
   cases           Case[]         @relation("CaseNorms")
 
   @@map("minsal_norms")
 }
 
 // ------------------------------------------------------------------
-// 5. Modelo User (Usuario) - Para gestión y autenticación futura
+// 3. ENUMS y Modelo de Resultados (Para Futuras Tareas)
 // ------------------------------------------------------------------
-model User {
-  id        String    @id @default(cuid())
-  email     String    @unique
-  name      String?
-  password  String    // En un futuro, esto almacenará un hash, no texto plano.
-  role      UserRole  @default(USER)
-  createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime  @updatedAt @map("updated_at")
-
-  @@map("users")
+enum Role {
+  STUDENT // Puede resolver casos
+  EDITOR  // Puede crear y editar casos
+  ADMIN   // Acceso total
 }
 
-enum UserRole {
-  USER
-  ADMIN
-=======
-  url      = env("DATABASE_URL")
-}
+// Modelo futuro para almacenar el resultado de un estudiante en un caso
+model StudentResult {
+    id        String   @id @default(cuid())
+    userId    String
+    caseId    String
+    score     Int      // Puntaje final (ej: 8/10)
+    completedAt DateTime @default(now())
 
-// prisma/schema.prisma
-model Case {
-  id          String   @id @default(cuid())
-  titulo      String   @map("title")
-  area        String   @map("area")
-  dificultad  Int      @map("difficulty")
-  resumen     String?  @map("summary")
-  contenido   Json?    @map("content")
-  isPublic    Boolean  @map("isPublic")
-  vignette    String?  @map("vignette")
-  createdAt   DateTime @default(now()) @map("createdAt")
-  updatedAt   DateTime @updatedAt      @map("updatedAt")
-  pasos       Paso[]   @relation("CasoPasos")
-  
-  @@map("Case")
-}
+    user User @relation(fields: [userId], references: [id])
 
-model Paso {
-  id        String @id @default(cuid())
-  pregunta  String
-  opciones  Json
-  caso      Case   @relation("CasoPasos", fields: [casoId], references: [id])
-  casoId    String
-  order     Int
-
-  @@map("Paso")
->>>>>>> 68bff7b924ecf91be37b4416b61edb52aac487e6
+    @@unique([userId, caseId])
+    @@map("student_results")
 }
