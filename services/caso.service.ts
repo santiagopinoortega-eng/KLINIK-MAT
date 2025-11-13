@@ -1,7 +1,6 @@
 // services/caso.service.ts
 import { prisma } from '@/lib/prisma';
 import type { Case, MinsalNorm } from '@prisma/client';
-import { prismaRO } from '@/lib/prisma';
 
 // Define el tipo de retorno limpio.
 // Nota: Hemos actualizado los nombres de los campos para que coincidan con el schema.prisma (title, summary)
@@ -57,8 +56,8 @@ import { Option } from '@prisma/client';
  * @returns Los detalles completos de la Opción.
  */
 export async function getOptionDetails(optionId: string): Promise<Option | null> {
-  // Usamos prismaRO para obtener el detalle de la opción
-  return await prismaRO.option.findUnique({
+  // Usamos prisma para obtener el detalle de la opción
+  return await prisma.option.findUnique({
     where: { id: optionId },
   });
 }

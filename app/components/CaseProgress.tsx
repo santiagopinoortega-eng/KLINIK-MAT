@@ -12,18 +12,14 @@ export default function CaseProgress({ current, total }: Props) {
   return (
     <div className="w-full mb-8">
       <div className="flex justify-between items-center mb-2">
-        {/* --- CORREGIDO: Color de texto --- */}
         <span className="text-sm font-medium text-neutral-600">
           Paso {current} de {total}
         </span>
-        {/* --- CORREGIDO: Color de texto (brand) --- */}
         <span className="text-sm font-bold text-brand-600">
           {Math.round(progressPercentage)}%
         </span>
       </div>
-      {/* --- CORREGIDO: Color de fondo (neutral) --- */}
       <div className="w-full bg-neutral-200 rounded-full h-2.5">
-        {/* --- CORREGIDO: Color de barra (brand) --- */}
         <div
           className="bg-brand-500 h-2.5 rounded-full transition-all duration-500"
           style={{ width: `${progressPercentage}%` }}
