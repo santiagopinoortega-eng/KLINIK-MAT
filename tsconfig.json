@@ -28,6 +28,7 @@
     "incremental": true
   },
   "include": [
+    "next-auth.d.ts",
     "app",
     "lib",
     "services",
