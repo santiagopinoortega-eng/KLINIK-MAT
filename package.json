@@ -12,7 +12,8 @@
     "db:seed": "node -r dotenv/config node_modules/ts-node/dist/bin.js --compiler-options '{\"module\":\"CommonJS\"}' prisma/seed.ts",
     "typecheck": "tsc --noEmit",
     "typecheck:paths": "tsc --noEmit --traceResolution",
-    "db:push": "node -r dotenv/config node_modules/.bin/prisma db push"
+    "db:push": "node -r dotenv/config node_modules/.bin/prisma db push",
+    "test:env": "node -r dotenv/config -e 'console.log(`DATABASE_URL is: ${process.env.DATABASE_URL}`)'"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
