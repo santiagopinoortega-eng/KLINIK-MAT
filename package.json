@@ -16,11 +16,14 @@
     "test:env": "node -r dotenv/config -e 'console.log(`DATABASE_URL is: ${process.env.DATABASE_URL}`)'"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.11.1",
     "@heroicons/react": "^2.2.0",
     "@prisma/client": "^6.19.0",
     "bcryptjs": "^2.4.3",
     "clsx": "^2.1.1",
     "next": "^14.2.33",
+    "next-auth": "^4.24.13",
+    "nodemailer": "^7.0.10",
     "react": "^18",
     "react-dom": "^18"
   },
