@@ -1,35 +1,41 @@
-// types/next-auth.d.ts o en la raíz del proyecto
+// next-auth.d.ts
+// VERSIÓN CORRECTA PARA AUTH.JS (V5)
 
-// Extiende el tipo User para incluir 'id' y 'role'
-declare module 'next-auth' {
-  /**
-   * El objeto User que se devuelve en los callbacks (jwt, session)
-   * y que se pasa al adaptador. Importamos Role aquí dentro.
-   */
-  interface User {
-    role: import('@prisma/client').Role;
-    id: string;
-  }
+import { Role } from '@prisma/client';
+// 1. Importa los tipos desde '@auth/core' (V5)
+import type { DefaultSession } from '@auth/core/types';
 
+/**
+ * Extiende los tipos de V5
+ */
+declare module '@auth/core/types' {
+  
   /**
-   * El objeto Session que se devuelve desde `useSession` o `getSession`.
+   * Extiende la interfaz 'Session'
+   * Esto es lo que `auth()` (en V5) devolverá.
    */
   interface Session {
     user: {
-      id: string; // id del usuario
-      role: import('@prisma/client').Role; // rol del usuario
-    } & {
-      name?: string | null;
-      email?: string | null;
-      image?: string | null;
-    };
+      id: string;   // Añade nuestro ID de la DB
+      role: Role;   // Añade nuestro Rol de la DB
+    } & DefaultSession['user']; // Mantiene name, email, image
+  }
+
+  /**
+   * Extiende la interfaz 'User'
+   * Esto representa el modelo 'User' de tu base de datos (Prisma).
+   */
+  interface User {
+    role: Role;
   }
 }
 
-// Extiende el tipo JWT para incluir 'id' y 'role'
-declare module 'next-auth/jwt' {
+/**
+ * Extiende el tipo JWT de V5 (aunque usemos 'database', es buena práctica)
+ */
+declare module '@auth/core/jwt' {
   interface JWT {
     id: string;
-    role: import('@prisma/client').Role;
+    role: Role;
   }
 }
