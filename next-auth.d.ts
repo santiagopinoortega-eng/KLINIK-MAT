@@ -1,33 +1,26 @@
-// next-auth.d.ts
-// IMPORTANTE: Asegúrate de que este archivo esté en la raíz del proyecto o en src/
+// types/next-auth.d.ts o en la raíz del proyecto
 
-import { Role } from '@prisma/client'; // Importa tu Enum Role desde Prisma
-import 'next-auth'; // Importante: importa el módulo original para extenderlo
+import { Role } from '@prisma/client';
+import NextAuth, { DefaultSession, DefaultUser } from 'next-auth';
 
-/**
- * Aumenta (extiende) los tipos por defecto de NextAuth
- */
+// Extiende el tipo User para incluir 'id' y 'role'
 declare module 'next-auth' {
-  
   /**
-   * Extiende la interfaz 'Session'
-   * Esto es lo que `useSession` y `getServerSession` devolverán.
-   * Estamos añadiendo 'id' y 'role' al objeto 'user' dentro de 'session'.
+   * El objeto User que se devuelve en los callbacks (jwt, session)
+   * y que se pasa al adaptador.
    */
-  interface Session {
-    user: {
-      id: string;   // Añade nuestro ID de la DB
-      role: Role;   // Añade nuestro Rol de la DB
-    } & DefaultSession['user']; // Mantiene las propiedades por defecto (name, email, image)
+  interface User extends DefaultUser {
+    role: Role;
+    id: string; // Asegúrate que el tipo coincida con tu base de datos
   }
 
   /**
-   * Extiende la interfaz 'User'
-   * Esto representa el objeto 'User' que viene de la DB (vía el PrismaAdapter)
-   * y se pasa al callback de 'session'.
+   * El objeto Session que se devuelve desde `useSession` o `getSession`.
    */
-  interface User {
-    // Asegúrate de que el objeto User que pasa el Adapter tenga el rol
-    role: Role; 
+  interface Session {
+    user: {
+      id: string;
+      role: Role;
+    } & DefaultSession['user']; // Mantiene las propiedades por defecto (name, email, image)
   }
 }
