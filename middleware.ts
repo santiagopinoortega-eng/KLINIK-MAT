@@ -1,22 +1,27 @@
 // middleware.ts
-// VERSIÓN CORRECTA PARA AUTH.JS (V5)
+// VERSIÓN CORREGIDA Y DEFINITIVA (V5)
 
 import NextAuth from 'next-auth';
-// 1. Importa la configuración de V5 que creamos en la raíz
 import { authConfig } from './auth.config';
+
+// 1. IMPORTAR EL TIPO (Igual que en auth.ts)
+//    Esto asegura que TypeScript sepa exactamente qué es authConfig.
+import type { AuthConfig } from '@auth/core/types'; 
+
 import { NextResponse } from 'next/server';
 import { Role } from '@prisma/client'; // Importa tu Enum
 
-// 2. Obtiene la función 'auth' desde la configuración de V5
-const { auth } = NextAuth(authConfig);
+// 2. HACER EL "CAST" (Igual que en auth.ts)
+//    Pasamos la config con el tipo explícito.
+const { auth } = NextAuth(authConfig as AuthConfig); 
 
 /**
  * El middleware de V5 usa el helper 'auth'
  */
 export default auth((req) => {
-  // 3. OBTENEMOS EL TOKEN (la sintaxis de V5 es diferente)
-  // 'req.auth.user' existe si el usuario está logueado
-  const token = req.auth?.user;
+  // 3. 'req' ahora tendrá el tipo correcto, y 'req.auth' será reconocido
+  //    (una vez que 'npm install' arregle las dependencias duplicadas).
+  const token = req.auth?.user; 
 
   // 4. LÓGICA DE AUTORIZACIÓN (Roles)
   const pathname = req.nextUrl.pathname;
@@ -36,7 +41,6 @@ export default auth((req) => {
 });
 
 // 6. EL MATCHER (Tu matcher original está bien)
-// Aquí es donde le decimos al middleware en QUÉ RUTAS debe ejecutarse.
 export const config = {
   matcher: [
     /*
