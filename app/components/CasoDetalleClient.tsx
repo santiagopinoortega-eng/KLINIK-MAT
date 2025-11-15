@@ -8,8 +8,9 @@ import { useEffect, useState } from "react";
 
 export default function CasoDetalleClient() {
   // Traemos 'goToNextStep' del contexto para el botón "Comenzar Caso"
-  const { caso, currentStep, handleSelect, goToNextStep } = useCaso();
+  const { caso, currentStep, handleSelect, handleNavigate, goToNextStep } = useCaso();
   const [showContent, setShowContent] = useState(false);
+  const [started, setStarted] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setShowContent(true), 200);
@@ -71,12 +72,11 @@ export default function CasoDetalleClient() {
   }
 
   // --- 2. PANTALLA INICIAL (VIÑETA) - Paso 0 ---
-  // Mantener una pantalla inicial con CTA, pero la viñeta ahora está en el navigator y siempre visible.
-  if (currentStep === 0) {
+  // Mantener una pantalla inicial con CTA; usamos un estado local `started` para no consumir el índice 0
+  if (!started) {
     return (
       <div className="card p-6 md:p-8 animate-fade-in">
-        <h1 className="text-xl md:text-3xl font-extrabold mb-6 
-                     bg-gradient-to-r from-brand-700 to-brand-900 bg-clip-text text-transparent">
+        <h1 className="text-xl md:text-3xl font-extrabold mb-6 text-[var(--km-text-900)]">
           {caso.titulo}
         </h1>
 
@@ -84,7 +84,7 @@ export default function CasoDetalleClient() {
 
         {/* Botón para comenzar las preguntas */}
         <button 
-          onClick={goToNextStep} 
+          onClick={() => { setStarted(true); handleNavigate(0); }} 
           className="btn btn-primary btn-lg w-full md:w-auto flex items-center justify-center gap-2"
         >
           Comenzar Preguntas →
@@ -98,8 +98,8 @@ export default function CasoDetalleClient() {
   if (!currentStepData) return <div className="card text-danger-500">Error de paso.</div>;
 
   // Calculamos el progreso excluyendo la viñeta (paso 0)
-  const preguntasTotales = totalPasos - 1;
-  const preguntaActual = currentStep;
+  const preguntasTotales = totalPasos;
+  const preguntaActual = currentStep; // 0-based index for questions
 
   return (
     <div className="card p-6 md:p-8 animate-fade-in">
@@ -113,8 +113,8 @@ export default function CasoDetalleClient() {
         <div className="mb-4 block md:hidden p-3 bg-brand-50/30 rounded-md text-sm text-neutral-700 whitespace-pre-wrap">{caso.vigneta}</div>
       )}
 
-      {/* Barra de Progreso (Ajustada para mostrar progreso de preguntas) */}
-      <CaseProgress current={preguntaActual} total={preguntasTotales} />
+      {/* Barra de Progreso: mostramos índice 1-based */}
+      <CaseProgress current={Math.min(preguntaActual + 1, preguntasTotales)} total={preguntasTotales} />
 
       {/* Renderizador de Pregunta */}
       <PasoRenderer pasoId={currentStepData.id} onAnswer={handleSelect} />

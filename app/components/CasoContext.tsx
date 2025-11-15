@@ -18,8 +18,20 @@ export function CasoProvider({ caso, children }: { caso: CasoClient; children: R
   const [respuestas, setRespuestas] = useState<Respuesta[]>([]);
 
   const handleNavigate = useCallback((stepIndex: number) => {
-    if (stepIndex <= respuestas.length + 1 && stepIndex >= 0 && stepIndex <= caso.pasos.length)
-      setCurrentStep(stepIndex);
+    // bounds
+    if (stepIndex < 0 || stepIndex > caso.pasos.length) return;
+
+    const answered = respuestas.length;
+    const isFeedback = stepIndex === caso.pasos.length;
+
+    // cannot jump ahead beyond the next unanswered question
+    if (isFeedback) {
+      if (answered < caso.pasos.length) return; // final feedback only after all answered
+    } else {
+      if (stepIndex > answered) return; // cannot navigate to a future unanswered step
+    }
+
+    setCurrentStep(stepIndex);
   }, [respuestas.length, caso.pasos.length]);
 
   // --- RE-EXPUESTO PARA EL BOTÓN "COMENZAR" ---

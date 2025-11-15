@@ -51,12 +51,22 @@ export default function PasoRenderer({ pasoId, onAnswer }: Props) {
     return <div className="text-danger-500">Error: Cargando datos...</div>;
   }
 
+  // Fallback robusto para obtener el texto de la pregunta (algunos orígenes usan 'text' o 'texto')
+  const rawEnunciado = (stepData as any).enunciado || (stepData as any).text || (stepData as any).texto || (stepData as any).prompt || (stepData as any).pregunta || '';
+
+  // Si el enunciado es un título genérico como "Puntos Clave del Caso",
+  // mostramos un prompt más explícito para guiar la respuesta del estudiante.
+  const isGenericPointsTitle = /puntos\s*(clave|clave del caso|clave del caso)/i.test(rawEnunciado.trim());
+  const displayEnunciado = isGenericPointsTitle
+    ? 'Redacta en 3–5 líneas los puntos clave de este caso clínico (foco en diagnóstico, conducta y seguimiento).' 
+    : rawEnunciado;
+
   // --- CASO 1: Pregunta de Desarrollo (Short) ---
   if (isShort(stepData)) {
     return (
       <div className="mt-4 md:mt-6 animate-fade-in"> 
         <h3 className="text-base md:text-lg font-semibold mb-2 text-neutral-800">Pregunta de Desarrollo</h3>
-        <p className="text-sm md:text-base text-neutral-900 mb-4 font-medium">{stepData.enunciado}</p>
+        <p className="text-sm md:text-base text-neutral-900 mb-4 font-medium">{displayEnunciado}</p>
 
         {/* Área de texto para la respuesta: la 'guía' y el feedback se muestran AFTER de enviar la respuesta */}
         <textarea 
@@ -82,30 +92,14 @@ export default function PasoRenderer({ pasoId, onAnswer }: Props) {
           )}
         </div>
 
-        {/* Después de responder: mostrar guía, feedback docente y bibliografía breve */}
+        {/* Después de responder: mostrar sólo la guía de respuesta (si existe).
+            El feedback docente y la bibliografía se muestran exclusivamente en la sección final 'Feedback'. */}
         {respuestaUsuario && (
           <div className="mt-4 space-y-4">
             {stepData.guia && (
               <div className="p-3 rounded-lg bg-[var(--km-surface-2)] text-sm text-[var(--km-text-700)] whitespace-pre-wrap">
                 <h4 className="font-semibold mb-2">Guía de respuesta</h4>
                 <div>{stepData.guia}</div>
-              </div>
-            )}
-
-            {stepData.feedbackDocente && (
-              <div className="p-3 rounded-lg bg-[var(--km-surface-1)] border border-neutral-200 text-sm">
-                <h4 className="font-semibold mb-2">Feedback docente</h4>
-                <div className="text-[var(--km-text-700)] whitespace-pre-wrap">{stepData.feedbackDocente}</div>
-              </div>
-            )}
-
-            {caso.referencias && caso.referencias.length > 0 && (
-              <div className="p-3 rounded-lg bg-[var(--km-surface-2)] text-sm text-[var(--km-text-700)]">
-                <h4 className="font-semibold mb-2">Bibliografía relacionada</h4>
-                <ul className="list-disc pl-5">
-                  {caso.referencias.slice(0,3).map((r,i) => <li key={i}>{r}</li>)}
-                  {caso.referencias.length > 3 && <li>...y {caso.referencias.length - 3} referencias más (ver al finalizar)</li>}
-                </ul>
               </div>
             )}
           </div>
@@ -119,7 +113,7 @@ export default function PasoRenderer({ pasoId, onAnswer }: Props) {
      return (
       <div className="mt-4 md:mt-6 animate-fade-in">
         <h3 className="text-base md:text-lg font-semibold mb-3 md:mb-4 text-neutral-900 leading-snug">
-          {stepData.enunciado}
+          {displayEnunciado}
         </h3>
         
         <div className="space-y-2.5">
