@@ -1,21 +1,30 @@
-// auth.ts
-// VERSIÓN FINAL Y DEFINITIVA (BURLANDO EL CONFLICTO LOCAL)
+// auth.ts (CORREGIDO PARA EVITAR BUCLE INFINITO)
 
-// 1. CAMBIO CLAVE: Importamos el módulo completo como NextAuth (wildcard import)
-//    Esto evita que el compilador se confunda.
-import * as NextAuth from 'next-auth'; 
+// auth.ts (CORREGIDO Y DEFINITIVO)
 
+import NextAuth from 'next-auth';
 import { authConfig } from './auth.config';
 import type { AuthConfig } from '@auth/core/types';
 
-// 2. CORRECCIÓN: Llamamos explícitamente a la función 'default' del objeto NextAuth.
-//    Esto es la función que queremos llamar.
-const NextAuthInstance = NextAuth.default({
-  secret: process.env.AUTH_SECRET, // 👈 Ya tienes el secret en el .env
+// 💡 IMPORTACIONES FALTANTES AÑADIDAS:
+import { PrismaAdapter } from '@auth/prisma-adapter'; 
+import { prisma } from '@/lib/prisma'; // Asegúrate de que esta ruta sea correcta: '@/lib/prisma'
+
+// 1. Inicializa la instancia completa de NextAuth.
+const NextAuthInstance = NextAuth({
+  secret: process.env.AUTH_SECRET, 
+  
+  // 2. AÑADE EL ADAPTADOR Y LA ESTRATEGIA DE SESIÓN (SOLUCIÓN AL MissingAdapter)
+  adapter: PrismaAdapter(prisma), // ✅ ESTO YA FUNCIONARÁ CON LA IMPORTACIÓN
+  session: { strategy: 'database' }, 
+  
+  // 3. AÑADE EL RESTO DE LA CONFIGURACIÓN (El spread es necesario, y asumimos que
+  //    la configuración de recursividad se resolvió en auth.config.ts)
   ...authConfig 
+  
 } as AuthConfig);
 
-// 3. Exporta cada propiedad clave que queremos exponer al resto de la aplicación.
+// 4. Exporta las propiedades clave
 export const handlers = NextAuthInstance.handlers; 
 export const auth = NextAuthInstance.auth;
 export const signIn = NextAuthInstance.signIn;

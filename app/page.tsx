@@ -1,19 +1,20 @@
 // app/page.tsx
 import React from 'react';
 import { redirect } from 'next/navigation';
-// 💡 Importa la función 'auth' del motor V5 que creamos en la raíz
+// 💡 Importa la función 'auth' del motor V5
 import { auth } from '@/auth'; 
-// 💡 Importación usando la ruta relativa directa (la más robusta desde app/page.tsx)
+// ✅ CORRECCIÓN DE RUTA: Usamos el alias estándar que funciona con tsconfig
 import LoginScreenClient from 'app/components/LoginScreenClient'; 
 
 export default async function HomePage() {
   
   // 1. Verificar la sesión en el servidor (Auth.js V5)
+  //    Esta línea fallará si la cookie/DB está corrupta.
   const session = await auth(); 
   
   // 2. Lógica de Redirección (Si está logueado, va directo a /casos)
   if (session?.user) {
-    // Redirección instantánea en el servidor (la forma más rápida)
+    // Redirección instantánea en el servidor
     redirect('/casos');
   }
 
