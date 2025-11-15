@@ -1,5 +1,3 @@
-// prisma/schema.prisma
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,22 +7,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// ------------------------------------------------------------------
-// 1. Modelos de Autenticación (Auth.js / NextAuth.js)
-// ------------------------------------------------------------------
 model User {
-  id           String    @id @default(cuid())
-  email        String    @unique
+  id           String          @id @default(cuid())
+  email        String          @unique
   name         String?
   passwordHash String?
-  role         Role      @default(STUDENT)
-  
-  sessions     Session[]
+  role         Role            @default(STUDENT)
+  createdAt    DateTime        @default(now()) @map("created_at")
+  updatedAt    DateTime        @updatedAt @map("updated_at")
   accounts     Account[]
+  sessions     Session[]
   results      StudentResult[]
-
-  createdAt    DateTime  @default(now()) @map("created_at")
-  updatedAt    DateTime  @updatedAt @map("updated_at")
 
   @@map("users")
 }
@@ -35,15 +28,14 @@ model Account {
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  refresh_token     String?
+  access_token      String?
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String?
   session_state     String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@map("accounts")
@@ -68,37 +60,29 @@ model VerificationToken {
   @@map("verification_tokens")
 }
 
-// ------------------------------------------------------------------
-// 2. Modelos de Contenido Educativo (KLINIK-MAT)
-// ------------------------------------------------------------------
 model Case {
-  id           String       @id @default(cuid())
-  title        String
-  area         String
-  difficulty   Int
-  summary      String?
-  isPublic     Boolean      @default(false)
-  vignette     String?
-
-  questions    Question[]   @relation("CaseQuestions")
-  norms        MinsalNorm[] @relation("CaseNorms")
-
-  createdAt    DateTime     @default(now()) @map("created_at")
-  updatedAt    DateTime     @updatedAt @map("updated_at")
+  id         String       @id @default(cuid())
+  title      String
+  area       String
+  difficulty Int
+  summary    String?
+  isPublic   Boolean      @default(false)
+  vignette   String?
+  createdAt  DateTime     @default(now()) @map("created_at")
+  updatedAt  DateTime     @updatedAt @map("updated_at")
+  questions  Question[]   @relation("CaseQuestions")
+  norms      MinsalNorm[] @relation("CaseNorms")
 
   @@map("cases")
 }
 
 model Question {
-  id     String   @id @default(cuid())
-  order  Int
-  text   String
-
-  // CORRECCIÓN: Añadido onDelete: Cascade
-  case   Case     @relation("CaseQuestions", fields: [caseId], references: [id], onDelete: Cascade)
-  caseId String
-  
+  id      String   @id @default(cuid())
+  order   Int
+  text    String
+  caseId  String
   options Option[] @relation("QuestionOptions")
+  case    Case     @relation("CaseQuestions", fields: [caseId], references: [id])
 
   @@map("questions")
 }
@@ -108,10 +92,8 @@ model Option {
   text       String
   isCorrect  Boolean  @default(false)
   feedback   String?
-
-  // CORRECCIÓN: Añadido onDelete: Cascade
-  question   Question @relation("QuestionOptions", fields: [questionId], references: [id], onDelete: Cascade)
   questionId String
+  question   Question @relation("QuestionOptions", fields: [questionId], references: [id])
 
   @@map("options")
 }
@@ -125,25 +107,20 @@ model MinsalNorm {
   @@map("minsal_norms")
 }
 
-// ------------------------------------------------------------------
-// 3. ENUMS y Modelo de Resultados
-// ------------------------------------------------------------------
-enum Role {
-  STUDENT
-  EDITOR
-  ADMIN
-}
-
 model StudentResult {
   id          String   @id @default(cuid())
   userId      String
   caseId      String
   score       Int
   completedAt DateTime @default(now())
-
-  // CORRECCIÓN: Añadido onDelete: Cascade
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user        User     @relation(fields: [userId], references: [id])
 
   @@unique([userId, caseId])
   @@map("student_results")
+}
+
+enum Role {
+  STUDENT
+  EDITOR
+  ADMIN
 }
