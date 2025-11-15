@@ -5,6 +5,10 @@ import type { CasoClient } from "@/lib/types";
 import { CasoProvider } from "./CasoContext";
 import CasoDetalleClient from "./CasoDetalleClient";
 import CaseNavigator from "./CaseNavigator";
+import dynamic from 'next/dynamic';
+
+// VignetteHeader is a client component (collapse + tags). Dynamically import to avoid SSR issues.
+const VignetteHeader = dynamic(() => import('./VignetteHeader'), { ssr: false });
 
 interface Props {
   casoClient: CasoClient;
@@ -13,11 +17,20 @@ interface Props {
 export default function CasoInteractiveUI({ casoClient }: Props) {
   return (
     <CasoProvider caso={casoClient}>
-      <div className="grid md:grid-cols-[280px_1fr] gap-8 items-start">
-        <CaseNavigator />
-        <div className="bg-white/60 backdrop-blur-lg rounded-2xl border border-white/80 shadow-soft p-6 md:p-8">
-          <CasoDetalleClient />
+      {/* Viñeta horizontal en la parte superior */}
+      <VignetteHeader title={casoClient.titulo} vigneta={casoClient.vigneta} />
+
+      {/* Grid: preguntas a la izquierda (mayor espacio horizontal), navigator a la derecha (compacto) */}
+      <div className="grid md:grid-cols-[1fr_300px] gap-6 items-start">
+        <div>
+          <div className="bg-[var(--km-surface-1)] rounded-[var(--km-radius)] p-4 md:p-6 shadow-card border">
+            <CasoDetalleClient />
+          </div>
         </div>
+
+        <aside>
+          <CaseNavigator />
+        </aside>
       </div>
     </CasoProvider>
   );

@@ -10,8 +10,8 @@ export default function CaseNavigator() {
 
   return (
     <aside className="sticky top-24">
-      <div className="bg-white/60 backdrop-blur-lg rounded-2xl border border-white/80 shadow-soft p-5">
-        <h3 className="text-sm font-semibold tracking-wide text-primary-800 mb-4 px-2">
+      <div className="card p-5">
+        <h3 className="text-sm font-semibold tracking-wide mb-4 px-2" style={{ color: 'var(--km-deep)' }}>
           Pasos del caso
         </h3>
         <ol className="space-y-2">

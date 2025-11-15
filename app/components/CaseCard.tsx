@@ -52,33 +52,44 @@ export default function CaseCard({
     } catch { return ''; }
   }, [createdAt]);
 
+  const diffLabel = (n: number | null | undefined) => {
+    if (!n) return 'Fácil';
+    if (n === 1) return 'Fácil';
+    if (n === 2) return 'Medio';
+    if (n === 3) return 'Difícil';
+    return String(n);
+  };
+
   return (
-    <article className="card group relative overflow-hidden bg-white/60 backdrop-blur-lg border border-white/80 shadow-soft transition-all hover:shadow-md hover:border-white">
+    <article className="card group relative overflow-hidden transition-all hover:shadow-md">
       {/* Badges superiores */}
       <div className="mb-3 flex items-center gap-2">
-        <span className="inline-flex items-center rounded-md bg-primary-100/80 text-primary-800 px-2 py-0.5 text-xs font-medium">
+        <span className="chip" style={{ background: 'rgba(14,107,183,0.08)', color: 'var(--km-blue)' }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+            <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.5" />
+          </svg>
           {area ? String(area) : 'General'}
         </span>
-        <span className="inline-flex items-center rounded-md bg-secondary-200/70 text-secondary-800 px-2 py-0.5 text-xs font-medium">
-          Dificultad {difficulty ?? 1}
+        <span className={`chip ${difficulty ? `chip-diff-${difficulty}` : 'chip-diff-1'}`}>
+          {diffLabel(difficulty)}
         </span>
         {fecha && (
-          <span className="ml-auto text-xs text-secondary-500">{fecha}</span>
+          <span className="ml-auto text-xs text-[var(--km-text-700)]">{fecha}</span>
         )}
       </div>
 
       {/* Título */}
-      <h3 className="text-ink-800 text-lg font-semibold leading-snug group-hover:text-ink-900">
+      <h3 className="text-[var(--km-text-900)] text-xl font-semibold leading-snug group-hover:text-[var(--km-deep)]">
         {title}
       </h3>
 
       {summary && (
-        <p className="mt-2 text-sm text-secondary-600 line-clamp-3">
+        <p className="mt-2 text-sm text-[var(--km-text-700)] line-clamp-3">
           {summary}
         </p>
       )}
 
-      <Link href={`/casos/${id}`} className="mt-6 btn btn-secondary w-full group-hover:bg-primary-500 group-hover:text-white group-hover:shadow-lg transition-all">
+      <Link href={`/casos/${id}`} className="mt-6 btn btn-primary w-full transition-all">
         Resolver caso →
       </Link>
     </article>

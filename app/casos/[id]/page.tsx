@@ -24,21 +24,64 @@ interface PageProps {
 }
 
 function normalizarDatosDelCaso(casoDesdeDB: any): CasoClient | null {
-  if (!casoDesdeDB || typeof casoDesdeDB.contenido !== 'object' || casoDesdeDB.contenido === null) {
-    return null;
+  if (!casoDesdeDB) return null;
+
+  // Si el caso viene en formato relacional (questions + options), normalizamos desde ahí
+  if (Array.isArray(casoDesdeDB.questions)) {
+    const pasosNormalizados: Paso[] = casoDesdeDB.questions
+      .sort((a: any, b: any) => (a.order ?? 0) - (b.order ?? 0))
+      .map((q: any) => {
+        const opciones = Array.isArray(q.options)
+          ? q.options.map((opt: any) => ({
+              id: opt.id,
+              texto: opt.text || opt.texto || opt.texto || '',
+              esCorrecta: !!opt.isCorrect || !!opt.esCorrecta || false,
+              explicacion: opt.feedback || opt.explicacion || '',
+            }))
+          : [];
+
+        if (opciones.length > 0) {
+          return {
+            id: q.id,
+            tipo: 'mcq',
+            enunciado: q.text || q.enunciado || '',
+            opciones,
+            feedbackDocente: q.feedback || q.feedbackDocente || undefined,
+          };
+        }
+
+        return {
+          id: q.id,
+          tipo: 'short',
+          enunciado: q.text || q.enunciado || '',
+          guia: q.guia || undefined,
+          feedbackDocente: q.feedback || q.feedbackDocente || undefined,
+        };
+      });
+
+    return {
+      id: casoDesdeDB.id,
+      titulo: casoDesdeDB.title || casoDesdeDB.titulo || '',
+      area: casoDesdeDB.area || casoDesdeDB.modulo || '',
+      dificultad: casoDesdeDB.difficulty ?? casoDesdeDB.dificultad ?? 2,
+      vigneta: casoDesdeDB.vignette || casoDesdeDB.vigneta || null,
+      pasos: pasosNormalizados,
+      referencias: (casoDesdeDB.norms || []).map((n: any) => n.name || n.code || ''),
+      debrief: casoDesdeDB.summary || casoDesdeDB.debrief || null,
+    };
   }
 
-  const contenido = casoDesdeDB.contenido as any;
-  const pasosNormalizados: Paso[] = (contenido.pasos || []).map(
-    (paso: any, index: number): Paso => {
+  // Fallback: si el caso tiene un campo `contenido` con la estructura anterior
+  if (typeof casoDesdeDB.contenido === 'object' && casoDesdeDB.contenido !== null) {
+    const contenido = casoDesdeDB.contenido as any;
+    const pasosNormalizados: Paso[] = (contenido.pasos || []).map((paso: any, index: number): Paso => {
       if (paso.tipo === 'mcq') {
-        const opciones: McqOpcion[] = (paso.opciones || []).map(
-          (opt: any, optIndex: number) => ({
-            id: opt.id || `opt-${index}-${optIndex}`,
-            texto: opt.texto || '',
-            esCorrecta: !!opt.esCorrecta,
-            explicacion: opt.explicacion || '',
-          }));
+        const opciones: McqOpcion[] = (paso.opciones || []).map((opt: any, optIndex: number) => ({
+          id: opt.id || `opt-${index}-${optIndex}`,
+          texto: opt.texto || '',
+          esCorrecta: !!opt.esCorrecta,
+          explicacion: opt.explicacion || '',
+        }));
         return {
           id: paso.id || `paso-${index}`,
           tipo: 'mcq',
@@ -47,7 +90,6 @@ function normalizarDatosDelCaso(casoDesdeDB: any): CasoClient | null {
           feedbackDocente: paso.feedbackDocente,
         };
       } else {
-        // Asumimos 'short' si no es 'mcq'
         return {
           id: paso.id || `paso-${index}`,
           tipo: 'short',
@@ -56,24 +98,30 @@ function normalizarDatosDelCaso(casoDesdeDB: any): CasoClient | null {
           feedbackDocente: paso.feedbackDocente,
         };
       }
-    }
-  );
+    });
 
-  return {
-    id: casoDesdeDB.id,
-    titulo: casoDesdeDB.titulo,
-    area: casoDesdeDB.area,
-    dificultad: casoDesdeDB.dificultad,
-    vigneta: contenido.vigneta || null,
-    pasos: pasosNormalizados,
-    referencias: contenido.referencias || [],
-    debrief: contenido.debrief || null,
-  };
+    return {
+      id: casoDesdeDB.id,
+      titulo: casoDesdeDB.titulo || casoDesdeDB.title || '',
+      area: casoDesdeDB.area || casoDesdeDB.modulo || '',
+      dificultad: casoDesdeDB.dificultad || casoDesdeDB.difficulty || 2,
+      vigneta: contenido.vigneta || null,
+      pasos: pasosNormalizados,
+      referencias: contenido.referencias || [],
+      debrief: contenido.debrief || null,
+    };
+  }
+
+  return null;
 }
 
 export default async function CasoPage({ params }: PageProps) {
   const casoDesdeDB = await prismaRO.case.findUnique({
     where: { id: params.id },
+    include: {
+      questions: { include: { options: true } },
+      norms: true,
+    },
   });
 
   if (!casoDesdeDB) {

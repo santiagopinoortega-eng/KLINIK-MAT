@@ -6,13 +6,27 @@
   :root {
     color-scheme: light;
     scroll-behavior: smooth;
+    /* Design tokens: KLINIK-MAT - Red / Coral focused */
+    --km-deep: #6B0F0F;       /* Deep red for strong accents and headings */
+    --km-primary: #B72B2B;    /* Primary red (buttons, links) */
+    --km-terracotta: #C86A55; /* Mid terracotta */
+    --km-coral: #FFB6A6;      /* Coral light for accents and highlights */
+    --km-blue: #0E6BB7;       /* Clinical blue accent (logo-inspired) */
+    --km-blush: #FFF6F5;      /* Very soft blush for large backgrounds */
+    --km-text-900: #0F1724;   /* main text */
+    --km-text-700: #4B5563;   /* muted text */
+    --km-surface-1: #FFFFFF;  /* card background - pure white for clarity */
+    --km-filter-bg: rgba(14,107,183,0.06); /* subtle blue for filter bar */
+    --km-surface-2: #FBF7F6;  /* page background subtle */
+    --km-shadow: 0 8px 24px rgba(15,23,36,0.06);
+    --km-radius: 10px;
   }
 
   html, body {
     @apply text-neutral-800 font-sans antialiased;
-    background-color: #f8fafc;
-    background-image: radial-gradient(at 90% 10%, hsla(347, 83%, 84%, 0.3) 0px, transparent 50%),
-                      radial-gradient(at 10% 80%, hsla(347, 73%, 74%, 0.2) 0px, transparent 50%);
+    background-color: var(--km-blush);
+    /* Page gradient: deep red -> coral (soft, low-contrast) */
+    background-image: linear-gradient(135deg, rgba(107,15,15,0.06) 0%, rgba(255,182,166,0.06) 100%);
     background-attachment: fixed;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -25,35 +39,76 @@
   p  { @apply text-sm md:text-base text-neutral-600 leading-relaxed; }
 
   a { 
-    @apply text-brand-600 hover:text-brand-700 hover:underline underline-offset-4 transition-colors; 
+    color: var(--km-primary);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color .15s ease;
   }
+  a:hover { color: var(--km-deep); }
 }
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2
-    text-sm font-medium border border-transparent transition-all shadow-sm
+    @apply inline-flex items-center justify-center gap-2 rounded px-4 py-2
+    text-sm font-medium border border-transparent transition-all
     disabled:opacity-50 disabled:pointer-events-none;
+    border-radius: var(--km-radius);
   }
   .btn-lg { @apply px-5 py-2.5 text-base; } /* Un poco más compacto */
   .btn-primary {
-    @apply bg-brand-600 text-white hover:bg-brand-700 active:bg-brand-800
-    focus:outline-none focus:ring-4 focus:ring-brand-100;
+    background-color: var(--km-deep);
+    color: white;
+    box-shadow: var(--km-shadow);
+  }
+  .btn-primary:hover { background-color: var(--km-primary); }
+  .btn-primary:disabled { background-color: rgba(183,43,43,0.3); }
+  .btn-secondary {
+    background-color: transparent;
+    border: 1px solid var(--km-terracotta);
+    color: var(--km-deep);
+  }
+  .btn-secondary:hover { background-color: rgba(200,106,85,0.06); }
+  .btn:focus-visible {
+    outline: 3px solid rgba(14,107,183,0.12);
+    outline-offset: 3px;
   }
   .card {
-    @apply rounded-xl border shadow-soft p-5 md:p-8; /* Menos padding en móvil */
-    @apply bg-white/95 border-neutral-100;
+    border-radius: var(--km-radius);
+    padding: 1.25rem;
+    background: var(--km-surface-1);
+    border: 1px solid rgba(15,23,36,0.04);
+    box-shadow: var(--km-shadow);
+    transition: transform .18s cubic-bezier(.2,.9,.2,1), box-shadow .18s ease, border-color .18s ease;
   }
-  @supports (backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px)) {
-    .card {
-      background-color: rgba(255, 255, 255, 0.65);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-color: rgba(255, 255, 255, 0.8);
-    }
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 40px rgba(2,6,23,0.12);
+    border-color: rgba(15,23,36,0.06);
   }
+  /* Filters bar: slightly highlighted area for search/filters */
+  .filters-bar {
+    background: var(--km-filter-bg);
+    border-radius: calc(var(--km-radius) + 4px);
+    padding: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    border: 1px solid rgba(14,107,183,0.06);
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .25rem .5rem;
+    border-radius: 999px;
+    font-size: .7rem;
+    font-weight: 600;
+  }
+  .chip-diff-1 { background: rgba(16,185,129,0.08); color: #057a48; }
+  .chip-diff-2 { background: rgba(250,204,21,0.08); color: #7a5f00; }
+  .chip-diff-3 { background: rgba(183,43,43,0.06); color: var(--km-deep); }
   .container-app {
-    @apply container mx-auto px-4 max-w-5xl; /* Un poco más estrecho para lectura */
+    @apply container mx-auto px-4 max-w-4xl; /* Ancho óptimo para lectura */
   }
 }
 

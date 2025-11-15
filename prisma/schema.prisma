@@ -10,6 +10,7 @@ datasource db {
 model User {
   id           String          @id @default(cuid())
   email        String          @unique
+  emailVerified DateTime?      @map("email_verified")
   name         String?
   passwordHash String?
   role         Role            @default(STUDENT)
@@ -80,6 +81,8 @@ model Question {
   id      String   @id @default(cuid())
   order   Int
   text    String
+  guia    String?
+  feedbackDocente String?
   caseId  String
   options Option[] @relation("QuestionOptions")
   case    Case     @relation("CaseQuestions", fields: [caseId], references: [id])

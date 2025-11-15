@@ -45,6 +45,43 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+### Desarrollo local: correo (MailHog)
+
+Para probar el flujo de "magic link" sin enviar correos reales, usa MailHog.
+
+1) Levanta MailHog con Docker Compose:
+
+```bash
+docker-compose up -d mailhog
+```
+
+2) Copia el ejemplo de variables y ajusta `.env.local`:
+
+```bash
+cp .env.example .env.local
+# editar .env.local y poner NEXTAUTH_SECRET, DATABASE_URL, y ENABLE_NEXTAUTH_DEV=true
+```
+
+3) Inicia la app (con MailHog corriendo):
+
+```bash
+npm run dev:mail
+```
+
+4) Abre la UI de MailHog en `http://localhost:8025` para ver los correos.
+
+Dev endpoints
+
+Este repo incluye endpoints de depuración (`/api/debug/send-magic-link` y `/api/debug/complete-magic`).
+Están protegidos y solo se activan si en tu `.env.local` pones:
+
+```
+ENABLE_NEXTAUTH_DEV=true
+```
+
+No pongas `ENABLE_NEXTAUTH_DEV=true` en entornos públicos ni en producción.
+
+
 ## Tech Stack
 
 - **Framework:** [Next.js](https://nextjs.org/)

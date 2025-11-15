@@ -5,6 +5,7 @@ import { PrismaClient } from '@prisma/client';
 // Esto es clave para evitar crear nuevas conexiones en cada hot-reload en desarrollo.
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
+  prismaRO: PrismaClient | undefined;
 };
 
 // Exportamos una única instancia de PrismaClient.
@@ -20,4 +21,20 @@ export const prisma =
 // Esto asegura que la misma instancia se reutilice en las recargas de la aplicación.
 if (process.env.NODE_ENV !== 'production') {
   globalForPrisma.prisma = prisma;
+}
+
+// Optional read-only replica support. If DATABASE_URL_READONLY is provided,
+// create a separate PrismaClient bound to that URL. Otherwise reuse the main
+// `prisma` instance as `prismaRO` for convenience.
+export const prismaRO =
+  globalForPrisma.prismaRO ??
+  (process.env.DATABASE_URL_READONLY
+    ? new PrismaClient({
+        datasources: { db: { url: process.env.DATABASE_URL_READONLY } },
+        log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
+      })
+    : prisma);
+
+if (process.env.NODE_ENV !== 'production') {
+  globalForPrisma.prismaRO = prismaRO;
 }

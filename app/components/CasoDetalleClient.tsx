@@ -36,17 +36,42 @@ export default function CasoDetalleClient() {
           <p className="text-success-700 text-sm md:text-base mt-1">Has revisado todo el caso.</p>
         </div>
         <div className="prose prose-sm md:prose-base prose-neutral max-w-none">
-          {caso.debrief && ( <> <h3>Feedback Docente</h3> <p>{caso.debrief}</p> </> )}
-          {caso.referencias && (
-            <> <h3>Bibliografía</h3> <ul>{caso.referencias.map((r, i) => <li key={i}>{r}</li>)}</ul> </>
-          )}
+            { (caso.debrief || caso.pasos.some(p => p.feedbackDocente)) && (
+              <div className="mt-4 p-4 rounded-md bg-[var(--km-surface-2)] border border-neutral-100">
+                <h3 className="text-lg font-semibold" style={{ color: 'var(--km-deep)' }}>Feedback Docente</h3>
+                {caso.debrief ? (
+                  <p className="text-[var(--km-text-700)] mt-2">{caso.debrief}</p>
+                ) : (
+                  <div className="space-y-3 mt-2 text-[var(--km-text-700)]">
+                    {caso.pasos.map((p, idx) => (
+                      p.feedbackDocente ? (
+                        <div key={p.id}>
+                          <strong className="block">Paso {idx + 1}:</strong>
+                          <div className="whitespace-pre-wrap">{p.feedbackDocente}</div>
+                        </div>
+                      ) : null
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+            {caso.referencias && caso.referencias.length > 0 && (
+              <section className="mt-6 card">
+                <h3 className="text-lg font-semibold" style={{ color: 'var(--km-deep)' }}>Bibliografía</h3>
+                <ul className="list-disc pl-5 mt-3 text-sm text-[var(--km-text-700)]">
+                  {caso.referencias.map((r, i) => (
+                    <li key={i}>{r}</li>
+                  ))}
+                </ul>
+              </section>
+            )}
         </div>
       </div>
     );
   }
 
   // --- 2. PANTALLA INICIAL (VIÑETA) - Paso 0 ---
-  // Si estamos en el paso 0, mostramos SOLO la viñeta y un botón para empezar.
+  // Mantener una pantalla inicial con CTA, pero la viñeta ahora está en el navigator y siempre visible.
   if (currentStep === 0) {
     return (
       <div className="card p-6 md:p-8 animate-fade-in">
@@ -54,16 +79,8 @@ export default function CasoDetalleClient() {
                      bg-gradient-to-r from-brand-700 to-brand-900 bg-clip-text text-transparent">
           {caso.titulo}
         </h1>
-        
-        {/* Viñeta destacada */}
-        <div className="mb-8 p-4 md:p-6 bg-brand-50/50 border-l-4 border-brand-300 rounded-r-xl">
-          <h2 className="text-lg font-bold text-brand-800 mb-3 uppercase tracking-wider flex items-center gap-2">
-            <span className="text-2xl">📋</span> Historia Clínica
-          </h2>
-          <div className="text-base md:text-lg text-neutral-800 whitespace-pre-wrap leading-relaxed">
-            {caso.pasos[0].enunciado} {/* Usamos el enunciado del paso 0 como viñeta */}
-          </div>
-        </div>
+
+        <p className="text-sm text-[var(--km-text-700)] mb-6">Lee atentamente la historia clínica en la columna izquierda y cuando estés listo, comienza con las preguntas.</p>
 
         {/* Botón para comenzar las preguntas */}
         <button 
@@ -90,6 +107,11 @@ export default function CasoDetalleClient() {
       <h1 className="text-lg md:text-xl font-bold mb-4 text-neutral-500">
         {caso.titulo}
       </h1>
+
+      {/* Compact vignette for smaller screens: show a short excerpt of vigneta above the question */}
+      {caso.vigneta && (
+        <div className="mb-4 block md:hidden p-3 bg-brand-50/30 rounded-md text-sm text-neutral-700 whitespace-pre-wrap">{caso.vigneta}</div>
+      )}
 
       {/* Barra de Progreso (Ajustada para mostrar progreso de preguntas) */}
       <CaseProgress current={preguntaActual} total={preguntasTotales} />

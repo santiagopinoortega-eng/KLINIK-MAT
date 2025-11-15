@@ -78,7 +78,7 @@ export default function Page() {
   }, [busqueda, modulo]);
 
   return (
-    <div className="bg-white py-12">
+    <div className="bg-[var(--km-surface-2)] py-12">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Título */}
         <div className="text-center mb-12">
@@ -93,12 +93,14 @@ export default function Page() {
             placeholder="Buscar documento o palabra clave..."
             value={busqueda}
             onChange={(e) => setBusqueda(e.target.value)}
-            className="flex-1 border rounded-lg px-4 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            className="flex-1 rounded-lg px-4 py-2 shadow-sm"
+            style={{ background: 'var(--km-surface-1)', border: '1px solid rgba(183,43,43,0.08)' }}
           />
           <select
             value={modulo}
             onChange={(e) => setModulo(e.target.value as any)}
-            className="border rounded-lg px-4 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            className="rounded-lg px-4 py-2 shadow-sm"
+            style={{ background: 'var(--km-surface-1)', border: '1px solid rgba(183,43,43,0.08)' }}
           >
             {modulos.map((m) => (
               <option key={m}>{m}</option>
@@ -110,7 +112,7 @@ export default function Page() {
         <div className="grid gap-6 sm:grid-cols-2">
           {filtrados.map((doc) => (
             <a key={doc.title} href={doc.href} download className="block group">
-              <div className="bg-gray-50 rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300">
+              <div className="card rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300">
                 <div className="flex justify-between items-start">
                   <h3 className="text-xl font-bold text-blue-700 group-hover:text-blue-800 transition-colors">
                     {doc.title}

@@ -6,7 +6,7 @@ import type { CasoClient, McqOpcion as Opcion, Respuesta } from '@/lib/types';
 
 interface CasoContextType {
   caso: CasoClient; currentStep: number; respuestas: Respuesta[];
-  handleSelect: (pasoId: string, opcion: Opcion) => void;
+  handleSelect: (pasoId: string, opcion: Opcion, opts?: { skipAdvance?: boolean }) => void;
   handleNavigate: (stepIndex: number) => void;
   goToNextStep: () => void; // <-- LO VOLVEMOS A EXPONER
 }
@@ -25,13 +25,16 @@ export function CasoProvider({ caso, children }: { caso: CasoClient; children: R
   // --- RE-EXPUESTO PARA EL BOTÓN "COMENZAR" ---
   const goToNextStep = useCallback(() => handleNavigate(currentStep + 1), [currentStep, handleNavigate]);
 
-  const handleSelect = useCallback((pasoId: string, opcion: Opcion) => {
+  const handleSelect = useCallback((pasoId: string, opcion: Opcion, opts?: { skipAdvance?: boolean }) => {
     if (respuestas.some(r => r.pasoId === pasoId)) return;
     setRespuestas(prev => [...prev, { pasoId, opcionId: opcion.id, esCorrecta: opcion.esCorrecta }]);
-    setTimeout(() => {
-      setCurrentStep(curr => (curr < caso.pasos.length ? curr + 1 : curr));
-    }, 1500);
-  }, [caso.pasos.length]); // Quitamos 'respuestas' de dependencias para evitar loops
+    // Si no se indica skipAdvance, avanzamos automáticamente (útil para MCQ)
+    if (!opts?.skipAdvance) {
+      setTimeout(() => {
+        setCurrentStep(curr => (curr < caso.pasos.length ? curr + 1 : curr));
+      }, 700);
+    }
+  }, [caso.pasos.length, respuestas]);
 
   const value = useMemo(() => ({ 
     caso, currentStep, respuestas, handleSelect, handleNavigate, goToNextStep 

@@ -17,19 +17,24 @@ module.exports = {
       },
 
       colors: {
-        // --- ¡AQUÍ ESTÁ LA CORRECCIÓN! ---
-        brand: colors.rose,     // <-- CAMBIADO DE 'blue' A 'rose' (coral/rosa)
-        neutral: colors.slate,
-        
-        // Colores Semánticos
-        success: colors.emerald,
-        danger: colors.red,     // Usamos 'red' para que se distinga de 'rose'
-        warning: colors.amber,
-
-        surface: {
-          0: '#ffffff',
-          50: '#f8fafc',
+        // KLINIK-MAT (Red-first) palette tokens
+        km: {
+          deep: '#6B0F0F',        // Deep red (titles, strong accents)
+          primary: '#B72B2B',     // Primary red (buttons, accents)
+          terracotta: '#C86A55',  // Mid terracotta
+          coral: '#FFB6A6',       // Coral light for accents/background
+          blue: '#0E6BB7',       // Clinical blue accent (logo-inspired)
+          blush: '#FFF2F1',       // Very soft blush for large backgrounds
+          'text-900': '#0F1724',  // dark text
+          'text-700': '#4B5563',  // muted text
+          'surface-1': '#FFFFFF',
+          'surface-2': '#FBF7F6',
         },
+
+        neutral: colors.slate,
+        success: colors.emerald,
+        danger: colors.red,
+        warning: colors.amber,
       },
 
       boxShadow: {
@@ -38,8 +43,7 @@ module.exports = {
       },
 
       ringColor: {
-        // --- ¡CORRECCIÓN #2! ---
-        DEFAULT: colors.rose[300], // <-- CAMBIADO DE 'blue' A 'rose'
+        DEFAULT: '#FFB6A6', // soft coral ring by default
       },
 
       keyframes: {

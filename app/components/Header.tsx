@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 const links = [
@@ -13,19 +14,17 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-secondary-200">
+    <header className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-neutral-100">
       <nav className="mx-auto max-w-7xl px-6 lg:px-10 py-3 flex items-center justify-between">
-        {/* Wordmark en texto (sin logo mini) */}
-        <Link
-          href="/"
-          className="text-xl sm:text-2xl font-extrabold tracking-wide text-primary-700 hover:text-primary-800 transition"
-          aria-label="KLINIK-MAT - inicio"
-        >
-          KLINIK-MAT
+        {/* Logo - tamaño visible pero contenido */}
+        <Link href="/" className="flex items-center gap-3" aria-label="KLINIK-MAT - inicio">
+          <div className="relative w-[160px] h-10 md:h-10 md:w-[200px] flex items-center">
+            <Image src="/brand/logo-centro.png" alt="KLINIK-MAT" fill style={{ objectFit: 'contain' }} priority />
+          </div>
         </Link>
 
-        {/* Navegación */}
-        <ul className="flex items-center gap-1 sm:gap-2">
+        {/* Navegación alineada a la derecha */}
+        <ul className="flex items-center gap-2">
           {links.map((l) => {
             const active = pathname === l.href;
             return (
@@ -34,8 +33,7 @@ export default function Header() {
                   href={l.href}
                   className={[
                     'px-3 py-2 rounded-lg text-sm sm:text-[0.95rem] font-medium transition-colors',
-                    'hover:bg-primary-50 hover:text-primary-700',
-                    active ? 'bg-primary-100 text-primary-800' : 'text-secondary-600',
+                    active ? 'bg-[var(--km-blush)] text-[var(--km-deep)]' : 'text-[var(--km-text-700)] hover:bg-[var(--km-blush)]',
                   ].join(' ')}
                 >
                   {l.label}

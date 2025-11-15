@@ -15,20 +15,19 @@ export default function LoginScreenClient() {
     e.preventDefault(); 
     setLoading(true);
     setError(null);
-
     // Llama al backend de Auth.js (V5)
     const result = await signIn('email', {
-        email,
-        redirect: false, 
-        // Después de hacer clic en el email, redirige al usuario a la página de casos.
-        callbackUrl: '/casos', 
+      email,
+      redirect: false,
+      // Después de hacer clic en el email, redirige al usuario a la página de casos.
+      callbackUrl: '/casos',
     });
 
     if (result?.error) {
-        setError('Error al enviar el correo. ¿Credenciales SMTP correctas?');
+      setError('Error al enviar el correo. ¿Credenciales SMTP correctas?');
     } else if (result?.ok) {
-        // Éxito: Redirigimos al usuario a la página de "Verificar Email"
-        router.push('/login/verificar');
+      // Éxito: Redirigimos al usuario a la página de "Verificar Email"
+      router.push('/login/verificar');
     }
     setLoading(false);
   };

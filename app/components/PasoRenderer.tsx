@@ -8,11 +8,11 @@ import cx from "clsx";
 
 interface Props {
   pasoId: string;
-  onAnswer: (pasoId: string, opcion: McqOpcion | any) => void;
+  onAnswer: (pasoId: string, opcion: McqOpcion | any, opts?: { skipAdvance?: boolean }) => void;
 }
 
 export default function PasoRenderer({ pasoId, onAnswer }: Props) {
-  const { caso, respuestas } = useCaso();
+  const { caso, respuestas, goToNextStep } = useCaso();
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   // Estado para respuesta corta (opcional por ahora, pero preparado)
   const [shortAnswer, setShortAnswer] = useState(""); 
@@ -57,24 +57,59 @@ export default function PasoRenderer({ pasoId, onAnswer }: Props) {
       <div className="mt-4 md:mt-6 animate-fade-in"> 
         <h3 className="text-base md:text-lg font-semibold mb-2 text-neutral-800">Pregunta de Desarrollo</h3>
         <p className="text-sm md:text-base text-neutral-900 mb-4 font-medium">{stepData.enunciado}</p>
-        
-        {/* Área de texto simple para simular la interacción */}
+
+        {/* Área de texto para la respuesta: la 'guía' y el feedback se muestran AFTER de enviar la respuesta */}
         <textarea 
-            className="w-full p-3 border border-neutral-300 rounded-lg mb-4 text-sm focus:ring-brand-500 focus:border-brand-500"
-            rows={3}
+            className="w-full p-3 border border-neutral-300 rounded-lg mb-4 text-sm focus:ring-[var(--km-blue)] focus:border-[var(--km-blue)]"
+            rows={6}
             placeholder="Escribe tu análisis aquí..."
             value={shortAnswer}
             onChange={(e) => setShortAnswer(e.target.value)}
             disabled={!!respuestaUsuario}
         />
 
-        <button
-          onClick={() => onAnswer(pasoId, { id: 'next', texto: 'Respuesta enviada', esCorrecta: true })}
-          className="btn btn-primary w-full md:w-auto text-sm"
-          disabled={!shortAnswer.trim() && !respuestaUsuario}
-        >
-          {respuestaUsuario ? "Continuar" : "Enviar Respuesta"}
-        </button>
+        <div className="flex items-center gap-3">
+          {!respuestaUsuario ? (
+            <button
+              onClick={() => onAnswer(pasoId, { id: 'dev', texto: shortAnswer, esCorrecta: true }, { skipAdvance: true })}
+              className="btn btn-primary flex-1 text-sm"
+              disabled={!shortAnswer.trim()}
+            >
+              Enviar respuesta
+            </button>
+          ) : (
+            <button onClick={() => goToNextStep()} className="btn btn-secondary flex-1 text-sm">Continuar</button>
+          )}
+        </div>
+
+        {/* Después de responder: mostrar guía, feedback docente y bibliografía breve */}
+        {respuestaUsuario && (
+          <div className="mt-4 space-y-4">
+            {stepData.guia && (
+              <div className="p-3 rounded-lg bg-[var(--km-surface-2)] text-sm text-[var(--km-text-700)] whitespace-pre-wrap">
+                <h4 className="font-semibold mb-2">Guía de respuesta</h4>
+                <div>{stepData.guia}</div>
+              </div>
+            )}
+
+            {stepData.feedbackDocente && (
+              <div className="p-3 rounded-lg bg-[var(--km-surface-1)] border border-neutral-200 text-sm">
+                <h4 className="font-semibold mb-2">Feedback docente</h4>
+                <div className="text-[var(--km-text-700)] whitespace-pre-wrap">{stepData.feedbackDocente}</div>
+              </div>
+            )}
+
+            {caso.referencias && caso.referencias.length > 0 && (
+              <div className="p-3 rounded-lg bg-[var(--km-surface-2)] text-sm text-[var(--km-text-700)]">
+                <h4 className="font-semibold mb-2">Bibliografía relacionada</h4>
+                <ul className="list-disc pl-5">
+                  {caso.referencias.slice(0,3).map((r,i) => <li key={i}>{r}</li>)}
+                  {caso.referencias.length > 3 && <li>...y {caso.referencias.length - 3} referencias más (ver al finalizar)</li>}
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     );
   }
@@ -95,32 +130,39 @@ export default function PasoRenderer({ pasoId, onAnswer }: Props) {
             // Si ya respondió, mostramos si su selección fue incorrecta
             const wasSelectedAndWrong = isAnswered && respuestaUsuario.opcionId === opcion.id && !isCorrect;
 
-            return (
+                return (
               <label key={opcion.id} className={cx(
                   "flex items-start p-3 rounded-xl border transition-all cursor-pointer text-sm md:text-base",
                   {
                     "!cursor-not-allowed opacity-90": isAnswered,
-                    "bg-brand-50 border-brand-300 ring-1 ring-brand-200": isSelected && !isAnswered,
-                    "bg-white border-neutral-200 hover:bg-neutral-50": !isSelected && !isAnswered,
+                    "bg-[var(--km-coral)]/8 border-[rgba(183,43,43,0.06)] shadow-sm": isSelected && !isAnswered,
+                    "bg-[var(--km-surface-1)] border-[rgba(183,43,43,0.06)] hover:shadow-sm": !isSelected && !isAnswered,
                     "bg-success-50 border-success-300 ring-1 ring-success-200": isCorrect && isAnswered,
                     "bg-danger-50 border-danger-300 ring-1 ring-danger-200": wasSelectedAndWrong,
-                    "bg-neutral-50 border-neutral-200 opacity-60": isAnswered && !isCorrect && !wasSelectedAndWrong,
+                    "bg-[var(--km-surface-2)] border-[rgba(0,0,0,0.03)] opacity-80": isAnswered && !isCorrect && !wasSelectedAndWrong,
                   }
                 )}>
                 <input type="radio" name={stepData.id} value={opcion.id} checked={isSelected} onChange={handleOptionChange} disabled={isAnswered}
-                  className="mt-0.5 h-4 w-4 text-brand-600 border-neutral-300 focus:ring-brand-500 shrink-0" />
+                  className="mt-0.5 h-4 w-4 text-[var(--km-primary)] border-neutral-300 focus:ring-[var(--km-primary)] shrink-0" />
                 <span className="ml-3 flex-1">
-                  <span className={isAnswered ? "text-neutral-700" : "text-neutral-900"}>{opcion.texto}</span>
+                  <span className={isAnswered ? "text-[var(--km-text-700)]" : "text-[var(--km-text-900)]"}>{opcion.texto}</span>
                   {isAnswered && (isCorrect || wasSelectedAndWrong) && (
-                    <div className={cx("mt-2 text-xs p-2 rounded-lg animate-fade-in", isCorrect ? "bg-success-100/50 text-success-800" : "bg-danger-100/50 text-danger-800")}>
-                      <strong>{isCorrect ? "¡Correcto!" : "Incorrecto."}</strong> {opcion.explicacion}
-                    </div>
-                  )}
+                      <div className={cx("mt-2 text-xs p-2 rounded-lg animate-fade-in", isCorrect ? "bg-success-100/50 text-success-800" : "bg-danger-100/50 text-danger-800")}>
+                        <strong>{isCorrect ? "¡Correcto!" : "Incorrecto."}</strong> {opcion.explicacion}
+                      </div>
+                    )}
                 </span>
               </label>
             );
           })}
         </div>
+          {/* Feedback docente general para la pregunta */}
+          {respuestaUsuario && stepData.feedbackDocente && (
+            <div className="mt-4 p-3 rounded-lg bg-[var(--km-surface-1)] border border-neutral-200 text-sm">
+              <h4 className="font-semibold mb-2">Feedback docente</h4>
+              <div className="text-[var(--km-text-700)] whitespace-pre-wrap">{stepData.feedbackDocente}</div>
+            </div>
+          )}
       </div>
     );
   }

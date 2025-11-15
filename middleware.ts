@@ -1,19 +1,43 @@
 // middleware.ts
-// VERSIÓN CORREGIDA (IMPORTA SOLO EL ARCHIVO EDGE-SAFE)
+// Middleware ligera que evita importar la configuración completa
+// de NextAuth (que podría arrastrar nodemailer al bundle Edge).
 
-import NextAuth from 'next-auth';
-// 1. Importa la config "ligera" (que es Edge-safe)
-import { authConfig } from './auth.config';
-import type { AuthConfig as V5AuthConfig } from '@auth/core/types';
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-// 2. Inicializa solo con la config Edge-safe
-const { auth } = NextAuth(authConfig as V5AuthConfig);
+// Matcher: rutas protegidas por sesión
+const PROTECTED_PATHS = ['/casos', '/mi-progreso', '/admin'];
 
-// 3. La lógica de 'authorized' (que está en auth.config.ts)
-//    se encargará de la redirección automáticamente.
-export default auth; 
+function isProtectedPath(pathname: string) {
+  return PROTECTED_PATHS.some((p) => pathname === p || pathname.startsWith(p + '/'));
+}
 
-// 4. EL MATCHER (sigue igual)
+export function middleware(req: NextRequest) {
+  const { nextUrl, cookies } = req;
+  const pathname = nextUrl.pathname;
+
+  // No hacer nada para assets, api u otras rutas públicas
+  if (!isProtectedPath(pathname)) return NextResponse.next();
+
+  // Comprobación ligera: presencia de cookie de sesión
+  // Este middleware es deliberadamente simple para evitar
+  // cargar librerías Node-only en el runtime Edge.
+  const sessionCookieName = process.env.NODE_ENV === 'production'
+    ? '__Secure-next-auth.session-token'
+    : 'next-auth.session-token';
+
+  const token = cookies.get(sessionCookieName)?.value;
+
+  if (!token) {
+    // Redirigir al login si no hay token
+    const loginUrl = new URL('/login', nextUrl.origin);
+    loginUrl.searchParams.set('from', pathname);
+    return NextResponse.redirect(loginUrl);
+  }
+
+  return NextResponse.next();
+}
+
 export const config = {
   matcher: [
     '/casos/:path*',

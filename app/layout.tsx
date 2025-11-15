@@ -36,12 +36,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es" className={`${inter.variable} scroll-smooth`}>
       {/* El body ya recibe estilos (fondo/color) desde globals.css */}
-      <body>
+      <body className="bg-gradient-to-br from-[rgba(107,15,15,0.04)] to-[rgba(255,182,166,0.04)] bg-[var(--km-blush)]">
         
         {/* Skip link accesible (color brand) */}
         <a
           href="#contenido"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 z-50 rounded-lg bg-brand-600 px-3 py-2 text-sm font-medium text-white shadow-focus"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 z-50 rounded-lg px-3 py-2 text-sm font-medium text-white shadow-focus"
+          style={{ background: 'var(--km-primary)' }}
         >
           Ir al contenido
         </a>
