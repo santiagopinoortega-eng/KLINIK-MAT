@@ -8,7 +8,29 @@
 const fs = require('fs');
 const path = require('path');
 const JSON5 = require('json5');
+const dotenv = require('dotenv');
 const { PrismaClient } = require('@prisma/client');
+
+// Cargar `.env.local` si existe (dot env config predeterminado no carga .env.local)
+try {
+  const localEnvPath = path.resolve(process.cwd(), '.env.local');
+  if (fs.existsSync(localEnvPath)) {
+    dotenv.config({ path: localEnvPath });
+  }
+} catch (e) {
+  // no fatal
+}
+
+// Si no está `DATABASE_URL`, permitir fallback a `DATABASE_URL_DEV` (útil para entornos dev)
+if (!process.env.DATABASE_URL && process.env.DATABASE_URL_DEV) {
+  console.warn('WARNING: `DATABASE_URL` no está definido; usando `DATABASE_URL_DEV` como fallback.');
+  process.env.DATABASE_URL = process.env.DATABASE_URL_DEV;
+}
+
+if (!process.env.DATABASE_URL) {
+  console.error('ERROR: la variable de entorno `DATABASE_URL` no está definida. Define `DATABASE_URL` o `DATABASE_URL_DEV` en .env.local o en el entorno.');
+  process.exit(1);
+}
 
 const prisma = new PrismaClient();
 
