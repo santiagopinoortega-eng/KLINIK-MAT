@@ -94,35 +94,47 @@ export const authConfig: AuthConfig = {
     error: '/login/error',
   },
 
-  // 3. LA CORRECCIÓN CRÍTICA: Pasamos la configuración SMTP como objeto.
-  providers: [
-    EmailProvider({
-      server: getEmailServer(),
-      from: process.env.EMAIL_FROM,
-      // Custom sender to log the plain token and still send the email via nodemailer
-      async sendVerificationRequest(params: any) {
-        const { identifier, url, provider, token } = params;
-        try {
-          console.debug('[auth][debug] sendVerificationRequest', JSON.stringify({ identifier, token, url }));
-        } catch {}
+  // 3. LA CORRECCIÓN CRÍTICA: Pasamos la configuración SMTP como objeto y solo
+  //    instanciamos el EmailProvider si hay configuración SMTP válida para evitar
+  //    el error de Nodemailer cuando no hay SMTP configurado.
+  providers: (() => {
+    const server = getEmailServer();
+    if (!server) {
+      if (process.env.NODE_ENV !== 'production') {
+        console.warn('[auth][warn] No SMTP config found — EmailProvider disabled. Set EMAIL_SERVER_* or EMAIL_SERVER_URL to enable magic links.');
+      }
+      return [];
+    }
 
-        // In dev, send actual email so you can click the link. Uses provider.server
-        try {
-          // @ts-ignore - nodemailer has no TS types installed in this repo; treat as any
-          const nodemailer: any = (await import('nodemailer')).default;
-          const transporter = nodemailer.createTransport((provider as any).server as any);
-          const result = await transporter.sendMail({
-            to: identifier,
-            from: (provider as any).from,
-            subject: `Tu enlace de acceso a ${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXTAUTH_URL || 'KLINIK-MAT'}`,
-            text: `Usa este enlace para acceder: ${url}\n\nSi no lo pediste, ignora este correo.`,
-            html: `<p>Usa este enlace para acceder: <a href="${url}">${url}</a></p>\n<p>Si no lo pediste, ignora este correo.</p>`,
-          });
-          console.debug('[auth][debug] sendVerificationRequest -> email sent', { messageId: result?.messageId });
-        } catch (e: any) {
-          console.debug('[auth][debug] sendVerificationRequest -> email send error', { message: e?.message });
-        }
-      },
-    }),
-  ],
+    return [
+      EmailProvider({
+        server,
+        from: process.env.EMAIL_FROM,
+        // Custom sender to log the plain token and still send the email via nodemailer
+        async sendVerificationRequest(params: any) {
+          const { identifier, url, provider, token } = params;
+          try {
+            console.debug('[auth][debug] sendVerificationRequest', JSON.stringify({ identifier, token, url }));
+          } catch {}
+
+          // In dev, send actual email so you can click the link. Uses provider.server
+          try {
+            // @ts-ignore - nodemailer has no TS types installed in this repo; treat as any
+            const nodemailer: any = (await import('nodemailer')).default;
+            const transporter = nodemailer.createTransport((provider as any).server as any);
+            const result = await transporter.sendMail({
+              to: identifier,
+              from: (provider as any).from,
+              subject: `Tu enlace de acceso a ${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXTAUTH_URL || 'KLINIK-MAT'}`,
+              text: `Usa este enlace para acceder: ${url}\n\nSi no lo pediste, ignora este correo.`,
+              html: `<p>Usa este enlace para acceder: <a href="${url}">${url}</a></p>\n<p>Si no lo pediste, ignora este correo.</p>`,
+            });
+            console.debug('[auth][debug] sendVerificationRequest -> email sent', { messageId: result?.messageId });
+          } catch (e: any) {
+            console.debug('[auth][debug] sendVerificationRequest -> email send error', { message: e?.message });
+          }
+        },
+      }),
+    ];
+  })(),
 };

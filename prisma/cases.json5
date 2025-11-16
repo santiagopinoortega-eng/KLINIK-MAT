@@ -503,135 +503,7 @@
 },
 
   // =============== ANTICONCEPCIÓN — MEDIA (Postaborto inmediato) ===============
-  {
-  id: "ac-posparto-lactancia-mela",
-  modulo: "Anticoncepción",
-  dificultad: "Media",
-  titulo: "Anticoncepción en puérpera lactante: transición desde MELA a método regular",
-  vigneta:
-    "Mujer de 29 años, parto eutócico hace 3 meses. Lactancia exclusiva, sin menstruación desde el parto. Consulta en control postnatal con matrón/a por deseo de un método ‘seguro pero natural’. Usa MELA desde el alta. No antecedentes mórbidos. Niega tabaco o migraña. Vive con su pareja, quien está por iniciar trabajo fuera de la región. Dice que últimamente las tomas nocturnas se han espaciado, y pregunta si aún está protegida. Comenta además que se ha sentido más cansada por cuidar al bebé, pero lo atribuye al sueño interrumpido.",
-  pasos: [
-    {
-      id: "p1",
-      tipo: "mcq",
-      enunciado:
-        "Según los criterios del método MELA, ¿cuál de las siguientes condiciones compromete su eficacia actual?",
-      opciones: [
-        {
-          id: "a",
-          texto: "El espaciamiento progresivo de las tomas nocturnas de lactancia.",
-          esCorrecta: true,
-          explicacion:
-            "Reducir la frecuencia de lactancia (<6 tomas/día o pausas >6 h) puede permitir reactivación ovulatoria. Se pierde un criterio clave de MELA."
-        },
-        {
-          id: "b",
-          texto: "La ausencia de menstruación hasta la fecha.",
-          explicacion:
-            "Mantiene la eficacia del método; la presencia (no la ausencia) de menstruación marca fin de protección MELA."
-        },
-        {
-          id: "c",
-          texto: "El cansancio físico por el cuidado del recién nacido.",
-          explicacion:
-            "No influye en la supresión ovulatoria; es un distractor frecuente en consejería."
-        },
-        {
-          id: "d",
-          texto: "La edad materna mayor de 25 años.",
-          explicacion:
-            "No modifica la eficacia del método; la variable crítica es el patrón de lactancia."
-        }
-      ]
-    },
-    {
-      id: "p2",
-      tipo: "mcq",
-      enunciado:
-        "Desea continuar lactando y sumar un método hormonal. Según MEC y MINSAL, ¿cuál es la mejor opción hoy?",
-      opciones: [
-        {
-          id: "a",
-          texto: "ACO combinados de baja dosis (20 mcg EE  desogestrel), ya que está más allá de 6 semanas.",
-          explicacion:
-            "Aun después de 6 sem, los combinados pueden reducir producción láctea. Se evitan hasta los 6 meses o fin de lactancia exclusiva."
-        },
-        {
-          id: "b",
-          texto: "Anticonceptivo solo de progestágeno (POP) o implante subdérmico.",
-          esCorrecta: true,
-          explicacion:
-            "Ambos seguros (MEC 1/2) y compatibles con lactancia; no afectan cantidad ni calidad de leche."
-        },
-        {
-          id: "c",
-          texto: "DIU de cobre, aunque aumente sangrado menstrual.",
-          explicacion:
-            "Buena opción no hormonal, pero la pregunta enfoca deseo hormonal y lactancia. Puede considerarse desde 4 sem si sin sangrado ni infección."
-        },
-        {
-          id: "d",
-          texto: "Parche combinado semanal, por su liberación más estable.",
-          explicacion:
-            "Contiene estrógeno y tiene el mismo riesgo de reducir leche; no se recomienda en lactancia exclusiva."
-        }
-      ]
-    },
-    {
-      id: "p3",
-      tipo: "mcq",
-      enunciado:
-        "Si decide implante, ¿qué mecanismo explica su alta eficacia incluso durante lactancia?",
-      opciones: [
-        {
-          id: "a",
-          texto: "Supresión constante de LH por liberación continua de etonogestrel, independiente del eje lactante.",
-          esCorrecta: true,
-          explicacion:
-            "El implante inhibe ovulación mediante liberación estable de progestina, sin interferir con prolactina ni lactancia."
-        },
-        {
-          id: "b",
-          texto: "Aumento de cortisol y prolactina bloquea gonadotrofinas sin depender del implante.",
-          explicacion:
-            "Esa inhibición es propia de la lactancia, no del mecanismo farmacológico del implante."
-        },
-        {
-          id: "c",
-          texto: "El etinilestradiol del implante refuerza la supresión hipofisaria.",
-          explicacion:
-            "Incorrecto: el implante no contiene estrógeno; confunde con anticonceptivos combinados."
-        },
-        {
-          id: "d",
-          texto: "El implante actúa solo engrosando el moco cervical sin inhibir ovulación.",
-          explicacion:
-            "Su acción es combinada: inhibe ovulación y modifica el moco. No es exclusivamente una barrera."
-        }
-      ]
-    },
-    {
-      id: "p4",
-      tipo: "short",
-      enunciado: "Consejería y seguimiento (4 puntos concretos):",
-      guia:
-        "• Explicar pérdida de eficacia de MELA si se reducen tomas nocturnas o aparece menstruación.\n• Ofrecer transición segura a método progestágeno solo o DIU.\n• Reafirmar que implante o POP no afectan lactancia ni desarrollo del RN.\n• Controlar a 6 semanas postinserción o antes si spotting abundante o signos de infección."
-    },
-    {
-      id: "p5",
-      tipo: "short",
-      enunciado: "Puntos Clave del Caso",
-      guia:
-        "• MELA es eficaz solo si lactancia exclusiva, <6 meses y amenorrea.\n• Disminuir tomas nocturnas o retorno menstrual → pérdida de protección.\n• Métodos de elección: POP, implante o DIU.\n• Consejería anticipatoria previene brechas de cobertura anticonceptiva.",
-      feedbackDocente:
-        "Este caso refuerza la consejería oportuna del/la matrón/a en APS sobre MELA y transición posparto. Error habitual: asumir que la lactancia protege indefinidamente o no ofrecer alternativa al espaciar tomas. El aprendizaje docente apunta a detectar el fin del MELA y asegurar continuidad con métodos seguros, priorizando la lactancia y evitando embarazos no planificados."
-    }
-  ],
-  referencias: [
-    "MINSAL — Regulación de la Fertilidad (2018): Anticoncepción posparto y lactancia.",
-    "OMS — Criterios MEC: métodos en mujeres lactantes (Categorías 1–2)."
-  ]
-},
+  // (Contenido removido por reparación automática: sección corrupta duplicada)
 
   // =============== ANTICONCEPCIÓN — ALTA (HTA  tabaquismo) ===============
   {
@@ -4416,4 +4288,1026 @@
     "OPS/OMS. Atención centrada en las personas: Principios de APS (2022)."
   ]
 },
+
+  {
+    "id": "antico-01-adolescente-primera-consulta",
+    "modulo": "Anticoncepción",
+    "dificultad": "Baja",
+    "titulo": "Adolescente de 16 años que solicita su primer método",
+    "vigneta": "Adolescente de 16 años consulta en el CESFAM acompañada de una amiga. Vida sexual activa hace 8 meses, 3 parejas sexuales en el último año, uso de condón 'a veces'. Ciclos regulares cada 30 días, sin antecedentes mórbidos, IMC normal, no fuma, no migraña. Niega uso de drogas inyectables. No desea contar a sus padres por miedo a juicio. Pide 'algo que no tenga que tomar todos los días'. En el box se garantiza confidencialidad según normativa vigente.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Pensando en eficacia, seguridad y adherencia en adolescentes, ¿cuál es la mejor opción anticonceptiva a ofrecer en APS?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Métodos de abstinencia periódica explicados en detalle",
+            "esCorrecta": false,
+            "explicacion": "Tienen alta tasa de falla en uso típico y requieren alta motivación y registro; no son primera línea en adolescentes de alto riesgo."
+          },
+          {
+            "id": "b",
+            "texto": "Anticonceptivo oral combinado diario más condón ocasional",
+            "esCorrecta": false,
+            "explicacion": "Podría servir, pero la paciente ya expresa dificultad con toma diaria y uso inconsistente de condón; hay alternativas de larga duración más adecuadas."
+          },
+          {
+            "id": "c",
+            "texto": "Implante subdérmico de progestágeno solo, asociado a consejería en uso de condón",
+            "esCorrecta": true,
+            "explicacion": "Es un método de larga duración, muy efectivo, reversible y recomendado como primera línea en adolescentes, complementable con condón para ITS."
+          },
+          {
+            "id": "d",
+            "texto": "Coito interrumpido más 'tomar la pastilla del día después si algo falla'",
+            "esCorrecta": false,
+            "explicacion": "El coito interrumpido tiene altísima tasa de falla y la AE es de uso ocasional, no un método regular."
+          }
+        ],
+        "feedbackDocente": "Se espera que prioricen métodos de larga duración y alta eficacia (LARC) en adolescentes, complementando siempre con condón para prevención de ITS."
+      },
+      {
+        "id": "p2",
+        "tipo": "short",
+        "enunciado": "Redacta 3 mensajes clave de consejería que deberías entregar antes de colocar el implante.",
+        "guia": "Incluye: derechos (confidencialidad, acceso), eficacia y reversibilidad del método, posibles alteraciones del patrón de sangrado, necesidad de condón para ITS y acuerdo sobre controles."
+      }
+    ],
+    "referencias": [
+      "MINSAL — Normas Nacionales sobre Regulación de la Fertilidad, 2018",
+      "Anticoncepción en adolescentes, UDD 2025"
+    ]
+  },
+  {
+    "id": "antico-02-fumadora-mayor-35",
+    "modulo": "Anticoncepción",
+    "dificultad": "Media",
+    "titulo": "Mujer de 39 años fumadora que busca espaciar embarazos",
+    "vigneta": "Mujer de 39 años, G3P3, consulta en APS por deseo de 'cuidarse mejor' hasta decidir si tener otro hijo. Fuma 15 cigarrillos/día desde los 20 años. PA 130/80 mmHg, IMC 31 kg/m². Sin antecedentes de trombosis ni migraña. Ciclos regulares. Actualmente usa condón en forma irregular. No tiene pareja estable. Desea un método 'que no tenga hormonas fuertes' y 'no engordar más'.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Según criterios médicos de elegibilidad (OMS/MINSAL), ¿cuál es la opción MÁS apropiada?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Anticonceptivo oral combinado con etinilestradiol + desogestrel",
+            "esCorrecta": false,
+            "explicacion": "En mujeres ≥35 años fumadoras intensas, los combinados son categoría 3-4 por aumento del riesgo cardiovascular."
+          },
+          {
+            "id": "b",
+            "texto": "Inyectable mensual combinado",
+            "esCorrecta": false,
+            "explicacion": "También contiene estrógenos, por lo tanto comparte las mismas restricciones que los ACO combinados."
+          },
+          {
+            "id": "c",
+            "texto": "DIU de cobre (T Cu 380A)",
+            "esCorrecta": true,
+            "explicacion": "Método de larga duración, muy efectivo, sin estrógenos y sin riesgo cardiovascular adicional; buena opción si no tiene contraindicaciones para DIU."
+          },
+          {
+            "id": "d",
+            "texto": "Píldora solo progestágeno (levonorgestrel 30 mcg/día)",
+            "esCorrecta": false,
+            "explicacion": "Es una alternativa segura, pero menos efectiva en uso típico y más dependiente de adherencia diaria que un DIU."
+          }
+        ],
+        "feedbackDocente": "La clave es identificar el riesgo cardiovascular asociado a estrógenos en mayores de 35 años fumadoras y priorizar métodos sin estrógenos."
+      },
+      {
+        "id": "p2",
+        "tipo": "short",
+        "enunciado": "Menciona 3 contraindicaciones absolutas (categoría 4) para uso de anticonceptivos hormonales combinados.",
+        "guia": "Incluye ejemplos clásicos: TEV/EP actual, migraña con aura, enfermedad hepática grave, entre otros."
+      }
+    ],
+    "referencias": [
+      "OMS — Criterios Médicos de Elegibilidad para el uso de anticonceptivos, 2015",
+      "MINSAL — Normas sobre Regulación de la Fertilidad, 2018"
+    ]
+  },
+  {
+    "id": "antico-03-posparto-lactancia",
+    "modulo": "Anticoncepción",
+    "dificultad": "Media",
+    "titulo": "Mujer en puerperio con lactancia exclusiva",
+    "vigneta": "Mujer de 24 años, puérpera de 4 semanas, parto vaginal sin complicaciones. Lactancia materna exclusiva cada 3 horas, amenorrea posparto. Sin antecedentes mórbidos. Vive con pareja estable. Consulta en el control de puerperio en APS por método anticonceptivo 'seguro para la leche' y que no implique 'estar recordando todos los días'.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Considerando lactancia exclusiva y 4 semanas posparto, ¿qué método es MÁS adecuado iniciar hoy?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Anticonceptivo oral combinado de baja dosis",
+            "esCorrecta": false,
+            "explicacion": "Los estrógenos en las primeras semanas posparto pueden afectar la lactancia y aumentar el riesgo trombótico."
+          },
+          {
+            "id": "b",
+            "texto": "DIU de cobre",
+            "esCorrecta": true,
+            "explicacion": "Puede colocarse desde 4 semanas posparto según CME, no afecta la lactancia y ofrece protección de larga duración."
+          },
+          {
+            "id": "c",
+            "texto": "Ningún método, porque con lactancia exclusiva no hay riesgo de embarazo",
+            "esCorrecta": false,
+            "explicacion": "La amenorrea de lactancia tiene criterios estrictos y no es suficiente por sí sola si no se cumple todo o si la usuaria desea mayor seguridad."
+          },
+          {
+            "id": "d",
+            "texto": "Coito interrumpido más condón solo si 'fallan'",
+            "esCorrecta": false,
+            "explicacion": "Métodos con alta tasa de falla; no se recomiendan cuando la mujer desea alta eficacia anticonceptiva."
+          }
+        ],
+        "feedbackDocente": "Es importante recordar las ventanas de inicio seguro de métodos posparto y reforzar los criterios de amenorrea de lactancia como método."
+      },
+      {
+        "id": "p2",
+        "tipo": "short",
+        "enunciado": "Enumera los tres criterios que deben cumplirse para considerar la amenorrea de lactancia como método anticonceptivo eficaz.",
+        "guia": "Edad del lactante, tipo de lactancia y estado menstrual materno."
+      }
+    ],
+    "referencias": [
+      "MINSAL — Normas Nacionales sobre Regulación de la Fertilidad, 2018",
+      "Anticoncepción sólo progestágenos y DIU, UDD 2025"
+    ]
+  },
+  {
+    "id": "antico-04-ae-lng",
+    "modulo": "Anticoncepción",
+    "dificultad": "Baja",
+    "titulo": "Uso de anticoncepción de emergencia con levonorgestrel",
+    "vigneta": "Joven de 20 años consulta 36 horas después de una relación sexual sin protección. Ciclos regulares cada 28 días, última menstruación hace 10 días. Niega antecedentes mórbidos. Ha usado AE una vez hace un año. Solicita 'la pastilla del día después' y pregunta si eso es abortivo.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Respecto al mecanismo de acción de la anticoncepción de emergencia con levonorgestrel (1,5 mg), ¿cuál es la afirmación MÁS correcta?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Evita la implantación del embrión alterando irreversiblemente el endometrio",
+            "esCorrecta": false,
+            "explicacion": "La evidencia muestra que su principal efecto es preovulatorio; no se considera abortivo."
+          },
+          {
+            "id": "b",
+            "texto": "Retrasa o inhibe la ovulación si aún no ha ocurrido",
+            "esCorrecta": true,
+            "explicacion": "El principal mecanismo es postergar/inhibir el peak de LH y la ovulación durante la ventana de sobrevida espermática."
+          },
+          {
+            "id": "c",
+            "texto": "Produce una hemorragia uterina que 'bota' cualquier embarazo",
+            "esCorrecta": false,
+            "explicacion": "No corresponde al mecanismo; no interrumpe un embarazo ya instalado."
+          },
+          {
+            "id": "d",
+            "texto": "Tiene efecto permanente sobre la fertilidad",
+            "esCorrecta": false,
+            "explicacion": "No afecta la fertilidad futura; es de uso ocasional."
+          }
+        ],
+        "feedbackDocente": "Se busca que el estudiante maneje el mecanismo de acción real de la AE para entregar consejería basada en evidencia y disminuir mitos."
+      },
+      {
+        "id": "p2",
+        "tipo": "short",
+        "enunciado": "Menciona 3 mensajes de consejería que debes entregar al indicar anticoncepción de emergencia con levonorgestrel.",
+        "guia": "Plazo de uso, posibles efectos secundarios, necesidad de método regular, qué hacer ante retraso menstrual."
+      }
+    ],
+    "referencias": [
+      "MINSAL — Normas Nacionales sobre Regulación de la Fertilidad, 2018",
+      "Anticoncepción sólo progestágenos y AE, UDD 2025"
+    ]
+  },
+  {
+    "id": "antico-05-migraña-con-aura",
+    "modulo": "Anticoncepción",
+    "dificultad": "Alta",
+    "titulo": "Mujer con migraña con aura en búsqueda de método seguro",
+    "vigneta": "Mujer de 30 años, nuligesta, con diagnóstico de migraña con aura visual desde la adolescencia, en control por neurología. No fuma, PA normal, IMC 24 kg/m². Vida sexual activa con pareja estable. Actualmente usa ACO combinado por indicación antigua de un médico particular. Refiere aumento en la frecuencia de las crisis el último año. Acude a APS para 'cambiar de pastillas porque me hacen mal a la cabeza'.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Según CME de la OMS, ¿cuál es la recomendación respecto a anticonceptivos hormonales combinados en esta paciente?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Categoría 1: puede seguir usando ACO sin restricciones",
+            "esCorrecta": false,
+            "explicacion": "La migraña con aura aumenta el riesgo de evento vascular cerebral con estrógenos; no es categoría 1."
+          },
+          {
+            "id": "b",
+            "texto": "Categoría 2: se puede usar, pero con controles más frecuentes",
+            "esCorrecta": false,
+            "explicacion": "En migraña con aura, los combinados suelen ser categoría 4 (riesgo inaceptable)."
+          },
+          {
+            "id": "c",
+            "texto": "Categoría 3: se puede usar sólo si no hay otra alternativa disponible",
+            "esCorrecta": false,
+            "explicacion": "El riesgo de ACV es suficientemente alto como para considerarlo categoría 4."
+          },
+          {
+            "id": "d",
+            "texto": "Categoría 4: contraindicado por aumento de riesgo vascular",
+            "esCorrecta": true,
+            "explicacion": "La migraña con aura es contraindicación para estrógenos; se debe suspender el AHC y ofrecer métodos sin estrógenos."
+          }
+        ],
+        "feedbackDocente": "Este caso entrena la identificación de condiciones que transforman un método en categoría 4, evitando indicaciones potencialmente dañinas."
+      },
+      {
+        "id": "p2",
+        "tipo": "short",
+        "enunciado": "Propón dos alternativas anticonceptivas seguras para esta paciente y justifica brevemente cada una.",
+        "guia": "Piensa en DIU Cu, DIU-LNG, implante, PSP, siempre considerando mecanismo, eficacia y perfil de seguridad."
+      }
+    ],
+    "referencias": [
+      "OMS — Criterios Médicos de Elegibilidad, 2015",
+      "Anticonceptivos hormonales combinados y riesgos vasculares, UDD 2025"
+    ]
+  },
+  {
+    "id": "antico-06-posaborto-primero-trimestre",
+    "modulo": "Anticoncepción",
+    "dificultad": "Media",
+    "titulo": "Inicio de anticoncepción en posaborto de primer trimestre",
+    "vigneta": "Mujer de 22 años consulta en control posaborto espontáneo de 9 semanas, resuelto médicamente hace 10 días. Sin antecedentes mórbidos. No planificaba embarazo, refiere uso irregular de condón. Desea 'salir con algo puesto hoy'. No hay signos de infección, sangrado escaso, útero involucionando.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Respecto al inicio de un método anticonceptivo en este contexto, ¿cuál es la afirmación MÁS correcta?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Debe esperar su próxima menstruación para colocar un DIU",
+            "esCorrecta": false,
+            "explicacion": "Puede colocarse DIU inmediatamente posaborto si no hay infección y se descarta embarazo en curso."
+          },
+          {
+            "id": "b",
+            "texto": "Se puede colocar un DIU de cobre hoy mismo, si no hay sospecha de infección",
+            "esCorrecta": true,
+            "explicacion": "Los métodos de larga duración pueden iniciarse inmediatamente posaborto, optimizando la oportunidad de APS."
+          },
+          {
+            "id": "c",
+            "texto": "Sólo se recomienda anticoncepción de emergencia en este control",
+            "esCorrecta": false,
+            "explicacion": "La AE no reemplaza un método regular; además ya ocurrió el evento."
+          },
+          {
+            "id": "d",
+            "texto": "Está contraindicada cualquier anticoncepción hormonal por 6 meses",
+            "esCorrecta": false,
+            "explicacion": "No existe tal contraindicación en una mujer sana en posaborto de primer trimestre."
+          }
+        ],
+        "feedbackDocente": "Entrena el uso de 'ventanas de oportunidad' para iniciar anticoncepción inmediatamente después de un evento reproductivo."
+      },
+      {
+        "id": "p2",
+        "tipo": "short",
+        "enunciado": "Redacta 2 elementos clave de consejería que no puedes omitir en una mujer en posaborto que inicia DIU.",
+        "guia": "Aborda signos de alarma, cambios en sangrado, control, posibilidad de retiro cuando lo desee."
+      }
+    ],
+    "referencias": [
+      "MINSAL — Normas Nacionales sobre Regulación de la Fertilidad, 2018",
+      "Manual práctico sobre uso de DIU, SOCHEG 2022"
+    ]
+  },
+  {
+    "id": "antico-07-adolescente-dmpa",
+    "modulo": "Anticoncepción",
+    "dificultad": "Alta",
+    "titulo": "Adolescente con DMPA y preocupación por el peso y los huesos",
+    "vigneta": "Adolescente de 17 años, G0, usuaria de inyectable trimestral de medroxiprogesterona desde hace 18 meses, colocado en APS. Consulta porque ha subido 6 kg en un año y escuchó en redes sociales que 'ese anticonceptivo da osteoporosis'. No tiene otras comorbilidades. Refiere sangrado escaso y esporádico. No fuma, hace poco ejercicio, consumo bajo de lácteos.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Según recomendaciones OMS para adolescentes, ¿qué es lo MÁS apropiado?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Suspender de inmediato el DMPA porque está absolutamente contraindicado en menores de 18 años",
+            "esCorrecta": false,
+            "explicacion": "En adolescentes es categoría 2 por impacto óseo, pero no contraindicación absoluta."
+          },
+          {
+            "id": "b",
+            "texto": "Mantener el DMPA sin discutir riesgos porque el aumento de peso es 'normal en la adolescencia'",
+            "esCorrecta": false,
+            "explicacion": "Minimizar las preocupaciones sin entregar información puede afectar la adherencia y vulnerar su derecho a información."
+          },
+          {
+            "id": "c",
+            "texto": "Explorar preferencias y ofrecer alternativa LARC (DIU o implante), explicando riesgos/beneficios del DMPA",
+            "esCorrecta": true,
+            "explicacion": "Respeta su autonomía, aborda dudas y ofrece métodos igualmente efectivos sin potencial impacto en densidad ósea."
+          },
+          {
+            "id": "d",
+            "texto": "Indicar calcio y vitamina D pero mantener el método sin más discusión",
+            "esCorrecta": false,
+            "explicacion": "Las medidas generales pueden ayudar, pero no reemplazan la evaluación crítica del método en este grupo etario."
+          }
+        ],
+        "feedbackDocente": "El foco es integrar CME, salud ósea adolescente y consejería participativa, sin alarmar ni minimizar."
+      },
+      {
+        "id": "p2",
+        "tipo": "short",
+        "enunciado": "Menciona dos puntos clave que debes explicar sobre DMPA y salud ósea en adolescentes.",
+        "guia": "Habla de efecto potencialmente reversible en densidad ósea, clasificación OMS y alternativas si le preocupa."
+      }
+    ],
+    "referencias": [
+      "Anticoncepción en adolescentes en Chile, UDD 2025",
+      "OMS — Criterios Médicos de Elegibilidad, 2015"
+    ]
+  },
+  {
+    "id": "antico-08-diu-sangrado-abundante",
+    "modulo": "Anticoncepción",
+    "dificultad": "Media",
+    "titulo": "Sangrado abundante en usuaria de DIU de cobre",
+    "vigneta": "Mujer de 27 años, usuaria de DIU de cobre TCu 380A hace 8 meses. Consulta por aumento del sangrado menstrual (pasa de 3 a 6-7 días, con coágulos pequeños) y dismenorrea moderada. Hb 11,3 g/dL. Niega metrorragias intermenstruales, flujo fétido o dolor pélvico persistente. Ecografía transvaginal previa muestra DIU bien ubicado, sin miomas significativos.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "¿Cuál es la conducta MÁS adecuada en APS en este momento?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Retirar el DIU de inmediato y dejarla sin método",
+            "esCorrecta": false,
+            "explicacion": "Hay opciones de manejo conservador y/o cambio a otro método sin dejarla sin protección."
+          },
+          {
+            "id": "b",
+            "texto": "Explicar que es esperable, ofrecer AINE durante la menstruación y control de Hb",
+            "esCorrecta": true,
+            "explicacion": "El aumento de sangrado es un efecto conocido del DIU Cu y muchas veces se maneja con AINE y seguimiento."
+          },
+          {
+            "id": "c",
+            "texto": "Indicar anticonceptivo combinado además del DIU para 'ordenar el sangrado'",
+            "esCorrecta": false,
+            "explicacion": "No es la primera opción y aumenta exposición hormonal sin necesidad; podría considerarse otras alternativas."
+          },
+          {
+            "id": "d",
+            "texto": "Sospechar inmediatamente EPI y derivar de urgencia",
+            "esCorrecta": false,
+            "explicacion": "No hay datos clínicos de infección pélvica (fiebre, dolor continuo, flujo patológico)."
+          }
+        ],
+        "feedbackDocente": "Entrena la capacidad de diferenciar efectos esperables del método versus signos de alarma que requieren cambio de conducta."
+      },
+      {
+        "id": "p2",
+        "tipo": "short",
+        "enunciado": "Si la usuaria no tolera el patrón de sangrado y solicita cambio, ¿qué alternativa de método podrías ofrecer que mejore su sangrado?",
+        "guia": "Considera DIU-LNG y explica su efecto endometrial."
+      }
+    ],
+    "referencias": [
+      "Manual práctico sobre uso de DIU, SOCHEG 2022",
+      "MINSAL — Normas Nacionales sobre Regulación de la Fertilidad, 2018"
+    ]
+  },
+  {
+    "id": "antico-09-its-y-diu",
+    "modulo": "Anticoncepción",
+    "dificultad": "Alta",
+    "titulo": "DIU en usuaria con cervicitis sospechosa de ITS",
+    "vigneta": "Mujer de 23 años, sin hijos, consulta por anticoncepción. Vida sexual activa con 2 parejas en los últimos 6 meses, uso irregular de condón. Desea DIU de cobre. Al examen especular se observa flujo endocervical purulento, cuello friable. Refiere disuria leve y coito algo doloroso. No fiebre, PA y FC normales.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Según CME y normas nacionales, ¿cuál es la mejor conducta respecto al DIU hoy?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Colocar el DIU de todas formas y tratar la posible ITS en paralelo",
+            "esCorrecta": false,
+            "explicacion": "La cervicitis purulenta es categoría 4 para inicio de DIU; aumenta el riesgo de EPI posinserción."
+          },
+          {
+            "id": "b",
+            "texto": "Posponer la inserción de DIU, tratar la ITS y ofrecer un método transitorio",
+            "esCorrecta": true,
+            "explicacion": "Se debe tratar primero la infección y ofrecer anticonceptivos alternativos mientras tanto (p.ej., PSP o implante si no hay contraindicación)."
+          },
+          {
+            "id": "c",
+            "texto": "Contraindicar DIU de por vida en esta paciente",
+            "esCorrecta": false,
+            "explicacion": "Tras el tratamiento y resolución de la ITS puede reevaluarse la elegibilidad para DIU."
+          },
+          {
+            "id": "d",
+            "texto": "Derivar de inmediato a urgencias por EPI grave",
+            "esCorrecta": false,
+            "explicacion": "No hay criterios de gravedad ni cuadro compatible con EPI aguda complicada."
+          }
+        ],
+        "feedbackDocente": "Se integran criterios de elegibilidad para DIU y manejo inicial sindrómico de ITS en APS."
+      },
+      {
+        "id": "p2",
+        "tipo": "short",
+        "enunciado": "Menciona dos métodos anticonceptivos que podrías ofrecer mientras se trata la ITS, justificando brevemente.",
+        "guia": "Piensa en métodos sin riesgo aumentado de EPI posinserción, de alta eficacia y que no dependan mucho de la usuaria."
+      }
+    ],
+    "referencias": [
+      "MINSAL — Normas Nacionales sobre Regulación de la Fertilidad, 2018",
+      "Manual práctico sobre uso de DIU, SOCHEG 2022"
+    ]
+  },
+  {
+    "id": "antico-10-usuario-despistado-aco",
+    "modulo": "Anticoncepción",
+    "dificultad": "Baja",
+    "titulo": "Olvido frecuente de anticonceptivos orales combinados",
+    "vigneta": "Mujer de 19 años, estudiante universitaria, nuligesta. Usa ACO combinado hace 1 año, pero refiere que 'siempre se me olvida, me la tomo cuando me acuerdo'. Ha tenido 2 sustos de posible embarazo y ha usado AE en esas ocasiones. Vida sexual activa con pareja estable, además de relaciones ocasionales en fiestas, con uso irregular de condón. Desea algo 'menos dependiente de mi memoria'.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "¿Qué estrategia anticonceptiva se alinea mejor con su perfil?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Reforzar el uso de alarmas en el celular para seguir con ACO combinado",
+            "esCorrecta": false,
+            "explicacion": "Puede ayudar, pero ya demostró mala adherencia sostenida, con uso repetido de AE."
+          },
+          {
+            "id": "b",
+            "texto": "Sugerir métodos naturales para que 'conozca mejor su ciclo'",
+            "esCorrecta": false,
+            "explicacion": "En su contexto de riesgo y baja adherencia, los métodos naturales tienen alta tasa de falla."
+          },
+          {
+            "id": "c",
+            "texto": "Ofrecer un método LARC (implante o DIU) más consejería en uso de condón",
+            "esCorrecta": true,
+            "explicacion": "LARC reduce el error de uso, aumenta eficacia y puede combinarse con condón para ITS."
+          },
+          {
+            "id": "d",
+            "texto": "Suspender todo método para que 'aprenda con la experiencia'",
+            "esCorrecta": false,
+            "explicacion": "Contradice los principios de salud sexual y reproductiva y el rol profesional."
+          }
+        ],
+        "feedbackDocente": "Entrena la capacidad de identificar problemas de adherencia y ajustar la estrategia hacia métodos menos dependientes de la usuaria."
+      },
+      {
+        "id": "p2",
+        "tipo": "short",
+        "enunciado": "Propón 2 preguntas de exploración que harías para entender mejor los motivos de su baja adherencia.",
+        "guia": "Enfócate en rutina diaria, creencias sobre las pastillas, consumo de alcohol u otras sustancias, organización de estudios."
+      }
+    ],
+    "referencias": [
+      "MINSAL — Normas Nacionales sobre Regulación de la Fertilidad, 2018",
+      "Planificación familiar: manual mundial para proveedores, OMS"
+    ]
+  },
+
+  {
+    "id": "its-01-uretritis-masculina",
+    "modulo": "ITS",
+    "dificultad": "Media",
+    "titulo": "Joven con secreción uretral y disuria",
+    "vigneta": "Varón de 19 años consulta en SAPU por disuria y secreción uretral blanquecina de 3 días de evolución. Refiere nueva pareja hace 2 semanas, sexo vaginal sin condón. Niega fiebre, dolor testicular o lesiones cutáneas. No antecedentes mórbidos. Quiere 'algo rápido porque tiene que ir a trabajar'.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "En APS, ¿cuál es la conducta inicial MÁS adecuada frente a este cuadro?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Esperar resultados de cultivo antes de iniciar cualquier tratamiento",
+            "esCorrecta": false,
+            "explicacion": "En el enfoque sindrómico de ITS, la uretritis se trata empíricamente para reducir complicaciones y transmisión."
+          },
+          {
+            "id": "b",
+            "texto": "Tratar empíricamente para gonorrea y clamidia, más consejería y notificación de pareja(s)",
+            "esCorrecta": true,
+            "explicacion": "La uretritis requiere tratamiento empírico dirigido y abordaje de pareja para cortar cadena de transmisión."
+          },
+          {
+            "id": "c",
+            "texto": "Indicar sólo antiinflamatorios y abundante hidratación",
+            "esCorrecta": false,
+            "explicacion": "No trata la causa infecciosa ni previene complicaciones."
+          },
+          {
+            "id": "d",
+            "texto": "Derivar de inmediato a hospital por sospecha de sepsis",
+            "esCorrecta": false,
+            "explicacion": "No hay criterios de gravedad; se puede manejar en APS."
+          }
+        ],
+        "feedbackDocente": "Busca que el estudiante aplique el enfoque sindrómico en APS y recuerde la importancia de la notificación de pareja y consejería."
+      },
+      {
+        "id": "p2",
+        "tipo": "short",
+        "enunciado": "Redacta dos mensajes clave de consejería que le entregarías respecto a ITS y uso de condón.",
+        "guia": "Incluye abstinencia hasta completar tratamiento, uso de condón sistemático, necesidad de que la pareja se evalúe."
+      }
+    ],
+    "referencias": [
+      "MINSAL — Normas de manejo de ITS",
+      "Orientaciones técnicas para control integral de adolescentes, MINSAL 2021"
+    ]
+  },
+  {
+    "id": "its-02-ulcera-genital",
+    "modulo": "ITS",
+    "dificultad": "Media",
+    "titulo": "Úlcera genital dolorosa en adolescente",
+    "vigneta": "Adolescente de 18 años consulta por lesión en genitales externos dolorosa desde hace 4 días, asociada a disuria por roce. Refirió cuadro previo de malestar general y febrícula. Vida sexual activa con nueva pareja hace 1 mes. Al examen se observan vesículas y úlcera superficial dolorosa en labio mayor derecho, sin secreción purulenta. No hay adenopatías inguinales dolorosas francas.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "¿Cuál es el diagnóstico clínico más probable y la conducta inicial en APS?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Primoinfección por herpes genital; iniciar tratamiento antiviral y ofrecer consejería",
+            "esCorrecta": true,
+            "explicacion": "Lesiones vesiculosas-ulceradas dolorosas, con pródromo sistémico, son típicas de herpes simple genital."
+          },
+          {
+            "id": "b",
+            "texto": "Sífilis primaria; indicar penicilina benzatina IM",
+            "esCorrecta": false,
+            "explicacion": "El chancro sifilítico suele ser indoloro y de bordes indurados."
+          },
+          {
+            "id": "c",
+            "texto": "Condilomas acuminados; indicar podofilina",
+            "esCorrecta": false,
+            "explicacion": "Los condilomas son verrugas, no úlceras dolorosas."
+          },
+          {
+            "id": "d",
+            "texto": "Candidiasis vulvar; indicar sólo antimicótico tópico",
+            "esCorrecta": false,
+            "explicacion": "La candidiasis da prurito intenso y placas blanquecinas, no úlcera dolorosa con vesículas."
+          }
+        ],
+        "feedbackDocente": "Entrena el reconocimiento clínico básico de lesiones herpéticas y el inicio precoz de tratamiento para disminuir duración y contagio."
+      },
+      {
+        "id": "p2",
+        "tipo": "short",
+        "enunciado": "Menciona 3 elementos de consejería importantes para una adolescente con primoinfección por herpes genital.",
+        "guia": "Habla de recurrencias, uso de condón, disclosure a parejas, impacto emocional y apoyo."
+      }
+    ],
+    "referencias": [
+      "Guías clínicas ITS, MINSAL",
+      "Guía de consejería en salud sexual y reproductiva para adolescentes, 2016"
+    ]
+  },
+  {
+    "id": "its-03-vaginitis",
+    "modulo": "ITS",
+    "dificultad": "Baja",
+    "titulo": "Flujo vaginal y prurito en usuaria joven",
+    "vigneta": "Mujer de 21 años consulta por flujo vaginal abundante, blanco grumoso, asociado a prurito intenso desde hace 5 días. Niega mal olor, dolor pélvico o fiebre. Usa ACO combinado, sin nuevos contactos sexuales en los últimos 3 meses. Hace 2 semanas recibió antibiótico por faringoamigdalitis.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "El cuadro clínico es más sugerente de:",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Vaginosis bacteriana",
+            "esCorrecta": false,
+            "explicacion": "La vaginosis se acompaña de flujo grisáceo y mal olor característico, con poco prurito."
+          },
+          {
+            "id": "b",
+            "texto": "Candidiasis vulvovaginal",
+            "esCorrecta": true,
+            "explicacion": "Flujo blanco grumoso y prurito intenso, posterior a uso de antibióticos, es típico de candidiasis."
+          },
+          {
+            "id": "c",
+            "texto": "Tricomoniasis",
+            "esCorrecta": false,
+            "explicacion": "Suele dar flujo amarillo-verdoso espumoso y mal olor, muchas veces ITS."
+          },
+          {
+            "id": "d",
+            "texto": "Neoplasia intraepitelial de alto grado",
+            "esCorrecta": false,
+            "explicacion": "No se presenta típicamente con esta clínica aislada."
+          }
+        ],
+        "feedbackDocente": "Entrena la capacidad de diferenciar síndromes de flujo vaginal frecuentes en APS."
+      },
+      {
+        "id": "p2",
+        "tipo": "short",
+        "enunciado": "Indica dos recomendaciones generales que darías para prevenir recurrencias de candidiasis vulvovaginal.",
+        "guia": "Considera ropa interior, humedad, jabones, automedicación con antibióticos."
+      }
+    ],
+    "referencias": [
+      "Guías clínicas ITS y vaginitis, MINSAL"
+    ]
+  },
+  {
+    "id": "its-04-screening-asintomatico",
+    "modulo": "ITS",
+    "dificultad": "Media",
+    "titulo": "Adolescente asintomática que solicita 'exámenes de ITS'",
+    "vigneta": "Adolescente de 17 años acude a control de salud integral. Vida sexual activa desde los 15 años, 4 parejas sexuales en el último año, uso de condón 'a veces'. No síntomas urogenitales. No consumo de sustancias inyectables. Refiere ansiedad por riesgo de ITS, quiere 'estar segura'.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "En APS, ¿cuál de las siguientes acciones es MÁS pertinente?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Decirle que como no tiene síntomas, no requiere ningún examen",
+            "esCorrecta": false,
+            "explicacion": "Hay ITS asintomáticas frecuentes en adolescentes; el riesgo por conducta sexual es alto."
+          },
+          {
+            "id": "b",
+            "texto": "Realizar oferta de tamizaje para ITS prevalentes y reforzar uso de condón",
+            "esCorrecta": true,
+            "explicacion": "Se recomienda pesquisa oportuna en adolescentes con conductas de riesgo, junto con consejería."
+          },
+          {
+            "id": "c",
+            "texto": "Derivarla directamente a psiquiatría por 'ansiedad'",
+            "esCorrecta": false,
+            "explicacion": "Primero se aborda la demanda en APS; la ansiedad es esperable en este contexto."
+          },
+          {
+            "id": "d",
+            "texto": "Indicar sólo Papanicolaou",
+            "esCorrecta": false,
+            "explicacion": "El PAP no es un examen de ITS y su indicación depende de edad y normas de pesquisa de cáncer cervicouterino."
+          }
+        ],
+        "feedbackDocente": "Entrena la integración entre control adolescente, enfoque anticipatorio y oferta activa de tamizaje para ITS."
+      },
+      {
+        "id": "p2",
+        "tipo": "short",
+        "enunciado": "Escribe dos preguntas abiertas que te ayuden a explorar mejor su riesgo de ITS.",
+        "guia": "Incluye número de parejas, tipo de prácticas sexuales, uso de condón, historia de ITS previas."
+      }
+    ],
+    "referencias": [
+      "Orientaciones técnicas para control de salud integral de adolescentes, MINSAL 2021",
+      "Guías ITS MINSAL"
+    ]
+  },
+  {
+    "id": "its-05-its-y-embarazo",
+    "modulo": "ITS",
+    "dificultad": "Alta",
+    "titulo": "Gestante con ITS reciente en contexto de APS",
+    "vigneta": "Mujer de 19 años, gestante de 10 semanas, controlada en APS. En exámenes de rutina se informa VDRL reactivo con confirmación positiva, sin antecedentes previos. No tiene síntomas actuales. Refiere pareja estable, pero reconoce que él ha tenido otras parejas. Está angustiada y pregunta si 'su guagua se va a enfermar'.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "En relación al manejo inicial en APS, ¿qué es prioritario?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Repetir el examen en 6 meses para confirmar",
+            "esCorrecta": false,
+            "explicacion": "La sífilis en el embarazo requiere tratamiento inmediato para prevenir sífilis congénita."
+          },
+          {
+            "id": "b",
+            "texto": "Iniciar tratamiento con penicilina benzatina según estadio y gestionar control de pareja",
+            "esCorrecta": true,
+            "explicacion": "La penicilina es el tratamiento de elección en el embarazo y se debe abordar a la pareja sexual."
+          },
+          {
+            "id": "c",
+            "texto": "Suspender el control prenatal y derivar sólo a infectología",
+            "esCorrecta": false,
+            "explicacion": "El control prenatal continúa en APS coordinado con segundo nivel si es necesario."
+          },
+          {
+            "id": "d",
+            "texto": "Tranquilizarla explicando que 'la sífilis no afecta al feto'",
+            "esCorrecta": false,
+            "explicacion": "Es precisamente el riesgo fetal lo que hace urgente el tratamiento."
+          }
+        ],
+        "feedbackDocente": "Entrena la relación entre ITS y embarazo, la urgencia del tratamiento y la necesidad de trabajo con la pareja."
+      },
+      {
+        "id": "p2",
+        "tipo": "short",
+        "enunciado": "Redacta dos elementos centrales de la consejería que entregarías sobre riesgo fetal y la importancia del tratamiento.",
+        "guia": "Sé claro/a pero empático/a; incluye necesidad de adherencia, controles y tamizaje de pareja."
+      }
+    ],
+    "referencias": [
+      "Guías de sífilis y embarazo, MINSAL",
+      "Orientaciones técnicas de control prenatal"
+    ]
+  },
+
+  {
+    "id": "cons-01-confidencialidad-madre-presente",
+    "modulo": "Consejería",
+    "dificultad": "Baja",
+    "titulo": "Adolescente de 14 años que consulta con su madre",
+    "vigneta": "Adolescente de 14 años llega a control de salud integral con su madre. La madre responde a todas las preguntas, minimiza las respuestas de su hija y menciona que 'quiere que le den pastillas para que no quede embarazada como la prima'. La adolescente se mantiene callada, mira al suelo y sólo responde con monosílabos. Se atiende en un Espacio Amigable.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Como profesional en APS, ¿cuál es el siguiente paso MÁS adecuado en términos de consejería y enfoque de derechos?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Continuar la entrevista sólo con la madre, ya que es menor de edad",
+            "esCorrecta": false,
+            "explicacion": "La adolescente es sujeto de derechos y debe tener espacio para expresarse en forma confidencial."
+          },
+          {
+            "id": "b",
+            "texto": "Pedir amablemente hablar unos minutos a solas con la adolescente y explicar el manejo de confidencialidad",
+            "esCorrecta": true,
+            "explicacion": "Se ajusta a orientaciones MINSAL: entrevista parte con cuidador, pero debe incluir un espacio privado con el/la adolescente."
+          },
+          {
+            "id": "c",
+            "texto": "Decirle a la adolescente que vuelva sola otro día porque 'así no se puede trabajar'",
+            "esCorrecta": false,
+            "explicacion": "Se desaprovecha la oportunidad de atención y vínculo."
+          },
+          {
+            "id": "d",
+            "texto": "Evitar hablar de sexualidad porque la madre podría molestarse",
+            "esCorrecta": false,
+            "explicacion": "La SSR es parte del control integral; se aborda con cuidado pero no se omite."
+          }
+        ],
+        "feedbackDocente": "Entrena el manejo de confidencialidad y participación adolescente en el control de salud, según enfoque de derechos."
+      },
+      {
+        "id": "p2",
+        "tipo": "short",
+        "enunciado": "Escribe una frase breve y clara para explicar a la madre y a la adolescente por qué tendrás un momento de conversación a solas con ella.",
+        "guia": "Usa lenguaje sencillo, sin confrontar, reforzando que es parte de la atención habitual."
+      }
+    ],
+    "referencias": [
+      "Orientaciones técnicas para control de salud integral de adolescentes, MINSAL 2021",
+      "Ley 20.418 — Regulación de la fertilidad"
+    ]
+  },
+  {
+    "id": "cons-02-ae-y-miedo-a-padres",
+    "modulo": "Consejería",
+    "dificultad": "Media",
+    "titulo": "Solicitud de anticoncepción de emergencia con temor a revelarlo",
+    "vigneta": "Adolescente de 16 años llega sola al CESFAM, visiblemente ansiosa. Refiere relación sexual desprotegida hace 24 horas con su pololo. Pide 'la pastilla del día después' pero insiste en que 'mis papás no pueden saber nada, me matan'. No antecedentes mórbidos conocidos.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "En el marco de la legislación chilena y las orientaciones MINSAL, ¿qué corresponde hacer?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Negarse a entregar AE porque es menor de 18 años",
+            "esCorrecta": false,
+            "explicacion": "La Ley 20.418 garantiza acceso a información y prestaciones en regulación de la fertilidad a adolescentes."
+          },
+          {
+            "id": "b",
+            "texto": "Entregar AE con consejería adecuada y explicar el alcance de la confidencialidad",
+            "esCorrecta": true,
+            "explicacion": "Se respeta su derecho a la atención, información y confidencialidad, salvo riesgo vital o vulneración grave."
+          },
+          {
+            "id": "c",
+            "texto": "Llamar de inmediato a los padres antes de cualquier indicación",
+            "esCorrecta": false,
+            "explicacion": "Vulnera la confidencialidad sin fundamento en este contexto."
+          },
+          {
+            "id": "d",
+            "texto": "Derivarla a urgencia por 'riesgo social'",
+            "esCorrecta": false,
+            "explicacion": "Su demanda se puede resolver en APS con enfoque de derechos."
+          }
+        ],
+        "feedbackDocente": "Integra normativa legal, enfoque de derechos y consejería en SSR para adolescentes."
+      },
+      {
+        "id": "p2",
+        "tipo": "short",
+        "enunciado": "Menciona 3 temas que debes abordar en la consejería con esta adolescente además de la entrega de AE.",
+        "guia": "Incluye prevención de ITS, opciones de anticoncepción regular, emociones y red de apoyo."
+      }
+    ],
+    "referencias": [
+      "Ley 20.418",
+      "Guía práctica de consejería en salud sexual y reproductiva para adolescentes, MINSAL 2016"
+    ]
+  },
+  {
+    "id": "cons-03-diversidad-sexual",
+    "modulo": "Consejería",
+    "dificultad": "Media",
+    "titulo": "Adolescente que inicia relación con pareja del mismo sexo",
+    "vigneta": "Adolescente de 17 años acude a Espacio Amigable. Refiere que inició una relación afectiva y sexual con otra chica del liceo. Comenta que se siente confundida, teme ser juzgada y no sabe si 'también se puede contagiar de ITS'. En su familia hay comentarios homofóbicos. Viene sola a la consulta.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Desde el enfoque de consejería en SSR, ¿cuál sería una respuesta INICIAL adecuada?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Decirle que es 'una etapa' y que probablemente 'se le va a pasar'",
+            "esCorrecta": false,
+            "explicacion": "Desvaloriza su vivencia y no respeta su identidad ni orientación."
+          },
+          {
+            "id": "b",
+            "texto": "Validar sus sentimientos, garantizar un espacio libre de juicios y explorar sus dudas sobre salud sexual",
+            "esCorrecta": true,
+            "explicacion": "Responde a un enfoque de derechos, género y diversidad, favoreciendo la confianza para la consejería."
+          },
+          {
+            "id": "c",
+            "texto": "Centrarse sólo en anticoncepción porque 'no hay riesgo de ITS entre mujeres'",
+            "esCorrecta": false,
+            "explicacion": "Hay riesgo de ITS también en prácticas entre mujeres; se debe abordar prevención."
+          },
+          {
+            "id": "d",
+            "texto": "Sugerirle no contarle a nadie más y cambiar de liceo",
+            "esCorrecta": false,
+            "explicacion": "No promueve autonomía ni bienestar; refuerza el estigma."
+          }
+        ],
+        "feedbackDocente": "Entrena habilidades de acogida, validación emocional y enfoque de diversidad en consejería adolescente."
+      },
+      {
+        "id": "p2",
+        "tipo": "short",
+        "enunciado": "Menciona 2 recomendaciones de salud sexual que podrías entregar, específicas para relaciones entre mujeres.",
+        "guia": "Considera barreras de látex, lubricantes, tamizaje de ITS, consentimiento en las prácticas."
+      }
+    ],
+    "referencias": [
+      "Orientaciones técnicas para control integral de adolescentes, MINSAL 2021",
+      "Guía de consejería en SSR para adolescentes, 2016"
+    ]
+  },
+  {
+    "id": "cons-04-baja-adherencia-aco-culpa",
+    "modulo": "Consejería",
+    "dificultad": "Media",
+    "titulo": "Adolescente con baja adherencia y sentimiento de culpa",
+    "vigneta": "Adolescente de 18 años, usuaria de ACO combinado, refiere múltiples olvidos y uso frecuente de AE. Dice sentirse 'irresponsable' y 'mala paciente', teme que el equipo de salud la juzgue. Viene a control porque teme estar embarazada nuevamente.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Desde la entrevista motivacional, ¿qué respuesta favorece mejor el cambio de conducta?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Decirle que efectivamente ha sido irresponsable y que debe 'madurar'",
+            "esCorrecta": false,
+            "explicacion": "Refuerza la culpa y dificulta el vínculo terapéutico."
+          },
+          {
+            "id": "b",
+            "texto": "Reconocer su esfuerzo por consultar y explorar con ella qué le dificulta la toma diaria",
+            "esCorrecta": true,
+            "explicacion": "Valida el paso positivo (consultar) y abre la puerta a identificar barreras y soluciones conjuntas."
+          },
+          {
+            "id": "c",
+            "texto": "Ignorar sus emociones y enfocarse sólo en hacer el test de embarazo",
+            "esCorrecta": false,
+            "explicacion": "Se pierde una oportunidad clave de intervención psicoeducativa."
+          },
+          {
+            "id": "d",
+            "texto": "Suspender todo método hasta que 'sea más ordenada'",
+            "esCorrecta": false,
+            "explicacion": "Aumenta el riesgo de embarazo no deseado."
+          }
+        ],
+        "feedbackDocente": "Entrena el uso de técnicas motivacionales y lenguaje no culpabilizante en SSR adolescente."
+      },
+      {
+        "id": "p2",
+        "tipo": "short",
+        "enunciado": "Propón una frase de refuerzo positivo que podrías usar con ella para favorecer la autoeficacia.",
+        "guia": "Evita el juicio; destaca capacidades y pasos ya dados (consultar, preguntar, buscar alternativas)."
+      }
+    ],
+    "referencias": [
+      "Guía práctica de consejería en SSR para adolescentes, MINSAL 2016",
+      "Modelo de atención integral con enfoque familiar y comunitario, MINSAL"
+    ]
+  },
+  {
+    "id": "cons-05-adolescente-migrante",
+    "modulo": "Consejería",
+    "dificultad": "Alta",
+    "titulo": "Consejería en SSR en adolescente migrante con barrera idiomática",
+    "vigneta": "Adolescente de 15 años, migrante reciente, asiste con su tía al CESFAM. Comprende parcialmente el español; su lengua materna es otra. La tía responde por ella la mayor parte del tiempo. La adolescente refiere mediante frases cortas que en su país no hablaban de sexualidad y que le da vergüenza preguntar. El sector tiene alta población migrante y recursos limitados de traducción.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Desde el enfoque de interculturalidad y derechos, ¿qué acción es MÁS adecuada?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Asumir que su cultura 'no permite hablar de sexo' y omitir el tema",
+            "esCorrecta": false,
+            "explicacion": "La SSR es un derecho; omitirla perpetúa inequidades."
+          },
+          {
+            "id": "b",
+            "texto": "Buscar estrategias para facilitar la comprensión (material visual, lenguaje simple) y explorar si se siente cómoda hablando a solas",
+            "esCorrecta": true,
+            "explicacion": "Adapta la consejería a su contexto lingüístico y cultural, respetando su autonomía progresiva."
+          },
+          {
+            "id": "c",
+            "texto": "Hablar sólo con la tía, ya que 'es quien entiende mejor el sistema'",
+            "esCorrecta": false,
+            "explicacion": "La usuaria directa es la adolescente; la tía es apoyo, no reemplazo."
+          },
+          {
+            "id": "d",
+            "texto": "Derivarla a otro centro sin intentar intervenir",
+            "esCorrecta": false,
+            "explicacion": "Se pierde oportunidad de atención y puede aumentar las barreras de acceso."
+          }
+        ],
+        "feedbackDocente": "Entrena la mirada intercultural y la adaptación de la consejería en SSR en contextos de migración."
+      },
+      {
+        "id": "p2",
+        "tipo": "short",
+        "enunciado": "Menciona 2 adaptaciones prácticas que podrías hacer en tu consejería para mejorar la comprensión de la adolescente.",
+        "guia": "Piensa en apoyo visual, ritmo de habla, comprobación de entendimiento, uso de palabras simples o traductor comunitario."
+      }
+    ],
+    "referencias": [
+      "Orientaciones técnicas para control de salud integral de adolescentes, MINSAL 2021",
+      "Enfoque de interculturalidad en salud, MINSAL"
+    ]
+  }
 ]

@@ -4,7 +4,6 @@ import { redirect } from 'next/navigation';
 import Image from 'next/image';
 // auth function kept for session check (safe to keep)
 import { auth } from '@/auth';
-import LoginScreenClient from 'app/components/LoginScreenClient';
 
 export default async function HomePage() {
   const session = await auth();
@@ -104,8 +103,8 @@ export default async function HomePage() {
             <p className="text-sm text-[var(--km-text-700)] mt-1">Regístrate o inicia sesión y comienza a practicar casos hoy mismo.</p>
           </div>
           <div className="flex gap-3">
-            <a href="/login" className="btn btn-primary">Crear cuenta</a>
-            <a href="/login" className="inline-flex items-center gap-2 px-4 py-2 rounded text-sm border" style={{ borderColor: 'rgba(14,107,103,0.12)', color: 'var(--km-petrol)' }}>Iniciar sesión</a>
+            <a href="/casos" className="btn btn-primary">Comenzar ahora</a>
+            <a href="/casos" className="inline-flex items-center gap-2 px-4 py-2 rounded text-sm border" style={{ borderColor: 'rgba(14,107,103,0.12)', color: 'var(--km-petrol)' }}>Ver casos</a>
           </div>
         </section>
 

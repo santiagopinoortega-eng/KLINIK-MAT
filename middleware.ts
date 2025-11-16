@@ -6,7 +6,8 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 // Matcher: rutas protegidas por sesión
-const PROTECTED_PATHS = ['/casos', '/mi-progreso', '/admin'];
+// Nota: `/casos` se deja público según decisión del producto.
+const PROTECTED_PATHS = ['/mi-progreso', '/admin'];
 
 function isProtectedPath(pathname: string) {
   return PROTECTED_PATHS.some((p) => pathname === p || pathname.startsWith(p + '/'));
@@ -40,7 +41,6 @@ export function middleware(req: NextRequest) {
 
 export const config = {
   matcher: [
-    '/casos/:path*',
     '/mi-progreso',
     '/admin/:path*',
   ],
