@@ -19,24 +19,21 @@
     "test:env": "node -r dotenv/config -e 'console.log(`DATABASE_URL is: ${process.env.DATABASE_URL}`)'"
   },
   "dependencies": {
-    "@auth/core": "0.34.1",
-    "@auth/prisma-adapter": "^2.4.1",
+    "@clerk/localizations": "^3.28.1",
+    "@clerk/nextjs": "^6.35.2",
     "@heroicons/react": "^2.2.0",
     "@prisma/client": "^6.19.0",
-    "bcryptjs": "^3.0.3",
     "clsx": "^2.1.1",
     "jose": "^6.1.1",
     "next": "^14.2.33",
-    "next-auth": "5.0.0-beta.19",
-    "nodemailer": "^6.10.1",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "svix": "^1.81.0"
   },
   "devDependencies": {
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/typography": "^0.5.19",
-    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

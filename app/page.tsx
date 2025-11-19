@@ -2,13 +2,12 @@
 import React from 'react';
 import { redirect } from 'next/navigation';
 import Image from 'next/image';
-// auth function kept for session check (safe to keep)
-import { auth } from '@/auth';
+import { auth } from '@clerk/nextjs/server';
 
 export default async function HomePage() {
-  const session = await auth();
+  const { userId } = auth();
   const forceRedirect = process.env.NODE_ENV === 'production' || process.env.FORCE_REDIRECT_TO_CASOS === 'true';
-  if (forceRedirect && session?.user) redirect('/casos');
+  if (forceRedirect && userId) redirect('/casos');
 
   // Hero image - use public asset. If you have a specific hero file, replace the path.
   const heroSrc = '/brand/logo-centro.png';

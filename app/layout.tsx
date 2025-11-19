@@ -4,6 +4,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Inter } from 'next/font/google';
 import dynamic from 'next/dynamic';
+import { ClerkProvider } from '@clerk/nextjs';
+import { esES } from '@clerk/localizations';
 
 // Importa tu Header (la ruta ./ es correcta)
 const Header = dynamic(() => import('./components/Header'), { ssr: true });
@@ -34,9 +36,10 @@ export const metadata: Metadata = {
 // Tu componente Layout
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${inter.variable} scroll-smooth`}>
-      {/* El body ya recibe estilos (fondo/color) desde globals.css */}
-      <body className="bg-gradient-to-br from-[rgba(107,15,15,0.04)] to-[rgba(255,182,166,0.04)] bg-[var(--km-blush)]">
+    <ClerkProvider localization={esES}>
+      <html lang="es" className={`${inter.variable} scroll-smooth`}>
+        {/* El body ya recibe estilos (fondo/color) desde globals.css */}
+        <body className="bg-gradient-to-br from-[rgba(107,15,15,0.04)] to-[rgba(255,182,166,0.04)] bg-[var(--km-blush)]">
         
         {/* Skip link accesible (color brand) */}
         <a
@@ -73,6 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </footer>
       </body>
-    </html>
+      </html>
+    </ClerkProvider>
   );
 }

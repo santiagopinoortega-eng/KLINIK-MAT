@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { UserButton, SignInButton, useUser } from '@clerk/nextjs';
 
 const links = [
   { href: '/', label: 'Inicio' },
@@ -12,6 +13,7 @@ const links = [
 
 export default function Header() {
   const pathname = usePathname();
+  const { isSignedIn } = useUser();
 
   return (
     <header className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-neutral-100">
@@ -41,6 +43,19 @@ export default function Header() {
               </li>
             );
           })}
+          
+          {/* User button or Sign in */}
+          <li className="ml-2">
+            {isSignedIn ? (
+              <UserButton afterSignOutUrl="/" />
+            ) : (
+              <SignInButton mode="modal">
+                <button className="px-4 py-2 rounded-lg text-sm font-medium text-white bg-[var(--km-primary)] hover:bg-[var(--km-primary-dark)] transition-colors">
+                  Iniciar sesión
+                </button>
+              </SignInButton>
+            )}
+          </li>
         </ul>
       </nav>
     </header>

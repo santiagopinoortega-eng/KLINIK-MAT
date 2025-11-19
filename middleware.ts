@@ -1,47 +1,25 @@
 // middleware.ts
-// Middleware ligera que evita importar la configuración completa
-// de NextAuth (que podría arrastrar nodemailer al bundle Edge).
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+// Define rutas protegidas que requieren autenticación
+const isProtectedRoute = createRouteMatcher([
+  '/casos(.*)',      // Requiere login para ver casos clínicos
+  '/mi-progreso(.*)',
+  '/admin(.*)',
+]);
 
-// Matcher: rutas protegidas por sesión
-// Nota: `/casos` se deja público según decisión del producto.
-const PROTECTED_PATHS = ['/mi-progreso', '/admin'];
-
-function isProtectedPath(pathname: string) {
-  return PROTECTED_PATHS.some((p) => pathname === p || pathname.startsWith(p + '/'));
-}
-
-export function middleware(req: NextRequest) {
-  const { nextUrl, cookies } = req;
-  const pathname = nextUrl.pathname;
-
-  // No hacer nada para assets, api u otras rutas públicas
-  if (!isProtectedPath(pathname)) return NextResponse.next();
-
-  // Comprobación ligera: presencia de cookie de sesión
-  // Este middleware es deliberadamente simple para evitar
-  // cargar librerías Node-only en el runtime Edge.
-  const sessionCookieName = process.env.NODE_ENV === 'production'
-    ? '__Secure-next-auth.session-token'
-    : 'next-auth.session-token';
-
-  const token = cookies.get(sessionCookieName)?.value;
-
-  if (!token) {
-    // Redirigir al login si no hay token
-    const loginUrl = new URL('/login', nextUrl.origin);
-    loginUrl.searchParams.set('from', pathname);
-    return NextResponse.redirect(loginUrl);
+export default clerkMiddleware(async (auth, req) => {
+  // Protege rutas que requieren autenticación
+  if (isProtectedRoute(req)) {
+    await auth.protect();
   }
-
-  return NextResponse.next();
-}
+});
 
 export const config = {
   matcher: [
-    '/mi-progreso',
-    '/admin/:path*',
+    // Skip Next.js internals and all static files, unless found in search params
+    '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
+    // Always run for API routes
+    '/(api|trpc)(.*)',
   ],
 };

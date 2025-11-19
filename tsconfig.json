@@ -30,12 +30,9 @@
     "incremental": true
   },
 
-  // LA CORRECCIÓN CLAVE ESTÁ AQUÍ
   "include": [
     "next-env.d.ts",
-    "next-auth.d.ts", // Le decimos que incluya el archivo de tipos de Auth
     ".next/types/**/*.ts",
-    // Le decimos que busque TODOS los archivos .ts y .tsx en TODO el proyecto
     "**/*.ts",
     "**/*.tsx"
   ],

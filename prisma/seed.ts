@@ -1,6 +1,5 @@
 // prisma/seed.ts
 const { PrismaClient, Role } = require('@prisma/client');
-const { hash } =require('bcryptjs');
 
 const prisma = new PrismaClient();
 
@@ -11,9 +10,6 @@ async function main() {
   // El orden es importante para evitar errores de clave foránea.
   console.log('🧹 Limpiando datos existentes...');
   await prisma.studentResult.deleteMany(); // Limpia resultados antes que usuarios
-  await prisma.session.deleteMany();       // Limpia sesiones de Auth.js
-  await prisma.account.deleteMany();       // Limpia cuentas de Auth.js
-  await prisma.verificationToken.deleteMany(); // Limpia tokens de Auth.js
   
   await prisma.option.deleteMany();
   await prisma.question.deleteMany();
@@ -23,19 +19,20 @@ async function main() {
   console.log('Datos de desarrollo limpios.');
 
 
-  // 2. Crear un usuario administrador (La clave para la seguridad)
-  const ADMIN_PASSWORD = 'admin123';
-  const hashedPassword = await hash(ADMIN_PASSWORD, 12); // Hash seguro con costo 12
-  
+  // 2. Crear un usuario administrador
+  // NOTA: Con Clerk, los usuarios se crean via la UI de Clerk o webhook
+  // Este seed crea un usuario de ejemplo que deberás actualizar con un ID real de Clerk
   const adminUser = await prisma.user.create({
     data: {
+      id: 'user_seed_admin_example', // Reemplazar con ID real de Clerk después
       email: 'admin@klinik-mat.cl',
       name: 'Admin Supervisor',
-      passwordHash: hashedPassword, 
-      role: Role.ADMIN, // Le asignamos el rol de administrador
+      role: Role.ADMIN,
+      emailVerified: new Date(),
     },
   });
-  console.log(`👤 Creado usuario administrador: ${adminUser.email} (Contraseña: ${ADMIN_PASSWORD})`);
+  console.log(`👤 Creado usuario administrador de ejemplo: ${adminUser.email}`);
+  console.log(`⚠️  IMPORTANTE: Actualiza este usuario con un ID real de Clerk después del primer login.`);
 
 
   // 3. Crear Normas MINSAL

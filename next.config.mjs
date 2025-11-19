@@ -10,6 +10,7 @@ const CONNECT_SRC = [
   "'self'",
   'https:',           // permite APIs externas sobre HTTPS (p. ej. Neon)
   'wss:',             // websockets si los usas
+  'https://*.clerk.accounts.dev', // Clerk
 ].join(' ');
 
 const IMG_SRC = [
@@ -17,6 +18,7 @@ const IMG_SRC = [
   'data:',
   'blob:',
   'https:',
+  'https://*.clerk.accounts.dev', // Clerk avatars
 ].join(' ');
 
 const FONT_SRC = ["'self'", 'https:', 'data:'].join(' ');
@@ -24,15 +26,15 @@ const FONT_SRC = ["'self'", 'https:', 'data:'].join(' ');
 // --- CAMBIO CLAVE: Solución al error 'unsafe-eval' ---
 // En desarrollo, Next.js necesita 'unsafe-eval' para el Fast Refresh.
 // Lo permitimos solo si NO estamos en producción.
-const SCRIPT_SRC_BASE = ["'self'", "'unsafe-inline'"];
+const SCRIPT_SRC_BASE = ["'self'", "'unsafe-inline'", 'https://*.clerk.accounts.dev'];
 if (!isProd) {
   SCRIPT_SRC_BASE.push("'unsafe-eval'");
 }
 const SCRIPT_SRC = SCRIPT_SRC_BASE.join(' ');
 // --- FIN DEL CAMBIO ---
 
-const STYLE_SRC  = ["'self'", "'unsafe-inline'"].join(' ');
-const FRAME_SRC  = ["'none'"].join(' ');
+const STYLE_SRC  = ["'self'", "'unsafe-inline'", 'https://*.clerk.accounts.dev'].join(' ');
+const FRAME_SRC  = ["'self'", 'https://*.clerk.accounts.dev'].join(' ');
 
 // Construimos la CSP en una sola línea (evita saltos que algunos navegadores no aman)
 const CSP = [
@@ -81,6 +83,16 @@ if (isProd) {
 
 const nextConfig = {
   reactStrictMode: true,
+
+  // Permitir Server Actions en GitHub Codespaces
+  experimental: {
+    serverActions: {
+      allowedOrigins: [
+        'localhost:3000',
+        '*.app.github.dev', // GitHub Codespaces
+      ],
+    },
+  },
 
   async headers() {
     return [

@@ -21,14 +21,27 @@ Porque cuando un propósito, un sistema y una comunidad vibran en la misma frecu
 
 ## Getting Started
 
-This is a [Next.js](https://nextjs.org/) project.
+This is a [Next.js](https://nextjs.org/) project with [Clerk](https://clerk.com) authentication.
 
 ### 1. Environment Setup
 
-This project requires a PostgreSQL database. Create a `.env` file in the root of the project and add the database connection string:
+This project requires:
+- PostgreSQL database
+- Clerk account (for authentication)
 
-```
+Create a `.env.local` file in the root of the project:
+
+```bash
+# Database
 DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE"
+
+# Clerk Authentication (get from https://dashboard.clerk.com)
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="pk_test_xxxxx"
+CLERK_SECRET_KEY="sk_test_xxxxx"
+CLERK_WEBHOOK_SECRET="whsec_xxxxx"
+
+# Site URL
+NEXT_PUBLIC_SITE_URL="http://localhost:3000"
 ```
 
 ### 2. Install Dependencies
@@ -37,7 +50,28 @@ DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE"
 npm install
 ```
 
-### 3. Run the Development Server
+### 3. Setup Database
+
+```bash
+# Generate Prisma client
+npx prisma generate
+
+# Run migrations
+npx prisma migrate dev
+
+# (Optional) Seed database with sample data
+npm run db:seed
+```
+
+### 4. Setup Clerk Webhook
+
+1. Go to [Clerk Dashboard](https://dashboard.clerk.com)
+2. Navigate to Webhooks
+3. Add endpoint: `http://localhost:3000/api/webhooks/clerk` (for local dev, use ngrok or similar)
+4. Subscribe to events: `user.created`, `user.updated`, `user.deleted`
+5. Copy the webhook secret to `CLERK_WEBHOOK_SECRET` in `.env.local`
+
+### 5. Run the Development Server
 
 ```bash
 npm run dev
@@ -45,46 +79,11 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### Desarrollo local: correo (MailHog)
-
-Para probar el flujo de "magic link" sin enviar correos reales, usa MailHog.
-
-1) Levanta MailHog con Docker Compose:
-
-```bash
-docker-compose up -d mailhog
-```
-
-2) Copia el ejemplo de variables y ajusta `.env.local`:
-
-```bash
-cp .env.example .env.local
-# editar .env.local y poner NEXTAUTH_SECRET, DATABASE_URL, y ENABLE_NEXTAUTH_DEV=true
-```
-
-3) Inicia la app (con MailHog corriendo):
-
-```bash
-npm run dev:mail
-```
-
-4) Abre la UI de MailHog en `http://localhost:8025` para ver los correos.
-
-Dev endpoints
-
-Este repo incluye endpoints de depuración (`/api/debug/send-magic-link` y `/api/debug/complete-magic`).
-Están protegidos y solo se activan si en tu `.env.local` pones:
-
-```
-ENABLE_NEXTAUTH_DEV=true
-```
-
-No pongas `ENABLE_NEXTAUTH_DEV=true` en entornos públicos ni en producción.
-
 
 ## Tech Stack
 
-- **Framework:** [Next.js](https://nextjs.org/)
+- **Framework:** [Next.js](https://nextjs.org/) 14 (App Router)
+- **Authentication:** [Clerk](https://clerk.com)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 - **Database ORM:** [Prisma](https://www.prisma.io/)
 - **Database:** [PostgreSQL](https://www.postgresql.org/)
