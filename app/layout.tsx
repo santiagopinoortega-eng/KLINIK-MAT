@@ -9,6 +9,7 @@ import { esES } from '@clerk/localizations';
 
 // Importa tu Header (la ruta ./ es correcta)
 const Header = dynamic(() => import('./components/Header'), { ssr: true });
+const Footer = dynamic(() => import('./components/Footer'), { ssr: true });
 
 const inter = Inter({
   subsets: ['latin'],
@@ -56,25 +57,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </div>
 
         {/* Contenido (clase .container-app) */}
-        <main id="contenido" className="container-app py-8 md:py-10 animate-fade-in">
+        <main id="contenido" className="min-h-[70vh] animate-fade-in">
           {children}
         </main>
 
-        {/* Footer (clase .container-app y colores neutral) */}
-        <footer className="border-t border-neutral-200/70 bg-white/80">
-          <div className="container-app py-6 text-xs text-neutral-500">
-            <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-              <p>
-                © {new Date().getFullYear()} · KLINIK-MAT · Formación clínica digital basada en Normas MINSAL y criterios OMS.
-              </p>
-              <nav className="flex items-center gap-4">
-                <Link href="/" className="hover:text-neutral-700 transition-colors">Inicio</Link>
-                <Link href="/recursos" className="hover:text-neutral-700 transition-colors">Recursos</Link>
-                <Link href="/casos" className="hover:text-neutral-700 transition-colors">Casos clínicos</Link>
-              </nav>
-            </div>
-          </div>
-        </footer>
+        {/* Footer con nuevo componente */}
+        <Footer />
       </body>
       </html>
     </ClerkProvider>

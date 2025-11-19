@@ -61,12 +61,12 @@ export default function CaseCard({
   };
 
   return (
-    <article className="card group relative overflow-hidden transition-all hover:shadow-md">
-      {/* Badges superiores */}
-      <div className="mb-3 flex items-center gap-2">
-        <span className="chip" style={{ background: 'rgba(14,107,183,0.08)', color: 'var(--km-blue)' }}>
+    <article className="card group relative overflow-hidden transition-all hover:shadow-km-lg">
+      {/* Badges superiores con nueva paleta */}
+      <div className="mb-4 flex items-center gap-2 flex-wrap">
+        <span className="chip" style={{ background: 'rgba(13,148,136,0.12)', color: 'var(--km-teal)', border: '1px solid rgba(13,148,136,0.2)' }}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-            <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.5" />
+            <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
           </svg>
           {area ? String(area) : 'General'}
         </span>
@@ -74,22 +74,22 @@ export default function CaseCard({
           {diffLabel(difficulty)}
         </span>
         {fecha && (
-          <span className="ml-auto text-xs text-[var(--km-text-700)]">{fecha}</span>
+          <span className="ml-auto text-xs text-km-text-500 font-medium">{fecha}</span>
         )}
       </div>
 
-      {/* Título */}
-      <h3 className="text-[var(--km-text-900)] text-xl font-semibold leading-snug group-hover:text-[var(--km-deep)]">
+      {/* Título con gradiente en hover */}
+      <h3 className="text-km-navy text-xl font-bold leading-snug group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-km-primary transition-all">
         {title}
       </h3>
 
       {summary && (
-        <p className="mt-2 text-sm text-[var(--km-text-700)] line-clamp-3">
+        <p className="mt-3 text-sm text-km-text-700 leading-relaxed line-clamp-3">
           {summary}
         </p>
       )}
 
-      <Link href={`/casos/${id}`} className="mt-6 btn btn-primary w-full transition-all">
+      <Link href={`/casos/${id}`} className="mt-6 btn btn-primary w-full transition-all hover:scale-105">
         Resolver caso →
       </Link>
     </article>

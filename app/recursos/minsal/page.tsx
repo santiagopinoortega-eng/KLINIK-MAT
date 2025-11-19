@@ -78,12 +78,12 @@ export default function Page() {
   }, [busqueda, modulo]);
 
   return (
-    <div className="bg-[var(--km-surface-2)] py-12">
+    <div className="bg-km-cream py-12">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Título */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-extrabold text-blue-700">Centro de Recursos Clínicos</h1>
-          <p className="mt-3 text-lg text-gray-600">Descarga las normativas, guías y documentos técnicos.</p>
+          <h1 className="text-4xl font-extrabold text-km-cardinal">Centro de Recursos Clínicos</h1>
+          <p className="mt-3 text-lg text-km-text-700">Descarga las normativas, guías y documentos técnicos.</p>
         </div>
 
         {/* Búsqueda / filtro */}
@@ -93,14 +93,14 @@ export default function Page() {
             placeholder="Buscar documento o palabra clave..."
             value={busqueda}
             onChange={(e) => setBusqueda(e.target.value)}
-            className="flex-1 rounded-lg px-4 py-2 shadow-sm"
-            style={{ background: 'var(--km-surface-1)', border: '1px solid rgba(183,43,43,0.08)' }}
+            className="flex-1 rounded-lg px-4 py-2 shadow-km-sm border border-km-crimson/10 focus:border-km-rose focus:ring-2 focus:ring-km-rose/20 outline-none transition-all"
+            style={{ background: 'var(--km-surface-1)' }}
           />
           <select
             value={modulo}
             onChange={(e) => setModulo(e.target.value as any)}
-            className="rounded-lg px-4 py-2 shadow-sm"
-            style={{ background: 'var(--km-surface-1)', border: '1px solid rgba(183,43,43,0.08)' }}
+            className="rounded-lg px-4 py-2 shadow-km-sm border border-km-crimson/10 focus:border-km-rose focus:ring-2 focus:ring-km-rose/20 outline-none transition-all"
+            style={{ background: 'var(--km-surface-1)' }}
           >
             {modulos.map((m) => (
               <option key={m}>{m}</option>
@@ -112,20 +112,20 @@ export default function Page() {
         <div className="grid gap-6 sm:grid-cols-2">
           {filtrados.map((doc) => (
             <a key={doc.title} href={doc.href} download className="block group">
-              <div className="card rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300">
-                <div className="flex justify-between items-start">
-                  <h3 className="text-xl font-bold text-blue-700 group-hover:text-blue-800 transition-colors">
+              <div className="card rounded-2xl p-8 shadow-km-md hover:shadow-km-lg transition-all duration-300 hover:border-km-rose/30">
+                <div className="flex justify-between items-start gap-3">
+                  <h3 className="text-xl font-bold text-km-crimson group-hover:text-km-rose transition-colors">
                     {doc.title}
                   </h3>
-                  <span className="text-xs text-gray-500 font-medium">{doc.modulo}</span>
+                  <span className="chip chip-primary flex-shrink-0">{doc.modulo}</span>
                 </div>
 
-                {doc.description && <p className="mt-2 text-base text-gray-700">{doc.description}</p>}
-                {doc.fuente && <p className="mt-4 text-sm text-gray-500 italic">{doc.fuente}</p>}
+                {doc.description && <p className="mt-3 text-base text-km-text-700 leading-relaxed">{doc.description}</p>}
+                {doc.fuente && <p className="mt-4 text-sm text-km-text-500 italic">{doc.fuente}</p>}
 
                 <div className="mt-6">
-                  <span className="inline-block bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition">
-                    Descargar PDF
+                  <span className="inline-block bg-gradient-km-primary text-white font-semibold py-2 px-4 rounded-lg hover:scale-105 transition-transform shadow-km-md">
+                    Descargar PDF →
                   </span>
                 </div>
               </div>
@@ -133,7 +133,7 @@ export default function Page() {
           ))}
 
           {filtrados.length === 0 && (
-            <p className="col-span-full text-center text-gray-500">No se encontraron documentos con esos filtros.</p>
+            <p className="col-span-full text-center text-km-text-500">No se encontraron documentos con esos filtros.</p>
           )}
         </div>
 
@@ -141,9 +141,9 @@ export default function Page() {
         <div className="mt-12 text-center">
           <Link
             href="/casos"
-            className="inline-block bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition"
+            className="btn btn-lg btn-primary"
           >
-            Volver a Casos Clínicos
+            ← Volver a Casos Clínicos
           </Link>
         </div>
       </div>

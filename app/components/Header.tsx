@@ -16,16 +16,16 @@ export default function Header() {
   const { isSignedIn } = useUser();
 
   return (
-    <header className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-neutral-100">
-      <nav className="mx-auto max-w-7xl px-6 lg:px-10 py-3 flex items-center justify-between">
-        {/* Logo - tamaño visible pero contenido */}
-        <Link href="/" className="flex items-center gap-3" aria-label="KLINIK-MAT - inicio">
-          <div className="relative w-[160px] h-10 md:h-10 md:w-[200px] flex items-center">
-            <Image src="/brand/logo-centro.png" alt="KLINIK-MAT" fill style={{ objectFit: 'contain' }} priority />
-          </div>
+    <header className="sticky top-0 z-50 bg-white/70 backdrop-blur-xl border-b border-km-crimson/10 shadow-km-md">
+      <nav className="mx-auto max-w-7xl px-6 lg:px-10 py-4 flex items-center justify-between">
+        {/* Logo reemplazado por texto KLINIK-MAT */}
+        <Link href="/" className="flex items-center group" aria-label="KLINIK-MAT - inicio">
+          <h2 className="text-2xl md:text-3xl font-bold text-km-crimson group-hover:text-km-rose transition-colors">
+            KLINIK-MAT
+          </h2>
         </Link>
 
-        {/* Navegación alineada a la derecha */}
+        {/* Navegación con nueva paleta */}
         <ul className="flex items-center gap-2">
           {links.map((l) => {
             const active = pathname === l.href;
@@ -34,8 +34,10 @@ export default function Header() {
                 <Link
                   href={l.href}
                   className={[
-                    'px-3 py-2 rounded-lg text-sm sm:text-[0.95rem] font-medium transition-colors',
-                    active ? 'bg-[var(--km-blush)] text-[var(--km-deep)]' : 'text-[var(--km-text-700)] hover:bg-[var(--km-blush)]',
+                    'px-4 py-2 rounded-xl text-sm sm:text-base font-semibold transition-all',
+                    active 
+                      ? 'bg-gradient-km-primary text-white shadow-km-md' 
+                      : 'text-km-navy hover:bg-km-blush hover:text-km-crimson',
                   ].join(' ')}
                 >
                   {l.label}
@@ -45,12 +47,21 @@ export default function Header() {
           })}
           
           {/* User button or Sign in */}
-          <li className="ml-2">
+          <li className="ml-3">
             {isSignedIn ? (
-              <UserButton afterSignOutUrl="/" />
+              <div className="flex items-center gap-2">
+                <UserButton 
+                  afterSignOutUrl="/"
+                  appearance={{
+                    elements: {
+                      avatarBox: 'w-10 h-10 ring-2 ring-km-crimson/20 hover:ring-km-rose/40 transition-all'
+                    }
+                  }}
+                />
+              </div>
             ) : (
               <SignInButton mode="modal">
-                <button className="px-4 py-2 rounded-lg text-sm font-medium text-white bg-[var(--km-primary)] hover:bg-[var(--km-primary-dark)] transition-colors">
+                <button className="btn btn-primary">
                   Iniciar sesión
                 </button>
               </SignInButton>
