@@ -1,0 +1,90 @@
+{
+  "id": "ejemplo-caso-id",
+  "modulo": "Anticoncepción",
+  "dificultad": "Baja",
+  "titulo": "Título descriptivo del caso clínico",
+  "vigneta": "Descripción detallada del paciente y situación clínica...",
+  "pasos": [
+    {
+      "id": "p1",
+      "tipo": "mcq",
+      "enunciado": "Pregunta 1: ¿Cuál es...?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Opción A",
+          "esCorrecta": false,
+          "explicacion": "Justificación clara de por qué esta opción es incorrecta."
+        },
+        {
+          "id": "b",
+          "texto": "Opción B",
+          "esCorrecta": true,
+          "explicacion": "Justificación clara de por qué esta es la opción correcta."
+        },
+        {
+          "id": "c",
+          "texto": "Opción C",
+          "esCorrecta": false,
+          "explicacion": "Justificación clara de por qué esta opción es incorrecta."
+        },
+        {
+          "id": "d",
+          "texto": "Opción D",
+          "esCorrecta": false,
+          "explicacion": "Justificación clara de por qué esta opción es incorrecta."
+        }
+      ],
+      "feedbackDocente": "Explicación pedagógica sobre lo que se evalúa en esta pregunta."
+    },
+    {
+      "id": "p2",
+      "tipo": "mcq",
+      "enunciado": "Pregunta 2: ¿Qué conducta...?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Opción A",
+          "esCorrecta": false,
+          "explicacion": "Justificación de esta opción."
+        },
+        {
+          "id": "b",
+          "texto": "Opción B",
+          "esCorrecta": true,
+          "explicacion": "Justificación de por qué es correcta."
+        },
+        {
+          "id": "c",
+          "texto": "Opción C",
+          "esCorrecta": false,
+          "explicacion": "Justificación de esta opción."
+        },
+        {
+          "id": "d",
+          "texto": "Opción D",
+          "esCorrecta": false,
+          "explicacion": "Justificación de esta opción."
+        }
+      ],
+      "feedbackDocente": "Contexto pedagógico de la pregunta."
+    },
+    {
+      "id": "p5",
+      "tipo": "short",
+      "enunciado": "Puntos Clave del Caso",
+      "guia": "• Punto clave 1\n• Punto clave 2\n• Punto clave 3",
+      "feedbackDocente": "Reflexión final sobre el aprendizaje esperado."
+    }
+  ],
+  "feedbackDinamico": {
+    "bajo": "Has demostrado conocimientos básicos. Te recomendamos revisar [concepto específico] y [concepto específico]. Los casos clínicos requieren integrar teoría y práctica. ¡Sigue estudiando!",
+    "medio": "¡Buen trabajo! Dominas los conceptos centrales. Para mejorar, profundiza en [área específica] y revisa las guías clínicas MINSAL actualizadas.",
+    "alto": "¡Excelente! Has demostrado razonamiento clínico sólido. Estás preparado/a para aplicar estos conocimientos en la práctica real. Considera profundizar en casos de mayor complejidad."
+  },
+  "referencias": [
+    "MINSAL — Norma Nacional sobre Regulación de la Fertilidad (2018).",
+    "OMS — Criterios de Elegibilidad Médica para el Uso de Anticonceptivos (MEC), edición vigente.",
+    "CDC — Medical Eligibility Criteria for Contraceptive Use, 2023."
+  ]
+}

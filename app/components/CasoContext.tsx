@@ -38,8 +38,31 @@ export function CasoProvider({ caso, children }: { caso: CasoClient; children: R
   const goToNextStep = useCallback(() => handleNavigate(currentStep + 1), [currentStep, handleNavigate]);
 
   const handleSelect = useCallback((pasoId: string, opcion: Opcion, opts?: { skipAdvance?: boolean }) => {
-    if (respuestas.some(r => r.pasoId === pasoId)) return;
-    setRespuestas(prev => [...prev, { pasoId, opcionId: opcion.id, esCorrecta: opcion.esCorrecta }]);
+    // Si la respuesta ya existe y solo queremos actualizar puntos
+    const existingRespuestaIndex = respuestas.findIndex(r => r.pasoId === pasoId);
+    
+    if (existingRespuestaIndex !== -1 && 'puntos' in opcion) {
+      // Actualizar puntos de una respuesta existente
+      setRespuestas(prev => prev.map((r, idx) => 
+        idx === existingRespuestaIndex ? { ...r, puntos: opcion.puntos } : r
+      ));
+      return;
+    }
+    
+    // Si ya respondió (nueva respuesta), no permitir duplicados
+    if (existingRespuestaIndex !== -1) return;
+    
+    // Nueva respuesta
+    const nuevaRespuesta: Respuesta = {
+      pasoId,
+      opcionId: opcion.id,
+      esCorrecta: opcion.esCorrecta,
+      ...(opcion.texto && { respuestaTexto: opcion.texto }),
+      ...(typeof opcion.puntos === 'number' && { puntos: opcion.puntos })
+    };
+    
+    setRespuestas(prev => [...prev, nuevaRespuesta]);
+    
     // Si no se indica skipAdvance, avanzamos automáticamente (útil para MCQ)
     if (!opts?.skipAdvance) {
       setTimeout(() => {

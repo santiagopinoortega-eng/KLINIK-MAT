@@ -21,6 +21,8 @@ export type ShortPaso = {
   id: string;
   tipo: 'short';
   enunciado: string;
+  puntosMaximos?: number; // Por defecto 2 puntos
+  criteriosEvaluacion?: string[]; // Lista simple de criterios esperados
   guia?: string;
   feedbackDocente?: string;
 };
@@ -58,6 +60,7 @@ export type Respuesta = {
   opcionId?: string;       // Usado si es MCQ
   respuestaTexto?: string; // Usado si es Short (desarrollo)
   esCorrecta?: boolean;
+  puntos?: number;         // Puntos autoevaluados (0, 1 o 2 para Short)
   revelado?: boolean;
 };
 
@@ -68,3 +71,12 @@ export const isMcq = (p: Paso): p is McqPaso => p.tipo === 'mcq';
 
 // Comprueba si un paso es Short (Desarrollo)
 export const isShort = (p: Paso): p is ShortPaso => p.tipo === 'short';
+
+// --- Sistema de Feedback Integrado ---
+export type FeedbackNivel = {
+  rangoMin: number; // Porcentaje mínimo (ej: 0, 50, 70, 90)
+  rangoMax: number; // Porcentaje máximo (ej: 49, 69, 89, 100)
+  titulo: string;   // Ej: "Necesitas Revisar", "Bien", "Muy Bien", "Excelente"
+  mensaje: string;  // Feedback específico del caso
+  emoji?: string;   // Ej: "📝", "✓", "⭐", "🏆"
+};

@@ -15,7 +15,7 @@ export default async function HomePage() {
   return (
     <main className="min-h-screen">
       {/* Hero Section - Identidad Obstetricia Chilena */}
-      <section className="relative overflow-hidden bg-gradient-km-hero text-white rounded-[3rem] shadow-km-xl">
+      <section className="relative overflow-hidden bg-gradient-km-hero text-white rounded-[2rem] shadow-km-xl mx-4 md:mx-6 my-6">
         {/* Patrón orgánico de fondo */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-10 w-32 h-32 rounded-full bg-white/20 blur-3xl" />
@@ -23,7 +23,7 @@ export default async function HomePage() {
           <div className="absolute top-1/2 right-10 w-24 h-24 rounded-full bg-white/10 blur-2xl" />
         </div>
 
-        <div className="container-app relative py-16 md:py-24">
+        <div className="container-app relative py-12 md:py-16">
           <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] items-center gap-8 md:gap-12">
             {/* Contenido principal - Solo título */}
             <div className="space-y-6">
@@ -67,8 +67,8 @@ export default async function HomePage() {
 
             {/* Logo grande a la derecha */}
             <div className="flex justify-center md:justify-end">
-              <div className="w-64 h-64 md:w-80 md:h-80 rounded-3xl bg-white/10 backdrop-blur-sm p-8 border-2 border-white/20 shadow-km-xl">
-                <Image src={heroSrc} alt="KLINIK-MAT Logo" width={320} height={320} className="w-full h-full object-contain" priority />
+              <div className="w-72 h-72 md:w-96 md:h-96 rounded-3xl bg-white/10 backdrop-blur-sm p-8 border-2 border-white/20 shadow-km-xl overflow-hidden">
+                <Image src={heroSrc} alt="KLINIK-MAT Logo" width={500} height={500} className="w-full h-full object-contain" priority />
               </div>
             </div>
           </div>
@@ -81,7 +81,7 @@ export default async function HomePage() {
               {/* 1) HERO - removido (ya integrado arriba) */}
 
         {/* 2) ¿Qué es KLINIK-MAT? */}
-        <section id="features" className="card shadow-km-md border-l-4 border-km-crimson">
+        <section id="features" className="card shadow-km-md border-l-4 border-km-crimson bg-white/70 backdrop-blur-xl">
           <h2 className="text-2xl md:text-3xl font-bold text-km-cardinal mb-4">
             ¿Qué es KLINIK‑MAT?
           </h2>
@@ -131,7 +131,7 @@ export default async function HomePage() {
         </section>
 
         {/* 5) CTA Final - Rediseñado con gradiente rojo */}
-        <section className="relative overflow-hidden rounded-3xl bg-gradient-km-primary text-white p-8 md:p-12 shadow-km-xl">
+        <section className="relative overflow-hidden rounded-3xl bg-gradient-km-primary text-white p-8 md:p-12 shadow-km-xl backdrop-blur-xl bg-opacity-95">
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
           <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="text-center md:text-left">

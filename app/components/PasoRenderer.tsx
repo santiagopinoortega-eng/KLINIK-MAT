@@ -14,8 +14,8 @@ interface Props {
 export default function PasoRenderer({ pasoId, onAnswer }: Props) {
   const { caso, respuestas, goToNextStep } = useCaso();
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
-  // Estado para respuesta corta (opcional por ahora, pero preparado)
   const [shortAnswer, setShortAnswer] = useState(""); 
+  const [shortScore, setShortScore] = useState<number | null>(null); // 0, 1 o 2 puntos
 
   // Usamos 'Paso | undefined' explícitamente para ayudar a TypeScript
   const stepData: Paso | undefined = useMemo(
@@ -28,9 +28,48 @@ export default function PasoRenderer({ pasoId, onAnswer }: Props) {
     [respuestas, pasoId]
   );
 
-  useEffect(() => {
+  // Handler para guardar puntos de autoevaluación
+  const handleScoreSelection = useCallback((puntos: number) => {
+    setShortScore(puntos);
+    // Actualizar la respuesta con los puntos
+    if (respuestaUsuario) {
+      onAnswer(pasoId, { 
+        ...respuestaUsuario, 
+        puntos 
+      }, { skipAdvance: true });
+    }
+  }, [pasoId, respuestaUsuario, onAnswer]);
+
+  // Evaluación automática de respuesta Short
+  const evaluateShortAnswer = useCallback((texto: string, criterios: string[], puntosMax: number) => {
+    if (!texto || texto.trim().length < 20) return 0; // Muy corto = 0 puntos
+    
+    const textoNormalizado = texto.toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // Quita acentos
+    
+    // Contar criterios cumplidos (palabras clave presentes)
+    let criteriosCumplidos = 0;
+    criterios.forEach(criterio => {
+      const palabrasClave = criterio.toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .split(/\s+/)
+        .filter(p => p.length > 3); // Solo palabras de 4+ letras
+      
+      // Si encuentra al menos 1 palabra clave del criterio
+      const encontrado = palabrasClave.some(palabra => textoNormalizado.includes(palabra));
+      if (encontrado) criteriosCumplidos++;
+    });
+    
+    // Calcular puntos según porcentaje de criterios cumplidos
+    const porcentaje = criterios.length > 0 ? (criteriosCumplidos / criterios.length) : 0;
+    
+    if (porcentaje >= 0.7) return puntosMax; // 70%+ = puntaje completo
+    if (porcentaje >= 0.4) return Math.floor(puntosMax / 2); // 40-69% = mitad
+    return 0; // <40% = 0 puntos
+  }, []);  useEffect(() => {
     setSelectedOption(null);
     setShortAnswer("");
+    setShortScore(null);
   }, [pasoId]);
 
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,14 +100,33 @@ export default function PasoRenderer({ pasoId, onAnswer }: Props) {
     ? 'Redacta en 3–5 líneas los puntos clave de este caso clínico (foco en diagnóstico, conducta y seguimiento).' 
     : rawEnunciado;
 
-  // --- CASO 1: Pregunta de Desarrollo (Short) ---
+  // --- CASO 1: Pregunta de Desarrollo (Short) con Evaluación Automática ---
   if (isShort(stepData)) {
+    const puntosMaximos = stepData.puntosMaximos || 2;
+    const criterios = stepData.criteriosEvaluacion || [];
+    
+    // Evaluar automáticamente al enviar
+    const handleSubmitShort = useCallback(() => {
+      const puntosObtenidos = evaluateShortAnswer(shortAnswer, criterios, puntosMaximos);
+      setShortScore(puntosObtenidos);
+      onAnswer(pasoId, { 
+        id: 'dev', 
+        texto: shortAnswer, 
+        esCorrecta: true,
+        puntos: puntosObtenidos 
+      }, { skipAdvance: true });
+    }, [shortAnswer, criterios, puntosMaximos, pasoId, onAnswer, evaluateShortAnswer]);
+    
     return (
       <div className="mt-4 md:mt-6 animate-fade-in"> 
-        <h3 className="text-base md:text-lg font-semibold mb-2 text-neutral-800">Pregunta de Desarrollo</h3>
+        <div className="flex items-center justify-between mb-2">
+          <h3 className="text-base md:text-lg font-semibold text-neutral-800">Pregunta de Desarrollo</h3>
+          <span className="text-xs font-semibold text-[var(--km-coral)] bg-[var(--km-coral)]/10 px-2 py-1 rounded">
+            {puntosMaximos} {puntosMaximos === 1 ? 'punto' : 'puntos'}
+          </span>
+        </div>
         <p className="text-sm md:text-base text-neutral-900 mb-4 font-medium">{displayEnunciado}</p>
 
-        {/* Área de texto para la respuesta: la 'guía' y el feedback se muestran AFTER de enviar la respuesta */}
         <textarea 
             className="w-full p-3 border border-neutral-300 rounded-lg mb-4 text-sm focus:ring-[var(--km-blue)] focus:border-[var(--km-blue)]"
             rows={6}
@@ -81,7 +139,7 @@ export default function PasoRenderer({ pasoId, onAnswer }: Props) {
         <div className="flex items-center gap-3">
           {!respuestaUsuario ? (
             <button
-              onClick={() => onAnswer(pasoId, { id: 'dev', texto: shortAnswer, esCorrecta: true }, { skipAdvance: true })}
+              onClick={handleSubmitShort}
               className="btn btn-primary flex-1 text-sm"
               disabled={!shortAnswer.trim()}
             >
@@ -92,13 +150,45 @@ export default function PasoRenderer({ pasoId, onAnswer }: Props) {
           )}
         </div>
 
-        {/* Después de responder: mostrar sólo la guía de respuesta (si existe).
-            El feedback docente y la bibliografía se muestran exclusivamente en la sección final 'Feedback'. */}
-        {respuestaUsuario && (
-          <div className="mt-4 space-y-4">
+        {/* Resultado automático */}
+        {respuestaUsuario && shortScore !== null && (
+          <div className="mt-4 space-y-3">
+            <div className={`p-4 rounded-lg border ${
+              shortScore === puntosMaximos 
+                ? 'bg-success-50 border-success-300' 
+                : shortScore > 0 
+                  ? 'bg-blue-50 border-blue-300'
+                  : 'bg-orange-50 border-orange-300'
+            }`}>
+              <div className="flex items-center justify-between mb-2">
+                <span className="font-semibold text-neutral-900">
+                  {shortScore === puntosMaximos && '✅ ¡Excelente respuesta!'}
+                  {shortScore > 0 && shortScore < puntosMaximos && '⚠️ Respuesta parcial'}
+                  {shortScore === 0 && '📝 Respuesta incompleta'}
+                </span>
+                <span className="text-lg font-bold text-[var(--km-primary)]">
+                  {shortScore}/{puntosMaximos} puntos
+                </span>
+              </div>
+              
+              {criterios.length > 0 && (
+                <div className="mt-3 pt-3 border-t border-neutral-200">
+                  <p className="text-xs font-semibold text-neutral-700 mb-2">Criterios evaluados:</p>
+                  <ul className="text-xs text-neutral-600 space-y-1">
+                    {criterios.map((criterio, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <span className="text-[var(--km-coral)] mt-0.5">•</span>
+                        <span>{criterio}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+
             {stepData.guia && (
               <div className="p-3 rounded-lg bg-[var(--km-surface-2)] text-sm text-[var(--km-text-700)] whitespace-pre-wrap">
-                <h4 className="font-semibold mb-2">Guía de respuesta</h4>
+                <h4 className="font-semibold mb-2">Guía de respuesta esperada</h4>
                 <div>{stepData.guia}</div>
               </div>
             )}

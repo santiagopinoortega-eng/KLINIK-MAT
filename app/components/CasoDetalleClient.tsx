@@ -26,25 +26,57 @@ export default function CasoDetalleClient() {
 
   // --- 1. PANTALLA DE FINALIZADO ---
   if (isCompleted) {
-    // Calcular el porcentaje de correctas para el feedback adaptativo
-    const respuestasCorrectas = caso.pasos.filter((_, idx) => {
-      const resp = caso.pasos[idx];
-      // Aquí necesitarías acceder al estado de respuestas del usuario
-      // Por ahora, lo dejamos preparado para cuando implementes el tracking
-      return false; // Placeholder
-    }).length;
-    
-    const porcentaje = (respuestasCorrectas / totalPasos) * 100;
-    
-    let feedbackAdaptativo = '';
-    if (caso.feedback_dinamico) {
-      if (porcentaje <= 30 && caso.feedback_dinamico.bajo) {
-        feedbackAdaptativo = caso.feedback_dinamico.bajo;
-      } else if (porcentaje <= 60 && caso.feedback_dinamico.medio) {
-        feedbackAdaptativo = caso.feedback_dinamico.medio;
-      } else if (caso.feedback_dinamico.alto) {
-        feedbackAdaptativo = caso.feedback_dinamico.alto;
+    // Calcular puntos totales del caso
+    let puntosObtenidos = 0;
+    let puntosMaximos = 0;
+
+    caso.pasos.forEach((paso, idx) => {
+      if (paso.tipo === 'mcq') {
+        puntosMaximos += 1;
+        const respuesta = respuestas[idx];
+        if (respuesta?.esCorrecta) {
+          puntosObtenidos += 1;
+        }
+      } else if (paso.tipo === 'short') {
+        const puntosPaso = paso.puntosMaximos || 2;
+        puntosMaximos += puntosPaso;
+        // Aquí necesitamos obtener la autoevaluación del estudiante
+        // Por ahora asumimos que está en el objeto respuesta
+        const respuesta = respuestas[idx];
+        if (respuesta && 'puntos' in respuesta) {
+          puntosObtenidos += respuesta.puntos || 0;
+        }
       }
+    });
+
+    const porcentaje = puntosMaximos > 0 ? Math.round((puntosObtenidos / puntosMaximos) * 100) : 0;
+
+    // Determinar nivel de desempeño
+    let nivel = '';
+    let emoji = '';
+    let badgeColor = '';
+    let mensaje = '';
+
+    if (porcentaje >= 90) {
+      nivel = 'Excelente';
+      emoji = '🏆';
+      badgeColor = 'bg-yellow-100 text-yellow-800 border-yellow-300';
+      mensaje = 'Dominas los conceptos clave del caso. ¡Felicitaciones!';
+    } else if (porcentaje >= 70) {
+      nivel = 'Muy Bien';
+      emoji = '⭐';
+      badgeColor = 'bg-blue-100 text-blue-800 border-blue-300';
+      mensaje = 'Buen desempeño. Refuerza algunos detalles para alcanzar la excelencia.';
+    } else if (porcentaje >= 50) {
+      nivel = 'Bien';
+      emoji = '✓';
+      badgeColor = 'bg-green-100 text-green-800 border-green-300';
+      mensaje = 'Comprensión aceptable. Revisa los puntos con dificultad.';
+    } else {
+      nivel = 'Necesitas Revisar';
+      emoji = '📝';
+      badgeColor = 'bg-orange-100 text-orange-800 border-orange-300';
+      mensaje = 'Repasa los conceptos fundamentales y vuelve a intentarlo.';
     }
 
     return (
@@ -53,17 +85,43 @@ export default function CasoDetalleClient() {
                    bg-gradient-to-r from-brand-700 to-brand-900 bg-clip-text text-transparent">
           {caso.titulo}
         </h1>
-        <div className="p-4 bg-success-50 border border-success-200 rounded-lg mb-6">
-          <h2 className="text-lg md:text-xl font-bold text-success-800">¡Caso Completado!</h2>
-          <p className="text-success-700 text-sm md:text-base mt-1">Has revisado todo el caso.</p>
+
+        {/* Resumen de Puntuación */}
+        <div className="mb-6 p-6 rounded-lg bg-gradient-to-br from-[var(--km-surface-1)] to-[var(--km-surface-2)] border border-neutral-200">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-bold text-neutral-900">Resultado del Caso</h2>
+            <div className={`px-4 py-2 rounded-full border font-semibold ${badgeColor}`}>
+              {emoji} {nivel}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div className="text-center p-4 bg-white rounded-lg border border-neutral-200">
+              <div className="text-3xl font-bold text-[var(--km-primary)]">{puntosObtenidos}</div>
+              <div className="text-sm text-neutral-600">Puntos Obtenidos</div>
+            </div>
+            <div className="text-center p-4 bg-white rounded-lg border border-neutral-200">
+              <div className="text-3xl font-bold text-neutral-700">{puntosMaximos}</div>
+              <div className="text-sm text-neutral-600">Puntos Totales</div>
+            </div>
+            <div className="text-center p-4 bg-white rounded-lg border border-neutral-200">
+              <div className="text-3xl font-bold text-[var(--km-coral)]">{porcentaje}%</div>
+              <div className="text-sm text-neutral-600">Porcentaje</div>
+            </div>
+          </div>
+
+          {/* Barra de progreso */}
+          <div className="w-full bg-neutral-200 rounded-full h-3 mb-3">
+            <div 
+              className="bg-[var(--km-primary)] h-3 rounded-full transition-all duration-500"
+              style={{ width: `${porcentaje}%` }}
+            />
+          </div>
+
+          <p className="text-sm text-neutral-700 text-center">{mensaje}</p>
         </div>
+
         <div className="prose prose-sm md:prose-base prose-neutral max-w-none">
-            {feedbackAdaptativo && (
-              <div className="mt-4 p-4 rounded-md bg-brand-50 border-l-4 border-brand-500">
-                <h3 className="text-lg font-semibold text-brand-900 mb-2">Feedback</h3>
-                <p className="text-brand-800 whitespace-pre-wrap">{feedbackAdaptativo}</p>
-              </div>
-            )}
             { (caso.debrief || caso.pasos.some(p => p.feedbackDocente)) && (
               <div className="mt-4 p-4 rounded-md bg-[var(--km-surface-2)] border border-neutral-100">
                 <h3 className="text-lg font-semibold" style={{ color: 'var(--km-deep)' }}>Feedback Docente</h3>
