@@ -3344,5 +3344,2895 @@
     "Carvajal J. 2024."
   ]
 },
+{
+  id: "cx-consejeria-uso-condon-adolescente",
+  modulo: "Consejería",
+  dificultad: "Baja",
+  titulo: "Primer acercamiento al uso correcto del condón en Espacio Amigable",
+  vigneta: "Joven de 16 años acude espontáneamente al Espacio Amigable del CESFAM porque “no sabe usar bien el condón y le da vergüenza preguntar”. Ha tenido rupturas ocasionales. Pareja estable de 17 años. Nervioso, cooperador, agradecido del trato confidencial. Sin antecedentes mórbidos.",
 
+  pasos: [
+    {
+      id: "p1",
+      tipo: "mcq",
+      enunciado: "¿Puede recibir educación sexual y métodos preventivos sin la presencia de un adulto responsable?",
+      opciones: [
+        { id: "b", texto: "Sí, desde los 14 años tiene derecho a atención confidencial en salud sexual.", esCorrecta: true,
+          explicacion: "Correcto. Ley 20.418." },
+        { id: "a", texto: "No, debe venir acompañado/a por un adulto.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Solo puede recibir condones, no educación sexual.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Debe firmar un consentimiento escrito.", explicacion: "Incorrecto." }
+      ]
+    },
 
+    {
+      id: "p2",
+      tipo: "mcq",
+      enunciado: "¿Qué paso evita más eficazmente la ruptura del condón?",
+      opciones: [
+        { id: "d", texto: "Apretar la punta del condón dejando espacio para el semen.", esCorrecta: true,
+          explicacion: "Correcto. Reduce presión y riesgo de ruptura." },
+        { id: "a", texto: "Usar dos condones juntos.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Poner el condón después de iniciar penetración.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Abrir el envase con los dientes.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p3",
+      tipo: "mcq",
+      enunciado: "El joven pregunta si el tamaño del pene afecta la eficacia. ¿Qué corresponde explicar?",
+      opciones: [
+        { id: "c", texto: "La mayoría de los condones son talla estándar y se ajustan por elasticidad.", esCorrecta: true,
+          explicacion: "Correcto." },
+        { id: "a", texto: "Debe usar condones extra gruesos para evitar rupturas.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Los condones solo sirven para penes pequeños.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Debe usar dos si el condón queda suelto.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p4",
+      tipo: "mcq",
+      enunciado: "¿Qué consejo favorece un uso correcto del condón?",
+      opciones: [
+        { id: "a", texto: "Guardar los condones en un lugar fresco, no en la billetera.", esCorrecta: true,
+          explicacion: "Correcto. Evita daños por calor y fricción." },
+        { id: "b", texto: "Usar lubricantes a base de aceite.", explicacion: "Incorrecto. Dañan el látex." },
+        { id: "c", texto: "Enjuagar el condón antes de usarlo.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Guardar el condón abierto para que sea más rápido de usar.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p5",
+      tipo: "mcq",
+      enunciado: "¿Qué mensaje final promueve adherencia y confianza en APS?",
+      opciones: [
+        { id: "d", texto: "Recordarle que puede volver cuando quiera y que sus preguntas son bienvenidas.", esCorrecta: true,
+          explicacion: "Correcto. Contención y apertura mejoran adherencia." },
+        { id: "a", texto: "Decirle que es irresponsable por no saber usar condón.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Sugerir que no hable del tema para no generar vergüenza.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Pedir que solo consulte si tiene síntomas.", explicacion: "Incorrecto." }
+      ]
+    }
+  ],
+
+  feedbackDinamico: {
+    bajo: "Repasa técnica correcta y normativa adolescente.",
+    medio: "Buen avance. Fortalece consejos prácticos.",
+    alto: "Excelente dominio del tema, enfoque empático y claro."
+  },
+
+  referencias: [
+    "MINSAL. Ley 20.418 (2010).",
+    "MINSAL. Guía de Atención Integral Adolescente (2022)."
+  ]
+},
+{
+  id: "cx-consejeria-tampon-viaje",
+  modulo: "Consejería",
+  dificultad: "Media",
+  titulo: "Uso seguro de tampones y mitos en adolescentes",
+  vigneta: "Adolescente de 15 años acude al CESFAM antes de un viaje escolar. Menarquia hace un año, ciclos regulares. Ha escuchado mitos sobre tampones y teme “romper el himen”. No actividad sexual. No antecedentes mórbidos.",
+  pasos: [
+    {
+      id: "p1",
+      tipo: "mcq",
+      enunciado: "¿Es seguro que una adolescente de 15 años use tampones?",
+      opciones: [
+        { id: "b", texto: "Sí, puede usarlos siguiendo medidas básicas de higiene.", esCorrecta: true,
+          explicacion: "Correcto." },
+        { id: "a", texto: "No, están contraindicados antes de los 18.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Debe haber iniciado actividad sexual.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Solo puede usarlos durante el día.", explicacion: "Incorrecto." }
+      ]
+    },
+    {
+      id: "p2",
+      tipo: "mcq",
+      enunciado: "¿Qué aclaración es correcta respecto al himen?",
+      opciones: [
+        { id: "d", texto: "El himen es flexible y el tampón no altera su integridad.", esCorrecta: true,
+          explicacion: "Correcto." },
+        { id: "b", texto: "El tampón elimina completamente el himen.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Debe colocarlo una profesional.", explicacion: "Incorrecto." },
+        { id: "a", texto: "El uso de tampón genera dispareunia permanente.", explicacion: "Incorrecto." }
+      ]
+    },
+    {
+      id: "p3",
+      tipo: "mcq",
+      enunciado: "Principal riesgo del uso prolongado de tampones:",
+      opciones: [
+        { id: "a", texto: "Síndrome de shock tóxico si supera 4–8 horas sin cambio.", esCorrecta: true,
+          explicacion: "Correcto." },
+        { id: "b", texto: "Infertilidad futura.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Cáncer cervicouterino.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Desregulación menstrual.", explicacion: "Incorrecto." }
+      ]
+    },
+    {
+      id: "p4",
+      tipo: "mcq",
+      enunciado: "Recomendación esencial para el uso correcto:",
+      opciones: [
+        { id: "c", texto: "Elegir el menor nivel de absorción necesario.", esCorrecta: true,
+          explicacion: "Correcto." },
+        { id: "a", texto: "Dormir con él 12 horas para evitar cambios.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Usar dos simultáneamente.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Lavar el tampón antes de usarlo.", explicacion: "Incorrecto." }
+      ]
+    },
+    {
+      id: "p5",
+      tipo: "mcq",
+      enunciado: "¿Qué recurso comunicacional aumenta la confianza?",
+      opciones: [
+        { id: "a", texto: "Validar emociones y usar modelos anatómicos para enseñar.", esCorrecta: true,
+          explicacion: "Correcto." },
+        { id: "d", texto: "Derivarla por ser menor de edad.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Decirle que 'no es un tema importante'.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Evitar responder dudas sensibles.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p6",
+      tipo: "short",
+      enunciado: "Reflexiona: ¿Cómo abordar mitos y miedos sobre uso del tampón?",
+      guia: "Considera: validación emocional, lenguaje claro, anatomía, higiene, derechos."
+    }
+  ],
+
+  feedbackDinamico: {
+    bajo: "Revisa mitos frecuentes y medidas de seguridad.",
+    medio: "Buen avance; añade más énfasis en educación práctica.",
+    alto: "Excelente integración clínica y comunicacional."
+  },
+
+  referencias: [
+    "MINSAL. Guía Atención Integral Adolescente (2022).",
+    "González-Merlo. Ginecología 9ª Ed."
+  ]
+},
+{
+  id: "cx-consejeria-diversidad-lesbiana-alta",
+  modulo: "Consejería",
+  dificultad: "Alta",
+  titulo: "Dolor en relaciones sexuales y enfoque inclusivo con antecedentes traumáticos",
+  vigneta: "Mujer de 27 años, lesbiana, consulta por dolor con penetración digital y juguetes. Refiere ansiedad anticipatoria y antecedente de coerción sexual pasada. No ITS conocidas. Solicita atención sin prejuicios.",
+  pasos: [
+    {
+      id: "p1",
+      tipo: "mcq",
+      enunciado: "¿Cuál es el diagnóstico inicial más probable?",
+      opciones: [
+        { id: "d", texto: "Dispareunia secundaria a vaginismo leve.", esCorrecta: true,
+          explicacion: "Correcto." },
+        { id: "b", texto: "EIP.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Cáncer cervical.", explicacion: "Incorrecto." },
+        { id: "a", texto: "Candidiasis complicada.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p2",
+      tipo: "mcq",
+      enunciado: "¿Cuál es la prioridad en la primera consulta?",
+      opciones: [
+        { id: "a", texto: "Generar espacio seguro, validar emociones y explorar historia con consentimiento.",
+          esCorrecta: true,
+          explicacion: "Correcto." },
+        { id: "d", texto: "Derivar a psiquiatría de inmediato.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Realizar examen ginecológico completo inmediato.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Indicar lubricante y finalizar.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p3",
+      tipo: "mcq",
+      enunciado: "Recomendación sexual segura para mujeres que tienen sexo con mujeres:",
+      opciones: [
+        { id: "b", texto: "Uso de guantes o preservativos en juguetes compartidos.", esCorrecta: true,
+          explicacion: "Correcto." },
+        { id: "c", texto: "Evitar totalmente la penetración digital.", explicacion: "Incorrecto." },
+        { id: "d", texto: "No existe riesgo de ITS en parejas lesbianas.", explicacion: "Incorrecto." },
+        { id: "a", texto: "Usar juguetes sin limpieza entre parejas.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p4",
+      tipo: "mcq",
+      enunciado: "¿Qué elemento comunicacional reduce ansiedad?",
+      opciones: [
+        { id: "a", texto: "Asegurar explícitamente atención inclusiva y sin prejuicios.", esCorrecta: true,
+          explicacion: "Correcto." },
+        { id: "c", texto: "Evitar hablar de emociones.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Decir que el dolor es normal en lesbianas.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Usar lenguaje técnico para evitar emociones.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p5",
+      tipo: "mcq",
+      enunciado: "Plan inicial adecuado en APS:",
+      opciones: [
+        { id: "c", texto: "Lubricante + respiración + eventual derivación a psicología.", esCorrecta: true,
+          explicacion: "Correcto." },
+        { id: "a", texto: "Abstinencia total por 3 meses.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Examen especuloscópico en primera consulta.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Benzodiacepinas para relajar.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p6",
+      tipo: "mcq",
+      enunciado: "¿Qué herramienta clínica ayuda a explorar trauma?",
+      opciones: [
+        { id: "a", texto: "Preguntar de forma sensible y con permiso previo.", esCorrecta: true,
+          explicacion: "Correcto." },
+        { id: "c", texto: "Asumir trauma sin preguntarlo.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Preguntar solo al final si queda tiempo.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Solicitar que venga con su pareja para validar historia.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p7",
+      tipo: "short",
+      enunciado: "Consejería integral: redacta un plan de apoyo.",
+      puntosMaximos: 2,
+      criteriosEvaluacion: [
+        "validación",
+        "lubricante",
+        "respiración",
+        "trauma",
+        "WSW",
+        "derivación",
+        "acompañamiento"
+      ],
+      guia: "Incluye validación, educación inclusiva, manejo físico, trauma y seguimiento."
+    }
+  ],
+
+  feedbackDinamico: {
+    bajo: "Refuerza trauma y consejería inclusiva.",
+    medio: "Buen avance.",
+    alto: "Excelente integración biopsicosocial."
+  },
+
+  referencias: [
+    "MINSAL. Orientaciones LGBTIQA+ (2022).",
+    "OPS. Salud Sexual sin Discriminación (2021)."
+  ]
+},
+{
+  id: "its-baja-vih-sospecha",
+  modulo: "ITS",
+  dificultad: "Baja",
+  titulo: "Sospecha de VIH en adolescente tras exposición sexual reciente",
+  vigneta: "Adolescente de 16 años acude sola al CESFAM porque hace 1 semana tuvo una relación sexual sin condón con su pareja. Está ansiosa, con insomnio y temor: “¿si me contagié VIH?”. Niega síntomas compatibles con primoinfección. No antecedentes mórbidos. Solicita orientación y confidencialidad.",
+  pasos: [
+    {
+      id: "p1",
+      tipo: "mcq",
+      enunciado: "Según la normativa chilena, ¿puede recibir consejería y examen VIH sin adulto responsable?",
+      opciones: [
+        { id: "b", texto: "Sí, desde los 14 años tiene derecho a atención confidencial en salud sexual.", esCorrecta: true,
+          explicacion: "Correcto. Ley 20.418 permite acceso autónomo a exámenes preventivos desde los 14." },
+        { id: "a", texto: "No, debe venir con un adulto responsable.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Solo puede recibir consejería, no exámenes.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Requiere consentimiento firmado por un tutor.", explicacion: "Incorrecto." }
+      ]
+    },
+    {
+      id: "p2",
+      tipo: "mcq",
+      enunciado: "¿Qué examen corresponde ofrecer en esta consulta?",
+      opciones: [
+        { id: "d", texto: "ELISA de 4ª generación (antígeno p24 + anticuerpos).", esCorrecta: true,
+          explicacion: "Correcto. Es el test recomendado por MINSAL para tamizaje rutinario de VIH." },
+        { id: "a", texto: "PCR de VIH como primera línea.", explicacion: "Incorrecto en APS salvo indicación específica." },
+        { id: "b", texto: "Western Blot.", explicacion: "Incorrecto. Es confirmatorio, ya no se usa rutinariamente." },
+        { id: "c", texto: "Hemograma.", explicacion: "Incorrecto. No diagnostica VIH." }
+      ]
+    },
+    {
+      id: "p3",
+      tipo: "mcq",
+      enunciado: "La paciente pregunta si el examen será válido tan pronto. ¿Qué aclaración es correcta?",
+      opciones: [
+        { id: "a", texto: "La ventana del ELISA 4G es de aproximadamente 2–4 semanas.", esCorrecta: true,
+          explicacion: "Correcto. Puede detectar antígeno p24 precozmente." },
+        { id: "b", texto: "El resultado será 100% concluyente al primer día.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Debe esperar 90 días obligatoriamente.", explicacion: "Incorrecto." },
+        { id: "d", texto: "El examen no sirve en menores de edad.", explicacion: "Incorrecto." }
+      ]
+    },
+    {
+      id: "p4",
+      tipo: "mcq",
+      enunciado: "Indicación clave de consejería conductual:",
+      opciones: [
+        { id: "c", texto: "Uso consistente de condón en todas las relaciones.", esCorrecta: true,
+          explicacion: "Correcto. Prevención primaria central en MINSAL." },
+        { id: "a", texto: "Evitar todo contacto sexual por un año.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Esperar síntomas para preocuparse.", explicacion: "Incorrecto." },
+        { id: "d", texto: "No hablar del tema para disminuir ansiedad.", explicacion: "Incorrecto." }
+      ]
+    },
+    {
+      id: "p5",
+      tipo: "mcq",
+      enunciado: "¿Cómo cerrar la consejería de forma empática y adecuada?",
+      opciones: [
+        { id: "d", texto: "Refuerza que puede volver siempre, que no está sola y que la atención es sin juicios.", esCorrecta: true,
+          explicacion: "Correcto. Promueve adherencia y salud emocional." },
+        { id: "a", texto: "Decirle que fue irresponsable.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Minimizar su temor.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Evitar darle información para no asustarla.", explicacion: "Incorrecto." }
+      ]
+    }
+  ],
+  feedbackDinamico: {
+  bajo: "¡Gracias por intentarlo! Este caso tenía elementos importantes sobre confidencialidad adolescente, ventana diagnóstica y educación preventiva. Te recomiendo repasar estos conceptos con calma; son claves en APS y te harán sentir más seguro en tus decisiones clínicas. ¡Sigue practicando, vas avanzando!",
+  medio: "¡Vas por muy buen camino! Comprendiste varios elementos centrales del manejo inicial del VIH en APS. Te sugiero reforzar la parte sobre ventana diagnóstica y consejería para potenciar aún más tu razonamiento. Cada caso te está fortaleciendo.",
+  alto: "¡Excelente trabajo! Tu razonamiento fue claro, seguro y alineado con las normativas chilenas. Mostraste dominio técnico y sensibilidad comunicacional, algo esencial en atención adolescente. Sigue estudiando así: estás construyendo un criterio clínico sólido y humano. ¡Felicitaciones!"
+},
+  referencias: [
+    "MINSAL. Ley 20.418.",
+    "MINSAL. Estrategia Nacional de Prevención VIH/ITS (2020).",
+    "MINSAL. GES VIH — Guía Clínica."
+  ]
+},
+{
+  id: "its-media-herpes-primoinfeccion",
+  modulo: "ITS",
+  dificultad: "Media",
+  titulo: "Herpes genital primoinfección: manejo y consejería en APS",
+  vigneta: "Mujer de 22 años consulta por dolor vulvar intenso, fiebre baja (37.9°C) y múltiples úlceras dolorosas desde hace 3 días. Refiere relación sexual sin condón hace 10 días. Primera vez con síntomas así. No antecedentes mórbidos. Llora por dolor y preocupación: “¿esto se cura?”. Test de embarazo negativo.",
+  pasos: [
+    {
+      id: "p1",
+      tipo: "mcq",
+      enunciado: "El cuadro es sugerente de:",
+      opciones: [
+        { id: "c", texto: "Herpes genital primoinfección.", esCorrecta: true,
+          explicacion: "Correcto. Ulceras dolorosas + fiebre + primer episodio." },
+        { id: "a", texto: "Sífilis primaria.", explicacion: "Incorrecto. Chancro indoloro." },
+        { id: "b", texto: "Candidiasis vulvovaginal.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Tricomoniasis.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p2",
+      tipo: "mcq",
+      enunciado: "Tratamiento recomendado según Norma Técnica Nº187:",
+      opciones: [
+        { id: "a", texto: "Aciclovir 400 mg cada 8 h por 7 días.", esCorrecta: true,
+          explicacion: "Correcto según MINSAL." },
+        { id: "b", texto: "Penicilina benzatina 2.4 M.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Metronidazol 500 mg cada 12 h.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Doxiciclina 100 mg cada 12 h.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p3",
+      tipo: "mcq",
+      enunciado: "¿Qué examen puede confirmar el diagnóstico según disponibilidad?",
+      opciones: [
+        { id: "d", texto: "PCR para VHS-1/2 en lesión.", esCorrecta: true,
+          explicacion: "Correcto. Mayor sensibilidad." },
+        { id: "a", texto: "PAP.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Toma de flujo vaginal estándar.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Ecografía pélvica.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p4",
+      tipo: "mcq",
+      enunciado: "Recomendación conductual clave:",
+      opciones: [
+        { id: "b", texto: "Evitar relaciones sexuales hasta resolución completa de lesiones.", esCorrecta: true,
+          explicacion: "Correcto según Norma Nº187." },
+        { id: "a", texto: "Usar doble condón para mayor seguridad.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Continuar actividad sexual si no duele.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Aplicar hielo directo sobre úlceras.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p5",
+      tipo: "mcq",
+      enunciado: "Elemento comunicacional clave para adherencia:",
+      opciones: [
+        { id: "d", texto: "Validar ansiedad y explicar que el herpes no significa 'falta de higiene' ni define su valor personal.", esCorrecta: true,
+          explicacion: "Correcto. Evita estigma y mejora adherencia." },
+        { id: "a", texto: "Decirle que es una ITS 'grave y peligrosa'.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Prohibirle hablar del tema con su pareja.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Minimizar el dolor para tranquilizarla.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p6",
+      tipo: "short",
+      enunciado: "Reflexiona: ¿Cómo explicarías el carácter crónico del herpes sin generar miedo ni estigma?",
+      guia: "• Episodios y recurrencias\n• Tratamiento supresor\n• Manejo del dolor\n• Comunicación con pareja\n• Derechos y confidencialidad"
+    }
+  ],
+  feedbackDinamico: {
+  bajo: "Gracias por tu esfuerzo. El herpes genital puede ser un tema difícil de integrar porque combina clínica, tratamiento y mucha consejería emocional. Te invito a revisar la Norma ITS Nº187 y la clínica típica de primoinfección. Cada caso que practicas fortalece tu criterio. ¡No te detengas!",
+  medio: "¡Buen trabajo! Identificaste varios elementos clínicos importantes del herpes y su manejo. Aún puedes reforzar puntos clave como educación sexual segura y contención emocional durante el brote. Vas creciendo mucho como clínico/a, sigue fortaleciendo tu razonamiento.",
+  alto: "¡Excelente! Integraste clínica, diagnóstico, tratamiento oficial MINSAL y una consejería humana, empática y sin estigma. Este es exactamente el enfoque APS que buscamos. Sigue así, estás desarrollando un criterio clínico que marca la diferencia. ¡Felicitaciones!"
+},
+  referencias: [
+    "MINSAL. Norma Técnica ITS Nº187.",
+    "González-Merlo. Ginecología 9ª Ed.",
+    "MINSAL. Prevención VIH/ITS (2020)."
+  ]
+},
+{
+  id: "its-alta-tricomoniasis",
+  modulo: "ITS",
+  dificultad: "Alta",
+  titulo: "Tricomoniasis vaginal: diagnóstico, manejo de pareja y reinfección",
+  vigneta: "Mujer de 29 años consulta por flujo amarillo-verdoso espumoso, mal olor y prurito intenso. Relata dolor con el coito. Su pareja masculina 'no tiene síntomas'. Ha tenido ITS previas. Siente culpa y vergüenza: “parece que siempre me pasa esto”. No fiebre. No gestante. No comorbilidades.",
+  pasos: [
+    {
+      id: "p1",
+      tipo: "mcq",
+      enunciado: "El cuadro clínico es altamente sugestivo de:",
+      opciones: [
+        { id: "b", texto: "Tricomoniasis vaginal.", esCorrecta: true,
+          explicacion: "Correcto. Flujo espumoso y fetidez característicos." },
+        { id: "a", texto: "Candidiasis.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Vaginosis bacteriana.", explicacion: "Incorrecto, aunque puede coexistir." },
+        { id: "d", texto: "Gonorrea.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p2",
+      tipo: "mcq",
+      enunciado: "¿Cuál es el tratamiento de elección según Norma Nº187?",
+      opciones: [
+        { id: "d", texto: "Metronidazol 2 g dosis única.", esCorrecta: true,
+          explicacion: "Correcto según MINSAL." },
+        { id: "a", texto: "Azitromicina 1 g.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Doxiciclina.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Fluconazol.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p3",
+      tipo: "mcq",
+      enunciado: "Respecto a la pareja, la conducta correcta es:",
+      opciones: [
+        { id: "a", texto: "Tratar a la pareja sexual aunque esté asintomática.", esCorrecta: true,
+          explicacion: "Correcto. Evita reinfección." },
+        { id: "b", texto: "Esperar síntomas en la pareja.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Tratar solo si PCR es positiva.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Indicar abstinencia permanente.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p4",
+      tipo: "mcq",
+      enunciado: "¿Qué ITS deben testearse según riesgo asociado?",
+      opciones: [
+        { id: "d", texto: "VIH, sífilis y GC/CT según exposición.", esCorrecta: true,
+          explicacion: "Correcto según Norma MINSAL." },
+        { id: "a", texto: "Solo VIH.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Solo sífilis.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Ninguna, la tricomoniasis no se asocia a ITS.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p5",
+      tipo: "mcq",
+      enunciado: "Elemento comunicacional clave para disminuir estigma:",
+      opciones: [
+        { id: "c", texto: "Validar emociones y reforzar que las ITS no determinan valor personal.", esCorrecta: true,
+          explicacion: "Correcto. Reduce abandono y mejora adherencia." },
+        { id: "a", texto: "Regañar por su historial sexual.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Decir que 'la culpa es suya'.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Evitar hablar del tema.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p6",
+      tipo: "mcq",
+      enunciado: "¿Cuándo debe asistir a control tras tratamiento?",
+      opciones: [
+        { id: "b", texto: "En 1 mes para evaluar reinfección, especialmente si hay factores de riesgo.", esCorrecta: true,
+          explicacion: "Correcto según MINSAL." },
+        { id: "a", texto: "Nunca, si se siente mejor.", explicacion: "Incorrecto." },
+        { id: "c", texto: "A los 6 meses únicamente.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Solo si su pareja presenta síntomas.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p7",
+      tipo: "short",
+      enunciado: "Redacta consejería integral explicando: reinfección, pareja, abstinencia temporal, tamizaje ITS y manejo emocional.",
+      puntosMaximos: 2,
+      criteriosEvaluacion: [
+        "pareja",
+        "metronidazol",
+        "reinfect",
+        "tamizaje",
+        "VIH",
+        "sífilis",
+        "GC",
+        "CT",
+        "abstinencia",
+        "emociones"
+      ],
+      guia: "• Tratar pareja\n• Evitar relaciones hasta completar tratamiento\n• Tamizaje extendido\n• Manejo emocional sin juicios\n• Seguimiento en 1 mes"
+    }
+  ],
+  feedbackDinamico: {
+  bajo: "Gracias por darte el tiempo de intentarlo. La tricomoniasis requiere integrar diagnóstico, manejo de pareja, reinfección y tamizaje ampliado, lo que puede ser desafiante al inicio. Te recomiendo revisar el tratamiento MINSAL y la lógica de la consejería para fortalecer tu base. ¡No te preocupes, vas aprendiendo paso a paso!",
+  medio: "¡Muy bien! Captaste los elementos centrales del caso: tratamiento, conducta con la pareja y recomendaciones preventivas. Aún puedes profundizar en la consejería emocional y el enfoque libre de estigma. Tu progreso es evidente, sigue así.",
+  alto: "¡Excelente dominando un caso complejo! Mostraste manejo clínico completo, claridad en tamizaje y una consejería empática, respetuosa y centrada en la adherencia. Este nivel de razonamiento es el que construye profesionales seguros y humanos. ¡Felicitaciones por tu tremendo trabajo!"
+},
+  referencias: [
+    "MINSAL. Norma Técnica ITS Nº187.",
+    "MINSAL. Estrategia Prevención VIH/ITS.",
+    "OPS. STI Guidelines."
+  ]
+},
+{
+  id: "clim-baja-sintomas-perimenopausia",
+  modulo: "Climaterio / Menopausia",
+  dificultad: "Baja",
+  titulo: "Reconociendo síntomas típicos de la perimenopausia en APS",
+  vigneta: "Mujer de 46 años consulta en APS por bochornos nocturnos, insomnio y cambios de ánimo ocasionales. Ciclos irregulares los últimos 8 meses. Dice sentirse 'desordenada' y teme que tenga una enfermedad grave. No comorbilidades, no tabaquismo. Busca orientación clara y tranquilizadora.",
+  pasos: [
+    {
+      id: "p1",
+      tipo: "mcq",
+      enunciado: "El cuadro descrito es compatible principalmente con:",
+      opciones: [
+        { id: "d", texto: "Transición perimenopáusica.", esCorrecta: true,
+          explicacion: "Correcto. Los bochornos, insomnio y alteraciones del ánimo con ciclos irregulares sugieren transición menopáusica." },
+        { id: "a", texto: "Hipertiroidismo clínico.", explicacion: "Incorrecto. Faltan síntomas cardinales como pérdida de peso marcada, taquicardia persistente." },
+        { id: "b", texto: "Depresión mayor en etapa precoz.", explicacion: "Incorrecto. No cumple criterios de trastorno depresivo mayor." },
+        { id: "c", texto: "Trastorno de pánico.", explicacion: "Incorrecto. Los bochornos no son ataques de pánico." }
+      ]
+    },
+    {
+      id: "p2",
+      tipo: "mcq",
+      enunciado: "¿Qué conducta inicial es la más adecuada en APS?",
+      opciones: [
+        { id: "a", texto: "Educar sobre fisiología del climaterio y medidas de autocuidado.", esCorrecta: true,
+          explicacion: "Correcto. Primero se aclara el proceso normal y se entregan medidas generales." },
+        { id: "b", texto: "Solicitar perfil hormonal completo de inmediato.", explicacion: "Incorrecto. No es necesario en perimenopausia típica." },
+        { id: "c", texto: "Iniciar terapia hormonal sin mayores antecedentes.", explicacion: "Incorrecto. Requiere evaluación completa antes." },
+        { id: "d", texto: "Derivar a ginecología por sospecha de patología grave.", explicacion: "Incorrecto. No hay criterios de alarma." }
+      ]
+    },
+    {
+      id: "p3",
+      tipo: "mcq",
+      enunciado: "Medida no farmacológica útil para mejorar síntomas:",
+      opciones: [
+        { id: "b", texto: "Actividad física regular y evitar estimulantes nocturnos.", esCorrecta: true,
+          explicacion: "Correcto. Son medidas simples y efectivas." },
+        { id: "a", texto: "Consumir hierbas inductoras del sueño sin supervisión.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Evitar hidratarse en la tarde.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Dormir siesta larga para 'compensar'.", explicacion: "Incorrecto." }
+      ]
+    },
+    {
+      id: "p4",
+      tipo: "mcq",
+      enunciado: "Mensaje educativo clave:",
+      opciones: [
+        { id: "c", texto: "Estos síntomas son comunes y manejables; no indican enfermedad grave.", esCorrecta: true,
+          explicacion: "Correcto. Se busca reducir ansiedad y entregar contención." },
+        { id: "a", texto: "Estos síntomas indican deterioro irreversible.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Debe realizarse exámenes costosos obligatoriamente.", explicacion: "Incorrecto." },
+        { id: "d", texto: "No es normal tener bochornos antes de los 50.", explicacion: "Incorrecto." }
+      ]
+    },
+    {
+      id: "p5",
+      tipo: "mcq",
+      enunciado: "¿Qué recomendación potencia la adherencia al plan de manejo?",
+      opciones: [
+        { id: "d", texto: "Invitarla a control en APS para seguimiento y resolver nuevas dudas.", esCorrecta: true,
+          explicacion: "Correcto. Favorece vínculo y adherencia." },
+        { id: "a", texto: "Sugerirle buscar soluciones en internet.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Indicarle que 'aguante' porque es normal.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Evitar profundizar en sus emociones.", explicacion: "Incorrecto." }
+      ]
+    }
+  ],
+  feedbackDinamico: {
+    bajo: "¡Gracias por tu esfuerzo! Este caso buscaba que reconozcas síntomas típicos del climaterio y el rol educativo de APS. Te sugiero repasar las bases fisiológicas y medidas simples de autocuidado. Cada caso te acerca más a un razonamiento clínico seguro. ¡Sigue adelante!",
+    medio: "¡Vas por muy buen camino! Identificaste elementos importantes, aunque aún puedes reforzar la educación básica del climaterio y la comunicación empática. Un par de repasos y tu razonamiento será impecable. ¡Bien hecho!",
+    alto: "¡Excelente trabajo! Mostraste dominio del enfoque APS: claro, humano y educativo. Reconocer la perimenopausia y acompañar sin alarmar es clave en la práctica real. ¡Felicidades, sigue así!"
+  },
+  referencias: [
+    "MINSAL. OT Climaterio y Menopausia (2020).",
+    "González-Merlo. Ginecología 9ª edición."
+  ]
+},
+{
+  id: "clim-media-dispareunia-sequedad",
+  modulo: "Climaterio / Menopausia",
+  dificultad: "Media",
+  titulo: "Sequedad vaginal y molestias sexuales en el climaterio",
+  vigneta: "Mujer de 51 años, menopausia confirmada hace 14 meses. Consulta por sequedad vaginal, ardor y dolor leve en relaciones. Señala que evita el contacto sexual por temor al dolor. No TH. No antecedentes mórbidos. Busca una solución que no sea invasiva y que le permita retomar su vida sexual sin vergüenza.",
+  pasos: [
+    {
+      id: "p1",
+      tipo: "mcq",
+      enunciado: "El mecanismo fisiológico más probable de sus síntomas es:",
+      opciones: [
+        { id: "c", texto: "Hipoestrogenismo propio del climaterio.", esCorrecta: true,
+          explicacion: "Correcto: provoca adelgazamiento del epitelio y menor lubricación." },
+        { id: "a", texto: "Exceso de progesterona.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Aumento de andrógenos.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Infección vaginal aguda.", explicacion: "Incorrecto sin datos de inflamación." }
+      ]
+    },
+
+    {
+      id: "p2",
+      tipo: "mcq",
+      enunciado: "¿Cuál es el manejo inicial recomendado en APS?",
+      opciones: [
+        { id: "a", texto: "Humectantes y lubricantes vaginales de uso regular.", esCorrecta: true,
+          explicacion: "Correcto según MINSAL: primera línea en síndrome genitourinario." },
+        { id: "c", texto: "Iniciar TH sistémica inmediata.", explicacion: "Incorrecto sin evaluación CV previa." },
+        { id: "d", texto: "Indicar reposo sexual indefinido.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Antibióticos de amplio espectro.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p3",
+      tipo: "mcq",
+      enunciado: "¿Cuándo corresponde derivación a ginecología?",
+      opciones: [
+        { id: "b", texto: "Si persiste dispareunia pese a manejo inicial o se evalúa TH local.", esCorrecta: true,
+          explicacion: "Correcto: manejo escalonado según respuesta." },
+        { id: "a", texto: "Siempre, incluso antes del manejo inicial.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Solo si la paciente es menor de 40 años.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Si desea hablar de sexualidad.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p4",
+      tipo: "mcq",
+      enunciado: "Elemento comunicacional clave para fortalecer la adherencia:",
+      opciones: [
+        { id: "d", texto: "Validar su experiencia, normalizar los cambios y hablar sin juicios.", esCorrecta: true,
+          explicacion: "Correcto: el enfoque humanizado es esencial." },
+        { id: "a", texto: "Minimizar sus síntomas para reducir ansiedad.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Indicar que la vida sexual 'ya no es importante'.", explicacion: "Incorrecto y dañino." },
+        { id: "c", texto: "Evitar hablar de emociones.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p5",
+      tipo: "mcq",
+      enunciado: "Intervención adicional razonable para mejorar bienestar sexual:",
+      opciones: [
+        { id: "c", texto: "Recomendar ejercicios de piso pélvico y exploración sexual sin dolor.", esCorrecta: true,
+          explicacion: "Correcto: favorece confianza y lubricación natural." },
+        { id: "a", texto: "Uso exclusivo de almohadillas térmicas.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Evitar completamente la actividad sexual.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Automedicar con estrógenos orales.", explicacion: "Incorrecto y riesgoso." }
+      ]
+    },
+
+    {
+      id: "p6",
+      tipo: "short",
+      enunciado: "Explica cómo realizarías una consejería respetuosa que ayude a la paciente a retomar su sexualidad sin miedo.",
+      guia: "• Validación • Educación fisiológica • Condiciones seguras • Comunicación con pareja • Control APS"
+    }
+  ],
+  feedbackDinamico: {
+    bajo: "¡Gracias por tu esfuerzo! Este caso mezcla fisiología, manejo y comunicación, por lo que puede parecer desafiante. Te invito a repasar el síndrome genitourinario y el rol de APS en contención emocional. Cada paso suma. ¡Sigue adelante!",
+    medio: "¡Muy buen trabajo! Comprendiste los pilares del manejo y la importancia del enfoque comunicacional. Revisa detalles del manejo escalonado: te acercas mucho al dominio completo. ¡Bien hecho!",
+    alto: "¡Excelente! Integraste evidencia, manejo clínico y una consejería empática, que es esencial en climaterio. Se nota un razonamiento maduro y centrado en la usuaria. ¡Sigue así!"
+  },
+  referencias: [
+    "MINSAL. OT Climaterio (2020).",
+    "González-Merlo. Ginecología 9ª ed."
+  ]
+},
+{
+  id: "clim-alta-th-evaluacion-riesgo",
+  modulo: "Climaterio / Menopausia",
+  dificultad: "Alta",
+  titulo: "Evaluación de riesgo para terapia hormonal en la transición menopáusica",
+  vigneta: "Mujer de 52 años, menopausia hace 10 meses, consulta por sofocos intensos que afectan su sueño y trabajo. IMC 30. HTA controlada en tratamiento. Madre con antecedente de cardiopatía coronaria a los 55. Solicita 'algo fuerte' porque las medidas no farmacológicas ya no ayudan. No fumadora.",
+  pasos: [
+    {
+      id: "p1",
+      tipo: "mcq",
+      enunciado: "¿Qué factor exige mayor precaución antes de considerar TH?",
+      opciones: [
+        { id: "b", texto: "Historia familiar de enfermedad coronaria + HTA.", esCorrecta: true,
+          explicacion: "Correcto. La evaluación CV es clave antes de TH." },
+        { id: "a", texto: "IMC 30 sin comorbilidades.", explicacion: "Incorrecto como factor aislado." },
+        { id: "c", texto: "Menopausia hace 10 meses.", explicacion: "Incorrecto; aún está en ventana terapéutica." },
+        { id: "d", texto: "Sofocos intensos.", explicacion: "No contraindica TH." }
+      ]
+    },
+
+    {
+      id: "p2",
+      tipo: "mcq",
+      enunciado: "Según evidencia, ¿cuál opción sería apropiada para esta usuaria?",
+      opciones: [
+        { id: "d", texto: "TH local para síntomas genitourinarios + medidas CV + evaluación para TH sistémica.", esCorrecta: true,
+          explicacion: "Correcto: manejo escalonado según riesgo." },
+        { id: "a", texto: "TH sistémica inmediata sin evaluación CV.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Solo benzodiacepinas.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Evitar mencionar la TH.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p3",
+      tipo: "mcq",
+      enunciado: "¿Qué alternativa NO hormonal puede ayudar mientras se evalúa la TH?",
+      opciones: [
+        { id: "a", texto: "ISRS/ISRN en dosis bajas para sofocos moderados-severos.", esCorrecta: true,
+          explicacion: "Correcto. Alternativa respaldada por evidencia." },
+        { id: "b", texto: "Antiinflamatorios prolongados.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Dieta estricta sin carbohidratos.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Retiros de actividad física.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p4",
+      tipo: "mcq",
+      enunciado: "La paciente pregunta si la TH es “peligrosa”. ¿Qué respuesta equilibrada corresponde?",
+      opciones: [
+        { id: "c", texto: "La TH es segura en muchas mujeres, pero requiere evaluar riesgos CV individualmente.", esCorrecta: true,
+          explicacion: "Correcto: mensaje realista y sin alarmar." },
+        { id: "a", texto: "Es perfectamente segura para todas.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Es demasiado riesgosa y casi nunca se usa.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Solo sirve para 'casos graves'.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p5",
+      tipo: "mcq",
+      enunciado: "Elemento clave de la decisión compartida:",
+      opciones: [
+        { id: "d", texto: "Explicar beneficios, riesgos y alternativas para que la usuaria participe activamente.", esCorrecta: true,
+          explicacion: "Correcto. Esencial en APS." },
+        { id: "a", texto: "Tomar la decisión por ella para evitar confusión.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Minimizar riesgos para convencerla.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Evitar preguntarle sus preferencias.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p6",
+      tipo: "mcq",
+      enunciado: "Si se decide iniciar TH sistémica, ¿qué condición debe cumplirse?",
+      opciones: [
+        { id: "b", texto: "Presión arterial bien controlada en seguimiento.", esCorrecta: true,
+          explicacion: "Correcto: requisito previo a TH sistémica." },
+        { id: "a", texto: "Menopausia de más de 5 años.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Desear bajar de peso.", explicacion: "Incorrecto." },
+        { id: "d", texto: "No presentar sofocos intensos.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p7",
+      tipo: "short",
+      enunciado: "Redacta una consejería integral sobre el uso de TH, riesgo CV, opciones no hormonales y decisión compartida.",
+      puntosMaximos: 2,
+      criteriosEvaluacion: [
+        "riesgo",
+        "cardio",
+        "ventana",
+        "control",
+        "alternativas",
+        "ISRS",
+        "decisión",
+        "TH local",
+        "seguimiento"
+      ],
+      guia: "• Riesgo CV • Ventana terapéutica • Alternativas • Evaluación previa • Decisiones compartidas"
+    }
+  ],
+  feedbackDinamico: {
+    bajo: "Gracias por intentarlo: este caso es complejo y une riesgo CV, TH y comunicación. Repasar categorías de elegibilidad y ventana terapéutica te ayudará mucho. ¡Cada caso que haces fortalece tu criterio clínico!",
+    medio: "¡Muy buen trabajo! Captaste los elementos esenciales del riesgo CV y manejo progresivo. Aún puedes profundizar en decisión compartida y alternativas no hormonales. ¡Vas creciendo muchísimo!",
+    alto: "¡Excelente! Integraste riesgo CV, TH, evidencia y una consejería centrada en la usuaria. Este nivel de razonamiento demuestra madurez clínica y enfoque APS real. ¡Felicitaciones!"
+  },
+  referencias: [
+    "MINSAL. Climaterio y Menopausia (2020).",
+    "OMS. Menopausal Hormone Therapy Guidelines.",
+    "González-Merlo. Ginecología, 9ª ed."
+  ]
+},
+{
+  id: "ac-baja-anillo-vaginal-inicio",
+  modulo: "Anticoncepción",
+  dificultad: "Baja",
+  titulo: "Inicio de método anticonceptivo con anillo vaginal en APS",
+  vigneta: "Mujer de 20 años, sin antecedentes mórbidos, consulta para iniciar anillo vaginal. Dice: 'me da miedo ponerlo mal, no sé si tengo que meterlo muy profundo'. Ciclos regulares. Vida sexual activa. No tabaquismo. Desea un método cómodo y reversible.",
+  pasos: [
+    {
+      id: "p1",
+      tipo: "mcq",
+      enunciado: "¿Cuál es la instrucción correcta sobre la colocación del anillo vaginal?",
+      opciones: [
+        { id: "c", texto: "Debe colocarse en la vagina sin necesidad de ubicar una posición específica.", esCorrecta: true,
+          explicacion: "Correcto. No requiere posición exacta: basta que quede dentro de la vagina." },
+        { id: "a", texto: "Debe quedar pegado al cuello uterino obligatoriamente.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Debe colocarse con aplicador estéril en cada inserción.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Debe retirarlo durante el coito.", explicacion: "Incorrecto: puede mantenerse." }
+      ]
+    },
+
+    {
+      id: "p2",
+      tipo: "mcq",
+      enunciado: "¿Cuánto tiempo debe permanecer el anillo colocado?",
+      opciones: [
+        { id: "d", texto: "3 semanas colocado y 1 semana de descanso.", esCorrecta: true,
+          explicacion: "Correcto según pauta estándar de NuvaRing y equivalentes." },
+        { id: "a", texto: "5 días colocado y 2 semanas de descanso.", explicacion: "Incorrecto." },
+        { id: "b", texto: "3 días colocado y cambio inmediato.", explicacion: "Incorrecto." },
+        { id: "c", texto: "1 mes continuo sin recambio.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p3",
+      tipo: "mcq",
+      enunciado: "¿Qué hacer si el anillo se sale accidentalmente?",
+      opciones: [
+        { id: "a", texto: "Lavar con agua fría y reinsertarlo antes de 3 horas.", esCorrecta: true,
+          explicacion: "Correcto. Antes de 3 h NO pierde eficacia." },
+        { id: "b", texto: "Desecharlo y colocar uno nuevo siempre.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Suspender el método por ese ciclo.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Usar doble anillo por 24 horas para compensar.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p4",
+      tipo: "mcq",
+      enunciado: "¿Qué beneficio destaca en relación con el uso del anillo vaginal?",
+      opciones: [
+        { id: "b", texto: "Aporta niveles hormonales más estables que algunas formulaciones orales.", esCorrecta: true,
+          explicacion: "Correcto: vía vaginal evita picos plasmáticos." },
+        { id: "a", texto: "Evita ITS de forma completa.", explicacion: "Incorrecto: no protege contra ITS." },
+        { id: "c", texto: "Aumenta la fertilidad posterior al uso.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Reduce infección urinaria.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p5",
+      tipo: "mcq",
+      enunciado: "Recomendación APS al finalizar la consejería:",
+      opciones: [
+        { id: "d", texto: "Invitarla a volver si tiene dudas y reforzar uso de condón para ITS.", esCorrecta: true,
+          explicacion: "Correcto: condón sigue siendo necesario." },
+        { id: "a", texto: "Pedirle evitar actividad sexual el primer mes.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Indicarle dejar el método si no siente el anillo.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Recomendarle cambiarlo semanalmente.", explicacion: "Incorrecto." }
+      ]
+    }
+  ],
+  feedbackDinamico: {
+    bajo: "¡Gracias por tu esfuerzo! Este caso buscaba que reconozcas el uso correcto, duración y manejo del anillo. Revisa cada paso con calma; estás construyendo una base sólida. ¡Sigue adelante!",
+    medio: "¡Muy bien! Mostraste una buena comprensión del método. Revisa detalles finos del manejo y recuerda siempre reforzar prevención de ITS. Vas creciendo mucho clínicamente.",
+    alto: "¡Excelente trabajo! Dominaste el funcionamiento del anillo y entregaste una visión clara y segura, tal como se espera en APS. Sigue así, tu criterio clínico se está fortaleciendo mucho."
+  },
+  referencias: [
+    "MINSAL. Normas de Regulación de la Fertilidad (2018).",
+    "Manual de Anticoncepción, MINSAL."
+  ]
+},
+{
+  id: "ac-media-dmpa-retraso",
+  modulo: "Anticoncepción",
+  dificultad: "Media",
+  titulo: "Retraso en la inyección anticonceptiva trimestral: manejo seguro en APS",
+  vigneta: "Mujer de 27 años usuaria de inyección trimestral (DMPA) acude porque se atrasó 18 días respecto de su fecha habitual. Dice: 'pensé que tenía un mes más, me confundí'. Relata relación sexual sin condón hace 4 días. No síntomas. Preocupada por embarazo. No desea cambiar de método.",
+  pasos: [
+    {
+      id: "p1",
+      tipo: "mcq",
+      enunciado: "Según MINSAL/MEC, ¿cuál es el período de gracia para la reinyección?",
+      opciones: [
+        { id: "d", texto: "Hasta 2 semanas (14 días) sin perder eficacia.", esCorrecta: true,
+          explicacion: "Correcto: después de 14 días requiere evaluación adicional." },
+        { id: "a", texto: "Hasta 1 mes.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Hasta el día 21.", explicacion: "Incorrecto: ya pierde protección." },
+        { id: "c", texto: "No existe período de gracia.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p2",
+      tipo: "mcq",
+      enunciado: "Dado el retraso de 18 días y una relación sin condón hace 4 días, ¿qué corresponde hacer?",
+      opciones: [
+        { id: "b", texto: "Realizar test de embarazo y evaluar anticoncepción de emergencia.", esCorrecta: true,
+          explicacion: "Correcto: riesgo presente según MEC." },
+        { id: "a", texto: "Administrar la inyección sin evaluar riesgo.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Esperar un ciclo para reiniciar el método.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Suspender definitivamente el DMPA.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p3",
+      tipo: "mcq",
+      enunciado: "Si decide continuar con el DMPA, ¿qué debe indicarse tras aplicarlo?",
+      opciones: [
+        { id: "a", texto: "Usar condón por 7 días hasta recuperar protección plena.", esCorrecta: true,
+          explicacion: "Correcto: MEC recomienda protección adicional." },
+        { id: "d", texto: "Evitar relaciones por 3 meses.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Usar doble dosis inicial.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Realizar coito solo en días 'seguros'.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p4",
+      tipo: "mcq",
+      enunciado: "¿Cuál efecto secundario frecuente del DMPA debe reforzarse en consejería?",
+      opciones: [
+        { id: "c", texto: "Alteraciones del patrón menstrual, incluyendo amenorrea.", esCorrecta: true,
+          explicacion: "Correcto: muy frecuente en DMPA." },
+        { id: "a", texto: "Aumento marcado de presión arterial.", explicacion: "Incorrecto: no es típico." },
+        { id: "b", texto: "Incremento inmediato de fertilidad.", explicacion: "Incorrecto: al contrario, hay retardo." },
+        { id: "d", texto: "Riesgo alto de trombosis.", explicacion: "Incorrecto: no contiene estrógeno." }
+      ]
+    },
+
+    {
+      id: "p5",
+      tipo: "mcq",
+      enunciado: "Factor que ayuda a mejorar adherencia en usuarias de DMPA:",
+      opciones: [
+        { id: "d", texto: "Recordatorios de fecha y controles programados en APS.", esCorrecta: true,
+          explicacion: "Correcto: reduce olvidos." },
+        { id: "a", texto: "Cambiar a método natural sin evaluar preferencia.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Decir que los atrasos no importan.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Evitar hablar de efectos secundarios.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p6",
+      tipo: "short",
+      enunciado: "Reflexiona: ¿Cómo explicarías a la usuaria el riesgo de atraso y la importancia del seguimiento?",
+      guia: "• Ventana de reinyección • Riesgo de embarazo • Uso de condón • AE • Plan de seguimiento"
+    }
+  ],
+  feedbackDinamico: {
+    bajo: "Gracias por tu esfuerzo. Este caso requería integrar MEC, riesgo de embarazo y toma de decisiones en APS. Revisa los plazos del DMPA y manejo del atraso. ¡Estás avanzando muchísimo, sigue practicando!",
+    medio: "¡Buen trabajo! Reconociste el riesgo y las conductas correctas. Refuerza las recomendaciones de protección adicional y educación sobre efectos. Vas muy bien.",
+    alto: "¡Excelente! Integra manejo técnico, consejería y decisiones seguras basadas en MEC. Se nota criterio clínico fuerte y humano. ¡Felicitaciones!"
+  },
+  referencias: [
+    "MEC 2021. Criterios de Elegibilidad OMS/MINSAL.",
+    "Norma de Regulación de Fertilidad, MINSAL."
+  ]
+},
+{
+  id: "ac-alta-metodos-naturales-irregulares",
+  modulo: "Anticoncepción",
+  dificultad: "Alta",
+  titulo: "Consejería en métodos naturales en usuaria con ciclos irregulares",
+  vigneta: "Mujer de 32 años consulta con su pareja. No desean métodos hormonales por efectos adversos previos. Ciclos muy variables (28–42 días). Desean un método 'natural y seguro'. Él comenta: 'hemos probado calendario, pero igual nos asustamos'. No deseos de embarazo actual. No comorbilidades.",
+  pasos: [
+    {
+      id: "p1",
+      tipo: "mcq",
+      enunciado: "¿Por qué los métodos basados en calendario no son recomendables en esta usuaria?",
+      opciones: [
+        { id: "a", texto: "La irregularidad del ciclo hace impredecible la ovulación.", esCorrecta: true,
+          explicacion: "Correcto: calendario requiere ciclos regulares." },
+        { id: "b", texto: "Porque solo funcionan si hay abstinencia total.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Porque son peligrosos para la salud.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Porque no pueden usarlos mujeres mayores de 30.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p2",
+      tipo: "mcq",
+      enunciado: "¿Qué método natural podría utilizarse con mejor eficacia relativa?",
+      opciones: [
+        { id: "d", texto: "Método sintotérmico combinado (temperatura basal + moco cervical).", esCorrecta: true,
+          explicacion: "Correcto: es el método natural más fiable con capacitación adecuada." },
+        { id: "a", texto: "Coito interrumpido como único método.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Método del calendario tradicional.", explicacion: "Incorrecto por ciclos irregulares." },
+        { id: "c", texto: "Contar días según aplicaciones móviles sin monitoreo corporal.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p3",
+      tipo: "mcq",
+      enunciado: "Requisito clave para recomendar métodos naturales eficazmente:",
+      opciones: [
+        { id: "c", texto: "Capacitación rigurosa y observación diaria durante varios ciclos.", esCorrecta: true,
+          explicacion: "Correcto: requiere compromiso y registro detallado." },
+        { id: "a", texto: "Que la pareja viva sin estrés.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Que no haya deseo sexual frecuente.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Que existan ciclos perfectos de 28 días.", explicacion: "Incorrecto pero ayuda al calendario." }
+      ]
+    },
+
+    {
+      id: "p4",
+      tipo: "mcq",
+      enunciado: "En relación con la eficacia, debe aclararse que:",
+      opciones: [
+        { id: "b", texto: "Los métodos naturales tienen mayor falla en uso típico que métodos modernos.", esCorrecta: true,
+          explicacion: "Correcto según OMS y MINSAL." },
+        { id: "a", texto: "Son tan seguros como un DIU en uso típico.", explicacion: "Incorrecto." },
+        { id: "c", texto: "La falla depende del grupo sanguíneo.", explicacion: "Incorrecto." },
+        { id: "d", texto: "No requieren práctica diaria.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p5",
+      tipo: "mcq",
+      enunciado: "En caso de error o relación en período fértil, ¿qué debe abordarse?",
+      opciones: [
+        { id: "d", texto: "Ofrecer anticoncepción de emergencia y reforzar registros del método.", esCorrecta: true,
+          explicacion: "Correcto. AE es compatible con métodos naturales." },
+        { id: "a", texto: "Iniciar ACO sin evaluar preferencias.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Sugerir cambiar totalmente de método sin analizar motivos.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Negar la posibilidad de embarazo.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p6",
+      tipo: "mcq",
+      enunciado: "Enfoque comunicacional ideal:",
+      opciones: [
+        { id: "a", texto: "Validar la preferencia por lo 'natural' y ofrecer información basada en evidencia.", esCorrecta: true,
+          explicacion: "Correcto: consejería centrada en la persona." },
+        { id: "b", texto: "Ridiculizar sus preferencias por no usar hormonales.", explicacion: "Incorrecto y dañino." },
+        { id: "c", texto: "Evitar hablar de riesgo de embarazo para no preocuparlos.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Sugerir que 'aprendan solos' viendo internet.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p7",
+      tipo: "short",
+      enunciado: "Redacta una consejería integral sobre métodos naturales explicando: condiciones necesarias, riesgos, AE y seguimiento.",
+      puntosMaximos: 2,
+      criteriosEvaluacion: [
+        "registro",
+        "moco",
+        "temperatura",
+        "fertil",
+        "AE",
+        "riesgo",
+        "seguimiento",
+        "preferencias",
+        "pareja"
+      ],
+      guia: "• Requiere práctica • Registrar ciclos • Riesgo de falla • AE • Preferencias informadas • Seguimiento"
+    }
+  ],
+  feedbackDinamico: {
+    bajo: "Gracias por intentar este caso complejo. Los métodos naturales requieren mucha precisión y conceptos poco intuitivos. Repasa los fundamentos del método sintotérmico y los factores que aumentan la falla. ¡Cada caso te hace crecer!",
+    medio: "¡Muy buen razonamiento! Identificaste varios elementos clave, aunque puedes profundizar en eficacia real y requisitos de uso diario. Vas por excelente camino.",
+    alto: "¡Excelente trabajo! Mostraste dominio técnico, claridad en consejería y enfoque humano respetando preferencias. Este es el nivel de criterio clínico que queremos construir en KLINIK-MAT. ¡Felicitaciones!"
+  },
+  referencias: [
+    "OMS. Family Planning Global Handbook (2018).",
+    "MINSAL. Normas de Regulación de la Fertilidad."
+  ]
+},
+{
+  id: "its-baja-sifilis-primaria",
+  modulo: "ITS",
+  dificultad: "Baja",
+  titulo: "Úlcera genital indolora: sospecha de sífilis primaria en APS",
+  
+  vigneta: "Motivo de consulta: úlcera genital indolora.\n\nHistoria de enfermedad actual:\nVarón de 24 años refiere lesión única en el pene de 10 días de evolución. Inició como una pequeña erosión y ha aumentado discretamente de tamaño. No presenta dolor, prurito, fiebre ni secreción. Relata relación sexual sin condón hace 3 semanas con pareja ocasional. No usa condón de forma habitual.\n\nAntecedentes relevantes:\nSin antecedentes mórbidos ni alergias. No tratamientos crónicos. Vida sexual activa con parejas ocasionales. No antecedentes de ITS previas.\n\nExamen físico:\nSignos vitales: PA 118/72 mmHg, FC 78 lpm, Temp 36.6°C, FR 14/min.\nGenitales: úlcera única en cara dorsal del pene, bordes nítidos, base limpia, indolora a la palpación, sin exudado. Adenopatías inguinales discretas, no dolorosas. No otras lesiones cutáneas o genitales.\n\nImpresión clínica:\nLesión compatible con úlcera genital indolora sugestiva de sífilis primaria.",
+  
+  pasos: [
+    {
+      id: "p1",
+      tipo: "mcq",
+      enunciado: "¿Cuál es el diagnóstico más probable según los hallazgos descritos?",
+      opciones: [
+        { id: "c", texto: "Sífilis primaria (chancro duro).", esCorrecta: true, explicacion: "Correcto: úlcera única, indolora, bordes definidos." },
+        { id: "a", texto: "Herpes genital.", explicacion: "Incorrecto: suele ser doloroso y múltiple." },
+        { id: "b", texto: "Candidiasis genital.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Linfogranuloma venéreo.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p2",
+      tipo: "mcq",
+      enunciado: "Examen diagnóstico inicial recomendado en APS:",
+      opciones: [
+        { id: "a", texto: "VDRL o RPR (pruebas no treponémicas).", esCorrecta: true,
+          explicacion: "Correcto: primer paso según MINSAL." },
+        { id: "d", texto: "Ecografía peneana.", explicacion: "Incorrecto." },
+        { id: "b", texto: "PCR para VHS.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Test rápido de VIH únicamente.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p3",
+      tipo: "mcq",
+      enunciado: "Tratamiento de elección según Norma Técnica Nº187:",
+      opciones: [
+        { id: "d", texto: "Penicilina benzatina 2,4 millones UI, dosis única IM.", esCorrecta: true,
+          explicacion: "Correcto en sífilis primaria." },
+        { id: "a", texto: "Aciclovir.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Ceftriaxona.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Doxiciclina por 7 días.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p4",
+      tipo: "mcq",
+      enunciado: "Indicación clave respecto a su(s) pareja(s):",
+      opciones: [
+        { id: "b", texto: "Notificación y tratamiento de pareja(s), aunque estén asintomáticas.", esCorrecta: true,
+          explicacion: "Correcto: evita reinfección." },
+        { id: "a", texto: "Esperar a que aparezcan síntomas.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Evitar hablar del tema.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Derivar siempre a especialista antes de tratar.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p5",
+      tipo: "mcq",
+      enunciado: "Recomendación adecuada de consejería:",
+      opciones: [
+        { id: "a", texto: "Evitar relaciones sexuales hasta 7 días post tratamiento.", esCorrecta: true,
+          explicacion: "Correcto según MINSAL." },
+        { id: "b", texto: "Usar doble condón.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Bañarse con agua caliente.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Suspender controles si la úlcera desaparece.", explicacion: "Incorrecto." }
+      ]
+    }
+  ],
+
+  feedbackDinamico: {
+    bajo: "Gracias por intentarlo. La sífilis tiene claves clínicas muy características que requieren práctica. Revisa diagnósticos diferenciales y tratamiento MINSAL. ¡Vas progresando, sigue así!",
+    medio: "¡Buen trabajo! Identificaste puntos claves como la úlcera indolora y el tratamiento. Revisa manejo de pareja y seguimiento para reforzar tu razonamiento.",
+    alto: "¡Excelente! Dominaste el diagnóstico, tratamiento y consejería APS de manera clara y humana. ¡Felicitaciones por tu gran desempeño!"
+  },
+
+  referencias: [
+    "MINSAL. Norma Técnica ITS Nº187.",
+    "OPS. Estrategias para el control de la sífilis.",
+    "González-Merlo. Ginecología, 9° ed."
+  ]
+},
+{
+  id: "its-media-clamidia-uretritis",
+  modulo: "ITS",
+  dificultad: "Media",
+  titulo: "Clamidia en mujer joven: tamizaje, manejo y seguimiento",
+  
+  vigneta: "Motivo de consulta: flujo mucopurulento y disuria leve.\n\nHistoria de enfermedad actual:\nMujer de 23 años presenta flujo mucopurulento de 4 días de evolución asociado a disuria leve. No fiebre, no dolor pélvico. Refirió relación sexual sin condón con nueva pareja hace 2 semanas. Dice sentirse preocupada porque nunca había tenido un cuadro similar.\n\nAntecedentes relevantes:\nSin antecedentes mórbidos. G0. Ciclos regulares. No alergias medicamentosas. No antecedentes de ITS. Uso irregular de condón.\n\nExamen físico:\nSignos vitales: PA 114/70 mmHg, FC 82 lpm, Temp 36.9°C.\nGenitales externos: sin lesiones visibles.\nEspeculoscopía: flujo mucopurulento cervical, eritema leve. Cérvix friable al contacto.\nBimanual: sin dolor a la movilización cervical, sin masa ni signos de EPI.\n\nImpresión clínica:\nCuadro compatible con cervicitis mucopurulenta de probable etiología por Chlamydia trachomatis.",
+  
+  pasos: [
+    {
+      id: "p1",
+      tipo: "mcq",
+      enunciado: "El cuadro clínico es más compatible con:",
+      opciones: [
+        { id: "d", texto: "Infección por Chlamydia trachomatis.", esCorrecta: true,
+          explicacion: "Correcto." },
+        { id: "a", texto: "Candidiasis.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Herpes genital.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Vaginosis bacteriana.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p2",
+      tipo: "mcq",
+      enunciado: "Examen diagnóstico de elección:",
+      opciones: [
+        { id: "a", texto: "PCR para clamidia y gonorrea.", esCorrecta: true,
+          explicacion: "Correcto según MINSAL/OMS." },
+        { id: "b", texto: "PAP.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Ecografía transvaginal.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Cultivo estándar.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p3",
+      tipo: "mcq",
+      enunciado: "Tratamiento recomendado:",
+      opciones: [
+        { id: "b", texto: "Doxiciclina 100 mg c/12h por 7 días.", esCorrecta: true,
+          explicacion: "Correcto." },
+        { id: "a", texto: "Penicilina benzatina.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Metronidazol.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Fluconazol.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p4",
+      tipo: "mcq",
+      enunciado: "Conducta respecto a pareja(s):",
+      opciones: [
+        { id: "c", texto: "Tratar pareja(s) de los últimos 60 días.", esCorrecta: true,
+          explicacion: "Correcto según MINSAL." },
+        { id: "a", texto: "Esperar síntomas.", explicacion: "Incorrecto." },
+        { id: "b", texto: "PCR previa obligatoria.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Tratar solo a la paciente.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p5",
+      tipo: "mcq",
+      enunciado: "Indicación de consejería:",
+      opciones: [
+        { id: "a", texto: "Evitar actividad sexual hasta completar el tratamiento + 7 días.", esCorrecta: true,
+          explicacion: "Correcto." },
+        { id: "b", texto: "Beber más agua.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Usar doble condón.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Avisar a su pareja en un mes.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p6",
+      tipo: "short",
+      enunciado: "Explica cómo informarías a la paciente sobre reinfección, pareja y uso de condón sin generar culpa.",
+      guia: "• Notificación • Evitar juicios • Riesgo de reinfección • Control • Condón"
+    }
+  ],
+
+  feedbackDinamico: {
+    bajo: "Gracias por intentarlo. La clamidia puede confundirse con otros cuadros si no reconoces detalles. Revisa PCR, tratamiento y manejo de pareja. ¡Vas mejorando!",
+    medio: "¡Muy buen trabajo! Identificaste cuadro, examen y tratamiento. Refuerza prevención de reinfección.",
+    alto: "¡Excelente! Manejo integral, evidencia clara y consejería humana. ¡Felicitaciones!"
+  },
+
+  referencias: [
+    "MINSAL. Norma Técnica ITS Nº187.",
+    "OMS. STI Guidelines.",
+    "González-Merlo. Ginecología 9° ed."
+  ]
+},
+{
+  id: "its-alta-herpes-recurrencia",
+  modulo: "ITS",
+  dificultad: "Alta",
+  titulo: "Herpes genital recurrente: manejo, prevención y consejería compleja",
+
+  vigneta: "Motivo de consulta: lesiones genitales dolorosas en contexto de brote recurrente.\n\nHistoria de enfermedad actual:\nMujer de 30 años, diagnóstico confirmado previo de infección por VHS-2. Consulta por tercer brote en 5 meses. Lesiones iniciaron hace 24 horas con ardor local y posterior aparición de vesículas dolorosas. Identifica estrés laboral importante como desencadenante. Expresa preocupación por reacciones de su pareja, quien asume que los brotes son por 'descuidos'.\n\nAntecedentes relevantes:\nSin comorbilidades ni alergias. No gestante. Brotes recurrentes en los últimos meses. Vida sexual activa con pareja estable. Uso inconsistente de condón.\n\nExamen físico:\nSignos vitales: PA 116/74 mmHg, FC 80 lpm, Temp 37.1°C.\nGenitales: 4 vesículas agrupadas sobre base eritematosa en labio mayor derecho, dolorosas a la palpación. Adenopatías inguinales discretas, sensibles. No lesiones extragenitales. No signos de EPI.\n\nImpresión clínica:\nReactivación herpética compatible con herpes genital recurrente (VHS-2).",
+
+  pasos: [
+    {
+      id: "p1",
+      tipo: "mcq",
+      enunciado: "Factor desencadenante más probable del brote:",
+      opciones: [
+        { id: "b", texto: "Estrés físico o emocional.", esCorrecta: true,
+          explicacion: "Correcto: desencadenante clásico." },
+        { id: "a", texto: "Consumo moderado de café.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Dieta rica en carbohidratos.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Uso de condón.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p2",
+      tipo: "mcq",
+      enunciado: "Tratamiento de elección para brote recurrente:",
+      opciones: [
+        { id: "d", texto: "Aciclovir 400 mg cada 8 h por 5 días.", esCorrecta: true,
+          explicacion: "Correcto según guías." },
+        { id: "a", texto: "Valaciclovir 1 g c/12h por 7 días.", explicacion: "Esquema de primoinfección." },
+        { id: "b", texto: "Penicilina benzatina.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Metronidazol.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p3",
+      tipo: "mcq",
+      enunciado: "¿Cuándo considerar terapia supresora?",
+      opciones: [
+        { id: "c", texto: "≥6 brotes/año o impacto emocional significativo.", esCorrecta: true,
+          explicacion: "Correcto." },
+        { id: "a", texto: "Siempre en el segundo brote.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Solo en embarazadas.", explicacion: "Incorrecto." },
+        { id: "d", texto: "Si desea suspender relaciones sexuales.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p4",
+      tipo: "mcq",
+      enunciado: "Enfoque comunicacional adecuado:",
+      opciones: [
+        { id: "d", texto: "Validar emociones y explicar que los brotes no implican descuidos ni infidelidad.", esCorrecta: true,
+          explicacion: "Correcto." },
+        { id: "a", texto: "Sugerir ocultarlo para evitar conflictos.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Decir que su pareja debe 'adaptarse'.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Negar relación con el estrés.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p5",
+      tipo: "mcq",
+      enunciado: "Medida preventiva para reducir transmisión:",
+      opciones: [
+        { id: "a", texto: "Uso consistente de condón + evitar relaciones durante síntomas.", esCorrecta: true,
+          explicacion: "Correcto." },
+        { id: "d", texto: "Usar doble condón.", explicacion: "Incorrecto." },
+        { id: "b", texto: "Evitar cualquier relación sexual permanente.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Lavado vigoroso previo al coito.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p6",
+      tipo: "mcq",
+      enunciado: "Exámenes recomendados en este contexto:",
+      opciones: [
+        { id: "b", texto: "Tamizaje de VIH y sífilis según riesgo.", esCorrecta: true,
+          explicacion: "Correcto según MINSAL." },
+        { id: "a", texto: "PAP para herpes.", explicacion: "Incorrecto." },
+        { id: "c", texto: "Hemograma obligatorio.", explicacion: "Incorrecto." },
+        { id: "d", texto: "PCR universal de todas las ITS.", explicacion: "Incorrecto." }
+      ]
+    },
+
+    {
+      id: "p7",
+      tipo: "short",
+      enunciado: "Redacta una consejería integral sobre el brote, estrés, prevención de transmisión y terapia supresora.",
+      puntosMaximos: 2,
+      criteriosEvaluacion: [
+        "transmisión",
+        "supresora",
+        "condón",
+        "evitar",
+        "estrés",
+        "brotes",
+        "VIH",
+        "sífilis",
+        "pareja",
+        "emocional"
+      ],
+      guia: "• Brote y manejo • Estrés • Prevención • Supresión • APS y apoyo emocional"
+    }
+  ],
+
+  feedbackDinamico: {
+    bajo: "Gracias por tu esfuerzo. Este caso es exigente porque integra manejo clínico, emocional y de pareja. Revisa desencadenantes, tratamiento y criterios de terapia supresora. ¡Vas avanzando mucho!",
+    medio: "¡Muy bien! Reconociste elementos clave del manejo y prevención. Puedes profundizar en el rol del estrés y consejería emocional.",
+    alto: "¡Excelente! Integraste clínica, prevención y consejería empática. Razonamiento sólido y humano. ¡Felicitaciones!"
+  },
+
+  referencias: [
+    "MINSAL. Norma Técnica ITS Nº187.",
+    "OMS. STI Guidelines.",
+    "González-Merlo. Ginecología 9° ed."
+  ]
+},
+{
+  id: "cons-baja-infidelidad-its",
+  modulo: "Consejería",
+  dificultad: "Baja",
+  titulo: "Consejería en adolescente con relación sexual de riesgo y temor a ITS",
+
+  vigneta: "Motivo de consulta: temor a ITS posterior a relación sexual.\n\nHistoria de enfermedad actual:\nAdolescente de 17 años acude sola al Espacio Amigable tras haber tenido una relación sexual sin condón hace 5 días con un joven que posteriormente le dijo que tenía una ITS 'no especificada'. Refiere culpa intensa, miedo a contagios y preocupación de que su pareja actual se entere. No presenta síntomas ginecológicos ni sistémicos.\n\nAntecedentes relevantes:\nSin antecedentes mórbidos. No usa métodos anticonceptivos. Vida sexual poco regular, uso inconsistente de condón. Nunca ha realizado tamizaje de ITS.\n\nExamen físico:\nSignos vitales: PA 112/68 mmHg, FC 82 lpm, Temp 36.8°C. Examen genital externo sin lesiones, sin flujo anormal. Abdomen blando, indoloro.\n\nImpresión clínica:\nExposición reciente a ITS; requiere contención emocional, consejería y tamizaje inicial.",
+  
+  pasos: [
+    {
+      id: "p1",
+      tipo: "mcq",
+      enunciado: "Respecto a confidencialidad adolescente según Ley 20.418, es correcto afirmar:",
+      opciones: [
+        {
+          id: "b",
+          texto: "Desde los 14 años puede acceder a atención sexual y reproductiva de forma confidencial.",
+          esCorrecta: true,
+          explicacion: "La ley garantiza acceso confidencial desde los 14 años sin necesidad de adulto acompañante."
+        },
+        {
+          id: "a",
+          texto: "Debe asistir obligatoriamente con un adulto responsable.",
+          explicacion: "Incorrecto: la normativa chilena protege la autonomía progresiva."
+        },
+        {
+          id: "c",
+          texto: "Puede acceder a test de embarazo, pero no a test de ITS.",
+          explicacion: "Incorrecto: tiene derecho a ambas prestaciones."
+        },
+        {
+          id: "d",
+          texto: "Debe firmar un consentimiento ante notario.",
+          explicacion: "Incorrecto: no se requiere trámite legal adicional."
+        }
+      ]
+    },
+
+    {
+      id: "p2",
+      tipo: "mcq",
+      enunciado: "¿Cuál es la primera intervención en APS?",
+      opciones: [
+        {
+          id: "d",
+          texto: "Escucha activa, validación emocional y consejería sin juicios.",
+          esCorrecta: true,
+          explicacion: "Esencial en población adolescente: reducir culpa, entregar contención y establecer un vínculo seguro."
+        },
+        {
+          id: "a",
+          texto: "Regañarla por su conducta.",
+          explicacion: "Contrario a los principios de consejería adolescente."
+        },
+        {
+          id: "b",
+          texto: "Minimizar su preocupación para tranquilizarla.",
+          explicacion: "Invalida emociones y reduce adherencia."
+        },
+        {
+          id: "c",
+          texto: "Derivarla inmediatamente sin consejería.",
+          explicacion: "La APS puede resolver y acompañar."
+        }
+      ]
+    },
+
+    {
+      id: "p3",
+      tipo: "mcq",
+      enunciado: "Según MINSAL, frente a exposición reciente corresponde:",
+      opciones: [
+        {
+          id: "a",
+          texto: "Tamizaje de VIH y sífilis según ventana diagnóstica.",
+          esCorrecta: true,
+          explicacion: "Se recomienda test rápido o serología según tiempo transcurrido."
+        },
+        {
+          id: "b",
+          texto: "Solo test de embarazo.",
+          explicacion: "No aborda riesgo real de ITS."
+        },
+        {
+          id: "c",
+          texto: "PCR universal de todas las ITS al mismo día.",
+          explicacion: "No es obligatorio ni costo-efectivo en APS."
+        },
+        {
+          id: "d",
+          texto: "Esperar a que presente síntomas.",
+          explicacion: "Retrasa diagnóstico y aumenta riesgo."
+        }
+      ]
+    },
+
+    {
+      id: "p4",
+      tipo: "mcq",
+      enunciado: "Indicación educativa más importante:",
+      opciones: [
+        {
+          id: "c",
+          texto: "Evitar actividad sexual hasta completar tamizaje y usar condón siempre.",
+          esCorrecta: true,
+          explicacion: "Previene transmisión y reinfección; refuerza autocuidado."
+        },
+        {
+          id: "a",
+          texto: "Pedirle que vuelva solo si aparece dolor.",
+          explicacion: "Limita control oportuno."
+        },
+        {
+          id: "b",
+          texto: "Usar doble condón para mayor protección.",
+          explicacion: "No aumenta eficacia; puede romperse."
+        },
+        {
+          id: "d",
+          texto: "Guardar silencio para que no haya problemas de pareja.",
+          explicacion: "Desaconsejado: refuerza culpa."
+        }
+      ]
+    },
+
+    {
+      id: "p5",
+      tipo: "mcq",
+      enunciado: "Para cerrar la consulta de forma empática:",
+      opciones: [
+        {
+          id: "a",
+          texto: "Asegurar contención, explicar que no está sola y ofrecer seguimiento programado.",
+          esCorrecta: true,
+          explicacion: "Elemento central del enfoque adolescente."
+        },
+        {
+          id: "b",
+          texto: "Aumentar el miedo para que aprenda.",
+          explicacion: "Daño emocional y mala práctica."
+        },
+        {
+          id: "c",
+          texto: "Indicar que no es necesario volver.",
+          explicacion: "Contrario a APS."
+        },
+        {
+          id: "d",
+          texto: "Decir que es su culpa.",
+          explicacion: "Vulneración grave."
+        }
+      ]
+    }
+  ],
+
+  feedbackDinamico: {
+    bajo: "Gracias por tu esfuerzo. Este caso exige integrar derechos, emociones y manejo de riesgo. Revisa confidencialidad, ventana diagnóstica y consejería compasiva. ¡Vas avanzando!",
+    medio: "Muy bien, captaste ideas centrales. Refuerza tamizaje según ventana y consejería emocional. Estás progresando mucho.",
+    alto: "¡Excelente! Integraste normativas, tamizaje y una consejería madura y empática. Así se trabaja en APS real. ¡Felicitaciones!"
+  },
+
+  referencias: [
+    "Ley 20.418.",
+    "MINSAL. Guía de Atención Integral Adolescente (2022).",
+    "MINSAL. Norma Técnica 187 ITS."
+  ]
+},
+{
+  id: "cons-media-presion-digital",
+  modulo: "Consejería",
+  dificultad: "Media",
+  titulo: "Consentimiento sexual digital y prevención de violencia en jóvenes",
+
+  vigneta: "Motivo de consulta: presión para el envío de imágenes íntimas.\n\nHistoria de enfermedad actual:\nJoven de 19 años acude a la consulta porque su pareja le ha insistido repetidamente en que envíe fotografías íntimas. Refiere que él le dijo que 'si no lo haces es porque no confías en mí' y amenaza con terminar la relación si se niega. Ella refiere ansiedad, miedo a que las imágenes se filtren y culpa por no acceder. Niega síntomas físicos.\n\nAntecedentes relevantes:\nSin antecedentes mórbidos. Vida sexual activa con la misma pareja hace 8 meses. No antecedentes de violencia física, pero sí episodios de presión emocional. No ITS previas. Buen rendimiento académico.\n\nExamen físico:\nSignos vitales: PA 110/70 mmHg, FC 84 lpm, Temp 36.8°C. Conducta: ansiosa, llanto intermitente, expresa vergüenza. No hallazgos físicos relevantes.\n\nImpresión clínica:\nRiesgo de coerción sexual digital y vulneración emocional. Requiere consejería en consentimiento, derechos, autocuidado digital y apoyo psicológico si lo desea.",
+
+  pasos: [
+    {
+      id: "p1",
+      tipo: "mcq",
+      enunciado: "Respecto al consentimiento sexual digital, ¿cuál afirmación es correcta?",
+      opciones: [
+        {
+          id: "c",
+          texto: "El consentimiento debe ser libre, sin presiones y reversible en cualquier momento.",
+          esCorrecta: true,
+          explicacion: "El consentimiento solo existe cuando es voluntario, informado y sin coacción. Puede retirarse en cualquier momento (MINSAL, OPS)."
+        },
+        {
+          id: "a",
+          texto: "Si son pareja estable, el consentimiento se presume.",
+          explicacion: "Incorrecto: la relación no invalida la autonomía."
+        },
+        {
+          id: "b",
+          texto: "Enviar fotos demuestra compromiso.",
+          explicacion: "Incorrecto: es una forma de manipulación emocional."
+        },
+        {
+          id: "d",
+          texto: "Una vez enviadas, ya no importa el riesgo.",
+          explicacion: "Incorrecto: siempre existe riesgo de difusión no consentida."
+        }
+      ]
+    },
+
+    {
+      id: "p2",
+      tipo: "mcq",
+      enunciado: "¿Cuál es la intervención inicial más adecuada?",
+      opciones: [
+        {
+          id: "a",
+          texto: "Validar sus emociones, reforzar su derecho a decidir y explicar que la presión es una forma de violencia digital.",
+          esCorrecta: true,
+          explicacion: "La validación emocional y el reconocimiento de coerción son claves en APS."
+        },
+        {
+          id: "b",
+          texto: "Decirle que es normal en todas las parejas jóvenes.",
+          explicacion: "Normaliza la coerción; es incorrecto."
+        },
+        {
+          id: "c",
+          texto: "Indicar que debe enviar las fotos si quiere mantener la relación.",
+          explicacion: "Promueve vulneración emocional."
+        },
+        {
+          id: "d",
+          texto: "Evitar el tema para no incomodarla.",
+          explicacion: "Evade la responsabilidad de consejería integral."
+        }
+      ]
+    },
+
+    {
+      id: "p3",
+      tipo: "mcq",
+      enunciado: "Riesgo principal que debe abordarse explícitamente:",
+      opciones: [
+        {
+          id: "d",
+          texto: "Difusión no consentida de imágenes íntimas, con impacto emocional, legal y social.",
+          esCorrecta: true,
+          explicacion: "La 'violencia digital' está tipificada en Chile según Ley 21.153 (Ley Pack)."
+        },
+        {
+          id: "a",
+          texto: "Infertilidad futura.",
+          explicacion: "No tiene relación con el caso."
+        },
+        {
+          id: "b",
+          texto: "Riesgo cardiovascular.",
+          explicacion: "No corresponde."
+        },
+        {
+          id: "c",
+          texto: "Transmisión de ITS por fotografías.",
+          explicacion: "No existe transmisión digital de ITS."
+        }
+      ]
+    },
+
+    {
+      id: "p4",
+      tipo: "mcq",
+      enunciado: "Indicación educativa clave:",
+      opciones: [
+        {
+          id: "b",
+          texto: "Recordarle que tiene derecho a decir NO sin justificarse.",
+          esCorrecta: true,
+              explicacion: "El consentimiento no necesita excusas; basta con no querer."
+        },
+        {
+          id: "a",
+          texto: "Explicarle que debe justificar su decisión detalladamente.",
+          explicacion: "Crea más culpa y presión."
+        },
+        {
+          id: "c",
+          texto: "Recomendar ceder para evitar rupturas.",
+          explicacion: "Contradice el enfoque de derechos."
+        },
+        {
+          id: "d",
+          texto: "Pedirle que bloquee a su pareja inmediatamente.",
+          explicacion: "Debe evaluarse caso a caso y no imponerse."
+        }
+      ]
+    },
+
+    {
+      id: "p5",
+      tipo: "mcq",
+      enunciado: "¿Qué intervención favorece autonomía y protección?",
+      opciones: [
+        {
+          id: "a",
+          texto: "Ofrecer derivación a apoyo psicológico y entregar pautas de autocuidado digital.",
+          esCorrecta: true,
+          explicacion: "El acompañamiento emocional y educación digital reducen riesgo futuro."
+        },
+        {
+          id: "b",
+          texto: "Aislarla de redes sociales abruptamente.",
+          explicacion: "No es práctico ni realista."
+        },
+        {
+          id: "c",
+          texto: "Normalizar las amenazas de su pareja.",
+          explicacion: "Es violencia psicológica, nunca se normaliza."
+        },
+        {
+          id: "d",
+          texto: "Indicarle que ella es responsable del problema.",
+          explicacion: "Revictimiza y vulnera derechos."
+        }
+      ]
+    },
+
+    {
+      id: "p6",
+      tipo: "short",
+      enunciado: "Explica cómo abordarías consentimiento, presión emocional y autocuidado digital en esta paciente.",
+      guia: "• Consentimiento libre • Emociones • Riesgos digitales • Derechos • Apoyo psicológico"
+    }
+  ],
+
+  feedbackDinamico: {
+    bajo: "Gracias por intentarlo. Este caso exige integrar consentimiento, presión emocional y derechos. Revisa la Ley de Violencia Digital y conceptos de consentimiento libre. ¡Vas por buen camino!",
+    medio: "¡Muy bien! Captaste los elementos más importantes. Fortalece tu manejo sobre violencia digital y autocuidado emocional para avanzar aún más.",
+    alto: "¡Excelente! Tu razonamiento fue completo, humano y respetuoso. Integraste consentimiento, derechos y apoyo emocional de forma impecable. ¡Tremendo trabajo!"
+  },
+
+  referencias: [
+    "Ley 21.153 (Ley de Violencia Digital).",
+    "MINSAL. Consejería Adolescente (2022).",
+    "OPS. Sexualidad, Derechos y Bienestar (2020)."
+  ]
+},
+{
+  id: "cons-alta-migrante-trauma-anticoncepcion",
+  modulo: "Consejería",
+  dificultad: "Alta",
+  titulo: "Consejería compleja con enfoque intercultural y trauma-informado",
+
+  vigneta: "Motivo de consulta: solicitud de método anticonceptivo no invasivo.\n\nHistoria de enfermedad actual:\nMujer migrante de 28 años consulta por deseo de iniciar anticoncepción segura. Entiende español básico y solicita explicaciones simples. Refiere antecedente de violencia sexual en su país de origen hace 3 años, lo que genera miedo intenso a exámenes pélvicos. Expresa vergüenza, temor a ser juzgada y dificultad para hablar de su experiencia.\n\nAntecedentes relevantes:\nSin enfermedades crónicas. Ciclos regulares. No usa medicamentos. Sin ITS previas conocidas. Vive sola, red de apoyo limitada. No embarazo actual (test negativo).\n\nExamen físico:\nSignos vitales normales. Apariencia ansiosa, evita contacto visual al hablar del tema. Acepta examen general, pero rechaza examen ginecológico. No signos de trauma físico.\n\nImpresión clínica:\nRequiere consejería con enfoque trauma-informado, intercultural, lenguaje simple y elección anticonceptiva respetando límites y preferencias.",
+
+  pasos: [
+    {
+      id: "p1",
+      tipo: "mcq",
+      enunciado: "La prioridad al iniciar esta atención es:",
+      opciones: [
+        {
+          id: "d",
+          texto: "Garantizar seguridad emocional y respetar sus límites antes de explorar métodos.",
+          esCorrecta: true,
+          explicacion: "Principio central del enfoque trauma-informado: seguridad, confianza y control."
+        },
+        {
+          id: "a",
+          texto: "Realizar examen ginecológico aunque no quiera.",
+          explicacion: "Vulnera autonomía y puede reactivar trauma."
+        },
+        {
+          id: "b",
+          texto: "Centrarse solo en el método anticonceptivo.",
+          explicacion: "Ignora necesidades emocionales."
+        },
+        {
+          id: "c",
+          texto: "Pedir detalles de la agresión para 'entender mejor'.",
+          explicacion: "Nunca se pide relato detallado sin necesidad clínica."
+        }
+      ]
+    },
+
+    {
+      id: "p2",
+      tipo: "mcq",
+      enunciado: "Método anticonceptivo adecuado según su preferencia de evitar procedimientos invasivos:",
+      opciones: [
+        {
+          id: "b",
+          texto: "ACO, parche o inyección trimestral.",
+          esCorrecta: true,
+          explicacion: "No requieren examen pélvico; seguros según MEC OMS."
+        },
+        {
+          id: "a",
+          texto: "DIU de cobre hoy mismo.",
+          explicacion: "Requiere examen pélvico y puede gatillar trauma."
+        },
+        {
+          id: "c",
+          texto: "Implante sin evaluar elegibilidad médica.",
+          explicacion: "Necesita al menos consejería, presión arterial y descarte de embarazo."
+        },
+        {
+          id: "d",
+          texto: "Esterilización quirúrgica inmediata.",
+          explicacion: "Método permanente, requiere evaluación extensa."
+        }
+      ]
+    },
+
+    {
+      id: "p3",
+      tipo: "mcq",
+      enunciado: "Enfoque comunicacional correcto:",
+      opciones: [
+        {
+          id: "c",
+          texto: "Usar lenguaje simple, pausado, confirmar comprensión y validar emociones.",
+          esCorrecta: true,
+          explicacion: "Facilita comunicación intercultural y reduce ansiedad."
+        },
+        {
+          id: "a",
+          texto: "Usar jerga técnica para que aprenda 'más rápido'.",
+          explicacion: "Aumenta barreras."
+        },
+        {
+          id: "b",
+          texto: "Evitar mencionar el trauma.",
+          explicacion: "Invisibiliza una experiencia relevante."
+        },
+        {
+          id: "d",
+          texto: "Decirle que debe enfrentar su trauma ahora mismo.",
+          explicacion: "Inválida emociones y presiona."
+        }
+      ]
+    },
+
+    {
+      id: "p4",
+      tipo: "mcq",
+      enunciado: "Sobre el manejo del trauma en APS, corresponde:",
+      opciones: [
+        {
+          id: "a",
+          texto: "Pedir permiso previo, permitir silencio y no indagar detalles innecesarios.",
+          esCorrecta: true,
+          explicacion: "Enfoque trauma-informado: control, autonomía y seguridad."
+        },
+        {
+          id: "b",
+          texto: "Solicitar relato completo de la agresión.",
+          explicacion: "Puede reactivar trauma; no corresponde sin indicación clínica."
+        },
+        {
+          id: "c",
+          texto: "Decir que 'lo superará sola'.",
+          explicacion: "Minimiza la experiencia."
+        },
+        {
+          id: "d",
+          texto: "Registrar detalles explícitos sin criterio.",
+          explicacion: "Vulneración ética."
+        }
+      ]
+    },
+
+    {
+      id: "p5",
+      tipo: "mcq",
+      enunciado: "Acción que favorece continuidad de cuidados:",
+      opciones: [
+        {
+          id: "d",
+          texto: "Ofrecer material visual simple y cita posterior con profesional que hable su idioma o intérprete.",
+          esCorrecta: true,
+          explicacion: "Favorece adherencia, comunicación y decisión informada."
+        },
+        {
+          id: "a",
+          texto: "Pedirle que elija un método hoy sí o sí.",
+          explicacion: "Aumenta ansiedad y reduce adherencia."
+        },
+        {
+          id: "b",
+          texto: "Derivar sin explicación.",
+          explicacion: "Corta el proceso de confianza."
+        },
+        {
+          id: "c",
+          texto: "Indicar que vuelva solo si tiene dudas.",
+          explicacion: "Limita continuidad."
+        }
+      ]
+    },
+
+    {
+      id: "p6",
+      tipo: "mcq",
+      enunciado: "Método razonable considerando sus preferencias actuales:",
+      opciones: [
+        {
+          id: "b",
+          texto: "Métodos no invasivos: ACO, parche o inyección.",
+          esCorrecta: true,
+          explicacion: "No requieren examen pélvico; se adaptan al contexto emocional."
+        },
+        {
+          id: "a",
+          texto: "DIU con inserción inmediata.",
+          explicacion: "Implicaría un procedimiento invasivo."
+        },
+        {
+          id: "c",
+          texto: "Implante subdérmico sin toma de PA.",
+          explicacion: "La evaluación mínima es obligatoria."
+        },
+        {
+          id: "d",
+          texto: "Esterilización como primera opción.",
+          explicacion: "Método definitivo, no indicado sin evaluación extensa."
+        }
+      ]
+    },
+
+    {
+      id: "p7",
+      tipo: "short",
+      enunciado: "Escribe cómo realizarías una consejería trauma-informada para ayudarla a elegir un método seguro respetando sus límites.",
+      puntosMaximos: 2,
+      criteriosEvaluacion: [
+        "trauma",
+        "autonomía",
+        "respeto",
+        "no invasivo",
+        "lenguaje simple",
+        "preferencias",
+        "emociones",
+        "seguimiento"
+      ],
+      guia: "• Validación emocional • Lenguaje claro • Métodos no invasivos • Permiso previo • Continuidad"
+    }
+  ],
+
+  feedbackDinamico: {
+    bajo: "Gracias por intentarlo. Este caso es complejo: integra trauma, interculturalidad y autonomía. Revisa enfoque trauma-informado y MEC para métodos no invasivos. ¡Vas avanzando!",
+    medio: "¡Buen trabajo! Identificaste varios elementos claves. Refuerza manejo del trauma y comunicación intercultural para llegar al dominio completo.",
+    alto: "¡Excelente! Integraste consejería humana, intercultural y sensible al trauma. Este nivel de razonamiento es propio de APS de alta calidad. ¡Felicitaciones!"
+  },
+
+  referencias: [
+    "OPS. Atención Trauma-Informada (2020).",
+    "MINSAL. Consejería en SSR (2022).",
+    "OMS/MEC 2021 – Criterios de Elegibilidad de Anticonceptivos."
+  ]
+},
+{
+  id: "clima-baja-sequedad-vaginal",
+  modulo: "Climaterio/Menopausia",
+  dificultad: "Baja",
+  titulo: "Sequedad vaginal en climaterio: manejo inicial en APS",
+
+  vigneta: "Motivo de consulta: molestias vaginales y dolor en relaciones sexuales.\n\nHistoria de enfermedad actual:\nMujer de 51 años consulta por ardor vaginal, sensación de sequedad progresiva y dispareunia leve hace 6 meses. Refiere que sus menstruaciones cesaron hace 14 meses. Niega sangrado postcoital, prurito severo o flujo anormal. Expresa vergüenza al hablar del tema y preocupación porque su pareja cree que ella 'perdió el interés'.\n\nAntecedentes relevantes:\nNo comorbilidades. No usa terapia hormonal. No antecedentes de ITS. No alergias. Sexualidad activa con pareja estable.\n\nExamen físico:\nSignos vitales: PA 118/74 mmHg, FC 76 lpm, Temp 36.7°C. Vulva con leve palidez, mucosa vaginal atrófica, sin lesiones focales, sin flujo anormal. Dolor leve a la penetración simulada con espéculo.\n\nImpresión clínica:\nSíntomas compatibles con síndrome genitourinario de la menopausia (atrofia vulvovaginal por hipoestrogenismo).",
+
+  pasos: [
+    {
+      id: "p1",
+      tipo: "mcq",
+      enunciado: "El mecanismo fisiológico más probable de sus síntomas es:",
+      opciones: [
+        {
+          id: "c",
+          texto: "Disminución de estrógenos que reduce la lubricación y elasticidad vaginal.",
+          esCorrecta: true,
+          explicacion: "La caída estrogénica posmenopáusica produce atrofia vaginal progresiva (MINSAL 2020)."
+        },
+        {
+          id: "a",
+          texto: "Aumento de testosterona en la menopausia.",
+          explicacion: "La testosterona también disminuye; no genera sequedad vaginal."
+        },
+        {
+          id: "b",
+          texto: "Exceso de progesterona endógena.",
+          explicacion: "La progesterona disminuye en esta etapa, no la causa."
+        },
+        {
+          id: "d",
+          texto: "Aumento de prolactina asociado a la edad.",
+          explicacion: "La prolactina no aumenta fisiológicamente en menopausia."
+        }
+      ]
+    },
+
+    {
+      id: "p2",
+      tipo: "mcq",
+      enunciado: "Medida inicial recomendada en APS:",
+      opciones: [
+        {
+          id: "d",
+          texto: "Lubricantes y humectantes vaginales de uso regular.",
+          esCorrecta: true,
+          explicacion: "Son primera línea para el síndrome genitourinario del climaterio (MINSAL)."
+        },
+        {
+          id: "a",
+          texto: "Antidepresivos ISRS.",
+          explicacion: "No tratan la causa del problema y pueden empeorar la libido."
+        },
+        {
+          id: "b",
+          texto: "Evitar relaciones sexuales definitivamente.",
+          explicacion: "No es necesario; la actividad sexual puede mejorar la salud vaginal."
+        },
+        {
+          id: "c",
+          texto: "Antibióticos empíricos.",
+          explicacion: "No hay signos de infección."
+        }
+      ]
+    },
+
+    {
+      id: "p3",
+      tipo: "mcq",
+      enunciado: "Respecto a la sexualidad en menopausia, corresponde afirmar:",
+      opciones: [
+        {
+          id: "a",
+          texto: "La sexualidad continúa siendo parte importante de la salud, pero puede adaptarse a los cambios hormonales.",
+          esCorrecta: true,
+          explicacion: "La sexualidad se transforma, no desaparece; requiere acompañamiento y educación."
+        },
+        {
+          id: "b",
+          texto: "La vida sexual termina al dejar de menstruar.",
+          explicacion: "Es un mito frecuente y dañino."
+        },
+        {
+          id: "c",
+          texto: "Debe suspender actividad sexual para evitar molestias.",
+          explicacion: "No es necesario; se tratan los síntomas y se adapta la experiencia."
+        },
+        {
+          id: "d",
+          texto: "Debe derivarse siempre a ginecología.",
+          explicacion: "APS puede manejar casos leves y moderados."
+        }
+      ]
+    },
+
+    {
+      id: "p4",
+      tipo: "mcq",
+      enunciado: "Recomendación comunicacional clave:",
+      opciones: [
+        {
+          id: "c",
+          texto: "Validar su experiencia, normalizar los cambios y ofrecer apoyo práctico.",
+          esCorrecta: true,
+          explicacion: "El enfoque emocional permite aumentar adherencia y confianza en el manejo."
+        },
+        {
+          id: "a",
+          texto: "Evitar hablar de sexualidad para no incomodarla.",
+          explicacion: "Genera tabú y limita la atención integral."
+        },
+        {
+          id: "b",
+          texto: "Centrarse exclusivamente en el nivel hormonal.",
+          explicacion: "El abordaje es biopsicosocial."
+        },
+        {
+          id: "d",
+          texto: "Entregar solo un folleto informativo.",
+          explicacion: "La consejería requiere acompañamiento verbal."
+        }
+      ]
+    },
+
+    {
+      id: "p5",
+      tipo: "mcq",
+      enunciado: "¿Qué mensaje educativo debería reforzarse?",
+      opciones: [
+        {
+          id: "b",
+          texto: "La hidratación vaginal y el uso de lubricantes pueden mejorar significativamente los síntomas.",
+          esCorrecta: true,
+          explicacion: "Son medidas basadas en evidencia para mejorar confort sexual."
+        },
+        {
+          id: "a",
+          texto: "Los síntomas solo mejoran con terapia hormonal sistémica.",
+          explicacion: "La mayoría se maneja con medidas locales."
+        },
+        {
+          id: "c",
+          texto: "No es necesario realizar controles posteriores.",
+          explicacion: "Se recomienda seguimiento en APS."
+        },
+        {
+          id: "d",
+          texto: "La paciente debe acostumbrarse a los cambios.",
+          explicacion: "Invalida su vivencia."
+        }
+      ]
+    }
+  ],
+
+  feedbackDinamico: {
+    bajo: "Gracias por intentarlo. Este caso combina fisiología, manejo sintomático y comunicación empática. Revisa el síndrome genitourinario del climaterio y los tratamientos iniciales. ¡Tú puedes seguir avanzando!",
+    medio: "¡Buen trabajo! Reconociste los conceptos centrales del manejo inicial. Repasa el rol de los lubricantes y la comunicación empática para dominar completamente este tema.",
+    alto: "¡Excelente! Integraste fisiología, manejo y enfoque emocional con claridad. Este nivel de razonamiento refleja un entendimiento sólido del climaterio en APS. ¡Felicidades!"
+  },
+
+  referencias: [
+    "MINSAL. Guía Climaterio y Menopausia (2020).",
+    "OMS. Salud Sexual y Envejecimiento (2018).",
+    "González-Merlo. Ginecología, 9° edición."
+  ]
+},
+
+{
+  id: "clima-media-sofocos-insomnio",
+  modulo: "Climaterio/Menopausia",
+  dificultad: "Media",
+  titulo: "Climaterio con síntomas vasomotores intensos: manejo inicial en APS",
+
+  vigneta: "Motivo de consulta: sofocos intensos y dificultad para dormir.\n\nHistoria de enfermedad actual:\nMujer de 49 años consulta por sofocos diarios, especialmente nocturnos, acompañados de palpitaciones y sudoración intensa. Describe insomnio mantenido, ansiedad y cansancio diurno. Última menstruación hace 7 meses (perimenopausia). Refiere que afecta su vida laboral y su relación de pareja. Niega sangrado anormal.\n\nAntecedentes relevantes:\nHTA bien controlada con losartán. No tabaquismo. No antecedente de trombosis. IMC 27. No terapia hormonal previa.\n\nExamen físico:\nSignos vitales: PA 128/78 mmHg, FC 84, Temp 36.8°C. Examen general sin hallazgos. Mamas y abdomen normales. No signos de alarma.\n\nImpresión clínica:\nSíntomas vasomotores moderados a severos en perimenopausia, con impacto funcional significativo.",
+
+  pasos: [
+    {
+      id: "p1",
+      tipo: "mcq",
+      enunciado: "El mecanismo probable de sus síntomas vasomotores es:",
+      opciones: [
+        {
+          id: "d",
+          texto: "Inestabilidad del centro termorregulador por disminución estrogénica.",
+          esCorrecta: true,
+          explicacion: "La caída estrogénica altera el umbral térmico hipotalámico."
+        },
+        {
+          id: "a",
+          texto: "Exceso de progesterona.",
+          explicacion: "Progesterona cae en la perimenopausia."
+        },
+        {
+          id: "b",
+          texto: "Hiperprolactinemia.",
+          explicacion: "No es característica del climaterio."
+        },
+        {
+          id: "c",
+          texto: "Aumento de testosterona.",
+          explicacion: "No es fisiológicamente correcto."
+        }
+      ]
+    },
+
+    {
+      id: "p2",
+      tipo: "mcq",
+      enunciado: "Medida inicial en APS antes de considerar terapia hormonal:",
+      opciones: [
+        {
+          id: "b",
+          texto: "Cambios en el estilo de vida: ejercicio, evitar alcohol/tabaco, manejo del estrés.",
+          esCorrecta: true,
+          explicacion: "MINSAL recomienda estas medidas como primera línea."
+        },
+        {
+          id: "a",
+          texto: "Indicar estrógenos sistémicos inmediatamente.",
+          explicacion: "Requiere evaluación clínica más completa."
+        },
+        {
+          id: "c",
+          texto: "Derivación inmediata a especialista.",
+          explicacion: "APS maneja la mayoría de los casos."
+        },
+        {
+          id: "d",
+          texto: "Antibióticos empíricos.",
+          explicacion: "No corresponde."
+        }
+      ]
+    },
+
+    {
+      id: "p3",
+      tipo: "mcq",
+      enunciado: "Antes de iniciar terapia hormonal combinada (TH), corresponde:",
+      opciones: [
+        {
+          id: "a",
+          texto: "Evaluar riesgo cardiovascular, trombótico y cáncer de mama.",
+          esCorrecta: true,
+          explicacion: "Requisito indispensable según MINSAL/OMS."
+        },
+        {
+          id: "b",
+          texto: "Indicarla sin evaluación previa si los síntomas son intensos.",
+          explicacion: "Incorrecto y riesgoso."
+        },
+        {
+          id: "c",
+          texto: "Iniciar solo progesterona.",
+          explicacion: "No controla sofocos."
+        },
+        {
+          id: "d",
+          texto: "Suspender ejercicio físico.",
+          explicacion: "Contradice recomendaciones."
+        }
+      ]
+    },
+
+    {
+      id: "p4",
+      tipo: "mcq",
+      enunciado: "Consejería adecuada respecto a los sofocos:",
+      opciones: [
+        {
+          id: "d",
+          texto: "Evitar comidas picantes, alcohol y ambientes muy calurosos.",
+          esCorrecta: true,
+          explicacion: "Son gatillantes conocidos."
+        },
+        {
+          id: "a",
+          texto: "Aumentar cafeína para mantenerse alerta.",
+          explicacion: "Puede empeorar palpitaciones."
+        },
+        {
+          id: "b",
+          texto: "Dormir menos para generar más cansancio.",
+          explicacion: "Empeora insomnio."
+        },
+        {
+          id: "c",
+          texto: "Modificar su medicación antihipertensiva sin control médico.",
+          explicacion: "Es peligroso."
+        }
+      ]
+    },
+
+    {
+      id: "p5",
+      tipo: "mcq",
+      enunciado: "Respecto al insomnio relacionado a climaterio:",
+      opciones: [
+        {
+          id: "c",
+          texto: "Mejorar higiene del sueño y manejar sofocos puede reducir el insomnio.",
+          esCorrecta: true,
+          explicacion: "Reducir estímulos y tratar gatillantes es clave."
+        },
+        {
+          id: "a",
+          texto: "Indicar benzodiacepinas de larga duración como primera línea.",
+          explicacion: "No recomendado en APS."
+        },
+        {
+          id: "b",
+          texto: "El insomnio no tiene relación con el climaterio.",
+          explicacion: "Es frecuente y asociado a sofocos."
+        },
+        {
+          id: "d",
+          texto: "Evitar actividad física durante el día.",
+          explicacion: "El ejercicio mejora el sueño."
+        }
+      ]
+    },
+
+    {
+      id: "p6",
+      tipo: "short",
+      enunciado: "Explica brevemente cómo abordarías consejería sobre manejo de sofocos e insomnio de manera empática y basada en evidencia.",
+      guia: "• Estilo de vida • Termorregulación • factores que puedan agravar los sintomas • Sueño • Acompañamiento emocional"
+    }
+  ],
+
+  feedbackDinamico: {
+    bajo: "Gracias por tu esfuerzo. Este caso integra fisiología, manejo no farmacológico y evaluación previa a TH. Revisa los conceptos clave del climaterio y avanzarás con firmeza.",
+    medio: "¡Muy bien! Captaste puntos esenciales sobre manejo inicial y evaluación de riesgos. Refuerza algos de TH y podrás dominar el tema.",
+    alto: "¡Excelente! Integraste razonamiento clínico, medidas basadas en evidencia y enfoque emocional. Este nivel es propio de un manejo integral en APS. ¡Felicidades!"
+  },
+
+  referencias: [
+    "MINSAL. Guía Climaterio y Menopausia (2020).",
+    "OMS. Menopause: Health Considerations (2019).",
+    "González-Merlo. Ginecología, 9° ed."
+  ]
+},
+
+{
+  id: "ac-baja-postparto-migrante",
+  modulo: "Anticoncepción",
+  dificultad: "Baja",
+  titulo: "Anticoncepción postparto en mujer migrante en APS",
+
+  vigneta: "Motivo de consulta: solicitud de método anticonceptivo postparto.\n\nHistoria de enfermedad actual:\nMujer migrante venezolana de 32 años consulta en el CESFAM a los 3 meses postparto. Parto eutócico, lactancia materna exclusiva. Relata que en su país usaba inyecciones mensuales pero no sabe si puede retomarlas. Preocupada porque 'no quiere quedar embarazada tan rápido'. Habla español fluido. Sin síntomas.\n\nAntecedentes relevantes:\nG2P2. Sin HTA, sin DM. No tabaquismo. Completamente vacunada. No medicamentos actuales.\n\nExamen físico:\nSignos vitales: PA 114/72 mmHg, FC 80, Temp 36.6°C. IMC 23. Examen mamario normal. Abdomen blando, involución uterina normal.\n\nImpresión clínica:\nMujer en periodo postparto con lactancia exclusiva, requiere un método compatible y seguro según MEC 2021.",
+
+  pasos: [
+    {
+      id: "p1",
+      tipo: "mcq",
+      enunciado: "¿Qué método es seguro y recomendado a los 3 meses postparto con lactancia exclusiva?",
+      opciones: [
+        {
+          id: "c",
+          texto: "Implante subdérmico de etonogestrel.",
+          esCorrecta: true,
+          explicacion: "Compatible con lactancia desde las 6 semanas postparto (MEC OMS categoría 1)."
+        },
+        {
+          id: "a",
+          texto: "Anticonceptivos combinados (ACO).",
+          explicacion: "Contraindicados antes de las 6 semanas; categoría 2-3 por riesgo trombótico."
+        },
+        {
+          id: "b",
+          texto: "Inyección mensual combinada.",
+          explicacion: "Contiene estrógeno → no recomendada en periodo de lactancia temprana."
+        },
+        {
+          id: "d",
+          texto: "DIU T de cobre solo después de 1 año postparto.",
+          explicacion: "Incorrecto: puede insertarse desde las 6 semanas."
+        }
+      ]
+    },
+
+    {
+      id: "p2",
+      tipo: "mcq",
+      enunciado: "Además del método, corresponde reforzar:",
+      opciones: [
+        {
+          id: "a",
+          texto: "Eficacia del método de solo progesterona durante lactancia.",
+          esCorrecta: true,
+          explicacion: "Muy eficaz y seguro para la producción de leche."
+        },
+        {
+          id: "b",
+          texto: "Que debe suspender la lactancia para usar anticonceptivos.",
+          explicacion: "Totalmente falso."
+        },
+        {
+          id: "c",
+          texto: "Que debe esperar sangrado menstrual antes de iniciarlo.",
+          explicacion: "No es requisito."
+        },
+        {
+          id: "d",
+          texto: "Que el implante es solo para mujeres sin hijos.",
+          explicacion: "Mito común y erróneo."
+        }
+      ]
+    },
+
+    {
+      id: "p3",
+      tipo: "mcq",
+      enunciado: "Respecto a fertilidad postparto:",
+      opciones: [
+        {
+          id: "b",
+          texto: "Puede regresar incluso antes del retorno menstrual.",
+          esCorrecta: true,
+          explicacion: "Ovulación puede ocurrir previo a la primera menstruación."
+        },
+        {
+          id: "a",
+          texto: "No puede embarazarse si está amamantando.",
+          explicacion: "Falso: la lactancia exclusiva solo protege parcialmente."
+        },
+        {
+          id: "c",
+          texto: "La fertilidad tarda años en regresar.",
+          explicacion: "No corresponde."
+        },
+        {
+          id: "d",
+          texto: "Requiere prueba ovulatoria para iniciar método.",
+          explicacion: "No necesario."
+        }
+      ]
+    },
+
+    {
+      id: "p4",
+      tipo: "mcq",
+      enunciado: "En cuanto a consejería, es clave:",
+      opciones: [
+        {
+          id: "d",
+          texto: "Validar dudas culturales, explicar opciones con lenguaje simple y sin juicios.",
+          esCorrecta: true,
+          explicacion: "Fundamental para población migrante en APS."
+        },
+        {
+          id: "a",
+          texto: "Indicar un método sin preguntarle preferencias.",
+          explicacion: "Contrario al enfoque de derechos."
+        },
+        {
+          id: "b",
+          texto: "Desestimar su experiencia previa.",
+          explicacion: "Afecta adherencia."
+        },
+        {
+          id: "c",
+          texto: "Decir que solo hay una opción disponible.",
+          explicacion: "Incorrecto."
+        }
+      ]
+    },
+
+    {
+      id: "p5",
+      tipo: "mcq",
+      enunciado: "¿Qué mensaje final debe enfatizarse?",
+      opciones: [
+        {
+          id: "a",
+          texto: "El implante es seguro, reversible y no afecta la lactancia.",
+          esCorrecta: true,
+          explicacion: "Es la base de la consejería de métodos progestínicos."
+        },
+        {
+          id: "b",
+          texto: "Debe reiniciar su método antiguo aunque no sea el más seguro.",
+          explicacion: "No corresponde."
+        },
+        {
+          id: "c",
+          texto: "Solo puede usar métodos naturales.",
+          explicacion: "No recomendado por eficacia."
+        },
+        {
+          id: "d",
+          texto: "El método debe decidirlo la familia.",
+          explicacion: "Debe ser decisión informada de la usuaria."
+        }
+      ]
+    }
+  ],
+
+  feedbackDinamico: {
+    bajo: "Gracias por intentarlo. Este caso integraba MEC postparto y consejería migrante. Repasa métodos compatibles con lactancia y verás cómo mejora tu razonamiento.",
+    medio: "¡Buen trabajo! Reconociste aspectos claves. Profundiza en MEC y comunicación culturalmente sensible para avanzar aún más.",
+    alto: "¡Excelente! Mostraste dominio técnico y empatía en consejería postparto. Este es el enfoque que transforma APS. ¡Felicitaciones!"
+  },
+
+  referencias: [
+    "MEC OMS/MINSAL (2021).",
+    "MINSAL. Normas de Fertilidad 2018.",
+    "González-Merlo. Ginecología 9° ed."
+  ]
+},
+{
+  id: "ac-media-olvidos-joven",
+  modulo: "Anticoncepción",
+  dificultad: "Media",
+  titulo: "Joven con olvidos frecuentes de ACO: adherencia y cambio de método",
+
+  vigneta: "Motivo de consulta: olvidos frecuentes de anticonceptivo oral.\n\nHistoria de enfermedad actual:\nMujer de 20 años consulta por múltiples olvidos de su anticonceptivo oral combinado. Relata que trabaja y estudia, tiene horarios irregulares y suele olvidar 3–4 pastillas al mes. Ha tenido sangrado intermenstrual. No desea embarazo. Dice sentirse 'culpable e incapaz de tomar algo todos los días'.\n\nAntecedentes relevantes:\nSin enfermedades crónicas. IMC 26. Vida sexual activa con pareja estable. No alergias. Sin eventos trombóticos. No medicamentos.\n\nExamen físico:\nSignos vitales: PA 110/70, FC 78, Temp 36.5. Examen ginecológico normal. Test de embarazo negativo.\n\nImpresión clínica:\nBaja adherencia a método de toma diaria. Requiere revisión de opciones de larga duración (LARC) y consejería libre de juicios.",
+
+  pasos: [
+    {
+      id: "p1",
+      tipo: "mcq",
+      enunciado: "El principal problema identificado es:",
+      opciones: [
+        {
+          id: "a",
+          texto: "Baja adherencia por dificultad para cumplir dosis diaria.",
+          esCorrecta: true,
+          explicacion: "La toma diaria es el principal factor de falla en ACO."
+        },
+        {
+          id: "b",
+          texto: "Contraindicación absoluta de estrógeno.",
+          explicacion: "No presenta factores de riesgo."
+        },
+        {
+          id: "c",
+          texto: "Falla del medicamento.",
+          explicacion: "La causa real es el uso inconsistente."
+        },
+        {
+          id: "d",
+          texto: "Incapacidad para comprender instrucciones.",
+          explicacion: "No hay evidencia de esto."
+        }
+      ]
+    },
+
+    {
+      id: "p2",
+      tipo: "mcq",
+      enunciado: "Método recomendado según MEC para mejorar adherencia:",
+      opciones: [
+        {
+          id: "d",
+          texto: "Implante subdérmico o DIU (LARC).",
+          esCorrecta: true,
+          explicacion: "Son métodos altamente eficaces y sin dependencia del uso diario."
+        },
+        {
+          id: "a",
+          texto: "Continuar ACO pero sin alarmas o recordatorios.",
+          explicacion: "No resuelve el problema principal."
+        },
+        {
+          id: "b",
+          texto: "Métodos naturales como única estrategia.",
+          explicacion: "Eficacia baja."
+        },
+        {
+          id: "c",
+          texto: "Inyección combinada mensual.",
+          explicacion: "Contiene estrógeno y requiere regularidad mensual."
+        }
+      ]
+    },
+
+    {
+      id: "p3",
+      tipo: "mcq",
+      enunciado: "En caso de olvidos, corresponde indicar:",
+      opciones: [
+        {
+          id: "b",
+          texto: "Usar condón por 7 días después de los olvidos.",
+          esCorrecta: true,
+          explicacion: "Reduce riesgo de embarazo por falla."
+        },
+        {
+          id: "a",
+          texto: "Suspender el ACO definitivamente.",
+          explicacion: "No es primera indicación."
+        },
+        {
+          id: "c",
+          texto: "Tomar 4 pastillas juntas para 'compensar'.",
+          explicacion: "No recomendado."
+        },
+        {
+          id: "d",
+          texto: "Continuar sin protección adicional.",
+          explicacion: "Riesgo elevado."
+        }
+      ]
+    },
+
+    {
+      id: "p4",
+      tipo: "mcq",
+      enunciado: "Enfoque comunicacional correcto:",
+      opciones: [
+        {
+          id: "c",
+          texto: "Validar su experiencia y presentar alternativas realistas sin juzgar.",
+          esCorrecta: true,
+          explicacion: "La adherencia mejora con acompañamiento respetuoso."
+        },
+        {
+          id: "a",
+          texto: "Criticar sus olvidos para generar cambio.",
+          explicacion: "Aumenta culpa."
+        },
+        {
+          id: "b",
+          texto: "Evitar hablar del tema para no incomodar.",
+          explicacion: "Pierde oportunidad educativa."
+        },
+        {
+          id: "d",
+          texto: "Imponer el método más eficaz sin preguntar preferencias.",
+          explicacion: "Contrario al enfoque de derechos."
+        }
+      ]
+    },
+
+    {
+      id: "p5",
+      tipo: "mcq",
+      enunciado: "¿Cuál mensaje final es clave?",
+      opciones: [
+        {
+          id: "a",
+          texto: "Los métodos LARC no dependen del uso diario y son altamente seguros.",
+          esCorrecta: true,
+          explicacion: "Información central en consejería de adherencia."
+        },
+        {
+          id: "b",
+          texto: "Debe forzarse a seguir tomando ACO.",
+          explicacion: "Incorrecto."
+        },
+        {
+          id: "c",
+          texto: "Todos los métodos son igual de eficaces.",
+          explicacion: "No es cierto."
+        },
+        {
+          id: "d",
+          texto: "Los olvidos no importan si no hay síntomas.",
+          explicacion: "Riesgo real de embarazo."
+        }
+      ]
+    },
+
+    {
+      id: "p6",
+      tipo: "short",
+      enunciado: "Desarrolla una consejería breve para abordar baja adherencia y proponer LARC respetando sus preferencias.",
+      guia: "• Adherencia • Opciones LARC • Respeto • Autonomía • Condón"
+    }
+  ],
+
+  feedbackDinamico: {
+    bajo: "Gracias por intentarlo. Este caso combina adherencia, MEC y consejería emocional. Repasa LARC y manejo de olvidos para fortalecer tu criterio.",
+    medio: "Muy bien. Identificaste los ejes centrales: adherencia y alternativas. Profundiza en consejería respetuosa para avanzar aún más.",
+    alto: "¡Excelente! Dominaste adherencia, alternativas LARC y comunicación centrada en la usuaria. Ese es el estándar KLINIK-MAT. ¡Felicitaciones!"
+  },
+
+  referencias: [
+    "MEC OMS/MINSAL 2021.",
+    "MINSAL. Norma Fertilidad 2018."
+  ]
+},
+{
+  id: "ac-alta-mapuche-menorragia",
+  modulo: "Anticoncepción",
+  dificultad: "Alta",
+  titulo: "Elección anticonceptiva en mujer con menorragia, anemia y enfoque intercultural",
+
+  vigneta: "Motivo de consulta: sangrado menstrual abundante.\n\nHistoria de enfermedad actual:\nMujer mapuche de 38 años acude al CESFAM por reglas abundantes en los últimos 8 meses. Refiere cambiar toalla cada 2–3 horas, coágulos y fatiga. No dolor pélvico intenso. No método anticonceptivo actual. Desea algo que 'regule su sangre' porque su kimche (sabia de la comunidad) le dijo que debe equilibrar su cuerpo primero.\n\nAntecedentes relevantes:\nHemoglobina 10.8 g/dL. No HTA, no trombosis previa. Tres hijos. Ciclos regulares. No alergias. No medicamentos.\n\nExamen físico:\nSignos vitales: PA 120/78, FC 82, Temp 36.8°C. Palidez leve. Abdomen sin masas ni dolor. Examen ginecológico sin hallazgos anormales significativos.\n\nImpresión clínica:\nMenorragia con anemia leve. Necesita un método altamente eficaz que reduzca sangrado y sea compatible con su visión intercultural.",
+
+  pasos: [
+    {
+      id: "p1",
+      tipo: "mcq",
+      enunciado: "El mejor método para reducir sangrado menstrual según MEC:",
+      opciones: [
+        {
+          id: "b",
+          texto: "DIU con levonorgestrel (LNG-IUS).",
+          esCorrecta: true,
+          explicacion: "Reduce sangrado hasta un 90%. Recomendado por OMS/MINSAL."
+        },
+        {
+          id: "a",
+          texto: "DIU de cobre.",
+          explicacion: "Puede aumentar el sangrado."
+        },
+        {
+          id: "c",
+          texto: "Parche anticonceptivo.",
+          explicacion: "Disminuye sangrado pero no tanto como DIU-LNG."
+        },
+        {
+          id: "d",
+          texto: "Condón masculino.",
+          explicacion: "No regula sangrado."
+        }
+      ]
+    },
+
+    {
+      id: "p2",
+      tipo: "mcq",
+      enunciado: "Respecto a su anemia leve:",
+      opciones: [
+        {
+          id: "d",
+          texto: "Un método que reduzca sangrado mejora su anemia a largo plazo.",
+          esCorrecta: true,
+          explicacion: "DIU-LNG es tratamiento de primera línea para menorragia."
+        },
+        {
+          id: "a",
+          texto: "Debe evitar cualquier método hormonal.",
+          explicacion: "No hay tal contraindicación."
+        },
+        {
+          id: "b",
+          texto: "Debe usar DIU de cobre para 'limpiar la sangre'.",
+          explicacion: "Mito frecuente; aumenta sangrado."
+        },
+        {
+          id: "c",
+          texto: "La anemia contraindica todo tipo de DIU.",
+          explicacion: "Falso según MEC."
+        }
+      ]
+    },
+
+    {
+      id: "p3",
+      tipo: "mcq",
+      enunciado: "¿Cual sería el enfoque intercultural adecuado?:",
+      opciones: [
+        {
+          id: "a",
+          texto: "Preguntar por su visión de salud, integrar sus creencias y ofrecer opciones respetuosas.",
+          esCorrecta: true,
+          explicacion: "El Modelo de Salud Intercultural de Chile exige respeto y complementariedad."
+        },
+        {
+          id: "b",
+          texto: "Desestimar sus creencias como 'ignorancia'.",
+          explicacion: "Vulneración cultural."
+        },
+        {
+          id: "c",
+          texto: "Imponer el método por eficacia.",
+          explicacion: "Contrario al enfoque de derechos."
+        },
+        {
+          id: "d",
+          texto: "Evitar hablar de su cosmovisión para no complicar.",
+          explicacion: "La invisibilización cultural daña el vínculo terapéutico."
+        }
+      ]
+    },
+
+    {
+      id: "p4",
+      tipo: "mcq",
+      enunciado: "Antes de insertar un DIU-LNG, corresponde:",
+      opciones: [
+        {
+          id: "d",
+          texto: "Descartar embarazo y evaluar riesgo de ITS.",
+          esCorrecta: true,
+          explicacion: "Requisito básico según MEC/MINSAL."
+        },
+        {
+          id: "a",
+          texto: "Solicitar ecografía pelviana obligatoria.",
+          explicacion: "No es requisito en APS."
+        },
+        {
+          id: "b",
+          texto: "Requerir PAP perfecto del mismo mes.",
+          explicacion: "No es exigencia para inserción."
+        },
+        {
+          id: "c",
+          texto: "Suspender actividad sexual 1 mes antes.",
+          explicacion: "No corresponde."
+        }
+      ]
+    },
+
+    {
+      id: "p5",
+      tipo: "mcq",
+      enunciado: "Mensaje educativo clave para su contexto cultural:",
+      opciones: [
+        {
+          id: "c",
+          texto: "El DIU-LNG regulará su sangrado y puede complementar su búsqueda de equilibrio corporal.",
+          esCorrecta: true,
+          explicacion: "Permite integrar perspectivas biomédicas y culturales."
+        },
+        {
+          id: "a",
+          texto: "El método no debe explicarse, solo aplicarse.",
+          explicacion: "Contradice interculturalidad."
+        },
+        {
+          id: "b",
+          texto: "Debe seguir solo la medicina occidental.",
+          explicacion: "Modelo intercultural valora complementariedad."
+        },
+        {
+          id: "d",
+          texto: "Su menorragia es 'normal' y no requiere tratamiento.",
+          explicacion: "Minimiza su condición."
+        }
+      ]
+    },
+
+    {
+      id: "p6",
+      tipo: "mcq",
+      enunciado: "Además del método, APS debe:",
+      opciones: [
+        {
+          id: "b",
+          texto: "Iniciar manejo de anemia (hierro) + educación alimentaria.",
+          esCorrecta: true,
+          explicacion: "Tratamiento integral: causa + consecuencia."
+        },
+        {
+          id: "a",
+          texto: "Pedir exámenes de coagulación obligatorios.",
+          explicacion: "No necesario sin sospecha específica."
+        },
+        {
+          id: "c",
+          texto: "Derivar de inmediato a ginecología por menorragia leve.",
+          explicacion: "APS maneja casos moderados."
+        },
+        {
+          id: "d",
+          texto: "Esperar 6 meses más para evaluar.",
+          explicacion: "Retrasa tratamiento."
+        }
+      ]
+    },
+
+    {
+      id: "p7",
+      tipo: "short",
+      enunciado: "Redacta una consejería intercultural, respetuosa, explicando cómo funciona el DIU-LNG, su impacto en el sangrado y cómo se complementa con su cosmovisión.",
+      puntosMaximos: 2,
+      criteriosEvaluacion: [
+        "intercultural",
+        "respeto",
+        "sangrado",
+        "equilibrio",
+        "LNG",
+        "menorragia",
+        "autonomía",
+        "anemia"
+      ],
+      guia: "• Respeto cultural • Explicación clara • Reducción de sangrado • Manejo de anemia • Elección informada"
+    }
+  ],
+
+  feedbackDinamico: {
+    bajo: "Gracias por intentarlo. Este caso requería integrar MEC, manejo de menorragia y enfoque intercultural. Repasa DIU-LNG y los principios de salud intercultural para fortalecer tu razonamiento.",
+    medio: "Muy bien. Reconociste los ejes clínicos y culturales del caso. Sigue profundizando en consejería intercultural para llegar al dominio completo.",
+    alto: "¡Excelente! Integraste evidencia, interculturalidad y consejería humana de forma impecable. Este es el nivel esperado de APS avanzada. ¡Felicitaciones!"
+  },
+
+  referencias: [
+    "MEC OMS/MINSAL 2021.",
+    "MINSAL. Salud Intercultural 2019.",
+    "Guía MINSAL Menopausia 2020."
+  ]
+},
+]
