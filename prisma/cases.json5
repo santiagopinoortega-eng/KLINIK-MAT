@@ -5954,70 +5954,71 @@
   ]
 },
 {
-  "id": "its-media-clamidia-uretritis",
+  "id": "its-media-vph-condilomas-hombre",
   "modulo": "ITS",
   "dificultad": "Media",
-  "titulo": "Clamidia en mujer joven: tamizaje, manejo y seguimiento",
-  "vigneta": "Mujer de 23 años presenta flujo mucopurulento de 4 días de evolución asociado a disuria leve. No fiebre, no dolor pélvico. Refiere relación sexual sin condón con nueva pareja hace 2 semanas. Dice sentirse preocupada porque nunca había tenido un cuadro similar. Al examen: flujo mucopurulento cervical, eritema leve y cérvix friable al contacto (sangra fácil).",
+  "titulo": "Condilomas acuminados en hombre joven: diagnóstico, manejo y mitos",
+  "vigneta": "Hombre de 21 años consulta preocupado por la aparición de 'pequeñas verrugas' en el cuerpo del pene y la base del escroto hace 3 semanas. No duelen ni pican, pero han aumentado en número. Teme que sea cáncer. Vida sexual activa, uso irregular de condón. Pareja actual asintomática. Al examen: lesiones exofíticas, color piel, superficie irregular (aspecto de coliflor), no ulceradas.",
   "pasos": [
     {
       "id": "p1",
       "tipo": "mcq",
-      "enunciado": "El cuadro clínico (cervicitis mucopurulenta + friabilidad + disuria) en mujer joven sexualmente activa es más compatible con:",
+      "enunciado": "Según la morfología descrita (exofítica, 'coliflor', indolora), el diagnóstico clínico más probable es:",
       "opciones": [
         {
           "id": "a",
-          "texto": "Candidiasis.",
-          "explicacion": "Incorrecto. El flujo por cándida es blanco, grumoso y adherente, no mucopurulento.",
+          "texto": "Pápulas perladas del pene.",
+          "explicacion": "Incorrecto. Son variantes anatómicas normales, ordenadas en corona en el glande, no 'coliflor' ni diseminadas.",
           "esCorrecta": false
         },
         {
           "id": "b",
-          "texto": "Herpes genital.",
-          "explicacion": "Incorrecto. Se manifiesta con úlceras dolorosas, no cervicitis purulenta.",
+          "texto": "Molusco contagioso.",
+          "explicacion": "Incorrecto. Son pápulas umbilicadas en el centro, lisas y brillantes, no verrugosas.",
           "esCorrecta": false
         },
         {
           "id": "c",
-          "texto": "Vaginosis bacteriana.",
-          "explicacion": "Incorrecto. Da flujo grisáceo y mal olor, pero no causa inflamación cervical (friabilidad) ni disuria marcada.",
-          "esCorrecta": false
+          "texto": "Condilomas acuminados (VPH).",
+          "explicacion": "Correcto. Es la presentación clínica clásica de la infección por Virus Papiloma Humano de bajo riesgo oncogénico.",
+          "esCorrecta": true
         },
         {
           "id": "d",
-          "texto": "Infección por Chlamydia trachomatis (o Gonococo).",
-          "explicacion": "Correcto. Es la causa más frecuente de cervicitis mucopurulenta en <25 años.",
-          "esCorrecta": true
+          "texto": "Sífilis secundaria.",
+          "explicacion": "Incorrecto. Los condilomas planos (sifilíticos) son más húmedos y planos; la clínica descrita es de VPH.",
+          "esCorrecta": false
         }
       ]
     },
     {
       "id": "p2",
       "tipo": "mcq",
-      "enunciado": "¿Cuál es el examen diagnóstico de elección para confirmar la etiología?",
+      "enunciado": "El paciente pregunta si esto le causará cáncer de pene. ¿Qué respuesta es correcta basada en virología?",
       "opciones": [
         {
           "id": "a",
-          "texto": "PCR (NAAT) para Clamidia y Gonorrea en muestra endocervical o vaginal.",
-          "explicacion": "Correcto. Es el estándar de oro por sensibilidad y especificidad, superior al cultivo.",
-          "esCorrecta": true
-        },
-        {
-          "id": "b",
-          "texto": "PAP.",
-          "explicacion": "Incorrecto. El PAP busca displasias (VPH), tiene baja sensibilidad para bacterias.",
+          "texto": "Sí, todas las verrugas se transforman en cáncer.",
+          "explicacion": "Incorrecto. Falso y alarmista.",
           "esCorrecta": false
         },
         {
+          "id": "b",
+          "texto": "No necesariamente. El 90% de las verrugas genitales son causadas por VPH 6 y 11, que son de 'Bajo Riesgo' oncogénico.",
+          "esCorrecta": true
+          ,
+          "explicacion": "Correcto. Aunque molestos, los genotipos que causan verrugas visibles rara vez causan cáncer."
+        },
+        {
           "id": "c",
-          "texto": "Cultivo corriente.",
-          "explicacion": "Incorrecto. La Clamidia es intracelular y no crece en medios de cultivo estándar.",
+          "texto": "Depende de si usa condón ahora.",
+          "explicacion": "Incorrecto. El riesgo oncogénico es intrínseco al tipo viral.",
           "esCorrecta": false
         },
         {
           "id": "d",
-          "texto": "Ecografía transvaginal.",
-          "explicacion": "Incorrecto. Útil si se sospecha EPI (dolor pélvico/fiebre), no para cervicitis no complicada.",
+          "texto": "Debe hacerse una biopsia inmediata para descartarlo.",
+          "explicacion": "Incorrecto. El diagnóstico es visual; la biopsia se reserva para lesiones atípicas, pigmentadas o que no responden a tratamiento.",
           "esCorrecta": false
         }
       ]
@@ -6025,30 +6026,30 @@
     {
       "id": "p3",
       "tipo": "mcq",
-      "enunciado": "Tratamiento empírico recomendado según Norma MINSAL mientras llega el resultado:",
+      "enunciado": "¿Cuál es el tratamiento farmacológico de aplicación profesional disponible comúnmente en APS para estas lesiones?",
       "opciones": [
         {
           "id": "a",
-          "texto": "Penicilina benzatina.",
-          "explicacion": "Incorrecto. Solo para Sífilis.",
-          "esCorrecta": false
-        },
-        {
-          "id": "b",
-          "texto": "Doxiciclina 100 mg c/12h por 7 días (cubre Clamidia) + Ceftriaxona 500mg IM (cubre Gonorrea).",
-          "explicacion": "Correcto. Ante cervicitis mucopurulenta, se recomienda cobertura dual empírica.",
+          "texto": "Podofilino (solución al 10-25%).",
+          "explicacion": "Correcto. Es un citotóxico que aplica el profesional semanalmente. Es el estándar en la canasta de prestaciones APS.",
           "esCorrecta": true
         },
         {
+          "id": "b",
+          "texto": "Aciclovir tópico.",
+          "explicacion": "Incorrecto. Es para virus herpes.",
+          "esCorrecta": false
+        },
+        {
           "id": "c",
-          "texto": "Metronidazol.",
-          "explicacion": "Incorrecto. Para anaerobios/protozoos.",
+          "texto": "Corticoides en crema.",
+          "explicacion": "Incorrecto. Pueden empeorar la infección viral.",
           "esCorrecta": false
         },
         {
           "id": "d",
-          "texto": "Fluconazol.",
-          "explicacion": "Incorrecto. Para hongos.",
+          "texto": "Antibióticos orales.",
+          "explicacion": "Incorrecto. No actúan sobre virus.",
           "esCorrecta": false
         }
       ]
@@ -6056,30 +6057,30 @@
     {
       "id": "p4",
       "tipo": "mcq",
-      "enunciado": "Conducta epidemiológica respecto a la(s) pareja(s) sexual(es):",
+      "enunciado": "Respecto al uso del condón y el VPH, ¿qué información educativa es precisa?",
       "opciones": [
         {
           "id": "a",
-          "texto": "Esperar síntomas en la pareja.",
-          "explicacion": "Incorrecto. La mayoría de los hombres son asintomáticos.",
+          "texto": "El condón protege al 100% contra el VPH.",
+          "explicacion": "Incorrecto. El virus puede estar en zonas que el condón no cubre (escroto, pubis).",
           "esCorrecta": false
         },
         {
           "id": "b",
-          "texto": "PCR previa obligatoria para ellos.",
-          "explicacion": "Incorrecto. Se trata por nexo epidemiológico.",
+          "texto": "El condón no sirve de nada para el VPH.",
+          "explicacion": "Incorrecto. Reduce la carga viral y el riesgo, aunque no lo elimina.",
           "esCorrecta": false
         },
         {
           "id": "c",
-          "texto": "Tratar a todas las parejas sexuales de los últimos 60 días con el mismo esquema.",
-          "explicacion": "Correcto. Corta la cadena de transmisión y previene reinfección.",
+          "texto": "El condón reduce significativamente el riesgo de transmisión y acelera el 'clearence' (eliminación) viral, pero no garantiza protección total.",
+          "explicacion": "Correcto. Protege la zona cubierta y disminuye la reinoculación viral, ayudando al sistema inmune a controlar la infección.",
           "esCorrecta": true
         },
         {
           "id": "d",
-          "texto": "Tratar solo a la paciente.",
-          "explicacion": "Incorrecto.",
+          "texto": "Solo debe usar condón si hay verrugas visibles.",
+          "explicacion": "Incorrecto. La excreción viral asintomática es frecuente.",
           "esCorrecta": false
         }
       ]
@@ -6087,30 +6088,30 @@
     {
       "id": "p5",
       "tipo": "mcq",
-      "enunciado": "Indicación de consejería para el alta:",
+      "enunciado": "El paciente no está vacunado. ¿Se recomienda la vacuna contra el VPH (Gardasil 9) ahora que ya tiene la infección?",
       "opciones": [
         {
           "id": "a",
-          "texto": "Evitar actividad sexual hasta que ambos completen el tratamiento + 7 días de espera.",
-          "explicacion": "Correcto. Asegura la cura bacteriológica y evita el efecto 'ping-pong'.",
-          "esCorrecta": true
-        },
-        {
-          "id": "b",
-          "texto": "Beber más agua.",
-          "explicacion": "Incorrecto. Irrelevante para la cura.",
+          "texto": "No, la vacuna ya no sirve si se infectó.",
+          "explicacion": "Incorrecto. Es un mito frecuente.",
           "esCorrecta": false
         },
         {
+          "id": "b",
+          "texto": "Sí, se recomienda para protegerlo contra los otros serotipos de la vacuna que aún no ha adquirido (ej: cepas oncogénicas).",
+          "explicacion": "Correcto. La vacuna nonavalente cubre 9 cepas. Tener una (ej: 6) no da inmunidad contra las otras (ej: 16, 18, 31...).",
+          "esCorrecta": true
+        },
+        {
           "id": "c",
-          "texto": "Usar doble condón.",
-          "explicacion": "Incorrecto. Riesgo de rotura.",
+          "texto": "Solo si su pareja se vacuna también.",
+          "explicacion": "Incorrecto. La indicación es individual.",
           "esCorrecta": false
         },
         {
           "id": "d",
-          "texto": "Avisar a su pareja en un mes.",
-          "explicacion": "Incorrecto. Aviso inmediato.",
+          "texto": "No, está contraindicada en hombres.",
+          "explicacion": "Incorrecto. Está indicada en hombres hasta los 26 años (o 45 según criterio).",
           "esCorrecta": false
         }
       ]
@@ -6118,19 +6119,19 @@
     {
       "id": "p6",
       "tipo": "short",
-      "enunciado": "Explica cómo informarías a la paciente sobre la importancia de avisar a su pareja y prevenir la reinfección, sin generar culpa.",
-      "guia": "• Normalizar: 'Es una bacteria común, se trata fácil'.\n• Pareja: 'Es probable que él no sienta nada, pero tenga la bacteria. Si no toma remedios, te la devolverá'.\n• Futuro: 'El condón es el único escudo real'.\n• Puertas abiertas: 'Vuelve si tienes dudas'.",
-      "feedbackDocente": "Evalúa si el estudiante conecta la biología (asintomático) con la conducta (necesidad de tratamiento) de forma no punitiva."
+      "enunciado": "Explica brevemente cómo le darías la noticia del diagnóstico, calmando su miedo al cáncer y explicando que es una condición tratable y a menudo transitoria.",
+      "guia": "• Diagnóstico: 'Son condilomas, una infección muy común por un virus'.\n• Calma: 'Estas verrugas son causadas por tipos de virus que NO suelen dar cáncer'.\n• Tratamiento: 'Las vamos a tratar aquí en el CESFAM hasta que desaparezcan'.\n• Inmunidad: 'Tu cuerpo suele eliminar el virus con el tiempo (1-2 años)'.",
+      "feedbackDocente": "Evalúa si el estudiante diferencia entre VPH de bajo riesgo (verrugas) y alto riesgo (cáncer) para tranquilizar al paciente, y si ofrece un plan de manejo claro."
     }
   ],
   "feedbackDinamico": {
-    "bajo": "La cervicitis mucopurulenta es la 'cara' de la Clamidia/Gonorrea. No es un flujo normal. Requiere antibióticos específicos (Doxiciclina/Ceftriaxona) y, sobre todo, ¡tratar a la pareja! Si no tratas al contacto, el tratamiento falla por reinfección.",
-    "medio": "Bien. Identificaste el cuadro infeccioso. Para nivel experto, afina el diagnóstico diferencial: ¿por qué no es Vaginosis? (Porque hay inflamación/pus). Y recuerda la importancia del PCR.",
-    "alto": "¡Excelente! Manejo sindrómico y etiológico impecable. Has cubierto la infección aguda, el riesgo de complicaciones (EPI) y la salud pública (parejas). Ese es el estándar de calidad."
+    "bajo": "gracias por el esfuerzo! el VPH es la ITS más frecuente. Clave 1: 'Aspecto de coliflor' = Condiloma. Clave 2: Generalmente son VPH 6 u 11 (Bajo riesgo de cáncer). Clave 3: El condón ayuda pero no es escudo perfecto (contacto piel con piel). Revisa la Norma 187.",
+    "medio": "Bien. Diagnosticas VPH y sabes tratarlo (Podofilino). Para el nivel experto, enfócate en la vacuna: explicarle a un paciente infectado que *igual* le sirve la vacuna (para otras cepas) es prevención terciaria de alto nivel.",
+    "alto": "¡Excelente! Has manejado el diagnóstico diferencial clínico, el tratamiento local y, lo más importante, la ansiedad del paciente ('cancerofobia'). Al recomendar la vacuna y el uso de condón, estás protegiendo su futuro y el de sus parejas."
   },
   "referencias": [
     "NORMA-GRAL.-TECNICA-N°-187-DE-PROFILAXIS-DIAGNOSTICO-Y-TRATAMIENTO-DE-LAS-ITS.pdf",
-    "Ginecologia_9na_Edicion_J_Gonzalez_Merlo.pdf"
+    "Estrategia-de-Prevencio%CC%81n-de-las-Infecciones-de-Transmisio%CC%81n-Sexual-final-09-07-2020.pdf"
   ]
 },
 {
