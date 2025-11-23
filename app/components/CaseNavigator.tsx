@@ -20,7 +20,7 @@ export default function CaseNavigator() {
     <aside className="sticky top-24">
       <div className="bg-white rounded-xl shadow-lg border-2 border-red-100 overflow-hidden">
         {/* Header con progreso */}
-        <div className="bg-gradient-to-br from-red-600 via-rose-600 to-pink-600 p-5 text-white relative overflow-hidden">
+        <div className="bg-gradient-to-br from-[#1E3A5F] via-[#DC2626] to-[#BC4639] p-5 text-white relative overflow-hidden">
           {/* Efecto de brillo animado */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" />
           
@@ -44,7 +44,7 @@ export default function CaseNavigator() {
                   className="h-4 rounded-full transition-all duration-700 ease-out relative overflow-hidden"
                   style={{ 
                     width: `${progressPercentage}%`,
-                    background: 'linear-gradient(90deg, #DC2626 0%, #F43F5E 50%, #FB923C 100%)',
+                    background: 'linear-gradient(90deg, #DC2626 0%, #F87171 50%, #FCA5A5 100%)',
                     boxShadow: '0 2px 8px rgba(220, 38, 38, 0.6)'
                   }}
                 >
@@ -111,12 +111,12 @@ export default function CaseNavigator() {
                     onClick={() => handleNavigate(index)}
                     disabled={disabled}
                     className={cx(
-                      'w-full flex items-center gap-3 rounded-lg px-3 py-2.5 transition-all text-left group relative',
+                      'w-full flex items-center gap-3 rounded-lg px-3 py-2.5 transition-all text-left group relative border-2',
                       'disabled:opacity-40 disabled:cursor-not-allowed',
                       {
-                        'bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-md scale-105': isActive,
-                        'hover:bg-red-50 text-neutral-700 hover:border-red-200': !isActive && !disabled,
-                        'bg-neutral-50': !isActive && disabled,
+                        'bg-gradient-to-r from-[#DC2626] to-[#F87171] text-white shadow-md scale-105 border-transparent': isActive,
+                        'hover:bg-blue-50/50 text-neutral-700 hover:border-[#3B82F6] border-transparent': !isActive && !disabled,
+                        'bg-neutral-50 border-neutral-200': !isActive && disabled,
                       }
                     )}
                   >
@@ -140,7 +140,7 @@ export default function CaseNavigator() {
                             <XCircleIcon className={cx('h-5 w-5', isActive ? 'text-white/90' : 'text-orange-500')} />
                           )
                         ) : (
-                          <div className={cx('text-xs font-bold', isActive ? 'text-white' : 'text-[var(--km-primary)]')}>
+                          <div className={cx('text-xs font-bold', isActive ? 'text-white' : 'text-[#DC2626]')}>
                             {puntos}pt
                           </div>
                         )

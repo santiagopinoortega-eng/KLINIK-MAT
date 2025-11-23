@@ -74,20 +74,20 @@ export default function CasoDetalleClient() {
     } else {
       nivel = 'Necesitas Revisar';
       emoji = '📝';
-      badgeColor = 'bg-gradient-to-r from-red-100 to-red-200 text-red-900 border-red-400';
+      badgeColor = 'bg-gradient-to-r from-red-100 to-orange-100 text-red-900 border-red-400';
       feedbackMessage = feedbackDinamico?.bajo || 'Repasa los conceptos fundamentales y vuelve a intentarlo.';
     }
 
     return (
       <div className="card p-6 md:p-8 animate-fade-in">
-        <h1 className="text-xl md:text-3xl font-extrabold mb-4 bg-gradient-to-r from-red-600 via-rose-600 to-pink-600 bg-clip-text text-transparent" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
+        <h1 className="text-xl md:text-3xl font-extrabold mb-4 bg-gradient-to-r from-[#1E3A5F] via-[#DC2626] to-[#BC4639] bg-clip-text text-transparent" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
           {caso.titulo}
         </h1>
 
         {/* Resumen de Puntuación */}
-        <div className="mb-6 p-6 rounded-xl bg-gradient-to-br from-red-50/50 via-rose-50/30 to-pink-50/40 border-2 border-red-200/60 shadow-sm">
+        <div className="mb-6 p-6 rounded-xl bg-gradient-to-br from-blue-50/50 via-white/70 to-red-50/30 border-2 border-blue-200/40 shadow-sm">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-bold text-red-800" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>Resultado del Caso</h2>
+            <h2 className="text-xl font-bold text-[#1E3A5F]" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>Resultado del Caso</h2>
             <div className={`px-4 py-2 rounded-full border-2 font-semibold ${badgeColor}`}>
               {emoji} {nivel}
             </div>
@@ -98,9 +98,9 @@ export default function CasoDetalleClient() {
               <div className="text-4xl font-bold text-emerald-600 mb-1" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>{puntosObtenidos}</div>
               <div className="text-sm font-semibold text-emerald-700">Puntos Obtenidos</div>
             </div>
-            <div className="text-center p-5 bg-gradient-to-br from-rose-50 to-pink-50 rounded-xl border-2 border-rose-300 shadow-sm hover:shadow-md transition-all hover:scale-105">
-              <div className="text-4xl font-bold text-rose-600 mb-1" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>{puntosMaximos}</div>
-              <div className="text-sm font-semibold text-rose-700">Puntos Totales</div>
+            <div className="text-center p-5 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border-2 border-blue-300 shadow-sm hover:shadow-md transition-all hover:scale-105">
+              <div className="text-4xl font-bold text-blue-700 mb-1" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>{puntosMaximos}</div>
+              <div className="text-sm font-semibold text-blue-800">Puntos Totales</div>
             </div>
             <div className="text-center p-5 bg-gradient-to-br from-red-50 to-orange-50 rounded-xl border-2 border-red-300 shadow-sm hover:shadow-md transition-all hover:scale-105">
               <div className="text-4xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent mb-1" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>{porcentaje}%</div>
@@ -111,7 +111,7 @@ export default function CasoDetalleClient() {
           {/* Barra de progreso mejorada */}
           <div className="w-full bg-gradient-to-r from-neutral-100 to-neutral-200 rounded-full h-4 mb-3 shadow-inner">
             <div 
-              className="bg-gradient-to-r from-red-500 via-rose-500 to-pink-500 h-4 rounded-full transition-all duration-500 shadow-lg relative overflow-hidden"
+              className="bg-gradient-to-r from-[#DC2626] via-[#F87171] to-[#FCA5A5] h-4 rounded-full transition-all duration-500 shadow-lg relative overflow-hidden"
               style={{ width: `${porcentaje}%` }}
             >
               <div className="absolute inset-0 bg-white/30 animate-shimmer"></div>
@@ -119,8 +119,8 @@ export default function CasoDetalleClient() {
           </div>
 
           {/* Feedback dinámico adaptativo */}
-          <div className="p-4 rounded-xl bg-gradient-to-br from-rose-50 to-pink-50 border-2 border-rose-200 mt-4 shadow-sm">
-            <p className="text-sm md:text-base text-rose-900 leading-relaxed font-medium">{feedbackMessage}</p>
+          <div className="p-4 rounded-xl bg-gradient-to-br from-orange-50 to-red-50 border-2 border-orange-200 mt-4 shadow-sm">
+            <p className="text-sm md:text-base text-gray-800 leading-relaxed font-medium">{feedbackMessage}</p>
           </div>
         </div>
 
@@ -142,12 +142,12 @@ export default function CasoDetalleClient() {
 
         <div className="prose prose-sm md:prose-base prose-neutral max-w-none">
             { (caso.debrief || caso.pasos.some(p => p.feedbackDocente)) && (
-              <div className="mt-4 p-5 rounded-xl bg-gradient-to-br from-rose-50 to-pink-50 border-2 border-rose-200 shadow-sm">
-                <h3 className="text-lg font-semibold text-rose-800 mb-3" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>Feedback Docente</h3>
+              <div className="mt-4 p-5 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 shadow-sm">
+                <h3 className="text-lg font-semibold text-[#1E3A5F] mb-3" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>Feedback Docente</h3>
                 {caso.debrief ? (
-                  <p className="text-rose-900 mt-2 leading-relaxed">{caso.debrief}</p>
+                  <p className="text-gray-700 mt-2 leading-relaxed">{caso.debrief}</p>
                 ) : (
-                  <div className="space-y-3 mt-2 text-rose-900">
+                  <div className="space-y-3 mt-2 text-gray-700">
                     {caso.pasos.map((p, idx) => (
                       p.feedbackDocente ? (
                         <div key={p.id} className="bg-white/50 p-3 rounded-lg">
@@ -161,9 +161,9 @@ export default function CasoDetalleClient() {
               </div>
             )}
             {caso.referencias && caso.referencias.length > 0 && (
-              <section className="mt-6 p-5 rounded-xl bg-gradient-to-br from-red-50 to-rose-50 border-2 border-red-200 shadow-sm">
-                <h3 className="text-lg font-semibold text-red-800 mb-3" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>Bibliografía</h3>
-                <ul className="list-disc pl-5 mt-3 text-sm text-red-900 space-y-1">
+              <section className="mt-6 p-5 rounded-xl bg-gradient-to-br from-orange-50 to-amber-50 border-2 border-orange-200 shadow-sm">
+                <h3 className="text-lg font-semibold text-[#BC4639] mb-3" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>Bibliografía</h3>
+                <ul className="list-disc pl-5 mt-3 text-sm text-gray-700 space-y-1">
                   {caso.referencias.map((r, i) => (
                     <li key={i}>{r}</li>
                   ))}
@@ -181,26 +181,26 @@ export default function CasoDetalleClient() {
     return (
       <div className="card p-6 md:p-8 animate-fade-in">
         {/* Instrucciones claras sin repetir el título */}
-        <div className="bg-gradient-to-r from-red-50 via-rose-50 to-pink-50 border-l-4 border-red-500 rounded-lg p-5 mb-6 shadow-sm">
-          <h2 className="text-lg font-bold text-red-900 mb-2 flex items-center gap-2" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
+        <div className="bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 border-l-4 border-[#1E3A5F] rounded-lg p-5 mb-6 shadow-sm">
+          <h2 className="text-lg font-bold text-[#1E3A5F] mb-2 flex items-center gap-2" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
             <span className="text-2xl">📋</span>
             Instrucciones del Caso Clínico
           </h2>
-          <ul className="space-y-2 text-sm text-red-800">
+          <ul className="space-y-2 text-sm text-gray-700">
             <li className="flex items-start gap-2">
-              <span className="text-red-500 mt-0.5 font-semibold">1.</span>
+              <span className="text-[#DC2626] mt-0.5 font-semibold">1.</span>
               <span>Lee atentamente la <strong>viñeta clínica</strong> que aparece en el panel izquierdo</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-red-500 mt-0.5 font-semibold">2.</span>
+              <span className="text-[#DC2626] mt-0.5 font-semibold">2.</span>
               <span>Analiza los <strong>datos relevantes</strong> del paciente y el contexto clínico</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-red-500 mt-0.5 font-semibold">3.</span>
+              <span className="text-[#DC2626] mt-0.5 font-semibold">3.</span>
               <span>Responde las preguntas a tu <strong>propio ritmo</strong> usando los botones de navegación</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-red-500 mt-0.5 font-semibold">4.</span>
+              <span className="text-[#DC2626] mt-0.5 font-semibold">4.</span>
               <span>Revisa el <strong>feedback dinámico</strong> al finalizar para reforzar tu aprendizaje</span>
             </li>
           </ul>
@@ -208,13 +208,13 @@ export default function CasoDetalleClient() {
 
         {/* Información del caso */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mb-6">
-          <div className="bg-gradient-to-br from-red-50 to-rose-50 rounded-lg p-4 text-center border-2 border-red-200 shadow-sm">
-            <div className="text-xl font-bold text-red-600 break-words" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>{caso.pasos.length}</div>
+          <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-lg p-4 text-center border-2 border-red-200 shadow-sm">
+            <div className="text-xl font-bold text-[#DC2626] break-words" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>{caso.pasos.length}</div>
             <div className="text-xs text-red-700 font-medium mt-1">Preguntas</div>
           </div>
-          <div className="bg-gradient-to-br from-rose-50 to-pink-50 rounded-lg p-4 text-center border-2 border-rose-200 shadow-sm">
-            <div className="text-sm font-bold text-rose-700 break-words leading-tight" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>{caso.modulo || 'General'}</div>
-            <div className="text-xs text-rose-700 font-medium mt-1">Módulo</div>
+          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-4 text-center border-2 border-blue-200 shadow-sm">
+            <div className="text-sm font-bold text-[#1E3A5F] break-words leading-tight" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>{caso.modulo || 'General'}</div>
+            <div className="text-xs text-blue-700 font-medium mt-1">Módulo</div>
           </div>
           <div className={`rounded-lg p-4 text-center border-2 sm:col-span-2 md:col-span-1 shadow-sm ${
             caso.dificultad === 'BAJA' ? 'bg-gradient-to-br from-emerald-50 to-green-50 border-emerald-300' :
