@@ -18,15 +18,15 @@ export default function CaseNavigator() {
 
   return (
     <aside className="sticky top-24">
-      <div className="bg-white rounded-xl shadow-lg border border-neutral-200 overflow-hidden">
+      <div className="bg-white rounded-xl shadow-lg border-2 border-red-100 overflow-hidden">
         {/* Header con progreso */}
-        <div className="bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 p-5 text-white relative overflow-hidden">
+        <div className="bg-gradient-to-br from-red-600 via-rose-600 to-pink-600 p-5 text-white relative overflow-hidden">
           {/* Efecto de brillo animado */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" />
           
           <div className="relative z-10">
             <div className="flex items-center justify-between mb-3">
-              <h3 className="text-base font-bold tracking-wide flex items-center gap-2">
+              <h3 className="text-base font-bold tracking-wide flex items-center gap-2" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
                 <span className="text-2xl">📊</span>
                 Progreso del Caso
               </h3>
@@ -44,8 +44,8 @@ export default function CaseNavigator() {
                   className="h-4 rounded-full transition-all duration-700 ease-out relative overflow-hidden"
                   style={{ 
                     width: `${progressPercentage}%`,
-                    background: 'linear-gradient(90deg, #10b981 0%, #3b82f6 50%, #8b5cf6 100%)',
-                    boxShadow: '0 2px 8px rgba(59, 130, 246, 0.6)'
+                    background: 'linear-gradient(90deg, #DC2626 0%, #F43F5E 50%, #FB923C 100%)',
+                    boxShadow: '0 2px 8px rgba(220, 38, 38, 0.6)'
                   }}
                 >
                   {/* Brillo animado dentro de la barra */}
@@ -114,8 +114,8 @@ export default function CaseNavigator() {
                       'w-full flex items-center gap-3 rounded-lg px-3 py-2.5 transition-all text-left group relative',
                       'disabled:opacity-40 disabled:cursor-not-allowed',
                       {
-                        'bg-gradient-to-r from-[var(--km-primary)] to-[var(--km-coral)] text-white shadow-md scale-105': isActive,
-                        'hover:bg-blue-50 text-neutral-700': !isActive && !disabled,
+                        'bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-md scale-105': isActive,
+                        'hover:bg-red-50 text-neutral-700 hover:border-red-200': !isActive && !disabled,
                         'bg-neutral-50': !isActive && disabled,
                       }
                     )}
