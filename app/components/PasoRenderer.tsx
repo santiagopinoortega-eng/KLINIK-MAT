@@ -4,6 +4,7 @@
 import { isMcq, isShort, McqOpcion, Paso } from "@/lib/types";
 import { useMemo, useState, useEffect, useCallback } from "react";
 import { useCaso } from "./CasoContext";
+import { ImageViewer } from "./ImageViewer";
 import cx from "clsx";
 
 interface Props {
@@ -134,6 +135,13 @@ export default function PasoRenderer({ pasoId, onAnswer }: Props) {
         </div>
         <p className="text-sm md:text-base text-neutral-900 mb-4 font-medium">{displayEnunciado}</p>
 
+        {/* Imágenes de la pregunta */}
+        {stepData.imagenes && stepData.imagenes.length > 0 && (
+          <div className="mb-4">
+            <ImageViewer images={stepData.imagenes} />
+          </div>
+        )}
+
         <textarea 
             className="w-full p-3 border border-neutral-300 rounded-lg mb-4 text-sm focus:ring-[var(--km-blue)] focus:border-[var(--km-blue)]"
             rows={6}
@@ -212,6 +220,13 @@ export default function PasoRenderer({ pasoId, onAnswer }: Props) {
         <h3 className="text-base md:text-lg font-semibold mb-3 md:mb-4 text-neutral-900 leading-snug">
           {displayEnunciado}
         </h3>
+
+        {/* Imágenes de la pregunta MCQ */}
+        {stepData.imagenes && stepData.imagenes.length > 0 && (
+          <div className="mb-4">
+            <ImageViewer images={stepData.imagenes} />
+          </div>
+        )}
         
         <div className="space-y-2.5">
           {stepData.opciones.map((opcion) => {

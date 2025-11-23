@@ -5,6 +5,7 @@ import CaseProgress from "./CaseProgress";
 import PasoRenderer from "./PasoRenderer";
 import { useCaso } from "./CasoContext";
 import { useEffect, useState } from "react";
+import { ImageViewer } from "./ImageViewer";
 
 export default function CasoDetalleClient() {
   // Traemos 'goToNextStep' del contexto para el botón "Comenzar Caso"
@@ -262,7 +263,14 @@ export default function CasoDetalleClient() {
 
       {/* Compact vignette for smaller screens: show a short excerpt of vigneta above the question */}
       {caso.vigneta && (
-        <div className="mb-4 block md:hidden p-3 bg-brand-50/30 rounded-md text-sm text-neutral-700 whitespace-pre-wrap">{caso.vigneta}</div>
+        <div className="mb-4 block md:hidden p-3 bg-brand-50/30 rounded-md text-sm text-neutral-700">
+          <div className="whitespace-pre-wrap">{caso.vigneta}</div>
+          {caso.imagenes && caso.imagenes.length > 0 && (
+            <div className="mt-3">
+              <ImageViewer images={caso.imagenes} />
+            </div>
+          )}
+        </div>
       )}
 
       {/* Barra de Progreso: mostramos índice 1-based */}

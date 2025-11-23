@@ -35,19 +35,21 @@ model Case {
   updatedAt  DateTime     @updatedAt @map("updated_at")
   questions  Question[]   @relation("CaseQuestions")
   norms      MinsalNorm[] @relation("CaseNorms")
+  images     CaseImage[]  @relation("CaseImages")
 
   @@map("cases")
 }
 
 model Question {
-  id      String   @id @default(cuid())
+  id      String          @id @default(cuid())
   order   Int
   text    String
   guia    String?
   feedbackDocente String?
   caseId  String
-  options Option[] @relation("QuestionOptions")
-  case    Case     @relation("CaseQuestions", fields: [caseId], references: [id])
+  options Option[]        @relation("QuestionOptions")
+  images  QuestionImage[] @relation("QuestionImages")
+  case    Case            @relation("CaseQuestions", fields: [caseId], references: [id])
 
   @@map("questions")
 }
@@ -82,6 +84,34 @@ model StudentResult {
 
   @@unique([userId, caseId])
   @@map("student_results")
+}
+
+// Tabla para imágenes asociadas a casos (vigneta)
+model CaseImage {
+  id          String   @id @default(cuid())
+  caseId      String
+  url         String   // Ruta relativa o absoluta a la imagen
+  alt         String   // Texto alternativo para accesibilidad
+  caption     String?  // Leyenda opcional
+  order       Int      @default(0) // Orden de aparición si hay múltiples imágenes
+  createdAt   DateTime @default(now()) @map("created_at")
+  case        Case     @relation("CaseImages", fields: [caseId], references: [id], onDelete: Cascade)
+
+  @@map("case_images")
+}
+
+// Tabla para imágenes asociadas a preguntas específicas
+model QuestionImage {
+  id          String   @id @default(cuid())
+  questionId  String
+  url         String   // Ruta relativa o absoluta a la imagen
+  alt         String   // Texto alternativo para accesibilidad
+  caption     String?  // Leyenda opcional
+  order       Int      @default(0) // Orden de aparición si hay múltiples imágenes
+  createdAt   DateTime @default(now()) @map("created_at")
+  question    Question @relation("QuestionImages", fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@map("question_images")
 }
 
 enum Role {

@@ -1,5 +1,23 @@
 // lib/types.ts
 
+// --- Definiciones de Imágenes ---
+
+export type CaseImage = {
+  id?: string;
+  url: string;
+  alt: string;
+  caption?: string;
+  order?: number;
+};
+
+export type QuestionImage = {
+  id?: string;
+  url: string;
+  alt: string;
+  caption?: string;
+  order?: number;
+};
+
 // --- Definiciones de Opciones y Pasos ---
 
 export type McqOpcion = {
@@ -14,6 +32,7 @@ export type McqPaso = {
   tipo: 'mcq';
   enunciado: string;
   opciones: McqOpcion[];
+  imagenes?: QuestionImage[]; // Imágenes asociadas a esta pregunta
   feedbackDocente?: string;
 };
 
@@ -24,6 +43,7 @@ export type ShortPaso = {
   puntosMaximos?: number; // Por defecto 2 puntos
   criteriosEvaluacion?: string[]; // Lista simple de criterios esperados
   guia?: string;
+  imagenes?: QuestionImage[]; // Imágenes asociadas a esta pregunta
   feedbackDocente?: string;
 };
 
@@ -47,6 +67,7 @@ export type CasoClient = {
   area?: string;             // Legacy, mantener compatibilidad
   dificultad: string | number; // Nuevo: "Baja"/"Media"/"Alta" o número legacy
   vigneta?: string | null;
+  imagenes?: CaseImage[];    // Imágenes asociadas a la vigneta del caso
   pasos: Paso[];
   referencias?: string[];
   debrief?: string;

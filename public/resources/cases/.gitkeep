@@ -1,0 +1,24 @@
+# Directorio para imágenes de casos clínicos
+
+## Estructura recomendada:
+```
+cases/
+├── anticoncepcion/
+│   ├── implante-insercion.jpg
+│   └── diu-colocacion.jpg
+├── its/
+│   ├── vph-condilomas-01.jpg
+│   ├── vph-condilomas-02.jpg
+│   └── herpes-genital.jpg
+├── consejeria/
+│   └── metodos-comparacion.jpg
+└── climaterio/
+    └── atrofia-vaginal.jpg
+```
+
+## Recomendaciones:
+- Formatos: JPG, PNG, WebP (preferir WebP)
+- Tamaño máximo: 500KB por imagen
+- Dimensiones recomendadas: 1200x800px máx
+- Nombres descriptivos en kebab-case
+- Siempre incluir texto alternativo (alt) para accesibilidad
