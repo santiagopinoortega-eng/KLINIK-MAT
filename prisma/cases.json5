@@ -6890,39 +6890,39 @@
   ]
 },
 {
-  "id": "its-alta-herpes-recurrencia",
+  "id": "its-alta-sifilis-embarazo",
   "modulo": "ITS",
   "dificultad": "Alta",
-  "titulo": "Herpes genital recurrente: manejo, prevención y consejería compleja",
-  "vigneta": "Mujer de 30 años, con diagnóstico confirmado previo de VHS-2. Consulta por su tercer brote en 5 meses. Las lesiones iniciaron hace 24 horas con ardor local y luego aparecieron vesículas dolorosas. Identifica estrés laboral importante como desencadenante. Expresa angustia porque su pareja asume que los brotes son por 'descuidos' o infidelidad actual. Examen: vesículas agrupadas en labio mayor, sin fiebre.",
+  "titulo": "Sífilis secundaria en gestante: diagnóstico, tratamiento y prevención de transmisión vertical",
+  "vigneta": "Gestante de 24 semanas consulta por aparición de 'manchas en el cuerpo' que no pican, hace 2 semanas. Al examen físico: exantema maculopapular rosado tenue en tronco y extremidades, que compromete palmas y plantas. Adenopatías generalizadas indoloras. No recuerda haber tenido úlceras genitales previas. VDRL reactivo 1:64. Pareja estable, no testeada.",
   "pasos": [
     {
       "id": "p1",
       "tipo": "mcq",
-      "enunciado": "¿Cuál es el factor desencadenante biológico más probable de este brote?",
+      "enunciado": "El cuadro clínico (exantema palmo-plantar no pruriginoso + VDRL alto) corresponde a:",
       "opciones": [
         {
           "id": "a",
-          "texto": "Consumo moderado de café.",
-          "explicacion": "Incorrecto. No hay evidencia que vincule la cafeína con la reactivación viral.",
+          "texto": "Alergia alimentaria.",
+          "explicacion": "Incorrecto. Las alergias suelen ser pruriginosas y no dan VDRL reactivo.",
           "esCorrecta": false
         },
         {
           "id": "b",
-          "texto": "Estrés físico o emocional.",
-          "explicacion": "Correcto. El estrés eleva el cortisol y deprime transitoriamente la inmunidad celular, permitiendo que el virus latente en el ganglio sacro se reactive y viaje a la piel.",
+          "texto": "Sífilis secundaria.",
+          "explicacion": "Correcto. El compromiso palmo-plantar y la serología en títulos altos son diagnósticos de la etapa secundaria (diseminada).",
           "esCorrecta": true
         },
         {
           "id": "c",
-          "texto": "Dieta rica en carbohidratos.",
-          "explicacion": "Incorrecto. No influye directamente.",
+          "texto": "Colestasia intrahepática del embarazo.",
+          "explicacion": "Incorrecto. Se caracteriza por prurito intenso palmoplantar sin lesiones primarias.",
           "esCorrecta": false
         },
         {
           "id": "d",
-          "texto": "Uso de condón.",
-          "explicacion": "Incorrecto. El roce podría irritar, pero no es la causa de la reactivación viral per se.",
+          "texto": "Sífilis latente tardía.",
+          "explicacion": "Incorrecto. La latente tardía es asintomática.",
           "esCorrecta": false
         }
       ]
@@ -6930,61 +6930,61 @@
     {
       "id": "p2",
       "tipo": "mcq",
-      "enunciado": "Tratamiento de elección para un brote RECURRENTE (episódico) según Norma 187:",
+      "enunciado": "¿Cuál es el riesgo principal si no se trata oportunamente?",
       "opciones": [
         {
           "id": "a",
-          "texto": "Valaciclovir 1 g c/12h por 7 días.",
-          "explicacion": "Incorrecto. Este esquema largo es para primoinfección. En recurrencias se busca acortar el cuadro, no curar la infección inicial.",
-          "esCorrecta": false
+          "texto": "Sífilis congénita en el recién nacido.",
+          "explicacion": "Correcto. La transmisión vertical en sífilis secundaria es muy alta (70-100%) sin tratamiento, causando muerte fetal o secuelas graves.",
+          "esCorrecta": true
         },
         {
           "id": "b",
-          "texto": "Penicilina benzatina.",
-          "explicacion": "Incorrecto. Es para bacterias (Sífilis).",
+          "texto": "Infertilidad materna.",
+          "explicacion": "Incorrecto. No es una secuela típica de la sífilis.",
           "esCorrecta": false
         },
         {
           "id": "c",
-          "texto": "Metronidazol.",
-          "explicacion": "Incorrecto.",
+          "texto": "Preeclampsia.",
+          "explicacion": "Incorrecto. No hay asociación directa.",
           "esCorrecta": false
         },
         {
           "id": "d",
-          "texto": "Aciclovir 400 mg cada 8 h por 5 días.",
-          "explicacion": "Correcto. El tratamiento episódico es más breve (5 días) y debe iniciarse en las primeras horas (fase prodrómica) para ser efectivo.",
-          "esCorrecta": true
+          "texto": "Diabetes gestacional.",
+          "explicacion": "Incorrecto.",
+          "esCorrecta": false
         }
       ]
     },
     {
       "id": "p3",
       "tipo": "mcq",
-      "enunciado": "¿En qué situación estaría indicado iniciar Terapia Supresora (antiviral diario)?",
+      "enunciado": "Tratamiento de elección para la gestante según Norma Técnica Nº187:",
       "opciones": [
         {
           "id": "a",
-          "texto": "Siempre en el segundo brote.",
-          "explicacion": "Incorrecto. Es muy precoz; muchos pacientes tienen pocos brotes al año.",
-          "esCorrecta": false
+          "texto": "Penicilina Benzatina 2.4 millones UI, 1 dosis IM.",
+          "explicacion": "Correcto. En sífilis precoz (primaria, secundaria, latente <1 año) el esquema es monodosis. En embarazo, se prioriza la penicilina por su eficacia y paso placentario.",
+          "esCorrecta": true
         },
         {
           "id": "b",
-          "texto": "Solo en embarazadas.",
-          "explicacion": "Incorrecto. También se usa en no gestantes por calidad de vida.",
+          "texto": "Eritromicina 500 mg c/6h.",
+          "explicacion": "Incorrecto. No cruza bien la placenta y no cura al feto.",
           "esCorrecta": false
         },
         {
           "id": "c",
-          "texto": "Si presenta ≥ 6 brotes/año o si el impacto psicológico/sexual es muy severo.",
-          "explicacion": "Correcto. La supresión continua reduce la recurrencia en un 70-80% y mejora la calidad de vida.",
-          "esCorrecta": true
+          "texto": "Doxiciclina 100 mg c/12h.",
+          "explicacion": "Incorrecto. Contraindicada en embarazo (afecta huesos/dientes fetales).",
+          "esCorrecta": false
         },
         {
           "id": "d",
-          "texto": "Si desea suspender relaciones sexuales.",
-          "explicacion": "Incorrecto.",
+          "texto": "Penicilina Benzatina 2.4 millones UI, 3 dosis (semanales).",
+          "explicacion": "Incorrecto. Ese esquema es para sífilis tardía o de duración desconocida.",
           "esCorrecta": false
         }
       ]
@@ -6992,60 +6992,60 @@
     {
       "id": "p4",
       "tipo": "mcq",
-      "enunciado": "Enfoque comunicacional adecuado para abordar el conflicto con la pareja:",
+      "enunciado": "Si la paciente refiere alergia a la penicilina (anamnesis de shock anafiláctico), ¿cuál es la conducta?",
       "opciones": [
         {
           "id": "a",
-          "texto": "Sugerir ocultarlo para evitar conflictos.",
-          "explicacion": "Incorrecto. No es ético ni saludable.",
-          "esCorrecta": false
+          "texto": "Desensibilización a Penicilina oral en hospital y luego tratar con Penicilina.",
+          "explicacion": "Correcto. La Penicilina es el único antibiótico que garantiza la cura de la sífilis fetal. En embarazadas alérgicas, se debe desensibilizar.",
+          "esCorrecta": true
         },
         {
           "id": "b",
-          "texto": "Decir que su pareja tiene razón.",
-          "explicacion": "Incorrecto. Clínicamente falso; la recurrencia es endógena.",
+          "texto": "Usar Eritromicina como alternativa.",
+          "explicacion": "Incorrecto. Se considera tratamiento inadecuado para el feto.",
           "esCorrecta": false
         },
         {
           "id": "c",
-          "texto": "Negar relación con el estrés.",
-          "explicacion": "Incorrecto.",
+          "texto": "Usar Ceftriaxona.",
+          "explicacion": "Incorrecto. Riesgo de reacción cruzada y menor evidencia en embarazo.",
           "esCorrecta": false
         },
         {
           "id": "d",
-          "texto": "Validar emociones y explicar la biología: los brotes son reactivaciones de un virus 'dormido' (latencia), NO nuevas infecciones.",
-          "explicacion": "Correcto. Explicar la historia natural del VHS (latencia en ganglios) desmantela la acusación de infidelidad y reduce el conflicto.",
-          "esCorrecta": true
+          "texto": "No tratar hasta después del parto.",
+          "explicacion": "Incorrecto. Negligencia grave.",
+          "esCorrecta": false
         }
       ]
     },
     {
       "id": "p5",
       "tipo": "mcq",
-      "enunciado": "Medida preventiva para reducir transmisión a la pareja en esta etapa:",
+      "enunciado": "¿Qué conducta con la pareja es indispensable para considerar el caso 'adecuadamente tratado'?",
       "opciones": [
         {
           "id": "a",
-          "texto": "Uso consistente de condón siempre + abstinencia total durante pródromos y lesiones visibles.",
-          "explicacion": "Correcto. La excreción viral es máxima en las lesiones. El condón protege, pero no cubre el 100% de la piel, por lo que la abstinencia en brote es necesaria.",
+          "texto": "Tratamiento simultáneo de la pareja sexual.",
+          "explicacion": "Correcto. Si la pareja no se trata, la gestante se reinfecta y el feto sigue en riesgo. El tratamiento de la pareja es un criterio de cura para el recién nacido.",
           "esCorrecta": true
         },
         {
           "id": "b",
-          "texto": "Evitar cualquier relación sexual permanente.",
-          "explicacion": "Incorrecto. Innecesario.",
+          "texto": "Solo pedirle VDRL.",
+          "explicacion": "Incorrecto. Se debe tratar epidemiológicamente (contacto).",
           "esCorrecta": false
         },
         {
           "id": "c",
-          "texto": "Lavado vigoroso previo al coito.",
-          "explicacion": "Incorrecto. No elimina el virus y daña la mucosa.",
+          "texto": "No es necesario citarlo.",
+          "explicacion": "Incorrecto.",
           "esCorrecta": false
         },
         {
           "id": "d",
-          "texto": "Usar doble condón.",
+          "texto": "Tratarlo solo si tiene lesiones visibles.",
           "explicacion": "Incorrecto.",
           "esCorrecta": false
         }
@@ -7054,30 +7054,30 @@
     {
       "id": "p6",
       "tipo": "mcq",
-      "enunciado": "Exámenes recomendados para completar el estudio de salud sexual en este control:",
+      "enunciado": "¿Qué reacción post-tratamiento debe advertirse a la gestante?",
       "opciones": [
         {
           "id": "a",
-          "texto": "PAP para herpes.",
-          "explicacion": "Incorrecto. El PAP no es diagnóstico de herpes agudo.",
-          "esCorrecta": false
-        },
-        {
-          "id": "b",
-          "texto": "Tamizaje de VIH y sífilis según riesgo.",
-          "explicacion": "Correcto. Las úlceras genitales facilitan la entrada de VIH y Treponema. Siempre se debe descartar coinfección.",
+          "texto": "Reacción de Jarisch-Herxheimer (fiebre, mialgias, contracciones).",
+          "explicacion": "Correcto. Es una reacción inflamatoria aguda por la lisis masiva de espiroquetas. Puede desencadenar dinámica uterina o sufrimiento fetal transitorio.",
           "esCorrecta": true
         },
         {
+          "id": "b",
+          "texto": "Alergia cutánea tardía.",
+          "explicacion": "Incorrecto.",
+          "esCorrecta": false
+        },
+        {
           "id": "c",
-          "texto": "Hemograma obligatorio.",
+          "texto": "Vómitos incoercibles.",
           "explicacion": "Incorrecto.",
           "esCorrecta": false
         },
         {
           "id": "d",
-          "texto": "PCR universal de todas las ITS.",
-          "explicacion": "Incorrecto. Se pide según clínica y riesgo.",
+          "texto": "Caída del cabello.",
+          "explicacion": "Incorrecto.",
           "esCorrecta": false
         }
       ]
@@ -7085,32 +7085,30 @@
     {
       "id": "p7",
       "tipo": "short",
-      "enunciado": "Redacta una consejería integral que explique: la naturaleza recurrente del virus (latencia), el rol del estrés y cómo prevenir la transmisión a la pareja.",
+      "enunciado": "Redacta una consejería para explicarle a la gestante por qué es vital que se ponga la inyección (a pesar de que duela) y por qué su pareja debe venir hoy mismo.",
       "puntosMaximos": 2,
       "criteriosEvaluacion": [
+        "bebé",
+        "feto",
         "transmisión",
-        "supresora",
-        "condón",
-        "abstinencia",
-        "estrés",
-        "brotes",
-        "latencia",
-        "ganglio",
+        "penicilina",
         "pareja",
-        "no culpa"
+        "reinfección",
+        "parto",
+        "sífilis congénita",
+        "cura"
       ],
-      "guia": "• Biología: 'El virus vive en los nervios y despierta con el estrés'.\n• Pareja: 'No te contagiaste de nuevo, es el mismo virus'.\n• Prevención: 'Sin sexo cuando tengas heridas o picazón (pródromo)'.\n• Opción: 'Si te pasa mucho, hay tratamiento preventivo diario'.",
-      "feedbackDocente": "Evalúa la capacidad de explicar la 'latencia viral' en términos sencillos para calmar la ansiedad de la paciente y su pareja."
+      "guia": "• Feto: 'La bacteria pasa al bebé y puede causarle daño grave'.\n• Tratamiento: 'La penicilina es la única que atraviesa la placenta y cura a tu guagua'.\n• Pareja: 'Si él no se trata, te vuelve a contagiar y el bebé sigue en peligro'.",
+      "feedbackDocente": "Evalúa si el estudiante transmite la urgencia del tratamiento dual (madre-feto) y la importancia crítica del tratamiento de pareja para prevenir la sífilis congénita."
     }
   ],
   "feedbackDinamico": {
-    "bajo": "El Herpes es complejo porque afecta el cuerpo y la relación de pareja. Claves: 1) Diferencia 'Recurrencia' (leve, corta) de 'Primoinfección'. 2) Tratamiento rápido (5 días). 3) Educación: El estrés lo despierta, no una infidelidad nueva. Revisa la Norma 187.",
-    "medio": "¡Bien! Manejas la clínica y el fármaco. Ahora da el salto a la excelencia: la consejería. Explicar la 'latencia viral' (el virus durmiendo) es la única forma de que la paciente deje de sentirse culpable cada vez que tiene un brote.",
-    "alto": "¡Excelente! Has integrado la farmacología (Aciclovir episódico/supresor) con una intervención psicosocial profunda (educación sobre estrés y latencia). Has tratado a la paciente de forma integral, protegiendo su salud física y su bienestar emocional."
+    "bajo": "La Sífilis en el embarazo es una emergencia médica. La Penicilina Benzatina es insustituible. Si es alérgica, ¡se desensibiliza! No uses macrólidos. Y recuerda: para que el bebé se considere tratado, la pareja también debe tratarse. Revisa la Norma 187.",
+    "medio": "Bien. Diagnosticas la secundaria y tratas con Penicilina. Para el nivel experto, enfócate en la Reacción de Jarisch-Herxheimer: adviértele que puede tener contracciones y fiebre post-inyección, para que consulte si es necesario.",
+    "alto": "¡Excelente! Has manejado el binomio madre-hijo con rigor. Diagnóstico correcto (secundaria), tratamiento estándar (Penicilina) y manejo de contactos. Tu enfoque previene efectivamente la sífilis congénita, un indicador clave de salud pública."
   },
   "referencias": [
-    "NORMA-GRAL.-TECNICA-N°-187-DE-PROFILAXIS-DIAGNOSTICO-Y-TRATAMIENTO-DE-LAS-ITS.pdf",
-    "Ginecologia_9na_Edicion_J_Gonzalez_Merlo.pdf"
+    "NORMA-GRAL.-TECNICA-N°-187-DE-PROFILAXIS-DIAGNOSTICO-Y-TRATAMIENTO-DE-LAS-ITS.pdf"
   ]
 },
 
@@ -7867,6 +7865,2256 @@
   "referencias": [
     "Nuevos criterios de elegibilidad..pdf",
     "Manual-obstetricia.ginecologia.pdf.pdf"
+  ]
+},
+{
+  "id": "cons-alta-violencia-sexual-pareja",
+  "modulo": "Consejería",
+  "dificultad": "Alta",
+  "titulo": "Detección y manejo de violencia sexual en la pareja en control ginecológico",
+  "vigneta": "MOTIVO DE CONSULTA: 'Dolor bajito y molestia al tener relaciones'.\n\nHISTORIA ENFERMEDAD ACTUAL:\nMujer de 29 años, G2P2, acude a control de salud sexual. Relata historia de 6 meses de dolor pélvico inespecífico y dispareunia progresiva. Al indagar, se muestra evasiva, mira al suelo y comenta en voz baja: 'Es que mi marido se enoja si le digo que no tengo ganas, dice que es mi deber, así que igual pasa nomás para que no haya problemas'. Niega agresión física directa ('golpes no'), pero sí insultos y portazos. Se observa labilidad emocional.\n\nANTECEDENTES:\nUsuaria de DIU T de Cobre hace 3 años. PAP vigente negativo. Sin antecedentes mórbidos. Escolaridad completa. Dueña de casa.\n\nEXAMEN FÍSICO:\nSignos vitales: PA 110/70, FC 78. Especuloscopía: Cérvix sano, hilos de DIU visibles, flujo fisiológico. No se observan lesiones traumáticas agudas en genitales ni equimosis en cuerpo. Test de Flores (vaginismo) negativo, pero se observa tensión muscular generalizada al examen.\n\nIMPRESIÓN DIAGNÓSTICA:\nSospecha de Violencia Sexual en la pareja (coerción) y dolor pélvico crónico secundario.",
+  "pasos": [
+    {
+      "id": "p1",
+      "tipo": "mcq",
+      "enunciado": "Ante el relato 'igual pasa nomás para que no haya problemas', ¿qué concepto clínico-legal se está vulnerando y debe ser pesquisado?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "El débito conyugal obligatorio.",
+          "explicacion": "Incorrecto. El débito conyugal no justifica la imposición sexual; legalmente no existe obligación de tener sexo sin deseo."
+        },
+        {
+          "id": "b",
+          "texto": "La disfunción sexual hipoactiva.",
+          "explicacion": "Incorrecto. El problema no es la falta de deseo, es la coerción externa."
+        },
+        {
+          "id": "c",
+          "texto": "El consentimiento sexual libre y voluntario.",
+          "explicacion": "Correcto. Tener relaciones sexuales por miedo a la reacción de la pareja ('para que no se enoje') constituye violencia sexual, incluso sin fuerza física.",
+          "esCorrecta": true
+        },
+        {
+          "id": "d",
+          "texto": "La dispareunia orgánica.",
+          "explicacion": "Incorrecto. El dolor es probablemente secundario a la falta de excitación y tensión por la coerción."
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "tipo": "mcq",
+      "enunciado": "¿Cuál es la intervención de 'Primera Acogida' más adecuada en este momento en el box?",
+      "opciones": [
+        {
+          "id": "d",
+          "texto": "Validar el relato, nombrar la violencia ('lo que describes es violencia') y evaluar el riesgo inmediato.",
+          "explicacion": "Correcto. La víctima a menudo no reconoce la coerción como violencia. Validarla y ponerle nombre es el primer paso terapéutico.",
+          "esCorrecta": true
+        },
+        {
+          "id": "a",
+          "texto": "Llamar a Carabineros inmediatamente sin avisarle.",
+          "explicacion": "Incorrecto. Puede poner en riesgo vital a la mujer si vuelve a casa sin un plan de seguridad."
+        },
+        {
+          "id": "b",
+          "texto": "Recetar lubricantes y sugerir que se relaje.",
+          "explicacion": "Incorrecto. Medicaliza un problema de derechos humanos y normaliza el abuso."
+        },
+        {
+          "id": "c",
+          "texto": "Citar a la pareja para explicarle que debe ser suave.",
+          "explicacion": "Incorrecto y peligroso. Nunca se realiza mediación conjunta en casos de violencia."
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "tipo": "mcq",
+      "enunciado": "Considerando que no hay lesiones físicas agudas, ¿qué consecuencia en salud sexual y reproductiva es frecuente en este perfil de usuaria?",
+      "opciones": [
+        {
+          "id": "b",
+          "texto": "Dolor pélvico crónico, dispareunia y mayor riesgo de ITS/embarazo no deseado por falta de negociación.",
+          "explicacion": "Correcto. La violencia sexual en pareja se asocia fuertemente a somatización pélvica y a la imposibilidad de negociar uso de condón.",
+          "esCorrecta": true
+        },
+        {
+          "id": "a",
+          "texto": "Cáncer de ovario.",
+          "explicacion": "Incorrecto. No hay asociación directa."
+        },
+        {
+          "id": "c",
+          "texto": "Endometriosis profunda.",
+          "explicacion": "Incorrecto. Es una patología orgánica inflamatoria, no causada por violencia."
+        },
+        {
+          "id": "d",
+          "texto": "Prolapso genital grado III.",
+          "explicacion": "Incorrecto."
+        }
+      ]
+    },
+    {
+      "id": "p4",
+      "tipo": "mcq",
+      "enunciado": "¿Qué red de derivación interna o externa es prioritaria activar desde el CESFAM?",
+      "opciones": [
+        {
+          "id": "c",
+          "texto": "Dupla Psicosocial del consultorio y/o Centro de la Mujer (SERNAMEG) para apoyo especializado.",
+          "explicacion": "Correcto. Requiere manejo multidisciplinario (psicólogo/a, asistente social) y legal especializado.",
+          "esCorrecta": true
+        },
+        {
+          "id": "a",
+          "texto": "Urólogo.",
+          "explicacion": "Incorrecto. El problema no es urológico."
+        },
+        {
+          "id": "b",
+          "texto": "Nutricionista.",
+          "explicacion": "Incorrecto. No es prioritario."
+        },
+        {
+          "id": "d",
+          "texto": "Solo control médico en 6 meses.",
+          "explicacion": "Incorrecto. Es abandono de la paciente."
+        }
+      ]
+    },
+    {
+      "id": "p5",
+      "tipo": "mcq",
+      "enunciado": "La paciente pregunta: '¿Si lo denuncio, me van a quitar a mis hijos?'. ¿Qué respuesta es correcta y contenedora?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "No, la denuncia busca protegerte a ti. El sistema busca interrumpir la violencia, no separarte de tus hijos.",
+          "explicacion": "Correcto. Es un mito común usado por los agresores para mantener el control. Se debe desmentir con firmeza y calma.",
+          "esCorrecta": true
+        },
+        {
+          "id": "b",
+          "texto": "Sí, es muy probable que el tribunal se los lleve.",
+          "explicacion": "Incorrecto. Falso y revictimizante."
+        },
+        {
+          "id": "c",
+          "texto": "Mejor no denuncie para no arriesgarse.",
+          "explicacion": "Incorrecto. Éticamente inaceptable."
+        },
+        {
+          "id": "d",
+          "texto": "Depende de si tienes dinero.",
+          "explicacion": "Incorrecto."
+        }
+      ]
+    },
+    {
+      "id": "p6",
+      "tipo": "mcq",
+      "enunciado": "Si la paciente decide NO denunciar hoy, ¿cuál es la conducta de 'reducción de daños'?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Elaborar un 'Plan de Seguridad' (documentos, llaves, red de apoyo) y dejar agendado control de seguimiento corto.",
+          "explicacion": "Correcto. Si no está lista para salir, se debe preparar para una eventual emergencia vital y mantener el vínculo con el CESFAM.",
+          "esCorrecta": true
+        },
+        {
+          "id": "b",
+          "texto": "Cerrar el caso hasta que ella decida denunciar.",
+          "explicacion": "Incorrecto."
+        },
+        {
+          "id": "c",
+          "texto": "Insistir hasta que firme la denuncia.",
+          "explicacion": "Incorrecto. Presionar puede ser contraproducente."
+        },
+        {
+          "id": "d",
+          "texto": "Retirar el DIU.",
+          "explicacion": "Incorrecto. La dejaría desprotegida ante un embarazo forzado."
+        }
+      ]
+    },
+    {
+      "id": "p7",
+      "tipo": "short",
+      "enunciado": "Redacta una frase de 'Validación' para decirle a esta paciente, y explica brevemente por qué es importante nombrar la violencia sexual aunque no haya golpes.",
+      "puntosMaximos": 2,
+      "criteriosEvaluacion": [
+        "validación",
+        "no es tu culpa",
+        "violencia",
+        "sexual",
+        "consentimiento",
+        "miedo",
+        "coerción",
+        "creer",
+        "apoyo"
+      ],
+      "guia": "• Frase: 'Te creo. Nadie, ni siquiera tu esposo, tiene derecho a tocarte si tú no quieres. Eso se llama violencia'.\n• Importancia: Nombrar el problema rompe la normalización y permite que la mujer reconozca que sus síntomas (dolor) tienen una causa real y externa.",
+      "feedbackDocente": "Evalúa si el estudiante es capaz de decir 'esto es violencia' de forma empática, sin juzgar a la mujer por quedarse, y conectando el síntoma físico (dolor) con la causa (coerción)."
+    }
+  ],
+  "feedbackDinamico": {
+    "bajo": "¡Qué bueno que te enfrentes a este caso! Sé que es difícil porque no hay 'signos evidentes' como un moretón. Pero el dolor pélvico crónico y la actitud evasiva son los gritos silenciosos de la violencia sexual. Tu misión no es ser juez, es ser el primer lugar seguro que ella encuentra. Revisa la 'Norma Técnica de Violencia Sexual' del MINSAL, te dará herramientas para acoger sin miedo.",
+    "medio": "¡Vas muy bien! Detectaste la coerción y la necesidad de apoyo. Para llegar al nivel experto, enfócate en el 'Plan de Seguridad'. Muchas veces no podemos sacarlas de esa casa hoy mismo, pero podemos enseñarles a sobrevivir hasta que puedan salir. Esa es la APS que salva vidas.",
+    "alto": "¡Impecable! Has demostrado una sensibilidad clínica y humana excepcional. Entiendes que la violencia sexual en la pareja es una patología prevalente que se esconde detrás de síntomas vagos. Tu manejo valida, protege y empodera. Estás listo/a para ser un agente de cambio."
+  },
+  "referencias": [
+    "MINSAL. Norma Técnica para la atención de víctimas de violencia sexual (2022).",
+    "MINSAL. Orientaciones Técnicas para la atención de mujeres en situación de violencia de pareja."
+  ]
+},
+{
+  "id": "ac-media-preconcepcional-tiroides",
+  "modulo": "Anticoncepción",
+  "dificultad": "Media",
+  "titulo": "Consejería preconcepcional en mujer con hipotiroidismo y obesidad",
+  "vigneta": "MOTIVO DE CONSULTA: 'Quiero dejar las pastillas para embarazarme'.\n\nHISTORIA ENFERMEDAD ACTUAL:\nMujer de 32 años, nuligesta, acude a matrona con su pareja. Refiere deseo de embarazo a corto plazo. Usuaria de Levotiroxina 75 mcg/día por Hipotiroidismo diagnosticado hace 4 años, con control irregular (último hace 1 año). Relata fatiga y aumento de peso reciente.\n\nANTECEDENTES:\nIMC 33 (Obesidad grado I). Sedentaria. No fuma. Niega DM/HTA. Trae exámenes de hace 1 semana: TSH 6.8 uUI/mL, T4 libre normal. Glicemia ayuno 98 mg/dL.\n\nEXAMEN FÍSICO:\nPA 120/80. Tiroides palpable, no dolorosa, aumentada de tamaño difusamente (bocio leve). Piel seca. Resto normal.\n\nIMPRESIÓN DIAGNÓSTICA:\nHipotiroidismo descompensado (TSH elevada) y Obesidad. Riesgo obstétrico aumentado si concibe ahora.",
+  "pasos": [
+    {
+      "id": "p1",
+      "tipo": "mcq",
+      "enunciado": "Considerando la TSH de 6.8 uUI/mL en una mujer que busca embarazo, ¿cuál es el objetivo terapéutico ideal (meta de TSH) antes de la concepción?",
+      "opciones": [
+        {
+          "id": "c",
+          "texto": "Lograr una TSH < 2.5 uUI/mL.",
+          "explicacion": "Correcto. Las guías internacionales y MINSAL recomiendan TSH < 2.5 para optimizar la fertilidad y asegurar el desarrollo neurológico fetal temprano.",
+          "esCorrecta": true
+        },
+        {
+          "id": "a",
+          "texto": "Mantener TSH bajo 10.0 uUI/mL.",
+          "explicacion": "Incorrecto. Demasiado alto; riesgo de aborto y daño neurológico.",
+        },
+        {
+          "id": "b",
+          "texto": "Cualquier valor dentro del rango normal de laboratorio (hasta 4.5).",
+          "explicacion": "Incorrecto. Para preconcepción/primer trimestre, el rango es más estricto (<2.5)."
+        },
+        {
+          "id": "d",
+          "texto": "Suprimir la TSH a 0 (indetectable).",
+          "explicacion": "Incorrecto. Eso sería iatrogenia (hipertiroidismo inducido)."
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "tipo": "mcq",
+      "enunciado": "¿Cuál es el principal riesgo obstétrico/fetal de embarazarse con hipotiroidismo NO tratado o descompensado?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Aborto espontáneo, parto prematuro y alteración del desarrollo neurocognitivo fetal.",
+          "explicacion": "Correcto. Las hormonas tiroideas maternas son críticas para el cerebro fetal en el primer trimestre.",
+          "esCorrecta": true
+        },
+        {
+          "id": "b",
+          "texto": "Macrosomía fetal.",
+          "explicacion": "Incorrecto. Se asocia más a Diabetes.",
+        },
+        {
+          "id": "c",
+          "texto": "Malformaciones cardíacas específicas.",
+          "explicacion": "Incorrecto. No es el riesgo principal del hipotiroidismo.",
+        },
+        {
+          "id": "d",
+          "texto": "Embarazo gemelar.",
+          "explicacion": "Incorrecto."
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "tipo": "mcq",
+      "enunciado": "¿Qué recomendación inmediata se debe dar respecto a su deseo de dejar los anticonceptivos hoy?",
+      "opciones": [
+        {
+          "id": "b",
+          "texto": "Aconsejar posponer la concepción (mantener MAC), derivar a especialista y esperar hasta ajustar dosis de Levotiroxina y normalizar TSH.",
+          "explicacion": "Correcto. La prioridad es embarazarse en eutiroidismo (TSH normal) para prevenir riesgos.",
+          "esCorrecta": true
+        },
+        {
+          "id": "a",
+          "texto": "Suspender anticonceptivos hoy, el embarazo arregla la tiroides.",
+          "explicacion": "Incorrecto y peligroso. El embarazo aumenta la demanda de hormona tiroidea.",
+        },
+        {
+          "id": "c",
+          "texto": "Cambiar a método natural.",
+          "explicacion": "Incorrecto. Se necesita anticoncepción eficaz hasta compensar.",
+        },
+        {
+          "id": "d",
+          "texto": "Derivar a fertilidad inmediatamente.",
+          "explicacion": "Incorrecto. No tiene problema de fertilidad, sino de condición clínica previa."
+        }
+      ]
+    },
+    {
+      "id": "p4",
+      "tipo": "mcq",
+      "enunciado": "Respecto a su IMC de 33 (Obesidad), ¿qué suplementación específica se recomienda en la etapa preconcepcional?",
+      "opciones": [
+        {
+          "id": "d",
+          "texto": "Ácido Fólico en dosis alta (5 mg/día) al menos 3 meses antes.",
+          "explicacion": "Correcto. La obesidad materna es factor de riesgo para defectos del tubo neural, por lo que se indica dosis mayor a la estándar (0.4mg).",
+          "esCorrecta": true
+        },
+        {
+          "id": "a",
+          "texto": "Hierro endovenoso.",
+          "explicacion": "Incorrecto. No tiene anemia.",
+        },
+        {
+          "id": "b",
+          "texto": "Calcio 1 gramo.",
+          "explicacion": "Incorrecto. No es específico de preconcepción.",
+        },
+        {
+          "id": "c",
+          "texto": "Vitamina C.",
+          "explicacion": "Incorrecto."
+        }
+      ]
+    },
+    {
+      "id": "p5",
+      "tipo": "mcq",
+      "enunciado": "¿Qué otra derivación preventiva (Programa GES) debe gestionarse en la etapa preconcepcional/embarazo?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Salud Oral Integral de la Embarazada (Odontología).",
+          "explicacion": "Correcto. La enfermedad periodontal se asocia a parto prematuro. El saneamiento bucal es ideal antes o al inicio del embarazo.",
+          "esCorrecta": true
+        },
+        {
+          "id": "b",
+          "texto": "Kinesiología respiratoria.",
+          "explicacion": "Incorrecto.",
+        },
+        {
+          "id": "c",
+          "texto": "Oftalmología.",
+          "explicacion": "Incorrecto. No es rutina GES embarazo.",
+        },
+        {
+          "id": "d",
+          "texto": "Dermatología.",
+          "explicacion": "Incorrecto.",
+        }
+      ]
+    },
+    {
+      "id": "p6",
+      "tipo": "short",
+      "enunciado": "Explica brevemente a la paciente por qué es necesario 'esperar un poquito' (ajustar la tiroides) antes de buscar el embarazo, enfocándote en el beneficio para su futuro hijo.",
+      "guia": "• Tiroides y Cerebro: 'Tu guagua no tiene tiroides al principio, depende 100% de la tuya para desarrollar su cerebro'.\n• Riesgo actual: 'Con el examen como está (alto), hay riesgo de que se pierda el embarazo'.\n• Plan: 'Ajustamos la pastilla, bajamos la TSH y en 2-3 meses buscamos embarazo seguro'.",
+      "feedbackDocente": "Evalúa si el estudiante comunica el riesgo (neurodesarrollo/aborto) de forma motivadora para lograr la adherencia a posponer el embarazo."
+    }
+  ],
+  "feedbackDinamico": {
+    "bajo": "¡Ánimo! Sé que la paciente quiere embarazarse 'ya', pero tu rol es proteger ese futuro embarazo. Recuerda: Hipotiroidismo descompensado = Riesgo de aborto y daño cognitivo. La meta de TSH es estricta (<2.5). Revisa el capítulo de Patología Médica y Embarazo en el Manual de Obstetricia.",
+    "medio": "¡Bien pensado! Identificaste que no está lista metabólicamente. No olvides el Ácido Fólico: en obesidad, la dosis sube a 5mg. Esos detalles hacen la diferencia entre un control estándar y uno de excelencia.",
+    "alto": "¡Excelente! Has actuado como un verdadero guardián de la salud materno-fetal. Al postergar el embarazo para compensar la TSH y manejar el peso, estás previniendo las complicaciones más graves. Eso es medicina preventiva de alto nivel."
+  },
+  "referencias": [
+    "MINSAL. Guía Perinatal 2015 (Capítulo Enfermedad Tiroidea).",
+    "Manual-obstetricia.ginecologia.pdf.pdf"
+  ]
+},
+{
+  "id": "its-alta-sifilis-latente",
+  "modulo": "ITS",
+  "dificultad": "Alta",
+  "titulo": "Desafío diagnóstico: VDRL reactivo en paciente asintomática (Sífilis Latente)",
+  "vigneta": "Mujer de 26 años acude a control de salud sexual. Se realiza VDRL de rutina que resulta Reactivo 1:16. Ella se sorprende, refiere no tener síntomas actuales ni recordar úlceras o manchas en el último año. Su pareja actual (de hace 2 años) nunca se ha testeado. Al examen físico riguroso: piel y mucosas sanas, sin lesiones genitales ni adenopatías. No recuerda haber tenido sífilis antes.",
+  "pasos": [
+    {
+      "id": "p1",
+      "tipo": "mcq",
+      "enunciado": "Ante un VDRL reactivo en paciente asintomática, ¿cuál es el primer paso administrativo/clínico obligatorio antes de tratar?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Solicitar confirmación con prueba treponémica (MHA-TP o FTA-ABS) al laboratorio de referencia.",
+          "explicacion": "Correcto. El VDRL puede tener falsos positivos (embarazo, enfermedades autoinmunes). La Norma 187 exige confirmar con prueba específica antes de catalogar el caso, salvo en embarazo o sospecha clínica muy alta.",
+          "esCorrecta": true
+        },
+        {
+          "id": "b",
+          "texto": "Iniciar tratamiento inmediato con 3 dosis por si acaso.",
+          "explicacion": "Incorrecto. Se debe confirmar primero en paciente asintomática.",
+          "esCorrecta": false
+        },
+        {
+          "id": "c",
+          "texto": "Repetir el VDRL en 3 meses.",
+          "explicacion": "Incorrecto. Retrasa el diagnóstico y mantiene la cadena de transmisión.",
+          "esCorrecta": false
+        },
+        {
+          "id": "d",
+          "texto": "Dar de alta si no tiene síntomas.",
+          "explicacion": "Incorrecto. La sífilis latente es asintomática pero transmisible (en etapa precoz) y progresiva.",
+          "esCorrecta": false
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "tipo": "mcq",
+      "enunciado": "Llega la confirmación MHA-TP (+). Dado que no tiene síntomas y no recuerda lesiones previas, ¿cómo se clasifica la etapa de esta Sífilis?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Sífilis Primaria.",
+          "explicacion": "Incorrecto. Requiere presencia de chancro.",
+          "esCorrecta": false
+        },
+        {
+          "id": "b",
+          "texto": "Sífilis Latente Indeterminada (o Tardía).",
+          "explicacion": "Correcto. Al no poder demostrarse que la infección ocurrió en el último año (sin VDRL previo no reactivo, sin clínica reciente, pareja no evaluada), se asume el escenario de mayor duración para asegurar la cura.",
+          "esCorrecta": true
+        },
+        {
+          "id": "c",
+          "texto": "Sífilis Latente Precoz.",
+          "explicacion": "Incorrecto. Para ser 'precoz' (<1 año) necesitamos evidencia documental de un VDRL (-) hace menos de 12 meses o nexo claro, lo cual no tenemos.",
+          "esCorrecta": false
+        },
+        {
+          "id": "d",
+          "texto": "Neurosífilis.",
+          "explicacion": "Incorrecto. No hay clínica neurológica.",
+          "esCorrecta": false
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "tipo": "mcq",
+      "enunciado": "Basado en la clasificación de 'Latente Indeterminada/Tardía', ¿cuál es el esquema de tratamiento correcto según Norma MINSAL?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Penicilina Benzatina 2.4 millones UI, 1 dosis única.",
+          "explicacion": "Incorrecto. Dosis única es solo para sífilis < 1 año (primaria, secundaria, latente precoz).",
+          "esCorrecta": false
+        },
+        {
+          "id": "b",
+          "texto": "Penicilina Benzatina 2.4 millones UI, 3 dosis (1 semanal por 3 semanas consecutivas).",
+          "explicacion": "Correcto. Ante la duda de la duración, se trata como tardía (>1 año) para asegurar niveles treponemicidas prolongados y evitar recaídas o neurosífilis asintomática.",
+          "esCorrecta": true
+        },
+        {
+          "id": "c",
+          "texto": "Doxiciclina 100 mg por 7 días.",
+          "explicacion": "Incorrecto. Insuficiente.",
+          "esCorrecta": false
+        },
+        {
+          "id": "d",
+          "texto": "Ceftriaxona 1 g IM diario por 10 días.",
+          "explicacion": "Incorrecto. Reservado para neurosífilis o alergia severa.",
+          "esCorrecta": false
+        }
+      ]
+    },
+    {
+      "id": "p4",
+      "tipo": "mcq",
+      "enunciado": "La paciente pregunta si su pareja (asintomática) debe tratarse. ¿Cuál es la respuesta correcta?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Sí, debe ser evaluado y tratado epidemiológicamente como contacto.",
+          "explicacion": "Correcto. Aunque ella sea 'latente', pudo haber sido contagiada por él (quien podría tener una latente también) o ella haberlo contagiado en su fase activa previa. Se corta la cadena tratando a ambos.",
+          "esCorrecta": true
+        },
+        {
+          "id": "b",
+          "texto": "No, porque ella no tiene úlceras contagiosas ahora.",
+          "explicacion": "Incorrecto. No sabemos el estatus de él.",
+          "esCorrecta": false
+        },
+        {
+          "id": "c",
+          "texto": "Solo si a él le sale el VDRL positivo.",
+          "explicacion": "Incorrecto. Se trata por contacto sexual, a veces antes del resultado.",
+          "esCorrecta": false
+        },
+        {
+          "id": "d",
+          "texto": "Solo si él tiene síntomas.",
+          "explicacion": "Incorrecto.",
+          "esCorrecta": false
+        }
+      ]
+    },
+    {
+      "id": "p5",
+      "tipo": "mcq",
+      "enunciado": "Para el seguimiento serológico (control de cura), ¿qué criterio define una respuesta adecuada al tratamiento en 6-12 meses?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "El VDRL debe negativizarse completamente (No Reactivo).",
+          "explicacion": "Incorrecto. En sífilis tardía, puede quedar una 'cicatriz serológica' (títulos bajos estables) de por vida.",
+          "esCorrecta": false
+        },
+        {
+          "id": "b",
+          "texto": "Descenso de los títulos en al menos 2 diluciones (ej: de 1:16 a 1:4).",
+          "explicacion": "Correcto. Este es el criterio serológico de cura bacteriológica. Si no baja o sube, indica falla de tratamiento o reinfección.",
+          "esCorrecta": true
+        },
+        {
+          "id": "c",
+          "texto": "Que desaparezcan los síntomas.",
+          "explicacion": "Incorrecto. Ya era asintomática.",
+          "esCorrecta": false
+        },
+        {
+          "id": "d",
+          "texto": "Que la prueba treponémica (MHA-TP) se vuelva negativa.",
+          "explicacion": "Incorrecto. Las pruebas treponémicas (MHA-TP) quedan positivas de por vida; no sirven para seguimiento.",
+          "esCorrecta": false
+        }
+      ]
+    },
+    {
+      "id": "p6",
+      "tipo": "mcq",
+      "enunciado": "¿Qué precaución debe tener respecto al VDRL en el futuro?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Debe avisar en futuros controles que tuvo sífilis tratada, porque su VDRL podría mantenerse reactivo bajo (cicatriz).",
+          "explicacion": "Correcto. Evita tratamientos innecesarios repetidos si los títulos se mantienen bajos y estables (Serofast).",
+          "esCorrecta": true
+        },
+        {
+          "id": "b",
+          "texto": "Nunca más podrá donar sangre.",
+          "explicacion": "Incorrecto. Tras el tratamiento efectivo y periodo de espera, sí puede.",
+          "esCorrecta": false
+        },
+        {
+          "id": "c",
+          "texto": "No necesita más controles.",
+          "explicacion": "Incorrecto.",
+          "esCorrecta": false
+        },
+        {
+          "id": "d",
+          "texto": "Debe repetirse la Penicilina todos los años.",
+          "explicacion": "Incorrecto.",
+          "esCorrecta": false
+        }
+      ]
+    },
+    {
+      "id": "p7",
+      "tipo": "short",
+      "enunciado": "Escribe brevemente cómo le explicarías a la paciente por qué necesita 3 inyecciones en vez de 1, a pesar de no tener síntomas.",
+      "puntosMaximos": 2,
+      "criteriosEvaluacion": [
+        "tiempo",
+        "desconocido",
+        "latente",
+        "oculta",
+        "3 dosis",
+        "seguridad",
+        "bacteria",
+        "escondida",
+        "recaída"
+      ],
+      "guia": "• Tiempo: 'Como no sabemos exactamente cuándo te contagiaste (pudo ser hace más de un año)...'.\n• Seguridad: '...la bacteria puede estar más escondida en el cuerpo'.\n• Tratamiento: 'Necesitamos 3 dosis para asegurar que se elimine por completo y no vuelva a aparecer'.",
+      "feedbackDocente": "Evalúa si el estudiante transmite la lógica de 'seguridad ante la duda del tiempo' (criterio de Latencia Tardía) para justificar el esquema prolongado."
+    }
+  ],
+  "feedbackDinamico": {
+    "bajo": "Ojo con los tiempos. En Sífilis, si no tienes un VDRL negativo del último año que te respalde, asumes SIEMPRE que es 'Tardía' o de 'Duración Desconocida'. Y eso significa 3 dosis de Penicilina (semana 0, 1 y 2). Es la regla de seguridad. Revisa la Norma 187.",
+    "medio": "Bien diagnosticado (Latente). Para el nivel experto, maneja la ansiedad del paciente: explícale que tener el VDRL reactivo bajo (1:2, 1:4) en el futuro es normal (cicatriz serológica) y no significa que el tratamiento falló, siempre que no suban los títulos.",
+    "alto": "¡Excelente criterio! Has aplicado correctamente el principio de precaución epidemiológica: ante la duda de la fecha de contagio, tratamos como Latente Tardía (3 dosis). Esto previene complicaciones terciarias a largo plazo. Manejo de matronería de alto estándar."
+  },
+  "referencias": [
+    "NORMA-GRAL.-TECNICA-N°-187-DE-PROFILAXIS-DIAGNOSTICO-Y-TRATAMIENTO-DE-LAS-ITS.pdf"
+  ]
+},
+{
+  "id": "ac-media-implante-sangrado",
+  "modulo": "Anticoncepción",
+  "dificultad": "Media",
+  "titulo": "Manejo de sangrado irregular (spotting) en usuaria de Implante Subdérmico",
+  "vigneta": "Adolescente de 19 años, usuaria de Implante Subdérmico hace 4 meses. Consulta molesta porque presenta 'sangrado manchado' (spotting) casi todos los días desde hace 3 semanas. No tiene dolor ni fiebre. Vida sexual activa, pareja única. Está pensando en retirárselo si esto no para. Al examen: Implante palpable en brazo, genitales sanos, escaso flujo hemático oscuro en vagina.",
+  "pasos": [
+    {
+      "id": "p1",
+      "tipo": "mcq",
+      "enunciado": "Fisiopatológicamente, ¿a qué se debe este sangrado frecuente en usuarias de progestágeno solo?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Desplazamiento del implante.",
+          "explicacion": "Incorrecto. La ubicación no afecta el patrón de sangrado.",
+          "esCorrecta": false
+        },
+        {
+          "id": "b",
+          "texto": "Atrofia endometrial con vascularización frágil por efecto del progestágeno.",
+          "explicacion": "Correcto. El progestágeno adelgaza el endometrio, dejando capilares superficiales que se rompen y sangran de forma irregular (spotting).",
+          "esCorrecta": true
+        },
+        {
+          "id": "c",
+          "texto": "Infección del sitio de inserción.",
+          "explicacion": "Incorrecto. Daría dolor y calor local en el brazo.",
+          "esCorrecta": false
+        },
+        {
+          "id": "d",
+          "texto": "Reacción alérgica al titanio.",
+          "explicacion": "Incorrecto. El implante no es de titanio y la alergia sería local.",
+          "esCorrecta": false
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "tipo": "mcq",
+      "enunciado": "Antes de tratar el sangrado, ¿qué condición clínica se debe descartar razonablemente en APS?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Embarazo (Test de orina) e Infección (Cervicitis/ITS).",
+          "explicacion": "Correcto. Aunque el implante es muy eficaz, el sangrado anormal obliga a descartar embarazo (ectópico) o una ITS (Clamidia/Gonorrea) que cause sangrado por inflamación.",
+          "esCorrecta": true
+        },
+        {
+          "id": "b",
+          "texto": "Cáncer de ovario.",
+          "explicacion": "Incorrecto. Poco probable a los 19 años.",
+          "esCorrecta": false
+        },
+        {
+          "id": "c",
+          "texto": "Hipertensión arterial.",
+          "explicacion": "Incorrecto. No causa metrorragia.",
+          "esCorrecta": false
+        },
+        {
+          "id": "d",
+          "texto": "Déficit de vitamina D.",
+          "explicacion": "Incorrecto.",
+          "esCorrecta": false
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "tipo": "mcq",
+      "enunciado": "Si se descarta patología y la paciente desea conservar el implante, ¿cuál es el manejo farmacológico transitorio de primera línea?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Antibióticos profilácticos.",
+          "explicacion": "Incorrecto. No hay infección.",
+          "esCorrecta": false
+        },
+        {
+          "id": "b",
+          "texto": "AINEs (ej: Ibuprofeno 400-600mg c/8h) por 5-7 días.",
+          "explicacion": "Correcto. Los antiinflamatorios reducen la síntesis de prostaglandinas en el endometrio, disminuyendo el sangrado y la inflamación local. Es una prueba terapéutica costo-efectiva.",
+          "esCorrecta": true
+        },
+        {
+          "id": "c",
+          "texto": "Retiro inmediato del implante.",
+          "explicacion": "Incorrecto. Se debe intentar manejo médico primero si ella está dispuesta.",
+          "esCorrecta": false
+        },
+        {
+          "id": "d",
+          "texto": "Vitamina K.",
+          "explicacion": "Incorrecto. No es un problema de coagulación sistémica.",
+          "esCorrecta": false
+        }
+      ]
+    },
+    {
+      "id": "p4",
+      "tipo": "mcq",
+      "enunciado": "Si los AINEs no funcionan y no hay contraindicación para estrógenos, ¿qué segunda línea de manejo transitorio se puede ofrecer?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Un ciclo de ACO combinados (o Etinilestradiol solo) por 10-21 días.",
+          "explicacion": "Correcto. El estrógeno exógeno ayuda a estabilizar y proliferar el endometrio atrófico, deteniendo el sangrado ('parche endometrial').",
+          "esCorrecta": true
+        },
+        {
+          "id": "b",
+          "texto": "Inyección trimestral encima.",
+          "explicacion": "Incorrecto. Sumar más progestágeno puede empeorar la atrofia.",
+          "esCorrecta": false
+        },
+        {
+          "id": "c",
+          "texto": "Ácido Tranexámico endovenoso.",
+          "explicacion": "Incorrecto. Excesivo para spotting en APS.",
+          "esCorrecta": false
+        },
+        {
+          "id": "d",
+          "texto": "DIU de cobre.",
+          "explicacion": "Incorrecto. Aumentaría el sangrado.",
+          "esCorrecta": false
+        }
+      ]
+    },
+    {
+      "id": "p5",
+      "tipo": "mcq",
+      "enunciado": "¿Qué consejería es fundamental para manejar las expectativas a largo plazo?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Explicar que el patrón de sangrado es impredecible, pero suele disminuir en cantidad y frecuencia con el tiempo (amenorrea secundaria).",
+          "explicacion": "Correcto. La 'paciencia informada' es clave. Muchas usuarias entran en amenorrea después del primer año.",
+          "esCorrecta": true
+        },
+        {
+          "id": "b",
+          "texto": "Prometer que el sangrado parará hoy mismo.",
+          "explicacion": "Incorrecto. Falsa promesa.",
+          "esCorrecta": false
+        },
+        {
+          "id": "c",
+          "texto": "Decirle que es su culpa por estrés.",
+          "explicacion": "Incorrecto.",
+          "esCorrecta": false
+        },
+        {
+          "id": "d",
+          "texto": "Asegurar que tendrá reglas regulares todos los meses.",
+          "explicacion": "Incorrecto. El implante anovulatorio quita la ciclicidad menstrual.",
+          "esCorrecta": false
+        }
+      ]
+    }
+  ],
+  "feedbackDinamico": {
+    "bajo": "El spotting es la molestia #1 del Implante. No lo retires de inmediato. Explica que es por 'atrofia' (el endometrio se pone muy flaquito y sangra). Prueba con AINEs (Ibuprofeno) por unos días. Si no cede, se pueden usar estrógenos transitorios. Revisa el 'Manejo de Sangrado' en la Norma.",
+    "medio": "Bien. Entiendes que es un efecto esperado y no una enfermedad grave. Para ser experto, recuerda siempre descartar ITS (Clamidia) o embarazo antes de asumir que es solo por el implante. Eso es seguridad clínica.",
+    "alto": "¡Excelente! Has manejado la complicación más frecuente de los LARC con criterio clínico escalonado: 1) Descarte de patología, 2) Manejo AINEs, 3) Manejo Hormonal transitorio. Evitaste un retiro innecesario y educaste a la paciente. Muy bien."
+  },
+  "referencias": [
+    "norma-fertilidad.pdf.pdf",
+    "LibroAnticoncepcion(FInalWeb-Flip).pdf"
+  ]
+},
+{
+  "id": "ac-media-diu-nuligesta",
+  "modulo": "Anticoncepción",
+  "dificultad": "Media",
+  "titulo": "Consejería para inserción de DIU en mujer nuligesta: derribando mitos",
+  "vigneta": "Mujer de 24 años, nuligesta (sin hijos), acude a la consulta de salud sexual. Refiere: 'Quiero ponerme la T de Cobre porque las hormonas me caen mal, pero mi tía me dijo que eso es solo para mujeres que ya fueron mamás y que a mí me va a dejar estéril o me va a perforar el útero porque es muy chico'. Se muestra ansiosa pero motivada por un método no hormonal. Examen ginecológico: Útero anteverso de tamaño normal, cuello sano.",
+  "pasos": [
+    {
+      "id": "p1",
+      "tipo": "mcq",
+      "enunciado": "Según los Criterios Médicos de Elegibilidad (OMS/MINSAL), ¿es el DIU (Cobre o LNG) una opción para nuligestas?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "No, es Categoría 4 (Riesgo inaceptable) por riesgo de expulsión.",
+          "explicacion": "Incorrecto. Es un mito antiguo."
+        },
+        {
+          "id": "b",
+          "texto": "Sí, es Categoría 2 (Ventajas superan riesgos). Es seguro y eficaz.",
+          "esCorrecta": true,
+          "explicacion": "Correcto. La nuliparidad NO es contraindicación. El riesgo de expulsión es levemente mayor que en multíparas, pero sigue siendo un método de primera línea."
+        },
+        {
+          "id": "c",
+          "texto": "Solo si es mayor de 30 años.",
+          "explicacion": "Incorrecto. La edad no es limitante para el DIU."
+        },
+        {
+          "id": "d",
+          "texto": "Sí, pero solo el hormonal, no la T de cobre.",
+          "explicacion": "Incorrecto. Ambos son elegibles."
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "tipo": "mcq",
+      "enunciado": "Respecto al mito de la infertilidad ('me va a dejar estéril'), ¿qué explicación basada en evidencia es correcta?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "El DIU moderno no causa infertilidad; el riesgo histórico se asociaba a ITS no tratadas (Clamidia/Gonorrea), no al dispositivo en sí.",
+          "esCorrecta": true,
+          "explicacion": "Correcto. El retorno a la fertilidad es inmediato tras el retiro. El riesgo de EPI es bajo y se concentra en los primeros 20 días post-inserción."
+        },
+        {
+          "id": "b",
+          "texto": "Es cierto, el cobre daña los ovarios permanentemente.",
+          "explicacion": "Incorrecto. El cobre es espermicida local, no afecta la función ovárica."
+        },
+        {
+          "id": "c",
+          "texto": "Puede causar adherencias si se usa más de 2 años.",
+          "explicacion": "Incorrecto."
+        },
+        {
+          "id": "d",
+          "texto": "Solo causa infertilidad si se encarna.",
+          "explicacion": "Incorrecto. La perforación es un evento agudo y raro, no causa común de infertilidad."
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "tipo": "mcq",
+      "enunciado": "Para mejorar la experiencia de la inserción (dolor) en una mujer nuligesta, ¿qué manejo se recomienda en APS?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Anestesia general obligatoria.",
+          "explicacion": "Incorrecto. Procedimiento ambulatorio."
+        },
+        {
+          "id": "b",
+          "texto": "Uso de misoprostol previo de rutina.",
+          "explicacion": "Incorrecto. La evidencia actual no apoya el uso rutinario de misoprostol para inserción de DIU (aumenta dolor/calambres sin facilitar tanto la inserción).",
+          "esCorrecta": false
+        },
+        {
+          "id": "c",
+          "texto": "Premedicación con AINEs (ej: Ibuprofeno) 1 hora antes y/o bloqueo paracervical si hay dificultad.",
+          "explicacion": "Correcto. Los AINEs reducen el dolor tipo cólico posterior. La técnica aséptica y suave es fundamental.",
+          "esCorrecta": true
+        },
+        {
+          "id": "d",
+          "texto": "Realizarlo durante la menstruación exclusivamente para aprovechar la dilatación.",
+          "explicacion": "Incorrecto. Se puede insertar en cualquier momento del ciclo si se descarta embarazo, aunque la regla facilita descartarlo.",
+          "esCorrecta": false
+        }
+      ]
+    },
+    {
+      "id": "p4",
+      "tipo": "mcq",
+      "enunciado": "¿Qué signo de alarma post-inserción debe motivar una consulta inmediata?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Dolor pélvico leve tipo regla el primer día.",
+          "explicacion": "Incorrecto. Es esperable."
+        },
+        {
+          "id": "b",
+          "texto": "Fiebre, dolor pélvico intenso o flujo purulento en los primeros días.",
+          "explicacion": "Correcto. Sugiere infección pélvica post-procedimiento o perforación, requiriendo evaluación urgente.",
+          "esCorrecta": true
+        },
+        {
+          "id": "c",
+          "texto": "Manchado escaso (spotting).",
+          "explicacion": "Incorrecto. Normal post-procedimiento."
+        },
+        {
+          "id": "d",
+          "texto": "Sentir los hilos al tacto vaginal.",
+          "explicacion": "Incorrecto. Es signo de buena posición."
+        }
+      ]
+    },
+    {
+      "id": "p5",
+      "tipo": "mcq",
+      "enunciado": "Si la paciente teme al dolor menstrual aumentado con la T de Cobre, ¿qué alternativa LARC le ofrecerías?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "DIU con Levonorgestrel (Mirena/Kyleena).",
+          "explicacion": "Correcto. Al tener hormona local, reduce el sangrado y el dolor menstrual, siendo ideal si busca LARC pero teme a la dismenorrea.",
+          "esCorrecta": true
+        },
+        {
+          "id": "b",
+          "texto": "Anillo vaginal.",
+          "explicacion": "Incorrecto. No es LARC (depende de la usuaria).",
+          "esCorrecta": false
+        },
+        {
+          "id": "c",
+          "texto": "Inyección trimestral.",
+          "explicacion": "Incorrecto. No es LARC (requiere reinyección).",
+          "esCorrecta": false
+        },
+        {
+          "id": "d",
+          "texto": "Método del ritmo.",
+          "explicacion": "Incorrecto.",
+          "esCorrecta": false
+        }
+      ]
+    },
+    {
+      "id": "p6",
+      "tipo": "short",
+      "enunciado": "Redacta una frase empática para responder al miedo de la paciente sobre que el DIU 'es muy grande para su útero' o que 'no cabe'.",
+      "guia": "• Anatomía: 'El útero es un músculo flexible'.\n• Medición: 'Antes de ponerlo, medimos tu útero con un instrumento especial (histerometría) para asegurarnos de que cabe perfecto'.\n• Seguridad: 'Si tu útero es muy pequeño (poco común), te avisaré y no lo pondremos a la fuerza'.",
+      "feedbackDocente": "Evalúa si el estudiante menciona el paso de la 'Histerometría' como garantía de seguridad antes de la inserción."
+    }
+  ],
+  "feedbackDinamico": {
+    "bajo": "¡No le tengas miedo al DIU en nuligestas! Es un mito antiguo. La OMS dice que es Categoría 2 (¡Se puede!). Lo importante es descartar ITS antes de ponerlo y usar una buena técnica. Revisa los Criterios de Elegibilidad.",
+    "medio": "Bien. Sabes que se puede usar. Para ser experto, maneja el dolor: indicar un Ibuprofeno antes y explicar paso a paso el procedimiento ('voy a medir tu útero primero') baja la ansiedad y el dolor percibido. ¡La comunicación es tu mejor anestesia!",
+    "alto": "¡Excelente! Has derribado mitos con evidencia científica. Al validar el DIU en nuligestas y manejar la analgesia/ansiedad, estás abriendo la puerta a la anticoncepción más efectiva para una joven que no quiere hormonas. Gran criterio."
+  },
+  "referencias": [
+    "Nuevos criterios de elegibilidad..pdf",
+    "Manual-obstetricia.ginecologia.pdf.pdf"
+  ]
+},
+{
+  "id": "its-alta-epi-manejo",
+  "modulo": "ITS",
+  "dificultad": "Alta",
+  "titulo": "Sospecha y manejo sindrómico de Enfermedad Pélvica Inflamatoria (EPI) leve en APS",
+  "vigneta": "Mujer de 22 años consulta en box de morbilidad por dolor en bajo vientre (hipogastrio) de 5 días de evolución, que ha ido en aumento. Relata que el dolor empeora al caminar y durante las relaciones sexuales (dispareunia profunda). Nota flujo vaginal más abundante. Sin fiebre cuantificada al momento. FUR normal. Al tacto vaginal: dolor exquisito a la movilización del cuello uterino (Signo de Frenkel positivo) y sensibilidad en anexos. No se palpan masas.",
+  "pasos": [
+    {
+      "id": "p1",
+      "tipo": "mcq",
+      "enunciado": "Con la tríada clínica presente (Dolor abdominal bajo + Dolor a la movilización cervical + Dolor anexial), ¿cuál es el diagnóstico presuntivo y la conducta inmediata?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Infección Urinaria Alta. Solicitar Urocultivo.",
+          "explicacion": "Incorrecto. La disuria no es el síntoma cardinal y el dolor a la movilización cervical es ginecológico.",
+          "esCorrecta": false
+        },
+        {
+          "id": "b",
+          "texto": "Enfermedad Pélvica Inflamatoria (EPI) leve a moderada. Iniciar tratamiento antibiótico empírico inmediato.",
+          "explicacion": "Correcto. El diagnóstico de EPI es clínico. Ante la sospecha, se debe tratar de inmediato para preservar la fertilidad, sin esperar exámenes confirmatorios que pueden tardar.",
+          "esCorrecta": true
+        },
+        {
+          "id": "c",
+          "texto": "Quiste ovárico roto. Observación.",
+          "explicacion": "Incorrecto. No explica la cervicitis/flujo ni el dolor cervical tan marcado.",
+          "esCorrecta": false
+        },
+        {
+          "id": "d",
+          "texto": "Apendicitis aguda. Derivar a urgencia.",
+          "explicacion": "Incorrecto. El dolor es hipogástrico/bilateral y asociado a síntomas genitales, aunque siempre es diagnóstico diferencial.",
+          "esCorrecta": false
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "tipo": "mcq",
+      "enunciado": "¿Cuál es el esquema antibiótico ambulatorio recomendado para cubrir los agentes más probables (Gonococo, Clamidia, Anaerobios)?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Amoxicilina + Clavulánico.",
+          "explicacion": "Incorrecto. No cubre Clamidia ni Gonococo adecuadamente.",
+          "esCorrecta": false
+        },
+        {
+          "id": "b",
+          "texto": "Ciprofloxacino monodosis.",
+          "explicacion": "Incorrecto. Resistencia alta y cobertura insuficiente.",
+          "esCorrecta": false
+        },
+        {
+          "id": "c",
+          "texto": "Ceftriaxona 500mg IM (dosis única) + Doxiciclina 100mg c/12h (14 días) + Metronidazol 500mg c/12h (14 días).",
+          "explicacion": "Correcto. Esquema tri-conjugado para cubrir Gram negativos (Gonococo), Intracelulares (Clamidia) y Anaerobios/Vaginosis.",
+          "esCorrecta": true
+        },
+        {
+          "id": "d",
+          "texto": "Azitromicina 1g dosis única.",
+          "explicacion": "Incorrecto. Insuficiente para infección alta (pélvica).",
+          "esCorrecta": false
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "tipo": "mcq",
+      "enunciado": "¿Cuál de los siguientes es un criterio de gravedad que obligaría a hospitalizar a esta paciente (EPI severa)?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Tener flujo vaginal abundante.",
+          "explicacion": "Incorrecto. Es síntoma habitual.",
+          "esCorrecta": false
+        },
+        {
+          "id": "b",
+          "texto": "Sospecha de absceso tubo-ovárico, embarazo, fiebre alta con vómitos o falla del tratamiento oral tras 48h.",
+          "explicacion": "Correcto. Estos signos indican necesidad de manejo endovenoso o quirúrgico.",
+          "esCorrecta": true
+        },
+        {
+          "id": "c",
+          "texto": "Tener pareja nueva.",
+          "explicacion": "Incorrecto. Es factor de riesgo, no de gravedad.",
+          "esCorrecta": false
+        },
+        {
+          "id": "d",
+          "texto": "Dolor leve al tacto.",
+          "explicacion": "Incorrecto. Es criterio diagnóstico, no de gravedad.",
+          "esCorrecta": false
+        }
+      ]
+    },
+    {
+      "id": "p4",
+      "tipo": "mcq",
+      "enunciado": "Respecto a las secuelas a largo plazo de una EPI no tratada, ¿qué información es vital entregar para asegurar adherencia?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Riesgo de infertilidad tubárica, embarazo ectópico y dolor pélvico crónico.",
+          "explicacion": "Correcto. La inflamación genera adherencias y daño ciliar en las trompas. Explicar esto motiva el cumplimiento de los 14 días de tratamiento.",
+          "esCorrecta": true
+        },
+        {
+          "id": "b",
+          "texto": "Riesgo de cáncer de cérvix inmediato.",
+          "explicacion": "Incorrecto.",
+          "esCorrecta": false
+        },
+        {
+          "id": "c",
+          "texto": "Riesgo de incontinencia urinaria.",
+          "explicacion": "Incorrecto.",
+          "esCorrecta": false
+        },
+        {
+          "id": "d",
+          "texto": "No deja secuelas si se pasa el dolor.",
+          "explicacion": "Incorrecto. El daño puede ser silencioso.",
+          "esCorrecta": false
+        }
+      ]
+    },
+    {
+      "id": "p5",
+      "tipo": "mcq",
+      "enunciado": "¿Cuándo debe citarse a control para evaluar la respuesta al tratamiento oral?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "En 1 mes.",
+          "explicacion": "Incorrecto. Muy tarde.",
+          "esCorrecta": false
+        },
+        {
+          "id": "b",
+          "texto": "A las 48-72 horas (2-3 días).",
+          "explicacion": "Correcto. Se debe reevaluar clínicamente. Si no hay mejoría (baja fiebre, menos dolor), se debe derivar a hospitalización por posible falla o absceso.",
+          "esCorrecta": true
+        },
+        {
+          "id": "c",
+          "texto": "Solo si la fiebre sube de 40°C.",
+          "explicacion": "Incorrecto. Esperar tanto es peligroso.",
+          "esCorrecta": false
+        },
+        {
+          "id": "d",
+          "texto": "Al terminar los 14 días.",
+          "explicacion": "Incorrecto. Se requiere control precoz de seguridad.",
+          "esCorrecta": false
+        }
+      ]
+    },
+    {
+      "id": "p6",
+      "tipo": "mcq",
+      "enunciado": "Conducta con la pareja sexual:",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Citar y tratar a contactos de los últimos 60 días por Gonorrea/Clamidia, independiente de síntomas.",
+          "explicacion": "Correcto. La EPI es una complicación de estas ITS. El manejo de contactos es obligatorio.",
+          "esCorrecta": true
+        },
+        {
+          "id": "b",
+          "texto": "No tratar porque es un problema 'interno' de la mujer.",
+          "explicacion": "Incorrecto. Mito.",
+          "esCorrecta": false
+        },
+        {
+          "id": "c",
+          "texto": "Esperar cultivos de la pareja.",
+          "explicacion": "Incorrecto. Tratamiento empírico.",
+          "esCorrecta": false
+        },
+        {
+          "id": "d",
+          "texto": "Solo si tiene flujo uretral.",
+          "explicacion": "Incorrecto.",
+          "esCorrecta": false
+        }
+      ]
+    },
+    {
+      "id": "p7",
+      "tipo": "short",
+      "enunciado": "Redacta la indicación de alta explicando por qué debe tomar TRES medicamentos distintos y qué hacer si el dolor aumenta en casa.",
+      "puntosMaximos": 2,
+      "criteriosEvaluacion": [
+        "triconjugado",
+        "14 días",
+        "pareja",
+        "abstinencia",
+        "dolor",
+        "fiebre",
+        "urgencia",
+        "fertilidad",
+        "control 48h"
+      ],
+      "guia": "• Esquema: 'Son 3 remedios porque son varias bacterias las que causan esto'.\n• Adherencia: 'Debes terminar los 14 días aunque te sientas bien, para proteger tus trompas (fertilidad)'.\n• Alarma: 'Si tienes fiebre o el dolor sube, vas a Urgencia'.\n• Control: 'Te veo en 2 días para ver cómo vas'.",
+      "feedbackDocente": "Evalúa si el estudiante transmite la gravedad potencial (fertilidad) para asegurar que la paciente cumpla el tratamiento largo (14 días) y vuelva al control."
+    }
+  ],
+  "feedbackDinamico": {
+    "bajo": "¡Alerta EPI! Dolor pélvico + Dolor al mover el cuello = EPI hasta que se demuestre lo contrario. No esperes cultivos, ¡trata ya! Si no lo haces, la paciente puede quedar infértil. El esquema es 'Combo Triple': Ceftriaxona + Doxi + Metro. Revisa la Norma 187.",
+    "medio": "Bien diagnosticado. Sabes que es EPI. Para ser experto, no olvides el seguimiento: Cítala en 48 horas. Si no mejora, ¡se hospitaliza! Esa regla de seguridad salva vidas y trompas.",
+    "alto": "¡Manejo de especialista! Has identificado el cuadro sindrómico, indicado el esquema antibiótico correcto (cobertura amplia) y establecido el plan de seguridad (control 48h / manejo de pareja). Estás protegiendo activamente el futuro reproductivo de tu paciente."
+  },
+  "referencias": [
+    "NORMA-GRAL.-TECNICA-N°-187-DE-PROFILAXIS-DIAGNOSTICO-Y-TRATAMIENTO-DE-LAS-ITS.pdf",
+    "Manual-obstetricia.ginecologia.pdf.pdf"
+  ]
+},
+{
+  "id": "ac-media-diu-hilos-no-visibles",
+  "modulo": "Anticoncepción",
+  "dificultad": "Media",
+  "titulo": "Control de DIU: Manejo ante hilos no visibles en APS",
+  "vigneta": "Mujer de 28 años acude a control anual de su DIU T de Cobre (insertado hace 2 años). Refiere estar asintomática, con reglas normales. Sin embargo, está angustiada porque 'intenté tocarme los hilos como me enseñaron y no los siento'. Teme que el dispositivo se haya encarnado o perdido. Al examen especular: Cérvix sano, epitelizado, flujo fisiológico, pero NO se visualizan las guías del DIU en el orificio cervical externo.",
+  "pasos": [
+    {
+      "id": "p1",
+      "tipo": "mcq",
+      "enunciado": "Ante la no visualización de las guías (hilos) del DIU, ¿cuál es la causa más frecuente en una paciente asintomática?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Perforación uterina completa.",
+          "explicacion": "Incorrecto. Es una complicación grave y rara, generalmente sintomática o inmediata a la inserción.",
+          "esCorrecta": false
+        },
+        {
+          "id": "b",
+          "texto": "Ascenso de los hilos hacia el canal endocervical o cavidad uterina.",
+          "explicacion": "Correcto. A menudo los hilos se retraen hacia el canal, especialmente si fueron cortados cortos, sin significar que el DIU esté desplazado.",
+          "esCorrecta": true
+        },
+        {
+          "id": "c",
+          "texto": "Expulsión completa inadvertida.",
+          "explicacion": "Incorrecto. Aunque posible, la paciente suele notar cambios en el sangrado o dolor si se expulsa.",
+          "esCorrecta": false
+        },
+        {
+          "id": "d",
+          "texto": "Embarazo ectópico.",
+          "explicacion": "Incorrecto. No es la causa primaria de no ver los hilos.",
+          "esCorrecta": false
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "tipo": "mcq",
+      "enunciado": "¿Cuál es la conducta inicial en el box antes de derivar o pedir exámenes?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Intentar explorar el canal cervical con una pinza estéril suavemente para recuperar los hilos.",
+          "explicacion": "Correcto. Si se cuenta con experiencia e instrumental (pinza Cheron/Bozeman), se puede intentar traccionar suavemente los hilos si están justo en el canal. Si no es fácil, no insistir.",
+          "esCorrecta": true
+        },
+        {
+          "id": "b",
+          "texto": "Retirar el DIU a ciegas inmediatamente.",
+          "explicacion": "Incorrecto. Maniobra peligrosa y dolorosa.",
+          "esCorrecta": false
+        },
+        {
+          "id": "c",
+          "texto": "Derivar a urgencia hospitalaria.",
+          "explicacion": "Incorrecto. No es una urgencia vital.",
+          "esCorrecta": false
+        },
+        {
+          "id": "d",
+          "texto": "Indicar que el DIU se cayó y poner otro.",
+          "explicacion": "Incorrecto. Se debe confirmar ubicación primero.",
+          "esCorrecta": false
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "tipo": "mcq",
+      "enunciado": "Si no se logran recuperar los hilos, ¿cuál es el examen 'Gold Standard' para localizar el dispositivo?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Radiografía de abdomen simple.",
+          "explicacion": "Incorrecto. Solo ve si está en pelvis, no si está intrauterino correcto.",
+          "esCorrecta": false
+        },
+        {
+          "id": "b",
+          "texto": "Ecografía Transvaginal.",
+          "explicacion": "Correcto. Permite visualizar la ubicación exacta del DIU dentro del útero, la distancia al fondo uterino y descartar perforación o expulsión.",
+          "esCorrecta": true
+        },
+        {
+          "id": "c",
+          "texto": "Resonancia magnética.",
+          "explicacion": "Incorrecto. Costoso e innecesario.",
+          "esCorrecta": false
+        },
+        {
+          "id": "d",
+          "texto": "Test de embarazo en sangre.",
+          "explicacion": "Incorrecto. Necesario descartar embarazo, pero no localiza el DIU.",
+          "esCorrecta": false
+        }
+      ]
+    },
+    {
+      "id": "p4",
+      "tipo": "mcq",
+      "enunciado": "Mientras se espera la ecografía, ¿qué indicación de seguridad se debe dar a la paciente?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Usar protección adicional (condón) o abstinencia hasta confirmar que el DIU está en su sitio.",
+          "explicacion": "Correcto. Ante la duda de una expulsión inadvertida, se debe manejar como si no tuviera anticoncepción hasta demostrar lo contrario.",
+          "esCorrecta": true
+        },
+        {
+          "id": "b",
+          "texto": "Tomar anticonceptivos orales de inmediato.",
+          "explicacion": "Incorrecto. No se inicia hormonal sin descartar embarazo y ubicación.",
+          "esCorrecta": false
+        },
+        {
+          "id": "c",
+          "texto": "Que no se preocupe, el DIU nunca falla.",
+          "explicacion": "Incorrecto. Falsa seguridad.",
+          "esCorrecta": false
+        },
+        {
+          "id": "d",
+          "texto": "Reposo absoluto.",
+          "explicacion": "Incorrecto. Innecesario.",
+          "esCorrecta": false
+        }
+      ]
+    },
+    {
+      "id": "p5",
+      "tipo": "mcq",
+      "enunciado": "Si la ecografía confirma que el DIU está *in situ* (bien ubicado en fondo uterino), ¿cuál es el manejo?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Mantener el DIU y tranquilizar a la paciente, explicando que es seguro aunque no se toquen los hilos.",
+          "explicacion": "Correcto. Si el DIU está normoinserto, sigue siendo eficaz. No es necesario retirarlo solo por falta de hilos visibles, salvo deseo de la usuaria o fecha de vencimiento.",
+          "esCorrecta": true
+        },
+        {
+          "id": "b",
+          "texto": "Retirarlo quirúrgicamente de inmediato.",
+          "explicacion": "Incorrecto. Invasivo e innecesario.",
+          "esCorrecta": false
+        },
+        {
+          "id": "c",
+          "texto": "Cambiarlo por uno nuevo obligatoriamente.",
+          "explicacion": "Incorrecto.",
+          "esCorrecta": false
+        },
+        {
+          "id": "d",
+          "texto": "Acortar la duración del dispositivo a 1 año.",
+          "explicacion": "Incorrecto.",
+          "esCorrecta": false
+        }
+      ]
+    },
+    {
+      "id": "p6",
+      "tipo": "short",
+      "enunciado": "Escribe cómo le explicarías a la paciente que 'no sentir los hilos' no significa necesariamente algo grave, para calmar su angustia mientras espera la eco.",
+      "guia": "• Normalización: 'Es muy común que los hilos se suban un poquito por el canal'.\n• Seguridad: 'Lo más probable es que tu T esté funcionando perfecto ahí adentro'.\n• Plan: 'Haremos la eco solo para estar 100% seguros. Mientras tanto, usa condón por precaución'.",
+      "feedbackDocente": "Evalúa si el estudiante logra transmitir calma y seguridad técnica ante un hallazgo que suele generar pánico en las usuarias."
+    }
+  ],
+  "feedbackDinamico": {
+    "bajo": "¡No entres en pánico si no ves los hilos! Lo más común es que se hayan 'escondido' en el canal cervical. No asumas que se le cayó el útero ni que está perforada si ella no tiene dolor. Tu mejor amiga aquí es la Ecografía Transvaginal. Revisa el manejo de complicaciones de DIU en el Manual.",
+    "medio": "Bien. Sabes que hay que pedir Eco. Para ser experto, enfócate en la indicación de respaldo: 'Usa condón hasta que veamos la foto'. Si resulta que el DIU se había caído, esa indicación la salva de un embarazo no deseado.",
+    "alto": "¡Excelente! Has manejado la incertidumbre clínica con un plan racional: 1) Exploración suave, 2) Imagenología (Gold Standard), 3) Protección de respaldo. Y lo mejor: has tranquilizado a la paciente con información veraz."
+  },
+  "referencias": [
+    "Manual-obstetricia.ginecologia.pdf.pdf",
+    "Nuevos criterios de elegibilidad..pdf"
+  ]
+},
+{
+  "id": "its-baja-climaterio-riesgo",
+  "modulo": "ITS",
+  "dificultad": "Baja",
+  "titulo": "Prevención de ITS en mujer climatérica con nueva pareja: derribando el mito de la edad",
+  "vigneta": "Mujer de 55 años, menopausia hace 4 años. Acude a control de salud. Comenta tímidamente que se separó hace un año y ha iniciado una nueva relación afectiva. Dice: 'Bueno, a mi edad ya no me preocupo de guaguas, así que no usamos nada, total él es un caballero'. No presenta síntomas genitales.",
+  "pasos": [
+    {
+      "id": "p1",
+      "tipo": "mcq",
+      "enunciado": "¿Qué mito peligroso sobre salud sexual se debe abordar en esta consulta?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Que la menopausia protege contra las ITS.",
+          "explicacion": "Correcto. Muchas mujeres asocian 'protección' solo a 'embarazo'. Al desaparecer el riesgo reproductivo, abandonan el condón, quedando expuestas a VIH/ITS.",
+          "esCorrecta": true
+        },
+        {
+          "id": "b",
+          "texto": "Que las mujeres mayores no tienen deseo sexual.",
+          "explicacion": "Incorrecto. El deseo persiste.",
+          "esCorrecta": false
+        },
+        {
+          "id": "c",
+          "texto": "Que los hombres mayores no transmiten enfermedades.",
+          "explicacion": "Incorrecto. La edad no esteriliza las ITS.",
+          "esCorrecta": false
+        },
+        {
+          "id": "d",
+          "texto": "Que la sequedad vaginal protege de infecciones.",
+          "explicacion": "Incorrecto. Al contrario, aumenta el riesgo.",
+          "esCorrecta": false
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "tipo": "mcq",
+      "enunciado": "Desde el punto de vista fisiológico, ¿por qué la mujer postmenopáusica tiene MAYOR riesgo biológico de transmisión de VIH/ITS?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Por el aumento del pH vaginal.",
+          "explicacion": "Incorrecto. No es la causa principal.",
+          "esCorrecta": false
+        },
+        {
+          "id": "b",
+          "texto": "Por la atrofia de la mucosa vaginal, que genera micro-fisuras y facilita la entrada de patógenos.",
+          "explicacion": "Correcto. El adelgazamiento del epitelio por falta de estrógenos hace que la barrera natural sea más frágil y susceptible a lesiones durante el coito.",
+          "esCorrecta": true
+        },
+        {
+          "id": "c",
+          "texto": "Por el exceso de lubricación.",
+          "explicacion": "Incorrecto. Hay sequedad.",
+          "esCorrecta": false
+        },
+        {
+          "id": "d",
+          "texto": "Por la presencia de prolapso.",
+          "explicacion": "Incorrecto. No tiene relación directa.",
+          "esCorrecta": false
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "tipo": "mcq",
+      "enunciado": "¿Qué conducta preventiva es prioritaria indicar en esta consulta?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Uso de condón en todas las relaciones sexuales y lubricación adecuada.",
+          "explicacion": "Correcto. El condón previene ITS y el lubricante previene las microlesiones de la atrofia, potenciando la protección.",
+          "esCorrecta": true
+        },
+        {
+          "id": "b",
+          "texto": "Volver a tomar anticonceptivos orales.",
+          "explicacion": "Incorrecto. No tiene riesgo de embarazo.",
+          "esCorrecta": false
+        },
+        {
+          "id": "c",
+          "texto": "Pedir certificado de antecedentes a la pareja.",
+          "explicacion": "Incorrecto. No garantiza salud sexual.",
+          "esCorrecta": false
+        },
+        {
+          "id": "d",
+          "texto": "Evitar tener nuevas parejas.",
+          "explicacion": "Incorrecto. Se promueve la sexualidad segura, no la abstinencia.",
+          "esCorrecta": false
+        }
+      ]
+    },
+    {
+      "id": "p4",
+      "tipo": "mcq",
+      "enunciado": "Considerando que tiene nueva pareja, ¿qué tamizaje corresponde ofrecer según Norma ITS?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Solo PAP.",
+          "explicacion": "Incorrecto. El PAP es para cáncer, no ve VIH/Sífilis.",
+          "esCorrecta": false
+        },
+        {
+          "id": "b",
+          "texto": "Panel completo de ITS (VIH, Sífilis, Hepatitis B/C).",
+          "explicacion": "Correcto. El inicio de una nueva pareja sexual es indicación de tamizaje universal, independiente de la edad.",
+          "esCorrecta": true
+        },
+        {
+          "id": "c",
+          "texto": "Ninguno, por su edad el riesgo es nulo.",
+          "explicacion": "Incorrecto. El VIH en >50 años es una realidad creciente.",
+          "esCorrecta": false
+        },
+        {
+          "id": "d",
+          "texto": "Solo cultivo de orina.",
+          "explicacion": "Incorrecto.",
+          "esCorrecta": false
+        }
+      ]
+    },
+    {
+      "id": "p5",
+      "tipo": "mcq",
+      "enunciado": "¿Cómo abordar el tema sin que la paciente se sienta juzgada por tener vida sexual activa?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Validar su sexualidad como un aspecto positivo de salud y enmarcar el condón como una herramienta de autocuidado, no de desconfianza.",
+          "explicacion": "Correcto. Normalizar el deseo y el placer en la adultez mayor elimina barreras para la prevención.",
+          "esCorrecta": true
+        },
+        {
+          "id": "b",
+          "texto": "Hacer bromas sobre su 'segunda juventud'.",
+          "explicacion": "Incorrecto. Puede ser interpretado como burla.",
+          "esCorrecta": false
+        },
+        {
+          "id": "c",
+          "texto": "Advertirle que a su edad debería estar tranquila.",
+          "explicacion": "Incorrecto. Edadismo puro.",
+          "esCorrecta": false
+        },
+        {
+          "id": "d",
+          "texto": "Hablar solo con la pareja.",
+          "explicacion": "Incorrecto.",
+          "esCorrecta": false
+        }
+      ]
+    }
+  ],
+  "feedbackDinamico": {
+    "bajo": "El VIH y la Sífilis están aumentando en mayores de 50 años. ¿Por qué? Porque dejan el condón al no haber riesgo de embarazo. Tu misión es recordarles que las infecciones no se jubilan. Además, la atrofia vaginal facilita el contagio. ¡Ojo ahí! Revisa la Norma ITS.",
+    "medio": "Bien. Identificaste el riesgo. Para ser experto, conecta la fisiología con la prevención: explícale que usar lubricante no es solo 'para que resbale', sino para evitar heridas microscópicas por donde entra el virus. Eso es educación de calidad.",
+    "alto": "¡Excelente! Has derribado el edadismo en salud sexual. Reconoces que la prevención de ITS es transversal al ciclo vital y has adaptado la consejería a la realidad biológica (atrofia) y social (nuevas parejas) de la mujer climatérica."
+  },
+  "referencias": [
+    "OT-CLIMATERIO+MINSAL.pdf",
+    "NORMA-GRAL.-TECNICA-N°-187-DE-PROFILAXIS-DIAGNOSTICO-Y-TRATAMIENTO-DE-LAS-ITS.pdf"
+  ]
+},
+{
+  "id": "clim-alta-perimenopausia-riesgo",
+  "modulo": "Climaterio y Menopausia",
+  "dificultad": "Alta",
+  "titulo": "Anticoncepción en perimenopausia con alto riesgo cardiovascular",
+  "vigneta": "MOTIVO DE CONSULTA: 'Quiero cuidarme con pastillas porque mi regla se volvió loca'.\n\nHISTORIA ACTUAL:\nJuana, 47 años, acude a matrona por sangrado menstrual abundante y ciclos que varían entre 20 y 50 días. Refiere bochornos nocturnos que alteran su sueño. Fuma 5-7 cigarrillos diarios. Su vecina le recomendó 'esas pastillas suaves para la menopausia'.\n\nANTECEDENTES:\nMultípara de 3. Obesidad tipo I (IMC 32). HTA diagnosticada hace 1 año, tratamiento irregular con Enalapril. Madre tuvo ACV a los 60 años.\n\nEXAMEN FÍSICO:\nPA: 148/92 mmHg (elevada). FC: 84 lpm. Peso: 88 kg. Examen ginecológico: Útero levemente aumentado de tamaño, sin anexos palpables. Flujo hemático escaso en vagina.\n\nIMPRESIÓN CLÍNICA:\nSindrome climatérico en paciente con alto riesgo cardiovascular y HTA no controlada.",
+  "pasos": [
+    {
+      "id": "p1",
+      "tipo": "mcq",
+      "enunciado": "La paciente solicita Anticonceptivos Orales Combinados (ACO). Según Criterios de Elegibilidad (OMS), ¿cuál es su categoría?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Categoría 1: Sin restricción.",
+          "explicacion": "Incorrecto. Tiene múltiples factores de riesgo."
+        },
+        {
+          "id": "b",
+          "texto": "Categoría 4: Riesgo inaceptable para la salud.",
+          "explicacion": "Correcto. La suma de edad >35, tabaquismo, obesidad y HTA no controlada contraindica absolutamente el uso de estrógenos por riesgo de trombosis/ACV.",
+          "esCorrecta": true
+        },
+        {
+          "id": "c",
+          "texto": "Categoría 2: Las ventajas superan los riesgos.",
+          "explicacion": "Incorrecto. El riesgo vascular es demasiado alto."
+        },
+        {
+          "id": "d",
+          "texto": "Categoría 3: Riesgo supera ventajas, requiere monitoreo.",
+          "explicacion": "Incorrecto. Con HTA descompensada y edad, es Categoría 4."
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "tipo": "mcq",
+      "enunciado": "Considerando su necesidad de anticoncepción Y manejo del sangrado abundante, ¿cuál es la mejor opción terapéutica (Gold Standard)?",
+      "opciones": [
+        {
+          "id": "d",
+          "texto": "Sistema Intrauterino de Levonorgestrel (DIU-LNG).",
+          "explicacion": "Correcto. Es Categoría 1/2. Ofrece anticoncepción segura, reduce el sangrado menstrual en un 90% (tratando la menorragia) y protege el endometrio, sin riesgo cardiovascular sistémico.",
+          "esCorrecta": true
+        },
+        {
+          "id": "a",
+          "texto": "DIU T de Cobre.",
+          "explicacion": "Incorrecto. Aunque es seguro cardiovascularmente, podría aumentar el sangrado en una paciente que ya consulta por menorragia."
+        },
+        {
+          "id": "b",
+          "texto": "Inyección Trimestral.",
+          "explicacion": "Incorrecto. Puede generar aumento de peso (no deseado por su obesidad) y sangrado irregular impredecible."
+        },
+        {
+          "id": "c",
+          "texto": "Ligadura de trompas inmediata.",
+          "explicacion": "Incorrecto. Es una opción válida, pero no resuelve el problema del sangrado abundante ni los bochornos."
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "tipo": "mcq",
+      "enunciado": "Respecto a sus bochornos y la HTA no controlada, ¿qué manejo NO hormonal inicial es el más adecuado?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Terapia de Reemplazo Hormonal transdérmica.",
+          "explicacion": "Incorrecto. No se inicia TH con HTA descompensada (148/92)."
+        },
+        {
+          "id": "b",
+          "texto": "Fitofármacos sin regulación.",
+          "explicacion": "Incorrecto. Riesgo de interacciones con antihipertensivos."
+        },
+        {
+          "id": "c",
+          "texto": "Optimizar tratamiento antihipertensivo, baja de peso y considerar uso de ISRS (ej: Paroxetina/Venlafaxina).",
+          "explicacion": "Correcto. Estabilizar la PA es prioritario. Los ISRS en dosis bajas son efectivos para síntomas vasomotores en pacientes con contraindicación de hormonas.",
+          "esCorrecta": true
+        },
+        {
+          "id": "d",
+          "texto": "Solo medidas de abrigo.",
+          "explicacion": "Incorrecto. Insuficiente para síntomas que alteran el sueño."
+        }
+      ]
+    },
+    {
+      "id": "p4",
+      "tipo": "mcq",
+      "enunciado": "¿Hasta cuándo debe mantener la anticoncepción una mujer en esta etapa?",
+      "opciones": [
+        {
+          "id": "c",
+          "texto": "Hasta que cumpla 60 años.",
+          "explicacion": "Incorrecto. Excesivo."
+        },
+        {
+          "id": "d",
+          "texto": "Hasta demostrar menopausia: 1 año de amenorrea (>50 años) o 2 años de amenorrea (<50 años).",
+          "explicacion": "Correcto. La regla de seguridad clínica es mantener protección hasta confirmar el cese definitivo de la función ovárica.",
+          "esCorrecta": true
+        },
+        {
+          "id": "a",
+          "texto": "Puede suspenderla hoy, a los 47 ya no hay riesgo.",
+          "explicacion": "Incorrecto. El embarazo espontáneo es raro pero posible y de altísimo riesgo."
+        },
+        {
+          "id": "b",
+          "texto": "Hasta que la FSH suba una vez.",
+          "explicacion": "Incorrecto. Una sola FSH elevada no confirma esterilidad definitiva en perimenopausia."
+        }
+      ]
+    },
+    {
+      "id": "p5",
+      "tipo": "mcq",
+      "enunciado": "En la consejería de estilo de vida, ¿qué factor es crítico abordar por su efecto sinérgico en el riesgo cardiovascular y óseo?",
+      "opciones": [
+        {
+          "id": "b",
+          "texto": "El tabaquismo.",
+          "explicacion": "Correcto. Fumar acelera la pérdida de masa ósea, aumenta los bochornos y eleva exponencialmente el riesgo CV en mujeres hipertensas.",
+          "esCorrecta": true
+        },
+        {
+          "id": "a",
+          "texto": "El consumo de lácteos.",
+          "explicacion": "Incorrecto. Es protector óseo."
+        },
+        {
+          "id": "c",
+          "texto": "La actividad sexual.",
+          "explicacion": "Incorrecto. Es saludable."
+        },
+        {
+          "id": "d",
+          "texto": "El uso de ropa sintética.",
+          "explicacion": "Incorrecto. Afecta bochornos, no riesgo CV mayor."
+        }
+      ]
+    },
+    {
+      "id": "p6",
+      "tipo": "mcq",
+      "enunciado": "Al solicitar mamografía en esta paciente (Obesidad + Tabaquismo), ¿qué debemos recordar sobre el riesgo de Cáncer de Mama?",
+      "opciones": [
+        {
+          "id": "c",
+          "texto": "Que la obesidad postmenopáusica aumenta el riesgo de cáncer de mama por conversión periférica de estrógenos.",
+          "explicacion": "Correcto. El tejido adiposo es la principal fuente de estrógenos después de la menopausia, manteniendo un estímulo proliferativo en la mama.",
+          "esCorrecta": true
+        },
+        {
+          "id": "a",
+          "texto": "Que el tabaquismo protege la mama.",
+          "explicacion": "Incorrecto. Falso."
+        },
+        {
+          "id": "b",
+          "texto": "Que la obesidad protege la mama.",
+          "explicacion": "Incorrecto. Aumenta el riesgo."
+        },
+        {
+          "id": "d",
+          "texto": "Que no tiene riesgo aumentado.",
+          "explicacion": "Incorrecto."
+        }
+      ]
+    },
+    {
+      "id": "p7",
+      "tipo": "short",
+      "enunciado": "Redacta cómo le explicarías a Juana que NO puedes darle las 'pastillas suaves' que pide por su seguridad, y cómo el DIU-LNG (Mirena) resolverá sus dos problemas (sangrado y embarazo) sin dañar su corazón.",
+      "puntosMaximos": 2,
+      "criteriosEvaluacion": [
+        "presión alta",
+        "trombosis",
+        "corazón",
+        "estrógeno",
+        "DIU",
+        "hormona local",
+        "sangrado",
+        "seguridad",
+        "peso"
+      ],
+      "guia": "• Negativa empática: 'Juana, con tu presión alta y el cigarro, las pastillas son peligrosas (infarto)'.\n• Solución: 'Tengo algo mejor: un dispositivo pequeño (DIU con hormona) que actúa solo en el útero'.\n• Beneficio: 'Te quita el sangrado fuerte y te protege del embarazo sin tocar tu presión'.",
+      "feedbackDocente": "Evalúa si el estudiante prioriza la seguridad (negar estrógenos) sin dejar a la paciente sin alternativa (ofrecer LARC), usando lenguaje claro."
+    }
+  ],
+  "feedbackDinamico": {
+    "bajo": "¡Cuidado! Una paciente de 47 años, fumadora e hipertensa es una 'bomba de tiempo' para los estrógenos. Darle ACO combinados es mala praxis (Categoría 4). Tu rol es protegerla. Ofrécele métodos sin estrógeno (DIU-LNG o Implante). Revisa los Criterios OMS de Elegibilidad.",
+    "medio": "Bien detectado el riesgo. Rechazaste los ACO. Para ser experto, vende bien la alternativa: el DIU-LNG no solo anticonceptiva, sino que trata su menorragia y protege su endometrio de la obesidad. Es el 'traje a la medida' para ella.",
+    "alto": "¡Manejo de excelencia! Has integrado riesgo cardiovascular, ginecológico y oncológico. Al negar ACO y proponer DIU-LNG + manejo de estilo de vida, estás haciendo prevención terciaria de alto impacto. Felicitaciones."
+  },
+  "referencias": [
+    "Nuevos criterios de elegibilidad..pdf",
+    "Manual-obstetricia.ginecologia.pdf.pdf"
+  ]
+},
+{
+  "id": "its-media-sifilis-gestante",
+  "modulo": "ITS",
+  "dificultad": "Media",
+  "titulo": "Pesquisa y manejo de Sífilis en control prenatal tardío",
+  "vigneta": "MOTIVO DE CONSULTA: Ingreso a control prenatal tardío (26 semanas).\n\nHISTORIA ACTUAL:\nCarolina, 22 años, primigesta. Acude a su primer control. Refiere 'no sabía que estaba embarazada porque soy irregular'. No tiene molestias actuales. Al examen físico obstétrico: AU 24 cm, LCF 144 lpm, feto activo. Se toman exámenes de ingreso urgente.\n\nRESULTADOS (48 hrs después):\nVDRL Reactivo 1:32. MHA-TP Positivo. VIH negativo.\n\nANTECEDENTES:\nPareja estable hace 6 meses, él no se ha chequeado. Ella no recuerda lesiones genitales ni exantemas previos.",
+  "pasos": [
+    {
+      "id": "p1",
+      "tipo": "mcq",
+      "enunciado": "Con los resultados (VDRL 1:32 + MHA-TP Positivo) en una gestante sin antecedentes de tratamiento previo, el diagnóstico es:",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Cicatriz serológica.",
+          "explicacion": "Incorrecto. Los títulos altos (1:32) indican infección activa."
+        },
+        {
+          "id": "b",
+          "texto": "Falso positivo por embarazo.",
+          "explicacion": "Incorrecto. El MHA-TP (prueba específica) positivo confirma la enfermedad."
+        },
+        {
+          "id": "c",
+          "texto": "Sífilis Latente (indeterminada) en el embarazo.",
+          "explicacion": "Correcto. Está confirmada, es activa (títulos altos) y no tiene clínica visible ni fecha clara de contagio.",
+          "esCorrecta": true
+        },
+        {
+          "id": "d",
+          "texto": "Sífilis Primaria.",
+          "explicacion": "Incorrecto. No hay chancro al examen físico."
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "tipo": "mcq",
+      "enunciado": "¿Cuál es el esquema antibiótico OBLIGATORIO para prevenir la Sífilis Congénita en este caso?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Penicilina Benzatina 2.400.000 UI IM, 3 dosis (una semanal).",
+          "explicacion": "Correcto. Ante latencia indeterminada en gestante, se usa el esquema completo de 3 dosis para asegurar cura materna y fetal.",
+          "esCorrecta": true
+        },
+        {
+          "id": "b",
+          "texto": "Penicilina Benzatina 1 dosis única.",
+          "explicacion": "Incorrecto. Insuficiente si no podemos datar la infección con certeza (<1 año). Ante la duda en embarazo, se usa esquema largo."
+        },
+        {
+          "id": "c",
+          "texto": "Eritromicina 500 mg c/6h.",
+          "explicacion": "Incorrecto. No cruza la placenta eficazmente; cura a la madre pero NO al feto. Se considera tratamiento inadecuado."
+        },
+        {
+          "id": "d",
+          "texto": "Ceftriaxona EV.",
+          "explicacion": "Incorrecto. Alternativa solo en casos muy específicos de neurosífilis o alergia severa sin desensibilización."
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "tipo": "mcq",
+      "enunciado": "Tras la primera inyección, Carolina llama asustada porque tiene fiebre, dolor muscular y siente contracciones. ¿Qué está pasando?",
+      "opciones": [
+        {
+          "id": "d",
+          "texto": "Reacción de Jarisch-Herxheimer.",
+          "explicacion": "Correcto. Es una reacción inflamatoria aguda por la destrucción masiva de espiroquetas post-penicilina. Es común en embarazadas y puede precipitar dinámica uterina.",
+          "esCorrecta": true
+        },
+        {
+          "id": "a",
+          "texto": "Shock anafiláctico a la penicilina.",
+          "explicacion": "Incorrecto. La anafilaxia es inmediata (minutos) y cursa con hipotensión/brocoespasmo, no fiebre."
+        },
+        {
+          "id": "b",
+          "texto": "Infección por COVID-19.",
+          "explicacion": "Incorrecto. La temporalidad post-inyección orienta a Herxheimer."
+        },
+        {
+          "id": "c",
+          "texto": "Síntomas normales del embarazo.",
+          "explicacion": "Incorrecto. Fiebre y contracciones no son normales."
+        }
+      ]
+    },
+    {
+      "id": "p4",
+      "tipo": "mcq",
+      "enunciado": "¿Qué manejo requiere la Reacción de Jarisch-Herxheimer en la gestante?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Suspender las siguientes dosis de penicilina.",
+          "explicacion": "Incorrecto. Se debe completar el tratamiento."
+        },
+        {
+          "id": "b",
+          "texto": "Antipiréticos (Paracetamol), hidratación y monitoreo de la unidad feto-placentaria (movimientos fetales/LCF).",
+          "explicacion": "Correcto. Es autolimitada (24h). Se manejan síntomas y se vigila bienestar fetal.",
+          "esCorrecta": true
+        },
+        {
+          "id": "c",
+          "texto": "Inducir el parto de inmediato.",
+          "explicacion": "Incorrecto. Solo si hay compromiso fetal grave mantenido, lo cual es raro."
+        },
+        {
+          "id": "d",
+          "texto": "Antibióticos endovenosos.",
+          "explicacion": "Incorrecto. No es una sepsis bacteriana."
+        }
+      ]
+    },
+    {
+      "id": "p5",
+      "tipo": "mcq",
+      "enunciado": "Para que el recién nacido NO requiera estudio completo/tratamiento al nacer, ¿qué condición debe cumplir la pareja?",
+      "opciones": [
+        {
+          "id": "c",
+          "texto": "La pareja debe haber recibido tratamiento documentado al menos 30 días antes del parto.",
+          "explicacion": "Correcto. Si la pareja no se trata, existe riesgo de reinfección materna tardía. El Minsal considera 'adecuadamente tratado' si la pareja también recibió tratamiento.",
+          "esCorrecta": true
+        },
+        {
+          "id": "a",
+          "texto": "Basta con que la madre se trate.",
+          "explicacion": "Incorrecto. Riesgo de reinfección."
+        },
+        {
+          "id": "b",
+          "texto": "Que la pareja use condón el último mes.",
+          "explicacion": "Incorrecto. Insuficiente."
+        },
+        {
+          "id": "d",
+          "texto": "Que la pareja tenga VDRL negativo al momento del parto.",
+          "explicacion": "Incorrecto. Podría estar en ventana; se prefiere tratamiento epidemiológico si no hay certeza."
+        }
+      ]
+    },
+    {
+      "id": "p6",
+      "tipo": "short",
+      "enunciado": "Explica a Carolina por qué es CRÍTICO que su pareja venga al CESFAM mañana mismo, usando el concepto de 'reinfección'.",
+      "guia": "• Hecho: 'Carolina, tú te vas a empezar a sanar hoy con la inyección'.\n• Riesgo: 'Pero si tu pareja tiene la bacteria (y no lo sabe), al tener relaciones te la va a pasar de nuevo'.\n• Consecuencia: 'La penicilina dura poco en el cuerpo. Si te reinfectas antes del parto, tu bebé nace enfermo aunque tú te hayas tratado hoy'.",
+      "feedbackDocente": "Evalúa si el estudiante logra transmitir la urgencia del tratamiento de pareja como condición sine qua non para la salud del recién nacido."
+    }
+  ],
+  "feedbackDinamico": {
+    "bajo": "La Sífilis en embarazo es una urgencia. Títulos altos (1:32) significan mucha carga bacteriana pasando al feto. Tratamiento: Penicilina x 3 dosis (ante la duda de fechas). Y ojo: ¡La pareja es parte del tratamiento! Si él no se pincha, ella se reinfecta. Revisa Norma 187.",
+    "medio": "Bien diagnosticado. Manejaste la latencia indeterminada con 3 dosis. Para ser experto, advierte sobre la reacción de Jarisch-Herxheimer: muchas pacientes creen que les hizo mal la inyección y no vuelven. Explicarles que 'es la bacteria muriendo' y que pasará en 24h asegura que vuelvan a la segunda dosis.",
+    "alto": "¡Excelente! Has protegido al binomio. Diagnóstico certero, tratamiento adecuado (3 dosis) y anticipación de complicaciones (Herxheimer). Tu énfasis en la pareja demuestra visión de salud pública: cortar la cadena es la única forma de erradicar la sífilis congénita."
+  },
+  "referencias": [
+    "NORMA-GRAL.-TECNICA-N°-187-DE-PROFILAXIS-DIAGNOSTICO-Y-TRATAMIENTO-DE-LAS-ITS.pdf"
+  ]
+},
+{
+  "id": "ac-media-migrana-aura",
+  "modulo": "Anticoncepción",
+  "dificultad": "Media",
+  "titulo": "Cefalea en usuaria de ACO: identificando el riesgo neurológico",
+  "vigneta": "MOTIVO DE CONSULTA: 'Me duele mucho la cabeza y tomo pastillas'.\n\nHISTORIA ACTUAL:\nEstudiante de 22 años, usuaria de ACO combinados hace 6 meses. Consulta porque ha notado que sus dolores de cabeza son más frecuentes e intensos. Relata que antes del dolor ve 'lucesitas brillantes' o siente 'hormigueo en la mano' (Aura). Está preocupada porque el paracetamol ya no le hace efecto. PA 110/70. Examen neurológico básico normal.\n\nIMPRESIÓN CLÍNICA:\nMigraña con aura en usuaria de estrógenos.",
+  "pasos": [
+    {
+      "id": "p1",
+      "tipo": "mcq",
+      "enunciado": "Según la anamnesis ('lucesitas/hormigueo' previo al dolor), ¿cómo se clasifica este cuadro y cuál es su categoría OMS para uso de estrógenos?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Cefalea tensional. Categoría 1 (Sin restricción).",
+          "explicacion": "Incorrecto. La tensión no presenta síntomas focales neurológicos (aura)."
+        },
+        {
+          "id": "b",
+          "texto": "Migraña sin aura. Categoría 2 (Ventajas > Riesgos) en <35 años.",
+          "explicacion": "Incorrecto. La paciente describe claramente fenómenos visuales/sensitivos previos (aura)."
+        },
+        {
+          "id": "c",
+          "texto": "Migraña con aura. Categoría 4 (Riesgo inaceptable para la salud).",
+          "explicacion": "Correcto. La migraña con aura aumenta el riesgo de Accidente Cerebrovascular (ACV) isquémico, y los estrógenos potencian este riesgo inaceptablemente.",
+          "esCorrecta": true
+        },
+        {
+          "id": "d",
+          "texto": "Sinusitis aguda.",
+          "explicacion": "Incorrecto. No hay clínica respiratoria."
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "tipo": "mcq",
+      "enunciado": "¿Cuál es la conducta clínica inmediata respecto a su anticoncepción actual?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Mantener los ACO y agregar un antimigrañoso fuerte.",
+          "explicacion": "Incorrecto. Tratar el síntoma sin retirar la causa (estrógeno) mantiene el riesgo de trombosis cerebral."
+        },
+        {
+          "id": "b",
+          "texto": "Cambiar a Anillo Vaginal.",
+          "explicacion": "Incorrecto. El anillo también tiene etinilestradiol y el mismo riesgo sistémico."
+        },
+        {
+          "id": "c",
+          "texto": "Esperar a terminar la caja actual.",
+          "explicacion": "Incorrecto. El riesgo es agudo."
+        },
+        {
+          "id": "d",
+          "texto": "Suspender los ACO combinados de inmediato y ofrecer un método sin estrógeno.",
+          "explicacion": "Correcto. Ante el riesgo de ACV, la suspensión debe ser inmediata. Se debe hacer el cambio a un método seguro (Progestágeno solo o No hormonal).",
+          "esCorrecta": true
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "tipo": "mcq",
+      "enunciado": "¿Qué alternativa anticonceptiva es SEGURA (Categoría 1 o 2) para ella?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Parche transdérmico.",
+          "explicacion": "Incorrecto. Tiene estrógenos."
+        },
+        {
+          "id": "b",
+          "texto": "Cualquier método de Progestágeno solo (Implante, DIU-LNG, POP) o DIU de Cobre.",
+          "explicacion": "Correcto. Los progestágenos puros y el cobre no aumentan el riesgo de ACV isquémico en pacientes con migraña.",
+          "esCorrecta": true
+        },
+        {
+          "id": "c",
+          "texto": "Inyección mensual.",
+          "explicacion": "Incorrecto. Tiene estrógenos."
+        },
+        {
+          "id": "d",
+          "texto": "Ninguno, debe usar abstinencia.",
+          "explicacion": "Incorrecto. Existen muchas opciones seguras."
+        }
+      ]
+    },
+    {
+      "id": "p4",
+      "tipo": "mcq",
+      "enunciado": "La paciente pregunta: '¿Por qué me duele más la cabeza en la semana de descanso?'. ¿Cuál es la explicación fisiológica?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Es por la caída brusca de los niveles de estrógeno (deprivación) en esos días.",
+          "explicacion": "Correcto. La 'migraña catamenial' o por deprivación se gatilla por el descenso hormonal. Cambiar a un método continuo (sin descanso) o sin estrógenos suele aliviar esto.",
+          "esCorrecta": true
+        },
+        {
+          "id": "b",
+          "texto": "Es psicológico por tener la regla.",
+          "explicacion": "Incorrecto."
+        },
+        {
+          "id": "c",
+          "texto": "Es por anemia menstrual.",
+          "explicacion": "Incorrecto. Poco probable en cefalea aguda."
+        },
+        {
+          "id": "d",
+          "texto": "Es por comer chocolate.",
+          "explicacion": "Incorrecto. Aunque es gatillante, el patrón cíclico apunta a lo hormonal."
+        }
+      ]
+    },
+    {
+      "id": "p5",
+      "tipo": "mcq",
+      "enunciado": "¿Qué recomendación de estilo de vida complementaria ayuda en el manejo de la migraña?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Aumentar el consumo de cafeína.",
+          "explicacion": "Incorrecto. Puede dar cefalea de rebote."
+        },
+        {
+          "id": "b",
+          "texto": "Dormir siestas largas.",
+          "explicacion": "Incorrecto. Altera el ciclo sueño-vigilia."
+        },
+        {
+          "id": "c",
+          "texto": "Higiene del sueño, hidratación adecuada y evitar ayunos prolongados.",
+          "explicacion": "Correcto. Mantener la homeostasis (equilibrio) reduce el umbral de gatillo para las crisis.",
+          "esCorrecta": true
+        },
+        {
+          "id": "d",
+          "texto": "Hacer ejercicio anaeróbico intenso.",
+          "explicacion": "Incorrecto. El esfuerzo explosivo puede gatillar dolor (cefalea de esfuerzo)."
+        }
+      ]
+    },
+    {
+      "id": "p6",
+      "tipo": "short",
+      "enunciado": "Explica brevemente a la paciente por qué le vas a cambiar las pastillas hoy mismo, relacionando sus síntomas visuales ('lucesitas') con la seguridad de su cerebro.",
+      "guia": "• Síntoma: 'Esas luces que ves (aura) son una señal de tu cerebro'.\n• Riesgo: 'El estrógeno de la pastilla, sumado a esas luces, aumenta un poquito el riesgo de tener un problema vascular (trombosis)'.\n• Solución: 'Vamos a cambiar a un método sin esa hormona (Implante/DIU) para que estés protegida del embarazo y segura de tu salud'.",
+      "feedbackDocente": "Evalúa si el estudiante logra comunicar el riesgo de ACV sin generar pánico, pero siendo firme en la contraindicación."
+    }
+  ],
+  "feedbackDinamico": {
+    "bajo": "¡No te desanimes! La neurología y las hormonas pueden ser una mezcla difícil de entender al principio. Lo importante es que hoy aprendiste que 'lucesitas' (aura) + 'estrógeno' no son amigos. Si recuerdas eso, ¡ya estás protegiendo a tus pacientes! Repasa los Criterios OMS con calma, vas muy bien.",
+    "medio": "Bien detectado. La seguridad es lo primero. Para el nivel experto, maneja la transición: el cambio a un método de progestágeno solo (como el Implante) no solo es más seguro, sino que al eliminar la variación cíclica de estrógenos, muchas veces ¡quita el dolor de cabeza!",
+    "alto": "¡Excelente criterio! Has prevenido una complicación mayor. Reconocer la contraindicación neurológica de los estrógenos y ofrecer una alternativa eficaz inmediata (LARC/POP) es el estándar de oro en seguridad clínica anticonceptiva."
+  },
+  "referencias": [
+    "Nuevos criterios de elegibilidad..pdf",
+    "Manual-obstetricia.ginecologia.pdf.pdf"
+  ]
+},
+{
+  "id": "its-alta-sifilis-secundaria-roseola",
+  "modulo": "ITS",
+  "dificultad": "Alta",
+  "titulo": "El gran simulador: Diagnóstico de Sífilis Secundaria en hombre con exantema",
+  "vigneta": "MOTIVO DE CONSULTA: 'Me salió una alergia rara en el cuerpo'.\n\nHISTORIA ACTUAL:\nHombre de 28 años consulta por manchas rosadas en el tronco, palmas de las manos y plantas de los pies, que aparecieron hace 1 semana. No le pican (no prurito). Refiere que hace 2 meses tuvo una 'herida en el pene' que no le dolió y se borró sola, por lo que no consultó. Tiene febrícula (37.5°C) y malestar general. Vida sexual activa, HSH, uso irregular de condón.",
+  "pasos": [
+    {
+      "id": "p1",
+      "tipo": "mcq",
+      "enunciado": "Considerando la historia (chancro previo que desapareció) y la clínica actual (exantema palmo-plantar no pruriginoso), el diagnóstico es:",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Alergia alimentaria severa.",
+          "explicacion": "Incorrecto. Las alergias pican mucho (prurito) y no suelen dar adenopatías generalizadas ni fiebre."
+        },
+        {
+          "id": "b",
+          "texto": "Sífilis Secundaria (Roseola sifilítica).",
+          "explicacion": "Correcto. Es la evolución natural de una sífilis primaria no tratada. El compromiso palmo-plantar y la ausencia de prurito son signos patognomónicos.",
+          "esCorrecta": true
+        },
+        {
+          "id": "c",
+          "texto": "Psoriasis guttata.",
+          "explicacion": "Incorrecto. Son placas descamativas, no máculas rosadas tenues."
+        },
+        {
+          "id": "d",
+          "texto": "Sarampión.",
+          "explicacion": "Incorrecto. Cuadro respiratorio severo asociado, exantema distinto."
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "tipo": "mcq",
+      "enunciado": "¿Qué esperas encontrar en los exámenes de tamizaje (VDRL) en esta etapa de la enfermedad?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "VDRL Reactivo en títulos altos (ej: 1:32, 1:64).",
+          "explicacion": "Correcto. En la etapa secundaria la carga bacteriana y la respuesta de anticuerpos es máxima.",
+          "esCorrecta": true
+        },
+        {
+          "id": "b",
+          "texto": "VDRL No Reactivo.",
+          "explicacion": "Incorrecto. Sería muy raro (efecto prozona extremo), pero habitualmente es fuertemente positivo."
+        },
+        {
+          "id": "c",
+          "texto": "VDRL Reactivo débil (1:2).",
+          "explicacion": "Incorrecto. Eso es más típico de sífilis muy precoz o muy tardía/tratada."
+        },
+        {
+          "id": "d",
+          "texto": "PCR de orina positivo.",
+          "explicacion": "Incorrecto. No se diagnostica por orina."
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "tipo": "mcq",
+      "enunciado": "Al ser una Sífilis Temprana (< 1 año de evolución), ¿cuál es el tratamiento antibiótico de elección?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Penicilina Benzatina 2.4 millones UI, 3 dosis semanales.",
+          "explicacion": "Incorrecto. Eso es para sífilis tardía o indeterminada."
+        },
+        {
+          "id": "b",
+          "texto": "Penicilina Benzatina 2.4 millones UI, 1 dosis única IM.",
+          "explicacion": "Correcto. Para primaria, secundaria y latente precoz, una sola dosis es curativa.",
+          "esCorrecta": true
+        },
+        {
+          "id": "c",
+          "texto": "Ciprofloxacino oral.",
+          "explicacion": "Incorrecto. No sirve."
+        },
+        {
+          "id": "d",
+          "texto": "Crema de corticoides.",
+          "explicacion": "Incorrecto. Empeoraría el cuadro."
+        }
+      ]
+    },
+    {
+      "id": "p4",
+      "tipo": "mcq",
+      "enunciado": "¿Qué fenómeno post-tratamiento es frecuente en la Sífilis Secundaria y debe advertirse para que no se asuste?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Shock anafiláctico tardío.",
+          "explicacion": "Incorrecto."
+        },
+        {
+          "id": "b",
+          "texto": "Caída del cabello inmediata.",
+          "explicacion": "Incorrecto."
+        },
+        {
+          "id": "c",
+          "texto": "Vómitos explosivos.",
+          "explicacion": "Incorrecto."
+        },
+        {
+          "id": "d",
+          "texto": "Reacción de Jarisch-Herxheimer.",
+          "explicacion": "Correcto. Fiebre alta, calofríos y exacerbación de las manchas a las pocas horas de la inyección. Es por la muerte masiva de bacterias, no alergia.",
+          "esCorrecta": true
+        }
+      ]
+    },
+    {
+      "id": "p5",
+      "tipo": "mcq",
+      "enunciado": "¿Qué co-infección es obligatorio descartar dado el estadio de la enfermedad y las prácticas de riesgo?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Gastritis por Helicobacter.",
+          "explicacion": "Incorrecto."
+        },
+        {
+          "id": "b",
+          "texto": "Diabetes tipo 1.",
+          "explicacion": "Incorrecto."
+        },
+        {
+          "id": "c",
+          "texto": "VIH.",
+          "explicacion": "Correcto. La sífilis activa aumenta significativamente el riesgo de transmisión y adquisición del VIH. El tamizaje es mandatorio.",
+          "esCorrecta": true
+        },
+        {
+          "id": "d",
+          "texto": "Hipertensión.",
+          "explicacion": "Incorrecto."
+        }
+      ]
+    },
+    {
+      "id": "p6",
+      "tipo": "mcq",
+      "enunciado": "Sobre el manejo de contactos sexuales:",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Tratar a todos los contactos de los últimos 6 meses (secundaria).",
+          "explicacion": "Correcto. En sífilis secundaria el periodo de contagiosidad es mayor, por lo que se amplía la ventana de rastreo respecto a la primaria (90 días) hacia atrás.",
+          "esCorrecta": true
+        },
+        {
+          "id": "b",
+          "texto": "No es necesario avisar.",
+          "explicacion": "Incorrecto."
+        },
+        {
+          "id": "c",
+          "texto": "Solo tratar si tienen manchas.",
+          "explicacion": "Incorrecto."
+        },
+        {
+          "id": "d",
+          "texto": "Esperar a que el paciente se cure primero.",
+          "explicacion": "Incorrecto."
+        }
+      ]
+    },
+    {
+      "id": "p7",
+      "tipo": "short",
+      "enunciado": "El paciente teme que la reacción a la inyección (fiebre) signifique que es alérgico. Redacta una explicación breve diferenciando la 'Reacción de Herxheimer' de una alergia.",
+      "puntosMaximos": 2,
+      "criteriosEvaluacion": [
+        "bacterias muriendo",
+        "inflamación",
+        "fiebre",
+        "24 horas",
+        "no es alergia",
+        "paracetamol",
+        "penicilina",
+        "reacción",
+        "transitoria"
+      ],
+      "guia": "• Qué es: 'No es alergia. Es que el remedio es muy fuerte y está matando todas las bacterias de golpe'.\n• Síntomas: 'Te va a dar fiebre y dolor de cuerpo hoy en la noche'.\n• Manejo: 'Toma paracetamol y agua. Mañana se te pasa solo'.",
+      "feedbackDocente": "Evalúa si el estudiante conoce la fisiopatología básica de la reacción para tranquilizar al paciente y evitar consultas innecesarias a urgencias."
+    }
+  ],
+  "feedbackDinamico": {
+    "bajo": "La sífilis se llama 'la gran simuladora' por una razón: ¡es difícil de reconocer! Es normal confundirse al principio. Lo valioso es que estás aquí estudiando para detectarla. Recuerda: manchas en palmas/plantas sin picazón = sospecha de Sífilis. Revisa la Norma 187, ¡sigue así, estás construyendo un gran ojo clínico!",
+    "medio": "Bien diagnosticado. Tienes ojo clínico. Para el nivel experto, advierte al paciente sobre la reacción de Jarisch-Herxheimer (fiebre post-inyección). Si no le avisas, pensará que es alérgico y nunca más querrá usar penicilina, complicando su futuro.",
+    "alto": "¡Excelente! Has conectado la historia pasada (chancro) con la actual (exantema) para diagnosticar una Sífilis Secundaria. Tu manejo farmacológico, epidemiológico (parejas/VIH) y educativo (Herxheimer) es impecable."
+  },
+  "referencias": [
+    "NORMA-GRAL.-TECNICA-N°-187-DE-PROFILAXIS-DIAGNOSTICO-Y-TRATAMIENTO-DE-LAS-ITS.pdf",
+    "Estrategia-de-Prevencio%CC%81n-de-las-Infecciones-de-Transmisio%CC%81n-Sexual-final-09-07-2020.pdf"
   ]
 },
 ]
