@@ -64,62 +64,63 @@ export default function CasoDetalleClient() {
     if (porcentaje >= 61) {
       nivel = 'Excelente';
       emoji = '🏆';
-      badgeColor = 'bg-gradient-to-r from-yellow-100 to-yellow-200 text-yellow-900 border-yellow-400';
+      badgeColor = 'bg-gradient-to-r from-green-100 to-green-200 text-green-900 border-green-400';
       feedbackMessage = feedbackDinamico?.alto || 'Dominas los conceptos clave del caso. ¡Felicitaciones!';
     } else if (porcentaje >= 31) {
       nivel = 'Bien';
       emoji = '✓';
-      badgeColor = 'bg-gradient-to-r from-blue-100 to-blue-200 text-blue-900 border-blue-400';
+      badgeColor = 'bg-gradient-to-r from-yellow-100 to-yellow-200 text-yellow-900 border-yellow-400';
       feedbackMessage = feedbackDinamico?.medio || 'Buen desempeño. Refuerza algunos detalles para alcanzar la excelencia.';
     } else {
       nivel = 'Necesitas Revisar';
       emoji = '📝';
-      badgeColor = 'bg-gradient-to-r from-orange-100 to-orange-200 text-orange-900 border-orange-400';
+      badgeColor = 'bg-gradient-to-r from-red-100 to-red-200 text-red-900 border-red-400';
       feedbackMessage = feedbackDinamico?.bajo || 'Repasa los conceptos fundamentales y vuelve a intentarlo.';
     }
 
     return (
       <div className="card p-6 md:p-8 animate-fade-in">
-        <h1 className="text-xl md:text-3xl font-extrabold mb-4 
-                   bg-gradient-to-r from-brand-700 to-brand-900 bg-clip-text text-transparent">
+        <h1 className="text-xl md:text-3xl font-extrabold mb-4 bg-gradient-to-r from-red-600 via-rose-600 to-pink-600 bg-clip-text text-transparent" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
           {caso.titulo}
         </h1>
 
         {/* Resumen de Puntuación */}
-        <div className="mb-6 p-6 rounded-lg bg-gradient-to-br from-[var(--km-surface-1)] to-[var(--km-surface-2)] border border-neutral-200">
+        <div className="mb-6 p-6 rounded-xl bg-gradient-to-br from-red-50/50 via-rose-50/30 to-pink-50/40 border-2 border-red-200/60 shadow-sm">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-bold text-neutral-900">Resultado del Caso</h2>
-            <div className={`px-4 py-2 rounded-full border font-semibold ${badgeColor}`}>
+            <h2 className="text-xl font-bold text-red-800" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>Resultado del Caso</h2>
+            <div className={`px-4 py-2 rounded-full border-2 font-semibold ${badgeColor}`}>
               {emoji} {nivel}
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-            <div className="text-center p-4 bg-white rounded-lg border border-neutral-200">
-              <div className="text-3xl font-bold text-[var(--km-primary)]">{puntosObtenidos}</div>
-              <div className="text-sm text-neutral-600">Puntos Obtenidos</div>
+            <div className="text-center p-5 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl border-2 border-emerald-300 shadow-sm hover:shadow-md transition-all hover:scale-105">
+              <div className="text-4xl font-bold text-emerald-600 mb-1" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>{puntosObtenidos}</div>
+              <div className="text-sm font-semibold text-emerald-700">Puntos Obtenidos</div>
             </div>
-            <div className="text-center p-4 bg-white rounded-lg border border-neutral-200">
-              <div className="text-3xl font-bold text-neutral-700">{puntosMaximos}</div>
-              <div className="text-sm text-neutral-600">Puntos Totales</div>
+            <div className="text-center p-5 bg-gradient-to-br from-rose-50 to-pink-50 rounded-xl border-2 border-rose-300 shadow-sm hover:shadow-md transition-all hover:scale-105">
+              <div className="text-4xl font-bold text-rose-600 mb-1" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>{puntosMaximos}</div>
+              <div className="text-sm font-semibold text-rose-700">Puntos Totales</div>
             </div>
-            <div className="text-center p-4 bg-white rounded-lg border border-neutral-200">
-              <div className="text-3xl font-bold text-[var(--km-coral)]">{porcentaje}%</div>
-              <div className="text-sm text-neutral-600">Porcentaje</div>
+            <div className="text-center p-5 bg-gradient-to-br from-red-50 to-orange-50 rounded-xl border-2 border-red-300 shadow-sm hover:shadow-md transition-all hover:scale-105">
+              <div className="text-4xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent mb-1" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>{porcentaje}%</div>
+              <div className="text-sm font-semibold text-red-700">Porcentaje</div>
             </div>
           </div>
 
-          {/* Barra de progreso */}
-          <div className="w-full bg-neutral-200 rounded-full h-3 mb-3">
+          {/* Barra de progreso mejorada */}
+          <div className="w-full bg-gradient-to-r from-neutral-100 to-neutral-200 rounded-full h-4 mb-3 shadow-inner">
             <div 
-              className="bg-gradient-to-r from-[var(--km-primary)] to-[var(--km-coral)] h-3 rounded-full transition-all duration-500 shadow-sm"
+              className="bg-gradient-to-r from-red-500 via-rose-500 to-pink-500 h-4 rounded-full transition-all duration-500 shadow-lg relative overflow-hidden"
               style={{ width: `${porcentaje}%` }}
-            />
+            >
+              <div className="absolute inset-0 bg-white/30 animate-shimmer"></div>
+            </div>
           </div>
 
           {/* Feedback dinámico adaptativo */}
-          <div className="p-4 rounded-lg bg-white border border-neutral-200 mt-4">
-            <p className="text-sm md:text-base text-neutral-800 leading-relaxed">{feedbackMessage}</p>
+          <div className="p-4 rounded-xl bg-gradient-to-br from-rose-50 to-pink-50 border-2 border-rose-200 mt-4 shadow-sm">
+            <p className="text-sm md:text-base text-rose-900 leading-relaxed font-medium">{feedbackMessage}</p>
           </div>
         </div>
 
@@ -141,16 +142,16 @@ export default function CasoDetalleClient() {
 
         <div className="prose prose-sm md:prose-base prose-neutral max-w-none">
             { (caso.debrief || caso.pasos.some(p => p.feedbackDocente)) && (
-              <div className="mt-4 p-4 rounded-md bg-[var(--km-surface-2)] border border-neutral-100">
-                <h3 className="text-lg font-semibold" style={{ color: 'var(--km-deep)' }}>Feedback Docente</h3>
+              <div className="mt-4 p-5 rounded-xl bg-gradient-to-br from-rose-50 to-pink-50 border-2 border-rose-200 shadow-sm">
+                <h3 className="text-lg font-semibold text-rose-800 mb-3" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>Feedback Docente</h3>
                 {caso.debrief ? (
-                  <p className="text-[var(--km-text-700)] mt-2">{caso.debrief}</p>
+                  <p className="text-rose-900 mt-2 leading-relaxed">{caso.debrief}</p>
                 ) : (
-                  <div className="space-y-3 mt-2 text-[var(--km-text-700)]">
+                  <div className="space-y-3 mt-2 text-rose-900">
                     {caso.pasos.map((p, idx) => (
                       p.feedbackDocente ? (
-                        <div key={p.id}>
-                          <strong className="block">Paso {idx + 1}:</strong>
+                        <div key={p.id} className="bg-white/50 p-3 rounded-lg">
+                          <strong className="block text-rose-800 mb-1">Paso {idx + 1}:</strong>
                           <div className="whitespace-pre-wrap">{p.feedbackDocente}</div>
                         </div>
                       ) : null
@@ -160,9 +161,9 @@ export default function CasoDetalleClient() {
               </div>
             )}
             {caso.referencias && caso.referencias.length > 0 && (
-              <section className="mt-6 card">
-                <h3 className="text-lg font-semibold" style={{ color: 'var(--km-deep)' }}>Bibliografía</h3>
-                <ul className="list-disc pl-5 mt-3 text-sm text-[var(--km-text-700)]">
+              <section className="mt-6 p-5 rounded-xl bg-gradient-to-br from-red-50 to-rose-50 border-2 border-red-200 shadow-sm">
+                <h3 className="text-lg font-semibold text-red-800 mb-3" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>Bibliografía</h3>
+                <ul className="list-disc pl-5 mt-3 text-sm text-red-900 space-y-1">
                   {caso.referencias.map((r, i) => (
                     <li key={i}>{r}</li>
                   ))}
@@ -180,26 +181,26 @@ export default function CasoDetalleClient() {
     return (
       <div className="card p-6 md:p-8 animate-fade-in">
         {/* Instrucciones claras sin repetir el título */}
-        <div className="bg-gradient-to-r from-blue-50 to-purple-50 border-l-4 border-blue-500 rounded-lg p-5 mb-6">
-          <h2 className="text-lg font-bold text-blue-900 mb-2 flex items-center gap-2">
+        <div className="bg-gradient-to-r from-red-50 via-rose-50 to-pink-50 border-l-4 border-red-500 rounded-lg p-5 mb-6 shadow-sm">
+          <h2 className="text-lg font-bold text-red-900 mb-2 flex items-center gap-2" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
             <span className="text-2xl">📋</span>
             Instrucciones del Caso Clínico
           </h2>
-          <ul className="space-y-2 text-sm text-blue-800">
+          <ul className="space-y-2 text-sm text-red-800">
             <li className="flex items-start gap-2">
-              <span className="text-blue-500 mt-0.5">1.</span>
+              <span className="text-red-500 mt-0.5 font-semibold">1.</span>
               <span>Lee atentamente la <strong>viñeta clínica</strong> que aparece en el panel izquierdo</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-blue-500 mt-0.5">2.</span>
+              <span className="text-red-500 mt-0.5 font-semibold">2.</span>
               <span>Analiza los <strong>datos relevantes</strong> del paciente y el contexto clínico</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-blue-500 mt-0.5">3.</span>
+              <span className="text-red-500 mt-0.5 font-semibold">3.</span>
               <span>Responde las preguntas a tu <strong>propio ritmo</strong> usando los botones de navegación</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-blue-500 mt-0.5">4.</span>
+              <span className="text-red-500 mt-0.5 font-semibold">4.</span>
               <span>Revisa el <strong>feedback dinámico</strong> al finalizar para reforzar tu aprendizaje</span>
             </li>
           </ul>
@@ -207,26 +208,26 @@ export default function CasoDetalleClient() {
 
         {/* Información del caso */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mb-6">
-          <div className="bg-neutral-50 rounded-lg p-4 text-center border border-neutral-200">
-            <div className="text-xl font-bold text-[var(--km-primary)] break-words">{caso.pasos.length}</div>
-            <div className="text-xs text-neutral-600 mt-1">Preguntas</div>
+          <div className="bg-gradient-to-br from-red-50 to-rose-50 rounded-lg p-4 text-center border-2 border-red-200 shadow-sm">
+            <div className="text-xl font-bold text-red-600 break-words" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>{caso.pasos.length}</div>
+            <div className="text-xs text-red-700 font-medium mt-1">Preguntas</div>
           </div>
-          <div className="bg-neutral-50 rounded-lg p-4 text-center border border-neutral-200">
-            <div className="text-sm font-bold text-purple-600 break-words leading-tight">{caso.modulo || 'General'}</div>
-            <div className="text-xs text-neutral-600 mt-1">Módulo</div>
+          <div className="bg-gradient-to-br from-rose-50 to-pink-50 rounded-lg p-4 text-center border-2 border-rose-200 shadow-sm">
+            <div className="text-sm font-bold text-rose-700 break-words leading-tight" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>{caso.modulo || 'General'}</div>
+            <div className="text-xs text-rose-700 font-medium mt-1">Módulo</div>
           </div>
-          <div className={`rounded-lg p-4 text-center border sm:col-span-2 md:col-span-1 ${
-            caso.dificultad === 'BAJA' ? 'bg-green-50 border-green-300' :
-            caso.dificultad === 'MEDIA' ? 'bg-yellow-50 border-yellow-300' :
-            caso.dificultad === 'ALTA' ? 'bg-red-50 border-red-300' :
+          <div className={`rounded-lg p-4 text-center border-2 sm:col-span-2 md:col-span-1 shadow-sm ${
+            caso.dificultad === 'BAJA' ? 'bg-gradient-to-br from-emerald-50 to-green-50 border-emerald-300' :
+            caso.dificultad === 'MEDIA' ? 'bg-gradient-to-br from-amber-50 to-yellow-50 border-amber-300' :
+            caso.dificultad === 'ALTA' ? 'bg-gradient-to-br from-red-50 to-orange-50 border-red-300' :
             'bg-neutral-50 border-neutral-200'
           }`}>
             <div className={`text-sm font-bold break-words leading-tight ${
-              caso.dificultad === 'BAJA' ? 'text-green-700' :
-              caso.dificultad === 'MEDIA' ? 'text-yellow-700' :
+              caso.dificultad === 'BAJA' ? 'text-emerald-700' :
+              caso.dificultad === 'MEDIA' ? 'text-amber-700' :
               caso.dificultad === 'ALTA' ? 'text-red-700' :
               'text-neutral-700'
-            }`}>
+            }`} style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
               {caso.dificultad || 'MEDIA'}
             </div>
             <div className="text-xs text-neutral-600 mt-1">Dificultad</div>

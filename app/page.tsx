@@ -4,6 +4,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { SignInButton, SignUpButton, useUser } from '@clerk/nextjs';
+import { Stethoscope, BookOpen, Award, Heart } from 'lucide-react';
 
 export default function HomePage() {
   const { isSignedIn } = useUser();
@@ -41,12 +42,12 @@ export default function HomePage() {
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 {!isSignedIn ? (
                   <>
-                    <SignInButton mode="modal">
+                    <SignInButton forceRedirectUrl="/casos">
                       <button className="btn btn-lg bg-white text-km-crimson hover:bg-km-blush hover:scale-105 shadow-km-xl transition-all">
                         Iniciar sesión →
                       </button>
                     </SignInButton>
-                    <SignUpButton mode="modal">
+                    <SignUpButton forceRedirectUrl="/casos">
                       <button className="btn btn-lg bg-transparent border-2 border-white text-white hover:bg-white/10">
                         Registrarse gratis
                       </button>
@@ -66,17 +67,32 @@ export default function HomePage() {
 
               {/* Stats */}
               <div className="flex gap-8 pt-6">
-                <div>
-                  <div className="text-3xl font-bold text-km-blush">50+</div>
-                  <div className="text-white/80 text-sm">Casos Clínicos</div>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
+                    <BookOpen className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <div className="text-3xl font-bold text-km-blush">50+</div>
+                    <div className="text-white/80 text-sm">Casos Clínicos</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-3xl font-bold text-km-blush">4</div>
-                  <div className="text-white/80 text-sm">Módulos</div>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
+                    <Stethoscope className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <div className="text-3xl font-bold text-km-blush">4</div>
+                    <div className="text-white/80 text-sm">Módulos</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-3xl font-bold text-km-blush">100%</div>
-                  <div className="text-white/80 text-sm">Gratis</div>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
+                    <Heart className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <div className="text-3xl font-bold text-km-blush">100%</div>
+                    <div className="text-white/80 text-sm">Gratis</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -146,43 +162,37 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 5) CTA Final - Rediseñado con gradiente rojo */}
+        {/* 5) Colaboradores - Sección para mostrar patrocinadores y aliados */}
         <section className="relative overflow-hidden rounded-3xl bg-gradient-km-primary text-white p-8 md:p-12 shadow-km-xl backdrop-blur-xl bg-opacity-95">
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-          <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="text-center md:text-left">
-              <h3 className="text-3xl md:text-4xl font-bold mb-3">
-                ¿Listo para comenzar?
-              </h3>
-              <p className="text-lg text-white/90 max-w-xl">
-                Regístrate o inicia sesión y comienza a practicar casos clínicos hoy mismo. <strong>Es 100% gratis.</strong>
-              </p>
+          <div className="relative text-center">
+            <h3 className="text-3xl md:text-4xl font-bold mb-4">
+              Nuestros Colaboradores
+            </h3>
+            <p className="text-lg text-white/90 max-w-2xl mx-auto mb-8">
+              KLINIK-MAT es posible gracias al apoyo de instituciones y organizaciones comprometidas con la educación de los futuros Matrones/as de Chile.
+            </p>
+            
+            {/* Grid de logos de colaboradores - Placeholder para futuro */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 items-center justify-items-center min-h-[120px]">
+              {/* Placeholder para logos futuros */}
+              <div className="w-full h-24 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center">
+                <span className="text-white/50 text-sm">Logo 1</span>
+              </div>
+              <div className="w-full h-24 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center">
+                <span className="text-white/50 text-sm">Logo 2</span>
+              </div>
+              <div className="w-full h-24 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center">
+                <span className="text-white/50 text-sm">Logo 3</span>
+              </div>
+              <div className="w-full h-24 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center">
+                <span className="text-white/50 text-sm">Logo 4</span>
+              </div>
             </div>
-            <div className="flex flex-col sm:flex-row gap-4">
-              {!isSignedIn ? (
-                <>
-                  <SignUpButton mode="modal">
-                    <button className="btn btn-lg bg-white text-km-crimson hover:bg-km-blush hover:scale-105 shadow-km-lg transition-all">
-                      Registrarse gratis →
-                    </button>
-                  </SignUpButton>
-                  <SignInButton mode="modal">
-                    <button className="btn btn-lg bg-transparent border-2 border-white text-white hover:bg-white/10">
-                      Ya tengo cuenta
-                    </button>
-                  </SignInButton>
-                </>
-              ) : (
-                <>
-                  <a href="/casos" className="btn btn-lg bg-white text-km-crimson hover:bg-km-blush hover:scale-105 shadow-km-lg transition-all">
-                    Ir a casos clínicos →
-                  </a>
-                  <a href="/recursos" className="btn btn-lg bg-transparent border-2 border-white text-white hover:bg-white/10">
-                    Ver recursos
-                  </a>
-                </>
-              )}
-            </div>
+
+            <p className="text-sm text-white/70 mt-8">
+              ¿Tu institución quiere colaborar? <a href="mailto:contacto@klinik-mat.cl" className="underline hover:text-white transition-colors">Contáctanos</a>
+            </p>
           </div>
         </section>
 

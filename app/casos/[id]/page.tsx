@@ -69,7 +69,7 @@ function normalizarDatosDelCaso(casoDesdeDB: any): CasoClient | null {
       pasos: pasosNormalizados,
       referencias: (casoDesdeDB.norms || []).map((n: any) => n.name || n.code || ''),
       debrief: casoDesdeDB.summary || casoDesdeDB.debrief || null,
-      feedback_dinamico: casoDesdeDB.feedback_dinamico || undefined,
+      feedback_dinamico: casoDesdeDB.feedbackDinamico || casoDesdeDB.feedback_dinamico || undefined,
     };
   }
 
@@ -112,7 +112,7 @@ function normalizarDatosDelCaso(casoDesdeDB: any): CasoClient | null {
       pasos: pasosNormalizados,
       referencias: contenido.referencias || [],
       debrief: contenido.debrief || null,
-      feedback_dinamico: contenido.feedback_dinamico || undefined,
+      feedback_dinamico: casoDesdeDB.feedbackDinamico || contenido.feedbackDinamico || contenido.feedback_dinamico || undefined,
     };
   }
 
@@ -143,8 +143,13 @@ export default async function CasoPage({ params }: PageProps) {
   }
 
   return (
-    <main className="container-app py-8">
-      <CasoInteractiveUI casoClient={casoClient} />
-    </main>
+    <div className="min-h-screen" style={{ 
+      background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.12) 0%, rgba(244, 63, 94, 0.10) 50%, rgba(251, 146, 60, 0.12) 100%)',
+      backgroundColor: '#FEF2F2'
+    }}>
+      <main className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8 py-8">
+        <CasoInteractiveUI casoClient={casoClient} />
+      </main>
+    </div>
   );
 }

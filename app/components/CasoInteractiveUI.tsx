@@ -21,14 +21,14 @@ export default function CasoInteractiveUI({ casoClient }: Props) {
       <VignetteHeader title={casoClient.titulo} vigneta={casoClient.vigneta} />
 
       {/* Grid: preguntas a la izquierda (mayor espacio horizontal), navigator a la derecha (compacto) */}
-      <div className="grid md:grid-cols-[1fr_300px] gap-6 items-start">
-        <div>
-          <div className="bg-[var(--km-surface-1)] rounded-[var(--km-radius)] p-4 md:p-6 shadow-card border">
+      <div className="grid lg:grid-cols-[1fr_280px] gap-6 items-start">
+        <div className="w-full">
+          <div className="bg-gradient-to-br from-white via-red-50/30 to-orange-50/20 rounded-[var(--km-radius-lg)] p-5 md:p-8 shadow-km-md border-2 border-red-100/50">
             <CasoDetalleClient />
           </div>
         </div>
 
-        <aside>
+        <aside className="lg:sticky lg:top-24">
           <CaseNavigator />
         </aside>
       </div>

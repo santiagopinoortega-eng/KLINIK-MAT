@@ -71,7 +71,7 @@ async function upsertCase(caseObj) {
   const summary = caseObj.resumen || caseObj.summary || '';
   
   // Nuevo: Guardar el feedback dinámico como JSON
-  const feedback_dinamico = caseObj.feedback_dinamico || null;
+  const feedback_dinamico = caseObj.feedbackDinamico || caseObj.feedback_dinamico || null;
 
   // Prepare questions data
   const pasos = Array.isArray(caseObj.pasos) ? caseObj.pasos : [];

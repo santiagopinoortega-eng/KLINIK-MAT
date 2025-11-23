@@ -53,6 +53,9 @@ async function main() {
 
 
   // 4. Crear un Caso Clínico completo con sus relaciones
+  // NOTA: Este caso de ejemplo está comentado porque los casos reales se cargan desde cases.json5
+  // mediante el script seed-cases.ts. Descomentar solo si necesitas un caso de ejemplo básico.
+  /*
   const casoMigrana = await prisma.case.create({
     data: {
       title: 'Anticoncepción en paciente con migraña con aura',
@@ -82,6 +85,7 @@ async function main() {
     },
   });
   console.log(`🏥 Creado caso clínico: "${casoMigrana.title}"`);
+  */
 
   console.log('✅ Seeding completado exitosamente.');
 }

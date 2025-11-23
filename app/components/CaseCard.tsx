@@ -91,12 +91,13 @@ export default function CaseCard({
 
   return (
     <article 
-      className="card group relative overflow-hidden transition-all hover:shadow-xl flex flex-col"
+      className="card group relative overflow-hidden flex flex-col"
       style={{
         border: colors.border,
-        minHeight: '300px',
-        maxHeight: '300px',
-        background: `linear-gradient(to bottom, ${colors.bg}, var(--km-surface-1))`
+        minHeight: '320px',
+        maxHeight: '320px',
+        background: `linear-gradient(to bottom, ${colors.bg}, var(--km-surface-1))`,
+        boxShadow: colors.shadow
       }}
     >
       {/* Badges superiores */}
@@ -124,12 +125,12 @@ export default function CaseCard({
       </div>
 
       {/* Título con color rojo */}
-      <h3 className="text-xl font-bold leading-snug mb-3" style={{color: 'var(--km-cardinal)'}}>
+      <h3 className="text-xl font-bold leading-snug mb-4" style={{color: 'var(--km-cardinal)'}}>
         {title}
       </h3>
 
       {/* Resumen con altura fija */}
-      <div className="flex-1 overflow-hidden mb-4">
+      <div className="flex-1 overflow-hidden mb-5">
         {summary && (
           <p className="text-sm leading-relaxed line-clamp-3" style={{color: 'var(--km-text-700)'}}>
             {summary}
@@ -138,7 +139,7 @@ export default function CaseCard({
       </div>
 
       {/* Botón siempre en la misma posición (al final) */}
-      <Link href={`/casos/${id}`} className="mt-auto btn btn-primary w-full transition-all hover:scale-105">
+      <Link href={`/casos/${id}`} className="mt-auto btn btn-primary w-full">
         Resolver caso →
       </Link>
     </article>

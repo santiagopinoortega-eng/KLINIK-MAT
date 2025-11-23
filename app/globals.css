@@ -32,6 +32,16 @@
     --km-surface-2: #FEF2F2;    /* Rosa pálido - Fondo página */
     --km-surface-3: #FECACA;    /* Rosa vibrante - Destacados */
     
+    /* Sistema contextual (nuevo) */
+    --km-success: #10B981;      /* Verde - Feedback positivo */
+    --km-success-bg: #D1FAE5;   /* Verde claro - Fondo success */
+    --km-warning: #F59E0B;      /* Amarillo - Advertencias */
+    --km-warning-bg: #FEF3C7;   /* Amarillo claro - Fondo warning */
+    --km-info: #3B82F6;         /* Azul - Información */
+    --km-info-bg: #DBEAFE;      /* Azul claro - Fondo info */
+    --km-error: #DC2626;        /* Rojo - Errores */
+    --km-error-bg: #FEE2E2;     /* Rojo claro - Fondo error */
+    
     /* Sistema de sombras */
     --km-shadow-sm: 0 2px 8px rgba(220, 38, 38, 0.12);
     --km-shadow-md: 0 4px 16px rgba(220, 38, 38, 0.15);
@@ -48,11 +58,13 @@
     --km-gradient-primary: linear-gradient(135deg, #DC2626 0%, #F87171 100%);
     --km-gradient-warm: linear-gradient(135deg, #FB923C 0%, #FEF2F2 100%);
     --km-gradient-hero: linear-gradient(135deg, rgba(220,38,38,0.95) 0%, rgba(153,27,27,0.9) 100%);
-    --km-gradient-success: linear-gradient(135deg, #14B8A6 0%, #5EEAD4 100%);
+    --km-gradient-success: linear-gradient(135deg, #10B981 0%, #34D399 100%);
   }
 
   html, body {
-    @apply text-neutral-800 font-sans antialiased;
+    @apply antialiased;
+    font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+    color: var(--km-text-700);
     background-color: var(--km-cream);
     background-image: 
       radial-gradient(circle at 20% 30%, rgba(196,30,58,0.04) 0%, transparent 50%),
@@ -62,10 +74,22 @@
     text-rendering: optimizeLegibility;
   }
 
-  /* --- TAMAÑOS BASE REDUCIDOS --- */
-  h1 { @apply text-xl md:text-3xl font-bold mb-3; color: var(--km-cardinal); }
-  h2 { @apply text-lg md:text-2xl font-semibold mb-2; color: var(--km-crimson); }
-  h3 { @apply text-base md:text-xl font-semibold mb-2; color: var(--km-navy); }
+  /* --- TAMAÑOS BASE CON POPPINS PARA HEADINGS --- */
+  h1 { 
+    @apply text-xl md:text-3xl font-bold mb-3; 
+    font-family: var(--font-poppins), sans-serif;
+    color: var(--km-cardinal); 
+  }
+  h2 { 
+    @apply text-lg md:text-2xl font-semibold mb-2; 
+    font-family: var(--font-poppins), sans-serif;
+    color: var(--km-crimson); 
+  }
+  h3 { 
+    @apply text-base md:text-xl font-semibold mb-2; 
+    font-family: var(--font-poppins), sans-serif;
+    color: var(--km-navy); 
+  }
   p  { @apply text-sm md:text-base leading-relaxed; color: var(--km-text-700); }
 
   a { 
@@ -79,9 +103,11 @@
 @layer components {
   .btn {
     @apply inline-flex items-center justify-center gap-2 rounded px-4 py-2
-    text-sm font-medium border border-transparent transition-all
+    text-sm font-medium border border-transparent
     disabled:opacity-50 disabled:pointer-events-none;
     border-radius: var(--km-radius-lg);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: var(--font-poppins), sans-serif;
   }
   .btn-lg { @apply px-6 py-3 text-base; }
   .btn-primary {
@@ -103,6 +129,7 @@
   .btn-secondary:hover { 
     background-color: var(--km-blush);
     border-color: var(--km-rose);
+    transform: translateY(-1px);
   }
   .btn:focus-visible {
     outline: 3px solid rgba(14,107,183,0.12);
@@ -175,7 +202,7 @@
     border: 1px solid rgba(196,30,58,0.25);
   }
   .container-app {
-    @apply container mx-auto px-4 max-w-4xl; /* Ancho óptimo para lectura */
+    @apply container mx-auto px-4 md:px-6 max-w-6xl; /* Ancho ampliado para casos clínicos */
   }
 }
 
@@ -198,5 +225,18 @@
   @keyframes slide {
     0% { transform: translateX(-100%); }
     100% { transform: translateX(200%); }
+  }
+  
+  /* Smooth transitions para elementos interactivos */
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Scale hover suave */
+  .hover-lift {
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  }
+  .hover-lift:hover {
+    transform: translateY(-4px);
   }
 }

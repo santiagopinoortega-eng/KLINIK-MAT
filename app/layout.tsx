@@ -2,7 +2,7 @@
 import './globals.css'; // Lee los estilos base (fondo coral, etc.)
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Inter } from 'next/font/google';
+import { Inter, Poppins } from 'next/font/google';
 import dynamic from 'next/dynamic';
 import { ClerkProvider } from '@clerk/nextjs';
 import { esES } from '@clerk/localizations';
@@ -15,6 +15,13 @@ const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-inter',
+});
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-poppins',
 });
 
 // Tu objeto Metadata (asegúrate de que el tipo 'Metadata' esté importado)
@@ -38,7 +45,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <ClerkProvider localization={esES}>
-      <html lang="es" className={`${inter.variable} scroll-smooth`}>
+      <html lang="es" className={`${inter.variable} ${poppins.variable} scroll-smooth`}>
         {/* El body ya recibe estilos (fondo/color) desde globals.css */}
         <body className="bg-gradient-to-br from-[rgba(107,15,15,0.04)] to-[rgba(255,182,166,0.04)] bg-[var(--km-blush)]">
         

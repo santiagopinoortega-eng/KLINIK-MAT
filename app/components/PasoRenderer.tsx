@@ -126,14 +126,14 @@ export default function PasoRenderer({ pasoId, onAnswer }: Props) {
     const criterios = stepData.criteriosEvaluacion || [];
     
     return (
-      <div className="mt-4 md:mt-6 animate-fade-in"> 
-        <div className="flex items-center justify-between mb-2">
-          <h3 className="text-base md:text-lg font-semibold text-neutral-800">Pregunta de Desarrollo</h3>
-          <span className="text-xs font-semibold text-[var(--km-coral)] bg-[var(--km-coral)]/10 px-2 py-1 rounded">
+      <div className="mt-4 md:mt-6 animate-fade-in bg-gradient-to-br from-red-50/40 via-rose-50/30 to-pink-50/20 border-2 border-red-100 rounded-xl p-5 shadow-sm"> 
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="text-base md:text-lg font-semibold text-red-900" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>Pregunta de Desarrollo</h3>
+          <span className="text-xs font-semibold text-red-700 bg-red-100 px-3 py-1.5 rounded-full border border-red-200">
             {puntosMaximos} {puntosMaximos === 1 ? 'punto' : 'puntos'}
           </span>
         </div>
-        <p className="text-sm md:text-base text-neutral-900 mb-4 font-medium">{displayEnunciado}</p>
+        <p className="text-sm md:text-base text-red-900 mb-4 font-medium">{displayEnunciado}</p>
 
         {/* Imágenes de la pregunta */}
         {stepData.imagenes && stepData.imagenes.length > 0 && (
@@ -202,8 +202,8 @@ export default function PasoRenderer({ pasoId, onAnswer }: Props) {
             </div>
 
             {stepData.guia && (
-              <div className="p-3 rounded-lg bg-[var(--km-surface-2)] text-sm text-[var(--km-text-700)] whitespace-pre-wrap">
-                <h4 className="font-semibold mb-2">Guía de respuesta esperada</h4>
+              <div className="p-4 rounded-lg bg-gradient-to-br from-rose-50 to-pink-50 border border-rose-200 text-sm text-rose-900 whitespace-pre-wrap shadow-sm">
+                <h4 className="font-semibold mb-2 text-rose-800" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>Guía de respuesta esperada</h4>
                 <div>{stepData.guia}</div>
               </div>
             )}
@@ -216,8 +216,8 @@ export default function PasoRenderer({ pasoId, onAnswer }: Props) {
   // --- CASO 2: Selección Múltiple (MCQ) ---
   if (isMcq(stepData)) {
      return (
-      <div className="mt-4 md:mt-6 animate-fade-in">
-        <h3 className="text-base md:text-lg font-semibold mb-3 md:mb-4 text-neutral-900 leading-snug">
+      <div className="mt-4 md:mt-6 animate-fade-in bg-gradient-to-br from-red-50/40 via-rose-50/30 to-pink-50/20 border-2 border-red-100 rounded-xl p-5 shadow-sm">
+        <h3 className="text-base md:text-lg font-semibold mb-3 md:mb-4 text-red-900 leading-snug" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
           {displayEnunciado}
         </h3>
 
@@ -238,18 +238,18 @@ export default function PasoRenderer({ pasoId, onAnswer }: Props) {
 
                 return (
               <label key={opcion.id} className={cx(
-                  "flex items-start p-3 rounded-xl border transition-all cursor-pointer text-sm md:text-base",
+                  "flex items-start p-3 rounded-xl border-2 transition-all cursor-pointer text-sm md:text-base",
                   {
                     "!cursor-not-allowed opacity-90": isAnswered,
-                    "bg-[var(--km-coral)]/8 border-[rgba(183,43,43,0.06)] shadow-sm": isSelected && !isAnswered,
-                    "bg-[var(--km-surface-1)] border-[rgba(183,43,43,0.06)] hover:shadow-sm": !isSelected && !isAnswered,
-                    "bg-success-50 border-success-300 ring-1 ring-success-200": isCorrect && isAnswered,
-                    "bg-danger-50 border-danger-300 ring-1 ring-danger-200": wasSelectedAndWrong,
-                    "bg-[var(--km-surface-2)] border-[rgba(0,0,0,0.03)] opacity-80": isAnswered && !isCorrect && !wasSelectedAndWrong,
+                    "bg-gradient-to-r from-red-50 to-rose-50 border-red-300 shadow-md ring-2 ring-red-200/50": isSelected && !isAnswered,
+                    "bg-white border-red-100 hover:border-red-200 hover:shadow-sm hover:bg-red-50/30": !isSelected && !isAnswered,
+                    "bg-gradient-to-r from-emerald-50 to-green-50 border-emerald-400 ring-2 ring-emerald-300/50 shadow-md": isCorrect && isAnswered,
+                    "bg-gradient-to-r from-red-100 to-rose-100 border-red-400 ring-2 ring-red-300/50 shadow-md": wasSelectedAndWrong,
+                    "bg-neutral-50 border-neutral-200 opacity-70": isAnswered && !isCorrect && !wasSelectedAndWrong,
                   }
                 )}>
                 <input type="radio" name={stepData.id} value={opcion.id} checked={isSelected} onChange={handleOptionChange} disabled={isAnswered}
-                  className="mt-0.5 h-4 w-4 text-[var(--km-primary)] border-neutral-300 focus:ring-[var(--km-primary)] shrink-0" />
+                  className="mt-0.5 h-5 w-5 text-red-600 border-red-300 focus:ring-red-500 shrink-0" />
                 <span className="ml-3 flex-1">
                   <span className={isAnswered ? "text-[var(--km-text-700)]" : "text-[var(--km-text-900)]"}>{opcion.texto}</span>
                   {isAnswered && (isCorrect || wasSelectedAndWrong) && (
@@ -277,9 +277,9 @@ export default function PasoRenderer({ pasoId, onAnswer }: Props) {
 
           {/* Feedback docente general para la pregunta */}
           {respuestaUsuario && stepData.feedbackDocente && (
-            <div className="mt-4 p-3 rounded-lg bg-[var(--km-surface-1)] border border-neutral-200 text-sm">
-              <h4 className="font-semibold mb-2">Feedback docente</h4>
-              <div className="text-[var(--km-text-700)] whitespace-pre-wrap">{stepData.feedbackDocente}</div>
+            <div className="mt-4 p-4 rounded-lg bg-gradient-to-br from-rose-50 to-pink-50 border-2 border-rose-200 text-sm shadow-sm">
+              <h4 className="font-semibold mb-2 text-rose-800" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>Feedback docente</h4>
+              <div className="text-rose-900 whitespace-pre-wrap">{stepData.feedbackDocente}</div>
             </div>
           )}
       </div>
