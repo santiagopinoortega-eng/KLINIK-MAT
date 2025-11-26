@@ -3,6 +3,7 @@ import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 
 // Define rutas protegidas que requieren autenticación
 const isProtectedRoute = createRouteMatcher([
+  '/areas(.*)',      // Requiere login para elegir áreas
   '/casos(.*)',      // Requiere login para ver casos clínicos
   '/mi-progreso(.*)',
   '/admin(.*)',

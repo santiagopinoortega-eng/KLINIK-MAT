@@ -30,7 +30,6 @@ export const prismaRO =
   globalForPrisma.prismaRO ??
   (process.env.DATABASE_URL_READONLY
     ? new PrismaClient({
-        datasources: { db: { url: process.env.DATABASE_URL_READONLY } },
         log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
       })
     : prisma);

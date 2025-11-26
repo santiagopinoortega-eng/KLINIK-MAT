@@ -1,13 +1,18 @@
-// Casos Clínicos: Parto
-// Estructura: Dificultad Baja (5 pasos), Media (6 pasos), Alta (7 pasos)
-// Cada pregunta tiene 4 opciones (A-D) con explicación de correcta e incorrectas
-// Feedback adaptativo: bajo (0-30%), medio (31-60%), alto (61-100%)
+// Casos Clínicos: Embarazo
+// Área Clínica: OBSTETRICIA
+// Estado: Próximamente
+// ============================================
+// Estructura esperada:
+// - Dificultad Baja: 5 pasos
+// - Dificultad Media: 6 pasos
+// - Dificultad Alta: 7 pasos
+// Cada pregunta debe tener 4 opciones (A-D) con explicación
 
 [
   // Ejemplo de estructura para cuando agregues casos:
   // {
-  //   "id": "parto-ejemplo-01",
-  //   "modulo": "Parto",
+  //   "id": "emb-ejemplo-01",
+  //   "modulo": "Embarazo",
   //   "dificultad": "Baja",
   //   "titulo": "Título del caso",
   //   "vigneta": "Historia clínica completa...",
@@ -23,7 +28,7 @@
   //         { "id": "d", "texto": "Opción D", "esCorrecta": false, "explicacion": "Por qué es incorrecta..." }
   //       ]
   //     }
-  //     // ... más pasos hasta completar 5 (Baja), 6 (Media) o 7 (Alta)
+  //     // ... más pasos
   //   ],
   //   "feedback_dinamico": {
   //     "bajo": "Feedback para 0-30% correctas...",

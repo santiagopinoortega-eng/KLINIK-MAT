@@ -1,29 +1,63 @@
 'use client';
 
 import { CasoListItem } from '@/services/caso.service';
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import CaseCard from '@/app/components/CaseCard';
 import Badge from '@/app/components/ui/Badge';
+import Link from 'next/link';
+import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 
-export default function CasosPageClient({ data }: { data: CasoListItem[] }) {
+// Mapeo de áreas a módulos
+const AREA_TO_MODULES: Record<string, string[]> = {
+  'ginecologia': ['ITS', 'Climaterio y Menopausia'],
+  'ssr': ['Anticoncepción', 'Consejería'],
+  'obstetricia': ['Embarazo', 'Parto', 'Puerperio'],
+  'neonatologia': ['RN']
+};
+
+const AREA_NAMES: Record<string, string> = {
+  'ginecologia': 'Ginecología y Salud de la Mujer',
+  'ssr': 'Salud Sexual y Reproductiva',
+  'obstetricia': 'Obstetricia y Puerperio',
+  'neonatologia': 'Neonatología'
+};
+
+export default function CasosPageClient({ 
+  data, 
+  selectedArea 
+}: { 
+  data: CasoListItem[];
+  selectedArea?: string;
+}) {
 
   const [q, setQ] = useState('');
   const [modulo, setModulo] = useState('all');
   const [difficulty, setDifficulty] = useState('all');
 
+  // Filtrar casos por área seleccionada
+  const areaFilteredData = useMemo(() => {
+    if (!selectedArea || selectedArea === 'all') return data;
+    
+    const allowedModules = AREA_TO_MODULES[selectedArea] || [];
+    return data.filter(caso => {
+      const casoModulo = (caso as any).modulo || caso.area;
+      return allowedModules.includes(casoModulo);
+    });
+  }, [data, selectedArea]);
+
   // Extraer módulos únicos (soportando tanto 'area' como 'modulo')
   const modulos = useMemo(() => {
     const uniqueModulos = new Set<string>();
-    data.forEach(d => {
+    areaFilteredData.forEach(d => {
       const mod = (d as any).modulo || d.area;
       if (mod) uniqueModulos.add(mod);
     });
     return ['all', ...Array.from(uniqueModulos)];
-  }, [data]);
+  }, [areaFilteredData]);
 
   const filtered = useMemo(() => {
     const s = q.trim().toLowerCase();
-    return data.filter(d => {
+    return areaFilteredData.filter(d => {
       const moduloActual = (d as any).modulo || d.area;
       const dificultadActual = String((d as any).dificultad || d.difficulty);
       
@@ -37,16 +71,34 @@ export default function CasosPageClient({ data }: { data: CasoListItem[] }) {
         (!s || d.title.toLowerCase().includes(s) || (d.summary ?? '').toLowerCase().includes(s))
       );
     });
-  }, [data, q, modulo, difficulty]);
+  }, [areaFilteredData, q, modulo, difficulty]);
 
   return (
     <div className="container mx-auto max-w-7xl py-8 px-4">
+      {/* Back button si hay área seleccionada */}
+      {selectedArea && (
+        <div className="mb-6">
+          <Link 
+            href="/areas"
+            className="inline-flex items-center gap-2 text-km-crimson hover:text-km-cardinal font-semibold transition-colors"
+          >
+            <ArrowLeftIcon className="h-5 w-5" />
+            Volver a Áreas Clínicas
+          </Link>
+        </div>
+      )}
+
       {/* Header con título */}
       <div className="text-center mb-8">
         <h1 className="text-3xl md:text-4xl font-bold mb-2" style={{color: 'var(--km-cardinal)'}}>
-          Casos Clínicos
+          {selectedArea ? AREA_NAMES[selectedArea] || 'Casos Clínicos' : 'Casos Clínicos'}
         </h1>
-        <p className="text-sm" style={{color: 'var(--km-text-500)'}}>Selecciona un caso para comenzar tu práctica</p>
+        <p className="text-sm" style={{color: 'var(--km-text-500)'}}>
+          {selectedArea 
+            ? `${areaFilteredData.length} casos disponibles en esta área`
+            : 'Selecciona un caso para comenzar tu práctica'
+          }
+        </p>
       </div>
 
       {/* Filtros mejorados con diseño de cards */}

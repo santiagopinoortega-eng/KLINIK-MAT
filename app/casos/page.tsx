@@ -5,10 +5,15 @@ import CasosPageClient from './CasosPageClient';
 export const revalidate = 0;
 export const dynamic = 'force-dynamic';
 
-export default async function CasosPage() {
+interface CasosPageProps {
+  searchParams: { area?: string };
+}
+
+export default async function CasosPage({ searchParams }: CasosPageProps) {
+  const selectedArea = searchParams.area;
+  
   // Usamos el servicio centralizado para obtener los datos.
-  // Esto mantiene nuestro componente limpio y la lógica de datos encapsulada.
   const data = await getCasosActivos();
 
-  return <CasosPageClient data={data} />;
+  return <CasosPageClient data={data} selectedArea={selectedArea} />;
 }

@@ -2,9 +2,11 @@
 "use client";
 
 import type { CasoClient } from "@/lib/types";
-import { CasoProvider } from "./CasoContext";
+import { CasoProvider, useCaso } from "./CasoContext";
 import CasoDetalleClient from "./CasoDetalleClient";
 import CaseNavigator from "./CaseNavigator";
+import CaseTimer from "./CaseTimer";
+import CaseModeSelector from "./CaseModeSelector";
 import dynamic from 'next/dynamic';
 
 // VignetteHeader is a client component (collapse + tags). Dynamically import to avoid SSR issues.
@@ -14,11 +16,29 @@ interface Props {
   casoClient: CasoClient;
 }
 
-export default function CasoInteractiveUI({ casoClient }: Props) {
+// Componente interno que usa el contexto
+function CasoContent() {
+  const { mode, timeLimit, autoSubmitCase, setMode, isCaseCompleted } = useCaso();
+
+  // Si no hay modo seleccionado, mostrar selector
+  if (!mode) {
+    return <CaseModeSelector onModeSelected={setMode} caseTitle={useCaso().caso.titulo} />;
+  }
+
   return (
-    <CasoProvider caso={casoClient}>
+    <>
+      {/* Timer (solo si hay límite de tiempo) */}
+      {timeLimit && timeLimit > 0 && (
+        <CaseTimer 
+          duration={timeLimit}
+          onExpire={autoSubmitCase}
+          warningAt={120}
+          isCaseCompleted={isCaseCompleted}
+        />
+      )}
+
       {/* Viñeta horizontal en la parte superior */}
-      <VignetteHeader title={casoClient.titulo} vigneta={casoClient.vigneta} />
+      <VignetteHeader title={useCaso().caso.titulo} vigneta={useCaso().caso.vigneta} />
 
       {/* Grid: preguntas a la izquierda (mayor espacio horizontal), navigator a la derecha (compacto) */}
       <div className="grid lg:grid-cols-[1fr_280px] gap-6 items-start">
@@ -32,6 +52,14 @@ export default function CasoInteractiveUI({ casoClient }: Props) {
           <CaseNavigator />
         </aside>
       </div>
+    </>
+  );
+}
+
+export default function CasoInteractiveUI({ casoClient }: Props) {
+  return (
+    <CasoProvider caso={casoClient}>
+      <CasoContent />
     </CasoProvider>
   );
 }

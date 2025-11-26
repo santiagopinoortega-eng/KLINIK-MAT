@@ -78,11 +78,19 @@ model StudentResult {
   id          String   @id @default(cuid())
   userId      String
   caseId      String
-  score       Int
+  caseTitle   String?  // Título del caso para fácil referencia
+  caseArea    String?  // Área clínica (ginecologia, ssr, etc.)
+  score       Int      // Puntos obtenidos (0-100)
+  totalPoints Int      @default(100) // Puntos totales posibles
+  mode        String?  @default("study") // 'study', 'osce'
+  timeLimit   Int?     // Tiempo límite en segundos (null = sin límite)
+  timeSpent   Int?     // Tiempo real usado en segundos
+  answers     Json?    // Respuestas del estudiante (array de objetos)
   completedAt DateTime @default(now())
-  user        User     @relation(fields: [userId], references: [id])
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([userId, caseId])
+  @@index([userId, completedAt(sort: Desc)])
+  @@index([caseArea])
   @@map("student_results")
 }
 

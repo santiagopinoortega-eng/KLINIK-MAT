@@ -9,7 +9,7 @@ import { ImageViewer } from "./ImageViewer";
 
 export default function CasoDetalleClient() {
   // Traemos 'goToNextStep' del contexto para el botón "Comenzar Caso"
-  const { caso, currentStep, respuestas, handleSelect, handleNavigate, goToNextStep } = useCaso();
+  const { caso, currentStep, respuestas, handleSelect, handleNavigate, goToNextStep, mode, timeLimit, timeSpent, isTimeExpired, isCaseCompleted } = useCaso();
   const [showContent, setShowContent] = useState(false);
   const [started, setStarted] = useState(false);
 
@@ -92,6 +92,81 @@ export default function CasoDetalleClient() {
               {emoji} {nivel}
             </div>
           </div>
+
+          {/* Estadísticas de Tiempo (si aplica) */}
+          {mode && mode !== 'study' && timeLimit && (
+            <div className="mb-6 p-5 rounded-xl bg-gradient-to-r from-purple-50 to-indigo-50 border-2 border-purple-200">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-purple-100 rounded-lg">
+                  <svg className="h-5 w-5 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-bold text-purple-900">
+                  Gestión del Tiempo - Modo OSCE
+                </h3>
+              </div>
+              
+              {(() => {
+                const minutesUsed = Math.floor(timeSpent / 60);
+                const secondsUsed = timeSpent % 60;
+                const minutesLimit = Math.floor(timeLimit / 60);
+                const secondsLimit = timeLimit % 60;
+                const timeRemaining = Math.max(0, timeLimit - timeSpent);
+                const minutesRemaining = Math.floor(timeRemaining / 60);
+                const secondsRemaining = timeRemaining % 60;
+                
+                // Determinar mensaje y estilo según rendimiento - SIMPLIFICADO
+                let performanceMessage = '';
+                let performanceColor = '';
+                let performanceIcon = '';
+                
+                if (isTimeExpired) {
+                  // Tiempo agotado - Debe mejorar
+                  performanceMessage = `⚠️ Debes mejorar la distribución del tiempo`;
+                  performanceColor = 'text-red-800 bg-red-50 border-red-400';
+                  performanceIcon = '⚠️';
+                } else {
+                  // Terminó a tiempo - Excelente
+                  performanceMessage = `🎯 ¡EXCELENTE! Completaste el caso a tiempo`;
+                  performanceColor = 'text-green-800 bg-green-50 border-green-400';
+                  performanceIcon = '✅';
+                }
+
+                return (
+                  <>
+                    {/* Mensaje Principal de Rendimiento - GRANDE Y CLARO */}
+                    <div className={`mb-4 p-5 rounded-lg border-2 ${performanceColor} font-bold text-center`}>
+                      <div className="text-2xl mb-2">{performanceIcon}</div>
+                      <div className="text-xl">{performanceMessage}</div>
+                      {!isTimeExpired && (
+                        <div className="text-base font-normal mt-2 opacity-90">
+                          Te sobraron {minutesRemaining}:{secondsRemaining.toString().padStart(2, '0')} minutos
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Estadísticas simples */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="text-center p-4 bg-white/80 rounded-lg border-2 border-purple-200">
+                        <div className="text-3xl font-bold text-purple-600 mb-1">
+                          {minutesUsed}:{secondsUsed.toString().padStart(2, '0')}
+                        </div>
+                        <div className="text-sm font-semibold text-purple-700">Tiempo Usado</div>
+                      </div>
+                      
+                      <div className="text-center p-4 bg-white/80 rounded-lg border-2 border-indigo-200">
+                        <div className="text-3xl font-bold text-indigo-600 mb-1">
+                          {minutesLimit}:00
+                        </div>
+                        <div className="text-sm font-semibold text-indigo-700">Tiempo Límite OSCE</div>
+                      </div>
+                    </div>
+                  </>
+                );
+              })()}
+            </div>
+          )}
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             <div className="text-center p-5 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl border-2 border-emerald-300 shadow-sm hover:shadow-md transition-all hover:scale-105">

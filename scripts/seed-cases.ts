@@ -176,39 +176,78 @@ async function upsertCase(caseObj) {
 
 async function main() {
   let allCases = [];
+  let loadedFromNewStructure = false;
   
-  // 1. Cargar casos desde prisma/cases.json5 (archivo principal legacy)
-  const mainFilePath = path.resolve(__dirname, '..', 'prisma', 'cases.json5');
-  if (fs.existsSync(mainFilePath)) {
-    console.log('📥 Cargando casos desde prisma/cases.json5...');
-    const raw = fs.readFileSync(mainFilePath, 'utf8');
-    const arr = JSON5.parse(raw);
-    if (Array.isArray(arr)) {
-      allCases = allCases.concat(arr);
-      console.log(`   ✓ ${arr.length} casos cargados desde archivo principal`);
-    }
-  }
-  
-  // 2. Cargar casos desde prisma/cases/*.json5 (archivos por módulo)
+  // 1. PRIORIDAD: Cargar casos desde prisma/cases/AREA/*.json5 (nueva estructura organizada)
   const casesDir = path.resolve(__dirname, '..', 'prisma', 'cases');
   if (fs.existsSync(casesDir)) {
-    const files = fs.readdirSync(casesDir).filter(f => f.endsWith('.json5'));
+    // Áreas clínicas
+    const areas = ['GINECOLOGIA', 'SSR', 'OBSTETRICIA', 'NEONATOLOGIA'];
     
-    for (const file of files) {
-      const moduleName = path.basename(file, '.json5');
-      console.log(`📚 Cargando módulo: ${moduleName.toUpperCase()}`);
+    for (const area of areas) {
+      const areaDir = path.join(casesDir, area);
+      if (!fs.existsSync(areaDir)) continue;
       
-      const filePath = path.join(casesDir, file);
-      const raw = fs.readFileSync(filePath, 'utf8');
-      const cases = JSON5.parse(raw);
+      const files = fs.readdirSync(areaDir).filter(f => f.endsWith('.json5'));
+      if (files.length === 0) continue;
       
-      if (!Array.isArray(cases)) {
-        console.warn(`   ⚠️  ${file} no contiene un array, saltando...`);
-        continue;
+      console.log(`\n📁 Área: ${area}`);
+      
+      for (const file of files) {
+        const moduleName = path.basename(file, '.json5');
+        console.log(`   📚 Módulo: ${moduleName}`);
+        
+        const filePath = path.join(areaDir, file);
+        const raw = fs.readFileSync(filePath, 'utf8');
+        const cases = JSON5.parse(raw);
+        
+        if (!Array.isArray(cases)) {
+          console.warn(`      ⚠️  ${file} no contiene un array, saltando...`);
+          continue;
+        }
+        
+        allCases = allCases.concat(cases);
+        console.log(`      ✓ ${cases.length} casos cargados`);
+        loadedFromNewStructure = true;
       }
-      
-      allCases = allCases.concat(cases);
-      console.log(`   ✓ ${cases.length} casos cargados desde ${file}`);
+    }
+    
+    // 2. FALLBACK: Cargar desde prisma/cases.json5 solo si NO se cargó nada de la nueva estructura
+    if (!loadedFromNewStructure) {
+      const mainFilePath = path.resolve(__dirname, '..', 'prisma', 'cases.json5');
+      if (fs.existsSync(mainFilePath)) {
+        console.log('⚠️  No se encontraron casos en la nueva estructura.');
+        console.log('📄 Cargando casos desde prisma/cases.json5 (archivo legacy)...\n');
+        const raw = fs.readFileSync(mainFilePath, 'utf8');
+        const arr = JSON5.parse(raw);
+        if (Array.isArray(arr)) {
+          allCases = allCases.concat(arr);
+          console.log(`   ✓ ${arr.length} casos cargados desde archivo principal`);
+          console.log('   💡 RECOMENDACIÓN: Ejecuta "node scripts/reorganizar-casos.mjs" para usar la nueva estructura\n');
+        }
+      }
+    }
+    
+    // 3. Mantener compatibilidad con archivos sueltos en prisma/cases/*.json5 (DEPRECADO)
+    const looseCasesFiles = fs.readdirSync(casesDir).filter(f => f.endsWith('.json5'));
+    if (looseCasesFiles.length > 0) {
+      console.log(`\n📄 Archivos sueltos (legacy):`);
+      for (const file of looseCasesFiles) {
+        const moduleName = path.basename(file, '.json5');
+        console.log(`   📚 ${moduleName.toUpperCase()}`);
+        
+        const filePath = path.join(casesDir, file);
+        const raw = fs.readFileSync(filePath, 'utf8');
+        const cases = JSON5.parse(raw);
+        
+        if (!Array.isArray(cases)) {
+          console.warn(`      ⚠️  ${file} no contiene un array, saltando...`);
+          continue;
+        }
+        
+        allCases = allCases.concat(cases);
+        console.log(`      ✓ ${cases.length} casos cargados desde ${file}`);
+      }
     }
   }
 

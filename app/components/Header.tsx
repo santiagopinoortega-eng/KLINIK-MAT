@@ -7,8 +7,8 @@ import { UserButton, SignInButton, useUser } from '@clerk/nextjs';
 
 const links = [
   { href: '/', label: 'Inicio' },
+  { href: '/areas', label: 'Áreas Clínicas' },
   { href: '/recursos', label: 'Recursos' },
-  { href: '/casos', label: 'Casos Clínicos' },
 ];
 
 export default function Header() {
@@ -60,7 +60,7 @@ export default function Header() {
                 />
               </div>
             ) : (
-              <SignInButton forceRedirectUrl="/casos">
+              <SignInButton forceRedirectUrl="/areas">
                 <button className="btn btn-primary">
                   Iniciar sesión
                 </button>

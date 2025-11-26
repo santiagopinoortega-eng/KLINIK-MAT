@@ -1,15 +1,47 @@
-# 📚 Casos Clínicos por Módulo
+# 📚 Casos Clínicos de KLINIK-MAT
 
-Esta carpeta contiene los casos clínicos organizados por materia/módulo.
+Esta carpeta contiene los casos clínicos organizados por **Área Clínica** y **Módulo**.
 
-## 📁 Estructura de Archivos
+## 📁 Estructura de Archivos (Actualizada - Nov 2025)
 
-- `RN.json5` - Casos de **Recién Nacido**
-- `EMBARAZO.json5` - Casos de **Embarazo**
-- `PARTO.json5` - Casos de **Parto**
-- `PUERPERIO.json5` - Casos de **Puerperio**
+```
+cases/
+├── GINECOLOGIA/              # Área 1: Ginecología y Salud de la Mujer (25 casos)
+│   ├── ITS.json5            # 16 casos de ITS e Infectología
+│   └── CLIMATERIO.json5     # 9 casos de Climaterio y Menopausia
+│
+├── SSR/                      # Área 2: Salud Sexual y Reproductiva (28 casos)
+│   ├── ANTICONCEPCION.json5 # 19 casos de Anticoncepción
+│   └── CONSEJERIA.json5     # 10 casos de Consejería
+│
+├── OBSTETRICIA/              # Área 3: Obstetricia y Puerperio (próximamente)
+│   ├── EMBARAZO.json5       # Control prenatal, patología obstétrica
+│   ├── PARTO.json5          # Trabajo de parto, atención del parto
+│   └── PUERPERIO.json5      # Puerperio normal y patológico
+│
+└── NEONATOLOGIA/             # Área 4: Neonatología (próximamente)
+    └── RN.json5             # Recién nacido sano y patológico
 
-## 📝 Formato de Casos
+```
+
+**Total actual: 53 casos** (54 al incluir 1 caso adicional)
+
+---
+
+## 📊 Distribución de Casos
+
+| Área | Módulo | Casos | Alta | Media | Baja |
+|------|--------|-------|------|-------|------|
+| **GINECOLOGIA** | ITS | 16 | • | • | • |
+| **GINECOLOGIA** | Climaterio | 9 | • | • | • |
+| **SSR** | Anticoncepción | 19 | • | • | • |
+| **SSR** | Consejería | 10 | • | • | • |
+| **OBSTETRICIA** | Embarazo | 0 | - | - | - |
+| **OBSTETRICIA** | Parto | 0 | - | - | - |
+| **OBSTETRICIA** | Puerperio | 0 | - | - | - |
+| **NEONATOLOGIA** | RN | 0 | - | - | - |
+
+--- 📝 Formato de Casos
 
 Cada archivo debe contener un array de casos con la siguiente estructura:
 

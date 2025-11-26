@@ -1,0 +1,1865 @@
+// Casos Clínicos: Consejería
+// Área: SSR
+// Total de casos: 10
+// Última actualización: 2025-11-25
+
+[
+  {
+    "id": "cx-alta-consejeria-hombre-gay-prep",
+    "modulo": "Consejería",
+    "dificultad": "Alta",
+    "titulo": "Consejería compleja en hombre gay con riesgo de ITS: tamizaje, PrEP y autocuidado",
+    "vigneta": "Hombre de 22 años, gay, consulta en APS porque 'ha tenido varias parejas ocasionales' durante los últimos 6 meses. Relata sexo anal receptivo y oral sin condón de forma intermitente. No antecedentes mórbidos. No síntomas actuales. No ha realizado tamizaje en más de un año. Pregunta explícitamente por PrEP y se muestra inseguro sobre cómo iniciar autocuidado sexual sin sentirse juzgado.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Desde el enfoque de derechos y trato digno, ¿qué es lo primero que debe asegurar el profesional para disminuir la barrera de acceso?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Preguntar si desea 'cambiar' orientación sexual.",
+            "explicacion": "Incorrecto. Las 'terapias de conversión' son una violación a los derechos humanos y carecen de base científica.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Sugerir abstinencia completa como única opción.",
+            "explicacion": "Incorrecto. La abstinencia forzada no es una estrategia de salud pública efectiva ni realista en población sexualmente activa.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Indicar que solo se atenderá si viene con pareja.",
+            "explicacion": "Incorrecto. La atención es individual y confidencial; condicionarla vulnera el derecho a la salud.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Confidencialidad, lenguaje no estigmatizante y validación de su consulta.",
+            "explicacion": "Correcto. El 'ambiente seguro' es el predictor más fuerte para que el usuario revele sus prácticas reales y adhiera al seguimiento.",
+            "esCorrecta": true
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "Según protocolos MINSAL (Norma 187) y OMS, ¿qué tamizaje corresponde realizar en hombres que tienen sexo con hombres (HSH) con las prácticas descritas?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Solo VIH una vez al año.",
+            "explicacion": "Incorrecto. Insuficiente. El CDC y Minsal sugieren tamizaje cada 3-6 meses en población de alto riesgo, incluyendo otras ITS.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "VIH, sífilis, y cultivo/PCR de Gonorrea/Clamidia en sitios expuestos (anal, uretral y faríngeo).",
+            "explicacion": "Correcto. El tamizaje debe ser 'sitio-específico'. Muchas infecciones extragenitales (faringe/recto) son asintomáticas y mantienen la cadena de transmisión.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Solo test rápido de VIH y nada más.",
+            "explicacion": "Incorrecto. Deja fuera la Sífilis (alta prevalencia) y las uretritis/proctitis bacterianas.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Exámenes únicamente si presenta síntomas.",
+            "explicacion": "Incorrecto. En HSH, la mayoría de las infecciones rectales y faríngeas por Gonococo y Clamidia son asintomáticas.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "La persona pregunta por PrEP. ¿Cuál es la información clínica esencial correcta para esta indicación?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "PrEP protege también contra sífilis, gonorrea y clamidia.",
+            "explicacion": "Incorrecto. PrEP es específica para VIH. Por eso se insiste en el uso de condón para cubrir el resto del espectro.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "PrEP es solo para personas mayores de 30 años.",
+            "explicacion": "Incorrecto. Se indica según conducta de riesgo, no por edad.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "No se necesita ningún control para iniciarla.",
+            "explicacion": "Incorrecto. Es obligatorio confirmar seronegatividad al VIH y función renal (creatinina) antes de iniciar.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "PrEP reduce significativamente (>99%) el riesgo de adquirir VIH sexual si se usa con adherencia diaria.",
+            "explicacion": "Correcto. Es altamente eficaz, pero su eficacia cae drásticamente si no se toma todos los días (adherencia).",
+            "esCorrecta": true
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "Durante la consejería, el usuario expresa culpa por tener parejas ocasionales. ¿Qué estrategia comunicacional es adecuada?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Decir que su conducta es irresponsable.",
+            "explicacion": "Incorrecto. El juicio moral bloquea la comunicación y no cambia conductas.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Validar sus emociones, evitar juicios y enfocarse en autocuidado informado.",
+            "explicacion": "Correcto. Cambiar el foco desde la 'culpa' hacia la 'responsabilidad y gestión de riesgos' empodera al usuario.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Evitar hablar del tema para no incomodarlo.",
+            "explicacion": "Incorrecto. El silencio valida la vergüenza.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Indicar que solo debe tener pareja estable.",
+            "explicacion": "Incorrecto. La seromonogamia es una opción, no una imposición médica.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "¿Cuál de las siguientes es una CONDICIÓN CLÍNICA EXCLUYENTE (contraindicación inicial) para prescribir PrEP hoy?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Tener pareja estable.",
+            "explicacion": "Incorrecto. Si la pareja es VIH+ sin supresión viral o se desconocen sus parejas externas, podría indicarse.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Sospecha de infección aguda por VIH o test reactivo.",
+            "explicacion": "Correcto. Iniciar PrEP en una persona ya infectada (especialmente en etapa aguda) generaría resistencia a los antiretrovirales. Se debe confirmar diagnóstico primero.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "No usar condón consistentemente.",
+            "explicacion": "Incorrecto. De hecho, el no uso de condón es un criterio de inclusión para ofrecer PrEP (riesgo sustancial).",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Tener antecedentes de sífilis tratada.",
+            "explicacion": "Incorrecto. El antecedente de ITS refuerza la indicación de PrEP por riesgo elevado.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p6",
+        "tipo": "mcq",
+        "enunciado": "¿Qué modelo de prevención integra mejor el manejo de este caso en APS?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Prevención Combinada.",
+            "explicacion": "Correcto. Combina intervenciones biomédicas (PrEP, Testeo), comportamentales (consejería, condón) y estructurales (no discriminación).",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Modelo de Abstinencia Exclusiva.",
+            "explicacion": "Incorrecto. Ineficaz en salud pública.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Modelo Biomédico Curativo.",
+            "explicacion": "Incorrecto. Se centra solo en tratar la enfermedad, no en prevenirla.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Modelo de Reducción de Daños solamente.",
+            "explicacion": "Incorrecto. Es parte de la estrategia, pero la Prevención Combinada es el concepto paraguas más completo.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p7",
+        "tipo": "short",
+        "enunciado": "Redacta los puntos claves de la consejería de inicio de PrEP que le darías a este usuario, asegurando que entienda que NO es una 'vacuna mágica' contra todo.",
+        "puntosMaximos": 2,
+        "criteriosEvaluacion": [
+          "VIH",
+          "renal",
+          "creatinina",
+          "ventana",
+          "condón",
+          "otras ITS",
+          "diaria",
+          "adherencia",
+          "seguimiento"
+        ],
+        "guia": "• Requisito 1: Descartar VIH (Test) y evaluar riñón (Creatinina).\n• Uso: Toma diaria estricta para asegurar niveles en sangre.\n• Límite: Solo protege de VIH. El condón sigue siendo necesario para Sífilis, Gonorrea, etc.\n• Plan: Control en 1 mes para tolerancia y luego cada 3 meses.",
+        "feedbackDocente": "Evalúa si el estudiante menciona los 3 pilares: 1) Descarte previo de VIH/Renal, 2) Adherencia diaria, 3) Complementariedad con condón para otras ITS."
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "Ojo con la PrEP: es una herramienta poderosa pero tiene reglas estrictas. No se puede dar si hay sospecha de VIH agudo (resistencia) ni falla renal. Y recuerda: ¡Solo cubre VIH! Repasa la Estrategia de Prevención Combinada en la Norma 187.",
+      "medio": "Vas bien. Entiendes que PrEP es útil para este perfil. Para ser experto, enfócate en el 'tamizaje sitio-específico' (faringe/recto) y en cómo explicar que PrEP + Condón es la mejor dupla, no enemigos.",
+      "alto": "¡Excelente! Manejas la Prevención Combinada a la perfección. Has integrado el enfoque biomédico (PrEP, Tamizaje completo) con el conductual (consejería sin estigma). Este es el estándar de oro en salud sexual moderna."
+    },
+    "referencias": [
+      "Estrategia-de-Prevencio%CC%81n-de-las-Infecciones-de-Transmisio%CC%81n-Sexual-final-09-07-2020.pdf",
+      "Guia+GES+VIH.pdf",
+      "NORMA-GRAL.-TECNICA-N°-187-DE-PROFILAXIS-DIAGNOSTICO-Y-TRATAMIENTO-DE-LAS-ITS.pdf"
+    ]
+  },
+  {
+    "id": "cons-alta-violencia-sexual-pareja",
+    "modulo": "Consejería",
+    "dificultad": "Alta",
+    "titulo": "Detección y manejo de violencia sexual en la pareja en control ginecológico",
+    "vigneta": "MOTIVO DE CONSULTA: 'Dolor bajito y molestia al tener relaciones'.\n\nHISTORIA ENFERMEDAD ACTUAL:\nMujer de 29 años, G2P2, acude a control de salud sexual. Relata historia de 6 meses de dolor pélvico inespecífico y dispareunia progresiva. Al indagar, se muestra evasiva, mira al suelo y comenta en voz baja: 'Es que mi marido se enoja si le digo que no tengo ganas, dice que es mi deber, así que igual pasa nomás para que no haya problemas'. Niega agresión física directa ('golpes no'), pero sí insultos y portazos. Se observa labilidad emocional.\n\nANTECEDENTES:\nUsuaria de DIU T de Cobre hace 3 años. PAP vigente negativo. Sin antecedentes mórbidos. Escolaridad completa. Dueña de casa.\n\nEXAMEN FÍSICO:\nSignos vitales: PA 110/70, FC 78. Especuloscopía: Cérvix sano, hilos de DIU visibles, flujo fisiológico. No se observan lesiones traumáticas agudas en genitales ni equimosis en cuerpo. Test de Flores (vaginismo) negativo, pero se observa tensión muscular generalizada al examen.\n\nIMPRESIÓN DIAGNÓSTICA:\nSospecha de Violencia Sexual en la pareja (coerción) y dolor pélvico crónico secundario.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Ante el relato 'igual pasa nomás para que no haya problemas', ¿qué concepto clínico-legal se está vulnerando y debe ser pesquisado?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "El débito conyugal obligatorio.",
+            "explicacion": "Incorrecto. El débito conyugal no justifica la imposición sexual; legalmente no existe obligación de tener sexo sin deseo."
+          },
+          {
+            "id": "b",
+            "texto": "La disfunción sexual hipoactiva.",
+            "explicacion": "Incorrecto. El problema no es la falta de deseo, es la coerción externa."
+          },
+          {
+            "id": "c",
+            "texto": "El consentimiento sexual libre y voluntario.",
+            "explicacion": "Correcto. Tener relaciones sexuales por miedo a la reacción de la pareja ('para que no se enoje') constituye violencia sexual, incluso sin fuerza física.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "La dispareunia orgánica.",
+            "explicacion": "Incorrecto. El dolor es probablemente secundario a la falta de excitación y tensión por la coerción."
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "¿Cuál es la intervención de 'Primera Acogida' más adecuada en este momento en el box?",
+        "opciones": [
+          {
+            "id": "d",
+            "texto": "Validar el relato, nombrar la violencia ('lo que describes es violencia') y evaluar el riesgo inmediato.",
+            "explicacion": "Correcto. La víctima a menudo no reconoce la coerción como violencia. Validarla y ponerle nombre es el primer paso terapéutico.",
+            "esCorrecta": true
+          },
+          {
+            "id": "a",
+            "texto": "Llamar a Carabineros inmediatamente sin avisarle.",
+            "explicacion": "Incorrecto. Puede poner en riesgo vital a la mujer si vuelve a casa sin un plan de seguridad."
+          },
+          {
+            "id": "b",
+            "texto": "Recetar lubricantes y sugerir que se relaje.",
+            "explicacion": "Incorrecto. Medicaliza un problema de derechos humanos y normaliza el abuso."
+          },
+          {
+            "id": "c",
+            "texto": "Citar a la pareja para explicarle que debe ser suave.",
+            "explicacion": "Incorrecto y peligroso. Nunca se realiza mediación conjunta en casos de violencia."
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "Considerando que no hay lesiones físicas agudas, ¿qué consecuencia en salud sexual y reproductiva es frecuente en este perfil de usuaria?",
+        "opciones": [
+          {
+            "id": "b",
+            "texto": "Dolor pélvico crónico, dispareunia y mayor riesgo de ITS/embarazo no deseado por falta de negociación.",
+            "explicacion": "Correcto. La violencia sexual en pareja se asocia fuertemente a somatización pélvica y a la imposibilidad de negociar uso de condón.",
+            "esCorrecta": true
+          },
+          {
+            "id": "a",
+            "texto": "Cáncer de ovario.",
+            "explicacion": "Incorrecto. No hay asociación directa."
+          },
+          {
+            "id": "c",
+            "texto": "Endometriosis profunda.",
+            "explicacion": "Incorrecto. Es una patología orgánica inflamatoria, no causada por violencia."
+          },
+          {
+            "id": "d",
+            "texto": "Prolapso genital grado III.",
+            "explicacion": "Incorrecto."
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "¿Qué red de derivación interna o externa es prioritaria activar desde el CESFAM?",
+        "opciones": [
+          {
+            "id": "c",
+            "texto": "Dupla Psicosocial del consultorio y/o Centro de la Mujer (SERNAMEG) para apoyo especializado.",
+            "explicacion": "Correcto. Requiere manejo multidisciplinario (psicólogo/a, asistente social) y legal especializado.",
+            "esCorrecta": true
+          },
+          {
+            "id": "a",
+            "texto": "Urólogo.",
+            "explicacion": "Incorrecto. El problema no es urológico."
+          },
+          {
+            "id": "b",
+            "texto": "Nutricionista.",
+            "explicacion": "Incorrecto. No es prioritario."
+          },
+          {
+            "id": "d",
+            "texto": "Solo control médico en 6 meses.",
+            "explicacion": "Incorrecto. Es abandono de la paciente."
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "La paciente pregunta: '¿Si lo denuncio, me van a quitar a mis hijos?'. ¿Qué respuesta es correcta y contenedora?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "No, la denuncia busca protegerte a ti. El sistema busca interrumpir la violencia, no separarte de tus hijos.",
+            "explicacion": "Correcto. Es un mito común usado por los agresores para mantener el control. Se debe desmentir con firmeza y calma.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Sí, es muy probable que el tribunal se los lleve.",
+            "explicacion": "Incorrecto. Falso y revictimizante."
+          },
+          {
+            "id": "c",
+            "texto": "Mejor no denuncie para no arriesgarse.",
+            "explicacion": "Incorrecto. Éticamente inaceptable."
+          },
+          {
+            "id": "d",
+            "texto": "Depende de si tienes dinero.",
+            "explicacion": "Incorrecto."
+          }
+        ]
+      },
+      {
+        "id": "p6",
+        "tipo": "mcq",
+        "enunciado": "Si la paciente decide NO denunciar hoy, ¿cuál es la conducta de 'reducción de daños'?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Elaborar un 'Plan de Seguridad' (documentos, llaves, red de apoyo) y dejar agendado control de seguimiento corto.",
+            "explicacion": "Correcto. Si no está lista para salir, se debe preparar para una eventual emergencia vital y mantener el vínculo con el CESFAM.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Cerrar el caso hasta que ella decida denunciar.",
+            "explicacion": "Incorrecto."
+          },
+          {
+            "id": "c",
+            "texto": "Insistir hasta que firme la denuncia.",
+            "explicacion": "Incorrecto. Presionar puede ser contraproducente."
+          },
+          {
+            "id": "d",
+            "texto": "Retirar el DIU.",
+            "explicacion": "Incorrecto. La dejaría desprotegida ante un embarazo forzado."
+          }
+        ]
+      },
+      {
+        "id": "p7",
+        "tipo": "short",
+        "enunciado": "Redacta una frase de 'Validación' para decirle a esta paciente, y explica brevemente por qué es importante nombrar la violencia sexual aunque no haya golpes.",
+        "puntosMaximos": 2,
+        "criteriosEvaluacion": [
+          "validación",
+          "no es tu culpa",
+          "violencia",
+          "sexual",
+          "consentimiento",
+          "miedo",
+          "coerción",
+          "creer",
+          "apoyo"
+        ],
+        "guia": "• Frase: 'Te creo. Nadie, ni siquiera tu esposo, tiene derecho a tocarte si tú no quieres. Eso se llama violencia'.\n• Importancia: Nombrar el problema rompe la normalización y permite que la mujer reconozca que sus síntomas (dolor) tienen una causa real y externa.",
+        "feedbackDocente": "Evalúa si el estudiante es capaz de decir 'esto es violencia' de forma empática, sin juzgar a la mujer por quedarse, y conectando el síntoma físico (dolor) con la causa (coerción)."
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "¡Qué bueno que te enfrentes a este caso! Sé que es difícil porque no hay 'signos evidentes' como un moretón. Pero el dolor pélvico crónico y la actitud evasiva son los gritos silenciosos de la violencia sexual. Tu misión no es ser juez, es ser el primer lugar seguro que ella encuentra. Revisa la 'Norma Técnica de Violencia Sexual' del MINSAL, te dará herramientas para acoger sin miedo.",
+      "medio": "¡Vas muy bien! Detectaste la coerción y la necesidad de apoyo. Para llegar al nivel experto, enfócate en el 'Plan de Seguridad'. Muchas veces no podemos sacarlas de esa casa hoy mismo, pero podemos enseñarles a sobrevivir hasta que puedan salir. Esa es la APS que salva vidas.",
+      "alto": "¡Impecable! Has demostrado una sensibilidad clínica y humana excepcional. Entiendes que la violencia sexual en la pareja es una patología prevalente que se esconde detrás de síntomas vagos. Tu manejo valida, protege y empodera. Estás listo/a para ser un agente de cambio."
+    },
+    "referencias": [
+      "MINSAL. Norma Técnica para la atención de víctimas de violencia sexual (2022).",
+      "MINSAL. Orientaciones Técnicas para la atención de mujeres en situación de violencia de pareja."
+    ]
+  },
+  {
+    "id": "cx-consejeria-diversidad-lesbiana-alta",
+    "modulo": "Consejería",
+    "dificultad": "Alta",
+    "titulo": "Dolor en relaciones sexuales y enfoque inclusivo con antecedentes traumáticos",
+    "vigneta": "Mujer de 27 años, lesbiana, consulta por dolor con penetración digital y juguetes. Refiere ansiedad anticipatoria y antecedente de coerción sexual pasada. No ITS conocidas. Solicita atención sin prejuicios.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "¿Cuál es el diagnóstico inicial más probable?",
+        "opciones": [
+          {
+            "id": "d",
+            "texto": "Dispareunia secundaria a vaginismo leve.",
+            "esCorrecta": true,
+            "explicacion": "Correcto."
+          },
+          {
+            "id": "b",
+            "texto": "EIP.",
+            "explicacion": "Incorrecto."
+          },
+          {
+            "id": "c",
+            "texto": "Cáncer cervical.",
+            "explicacion": "Incorrecto."
+          },
+          {
+            "id": "a",
+            "texto": "Candidiasis complicada.",
+            "explicacion": "Incorrecto."
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "¿Cuál es la prioridad en la primera consulta?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Generar espacio seguro, validar emociones y explorar historia con consentimiento.",
+            "esCorrecta": true,
+            "explicacion": "Correcto."
+          },
+          {
+            "id": "d",
+            "texto": "Derivar a psiquiatría de inmediato.",
+            "explicacion": "Incorrecto."
+          },
+          {
+            "id": "b",
+            "texto": "Realizar examen ginecológico completo inmediato.",
+            "explicacion": "Incorrecto."
+          },
+          {
+            "id": "c",
+            "texto": "Indicar lubricante y finalizar.",
+            "explicacion": "Incorrecto."
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "Recomendación sexual segura para mujeres que tienen sexo con mujeres:",
+        "opciones": [
+          {
+            "id": "b",
+            "texto": "Uso de guantes o preservativos en juguetes compartidos.",
+            "esCorrecta": true,
+            "explicacion": "Correcto."
+          },
+          {
+            "id": "c",
+            "texto": "Evitar totalmente la penetración digital.",
+            "explicacion": "Incorrecto."
+          },
+          {
+            "id": "d",
+            "texto": "No existe riesgo de ITS en parejas lesbianas.",
+            "explicacion": "Incorrecto."
+          },
+          {
+            "id": "a",
+            "texto": "Usar juguetes sin limpieza entre parejas.",
+            "explicacion": "Incorrecto."
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "¿Qué elemento comunicacional reduce ansiedad?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Asegurar explícitamente atención inclusiva y sin prejuicios.",
+            "esCorrecta": true,
+            "explicacion": "Correcto."
+          },
+          {
+            "id": "c",
+            "texto": "Evitar hablar de emociones.",
+            "explicacion": "Incorrecto."
+          },
+          {
+            "id": "d",
+            "texto": "Decir que el dolor es normal en lesbianas.",
+            "explicacion": "Incorrecto."
+          },
+          {
+            "id": "b",
+            "texto": "Usar lenguaje técnico para evitar emociones.",
+            "explicacion": "Incorrecto."
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "Plan inicial adecuado en APS:",
+        "opciones": [
+          {
+            "id": "c",
+            "texto": "Lubricante + respiración + eventual derivación a psicología.",
+            "esCorrecta": true,
+            "explicacion": "Correcto."
+          },
+          {
+            "id": "a",
+            "texto": "Abstinencia total por 3 meses.",
+            "explicacion": "Incorrecto."
+          },
+          {
+            "id": "b",
+            "texto": "Examen especuloscópico en primera consulta.",
+            "explicacion": "Incorrecto."
+          },
+          {
+            "id": "d",
+            "texto": "Benzodiacepinas para relajar.",
+            "explicacion": "Incorrecto."
+          }
+        ]
+      },
+      {
+        "id": "p6",
+        "tipo": "mcq",
+        "enunciado": "¿Qué herramienta clínica ayuda a explorar trauma?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Preguntar de forma sensible y con permiso previo.",
+            "esCorrecta": true,
+            "explicacion": "Correcto."
+          },
+          {
+            "id": "c",
+            "texto": "Asumir trauma sin preguntarlo.",
+            "explicacion": "Incorrecto."
+          },
+          {
+            "id": "b",
+            "texto": "Preguntar solo al final si queda tiempo.",
+            "explicacion": "Incorrecto."
+          },
+          {
+            "id": "d",
+            "texto": "Solicitar que venga con su pareja para validar historia.",
+            "explicacion": "Incorrecto."
+          }
+        ]
+      },
+      {
+        "id": "p7",
+        "tipo": "short",
+        "enunciado": "Consejería integral: redacta un plan de apoyo.",
+        "puntosMaximos": 2,
+        "criteriosEvaluacion": [
+          "validación",
+          "lubricante",
+          "respiración",
+          "trauma",
+          "WSW",
+          "derivación",
+          "acompañamiento"
+        ],
+        "guia": "Incluye validación, educación inclusiva, manejo físico, trauma y seguimiento."
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "Refuerza trauma y consejería inclusiva.",
+      "medio": "Buen avance.",
+      "alto": "Excelente integración biopsicosocial."
+    },
+    "referencias": [
+      "MINSAL. Orientaciones LGBTIQA+ (2022).",
+      "OPS. Salud Sexual sin Discriminación (2021)."
+    ]
+  },
+  {
+    "id": "cons-media-presion-digital",
+    "modulo": "Consejería",
+    "dificultad": "Media",
+    "titulo": "Consentimiento sexual digital y prevención de violencia en jóvenes",
+    "vigneta": "Joven de 19 años acude a consulta porque su pareja le insiste repetidamente en que envíe fotografías íntimas ('nudes'). Refiere que él le dice: 'si no lo haces es porque no confías en mí' y amenaza con terminar la relación. Ella siente ansiedad, miedo a la filtración y culpa. No tiene antecedentes de violencia física. Examen físico normal. Se aprecia angustiada.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Respecto al concepto de 'Consentimiento Sexual' (incluido el digital), ¿cuál afirmación es la correcta?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Si son pareja estable, el consentimiento se presume.",
+            "explicacion": "Incorrecto. El consentimiento es específico para cada acto y momento, independiente del vínculo.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Enviar fotos demuestra compromiso.",
+            "explicacion": "Incorrecto. Es un mito del amor romántico usado para manipular.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "El consentimiento debe ser libre, entusiasta, sin presiones y reversible en cualquier momento.",
+            "explicacion": "Correcto. Si hay presión, amenaza o miedo, NO es consentimiento, es coerción.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Una vez enviadas, ya no importa el riesgo.",
+            "explicacion": "Incorrecto. El riesgo de difusión persiste y debe ser gestionado.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "¿Cuál es la intervención inicial más adecuada ante el relato de coerción?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Validar sus emociones, reforzar su derecho a decir NO y explicar que la presión es una forma de violencia (digital/psicológica).",
+            "explicacion": "Correcto. Nombrar la violencia ayuda a desnaturalizarla y reduce la culpa de la víctima.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Decirle que es normal en todas las parejas jóvenes.",
+            "explicacion": "Incorrecto. Normalizar la violencia perpetúa el ciclo.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Indicar que debe enviar las fotos si quiere mantener la relación.",
+            "explicacion": "Incorrecto. Pone la relación por sobre la integridad de la persona.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Evitar el tema para no incomodarla.",
+            "explicacion": "Incorrecto. Es una oportunidad de prevención secundaria.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "¿Qué riesgo específico debe abordarse explícitamente en la consejería digital?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Infertilidad futura.",
+            "explicacion": "Incorrecto. No tiene relación.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Riesgo cardiovascular.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Transmisión de ITS por fotografías.",
+            "explicacion": "Incorrecto. Biológicamente imposible.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "La difusión no consentida de imágenes íntimas (violencia digital), con su impacto emocional, legal y social.",
+            "explicacion": "Correcto. Es un delito (Ley Pack en Chile) y una vulneración grave de la privacidad que puede tener consecuencias devastadoras.",
+            "esCorrecta": true
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "Indicación educativa clave para empoderar a la usuaria:",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Explicarle que debe justificar su decisión detalladamente.",
+            "explicacion": "Incorrecto. 'No' es una frase completa. No debe explicaciones.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Recordarle que tiene derecho a establecer límites y decir NO sin sentirse culpable, incluso si antes dijo que sí.",
+            "explicacion": "Correcto. El consentimiento es reversible. Haber enviado fotos antes no la obliga a hacerlo ahora.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Recomendar ceder para evitar rupturas.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Pedirle que bloquee a su pareja inmediatamente.",
+            "explicacion": "Incorrecto. La decisión de terminar o bloquear es de ella; el rol profesional es acompañar el proceso.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "¿Qué intervención multidisciplinaria favorece la protección integral?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Ofrecer derivación a apoyo psicológico (Salud Mental) y entregar pautas de autocuidado en redes.",
+            "explicacion": "Correcto. La violencia en el pololeo suele requerir manejo especializado para fortalecer la autoestima y salir del ciclo.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Aislarla de redes sociales abruptamente.",
+            "explicacion": "Incorrecto. Aísla socialmente.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Normalizar las amenazas de su pareja.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Indicarle que ella es responsable del problema.",
+            "explicacion": "Incorrecto. La víctima nunca es responsable de la violencia.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p6",
+        "tipo": "short",
+        "enunciado": "Explica brevemente cómo le ayudarías a identificar que lo que está viviendo es violencia ('chantaje emocional') y no amor, para fortalecer su decisión de no enviar las fotos.",
+        "guia": "• Identificar: 'El amor respeta, no presiona'.\n• Coerción: 'Si te amenaza con terminar, es manipulación'.\n• Derecho: 'Tu cuerpo y tus imágenes son tuyas'.\n• Apoyo: 'Aquí estamos para ayudarte a poner límites'.",
+        "feedbackDocente": "Evalúa si el estudiante logra nombrar la violencia psicológica y entregar herramientas de asertividad sin revictimizar."
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "La violencia digital es real. Presionar por 'nudes' es violencia. Tu deber es detectar estas señales de alerta (red flags) en la consulta. Revisa el capítulo de Violencia en el Pololeo de la OT Adolescente.",
+      "medio": "Bien. Identificas la presión como algo negativo. Para ser experto, trabaja en el empoderamiento: enséñale que el consentimiento es reversible y que 'NO' es una respuesta válida siempre. Eso salva vidas.",
+      "alto": "¡Excelente! Has abordado un tema moderno y complejo con herramientas sólidas de derechos humanos y género. Validar que la coerción digital es violencia es el primer paso para detenerla. Gran manejo integral."
+    },
+    "referencias": [
+      "OT-Control-Adolescente-v3.pdf"
+    ]
+  },
+  {
+    "id": "cx-consejeria-tampon-viaje",
+    "modulo": "Consejería",
+    "dificultad": "Media",
+    "titulo": "Uso seguro de tampones y mitos menstruales en adolescentes",
+    "vigneta": "Adolescente de 15 años acude al CESFAM antes de un viaje escolar a la playa. Menarquia hace un año, ciclos regulares. Quiere usar tampones pero ha escuchado mitos y teme 'romper el himen' o que 'se le pierda adentro'. No ha iniciado actividad sexual. No antecedentes mórbidos.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "¿Es seguro que una adolescente de 15 años use tampones aunque no haya iniciado actividad sexual?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "No, están contraindicados antes de los 18 años.",
+            "explicacion": "Incorrecto. No hay restricción de edad, solo de madurez para manejar la higiene.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Sí, puede usarlos de forma segura siguiendo medidas básicas de higiene y técnica.",
+            "explicacion": "Correcto. La actividad sexual no es requisito para el uso de productos de gestión menstrual internos.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Debe haber iniciado actividad sexual obligatoriamente.",
+            "explicacion": "Incorrecto. El himen es flexible y permite el paso.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Solo puede usarlos bajo supervisión médica.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "Respecto al miedo de 'romper el himen', ¿qué aclaración anatómica es correcta?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "El tampón elimina completamente el himen.",
+            "explicacion": "Incorrecto. El himen no es un sello hermético que se rompe; es un tejido con orificio.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "El uso de tampón genera dolor permanente.",
+            "explicacion": "Incorrecto. Si está bien puesto, no se siente.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Debe colocarlo una profesional la primera vez.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "El himen es una membrana elástica con una abertura natural por donde pasa el flujo y el tampón, sin alterar su integridad significativamente.",
+            "explicacion": "Correcto. Explicar la anatomía real reduce el miedo a 'perder la virginidad' con un tampón.",
+            "esCorrecta": true
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "¿Cuál es el principal riesgo médico asociado al mal uso de tampones (uso prolongado)?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Infertilidad futura.",
+            "explicacion": "Incorrecto. No causa infertilidad.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Síndrome de Shock Tóxico (SST) si se deja más de 4–8 horas.",
+            "explicacion": "Correcto. Aunque raro, es una infección grave por toxinas bacterianas (S. aureus) favorecida por la retención prolongada de sangre.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Cáncer cervicouterino.",
+            "explicacion": "Incorrecto. No tiene relación.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Desregulación del ciclo menstrual.",
+            "explicacion": "Incorrecto. No afecta el eje hormonal.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "¿Qué recomendación práctica es esencial para una adolescente que se inicia en el uso?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Dormir con él toda la noche (12 horas) para evitar mancharse.",
+            "explicacion": "Incorrecto. Riesgo de SST. Para dormir se prefieren toallas o copas (según tolerancia).",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Usar dos simultáneamente para mayor seguridad.",
+            "explicacion": "Incorrecto. Peligroso y doloroso.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Elegir el tamaño 'Mini' o de menor absorción para empezar y cambiarlo cada 4 horas.",
+            "explicacion": "Correcto. Facilita la inserción y minimiza el riesgo de sequedad o dolor al retirar.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Lavar el tampón antes de usarlo.",
+            "explicacion": "Incorrecto. Son desechables y vienen estériles/limpios; mojarlos los arruina.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "¿Qué recurso comunicacional aumenta la confianza de la adolescente en la consulta?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Derivarla por ser menor de edad.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Validar su miedo ('es normal asustarse al principio') y usar un espejo o modelo pélvico para que conozca su anatomía.",
+            "explicacion": "Correcto. El autoconocimiento corporal es la base de la salud sexual.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Decirle que 'no es un tema médico'.",
+            "explicacion": "Incorrecto. La higiene menstrual es salud.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Evitar responder dudas para no incitarla sexualmente.",
+            "explicacion": "Incorrecto. Mito dañino.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p6",
+        "tipo": "short",
+        "enunciado": "Reflexiona: ¿Cómo abordarías los mitos y miedos de esta adolescente para que se vaya tranquila y empoderada?",
+        "guia": "• Validación: 'Tus dudas son súper comunes'.\n• Anatomía: Explicar que la vagina es un conducto cerrado (no se 'pierde' nada) y el himen es elástico.\n• Seguridad: Enfatizar el lavado de manos y el cambio frecuente (alarma en celular).\n• Práctica: Sugerir probar en casa, tranquila, con espejo.",
+        "feedbackDocente": "Evalúa si el estudiante integra la educación anatómica (romper mitos) con las medidas de seguridad (higiene/tiempo) de forma cercana."
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "La gestión menstrual es parte de la salud. Debes manejar la anatomía básica (himen, vagina) y los riesgos reales (Shock Tóxico) vs los mitos. Revisa la anatomía genital en el Manual de Obstetricia.",
+      "medio": "Bien. Sabes que es seguro. Ahora enfócate en cómo enseñarlo: usa ejemplos simples, explica que el himen no es una pared de ladrillos y recalca la higiene de manos. Eso hace la diferencia.",
+      "alto": "¡Excelente! Has transformado una consulta por 'miedo' en una oportunidad de educación en anatomía y autocuidado. Al desmitificar el cuerpo femenino, le das herramientas para toda su vida."
+    },
+    "referencias": [
+      "OT-Control-Adolescente-v3.pdf",
+      "Manual-obstetricia.ginecologia.pdf.pdf"
+    ]
+  },
+  {
+    "id": "cons-baja-infidelidad-its",
+    "modulo": "Consejería",
+    "dificultad": "Baja",
+    "titulo": "Consejería en adolescente con relación sexual de riesgo y temor a ITS",
+    "vigneta": "Adolescente de 17 años acude sola al Espacio Amigable tras haber tenido una relación sexual sin condón hace 5 días con un joven que posteriormente le dijo que tenía una ITS 'no especificada'. Refiere culpa intensa, miedo a contagios y preocupación de que su pareja actual se entere. No presenta síntomas ginecológicos ni sistémicos. Signos vitales normales.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Respecto a confidencialidad adolescente según Ley 20.418, es correcto afirmar:",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Debe asistir obligatoriamente con un adulto responsable.",
+            "explicacion": "Incorrecto. La normativa chilena protege la autonomía progresiva y el acceso sin barreras.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Desde los 14 años puede acceder a atención sexual y reproductiva de forma confidencial.",
+            "explicacion": "Correcto. La ley garantiza acceso confidencial desde los 14 años a consejería y exámenes preventivos sin necesidad de adulto acompañante.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Puede acceder a test de embarazo, pero no a test de ITS.",
+            "explicacion": "Incorrecto. Tiene derecho a ambas prestaciones de salud sexual.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Debe firmar un consentimiento ante notario.",
+            "explicacion": "Incorrecto. No se requiere trámite legal adicional, solo consentimiento verbal/escrito simple.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "¿Cuál es la primera intervención prioritaria en esta consulta de APS?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Regañarla por su conducta.",
+            "explicacion": "Incorrecto. El juicio moral destruye el vínculo terapéutico.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Minimizar su preocupación para tranquilizarla.",
+            "explicacion": "Incorrecto. Invalida sus emociones y reduce la percepción de riesgo real.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Derivarla inmediatamente sin consejería.",
+            "explicacion": "Incorrecto. La matrona/ón en APS debe resolver la primera acogida.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Escucha activa, validación emocional y consejería sin juicios.",
+            "explicacion": "Correcto. Esencial en población adolescente para reducir la culpa, entregar contención y establecer un vínculo seguro para el seguimiento.",
+            "esCorrecta": true
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "Según MINSAL, frente a una exposición sexual reciente de riesgo, ¿qué conducta clínica corresponde?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Tamizaje de VIH, Sífilis y Hepatitis B (según disponibilidad) considerando los periodos de ventana.",
+            "explicacion": "Correcto. Se debe solicitar el panel de ITS, explicando que un resultado negativo hoy requiere confirmación posterior por el periodo de ventana.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Solo test de embarazo.",
+            "explicacion": "Incorrecto. No aborda el motivo de consulta principal (riesgo de ITS).",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "PCR universal de todas las ITS al mismo día.",
+            "explicacion": "Incorrecto. No es costo-efectivo ni está indicado sin síntomas específicos en primera instancia.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Esperar a que presente síntomas.",
+            "explicacion": "Incorrecto. Retrasa el diagnóstico y mantiene la cadena de transmisión.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "Indicación educativa más importante para el periodo post-consulta:",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Pedirle que vuelva solo si aparece dolor.",
+            "explicacion": "Incorrecto. Limita el control oportuno.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Usar doble condón para mayor protección.",
+            "explicacion": "Incorrecto. Aumenta el riesgo de rotura por fricción.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Evitar actividad sexual o usar condón de forma estricta hasta completar el tamizaje de seguimiento.",
+            "explicacion": "Correcto. Previene la transmisión a su pareja actual y la reinfección; refuerza el autocuidado responsable.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Guardar silencio para que no haya problemas de pareja.",
+            "explicacion": "Incorrecto. Desaconsejado desde la ética de salud pública, aunque se respeta la confidencialidad.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "Para cerrar la consulta de forma empática y asegurar la continuidad:",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Asegurar contención, explicar que no está sola y ofrecer seguimiento programado para lectura de exámenes.",
+            "explicacion": "Correcto. El cierre debe dejar la puerta abierta y transmitir seguridad y apoyo.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Aumentar el miedo para que aprenda.",
+            "explicacion": "Incorrecto. Estrategia de 'terror' no es efectiva.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Indicar que no es necesario volver.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Decir que es su culpa.",
+            "explicacion": "Incorrecto. Vulneración grave de derechos.",
+            "esCorrecta": false
+          }
+        ]
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "En situaciones de crisis (culpa/miedo post-sexo), tu rol es contener, no juzgar. Recuerda: 1) Confidencialidad garantizada, 2) Pedir exámenes explicando la ventana, y 3) Educar en uso de condón sin regañar. Revisa la OT Adolescente.",
+      "medio": "Bien. Manejas el marco legal y la contención inicial. Para ser experto, enfócate en la consejería de 'reducción de daños' para el futuro: ¿cómo negociar el condón la próxima vez? Eso empodera.",
+      "alto": "¡Excelente! Has transformado una consulta de angustia en una oportunidad de salud. Al validar sus emociones y ofrecer un plan claro (tamizaje + seguimiento), le has devuelto el control a la usuaria."
+    },
+    "referencias": [
+      "OT-Control-Adolescente-v3.pdf",
+      "Estrategia-de-Prevencio%CC%81n-de-las-Infecciones-de-Transmisio%CC%81n-Sexual-final-09-07-2020.pdf"
+    ]
+  },
+  {
+    "id": "cx-baja-consejeria-pareja-lesbiana",
+    "modulo": "Consejería",
+    "dificultad": "Baja",
+    "titulo": "Consejería en salud sexual en pareja lesbiana: mitos, ITS y derechos",
+    "vigneta": "Mujer de 19 años consulta al CESFAM y comenta: 'vengo porque no sé si realmente necesito cuidarme, porque mi pareja es mujer'. Refiere relación estable de 8 meses con pareja femenina. No antecedentes mórbidos. No ha tenido educación formal en salud sexual diversa y expresa vergüenza al preguntar. No ha usado protección en prácticas sexuales digitales u orales. No síntomas actuales.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "¿Cuál es el primer paso para abordar esta consulta desde un enfoque de consejería respetuosa?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Decirle que las parejas lesbianas no necesitan consejería sexual.",
+            "explicacion": "Incorrecto. Todas las personas, independientemente de su orientación, tienen derecho a educación sexual y prevención de riesgos.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Indicar inmediatamente un examen de VIH sin explorar prácticas sexuales.",
+            "explicacion": "Incorrecto. La solicitud de exámenes debe basarse en una evaluación de riesgos individualizada (anamnesis de prácticas), no en protocolos ciegos.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Asegurar confidencialidad, validar sus dudas y preguntar cómo desea que se aborde el tema.",
+            "explicacion": "Correcto. Crear un ambiente seguro y validar su consulta ('qué bueno que preguntes') es esencial para vencer la barrera de la vergüenza.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Preguntarle si está 'segura' de su orientación sexual.",
+            "explicacion": "Incorrecto. Cuestionar la identidad de la usuaria es una barrera de acceso y una falta de competencia cultural.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "Desde el punto de vista clínico, ¿existe riesgo de ITS en mujeres que tienen sexo con mujeres (MSMujeres)?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "No, las ITS solo se transmiten mediante contacto pene-vagina.",
+            "explicacion": "Incorrecto. Muchas ITS (VPH, Herpes, Sífilis, Tricomona) se transmiten por contacto piel con piel, fluidos vaginales o mucosa oral.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Solo hay riesgo si alguna ha tenido parejas hombres.",
+            "explicacion": "Incorrecto. Aunque el antecedente heterosexual previo es un factor, la transmisión actual entre mujeres es posible (ej: vaginosis bacteriana, herpes).",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Sí, dependiendo de las prácticas sexuales (contacto genital-genital, juguetes, sexo oral).",
+            "explicacion": "Correcto. El riesgo no es cero. Existe transmisión eficiente de VPH, Herpes y Trichomonas en el frotamiento genital y sexo oral sin barrera.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "El riesgo es muy bajo, por lo que no se recomienda educación.",
+            "explicacion": "Incorrecto. Subestimar el riesgo lleva a diagnósticos tardíos (ej: cáncer cervicouterino por no tomar PAP).",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "La usuaria pregunta si necesitan usar protección alguna vez. ¿Qué respuesta es adecuada?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "No, nunca requieren protección.",
+            "explicacion": "Incorrecto. El mito de la 'inmunidad lesbiana' es peligroso.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Solo si la relación dura menos de un año.",
+            "explicacion": "Incorrecto. El riesgo de ITS no depende de la duración de la relación, sino de la exclusividad y estado serológico.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Sí, pueden usar barreras de látex (bandas) o condón en juguetes compartidos.",
+            "explicacion": "Correcto. Se recomienda el uso de barreras bucales (dental dams) para sexo oral-anal/vaginal y condones para juguetes penetrativos compartidos.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Solo las parejas 'más promiscuas' necesitan protección.",
+            "explicacion": "Incorrecto. El lenguaje estigmatizante aleja a la usuaria. La protección es una medida de salud estándar.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "La paciente pregunta si debe hacerse PAP aunque no haya tenido contacto pene-vagina. ¿Qué corresponde responder?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Sí, debe realizarse PAP según edad, independiente de orientación sexual o tipo de prácticas.",
+            "explicacion": "Correcto. El VPH se transmite por contacto piel-mucosa y puede haber sido adquirido en experiencias previas o actuales. Las guías de tamizaje (25-64 años) aplican a todas las mujeres.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "No, el PAP solo corresponde a mujeres heterosexuales.",
+            "explicacion": "Incorrecto. Excluir a lesbianas del tamizaje aumenta su morbimortalidad por cáncer cervicouterino.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Debe hacerlo solo si su pareja tuvo HPV.",
+            "explicacion": "Incorrecto. Muchas infecciones por VPH son asintomáticas y subclínicas. El tamizaje debe ser universal según edad.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Debe hacerlo solo si planea embarazarse.",
+            "explicacion": "Incorrecto. El PAP es una prevención oncológica, no reproductiva.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "¿Qué mensaje de cierre refuerza una consejería respetuosa e inclusiva?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Recomendar que 'tenga cuidado' porque su orientación puede ser confusa.",
+            "explicacion": "Incorrecto. Patologiza su orientación.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Decirle que mejor consulte solo si tiene síntomas.",
+            "explicacion": "Incorrecto. La APS se basa en la prevención y el control de salud integral.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Invitar a volver cuando quiera, aclarar que la orientación sexual no limita su derecho a salud y que todas sus preguntas son válidas.",
+            "explicacion": "Correcto. Refuerza que el CESFAM es un espacio seguro ('Safe Space') y valida sus necesidades específicas.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Pedir que mantenga en privado su orientación para evitar complicaciones.",
+            "explicacion": "Incorrecto. Promover el 'armario' (ocultamiento) genera estrés de minoría y daña la salud mental.",
+            "esCorrecta": false
+          }
+        ]
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "Es común creer que 'sin penetración no hay riesgo', pero la biología dice otra cosa. Las ITS se transmiten por contacto piel con piel (VPH, Herpes). Revisa la Norma de ITS y la OT Adolescente (capítulo Diversidad) para derribar esos mitos. ¡Tú puedes ser un agente de cambio!",
+      "medio": "Vas por buen camino. Tienes claro el enfoque de derechos y la necesidad del PAP. Te falta afinar el conocimiento sobre los métodos de barrera específicos (bandas de látex, guantes, limpieza de juguetes) para dar una consejería técnica más precisa.",
+      "alto": "¡Excelente! Has derribado el mito de la 'inmunidad' y aplicado las guías de tamizaje universal (PAP) sin discriminación. Tu enfoque valida a la usuaria y le entrega herramientas reales de protección. Así se hace salud inclusiva."
+    },
+    "referencias": [
+      "OT-Control-Adolescente-v3.pdf",
+      "NORMA-GRAL.-TECNICA-N°-187-DE-PROFILAXIS-DIAGNOSTICO-Y-TRATAMIENTO-DE-LAS-ITS.pdf",
+      "Ginecologia_9na_Edicion_J_Gonzalez_Merlo.pdf"
+    ]
+  },
+  {
+    "id": "cx-diversidad-trans-saludsexual",
+    "modulo": "Consejería",
+    "dificultad": "Baja",
+    "titulo": "Consejería inclusiva en persona trans: enfoque biológico y comunicacional",
+    "vigneta": "Joven de 17 años, asignado varón al nacer, se identifica como mujer trans. Consulta en el CESFAM por orientación en salud sexual. Comenta: 'mi pareja es hombre, y mis amigas dicen que debería tomar pastillas anticonceptivas por si acaso'. No está en terapia hormonal y no ha tenido cirugías genitales. No presenta síntomas ni antecedentes médicos relevantes. Test de embarazo: no aplica.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Desde el punto de vista biológico, ¿requiere anticoncepción para prevenir embarazo?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Sí, todas las mujeres trans deben tomar anticonceptivos orales.",
+            "explicacion": "Incorrecto. La indicación anticonceptiva depende de la anatomía reproductiva funcional (presencia de útero/ovarios) y no de la identidad de género.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Solo si tiene relaciones sexuales anales sin condón.",
+            "explicacion": "Incorrecto. El sexo anal receptivo implica alto riesgo de ITS (VIH, Hepatitis, Sífilis), pero biológicamente no existe riesgo de gestación en este caso.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "No, porque al no tener útero ni ovarios funcionales, no hay riesgo de gestación.",
+            "explicacion": "Correcto. La consejería debe basarse en la biología: sin útero ni ovulación, no hay riesgo de embarazo, aunque su identidad sea femenina.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Sí, porque los anticonceptivos ayudan a regular el deseo sexual.",
+            "explicacion": "Incorrecto. El uso de hormonas con fines de transición de género es un tratamiento específico, no anticonceptivo, y requiere supervisión especializada.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "¿Cuál es la principal necesidad de consejería en este caso?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Orientación sobre prevención de ITS y autocuidado sexual.",
+            "explicacion": "Correcto. Dado el perfil sexual y la vulnerabilidad epidemiológica, el foco (según Norma 187 ITS y OT Adolescente) es la prevención de VIH/ITS y vacunación (VHB/VPH).",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Iniciar anticonceptivos combinados inmediatamente.",
+            "explicacion": "Incorrecto. No hay indicación médica para prevención de embarazo y el uso de hormonas sin supervisión puede tener riesgos cardiovasculares.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Derivación a ginecología para confirmar identidad de género.",
+            "explicacion": "Incorrecto. La identidad de género es una vivencia interna y no requiere 'confirmación' médica para ser validada.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Indicar abstinencia sexual permanente.",
+            "explicacion": "Incorrecto. La consejería debe ser realista y basada en la reducción de riesgos y el placer seguro, no en la prohibición.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "Durante la atención, el profesional duda cómo llamarla. ¿Qué conducta demuestra enfoque inclusivo?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Usar el nombre legal del registro civil por seguridad.",
+            "explicacion": "Incorrecto. Priorizar el nombre legal sobre el social vulnera la Ley de Identidad de Género y daña la relación clínica.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Preguntar directamente qué nombre y pronombres desea que se usen.",
+            "explicacion": "Correcto. La OT Control Adolescente enfatiza preguntar y respetar el nombre social y pronombre, registrándolo en la ficha.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Evitar llamarla por su nombre para no equivocarse.",
+            "explicacion": "Incorrecto. La invisibilización genera barreras de acceso. Es mejor preguntar con respeto que evadir.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Solicitar acompañamiento familiar para tratar el tema.",
+            "explicacion": "Incorrecto. La confidencialidad es un derecho; involucrar a la familia sin consentimiento puede exponerla a violencia o discriminación.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "¿Qué orientación práctica debe entregarse al finalizar la consulta?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Indicar terapia hormonal de afirmación de género de inmediato.",
+            "explicacion": "Incorrecto. Aunque es una necesidad posible, requiere evaluación integral y no es una indicación de urgencia en la primera consejería preventiva.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Evitar hablar de sexualidad para no incomodar.",
+            "explicacion": "Incorrecto. El silencio profesional perpetúa la desinformación. Se debe hablar de sexualidad anal, oral y uso de barreras.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Promover uso sistemático de condón y tamizaje regular de ITS según prácticas sexuales.",
+            "explicacion": "Correcto. Es la intervención costo-efectiva más importante: condón/lubricante para sexo anal/oral y testeo periódico.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Limitar el uso de condón solo a nuevas parejas.",
+            "explicacion": "Incorrecto. En contextos de vulnerabilidad o desconocimiento del estado serológico, el uso debe ser consistente.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "Desde el enfoque de derechos, ¿qué elemento no puede faltar en esta consejería?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Garantizar confidencialidad y explicar que puede volver cuando lo necesite.",
+            "explicacion": "Correcto. Asegurar la confidencialidad es crítico para que la población trans (históricamente discriminada) confíe y vuelva al sistema de salud.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Explicar que su identidad de género es un trastorno que debe tratarse.",
+            "explicacion": "Incorrecto. La despatologización de las identidades trans es un consenso internacional y base de la normativa chilena.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Evitar registrar nada en ficha clínica para 'protegerla'.",
+            "explicacion": "Incorrecto. El registro clínico debe existir, consignando nombre social y sexo registral según corresponda, resguardando el documento.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Aconsejarle que oculte su identidad para evitar problemas.",
+            "explicacion": "Incorrecto. Esto valida la discriminación social. El rol de salud es empoderar y acompañar.",
+            "esCorrecta": false
+          }
+        ]
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "Es normal confundirse al principio entre identidad de género y biología reproductiva. Recuerda esta regla de oro: tratamos a la persona según su identidad (nombre, pronombres) pero indicamos métodos según su anatomía. Revisa el capítulo de 'Diversidad' en la OT Adolescente y verás cómo todo encaja. ¡Ánimo!",
+      "medio": "Tienes claridad sobre la falta de riesgo de embarazo y la importancia del condón, pero puedes profundizar en lenguaje inclusivo, derivación pertinente y enfoque de derechos.",
+      "alto": "¡Impecable! Diferencias perfectamente el riesgo reproductivo (nulo) del riesgo de ITS (presente), y aplicas un trato digno e inclusivo. Este es el estándar moderno de atención que buscamos en KLINIK-MAT."
+    },
+    "referencias": [
+      "OT-Control-Adolescente-v3.pdf",
+      "NORMA-GRAL.-TECNICA-N°-187-DE-PROFILAXIS-DIAGNOSTICO-Y-TRATAMIENTO-DE-LAS-ITS.pdf",
+      "Estrategia-de-Prevencio%CC%81n-de-las-Infecciones-de-Transmisio%CC%81n-Sexual-final-09-07-2020.pdf"
+    ]
+  },
+  {
+    "id": "cx-consejeria-uso-condon-adolescente",
+    "modulo": "Consejería",
+    "dificultad": "Baja",
+    "titulo": "Primer acercamiento al uso correcto del condón en Espacio Amigable",
+    "vigneta": "Joven de 16 años acude espontáneamente al Espacio Amigable del CESFAM porque 'no sabe usar bien el condón y le da vergüenza preguntar'. Ha tenido rupturas ocasionales. Tiene pareja estable de 17 años. Se muestra nervioso pero cooperador y agradecido del trato confidencial. Sin antecedentes mórbidos.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "¿Puede este joven recibir educación sexual y métodos preventivos sin la presencia de un adulto responsable?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "No, debe venir acompañado/a por un adulto.",
+            "explicacion": "Incorrecto. Exigir compañía vulnera la confidencialidad.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Sí, desde los 14 años tiene derecho a atención confidencial en salud sexual y reproductiva.",
+            "explicacion": "Correcto. La Ley 20.418 y las OT Adolescente garantizan el acceso autónomo para reducir barreras.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Solo puede recibir condones, no educación sexual.",
+            "explicacion": "Incorrecto. La entrega de insumos debe ir acompañada de educación (consejería).",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Debe firmar un consentimiento ante notario.",
+            "explicacion": "Incorrecto. No es un requisito legal.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "¿Qué paso técnico evita más eficazmente la ruptura del condón por exceso de presión?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Usar dos condones juntos.",
+            "explicacion": "Incorrecto. La fricción entre látex y látex aumenta el riesgo de ruptura.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Poner el condón después de iniciar penetración.",
+            "explicacion": "Incorrecto. No previene embarazo ni ITS en el contacto previo.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Abrir el envase con los dientes.",
+            "explicacion": "Incorrecto. Riesgo de dañar el preservativo.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Apretar la punta del condón (reservorio) antes de desenrollar para dejar espacio al semen.",
+            "explicacion": "Correcto. Eliminar el aire de la punta evita que estalle por la presión de la eyaculación.",
+            "esCorrecta": true
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "El joven pregunta si el tamaño del pene afecta la eficacia o si necesita una talla especial. ¿Qué corresponde explicar?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Debe usar condones extra gruesos para evitar rupturas.",
+            "explicacion": "Incorrecto. El grosor no determina el ajuste.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Los condones solo sirven para penes pequeños.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "La mayoría de los condones son talla estándar y se ajustan por elasticidad a diversos tamaños.",
+            "explicacion": "Correcto. El látex es altamente elástico. Solo en casos extremos se requieren tallas especiales.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Debe usar dos si el condón queda suelto.",
+            "explicacion": "Incorrecto. Si queda suelto, debe buscar una talla menor, no duplicar.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "¿Qué consejo de conservación favorece que el condón no se rompa?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Guardar los condones en un lugar fresco y seco, no en la billetera o guantera.",
+            "explicacion": "Correcto. El calor y la fricción constante degradan el látex y causan micro-rupturas.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Usar lubricantes a base de aceite (vaselina, crema).",
+            "explicacion": "Incorrecto. Los aceites disuelven el látex en segundos. Solo usar base agua o silicona.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Enjuagar el condón antes de usarlo.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Guardar el condón abierto para que sea más rápido de usar.",
+            "explicacion": "Incorrecto. Se seca el lubricante y se daña.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "¿Qué mensaje final promueve la adherencia y confianza en el equipo de salud?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Decirle que es irresponsable por no saber usar condón.",
+            "explicacion": "Incorrecto. El juicio aleja al usuario.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Sugerir que no hable del tema para no generar vergüenza.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Pedir que solo consulte si tiene síntomas.",
+            "explicacion": "Incorrecto. La prevención es continua.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Recordarle que puede volver cuando quiera, retirar más condones y que sus preguntas son bienvenidas.",
+            "explicacion": "Correcto. La política de 'puertas abiertas' y la validación de dudas aseguran que vuelva.",
+            "esCorrecta": true
+          }
+        ]
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "El uso correcto del condón parece simple, pero tiene técnica. Apretar la punta (reservorio) y no usar aceites son reglas de oro. Revisa el instructivo de prevención de ITS del Minsal.",
+      "medio": "Vas bien. Conoces la técnica básica. Para ser experto, enfócate en los 'errores de almacenamiento' (billetera/calor) y en cómo enseñar esto a un adolescente sin que suene a regaño.",
+      "alto": "¡Excelente! Has cubierto los pilares técnicos (reservorio, lubricante adecuado) y legales (acceso adolescente). Tu consejería empodera al usuario para ejercer su sexualidad de forma segura."
+    },
+    "referencias": [
+      "OT-Control-Adolescente-v3.pdf",
+      "Estrategia-de-Prevencio%CC%81n-de-las-Infecciones-de-Transmisio%CC%81n-Sexual-final-09-07-2020.pdf"
+    ]
+  },
+  {
+    "id": "cx-adolescente-primera-consejeria",
+    "modulo": "Consejería",
+    "dificultad": "Baja",
+    "titulo": "Primera consulta de anticoncepción en adolescente: confidencialidad y derechos",
+    "vigneta": "Adolescente de 16 años acude sola al CESFAM para 'pedir un método para no quedar embarazada'. Comenta que tiene pareja de su edad y usan condón 'a veces'. Expresa temor: 'si mi mamá se entera, me mata'. Se muestra nerviosa, pero cooperadora. Sin antecedentes médicos relevantes. No usa anticonceptivos previos. Test de embarazo negativo.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Según la normativa chilena vigente, ¿puede recibir anticoncepción sin la presencia de sus padres?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "No, debe estar acompañada por un adulto responsable.",
+            "explicacion": "Incorrecto. La Ley 20.418 garantiza el acceso a métodos anticonceptivos y consejería confidencial a mayores de 14 años sin necesidad de tutor.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Solo puede recibir condones, no métodos hormonales.",
+            "explicacion": "Incorrecto. No hay restricción por método basada solo en la edad; depende de los Criterios de Elegibilidad Médica.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Sí, tiene derecho a atención confidencial y acceso a anticoncepción.",
+            "explicacion": "Correcto. Según las Orientaciones Técnicas Adolescente y la Ley 20.418, la atención respeta la autonomía progresiva y la confidencialidad.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Debe firmar un consentimiento ante notario.",
+            "explicacion": "Incorrecto. El consentimiento informado es un proceso clínico verbal y escrito en la ficha, no un trámite notarial.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "Durante la consejería, la adolescente pregunta: '¿Los anticonceptivos me dejan estéril si los uso mucho tiempo?'. ¿Cuál es la respuesta correcta?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Sí, el uso prolongado puede afectar la fertilidad.",
+            "explicacion": "Incorrecto. Es un mito frecuente; la evidencia científica descarta daño permanente a la fertilidad por uso de hormonales.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Solo los anticonceptivos inyectables causan infertilidad.",
+            "explicacion": "Incorrecto. Los inyectables pueden retrasar el retorno a la fertilidad unos meses, pero no causan infertilidad permanente.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Depende de la edad y del peso.",
+            "explicacion": "Incorrecto. La reversibilidad es una característica intrínseca del fármaco, no depende del peso de la paciente.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "No, los anticonceptivos no afectan la fertilidad una vez que se suspenden.",
+            "explicacion": "Correcto. El retorno a la fertilidad es rápido tras la suspensión (excepto un leve retraso con inyectables trimestrales).",
+            "esCorrecta": true
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "¿Qué estrategia favorece la adherencia en adolescentes que inician anticoncepción?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Indicar castigos si olvida el método.",
+            "explicacion": "Incorrecto. Las estrategias punitivas alejan a la adolescente del sistema de salud.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Ofrecer seguimiento cercano y espacio de escucha libre de juicios.",
+            "explicacion": "Correcto. El vínculo de confianza y la accesibilidad al equipo de salud son los predictores más fuertes de adherencia en adolescencia.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Solicitar control solo si presenta efectos secundarios.",
+            "explicacion": "Incorrecto. El seguimiento activo es vital en el inicio para aclarar dudas y reforzar el hábito.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Entregar información técnica sin abordar emociones.",
+            "explicacion": "Incorrecto. La consejería en adolescentes debe integrar el contexto psicosocial y emocional.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "¿Qué mensaje educativo es más importante reforzar durante la consejería?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Usar doble método (condón más anticonceptivo) para protegerse de ITS y embarazo.",
+            "explicacion": "Correcto. La 'Doble Protección' es el estándar de oro en adolescencia dada la prevalencia de ITS y la alta fertilidad.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Evitar toda actividad sexual hasta ser adulta.",
+            "explicacion": "Incorrecto. La educación basada en la abstinencia exclusiva no ha demostrado efectividad y no se alinea con el enfoque de derechos.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Cambiar de método cada tres meses.",
+            "explicacion": "Incorrecto. La continuidad favorece la efectividad. Se cambia solo por efectos adversos o insatisfacción.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Que consulte únicamente si tiene un problema.",
+            "explicacion": "Incorrecto. Se debe promover la consulta preventiva y de control.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "Al finalizar la consulta, ¿qué cierre de consejería es más adecuado?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Indicarle que no comente nada con nadie para evitar problemas.",
+            "explicacion": "Incorrecto. Se debe promover que identifique un adulto de confianza en su red de apoyo, si es posible.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Decirle que si olvida el método será su responsabilidad.",
+            "explicacion": "Incorrecto. Transfiere culpa en lugar de corresponsabilidad y educación.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Reafirmar que puede volver cuando quiera, ofrecer control de seguimiento y entregar condones.",
+            "explicacion": "Correcto. Garantiza 'Puertas Abiertas', insumos de barrera y continuidad del cuidado.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Cerrar la consulta rápidamente para evitar que se emocione.",
+            "explicacion": "Incorrecto. La contención emocional es parte de las competencias del profesional.",
+            "esCorrecta": false
+          }
+        ]
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "¡No te desanimes! La atención adolescente es un desafío complejo que mezcla lo legal, lo biológico y lo emocional. Es normal tener dudas al principio. Lo importante es que estás aquí aprendiendo. Te invito a leer con calma la 'OT Control Adolescente' para reforzar esos pilares. ¡Tú puedes dominar esto!",
+      "medio": "Vas por buen camino: reconoces la importancia de la confidencialidad y del doble método. Para llegar al nivel experto, profundiza en las estrategias de adherencia y manejo de mitos descritos en las Normas de Fertilidad.",
+      "alto": "¡Excelente! Integras confidencialidad, derechos y evidencia científica con un enfoque humano. Tu manejo del caso refleja una práctica clínica segura y alineada con las Orientaciones Técnicas del MINSAL."
+    },
+    "referencias": [
+      "OT-Control-Adolescente-v3.pdf",
+      "norma-fertilidad.pdf.pdf",
+      "LibroAnticoncepcion(FInalWeb-Flip).pdf"
+    ]
+  }
+]

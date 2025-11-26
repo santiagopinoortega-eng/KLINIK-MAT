@@ -42,12 +42,12 @@ export default function HomePage() {
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 {!isSignedIn ? (
                   <>
-                    <SignInButton forceRedirectUrl="/casos">
+                    <SignInButton forceRedirectUrl="/areas">
                       <button className="btn btn-lg bg-white text-km-crimson hover:bg-km-blush hover:scale-105 shadow-km-xl transition-all">
                         Iniciar sesión →
                       </button>
                     </SignInButton>
-                    <SignUpButton forceRedirectUrl="/casos">
+                    <SignUpButton forceRedirectUrl="/areas">
                       <button className="btn btn-lg bg-transparent border-2 border-white text-white hover:bg-white/10">
                         Registrarse gratis
                       </button>
@@ -55,8 +55,8 @@ export default function HomePage() {
                   </>
                 ) : (
                   <>
-                    <a href="/casos" className="btn btn-lg bg-white text-km-crimson hover:bg-km-blush hover:scale-105 shadow-km-xl transition-all">
-                      Ir a casos clínicos →
+                    <a href="/areas" className="btn btn-lg bg-white text-km-crimson hover:bg-km-blush hover:scale-105 shadow-km-xl transition-all">
+                      📚 Elige el área que quieres practicar →
                     </a>
                     <a href="#features" className="btn btn-lg bg-transparent border-2 border-white text-white hover:bg-white/10">
                       Conocer más
@@ -72,7 +72,7 @@ export default function HomePage() {
                     <BookOpen className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <div className="text-3xl font-bold text-km-blush">50+</div>
+                    <div className="text-3xl font-bold text-km-blush">54</div>
                     <div className="text-white/80 text-sm">Casos Clínicos</div>
                   </div>
                 </div>
@@ -82,7 +82,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <div className="text-3xl font-bold text-km-blush">4</div>
-                    <div className="text-white/80 text-sm">Módulos</div>
+                    <div className="text-white/80 text-sm">Áreas Clínicas</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
