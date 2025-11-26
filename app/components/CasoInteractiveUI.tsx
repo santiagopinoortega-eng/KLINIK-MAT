@@ -18,11 +18,11 @@ interface Props {
 
 // Componente interno que usa el contexto
 function CasoContent() {
-  const { mode, timeLimit, autoSubmitCase, setMode, isCaseCompleted } = useCaso();
+  const { mode, timeLimit, autoSubmitCase, setMode, isCaseCompleted, caso } = useCaso();
 
   // Si no hay modo seleccionado, mostrar selector
   if (!mode) {
-    return <CaseModeSelector onModeSelected={setMode} caseTitle={useCaso().caso.titulo} />;
+    return <CaseModeSelector onModeSelected={setMode} caseTitle={caso.titulo} />;
   }
 
   return (
@@ -38,7 +38,7 @@ function CasoContent() {
       )}
 
       {/* Viñeta horizontal en la parte superior */}
-      <VignetteHeader title={useCaso().caso.titulo} vigneta={useCaso().caso.vigneta} />
+      <VignetteHeader title={caso.titulo} vigneta={caso.vigneta} />
 
       {/* Grid: preguntas a la izquierda (mayor espacio horizontal), navigator a la derecha (compacto) */}
       <div className="grid lg:grid-cols-[1fr_280px] gap-6 items-start">

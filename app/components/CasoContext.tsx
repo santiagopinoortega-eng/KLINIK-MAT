@@ -123,7 +123,7 @@ export function CasoProvider({ caso, children }: { caso: CasoClient; children: R
     };
     
     setRespuestas(prev => [...prev, nuevaRespuesta]);
-  }, [caso.pasos.length, respuestas, isTimeExpired]);
+  }, [respuestas, isTimeExpired]);
 
   const value = useMemo(() => ({ 
     caso, 
