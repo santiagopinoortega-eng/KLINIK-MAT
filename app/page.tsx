@@ -3,19 +3,21 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { SignInButton, SignUpButton, useUser } from '@clerk/nextjs';
+// CLERK TEMPORALMENTE DESHABILITADO
+// import { SignInButton, SignUpButton, useUser } from '@clerk/nextjs';
 import { Stethoscope, BookOpen, Award, Heart } from 'lucide-react';
 
 export default function HomePage() {
-  const { isSignedIn } = useUser();
+  // const { isSignedIn } = useUser();
+  const isSignedIn = false; // Temporal: simular usuario no logueado
   
   // Hero image - use public asset. If you have a specific hero file, replace the path.
   const heroSrc = '/brand/logo-centro.png';
 
   return (
     <main className="min-h-screen">
-      {/* Hero Section - Identidad Obstetricia Chilena */}
-      <section className="relative overflow-hidden bg-gradient-km-hero text-white rounded-[2rem] shadow-km-xl mx-4 md:mx-6 my-6">
+      {/* Hero Section - MÁS COMPACTO */}
+      <section className="relative overflow-hidden bg-gradient-km-hero text-white rounded-xl shadow-lg mx-4 md:mx-6 my-4">
         {/* Patrón orgánico de fondo */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-10 w-32 h-32 rounded-full bg-white/20 blur-3xl" />
@@ -23,75 +25,59 @@ export default function HomePage() {
           <div className="absolute top-1/2 right-10 w-24 h-24 rounded-full bg-white/10 blur-2xl" />
         </div>
 
-        <div className="container-app relative py-12 md:py-16">
+        <div className="max-w-6xl mx-auto px-6 relative py-8 md:py-12">
           <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] items-center gap-8 md:gap-12">
             {/* Contenido principal - Solo título */}
             <div className="space-y-6">
-              <div className="mb-6">
-                <h1 className="text-5xl md:text-7xl font-bold tracking-tight whitespace-nowrap">
+              <div className="mb-4">
+                <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
                   KLINIK-MAT
                 </h1>
               </div>
 
-              <p className="text-lg md:text-xl text-white/95 leading-relaxed max-w-xl">
+              <p className="text-base md:text-lg text-white/95 leading-relaxed max-w-lg">
                 Simulador de casos clínicos para estudiantes de Obstetricia.
                 <br />
                 <span className="font-semibold text-km-blush">Practica con casos que simulan la realidad y domina tu profesión.</span>
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                {!isSignedIn ? (
-                  <>
-                    <SignInButton forceRedirectUrl="/areas">
-                      <button className="btn btn-lg bg-white text-km-crimson hover:bg-km-blush hover:scale-105 shadow-km-xl transition-all">
-                        Iniciar sesión →
-                      </button>
-                    </SignInButton>
-                    <SignUpButton forceRedirectUrl="/areas">
-                      <button className="btn btn-lg bg-transparent border-2 border-white text-white hover:bg-white/10">
-                        Registrarse gratis
-                      </button>
-                    </SignUpButton>
-                  </>
-                ) : (
-                  <>
-                    <a href="/areas" className="btn btn-lg bg-white text-km-crimson hover:bg-km-blush hover:scale-105 shadow-km-xl transition-all">
-                      📚 Elige el área que quieres practicar →
-                    </a>
-                    <a href="#features" className="btn btn-lg bg-transparent border-2 border-white text-white hover:bg-white/10">
-                      Conocer más
-                    </a>
-                  </>
-                )}
+                {/* CLERK DESHABILITADO - Botones temporales */}
+                <a href="/areas" className="btn btn-lg bg-white text-km-crimson hover:bg-km-blush hover:scale-105 shadow-km-xl transition-all">
+                  📚 Elige el área que quieres practicar →
+                </a>
+                <a href="#features" className="btn btn-lg bg-transparent border-2 border-white text-white hover:bg-white/10">
+                  Conocer más
+                </a>
               </div>
 
-              {/* Stats */}
-              <div className="flex gap-8 pt-6">
+              {/* Stats - MÁS COMPACTO Y UNIFORME */}
+              <div className="flex gap-6 pt-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
-                    <BookOpen className="w-6 h-6 text-white" />
+                  <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                    <BookOpen className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <div className="text-3xl font-bold text-km-blush">54</div>
-                    <div className="text-white/80 text-sm">Casos Clínicos</div>
+                    <div className="text-2xl font-bold text-km-blush">54</div>
+                    <div className="text-white/80 text-xs">Casos Clínicos</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
-                    <Stethoscope className="w-6 h-6 text-white" />
+                  <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                    <Stethoscope className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <div className="text-3xl font-bold text-km-blush">4</div>
-                    <div className="text-white/80 text-sm">Áreas Clínicas</div>
+                    <div className="text-2xl font-bold text-km-blush">4</div>
+                    <div className="text-white/80 text-xs">Áreas Clínicas</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
-                    <Heart className="w-6 h-6 text-white" />
+                  <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                    <Heart className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <div className="text-3xl font-bold text-km-blush">100%</div>
-                    <div className="text-white/80 text-sm">Gratis</div>
+                    <div className="text-2xl font-bold text-km-blush">100%</div>
+                    <div className="text-white/80 text-xs">Gratis</div>
                   </div>
                 </div>
               </div>
@@ -108,7 +94,7 @@ export default function HomePage() {
       </section>
 
       {/* Container para el resto del contenido */}
-      <div className="container-app py-12 grid gap-16">
+      <div className="container-app py-8 grid gap-12">
 
               {/* 1) HERO - removido (ya integrado arriba) */}
 
@@ -162,35 +148,35 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 5) Colaboradores - Sección para mostrar patrocinadores y aliados */}
-        <section className="relative overflow-hidden rounded-3xl bg-gradient-km-primary text-white p-8 md:p-12 shadow-km-xl backdrop-blur-xl bg-opacity-95">
+        {/* 5) Colaboradores - Sección compacta */}
+        <section className="relative overflow-hidden rounded-2xl bg-gradient-km-primary text-white p-6 md:p-10 shadow-km-xl backdrop-blur-xl bg-opacity-95">
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
           <div className="relative text-center">
-            <h3 className="text-3xl md:text-4xl font-bold mb-4">
+            <h3 className="text-2xl md:text-3xl font-bold mb-3">
               Nuestros Colaboradores
             </h3>
-            <p className="text-lg text-white/90 max-w-2xl mx-auto mb-8">
+            <p className="text-base text-white/90 max-w-2xl mx-auto mb-6">
               KLINIK-MAT es posible gracias al apoyo de instituciones y organizaciones comprometidas con la educación de los futuros Matrones/as de Chile.
             </p>
             
             {/* Grid de logos de colaboradores - Placeholder para futuro */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 items-center justify-items-center min-h-[120px]">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 items-center justify-items-center min-h-[100px]">
               {/* Placeholder para logos futuros */}
-              <div className="w-full h-24 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center">
+              <div className="w-full h-20 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center">
                 <span className="text-white/50 text-sm">Logo 1</span>
               </div>
-              <div className="w-full h-24 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center">
+              <div className="w-full h-20 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center">
                 <span className="text-white/50 text-sm">Logo 2</span>
               </div>
-              <div className="w-full h-24 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center">
+              <div className="w-full h-20 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center">
                 <span className="text-white/50 text-sm">Logo 3</span>
               </div>
-              <div className="w-full h-24 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center">
+              <div className="w-full h-20 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center">
                 <span className="text-white/50 text-sm">Logo 4</span>
               </div>
             </div>
 
-            <p className="text-sm text-white/70 mt-8">
+            <p className="text-sm text-white/70 mt-6">
               ¿Tu institución quiere colaborar? <a href="mailto:contacto@klinik-mat.cl" className="underline hover:text-white transition-colors">Contáctanos</a>
             </p>
           </div>

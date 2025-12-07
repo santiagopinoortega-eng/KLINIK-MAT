@@ -91,28 +91,25 @@ export default function CaseCard({
 
   return (
     <article 
-      className="card group relative overflow-hidden flex flex-col"
+      className="card group relative overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-200"
       style={{
         border: colors.border,
-        minHeight: '320px',
-        maxHeight: '320px',
+        minHeight: '240px',
+        maxHeight: '240px',
         background: `linear-gradient(to bottom, ${colors.bg}, var(--km-surface-1))`,
         boxShadow: colors.shadow
       }}
     >
-      {/* Badges superiores */}
-      <div className="mb-4 flex items-center gap-2 flex-wrap">
-        <span className="chip" style={{ 
+      {/* Badges superiores - MÁS PEQUEÑOS */}
+      <div className="mb-3 flex items-center gap-2 flex-wrap">
+        <span className="text-xs px-2 py-1 rounded-md font-medium" style={{ 
           background: 'rgba(13,148,136,0.12)', 
           color: 'var(--km-teal)', 
           border: '1px solid rgba(13,148,136,0.2)' 
         }}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-            <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
-          </svg>
           {area ? String(area) : 'General'}
         </span>
-        <span className="chip font-bold" style={{
+        <span className="text-xs px-2 py-1 rounded-md font-bold" style={{
           background: colors.badgeBg,
           color: colors.badgeColor,
           border: colors.badgeBorder
@@ -124,22 +121,22 @@ export default function CaseCard({
         )}
       </div>
 
-      {/* Título con color rojo */}
-      <h3 className="text-xl font-bold leading-snug mb-4" style={{color: 'var(--km-cardinal)'}}>
+      {/* Título con color rojo - MÁS PEQUEÑO */}
+      <h3 className="text-lg font-bold leading-tight mb-2" style={{color: 'var(--km-cardinal)'}}>
         {title}
       </h3>
 
-      {/* Resumen con altura fija */}
-      <div className="flex-1 overflow-hidden mb-5">
+      {/* Resumen con altura fija - MÁS COMPACTO */}
+      <div className="flex-1 overflow-hidden mb-3">
         {summary && (
-          <p className="text-sm leading-relaxed line-clamp-3" style={{color: 'var(--km-text-700)'}}>
+          <p className="text-sm leading-relaxed line-clamp-2" style={{color: 'var(--km-text-700)'}}>
             {summary}
           </p>
         )}
       </div>
 
-      {/* Botón siempre en la misma posición (al final) */}
-      <Link href={`/casos/${id}`} className="mt-auto btn btn-primary w-full">
+      {/* Botón siempre en la misma posición (al final) - MÁS PEQUEÑO */}
+      <Link href={`/casos/${id}`} className="mt-auto btn btn-sm btn-primary w-full text-sm py-2">
         Resolver caso →
       </Link>
     </article>

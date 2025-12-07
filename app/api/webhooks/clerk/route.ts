@@ -72,6 +72,7 @@ export async function POST(req: Request) {
           name: `${first_name || ''} ${last_name || ''}`.trim() || null,
           role,
           emailVerified: new Date(), // Clerk already verified
+          updatedAt: new Date(),
         },
       });
       console.log('✅ User created in database:', id, email);

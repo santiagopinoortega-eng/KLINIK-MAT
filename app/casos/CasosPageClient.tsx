@@ -74,30 +74,31 @@ export default function CasosPageClient({
   }, [areaFilteredData, q, modulo, difficulty]);
 
   return (
-    <div className="container mx-auto max-w-7xl py-8 px-4">
-      {/* Back button si hay área seleccionada */}
-      {selectedArea && (
-        <div className="mb-6">
-          <Link 
-            href="/areas"
-            className="inline-flex items-center gap-2 text-km-crimson hover:text-km-cardinal font-semibold transition-colors"
-          >
-            <ArrowLeftIcon className="h-5 w-5" />
-            Volver a Áreas Clínicas
-          </Link>
-        </div>
-      )}
+    <div className="min-h-screen bg-neutral-50/50">
+      <div className="container mx-auto max-w-6xl py-6 px-4 md:px-6">
+        {/* Back button si hay área seleccionada */}
+        {selectedArea && (
+          <div className="mb-4">
+            <Link 
+              href="/areas"
+              className="inline-flex items-center gap-2 text-sm text-km-crimson hover:text-km-cardinal font-medium transition-colors"
+            >
+              <ArrowLeftIcon className="h-4 w-4" />
+              Volver a Áreas Clínicas
+            </Link>
+          </div>
+        )}
 
-      {/* Header con título */}
-      <div className="text-center mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold mb-2" style={{color: 'var(--km-cardinal)'}}>
-          {selectedArea ? AREA_NAMES[selectedArea] || 'Casos Clínicos' : 'Casos Clínicos'}
-        </h1>
-        <p className="text-sm" style={{color: 'var(--km-text-500)'}}>
-          {selectedArea 
-            ? `${areaFilteredData.length} casos disponibles en esta área`
-            : 'Selecciona un caso para comenzar tu práctica'
-          }
+        {/* Header con título - MÁS COMPACTO */}
+        <div className="mb-6">
+          <h1 className="text-2xl md:text-3xl font-bold mb-1" style={{color: 'var(--km-navy)'}}>
+            {selectedArea ? AREA_NAMES[selectedArea] || 'Casos Clínicos' : 'Casos Clínicos'}
+          </h1>
+          <p className="text-sm text-neutral-600">
+            {selectedArea 
+              ? `${areaFilteredData.length} casos disponibles`
+              : 'Selecciona un caso para comenzar'
+            }
         </p>
       </div>
 
@@ -191,24 +192,25 @@ export default function CasosPageClient({
         </div>
       </div>
 
-      {/* Resultados */}
+      {/* Resultados - GRID OPTIMIZADO */}
       {filtered.length === 0 ? (
         <div className="text-center py-12">
-          <div className="text-6xl mb-4">🔍</div>
-          <p className="text-neutral-600 text-lg font-medium mb-2">
+          <div className="text-5xl mb-3">🔍</div>
+          <p className="text-neutral-700 font-medium mb-1">
             No se encontraron casos
           </p>
           <p className="text-neutral-500 text-sm">
-            Intenta ajustar los filtros o la búsqueda
+            Intenta ajustar los filtros
           </p>
         </div>
       ) : (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map(c => (
             <CaseCard key={c.id} {...c} />
           ))}
         </div>
       )}
+      </div>
     </div>
   );
 }

@@ -7,23 +7,91 @@ import { useCaso } from "./CasoContext";
 import { useEffect, useState } from "react";
 import { ImageViewer } from "./ImageViewer";
 
+// Función auxiliar para mapear módulo a área
+function mapModuloToArea(modulo?: string): string {
+  if (!modulo) return 'General';
+  const normalized = modulo.toLowerCase();
+  if (normalized.includes('gineco')) return 'ginecologia';
+  if (normalized.includes('obste')) return 'obstetricia';
+  if (normalized.includes('neo')) return 'neonatologia';
+  if (normalized.includes('ssr') || normalized.includes('salud sexual')) return 'ssr';
+  return modulo;
+}
+
 export default function CasoDetalleClient() {
   // Traemos 'goToNextStep' del contexto para el botón "Comenzar Caso"
   const { caso, currentStep, respuestas, handleSelect, handleNavigate, goToNextStep, mode, timeLimit, timeSpent, isTimeExpired, isCaseCompleted } = useCaso();
   const [showContent, setShowContent] = useState(false);
   const [started, setStarted] = useState(false);
+  const [savedToDb, setSavedToDb] = useState(false); // Track si ya guardamos en DB
 
+  // Calcular si está completado (necesario para el useEffect)
+  const totalPasos = caso?.pasos.length || 0;
+  const isCompleted = currentStep >= totalPasos;
+
+  // Hook para mostrar contenido con delay
   useEffect(() => {
     const timer = setTimeout(() => setShowContent(true), 200);
     return () => clearTimeout(timer);
   }, []);
 
+  // Hook para guardar resultado automáticamente cuando se completa el caso
+  useEffect(() => {
+    if (!caso || !isCompleted || savedToDb) return;
+
+    // Calcular puntos para guardar
+    let puntosObtenidos = 0;
+    let puntosMaximos = 0;
+
+    caso.pasos.forEach((paso, idx) => {
+      if (paso.tipo === 'mcq') {
+        puntosMaximos += 1;
+        const respuesta = respuestas[idx];
+        if (respuesta?.esCorrecta) {
+          puntosObtenidos += 1;
+        }
+      } else if (paso.tipo === 'short') {
+        const puntosPaso = paso.puntosMaximos || 2;
+        puntosMaximos += puntosPaso;
+        const respuesta = respuestas[idx];
+        if (respuesta && 'puntos' in respuesta) {
+          puntosObtenidos += respuesta.puntos || 0;
+        }
+      }
+    });
+
+    // Guardar en base de datos
+    fetch('/api/results', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        caseId: caso.id,
+        caseTitle: caso.titulo,
+        caseArea: mapModuloToArea(caso.modulo || caso.area),
+        score: puntosObtenidos,
+        totalPoints: puntosMaximos,
+        mode: mode || 'study',
+        timeLimit: timeLimit || null,
+        timeSpent: timeSpent || null,
+        answers: respuestas,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          console.log('✅ Resultado guardado:', data.result);
+          setSavedToDb(true);
+        }
+      })
+      .catch((err) => {
+        console.error('❌ Error al guardar resultado:', err);
+      });
+  }, [isCompleted, savedToDb, caso, respuestas, mode, timeLimit, timeSpent]);
+
+  // Early return DESPUÉS de todos los hooks
   if (!caso || !showContent) {
     return <div className="card animate-pulse h-40 grid place-items-center text-neutral-500">Cargando...</div>;
   }
-
-  const totalPasos = caso.pasos.length;
-  const isCompleted = currentStep >= totalPasos;
 
   // --- 1. PANTALLA DE FINALIZADO ---
   if (isCompleted) {
@@ -83,6 +151,18 @@ export default function CasoDetalleClient() {
         <h1 className="text-xl md:text-3xl font-extrabold mb-4 bg-gradient-to-r from-[#1E3A5F] via-[#DC2626] to-[#BC4639] bg-clip-text text-transparent" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
           {caso.titulo}
         </h1>
+
+        {/* Indicador de guardado exitoso */}
+        {savedToDb && (
+          <div className="mb-4 p-4 rounded-lg bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-300 flex items-center gap-3 animate-fade-in">
+            <svg className="h-5 w-5 text-green-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span className="text-sm font-medium text-green-900">
+              ✅ Resultado guardado en tu historial
+            </span>
+          </div>
+        )}
 
         {/* Resumen de Puntuación */}
         <div className="mb-6 p-6 rounded-xl bg-gradient-to-br from-blue-50/50 via-white/70 to-red-50/30 border-2 border-blue-200/40 shadow-sm">

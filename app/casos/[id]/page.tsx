@@ -4,6 +4,22 @@ import { notFound } from "next/navigation";
 import type { CasoClient, Paso, McqOpcion } from "@/lib/types";
 import dynamic from "next/dynamic";
 
+// ISR: Regenerar cada 2 horas (casos clínicos cambian ocasionalmente)
+export const revalidate = 7200;
+
+// Pre-renderizar casos más populares en build time
+export async function generateStaticParams() {
+  const casos = await prismaRO.case.findMany({
+    where: { isPublic: true },
+    select: { id: true },
+    take: 20, // Pre-renderizar los primeros 20 casos
+  });
+
+  return casos.map((caso) => ({
+    id: caso.id,
+  }));
+}
+
 // Carga dinámica del cliente para evitar errores de hidratación
 const CasoInteractiveUI = dynamic(
   () => import("@/app/components/CasoInteractiveUI"),

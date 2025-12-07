@@ -3,13 +3,21 @@
 
 import type { CasoClient } from "@/lib/types";
 import { CasoProvider, useCaso } from "./CasoContext";
-import CasoDetalleClient from "./CasoDetalleClient";
 import CaseNavigator from "./CaseNavigator";
 import CaseTimer from "./CaseTimer";
 import CaseModeSelector from "./CaseModeSelector";
 import dynamic from 'next/dynamic';
 
-// VignetteHeader is a client component (collapse + tags). Dynamically import to avoid SSR issues.
+// Dynamic imports para code splitting
+const CasoDetalleClient = dynamic(() => import('./CasoDetalleClient'), {
+  ssr: false,
+  loading: () => (
+    <div className="flex items-center justify-center py-12">
+      <div className="text-neutral-500 animate-pulse">Cargando caso...</div>
+    </div>
+  ),
+});
+
 const VignetteHeader = dynamic(() => import('./VignetteHeader'), { ssr: false });
 
 interface Props {

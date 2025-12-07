@@ -7,119 +7,128 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id            String          @id // Clerk userId (no auto-generated)
-  email         String          @unique
-  emailVerified DateTime?       @map("email_verified")
-  name          String?
-  role          Role            @default(STUDENT)
-  createdAt     DateTime        @default(now()) @map("created_at")
-  updatedAt     DateTime        @updatedAt @map("updated_at")
-  results       StudentResult[]
-
-  @@map("users")
-}
-
-model Case {
-  id         String       @id @default(cuid())
-  title      String
-  area       String       // Legacy: mantener para compatibilidad
-  modulo     String?      // Nuevo: Anticoncepción, ITS, Consejería, Climaterio
-  difficulty Int          // Legacy: 1, 2, 3
-  dificultad String?      // Nuevo: "Baja", "Media", "Alta"
-  summary    String?
-  isPublic   Boolean      @default(false)
-  vignette   String?
-  feedbackDinamico Json?  @map("feedback_dinamico") // { bajo, medio, alto }
-  createdAt  DateTime     @default(now()) @map("created_at")
-  updatedAt  DateTime     @updatedAt @map("updated_at")
-  questions  Question[]   @relation("CaseQuestions")
-  norms      MinsalNorm[] @relation("CaseNorms")
-  images     CaseImage[]  @relation("CaseImages")
-
-  @@map("cases")
-}
-
-model Question {
-  id      String          @id @default(cuid())
-  order   Int
-  text    String
-  guia    String?
-  feedbackDocente String?
-  caseId  String
-  options Option[]        @relation("QuestionOptions")
-  images  QuestionImage[] @relation("QuestionImages")
-  case    Case            @relation("CaseQuestions", fields: [caseId], references: [id])
-
-  @@map("questions")
-}
-
-model Option {
-  id         String   @id @default(cuid())
-  text       String
-  isCorrect  Boolean  @default(false)
-  feedback   String?
-  questionId String
-  question   Question @relation("QuestionOptions", fields: [questionId], references: [id])
-
-  @@map("options")
-}
-
-model MinsalNorm {
-  id    String @id @default(cuid())
-  name  String
-  code  String @unique
-  cases Case[] @relation("CaseNorms")
-
-  @@map("minsal_norms")
-}
-
-model StudentResult {
-  id          String   @id @default(cuid())
-  userId      String
-  caseId      String
-  caseTitle   String?  // Título del caso para fácil referencia
-  caseArea    String?  // Área clínica (ginecologia, ssr, etc.)
-  score       Int      // Puntos obtenidos (0-100)
-  totalPoints Int      @default(100) // Puntos totales posibles
-  mode        String?  @default("study") // 'study', 'osce'
-  timeLimit   Int?     // Tiempo límite en segundos (null = sin límite)
-  timeSpent   Int?     // Tiempo real usado en segundos
-  answers     Json?    // Respuestas del estudiante (array de objetos)
-  completedAt DateTime @default(now())
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId, completedAt(sort: Desc)])
-  @@index([caseArea])
-  @@map("student_results")
-}
-
-// Tabla para imágenes asociadas a casos (vigneta)
 model CaseImage {
-  id          String   @id @default(cuid())
-  caseId      String
-  url         String   // Ruta relativa o absoluta a la imagen
-  alt         String   // Texto alternativo para accesibilidad
-  caption     String?  // Leyenda opcional
-  order       Int      @default(0) // Orden de aparición si hay múltiples imágenes
-  createdAt   DateTime @default(now()) @map("created_at")
-  case        Case     @relation("CaseImages", fields: [caseId], references: [id], onDelete: Cascade)
-
+  id         String   @id
+  caseId     String
+  url        String
+  alt        String
+  caption    String?
+  order      Int      @default(0)
+  createdAt  DateTime @default(now()) @map("created_at")
+  case       Case     @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  
   @@map("case_images")
 }
 
-// Tabla para imágenes asociadas a preguntas específicas
-model QuestionImage {
-  id          String   @id @default(cuid())
-  questionId  String
-  url         String   // Ruta relativa o absoluta a la imagen
-  alt         String   // Texto alternativo para accesibilidad
-  caption     String?  // Leyenda opcional
-  order       Int      @default(0) // Orden de aparición si hay múltiples imágenes
-  createdAt   DateTime @default(now()) @map("created_at")
-  question    Question @relation("QuestionImages", fields: [questionId], references: [id], onDelete: Cascade)
+model Case {
+  id                String         @id
+  title             String
+  area              String
+  difficulty        Int
+  summary           String?
+  isPublic          Boolean        @default(false)
+  vignette          String?
+  createdAt         DateTime       @default(now()) @map("created_at")
+  updatedAt         DateTime       @map("updated_at")
+  dificultad        String?
+  feedbackDinamico  Json?          @map("feedback_dinamico")
+  modulo            String?
+  images            CaseImage[]
+  questions         Question[]
+  norms             MinsalNorm[]   @relation("CaseNorms")
+  results           StudentResult[]
+  
+  @@map("cases")
+}
 
+model MinsalNorm {
+  id    String  @id
+  name  String
+  code  String  @unique
+  cases Case[]  @relation("CaseNorms")
+  
+  @@map("minsal_norms")
+}
+
+model Option {
+  id         String    @id
+  text       String
+  isCorrect  Boolean   @default(false)
+  feedback   String?
+  questionId String
+  question   Question  @relation(fields: [questionId], references: [id])
+  
+  @@map("options")
+}
+
+model QuestionImage {
+  id         String    @id
+  questionId String
+  url        String
+  alt        String
+  caption    String?
+  order      Int       @default(0)
+  createdAt  DateTime  @default(now()) @map("created_at")
+  question   Question  @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  
   @@map("question_images")
+}
+
+model Question {
+  id              String            @id
+  order           Int
+  text            String
+  caseId          String
+  feedbackDocente String?
+  guia            String?
+  options         Option[]
+  images          QuestionImage[]
+  case            Case              @relation(fields: [caseId], references: [id])
+  
+  @@map("questions")
+}
+
+model StudentResult {
+  id          String   @id
+  userId      String
+  caseId      String
+  score       Int
+  completedAt DateTime @default(now())
+  mode        String?  @default("study")
+  timeLimit   Int?
+  timeSpent   Int?
+  answers     Json?
+  caseArea    String?
+  caseTitle   String?
+  totalPoints Int      @default(100)
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  case        Case     @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  
+  @@map("student_results")
+  @@index([caseArea])
+  @@index([userId, completedAt(sort: Desc)])
+}
+
+model User {
+  id              String            @id
+  email           String            @unique
+  name            String?
+  role            Role              @default(STUDENT)
+  createdAt       DateTime          @default(now()) @map("created_at")
+  updatedAt       DateTime          @map("updated_at")
+  emailVerified   DateTime?         @map("email_verified")
+  
+  // Información demográfica del estudiante
+  country         String?           // País (ej: "Chile", "Argentina", "México")
+  university      String?           // Universidad (ej: "Universidad de Chile")
+  yearOfStudy     Int?              @map("year_of_study") // Año de carrera (1-7)
+  specialty       String?           // Especialidad de interés (opcional)
+  bio             String?           // Biografía corta del estudiante
+  avatar          String?           // URL del avatar (desde Clerk o custom)
+  
+  results         StudentResult[]
+  
+  @@map("users")
 }
 
 enum Role {
@@ -127,3 +136,4 @@ enum Role {
   EDITOR
   ADMIN
 }
+

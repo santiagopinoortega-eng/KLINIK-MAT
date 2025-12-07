@@ -7,77 +7,140 @@
     color-scheme: light;
     scroll-behavior: smooth;
     
-    /* 🎨 PALETA KLINIK-MAT 3.0: Clinical Excellence Triádica */
-    /* Azul Marino (50%) + Rojo/Coral (30%) + Terracota (20%) */
+    /* 🎨 KLINIK-MAT 4.0: Medical Excellence Palette */
+    /* Inspired by Osmosis, Medscape, and modern medical education platforms */
+    /* Red-centric design honoring Chilean obstetrics tradition */
     
-    /* AZUL MARINO - Autoridad Médica (Base 50%) */
-    --km-navy: #1E3A5F;          /* Azul marino oscuro - Headers, títulos principales */
-    --km-navy-light: #2C5282;    /* Azul medio - Navegación, secondary */
-    --km-sky: #3B82F6;           /* Azul brillante - Links, información */
-    --km-navy-bg: #EFF6FF;       /* Azul muy claro - Fondos */
+    /* PRIMARY - Clinical Red (Obstetrics Heritage) */
+    --km-red-900: #7F1D1D;       /* Deep burgundy - Dark mode, depth */
+    --km-red-800: #991B1B;       /* Dark crimson - Headers, authority */
+    --km-red-700: #B91C1C;       /* True medical red - Primary CTA */
+    --km-red-600: #DC2626;       /* Bright red - Main actions */
+    --km-red-500: #EF4444;       /* Vibrant red - Hover states */
+    --km-red-400: #F87171;       /* Coral red - Accents */
+    --km-red-300: #FCA5A5;       /* Light coral - Subtle highlights */
+    --km-red-200: #FECACA;       /* Pale coral - Soft backgrounds */
+    --km-red-100: #FEE2E2;       /* Very light - Cards, alerts */
+    --km-red-50: #FEF2F2;        /* Barely there - Large surfaces */
     
-    /* ROJO → CORAL - Vitalidad Obstétrica (Acción 30%) */
-    --km-crimson: #DC2626;       /* Rojo médico - CTAs principales */
-    --km-coral: #F87171;         /* Coral medio - Gradientes */
-    --km-coral-light: #FCA5A5;   /* Coral claro - Hover, highlights */
-    --km-coral-bg: #FEE2E2;      /* Coral muy claro - Fondos */
+    /* SECONDARY - Deep Navy (Medical Authority & Trust) */
+    --km-navy-900: #0C1E33;      /* Almost black - Maximum contrast */
+    --km-navy-800: #1E293B;      /* Deep slate - Dark text */
+    --km-navy-700: #334155;      /* Primary text - Body copy */
+    --km-navy-600: #475569;      /* Secondary text */
+    --km-navy-500: #64748B;      /* Muted text - Labels */
+    --km-navy-400: #94A3B8;      /* Light text - Placeholders */
+    --km-navy-300: #CBD5E1;      /* Borders - Dividers */
+    --km-navy-200: #E2E8F0;      /* Light borders */
+    --km-navy-100: #F1F5F9;      /* Subtle backgrounds */
+    --km-navy-50: #F8FAFC;       /* Page background */
     
-    /* TERRACOTA - Calidez Humana (Acentos 20%) */
-    --km-terracotta: #BC4639;    /* Terracota - Badges, detalles */
-    --km-warm: #D4A59A;          /* Beige cálido - Bordes suaves */
-    --km-cream: #F3E0DC;         /* Crema - Backgrounds sutiles */
+    /* ACCENT - Medical Teal (Complementary, Clinical) */
+    --km-teal-600: #0D9488;      /* Medical teal - Success, info */
+    --km-teal-500: #14B8A6;      /* Bright teal - Interactive */
+    --km-teal-400: #2DD4BF;      /* Light teal - Highlights */
+    --km-teal-100: #CCFBF1;      /* Pale teal - Backgrounds */
+    --km-teal-50: #F0FDFA;       /* Very light teal */
     
-    /* Superficies limpias */
-    --km-surface-1: #FFFFFF;     /* Blanco puro - Cards principales */
-    --km-surface-2: #F8FAFC;     /* Gris azulado muy claro - Fondo página */
-    --km-surface-3: #EFF6FF;     /* Azul muy claro - Secciones destacadas */
+    /* WARM ACCENT - Terracotta (Human Touch) */
+    --km-warm-600: #C2410C;      /* Deep terracotta */
+    --km-warm-500: #EA580C;      /* Rich orange */
+    --km-warm-400: #FB923C;      /* Warm orange - Warnings */
+    --km-warm-200: #FED7AA;      /* Light warm */
+    --km-warm-100: #FFEDD5;      /* Pale warm */
+    --km-warm-50: #FFF7ED;       /* Barely warm */
     
-    /* Texto profesional */
-    --km-text-900: #1E3A5F;      /* Azul marino - Texto principal */
-    --km-text-700: #334155;      /* Gris azulado - Texto secundario */
-    --km-text-500: #64748B;      /* Gris medio - Texto terciario */
-    --km-text-400: #94A3B8;      /* Gris claro - Placeholders */
+    /* SURFACES - Clean Medical Environment */
+    --km-surface-primary: #FFFFFF;    /* Pure white - Cards */
+    --km-surface-secondary: #FAFAFA;  /* Off-white - Containers */
+    --km-surface-tertiary: #F5F5F5;   /* Light gray - Backgrounds */
+    --km-surface-elevated: #FFFFFF;   /* Elevated cards */
+    --km-surface-overlay: rgba(0, 0, 0, 0.6); /* Modal backdrop */
     
-    /* Sistema contextual mejorado */
-    --km-success: #10B981;       /* Verde esmeralda - Correcto */
-    --km-success-bg: #D1FAE5;    /* Verde claro - Fondo */
-    --km-warning: #F59E0B;       /* Ámbar - Advertencias */
-    --km-warning-bg: #FEF3C7;    /* Ámbar claro - Fondo */
-    --km-info: #3B82F6;          /* Azul brillante - Información */
-    --km-info-bg: #DBEAFE;       /* Azul claro - Fondo */
-    --km-error: #DC2626;         /* Rojo médico - Errores */
-    --km-error-bg: #FEE2E2;      /* Rojo claro - Fondo */
+    /* GLASS EFFECTS (Osmosis-inspired) */
+    --km-glass-bg: rgba(255, 255, 255, 0.7);
+    --km-glass-border: rgba(255, 255, 255, 0.2);
+    --km-glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
     
-    /* Sistema de sombras con tinte azul */
-    --km-shadow-sm: 0 1px 2px rgba(30, 58, 95, 0.08);
-    --km-shadow-md: 0 4px 6px rgba(30, 58, 95, 0.10);
-    --km-shadow-lg: 0 10px 15px rgba(30, 58, 95, 0.12);
-    --km-shadow-xl: 0 20px 25px rgba(30, 58, 95, 0.15);
+    /* SEMANTIC COLORS - Enhanced Medical Context */
+    --km-success-dark: #059669;   /* Deep green */
+    --km-success: #10B981;        /* Success green */
+    --km-success-light: #6EE7B7;  /* Light green */
+    --km-success-bg: #D1FAE5;     /* Pale green background */
     
-    /* Bordes y radios */
-    --km-radius-sm: 8px;
-    --km-radius: 12px;
-    --km-radius-lg: 16px;
-    --km-radius-xl: 24px;
+    --km-warning-dark: #D97706;   /* Deep amber */
+    --km-warning: #F59E0B;        /* Warning amber */
+    --km-warning-light: #FCD34D;  /* Light amber */
+    --km-warning-bg: #FEF3C7;     /* Pale amber background */
     
-    /* Gradientes triádicos profesionales */
-    --km-gradient-primary: linear-gradient(135deg, #1E3A5F 0%, #DC2626 50%, #BC4639 100%);
-    --km-gradient-action: linear-gradient(90deg, #DC2626 0%, #F87171 50%, #FCA5A5 100%);
-    --km-gradient-subtle: linear-gradient(135deg, #2C5282 0%, #D4A59A 100%);
-    --km-gradient-hero: linear-gradient(135deg, rgba(30,58,95,0.95) 0%, rgba(220,38,38,0.85) 100%);
-    --km-gradient-success: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+    --km-info-dark: #1D4ED8;      /* Deep blue */
+    --km-info: #3B82F6;           /* Info blue */
+    --km-info-light: #93C5FD;     /* Light blue */
+    --km-info-bg: #DBEAFE;        /* Pale blue background */
+    
+    --km-error: #DC2626;          /* Error red (matches primary) */
+    --km-error-bg: #FEE2E2;       /* Pale red background */
+    
+    /* SHADOW SYSTEM - Layered Depth */
+    --km-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --km-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.03);
+    --km-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.04);
+    --km-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.08), 0 4px 6px rgba(0, 0, 0, 0.05);
+    --km-shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+    --km-shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.15);
+    
+    /* RED-TINTED SHADOWS (for primary elements) */
+    --km-shadow-red-sm: 0 2px 8px rgba(220, 38, 38, 0.1);
+    --km-shadow-red-md: 0 4px 16px rgba(220, 38, 38, 0.15);
+    --km-shadow-red-lg: 0 12px 24px rgba(220, 38, 38, 0.2);
+    --km-shadow-red-xl: 0 20px 40px rgba(220, 38, 38, 0.25);
+    
+    /* BORDER RADIUS - Consistent System */
+    --km-radius-xs: 4px;
+    --km-radius-sm: 6px;
+    --km-radius-md: 8px;
+    --km-radius-lg: 12px;
+    --km-radius-xl: 16px;
+    --km-radius-2xl: 20px;
+    --km-radius-3xl: 24px;
+    --km-radius-full: 9999px;
+    
+    /* GRADIENTS - Medical & Modern */
+    --km-gradient-primary: linear-gradient(135deg, #B91C1C 0%, #DC2626 50%, #EF4444 100%);
+    --km-gradient-primary-hover: linear-gradient(135deg, #991B1B 0%, #B91C1C 50%, #DC2626 100%);
+    --km-gradient-secondary: linear-gradient(135deg, #1E293B 0%, #334155 100%);
+    --km-gradient-hero: linear-gradient(135deg, #7F1D1D 0%, #DC2626 60%, #EF4444 100%);
+    --km-gradient-subtle: linear-gradient(135deg, #FEF2F2 0%, #FFFFFF 100%);
+    --km-gradient-warm: linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 50%, #FED7AA 100%);
+    --km-gradient-success: linear-gradient(135deg, #059669 0%, #10B981 50%, #34D399 100%);
+    --km-gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
+    
+    /* MESH GRADIENTS (Osmosis-style) */
+    --km-mesh-primary: radial-gradient(at 0% 0%, #FEE2E2 0%, transparent 50%),
+                        radial-gradient(at 100% 0%, #DBEAFE 0%, transparent 50%),
+                        radial-gradient(at 100% 100%, #FFEDD5 0%, transparent 50%),
+                        radial-gradient(at 0% 100%, #F0FDFA 0%, transparent 50%);
+    
+    /* ANIMATIONS - Smooth Transitions */
+    --km-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --km-transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    --km-transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    --km-transition-bounce: 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
   html, body {
     @apply antialiased;
     font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
-    color: var(--km-text-700);
-    background-color: var(--km-surface-2);
+    color: var(--km-navy-700);
+    background-color: #FAFAFA;
     background-image: 
-      radial-gradient(circle at 20% 30%, rgba(30,58,95,0.04) 0%, transparent 50%),
-      radial-gradient(circle at 80% 70%, rgba(220,38,38,0.03) 0%, transparent 60%);
+      radial-gradient(circle at 10% 20%, rgba(220, 38, 38, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 90% 10%, rgba(13, 148, 136, 0.02) 0%, transparent 50%),
+      radial-gradient(circle at 50% 100%, rgba(251, 146, 60, 0.02) 0%, transparent 50%),
+      radial-gradient(circle at 0% 100%, rgba(59, 130, 246, 0.02) 0%, transparent 50%);
     background-attachment: fixed;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
 
@@ -85,179 +148,423 @@
   h1 { 
     @apply text-xl md:text-3xl font-bold mb-3; 
     font-family: var(--font-poppins), sans-serif;
-    color: var(--km-navy); 
+    color: var(--km-navy-800);
+    letter-spacing: -0.02em; 
   }
   h2 { 
     @apply text-lg md:text-2xl font-semibold mb-2; 
     font-family: var(--font-poppins), sans-serif;
-    color: var(--km-crimson); 
+    color: var(--km-red-700);
+    letter-spacing: -0.01em; 
   }
   h3 { 
     @apply text-base md:text-xl font-semibold mb-2; 
     font-family: var(--font-poppins), sans-serif;
-    color: var(--km-navy-light); 
+    color: var(--km-navy-700); 
   }
-  p  { @apply text-sm md:text-base leading-relaxed; color: var(--km-text-700); }
+  p  { 
+    @apply text-sm md:text-base leading-relaxed; 
+    color: var(--km-navy-700); 
+  }
 
   a { 
-    color: var(--km-sky);
+    color: var(--km-red-600);
     text-decoration: none;
-    transition: color .15s ease;
+    transition: color var(--km-transition-fast);
   }
-  a:hover { color: var(--km-crimson); }
+  a:hover { 
+    color: var(--km-red-700);
+    text-decoration: underline;
+    text-decoration-color: var(--km-red-300);
+    text-underline-offset: 3px;
+  }
 }
 
 @layer components {
+  /* === BUTTONS - Medical Grade === */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded px-4 py-2
-    text-sm font-medium border border-transparent
-    disabled:opacity-50 disabled:pointer-events-none;
+    @apply inline-flex items-center justify-center gap-2 
+    text-sm font-semibold border border-transparent
+    disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed;
     border-radius: var(--km-radius-lg);
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0.625rem 1.25rem;
+    transition: all var(--km-transition-base);
     font-family: var(--font-poppins), sans-serif;
-  }
-  .btn-lg { @apply px-6 py-3 text-base; }
-  .btn-primary {
-    background: var(--km-gradient-action);
-    color: white;
-    box-shadow: var(--km-shadow-md);
-  }
-  .btn-primary:hover { 
-    background: linear-gradient(90deg, #991B1B 0%, #DC2626 50%, #F87171 100%);
-    box-shadow: var(--km-shadow-lg);
-    transform: translateY(-2px);
-  }
-  .btn-primary:disabled { background-color: rgba(220,38,38,0.3); }
-  .btn-secondary {
-    background-color: white;
-    border: 2px solid var(--km-navy);
-    color: var(--km-navy);
-  }
-  .btn-secondary:hover { 
-    background-color: var(--km-navy-bg);
-    border-color: var(--km-sky);
-    transform: translateY(-1px);
-  }
-  .btn:focus-visible {
-    outline: 3px solid rgba(14,107,183,0.12);
-    outline-offset: 3px;
-  }
-  .card {
-    border-radius: var(--km-radius-lg);
-    padding: 1.5rem;
-    background: var(--km-surface-1);
-    border: 1px solid rgba(30,58,95,0.1);
-    box-shadow: var(--km-shadow-md);
-    transition: transform .3s cubic-bezier(.2,.9,.2,1), box-shadow .3s ease, border-color .3s ease;
     position: relative;
     overflow: hidden;
   }
+  
+  .btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+  
+  .btn:active::before {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .btn-lg { 
+    @apply px-6 py-3 text-base; 
+  }
+  
+  .btn-primary {
+    background: var(--km-gradient-primary);
+    color: white;
+    box-shadow: var(--km-shadow-red-md);
+    border: 1px solid var(--km-red-700);
+  }
+  
+  .btn-primary:hover { 
+    background: var(--km-gradient-primary-hover);
+    box-shadow: var(--km-shadow-red-lg);
+    transform: translateY(-2px) scale(1.02);
+  }
+  
+  .btn-primary:active {
+    transform: translateY(0) scale(0.98);
+  }
+  
+  .btn-primary:disabled { 
+    background: var(--km-navy-300);
+    box-shadow: none;
+  }
+  
+  .btn-secondary {
+    background-color: white;
+    border: 2px solid var(--km-navy-700);
+    color: var(--km-navy-700);
+    box-shadow: var(--km-shadow-sm);
+  }
+  
+  .btn-secondary:hover { 
+    background-color: var(--km-navy-50);
+    border-color: var(--km-red-600);
+    color: var(--km-red-600);
+    transform: translateY(-1px);
+    box-shadow: var(--km-shadow-md);
+  }
+  
+  .btn:focus-visible {
+    outline: 3px solid var(--km-red-200);
+    outline-offset: 2px;
+  }
+  
+  /* === CARDS - Elevated & Interactive === */
+  .card {
+    border-radius: var(--km-radius-xl);
+    padding: 1.5rem;
+    background: var(--km-surface-primary);
+    border: 1px solid var(--km-navy-200);
+    box-shadow: var(--km-shadow-md);
+    transition: all var(--km-transition-slow);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Glass Card Variant */
+  .card-glass {
+    background: var(--km-glass-bg);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid var(--km-glass-border);
+    box-shadow: var(--km-glass-shadow);
+  }
+  
+  /* Top accent bar */
   .card::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
-    background: var(--km-gradient-action);
+    height: 3px;
+    background: var(--km-gradient-primary);
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 0.4s ease;
+    transition: transform var(--km-transition-slow);
   }
+  
   .card:hover::before {
     transform: scaleX(1);
   }
-  .card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--km-shadow-lg);
-    border-color: var(--km-coral);
+  
+  /* Shimmer effect on hover */
+  .card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    transform: skewX(-20deg);
+    transition: left 0.8s ease;
   }
-  /* Filters bar: slightly highlighted area for search/filters */
+  
+  .card:hover::after {
+    left: 140%;
+  }
+  
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--km-shadow-xl);
+    border-color: var(--km-red-300);
+  }
+  
+  /* === FILTERS BAR - Glass Effect === */
   .filters-bar {
-    background: linear-gradient(135deg, rgba(239,246,255,0.8) 0%, rgba(255,255,255,0.9) 100%);
-    border-radius: var(--km-radius-lg);
+    background: var(--km-glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: var(--km-radius-xl);
     padding: 1rem;
     display: flex;
     gap: 0.75rem;
     align-items: center;
-    border: 1px solid rgba(30,58,95,0.1);
+    border: 1px solid var(--km-navy-200);
     box-shadow: var(--km-shadow-sm);
   }
+  /* === CHIPS/BADGES - Modern Pills === */
   .chip {
     display: inline-flex;
     align-items: center;
     gap: .5rem;
-    padding: .375rem .75rem;
-    border-radius: 999px;
+    padding: .375rem .875rem;
+    border-radius: var(--km-radius-full);
     font-size: .75rem;
     font-weight: 600;
-    transition: all 0.2s ease;
+    transition: all var(--km-transition-base);
+    border: 1px solid transparent;
   }
+  
+  .chip:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--km-shadow-sm);
+  }
+  
   .chip-diff-1 { 
-    background: rgba(13,148,136,0.12); 
-    color: var(--km-success);
-    border: 1px solid rgba(13,148,136,0.2);
+    background: var(--km-success-bg);
+    color: var(--km-success-dark);
+    border-color: var(--km-success-light);
   }
+  
   .chip-diff-2 { 
-    background: rgba(188,70,57,0.12); 
-    color: var(--km-terracotta);
-    border: 1px solid rgba(188,70,57,0.25);
+    background: var(--km-warm-100);
+    color: var(--km-warm-600);
+    border-color: var(--km-warm-200);
   }
+  
   .chip-diff-3 { 
-    background: rgba(220,38,38,0.12); 
-    color: var(--km-crimson);
-    border: 1px solid rgba(220,38,38,0.25);
+    background: var(--km-red-100);
+    color: var(--km-red-700);
+    border-color: var(--km-red-200);
   }
+  
+  /* === CONTAINER - Responsive === */
   .container-app {
-    @apply container mx-auto px-4 md:px-6 max-w-6xl; /* Ancho ampliado para casos clínicos */
+    @apply container mx-auto px-4 md:px-6 max-w-6xl;
   }
 }
 
 @layer utilities {
-  .animate-fade-in { animation: fade-in 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
-  @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+  /* === ANIMATIONS === */
+  .animate-fade-in { 
+    animation: fade-in 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both; 
+  }
   
-  /* Animaciones para el progreso del caso */
+  .animate-fade-in-up {
+    animation: fade-in-up 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  
+  .animate-slide-in-left {
+    animation: slide-in-left 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  
+  .animate-scale-in {
+    animation: scale-in 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  
+  @keyframes fade-in { 
+    from { opacity: 0; } 
+    to { opacity: 1; } 
+  }
+  
+  @keyframes fade-in-up {
+    from { 
+      opacity: 0; 
+      transform: translateY(20px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+  }
+  
+  @keyframes slide-in-left {
+    from { 
+      opacity: 0; 
+      transform: translateX(-30px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateX(0); 
+    }
+  }
+  
+  @keyframes scale-in {
+    from { 
+      opacity: 0; 
+      transform: scale(0.9); 
+    }
+    to { 
+      opacity: 1; 
+      transform: scale(1); 
+    }
+  }
+  
+  /* === SHIMMER EFFECTS === */
   .animate-shimmer {
-    animation: shimmer 3s infinite linear;
+    animation: shimmer 2s infinite linear;
+    background: linear-gradient(
+      90deg,
+      var(--km-navy-100) 0%,
+      var(--km-navy-50) 50%,
+      var(--km-navy-100) 100%
+    );
+    background-size: 200% 100%;
   }
+  
   @keyframes shimmer {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
   }
   
-  .animate-slide {
-    animation: slide 2s infinite linear;
-  }
-  @keyframes slide {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(200%); }
+  /* === PULSE EFFECTS === */
+  .animate-pulse-soft {
+    animation: pulse-soft 2s ease-in-out infinite;
   }
   
-  /* Animación pequeña de bounce para badges */
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.85; }
+  }
+  
+  .animate-pulse-red {
+    animation: pulse-red 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulse-red {
+    0%, 100% { 
+      box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4);
+    }
+    50% { 
+      box-shadow: 0 0 0 10px rgba(220, 38, 38, 0);
+    }
+  }
+  
+  /* === BOUNCE === */
   .animate-bounce-small {
     animation: bounce-small 0.6s ease-in-out;
   }
+  
   @keyframes bounce-small {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
+    25% { transform: translateY(-8px); }
+    50% { transform: translateY(-4px); }
+    75% { transform: translateY(-6px); }
   }
-
-  /* Animación de hover para scale sutil */
+  
+  /* === GRADIENT ANIMATION === */
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 3s ease infinite;
+  }
+  
+  @keyframes gradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  
+  /* === HOVER EFFECTS === */
   .hover\:scale-102:hover {
     transform: scale(1.02);
   }
   
-  /* Smooth transitions para elementos interactivos */
-  .transition-smooth {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  .hover\:scale-105:hover {
+    transform: scale(1.05);
   }
   
-  /* Scale hover suave */
   .hover-lift {
-    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    transition: transform var(--km-transition-base), box-shadow var(--km-transition-base);
   }
+  
   .hover-lift:hover {
     transform: translateY(-4px);
+    box-shadow: var(--km-shadow-lg);
+  }
+  
+  /* === GLASSMORPHISM UTILITIES === */
+  .glass {
+    background: var(--km-glass-bg);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid var(--km-glass-border);
+  }
+  
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+  }
+  
+  /* === GRADIENT TEXT === */
+  .text-gradient-red {
+    background: var(--km-gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* === SMOOTH TRANSITIONS === */
+  .transition-smooth {
+    transition: all var(--km-transition-base);
+  }
+  
+  .transition-slow {
+    transition: all var(--km-transition-slow);
+  }
+  
+  /* === SCROLLBAR STYLING === */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: var(--km-navy-100);
+    border-radius: var(--km-radius-full);
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: var(--km-red-400);
+    border-radius: var(--km-radius-full);
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: var(--km-red-600);
   }
 }
