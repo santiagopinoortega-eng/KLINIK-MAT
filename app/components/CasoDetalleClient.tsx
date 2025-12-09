@@ -6,6 +6,7 @@ import PasoRenderer from "./PasoRenderer";
 import { useCaso } from "./CasoContext";
 import { useEffect, useState } from "react";
 import { ImageViewer } from "./ImageViewer";
+import { analytics } from "@/lib/analytics";
 
 // Función auxiliar para mapear módulo a área
 function mapModuloToArea(modulo?: string): string {
@@ -81,6 +82,18 @@ export default function CasoDetalleClient() {
         if (data.success) {
           console.log('✅ Resultado guardado:', data.result);
           setSavedToDb(true);
+
+          // Track case completion
+          analytics.caseCompleted({
+            caseId: caso.id,
+            caseTitle: caso.titulo,
+            area: mapModuloToArea(caso.modulo || caso.area),
+            score: puntosObtenidos,
+            totalPoints: puntosMaximos,
+            percentage: Math.round((puntosObtenidos / puntosMaximos) * 100),
+            timeSpent: timeSpent || 0,
+            mode: mode || 'study',
+          });
         }
       })
       .catch((err) => {

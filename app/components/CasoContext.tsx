@@ -3,6 +3,7 @@
 
 import { createContext, useContext, useState, ReactNode, useMemo, useCallback, useEffect } from 'react';
 import type { CasoClient, McqOpcion, Respuesta } from '@/lib/types';
+import { analytics } from '@/lib/analytics';
 
 export type CaseMode = 'study' | 'osce';
 
@@ -72,7 +73,15 @@ export function CasoProvider({ caso, children }: { caso: CasoClient; children: R
   const autoSubmitCase = useCallback(() => {
     setIsTimeExpired(true);
     setCurrentStep(caso.pasos.length); // Ir a resultados
-  }, [caso.pasos.length]);
+
+    // Track time expiration
+    analytics.timeExpired({
+      caseId: caso.id,
+      timeLimit: timeLimit || 0,
+      stepsCompleted: respuestas.length,
+      totalSteps: caso.pasos.length,
+    });
+  }, [caso.pasos.length, caso.id, timeLimit, respuestas.length]);
 
   const handleNavigate = useCallback((stepIndex: number) => {
     if (isTimeExpired) return; // No permitir navegación si tiempo expiró

@@ -6,6 +6,8 @@ import { Inter, Poppins } from 'next/font/google';
 import dynamic from 'next/dynamic';
 import { ClerkProvider } from '@clerk/nextjs';
 import { esES } from '@clerk/localizations';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 // Importa tu Header (la ruta ./ es correcta)
 const Header = dynamic(() => import('./components/Header'), { ssr: true });
@@ -70,6 +72,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         {/* Footer con nuevo componente */}
         <Footer />
+
+        {/* Analytics */}
+        <Analytics />
+        <SpeedInsights />
       </body>
       </html>
     </ClerkProvider>

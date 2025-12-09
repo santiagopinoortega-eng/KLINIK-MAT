@@ -8,6 +8,8 @@ import {
   BoltIcon,
   AcademicCapIcon 
 } from '@heroicons/react/24/outline';
+import { analytics } from '@/lib/analytics';
+import { useCaso } from './CasoContext';
 
 export type CaseMode = 'study' | 'osce';
 
@@ -52,13 +54,31 @@ const MODES: ModeOption[] = [
 
 export default function CaseModeSelector({ onModeSelected, caseTitle }: ModeSelectorProps) {
   const [selectedMode, setSelectedMode] = useState<CaseMode | null>(null);
+  const { caso } = useCaso();
 
   const handleSelectMode = (mode: CaseMode) => {
     setSelectedMode(mode);
   };
 
   const handleStart = () => {
-    if (selectedMode) {
+    if (selectedMode && caso) {
+      // Track mode selection
+      analytics.modeSelected({
+        caseId: caso.id,
+        mode: selectedMode,
+      });
+
+      // Track case started
+      analytics.caseStarted({
+        caseId: caso.id,
+        caseTitle: caso.titulo,
+        area: caso.area || 'General',
+        difficulty: typeof caso.dificultad === 'number' 
+          ? (caso.dificultad === 1 ? 'Baja' : caso.dificultad === 2 ? 'Media' : 'Alta')
+          : 'Media',
+        mode: selectedMode,
+      });
+
       onModeSelected(selectedMode);
     }
   };
