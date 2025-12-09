@@ -5,9 +5,16 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { UserButton, SignInButton, useUser } from '@clerk/nextjs';
 
-const links = [
+interface NavLink {
+  href: string;
+  label: string;
+  icon?: string;
+}
+
+const links: NavLink[] = [
   { href: '/', label: 'Inicio' },
   { href: '/areas', label: 'Áreas Clínicas' },
+  { href: '/favoritos', label: 'Favoritos', icon: '⭐' },
   { href: '/mi-progreso', label: 'Mi Progreso' },
   { href: '/recursos', label: 'Recursos' },
 ];
@@ -38,16 +45,22 @@ export default function Header() {
                 <Link
                   href={l.href}
                   className={[
-                    'px-2 sm:px-3 md:px-4 py-2 min-h-touch md:min-h-0 rounded-lg md:rounded-xl text-xs sm:text-sm md:text-base font-semibold transition-all hover-lift',
+                    'px-2 sm:px-3 md:px-4 py-2 min-h-touch md:min-h-0 rounded-lg md:rounded-xl text-xs sm:text-sm md:text-base font-semibold transition-all hover-lift flex items-center gap-1',
                     active 
                       ? 'bg-gradient-km-primary text-white shadow-km-md' 
                       : 'text-km-navy hover:bg-km-blush hover:text-km-crimson',
                   ].join(' ')}
                 >
+                  {/* Icono si existe */}
+                  {l.icon && <span className="text-sm sm:text-base">{l.icon}</span>}
+                  
                   {/* Texto corto en mobile para algunos links */}
                   <span className="hidden sm:inline">{l.label}</span>
                   <span className="sm:hidden">
-                    {l.href === '/' ? 'Inicio' : l.href === '/areas' ? 'Áreas' : l.label}
+                    {l.href === '/' ? 'Inicio' : 
+                     l.href === '/areas' ? 'Áreas' : 
+                     l.href === '/favoritos' ? '⭐' : 
+                     l.label}
                   </span>
                 </Link>
               </li>

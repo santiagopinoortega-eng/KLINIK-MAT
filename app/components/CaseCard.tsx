@@ -3,6 +3,7 @@
 
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
+import FavoriteButton from './FavoriteButton';
 
 type Props = {
   id: string;
@@ -100,6 +101,11 @@ export default function CaseCard({
         boxShadow: colors.shadow
       }}
     >
+      {/* Botón de favoritos - Posición absoluta arriba a la derecha */}
+      <div className="absolute top-2 right-2 z-10">
+        <FavoriteButton caseId={id} size="sm" />
+      </div>
+
       {/* Badges superiores - Responsive */}
       <div className="mb-2 md:mb-3 flex items-center gap-1.5 md:gap-2 flex-wrap">
         <span className="text-xs px-2 py-1 rounded-md font-medium" style={{ 
