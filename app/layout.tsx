@@ -12,6 +12,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 // Importa tu Header (la ruta ./ es correcta)
 const Header = dynamic(() => import('./components/Header'), { ssr: true });
 const Footer = dynamic(() => import('./components/Footer'), { ssr: true });
+const CsrfInitializer = dynamic(() => import('./components/CsrfInitializer'), { ssr: false });
 
 const inter = Inter({
   subsets: ['latin'],
@@ -72,6 +73,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         {/* Footer con nuevo componente */}
         <Footer />
+
+        {/* CSRF Token Initialization */}
+        <CsrfInitializer />
 
         {/* Analytics */}
         <Analytics />

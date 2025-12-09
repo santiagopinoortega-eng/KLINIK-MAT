@@ -5,6 +5,7 @@ import { prisma } from '@/lib/prisma';
 import { logger, ErrorMessages, logApiError } from '@/lib/logger';
 import { checkRateLimit, RATE_LIMITS, createRateLimitResponse } from '@/lib/ratelimit';
 import { sanitizeObject, sanitizeCaseId, sanitizeNumber, sanitizeEnum } from '@/lib/sanitize';
+import { requireCsrfToken } from '@/lib/csrf';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -17,6 +18,10 @@ export async function POST(req: Request) {
   let body: any;
   
   try {
+    // CSRF Protection - validar token antes que nada
+    const csrfError = await requireCsrfToken(req);
+    if (csrfError) return csrfError;
+
     // Rate limiting - límite estricto para escritura
     const rateLimit = checkRateLimit(req, RATE_LIMITS.RESULTS);
     if (!rateLimit.ok) {

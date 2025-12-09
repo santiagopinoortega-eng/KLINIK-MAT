@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server';
 import { auth, clerkClient } from '@clerk/nextjs/server';
 import { prisma } from '@/lib/prisma';
 import { checkRateLimit, RATE_LIMITS, createRateLimitResponse } from '@/lib/ratelimit';
+import { requireCsrfToken } from '@/lib/csrf';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -88,6 +89,10 @@ export async function GET(req: Request) {
  */
 export async function PATCH(req: Request) {
   try {
+    // CSRF Protection
+    const csrfError = await requireCsrfToken(req);
+    if (csrfError) return csrfError;
+
     // Rate limiting - límite moderado para escritura
     const rateLimit = checkRateLimit(req, RATE_LIMITS.WRITE);
     if (!rateLimit.ok) {

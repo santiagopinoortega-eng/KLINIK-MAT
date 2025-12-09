@@ -7,6 +7,7 @@ import { useCaso } from "./CasoContext";
 import { useEffect, useState } from "react";
 import { ImageViewer } from "./ImageViewer";
 import { analytics } from "@/lib/analytics";
+import { postJSON } from "@/lib/fetch-with-csrf";
 
 // Función auxiliar para mapear módulo a área
 function mapModuloToArea(modulo?: string): string {
@@ -61,25 +62,20 @@ export default function CasoDetalleClient() {
       }
     });
 
-    // Guardar en base de datos
-    fetch('/api/results', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        caseId: caso.id,
-        caseTitle: caso.titulo,
-        caseArea: mapModuloToArea(caso.modulo || caso.area),
-        score: puntosObtenidos,
-        totalPoints: puntosMaximos,
-        mode: mode || 'study',
-        timeLimit: timeLimit || null,
-        timeSpent: timeSpent || null,
-        answers: respuestas,
-      }),
+    // Guardar en base de datos con CSRF protection
+    postJSON('/api/results', {
+      caseId: caso.id,
+      caseTitle: caso.titulo,
+      caseArea: mapModuloToArea(caso.modulo || caso.area),
+      score: puntosObtenidos,
+      totalPoints: puntosMaximos,
+      mode: mode || 'study',
+      timeLimit: timeLimit || null,
+      timeSpent: timeSpent || null,
+      answers: respuestas,
     })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
+      .then(({ ok, data, error }) => {
+        if (ok && data?.success) {
           console.log('✅ Resultado guardado:', data.result);
           setSavedToDb(true);
 
@@ -94,6 +90,8 @@ export default function CasoDetalleClient() {
             timeSpent: timeSpent || 0,
             mode: mode || 'study',
           });
+        } else {
+          console.error('❌ Error al guardar resultado:', error);
         }
       })
       .catch((err) => {

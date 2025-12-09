@@ -19,6 +19,7 @@ function generateToken(): string {
 
 /**
  * Obtiene el token CSRF de las cookies o crea uno nuevo
+ * SERVER-SIDE ONLY
  */
 export async function getCsrfToken(): Promise<string> {
   const cookieStore = await cookies();
@@ -26,8 +27,6 @@ export async function getCsrfToken(): Promise<string> {
 
   if (!token) {
     token = generateToken();
-    // Nota: En Next.js 14+ con cookies(), el set se debe hacer en Response
-    // Este helper es para obtener el token, el set se hace en la respuesta
   }
 
   return token;
@@ -35,6 +34,7 @@ export async function getCsrfToken(): Promise<string> {
 
 /**
  * Valida el token CSRF comparando cookie vs header
+ * SERVER-SIDE ONLY
  * Retorna true si es válido, false si no
  */
 export async function validateCsrfToken(req: Request): Promise<boolean> {
@@ -53,6 +53,7 @@ export async function validateCsrfToken(req: Request): Promise<boolean> {
 
 /**
  * Middleware para validar CSRF en requests mutantes (POST, PUT, PATCH, DELETE)
+ * SERVER-SIDE ONLY
  * Usar en API routes que modifican datos
  */
 export async function requireCsrfToken(req: Request): Promise<NextResponse | null> {
@@ -77,6 +78,7 @@ export async function requireCsrfToken(req: Request): Promise<NextResponse | nul
 
 /**
  * Helper para agregar token CSRF a respuestas
+ * SERVER-SIDE ONLY
  * Usar en GET de páginas que harán POST/PUT/PATCH/DELETE
  */
 export async function setCsrfCookie(response: NextResponse): Promise<NextResponse> {
@@ -107,31 +109,4 @@ function timingSafeEqual(a: string, b: string): boolean {
   }
 
   return result === 0;
-}
-
-/**
- * Hook de cliente para obtener el token CSRF y agregarlo a headers
- * Uso en fetch desde el cliente:
- * 
- * ```ts
- * const token = getCsrfTokenFromCookie();
- * fetch('/api/results', {
- *   method: 'POST',
- *   headers: {
- *     'Content-Type': 'application/json',
- *     'x-csrf-token': token,
- *   },
- *   body: JSON.stringify(data),
- * });
- * ```
- */
-export function getCsrfTokenFromCookie(): string | null {
-  if (typeof document === 'undefined') return null;
-  
-  const cookies = document.cookie.split(';');
-  const csrfCookie = cookies.find(c => c.trim().startsWith(`${CSRF_TOKEN_NAME}=`));
-  
-  if (!csrfCookie) return null;
-  
-  return csrfCookie.split('=')[1];
 }

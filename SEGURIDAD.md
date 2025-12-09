@@ -253,11 +253,15 @@ npm test lib/ratelimit
 
 - [x] Rate limiting en todas las APIs de escritura
 - [x] Input sanitization en `/api/results`
-- [x] CSRF protection implementado (listo para usar)
+- [x] CSRF protection implementado y aplicado
+- [x] CSRF en `/api/results` (POST)
+- [x] CSRF en `/api/profile` (PATCH)
+- [x] Helper `fetchWithCsrf()` para cliente
+- [x] Inicializador CSRF en layout
 - [x] XSS prevention en todos los strings
 - [x] SQL/NoSQL injection prevention
 - [x] Error logging con Sentry
-- [ ] CSRF aplicado en todas las mutaciones (próximo paso)
+- [ ] Aplicar CSRF a más APIs cuando se agreguen
 - [ ] Upgrade a Redis para multi-region (cuando escale)
 - [ ] Honeypot fields en forms (anti-bot)
 - [ ] reCAPTCHA en signup (anti-bot)
