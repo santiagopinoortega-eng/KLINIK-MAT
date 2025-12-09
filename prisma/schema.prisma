@@ -37,6 +37,7 @@ model Case {
   questions         Question[]
   norms             MinsalNorm[]   @relation("CaseNorms")
   results           StudentResult[]
+  favorites         Favorite[]
   
   @@map("cases")
 }
@@ -127,8 +128,39 @@ model User {
   avatar          String?           // URL del avatar (desde Clerk o custom)
   
   results         StudentResult[]
+  favorites       Favorite[]
+  studySessions   StudySession[]
   
   @@map("users")
+}
+
+// Modelo para casos favoritos
+model Favorite {
+  id         String   @id @default(cuid())
+  userId     String
+  caseId     String
+  createdAt  DateTime @default(now()) @map("created_at")
+  
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  case       Case     @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, caseId]) // Un usuario no puede marcar el mismo caso dos veces
+  @@map("favorites")
+  @@index([userId])
+}
+
+// Modelo para rastrear sesiones de estudio (para racha y tiempo)
+model StudySession {
+  id           String   @id @default(cuid())
+  userId       String
+  date         DateTime @default(now()) // Fecha de la sesión
+  casesStudied Int      @default(0) // Casos estudiados en esta sesión
+  timeSpent    Int      @default(0) // Tiempo en minutos
+  
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("study_sessions")
+  @@index([userId, date(sort: Desc)])
 }
 
 enum Role {
