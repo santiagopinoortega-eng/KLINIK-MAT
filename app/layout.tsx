@@ -14,6 +14,8 @@ const Header = dynamic(() => import('./components/Header'), { ssr: true });
 const Footer = dynamic(() => import('./components/Footer'), { ssr: true });
 const CsrfInitializer = dynamic(() => import('./components/CsrfInitializer'), { ssr: false });
 
+import { WebsiteStructuredData, OrganizationStructuredData, EducationalOrganizationStructuredData } from './components/StructuredData';
+
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
@@ -27,21 +29,93 @@ const poppins = Poppins({
   variable: '--font-poppins',
 });
 
-// Tu objeto Metadata (asegúrate de que el tipo 'Metadata' esté importado)
+// Metadata optimizado para SEO
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://klinik-mat.example'),
-  title: 'KLINIK-MAT — Casos Clínicos',
-  description: 'Simulador de razonamiento clínico en Obstetricia...',
-  keywords: ['obstetricia','casos clínicos','MINSAL','ITS','anticoncepción'],
-  alternates: { canonical: '/' },
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://klinik-mat.vercel.app'),
+  
+  // Título y descripción optimizados
+  title: {
+    default: 'KLINIK-MAT — Plataforma de Casos Clínicos de Obstetricia y Neonatología',
+    template: '%s | KLINIK-MAT',
+  },
+  description: 'Plataforma educativa con casos clínicos interactivos para estudiantes de Obstetricia. Practica razonamiento clínico en ITS, anticoncepción, embarazo, parto y neonatología. Basado en protocolos MINSAL.',
+  
+  // Keywords SEO
+  keywords: [
+    'casos clínicos obstetricia',
+    'casos clínicos matrona',
+    'educación obstetricia',
+    'razonamiento clínico',
+    'simulación clínica',
+    'MINSAL',
+    'ITS',
+    'anticoncepción',
+    'embarazo',
+    'parto',
+    'neonatología',
+    'estudiantes obstetricia',
+    'matrona chile',
+    'casos clínicos interactivos',
+  ],
+  
+  // Autores y creadores
+  authors: [{ name: 'KLINIK-MAT' }],
+  creator: 'KLINIK-MAT',
+  publisher: 'KLINIK-MAT',
+  
+  // Configuración de robots
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  
+  // Canonical URLs
+  alternates: {
+    canonical: '/',
+  },
+  
+  // Open Graph optimizado
   openGraph: {
     type: 'website',
+    locale: 'es_CL',
     url: '/',
-    title: 'KLINIK-MAT — Casos Clínicos',
-    description: 'Entrena tu razonamiento clínico en Obstetricia.',
-    images: ['/og.png'],
+    siteName: 'KLINIK-MAT',
+    title: 'KLINIK-MAT — Casos Clínicos de Obstetricia',
+    description: 'Plataforma educativa con casos clínicos interactivos para estudiantes de Obstetricia. Practica razonamiento clínico basado en protocolos MINSAL.',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'KLINIK-MAT - Casos Clínicos de Obstetricia',
+      },
+    ],
   },
-  twitter: { card: 'summary_large_image' },
+  
+  // Twitter Card optimizado
+  twitter: {
+    card: 'summary_large_image',
+    title: 'KLINIK-MAT — Casos Clínicos de Obstetricia',
+    description: 'Plataforma educativa con casos clínicos interactivos para estudiantes de Obstetricia.',
+    images: ['/og-image.png'],
+    creator: '@klinikmat',
+  },
+  
+  // Verificación de propietarios
+  verification: {
+    // google: 'tu-codigo-google-search-console',
+    // yandex: 'tu-codigo-yandex',
+  },
+  
+  // Categoría
+  category: 'education',
 };
 
 // Tu componente Layout
@@ -49,6 +123,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <ClerkProvider localization={esES}>
       <html lang="es" className={`${inter.variable} ${poppins.variable} scroll-smooth`}>
+        <head>
+          {/* Structured Data para SEO */}
+          <WebsiteStructuredData />
+          <OrganizationStructuredData />
+          <EducationalOrganizationStructuredData />
+        </head>
+        
         {/* El body ya recibe estilos (fondo/color) desde globals.css */}
         <body className="bg-gradient-to-br from-[rgba(107,15,15,0.04)] to-[rgba(255,182,166,0.04)] bg-[var(--km-blush)]">
         

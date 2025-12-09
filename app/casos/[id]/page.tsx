@@ -1,8 +1,9 @@
-// app/casos/[id]/page.tsx
 import { prismaRO } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import type { CasoClient, Paso, McqOpcion } from "@/lib/types";
+import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { CaseStructuredData, BreadcrumbStructuredData } from "@/app/components/StructuredData";
 
 // ISR: Regenerar cada 2 horas (casos clínicos cambian ocasionalmente)
 export const revalidate = 7200;
@@ -18,6 +19,59 @@ export async function generateStaticParams() {
   return casos.map((caso) => ({
     id: caso.id,
   }));
+}
+
+// Metadata dinámica para cada caso (SEO optimizado)
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  const caso = await prismaRO.case.findUnique({
+    where: { id: params.id },
+    select: { 
+      title: true, 
+      area: true, 
+      difficulty: true,
+      questions: true,
+    },
+  });
+
+  if (!caso) {
+    return {
+      title: 'Caso no encontrado',
+    };
+  }
+
+  const areaMap: Record<string, string> = {
+    'ginecologia': 'Ginecología',
+    'obstetricia': 'Obstetricia',
+    'neonatologia': 'Neonatología',
+    'ssr': 'Salud Sexual y Reproductiva',
+  };
+
+  const difficultyMap: Record<string, string> = {
+    'facil': 'Fácil',
+    'medio': 'Medio',
+    'dificil': 'Difícil',
+  };
+
+  const areaLabel = areaMap[caso.area] || caso.area;
+  const difficultyLabel = difficultyMap[caso.difficulty] || caso.difficulty;
+  const stepCount = Array.isArray(caso.questions) ? caso.questions.length : 0;
+
+  return {
+    title: `${caso.title} — Caso Clínico de ${areaLabel}`,
+    description: `Caso clínico de ${areaLabel} nivel ${difficultyLabel}. ${stepCount} pasos interactivos para practicar razonamiento clínico. Basado en protocolos MINSAL.`,
+    keywords: [
+      caso.title,
+      `caso ${areaLabel.toLowerCase()}`,
+      `caso ${String(difficultyLabel).toLowerCase()}`,
+      'caso clínico interactivo',
+      'MINSAL',
+    ],
+    openGraph: {
+      title: `${caso.title} | KLINIK-MAT`,
+      description: `Caso clínico de ${areaLabel} nivel ${difficultyLabel}`,
+      type: 'article',
+    },
+  };
 }
 
 // Carga dinámica del cliente para evitar errores de hidratación
@@ -158,8 +212,32 @@ export default async function CasoPage({ params }: PageProps) {
     );
   }
 
+  const areaMap: Record<string, string> = {
+    'ginecologia': 'Ginecología',
+    'obstetricia': 'Obstetricia',
+    'neonatologia': 'Neonatología',
+    'ssr': 'Salud Sexual y Reproductiva',
+  };
+
   return (
     <div className="min-h-screen bg-[var(--km-surface-2)]">
+      {/* Structured Data para SEO */}
+      <CaseStructuredData
+        title={casoClient.titulo}
+        area={casoClient.area || 'general'}
+        difficulty={casoClient.dificultad.toString()}
+        stepCount={casoClient.pasos.length}
+        caseId={casoClient.id}
+      />
+      <BreadcrumbStructuredData
+        items={[
+          { name: 'Inicio', url: '/' },
+          { name: 'Casos Clínicos', url: '/casos' },
+          { name: areaMap[casoClient.area || 'general'] || casoClient.area || 'General', url: `/casos?area=${casoClient.area}` },
+          { name: casoClient.titulo, url: `/casos/${casoClient.id}` },
+        ]}
+      />
+      
       <main className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8 py-8">
         <CasoInteractiveUI casoClient={casoClient} />
       </main>
