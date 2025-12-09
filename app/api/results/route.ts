@@ -2,6 +2,7 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
 import { prisma } from '@/lib/prisma';
+import { logger, ErrorMessages, logApiError } from '@/lib/logger';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -11,6 +12,8 @@ export const dynamic = 'force-dynamic';
  * Guarda el resultado de un caso clínico completado
  */
 export async function POST(req: Request) {
+  let body: any;
+  
   try {
     const { userId } = await auth();
     
@@ -21,7 +24,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const body = await req.json();
+    body = await req.json();
     const { 
       caseId, 
       caseTitle, 
@@ -74,9 +77,14 @@ export async function POST(req: Request) {
     );
 
   } catch (error: any) {
-    console.error('Error al guardar resultado:', error);
+    logApiError('/api/results', error, {
+      userId: (await auth()).userId,
+      caseId: body?.caseId,
+      method: 'POST',
+    });
+
     return NextResponse.json(
-      { error: 'Error interno del servidor', details: error.message },
+      { error: ErrorMessages.SAVE_RESULT_FAILED },
       { status: 500 }
     );
   }

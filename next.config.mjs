@@ -1,4 +1,5 @@
 // next.config.mjs
+import { withSentryConfig } from '@sentry/nextjs';
 import bundleAnalyzer from '@next/bundle-analyzer';
 
 const withBundleAnalyzer = bundleAnalyzer({
@@ -133,4 +134,16 @@ const nextConfig = {
   },
 };
 
-export default withBundleAnalyzer(nextConfig);
+// Exportar con Sentry y Bundle Analyzer
+export default withSentryConfig(
+  withBundleAnalyzer(nextConfig),
+  {
+    // Sentry configuration options
+    org: process.env.SENTRY_ORG,
+    project: process.env.SENTRY_PROJECT,
+    silent: !process.env.CI,
+    widenClientFileUpload: true,
+    hideSourceMaps: true,
+    disableLogger: true,
+  }
+);

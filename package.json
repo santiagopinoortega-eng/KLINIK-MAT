@@ -28,6 +28,7 @@
     "@clerk/nextjs": "^6.36.0",
     "@heroicons/react": "^2.2.0",
     "@prisma/client": "6.19.0",
+    "@sentry/nextjs": "^10.29.0",
     "clsx": "^2.1.1",
     "jose": "^6.1.1",
     "lucide-react": "^0.556.0",
