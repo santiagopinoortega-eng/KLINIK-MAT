@@ -5,7 +5,8 @@ import { useMemo, useState, useEffect } from 'react';
 import CaseCard from '@/app/components/CaseCard';
 import Badge from '@/app/components/ui/Badge';
 import Link from 'next/link';
-import { ArrowLeftIcon } from '@heroicons/react/24/outline';
+import { ArrowLeftIcon, FunnelIcon } from '@heroicons/react/24/outline';
+import { useUserProgress } from '@/app/hooks/useUserProgress';
 
 // Mapeo de áreas a módulos
 const AREA_TO_MODULES: Record<string, string[]> = {
@@ -33,6 +34,8 @@ export default function CasosPageClient({
   const [q, setQ] = useState('');
   const [modulo, setModulo] = useState('all');
   const [difficulty, setDifficulty] = useState('all');
+  const [progressFilter, setProgressFilter] = useState('all'); // Nuevo filtro
+  const { progress, loading: progressLoading, getCaseStatus } = useUserProgress();
 
   // Filtrar casos por área seleccionada
   const areaFilteredData = useMemo(() => {
@@ -60,18 +63,34 @@ export default function CasosPageClient({
     return areaFilteredData.filter(d => {
       const moduloActual = (d as any).modulo || d.area;
       const dificultadActual = String((d as any).dificultad || d.difficulty);
+      const caseStatus = getCaseStatus(d.id);
       
-      return (
-        (modulo === 'all' || moduloActual === modulo) &&
-        (difficulty === 'all' || dificultadActual === difficulty || 
-         (difficulty === 'Baja' && (dificultadActual === '1' || dificultadActual === 'Baja')) ||
-         (difficulty === 'Media' && (dificultadActual === '2' || dificultadActual === 'Media')) ||
-         (difficulty === 'Alta' && (dificultadActual === '3' || dificultadActual === 'Alta'))
-        ) &&
-        (!s || d.title.toLowerCase().includes(s) || (d.summary ?? '').toLowerCase().includes(s))
-      );
+      // Filtro de búsqueda
+      const matchesSearch = !s || 
+        d.title.toLowerCase().includes(s) || 
+        (d.summary ?? '').toLowerCase().includes(s);
+      
+      // Filtro de módulo
+      const matchesModule = modulo === 'all' || moduloActual === modulo;
+      
+      // Filtro de dificultad
+      const matchesDifficulty = difficulty === 'all' || 
+        dificultadActual === difficulty || 
+        (difficulty === 'Baja' && (dificultadActual === '1' || dificultadActual === 'Baja')) ||
+        (difficulty === 'Media' && (dificultadActual === '2' || dificultadActual === 'Media')) ||
+        (difficulty === 'Alta' && (dificultadActual === '3' || dificultadActual === 'Alta'));
+      
+      // Filtro de progreso
+      const matchesProgress = progressFilter === 'all' ||
+        (progressFilter === 'not-attempted' && caseStatus === 'not-attempted') ||
+        (progressFilter === 'failed' && caseStatus === 'failed') ||
+        (progressFilter === 'passed' && caseStatus === 'passed') ||
+        (progressFilter === 'mastered' && caseStatus === 'mastered') ||
+        (progressFilter === 'attempted' && caseStatus !== 'not-attempted');
+      
+      return matchesSearch && matchesModule && matchesDifficulty && matchesProgress;
     });
-  }, [areaFilteredData, q, modulo, difficulty]);
+  }, [areaFilteredData, q, modulo, difficulty, progressFilter, getCaseStatus]);
 
   return (
     <div className="min-h-screen bg-neutral-50/50">
@@ -106,9 +125,9 @@ export default function CasosPageClient({
       {/* Filtros mejorados con diseño de cards - Responsive */}
       <div className="mb-6 sm:mb-8">
         <div className="bg-white rounded-xl border border-[rgba(196,30,58,0.1)] p-4 sm:p-6 shadow-[var(--km-shadow-sm)]">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
-            {/* Buscador - Full width en mobile */}
-            <div className="md:col-span-3">
+          <div className="space-y-3 sm:space-y-4">
+            {/* Buscador - Full width */}
+            <div>
               <label className="flex items-center gap-2 text-xs font-semibold mb-2" style={{color: 'var(--km-text-700)'}}>
                 <span className="text-base sm:text-lg">🔍</span>
                 <span className="hidden sm:inline">Buscar casos</span>
@@ -136,58 +155,88 @@ export default function CasosPageClient({
               </div>
             </div>
 
-            {/* Filtro módulo - Touch-friendly */}
-            <div>
-              <label className="flex items-center gap-2 text-xs font-semibold mb-2" style={{color: 'var(--km-text-700)'}}>
-                <span className="text-base sm:text-lg">📚</span>
-                Módulo
-              </label>
-              <select
-                value={modulo}
-                onChange={(e)=>setModulo(e.target.value)}
-                className="w-full rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 min-h-touch md:min-h-0 text-xs sm:text-sm font-medium outline-none cursor-pointer transition-all border-2"
-                style={{
-                  borderColor: 'rgba(196,30,58,0.15)',
-                  backgroundColor: 'var(--km-blush)',
-                  color: 'var(--km-text-900)'
-                }}
-                aria-label="Filtrar por módulo"
-              >
-                {modulos.map(m => <option key={m} value={m}>{m === 'all' ? 'Todos' : m}</option>)}
-              </select>
-            </div>
-
-            {/* Filtro dificultad - Touch-friendly */}
-            <div>
-              <label className="flex items-center gap-2 text-xs font-semibold mb-2" style={{color: 'var(--km-text-700)'}}>
-                <span className="text-base sm:text-lg">🎯</span>
-                Dificultad
-              </label>
-              <select
-                value={difficulty}
-                onChange={(e)=>setDifficulty(e.target.value)}
-                className="w-full rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 min-h-touch md:min-h-0 text-xs sm:text-sm font-medium outline-none cursor-pointer transition-all border-2"
-                style={{
-                  borderColor: 'rgba(196,30,58,0.15)',
-                  backgroundColor: 'var(--km-blush)',
-                  color: 'var(--km-text-900)'
-                }}
-                aria-label="Filtrar por dificultad"
-              >
-                <option value="all">Todas</option>
-                <option value="Baja">🟢 Baja</option>
-                <option value="Media">🟡 Media</option>
-                <option value="Alta">🔴 Alta</option>
-              </select>
-            </div>
-
-            {/* Contador de resultados - Responsive */}
-            <div className="flex flex-col justify-center items-center bg-gradient-to-br from-[var(--km-blush)] to-white rounded-lg border-2 p-3 sm:p-4 min-h-touch md:min-h-0" style={{borderColor: 'var(--km-rose)'}}>
-              <div className="text-2xl sm:text-3xl font-bold" style={{color: 'var(--km-crimson)'}}>
-                {filtered.length}
+            {/* Filtros en grid - 2 cols en mobile, 4 en desktop */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+              {/* Filtro módulo - Touch-friendly */}
+              <div>
+                <label className="flex items-center gap-2 text-xs font-semibold mb-2" style={{color: 'var(--km-text-700)'}}>
+                  <span className="text-base sm:text-lg">📚</span>
+                  <span className="hidden sm:inline">Módulo</span>
+                </label>
+                <select
+                  value={modulo}
+                  onChange={(e)=>setModulo(e.target.value)}
+                  className="w-full rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 min-h-touch md:min-h-0 text-xs sm:text-sm font-medium outline-none cursor-pointer transition-all border-2"
+                  style={{
+                    borderColor: 'rgba(196,30,58,0.15)',
+                    backgroundColor: 'var(--km-blush)',
+                    color: 'var(--km-text-900)'
+                  }}
+                  aria-label="Filtrar por módulo"
+                >
+                  {modulos.map(m => <option key={m} value={m}>{m === 'all' ? 'Todos' : m}</option>)}
+                </select>
               </div>
-              <div className="text-xs font-medium" style={{color: 'var(--km-text-600)'}}>
-                {filtered.length === 1 ? 'caso' : 'casos'}
+
+              {/* Filtro dificultad - Touch-friendly */}
+              <div>
+                <label className="flex items-center gap-2 text-xs font-semibold mb-2" style={{color: 'var(--km-text-700)'}}>
+                  <span className="text-base sm:text-lg">🎯</span>
+                  <span className="hidden sm:inline">Dificultad</span>
+                </label>
+                <select
+                  value={difficulty}
+                  onChange={(e)=>setDifficulty(e.target.value)}
+                  className="w-full rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 min-h-touch md:min-h-0 text-xs sm:text-sm font-medium outline-none cursor-pointer transition-all border-2"
+                  style={{
+                    borderColor: 'rgba(196,30,58,0.15)',
+                    backgroundColor: 'var(--km-blush)',
+                    color: 'var(--km-text-900)'
+                  }}
+                  aria-label="Filtrar por dificultad"
+                >
+                  <option value="all">Todas</option>
+                  <option value="Baja">🟢 Baja</option>
+                  <option value="Media">🟡 Media</option>
+                  <option value="Alta">🔴 Alta</option>
+                </select>
+              </div>
+
+              {/* Filtro progreso - Touch-friendly */}
+              <div>
+                <label className="flex items-center gap-2 text-xs font-semibold mb-2" style={{color: 'var(--km-text-700)'}}>
+                  <FunnelIcon className="h-4 w-4 sm:h-5 sm:w-5" />
+                  <span className="hidden sm:inline">Progreso</span>
+                </label>
+                <select
+                  value={progressFilter}
+                  onChange={(e)=>setProgressFilter(e.target.value)}
+                  className="w-full rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 min-h-touch md:min-h-0 text-xs sm:text-sm font-medium outline-none cursor-pointer transition-all border-2"
+                  style={{
+                    borderColor: 'rgba(196,30,58,0.15)',
+                    backgroundColor: 'var(--km-blush)',
+                    color: 'var(--km-text-900)'
+                  }}
+                  aria-label="Filtrar por progreso"
+                  disabled={progressLoading}
+                >
+                  <option value="all">Todos</option>
+                  <option value="not-attempted">📝 Nuevos</option>
+                  <option value="failed">❌ Fallé</option>
+                  <option value="passed">🔄 Repasar</option>
+                  <option value="mastered">✅ Dominados</option>
+                  <option value="attempted">📊 Intentados</option>
+                </select>
+              </div>
+
+              {/* Contador de resultados - Responsive */}
+              <div className="flex flex-col justify-center items-center bg-gradient-to-br from-[var(--km-blush)] to-white rounded-lg border-2 p-3 sm:p-4 min-h-touch md:min-h-0" style={{borderColor: 'var(--km-rose)'}}>
+                <div className="text-2xl sm:text-3xl font-bold" style={{color: 'var(--km-crimson)'}}>
+                  {filtered.length}
+                </div>
+                <div className="text-xs font-medium" style={{color: 'var(--km-text-600)'}}>
+                  {filtered.length === 1 ? 'caso' : 'casos'}
+                </div>
               </div>
             </div>
           </div>

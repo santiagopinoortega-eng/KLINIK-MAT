@@ -15,13 +15,48 @@ export async function GET(req: Request) {
       return createRateLimitResponse(rateLimit.resetAt);
     }
 
+    // Obtener parámetros de búsqueda
+    const { searchParams } = new URL(req.url);
+    const searchQuery = searchParams.get('search')?.trim().toLowerCase();
+
+    // Query base
+    let whereClause: any = {};
+
+    // Si hay búsqueda, buscar en título, viñeta y contenido de preguntas
+    if (searchQuery && searchQuery.length > 0) {
+      whereClause = {
+        OR: [
+          { title: { contains: searchQuery, mode: 'insensitive' } },
+          { vignette: { contains: searchQuery, mode: 'insensitive' } },
+          { summary: { contains: searchQuery, mode: 'insensitive' } },
+          // Buscar en texto de preguntas
+          {
+            questions: {
+              some: {
+                text: { contains: searchQuery, mode: 'insensitive' }
+              }
+            }
+          }
+        ]
+      };
+    }
+
     const data = await prismaRO.case.findMany({
+      where: whereClause,
       orderBy: { createdAt: 'desc' },
-      select: { id: true, title: true, area: true, difficulty: true, createdAt: true },
+      select: { 
+        id: true, 
+        title: true, 
+        area: true, 
+        difficulty: true, 
+        createdAt: true,
+        summary: true,
+        vignette: true,
+      },
       take: 200,
     });
 
-    return new Response(JSON.stringify({ ok: true, data }), {
+    return new Response(JSON.stringify({ ok: true, data, query: searchQuery || null }), {
       status: 200,
       headers: {
         'content-type': 'application/json; charset=utf-8',
