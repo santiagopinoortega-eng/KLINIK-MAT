@@ -3,13 +3,11 @@
 
 import React from 'react';
 import Image from 'next/image';
-// CLERK TEMPORALMENTE DESHABILITADO
-// import { SignInButton, SignUpButton, useUser } from '@clerk/nextjs';
+import { SignInButton, SignUpButton, useUser } from '@clerk/nextjs';
 import { Stethoscope, BookOpen, Award, Heart } from 'lucide-react';
 
 export default function HomePage() {
-  // const { isSignedIn } = useUser();
-  const isSignedIn = false; // Temporal: simular usuario no logueado
+  const { isSignedIn } = useUser();
   
   // Hero image - use public asset. If you have a specific hero file, replace the path.
   const heroSrc = '/brand/logo-centro.png';
@@ -42,13 +40,29 @@ export default function HomePage() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                {/* CLERK DESHABILITADO - Botones temporales */}
-                <a href="/areas" className="btn btn-lg bg-white text-km-crimson hover:bg-km-blush hover:scale-105 shadow-km-xl transition-all">
-                  📚 Elige el área que quieres practicar →
-                </a>
-                <a href="#features" className="btn btn-lg bg-transparent border-2 border-white text-white hover:bg-white/10">
-                  Conocer más
-                </a>
+                {!isSignedIn ? (
+                  <>
+                    <SignInButton forceRedirectUrl="/areas">
+                      <button className="btn btn-lg bg-white text-km-crimson hover:bg-km-blush hover:scale-105 shadow-km-xl transition-all">
+                        Iniciar sesión →
+                      </button>
+                    </SignInButton>
+                    <SignUpButton forceRedirectUrl="/areas">
+                      <button className="btn btn-lg bg-transparent border-2 border-white text-white hover:bg-white/10">
+                        Registrarse gratis
+                      </button>
+                    </SignUpButton>
+                  </>
+                ) : (
+                  <>
+                    <a href="/areas" className="btn btn-lg bg-white text-km-crimson hover:bg-km-blush hover:scale-105 shadow-km-xl transition-all">
+                      📚 Elige el área que quieres practicar →
+                    </a>
+                    <a href="#features" className="btn btn-lg bg-transparent border-2 border-white text-white hover:bg-white/10">
+                      Conocer más
+                    </a>
+                  </>
+                )}
               </div>
 
               {/* Stats - MÁS COMPACTO Y UNIFORME */}

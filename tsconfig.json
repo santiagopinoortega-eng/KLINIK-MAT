@@ -1,4 +1,3 @@
-// tsconfig.json (La Versión Correcta y Definitiva)
 {
   "compilerOptions": {
     "target": "ES2022",

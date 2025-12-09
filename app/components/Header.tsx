@@ -3,8 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-// CLERK TEMPORALMENTE DESHABILITADO
-// import { UserButton, SignInButton, useUser } from '@clerk/nextjs';
+import { UserButton, SignInButton, useUser } from '@clerk/nextjs';
 
 const links = [
   { href: '/', label: 'Inicio' },
@@ -15,8 +14,7 @@ const links = [
 
 export default function Header() {
   const pathname = usePathname();
-  // const { isSignedIn } = useUser();
-  const isSignedIn = false; // Temporal
+  const { isSignedIn } = useUser();
 
   return (
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-km-crimson/10 shadow-sm transition-all">
@@ -51,10 +49,24 @@ export default function Header() {
           
           {/* User button or Sign in */}
           <li className="ml-3">
-            {/* CLERK DESHABILITADO - Botón temporal */}
-            <a href="/areas" className="btn btn-primary">
-              Acceder
-            </a>
+            {isSignedIn ? (
+              <div className="flex items-center gap-2">
+                <UserButton 
+                  afterSignOutUrl="/"
+                  appearance={{
+                    elements: {
+                      avatarBox: 'w-10 h-10 ring-2 ring-km-crimson/20 hover:ring-km-rose/40 transition-all'
+                    }
+                  }}
+                />
+              </div>
+            ) : (
+              <SignInButton forceRedirectUrl="/areas">
+                <button className="btn btn-primary">
+                  Iniciar sesión
+                </button>
+              </SignInButton>
+            )}
           </li>
         </ul>
       </nav>
