@@ -94,14 +94,14 @@ export default function CaseCard({
       className="card group relative overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-200"
       style={{
         border: colors.border,
-        minHeight: '240px',
-        maxHeight: '240px',
+        minHeight: '220px', // Reducido ligeramente para mobile
+        maxHeight: '280px', // Más alto en pantallas grandes
         background: `linear-gradient(to bottom, ${colors.bg}, var(--km-surface-1))`,
         boxShadow: colors.shadow
       }}
     >
-      {/* Badges superiores - MÁS PEQUEÑOS */}
-      <div className="mb-3 flex items-center gap-2 flex-wrap">
+      {/* Badges superiores - Responsive */}
+      <div className="mb-2 md:mb-3 flex items-center gap-1.5 md:gap-2 flex-wrap">
         <span className="text-xs px-2 py-1 rounded-md font-medium" style={{ 
           background: 'rgba(13,148,136,0.12)', 
           color: 'var(--km-teal)', 
@@ -117,26 +117,29 @@ export default function CaseCard({
           {diffLabel(difficulty)}
         </span>
         {fecha && (
-          <span className="ml-auto text-xs font-medium" style={{color: 'var(--km-text-500)'}}>{fecha}</span>
+          <span className="ml-auto text-xs font-medium hidden sm:inline" style={{color: 'var(--km-text-500)'}}>{fecha}</span>
         )}
       </div>
 
-      {/* Título con color rojo - MÁS PEQUEÑO */}
-      <h3 className="text-lg font-bold leading-tight mb-2" style={{color: 'var(--km-cardinal)'}}>
+      {/* Título con color rojo - Responsive */}
+      <h3 className="text-base sm:text-lg md:text-xl font-bold leading-tight mb-2" style={{color: 'var(--km-cardinal)'}}>
         {title}
       </h3>
 
-      {/* Resumen con altura fija - MÁS COMPACTO */}
+      {/* Resumen con altura fija - Responsive */}
       <div className="flex-1 overflow-hidden mb-3">
         {summary && (
-          <p className="text-sm leading-relaxed line-clamp-2" style={{color: 'var(--km-text-700)'}}>
+          <p className="text-xs sm:text-sm leading-relaxed line-clamp-2 md:line-clamp-3" style={{color: 'var(--km-text-700)'}}>
             {summary}
           </p>
         )}
       </div>
 
-      {/* Botón siempre en la misma posición (al final) - MÁS PEQUEÑO */}
-      <Link href={`/casos/${id}`} className="mt-auto btn btn-sm btn-primary w-full text-sm py-2">
+      {/* Botón siempre en la misma posición (al final) - Touch-friendly */}
+      <Link 
+        href={`/casos/${id}`} 
+        className="mt-auto btn btn-sm btn-primary w-full text-xs sm:text-sm py-2.5 md:py-2 min-h-touch md:min-h-0 touch-device:active:scale-95 transition-transform"
+      >
         Resolver caso →
       </Link>
     </article>

@@ -11,9 +11,28 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
+    // Breakpoints optimizados para mobile, tablet, y desktop
+    screens: {
+      'xs': '375px',   // iPhone SE, pequeños móviles
+      'sm': '640px',   // Móviles grandes en landscape
+      'md': '768px',   // Tablets portrait (iPad Mini)
+      'lg': '1024px',  // Tablets landscape, laptops pequeñas
+      'xl': '1280px',  // Laptops estándar
+      '2xl': '1536px', // Pantallas grandes, monitores externos
+      
+      // Breakpoints especiales para casos específicos
+      'tablet': '768px',   // Alias para tablets
+      'laptop': '1024px',  // Alias para laptops
+      'desktop': '1280px', // Alias para desktop
+      
+      // Touch vs Non-touch (usando hover)
+      'hover-device': { 'raw': '(hover: hover)' }, // Mouse/trackpad
+      'touch-device': { 'raw': '(hover: none)' },  // Touch screens
+    },
+    
     extend: {
       fontFamily: {
-        sans: ['var(--font-inter)', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'Apple Color Emoji', 'Segoe UI ' ,'Emoji'],
+        sans: ['var(--font-inter)', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'Apple Color Emoji', 'Segoe UI Emoji'],
       },
 
       colors: {
@@ -114,6 +133,32 @@ module.exports = {
 
       ringColor: {
         DEFAULT: '#DC2626', // Red for focus rings
+      },
+      
+      // Spacing y sizing optimizado para touch
+      spacing: {
+        'touch': '44px',      // Tamaño mínimo touch (Apple HIG)
+        'touch-sm': '38px',   // Touch pequeño
+        'touch-lg': '56px',   // Touch grande
+        'safe-top': 'env(safe-area-inset-top)',
+        'safe-bottom': 'env(safe-area-inset-bottom)',
+        'safe-left': 'env(safe-area-inset-left)',
+        'safe-right': 'env(safe-area-inset-right)',
+      },
+      
+      minHeight: {
+        'touch': '44px',
+        'screen-safe': 'calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom))',
+      },
+      
+      minWidth: {
+        'touch': '44px',
+      },
+      
+      maxWidth: {
+        'mobile': '640px',
+        'tablet': '1024px',
+        'content': '65ch', // Ancho óptimo para lectura
       },
 
       keyframes: {

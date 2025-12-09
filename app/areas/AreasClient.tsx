@@ -86,46 +86,46 @@ export default function AreasClient() {
 
   return (
     <div className="min-h-screen bg-neutral-50/50">
-      {/* Header - MÁS COMPACTO */}
+      {/* Header - Responsive */}
       <div className="bg-gradient-km-primary text-white shadow-lg">
-        <div className="container mx-auto px-4 md:px-6 py-6 md:py-8">
+        <div className="container mx-auto px-3 sm:px-4 md:px-6 py-5 sm:py-6 md:py-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-3xl md:text-4xl font-bold mb-2" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
               Elige el Área que Quieres Practicar
             </h1>
-            <p className="text-base md:text-lg opacity-90 max-w-xl mx-auto">
+            <p className="text-sm sm:text-base md:text-lg opacity-90 max-w-xl mx-auto">
               Selecciona el área clínica y accede a casos reales
             </p>
           </div>
         </div>
       </div>
 
-      {/* Main Content - MÁS ESTRECHO */}
-      <div className="container mx-auto px-4 md:px-6 py-8 max-w-5xl">
-        {/* Stats Bar - MÁS COMPACTO */}
-        <div className="mb-6 p-4 bg-white rounded-lg shadow-sm border border-neutral-200">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
+      {/* Main Content - Responsive */}
+      <div className="container mx-auto px-3 sm:px-4 md:px-6 py-6 sm:py-8 max-w-5xl">
+        {/* Stats Bar - Responsive */}
+        <div className="mb-5 sm:mb-6 p-3 sm:p-4 bg-white rounded-lg shadow-sm border border-neutral-200">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 text-center">
             <div>
-              <div className="text-2xl font-bold text-km-red-700 mb-0.5">54</div>
+              <div className="text-xl sm:text-2xl font-bold text-km-red-700 mb-0.5">54</div>
               <div className="text-xs text-km-navy-600 font-medium">Casos Totales</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-green-600 mb-0.5">4</div>
+              <div className="text-xl sm:text-2xl font-bold text-green-600 mb-0.5">4</div>
               <div className="text-xs text-km-navy-600 font-medium">Áreas Clínicas</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-purple-600 mb-0.5">2</div>
+              <div className="text-xl sm:text-2xl font-bold text-purple-600 mb-0.5">2</div>
               <div className="text-xs text-km-navy-600 font-medium">Disponibles</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-orange-600 mb-0.5">2</div>
+              <div className="text-xl sm:text-2xl font-bold text-orange-600 mb-0.5">2</div>
               <div className="text-xs text-km-navy-600 font-medium">Modos</div>
             </div>
           </div>
         </div>
 
-        {/* Areas Grid */}
-        <div className="grid md:grid-cols-2 gap-4 mb-6">
+        {/* Areas Grid - Responsive */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 mb-5 sm:mb-6">
           {AREAS.map((area) => {
             const Icon = area.icon;
             const isSelected = selectedArea === area.id;
@@ -135,19 +135,19 @@ export default function AreasClient() {
                 key={area.id}
                 onClick={() => handleSelectArea(area.id, area.available)}
                 className={`
-                  relative overflow-hidden rounded-xl border-2 transition-all duration-300 cursor-pointer
+                  relative overflow-hidden rounded-xl border-2 transition-all duration-300 cursor-pointer min-h-touch md:min-h-0
                   ${isSelected ? 'ring-4 ring-km-red-500/50 scale-[1.02]' : ''}
                   ${area.borderColor}
-                  ${area.available ? 'hover:shadow-xl transform hover:scale-[1.02]' : 'opacity-60 cursor-not-allowed'}
+                  ${area.available ? 'hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98]' : 'opacity-60 cursor-not-allowed'}
                 `}
               >
-                <div className={`bg-gradient-to-br ${area.gradient} p-6`}>
-                  <div className="flex items-start justify-between mb-4">
-                    <div className={`p-3 rounded-xl bg-white/80 ${area.color}`}>
-                      <Icon className="h-8 w-8" />
+                <div className={`bg-gradient-to-br ${area.gradient} p-4 sm:p-6`}>
+                  <div className="flex items-start justify-between mb-3 sm:mb-4">
+                    <div className={`p-2 sm:p-3 rounded-xl bg-white/80 ${area.color}`}>
+                      <Icon className="h-6 w-6 sm:h-8 sm:w-8" />
                     </div>
                     {area.available && (
-                      <div className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">
+                      <div className="bg-green-100 text-green-700 px-2 sm:px-3 py-1 rounded-full text-xs font-bold">
                         {area.caseCount} casos
                       </div>
                     )}
