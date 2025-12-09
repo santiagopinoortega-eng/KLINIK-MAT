@@ -5,6 +5,7 @@ import { isMcq, isShort, McqOpcion, Paso } from "@/lib/types";
 import { useMemo, useState, useEffect, useCallback } from "react";
 import { useCaso } from "./CasoContext";
 import { ImageViewer } from "./ImageViewer";
+import { evaluateShortAnswer } from "@/lib/scoring";
 import cx from "clsx";
 
 interface Props {
@@ -40,34 +41,6 @@ export default function PasoRenderer({ pasoId, onAnswer }: Props) {
       }, { skipAdvance: true });
     }
   }, [pasoId, respuestaUsuario, onAnswer]);
-
-  // Evaluación automática de respuesta Short
-  const evaluateShortAnswer = useCallback((texto: string, criterios: string[], puntosMax: number) => {
-    if (!texto || texto.trim().length < 20) return 0; // Muy corto = 0 puntos
-    
-    const textoNormalizado = texto.toLowerCase()
-      .normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // Quita acentos
-    
-    // Contar criterios cumplidos (palabras clave presentes)
-    let criteriosCumplidos = 0;
-    criterios.forEach(criterio => {
-      const palabrasClave = criterio.toLowerCase()
-        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-        .split(/\s+/)
-        .filter(p => p.length > 3); // Solo palabras de 4+ letras
-      
-      // Si encuentra al menos 1 palabra clave del criterio
-      const encontrado = palabrasClave.some(palabra => textoNormalizado.includes(palabra));
-      if (encontrado) criteriosCumplidos++;
-    });
-    
-    // Calcular puntos según porcentaje de criterios cumplidos
-    const porcentaje = criterios.length > 0 ? (criteriosCumplidos / criterios.length) : 0;
-    
-    if (porcentaje >= 0.7) return puntosMax; // 70%+ = puntaje completo
-    if (porcentaje >= 0.4) return Math.floor(puntosMax / 2); // 40-69% = mitad
-    return 0; // <40% = 0 puntos
-  }, []);
 
   // Handler para enviar respuesta Short - DEBE estar en nivel superior
   const handleSubmitShort = useCallback(() => {
