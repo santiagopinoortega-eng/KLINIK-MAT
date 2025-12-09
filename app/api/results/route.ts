@@ -3,6 +3,8 @@ import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
 import { prisma } from '@/lib/prisma';
 import { logger, ErrorMessages, logApiError } from '@/lib/logger';
+import { checkRateLimit, RATE_LIMITS, createRateLimitResponse } from '@/lib/ratelimit';
+import { sanitizeObject, sanitizeCaseId, sanitizeNumber, sanitizeEnum } from '@/lib/sanitize';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -15,6 +17,12 @@ export async function POST(req: Request) {
   let body: any;
   
   try {
+    // Rate limiting - límite estricto para escritura
+    const rateLimit = checkRateLimit(req, RATE_LIMITS.RESULTS);
+    if (!rateLimit.ok) {
+      return createRateLimitResponse(rateLimit.resetAt);
+    }
+
     const { userId } = await auth();
     
     if (!userId) {
@@ -25,6 +33,32 @@ export async function POST(req: Request) {
     }
 
     body = await req.json();
+    
+    // Sanitizar y validar datos de entrada
+    const sanitized = sanitizeObject<{
+      caseId: string;
+      caseTitle: string;
+      caseArea?: string;
+      score: number;
+      totalPoints: number;
+      mode?: 'study' | 'timed' | 'exam';
+      timeLimit?: number;
+      timeSpent?: number;
+    }>(body, {
+      caseId: { type: 'caseId', required: true },
+      caseTitle: { type: 'string', required: true, maxLength: 200 },
+      caseArea: { type: 'string', required: false, maxLength: 100 },
+      score: { type: 'number', required: true, min: 0 },
+      totalPoints: { type: 'number', required: true, min: 1 },
+      mode: { 
+        type: 'enum', 
+        required: false,
+        allowedValues: ['study', 'timed', 'exam'] as const
+      },
+      timeLimit: { type: 'number', required: false, min: 0 },
+      timeSpent: { type: 'number', required: false, min: 0 },
+    });
+
     const { 
       caseId, 
       caseTitle, 
@@ -33,14 +67,24 @@ export async function POST(req: Request) {
       totalPoints, 
       mode, 
       timeLimit, 
-      timeSpent, 
-      answers 
-    } = body;
+      timeSpent,
+    } = sanitized;
 
-    // Validación básica
-    if (!caseId || !caseTitle || score === undefined || totalPoints === undefined) {
+    // Sanitizar answers si existe (mantener estructura original pero validar)
+    let answers = body.answers;
+    if (answers && typeof answers === 'object') {
+      // Validar que sea un objeto/array válido JSON
+      try {
+        JSON.stringify(answers);
+      } catch {
+        answers = undefined;
+      }
+    }
+
+    // Validación adicional: score no puede exceder totalPoints
+    if (score! > totalPoints!) {
       return NextResponse.json(
-        { error: 'Datos incompletos. Se requiere: caseId, caseTitle, score, totalPoints' },
+        { error: 'Score no puede ser mayor que totalPoints' },
         { status: 400 }
       );
     }
@@ -50,14 +94,14 @@ export async function POST(req: Request) {
       data: {
         id: `${userId}-${caseId}-${Date.now()}`, // ID único
         userId,
-        caseId,
-        caseTitle: caseTitle || 'Sin título',
-        caseArea: caseArea || 'General',
-        score: Math.round(score),
-        totalPoints: Math.round(totalPoints),
-        mode: mode || 'study',
-        timeLimit: timeLimit || null,
-        timeSpent: timeSpent || null,
+        caseId: caseId as string,
+        caseTitle: caseTitle as string,
+        caseArea: (caseArea as string) || 'General',
+        score: Math.round(score as number),
+        totalPoints: Math.round(totalPoints as number),
+        mode: (mode || 'study') as 'study' | 'timed' | 'exam',
+        timeLimit: (timeLimit as number) || null,
+        timeSpent: (timeSpent as number) || null,
         answers: answers ? JSON.stringify(answers) : undefined,
         completedAt: new Date(),
       },

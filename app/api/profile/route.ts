@@ -2,6 +2,7 @@
 import { NextResponse } from 'next/server';
 import { auth, clerkClient } from '@clerk/nextjs/server';
 import { prisma } from '@/lib/prisma';
+import { checkRateLimit, RATE_LIMITS, createRateLimitResponse } from '@/lib/ratelimit';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -10,8 +11,14 @@ export const dynamic = 'force-dynamic';
  * GET /api/profile
  * Obtiene el perfil completo del usuario actual
  */
-export async function GET() {
+export async function GET(req: Request) {
   try {
+    // Rate limiting - límite generoso para lectura
+    const rateLimit = checkRateLimit(req, RATE_LIMITS.AUTHENTICATED);
+    if (!rateLimit.ok) {
+      return createRateLimitResponse(rateLimit.resetAt);
+    }
+
     const { userId } = await auth();
     
     if (!userId) {
@@ -81,6 +88,12 @@ export async function GET() {
  */
 export async function PATCH(req: Request) {
   try {
+    // Rate limiting - límite moderado para escritura
+    const rateLimit = checkRateLimit(req, RATE_LIMITS.WRITE);
+    if (!rateLimit.ok) {
+      return createRateLimitResponse(rateLimit.resetAt);
+    }
+
     const { userId } = await auth();
     
     if (!userId) {
