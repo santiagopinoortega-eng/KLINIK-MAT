@@ -1,7 +1,7 @@
 // app/favoritos/FavoritosPageClient.tsx
 'use client';
 
-import { useFavorites } from '@/app/hooks/useFavorites';
+import { useFavoritesContext } from '@/app/context/FavoritesContext';
 import CaseCard from '@/app/components/CaseCard';
 import { useUser } from '@clerk/nextjs';
 import Link from 'next/link';
@@ -9,7 +9,7 @@ import { ArrowLeftIcon, StarIcon } from '@heroicons/react/24/outline';
 
 export default function FavoritosPageClient() {
   const { isSignedIn, isLoaded } = useUser();
-  const { favorites, loading, error } = useFavorites();
+  const { favorites, loading, error } = useFavoritesContext();
 
   // Loading state
   if (!isLoaded || loading) {

@@ -19,17 +19,17 @@ export const RATE_LIMITS = {
   // APIs públicas - límite generoso
   PUBLIC: { windowMs: 60_000, maxRequests: 100 }, // 100 req/min
   
-  // APIs autenticadas - límite moderado
-  AUTHENTICATED: { windowMs: 60_000, maxRequests: 60 }, // 60 req/min
+  // APIs autenticadas - límite generoso para desarrollo (usuarios navegan rápido)
+  AUTHENTICATED: { windowMs: 60_000, maxRequests: 200 }, // 200 req/min
   
-  // APIs de escritura - límite estricto
-  WRITE: { windowMs: 60_000, maxRequests: 30 }, // 30 req/min
+  // APIs de escritura - límite moderado (usuarios hacen clic rápido en favoritos)
+  WRITE: { windowMs: 60_000, maxRequests: 100 }, // 100 req/min
   
   // Login/signup - muy estricto para prevenir brute force
   AUTH: { windowMs: 300_000, maxRequests: 5 }, // 5 req/5min
   
   // Guardar resultados - moderado
-  RESULTS: { windowMs: 60_000, maxRequests: 20 }, // 20 req/min
+  RESULTS: { windowMs: 60_000, maxRequests: 50 }, // 50 req/min
 } as const;
 
 export function checkRateLimit(

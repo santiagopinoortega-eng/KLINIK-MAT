@@ -48,6 +48,7 @@ export function useFavorites() {
     } catch (err) {
       console.error('Error fetching favorites:', err);
       setError(err instanceof Error ? err.message : 'Error desconocido');
+      setFavorites([]);
     } finally {
       setLoading(false);
     }

@@ -15,6 +15,7 @@ const Footer = dynamic(() => import('./components/Footer'), { ssr: true });
 const CsrfInitializer = dynamic(() => import('./components/CsrfInitializer'), { ssr: false });
 
 import { WebsiteStructuredData, OrganizationStructuredData, EducationalOrganizationStructuredData } from './components/StructuredData';
+import { FavoritesProvider } from './context/FavoritesContext';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -148,9 +149,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </div>
 
         {/* Contenido (clase .container-app) */}
-        <main id="contenido" className="min-h-[70vh] animate-fade-in">
-          {children}
-        </main>
+        <FavoritesProvider>
+          <main id="contenido" className="min-h-[70vh] animate-fade-in">
+            {children}
+          </main>
+        </FavoritesProvider>
 
         {/* Footer con nuevo componente */}
         <Footer />

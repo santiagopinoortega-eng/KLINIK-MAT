@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import { StarIcon as StarOutline } from '@heroicons/react/24/outline';
 import { StarIcon as StarSolid } from '@heroicons/react/24/solid';
-import { useFavorites } from '@/app/hooks/useFavorites';
+import { useFavoritesContext } from '@/app/context/FavoritesContext';
 import { useUser } from '@clerk/nextjs';
 
 interface FavoriteButtonProps {
@@ -21,7 +21,7 @@ export default function FavoriteButton({
   className = ''
 }: FavoriteButtonProps) {
   const { isSignedIn } = useUser();
-  const { isFavorite, toggleFavorite } = useFavorites();
+  const { isFavorite, toggleFavorite } = useFavoritesContext();
   const [isAnimating, setIsAnimating] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
