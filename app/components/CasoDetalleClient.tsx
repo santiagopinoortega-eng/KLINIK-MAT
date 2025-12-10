@@ -63,6 +63,13 @@ export default function CasoDetalleClient() {
     });
 
     // Guardar en base de datos con CSRF protection
+    console.log('🔄 Intentando guardar resultado...', {
+      caseId: caso.id,
+      caseTitle: caso.titulo,
+      score: puntosObtenidos,
+      totalPoints: puntosMaximos,
+    });
+    
     postJSON('/api/results', {
       caseId: caso.id,
       caseTitle: caso.titulo,
@@ -75,12 +82,15 @@ export default function CasoDetalleClient() {
       answers: respuestas,
     })
       .then(async ({ ok, data, error }) => {
+        console.log('📡 Respuesta del servidor:', { ok, data, error });
+        
         // Si falla por CSRF (403), reintentar una vez después de refrescar token
-        if (!ok && error?.includes('403')) {
+        if (!ok && (error?.includes('403') || error?.includes('Forbidden') || error?.includes('CSRF'))) {
           console.log('⚠️ CSRF token expired, refreshing and retrying...');
           
           // Refrescar CSRF token
           await fetch('/api/csrf', { credentials: 'include' });
+          console.log('🔑 CSRF token refrescado, reintentando...');
           
           // Reintentar
           const retry = await postJSON('/api/results', {
@@ -94,6 +104,8 @@ export default function CasoDetalleClient() {
             timeSpent: timeSpent || null,
             answers: respuestas,
           });
+          
+          console.log('📡 Respuesta del retry:', retry);
           
           if (retry.ok && retry.data?.success) {
             console.log('✅ Resultado guardado (retry):', retry.data.result);
@@ -111,6 +123,7 @@ export default function CasoDetalleClient() {
             });
           } else {
             console.error('❌ Error al guardar resultado (retry):', retry.error);
+            alert(`Error al guardar resultado: ${retry.error || 'Desconocido'}. Por favor, recarga la página y vuelve a intentar.`);
           }
           return;
         }
@@ -132,10 +145,12 @@ export default function CasoDetalleClient() {
           });
         } else {
           console.error('❌ Error al guardar resultado:', error);
+          alert(`Error al guardar resultado: ${error || 'Desconocido'}. Por favor, recarga la página y vuelve a intentar.`);
         }
       })
       .catch((err) => {
-        console.error('❌ Error al guardar resultado:', err);
+        console.error('❌ Error crítico al guardar resultado:', err);
+        alert(`Error crítico: ${err.message}. Por favor, recarga la página.`);
       });
   }, [isCompleted, savedToDb, caso, respuestas, mode, timeLimit, timeSpent]);
 

@@ -43,6 +43,23 @@ export async function postJSON<T = any>(
   data: any
 ): Promise<{ ok: boolean; data?: T; error?: string }> {
   try {
+    let token = getCsrfTokenFromCookie();
+    
+    // Si no hay token, obtener uno nuevo
+    if (!token) {
+      console.log('🔑 No CSRF token found, fetching new one...');
+      await fetch('/api/csrf', { credentials: 'include' });
+      token = getCsrfTokenFromCookie();
+      
+      if (!token) {
+        console.error('❌ Failed to get CSRF token');
+        return {
+          ok: false,
+          error: 'No se pudo obtener el token de seguridad. Recarga la página.',
+        };
+      }
+    }
+    
     const response = await fetchWithCsrf(url, {
       method: 'POST',
       headers: {
@@ -56,7 +73,7 @@ export async function postJSON<T = any>(
     if (!response.ok) {
       return {
         ok: false,
-        error: json.error || `Error ${response.status}`,
+        error: json.error || `Error ${response.status}: ${response.statusText}`,
       };
     }
 
@@ -80,6 +97,23 @@ export async function patchJSON<T = any>(
   data: any
 ): Promise<{ ok: boolean; data?: T; error?: string }> {
   try {
+    let token = getCsrfTokenFromCookie();
+    
+    // Si no hay token, obtener uno nuevo
+    if (!token) {
+      console.log('🔑 No CSRF token found, fetching new one...');
+      await fetch('/api/csrf', { credentials: 'include' });
+      token = getCsrfTokenFromCookie();
+      
+      if (!token) {
+        console.error('❌ Failed to get CSRF token');
+        return {
+          ok: false,
+          error: 'No se pudo obtener el token de seguridad. Recarga la página.',
+        };
+      }
+    }
+    
     const response = await fetchWithCsrf(url, {
       method: 'PATCH',
       headers: {
@@ -93,7 +127,7 @@ export async function patchJSON<T = any>(
     if (!response.ok) {
       return {
         ok: false,
-        error: json.error || `Error ${response.status}`,
+        error: json.error || `Error ${response.status}: ${response.statusText}`,
       };
     }
 
@@ -116,6 +150,23 @@ export async function deleteRequest<T = any>(
   url: string
 ): Promise<{ ok: boolean; data?: T; error?: string }> {
   try {
+    let token = getCsrfTokenFromCookie();
+    
+    // Si no hay token, obtener uno nuevo
+    if (!token) {
+      console.log('🔑 No CSRF token found, fetching new one...');
+      await fetch('/api/csrf', { credentials: 'include' });
+      token = getCsrfTokenFromCookie();
+      
+      if (!token) {
+        console.error('❌ Failed to get CSRF token');
+        return {
+          ok: false,
+          error: 'No se pudo obtener el token de seguridad. Recarga la página.',
+        };
+      }
+    }
+    
     const response = await fetchWithCsrf(url, {
       method: 'DELETE',
     });

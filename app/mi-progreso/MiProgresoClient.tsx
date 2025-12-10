@@ -52,6 +52,13 @@ export default function MiProgresoClient() {
         const resResults = await fetch(`/api/results?area=${selectedArea}&limit=100&t=${Date.now()}`);
         const dataResults = await resResults.json();
         
+        console.log('📊 Resultados cargados:', {
+          success: dataResults.success,
+          totalResults: dataResults.results?.length || 0,
+          results: dataResults.results,
+          stats: dataResults.stats
+        });
+        
         if (dataResults.success) {
           setResults(dataResults.results);
           setStats(dataResults.stats);
