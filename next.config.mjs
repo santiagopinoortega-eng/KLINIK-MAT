@@ -33,7 +33,12 @@ const FONT_SRC = ["'self'", 'https:', 'data:'].join(' ');
 // --- CAMBIO CLAVE: Solución al error 'unsafe-eval' ---
 // En desarrollo, Next.js necesita 'unsafe-eval' para el Fast Refresh.
 // Lo permitimos solo si NO estamos en producción.
-const SCRIPT_SRC_BASE = ["'self'", "'unsafe-inline'", 'https://*.clerk.accounts.dev'];
+const SCRIPT_SRC_BASE = [
+  "'self'", 
+  "'unsafe-inline'", 
+  'https://*.clerk.accounts.dev',
+  'https://va.vercel-scripts.com', // Vercel Analytics
+];
 if (!isProd) {
   SCRIPT_SRC_BASE.push("'unsafe-eval'");
 }
@@ -42,6 +47,7 @@ const SCRIPT_SRC = SCRIPT_SRC_BASE.join(' ');
 
 const STYLE_SRC  = ["'self'", "'unsafe-inline'", 'https://*.clerk.accounts.dev'].join(' ');
 const FRAME_SRC  = ["'self'", 'https://*.clerk.accounts.dev'].join(' ');
+const WORKER_SRC = ["'self'", 'blob:'].join(' '); // Clerk workers
 
 // Construimos la CSP en una sola línea (evita saltos que algunos navegadores no aman)
 const CSP = [
@@ -54,6 +60,7 @@ const CSP = [
   `style-src ${STYLE_SRC}`,
   `connect-src ${CONNECT_SRC}`,
   `frame-src ${FRAME_SRC}`,
+  `worker-src ${WORKER_SRC}`, // Permite workers de Clerk
   `object-src 'none'`,
   `form-action 'self'`,
   `upgrade-insecure-requests`, // seguro en prod; ignoran en dev http
