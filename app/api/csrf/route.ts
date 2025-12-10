@@ -18,11 +18,11 @@ export async function GET() {
     const token = await getCsrfToken();
     
     const response = NextResponse.json(
-      { ok: true, message: 'CSRF token set' },
+      { ok: true, message: 'CSRF token set', token }, // Incluir token en el body
       { status: 200 }
     );
 
-    // Establecer cookie httpOnly con el token
+    // Establecer cookie httpOnly con el token (para validación en servidor)
     response.cookies.set('csrf-token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',

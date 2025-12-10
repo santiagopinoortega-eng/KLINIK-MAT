@@ -42,13 +42,24 @@ export async function validateCsrfToken(req: Request): Promise<boolean> {
   const cookieToken = cookieStore.get(CSRF_TOKEN_NAME)?.value;
   const headerToken = req.headers.get(CSRF_HEADER_NAME);
 
+  // DEBUG: Log temporal
+  console.log('🔍 CSRF Validation:', {
+    hasCookie: !!cookieToken,
+    hasHeader: !!headerToken,
+    cookiePreview: cookieToken?.substring(0, 10) + '...',
+    headerPreview: headerToken?.substring(0, 10) + '...',
+  });
+
   // Ambos deben existir y coincidir
   if (!cookieToken || !headerToken) {
+    console.log('❌ CSRF validation failed: missing token');
     return false;
   }
 
   // Comparación timing-safe para prevenir timing attacks
-  return timingSafeEqual(cookieToken, headerToken);
+  const isValid = timingSafeEqual(cookieToken, headerToken);
+  console.log('🔍 CSRF tokens match:', isValid);
+  return isValid;
 }
 
 /**

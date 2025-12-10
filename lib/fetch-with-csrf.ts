@@ -2,7 +2,7 @@
 // Helper para hacer fetch con CSRF token automático
 'use client';
 
-import { getCsrfTokenFromCookie } from './csrf-client';
+import { getCsrfTokenFromCookie, setCsrfTokenInMemory } from './csrf-client';
 
 /**
  * Fetch con CSRF token automático
@@ -61,19 +61,21 @@ export async function postJSON<T = any>(
         };
       }
       
-      // Pequeño delay para asegurar que la cookie se establezca
-      await new Promise(resolve => setTimeout(resolve, 50));
-      token = getCsrfTokenFromCookie();
+      // Leer el token del body de la respuesta
+      const csrfData = await csrfResponse.json();
+      token = csrfData.token;
       
       if (!token) {
-        console.error('❌ CSRF token not set after fetch');
+        console.error('❌ CSRF token not in response');
         return {
           ok: false,
           error: 'No se pudo obtener el token de seguridad. Recarga la página.',
         };
       }
       
-      console.log('✅ CSRF token obtained successfully');
+      // Guardar en memoria para próximas requests
+      setCsrfTokenInMemory(token);
+      console.log('✅ CSRF token obtained and stored in memory');
     }
     
     const response = await fetchWithCsrf(url, {
@@ -131,19 +133,21 @@ export async function patchJSON<T = any>(
         };
       }
       
-      // Pequeño delay para asegurar que la cookie se establezca
-      await new Promise(resolve => setTimeout(resolve, 50));
-      token = getCsrfTokenFromCookie();
+      // Leer el token del body de la respuesta
+      const csrfData = await csrfResponse.json();
+      token = csrfData.token;
       
       if (!token) {
-        console.error('❌ CSRF token not set after fetch');
+        console.error('❌ CSRF token not in response');
         return {
           ok: false,
           error: 'No se pudo obtener el token de seguridad. Recarga la página.',
         };
       }
       
-      console.log('✅ CSRF token obtained successfully');
+      // Guardar en memoria para próximas requests
+      setCsrfTokenInMemory(token);
+      console.log('✅ CSRF token obtained and stored in memory');
     }
     
     const response = await fetchWithCsrf(url, {
@@ -200,19 +204,21 @@ export async function deleteRequest<T = any>(
         };
       }
       
-      // Pequeño delay para asegurar que la cookie se establezca
-      await new Promise(resolve => setTimeout(resolve, 50));
-      token = getCsrfTokenFromCookie();
+      // Leer el token del body de la respuesta
+      const csrfData = await csrfResponse.json();
+      token = csrfData.token;
       
       if (!token) {
-        console.error('❌ CSRF token not set after fetch');
+        console.error('❌ CSRF token not in response');
         return {
           ok: false,
           error: 'No se pudo obtener el token de seguridad. Recarga la página.',
         };
       }
       
-      console.log('✅ CSRF token obtained successfully');
+      // Guardar en memoria para próximas requests
+      setCsrfTokenInMemory(token);
+      console.log('✅ CSRF token obtained and stored in memory');
     }
     
     const response = await fetchWithCsrf(url, {
