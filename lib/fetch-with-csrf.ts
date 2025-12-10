@@ -20,8 +20,13 @@ export async function fetchWithCsrf(
 
   const headers = new Headers(options?.headers || {});
   
-  if (needsCsrf && token) {
-    headers.set('x-csrf-token', token);
+  if (needsCsrf) {
+    if (token) {
+      headers.set('x-csrf-token', token);
+      console.log('🔑 CSRF token added to request:', token.substring(0, 10) + '...');
+    } else {
+      console.warn('⚠️ No CSRF token available for', method, url);
+    }
   }
 
   // Asegurar Content-Type para JSON
@@ -116,6 +121,7 @@ export async function patchJSON<T = any>(
 ): Promise<{ ok: boolean; data?: T; error?: string }> {
   try {
     let token = getCsrfTokenFromCookie();
+    console.log('🔧 patchJSON called:', { url, hasToken: !!token });
     
     // Si no hay token, obtener uno nuevo
     if (!token) {
@@ -136,6 +142,7 @@ export async function patchJSON<T = any>(
       // Leer el token del body de la respuesta
       const csrfData = await csrfResponse.json();
       token = csrfData.token;
+      console.log('🔍 CSRF response:', { hasToken: !!token, tokenPreview: token?.substring(0, 10) });
       
       if (!token) {
         console.error('❌ CSRF token not in response');
@@ -148,6 +155,8 @@ export async function patchJSON<T = any>(
       // Guardar en memoria para próximas requests
       setCsrfTokenInMemory(token);
       console.log('✅ CSRF token obtained and stored in memory');
+    } else {
+      console.log('✅ Using existing token from memory');
     }
     
     const response = await fetchWithCsrf(url, {

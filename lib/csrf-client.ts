@@ -18,8 +18,11 @@ let csrfTokenInMemory: string | null = null;
 export function getCsrfTokenFromCookie(): string | null {
   // Primero intentar desde memoria
   if (csrfTokenInMemory) {
+    console.log('🔍 Token found in memory:', csrfTokenInMemory.substring(0, 10) + '...');
     return csrfTokenInMemory;
   }
+  
+  console.log('⚠️ No token in memory, trying cookie...');
   
   // Si no está en memoria, intentar leer de cookie (por si acaso no es httpOnly)
   if (typeof document === 'undefined') return null;
@@ -27,9 +30,14 @@ export function getCsrfTokenFromCookie(): string | null {
   const cookies = document.cookie.split(';');
   const csrfCookie = cookies.find(c => c.trim().startsWith(`${CSRF_TOKEN_NAME}=`));
   
-  if (!csrfCookie) return null;
+  if (!csrfCookie) {
+    console.log('❌ No CSRF cookie found');
+    return null;
+  }
   
-  return csrfCookie.split('=')[1];
+  const tokenFromCookie = csrfCookie.split('=')[1];
+  console.log('📝 Token found in cookie:', tokenFromCookie?.substring(0, 10) + '...');
+  return tokenFromCookie;
 }
 
 /**
@@ -38,6 +46,7 @@ export function getCsrfTokenFromCookie(): string | null {
  */
 export function setCsrfTokenInMemory(token: string): void {
   csrfTokenInMemory = token;
+  console.log('💾 Token saved in memory:', token.substring(0, 10) + '...');
 }
 
 /**
