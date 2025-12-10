@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { patchJSON } from '@/lib/fetch-with-csrf';
 
 // Tipos
 type Result = {
@@ -372,27 +373,24 @@ function ProfileEditForm({
     setSaving(true);
 
     try {
-      const res = await fetch('/api/profile', {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          country: formData.country || null,
-          university: formData.university || null,
-          yearOfStudy: formData.yearOfStudy ? parseInt(formData.yearOfStudy.toString()) : null,
-          specialty: formData.specialty || null,
-        }),
+      console.log('🔧 Guardando perfil...');
+      const result = await patchJSON('/api/profile', {
+        country: formData.country || null,
+        university: formData.university || null,
+        yearOfStudy: formData.yearOfStudy ? parseInt(formData.yearOfStudy.toString()) : null,
+        specialty: formData.specialty || null,
       });
 
-      const data = await res.json();
-      
-      if (data.success) {
-        onSave(data.user);
+      if (result.ok && result.data?.success) {
+        console.log('✅ Perfil guardado exitosamente');
+        onSave(result.data.user);
       } else {
-        alert('Error al guardar perfil: ' + data.error);
+        console.error('❌ Error al guardar perfil:', result.error);
+        alert('Error al guardar perfil: ' + (result.error || 'Error desconocido'));
       }
     } catch (error) {
+      console.error('❌ Excepción al guardar perfil:', error);
       alert('Error al guardar perfil');
-      console.error(error);
     } finally {
       setSaving(false);
     }
