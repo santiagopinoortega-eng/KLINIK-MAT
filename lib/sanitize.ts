@@ -69,11 +69,17 @@ export function sanitizeCaseId(id: string): string {
   
   const sanitized = id.trim();
   
-  // UUID v4 format: 8-4-4-4-12 caracteres hexadecimales
-  const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+  // Los IDs de casos son slugs: letras minúsculas, números y guiones
+  // Ejemplos: "ac-baja-postparto-migrante", "cx-consejeria-uso-condon-adolescente"
+  const slugRegex = /^[a-z0-9]+(-[a-z0-9]+)*$/;
   
-  if (!uuidRegex.test(sanitized)) {
-    throw new Error('ID de caso inválido');
+  if (!slugRegex.test(sanitized)) {
+    throw new Error('ID de caso inválido: debe ser un slug válido (letras minúsculas, números y guiones)');
+  }
+  
+  // Validar longitud razonable (max 100 caracteres)
+  if (sanitized.length > 100) {
+    throw new Error('ID de caso demasiado largo');
   }
   
   return sanitized;
