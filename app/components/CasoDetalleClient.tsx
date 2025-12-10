@@ -74,7 +74,47 @@ export default function CasoDetalleClient() {
       timeSpent: timeSpent || null,
       answers: respuestas,
     })
-      .then(({ ok, data, error }) => {
+      .then(async ({ ok, data, error }) => {
+        // Si falla por CSRF (403), reintentar una vez después de refrescar token
+        if (!ok && error?.includes('403')) {
+          console.log('⚠️ CSRF token expired, refreshing and retrying...');
+          
+          // Refrescar CSRF token
+          await fetch('/api/csrf', { credentials: 'include' });
+          
+          // Reintentar
+          const retry = await postJSON('/api/results', {
+            caseId: caso.id,
+            caseTitle: caso.titulo,
+            caseArea: mapModuloToArea(caso.modulo || caso.area),
+            score: puntosObtenidos,
+            totalPoints: puntosMaximos,
+            mode: mode || 'study',
+            timeLimit: timeLimit || null,
+            timeSpent: timeSpent || null,
+            answers: respuestas,
+          });
+          
+          if (retry.ok && retry.data?.success) {
+            console.log('✅ Resultado guardado (retry):', retry.data.result);
+            setSavedToDb(true);
+            
+            analytics.caseCompleted({
+              caseId: caso.id,
+              caseTitle: caso.titulo,
+              area: mapModuloToArea(caso.modulo || caso.area),
+              score: puntosObtenidos,
+              totalPoints: puntosMaximos,
+              percentage: Math.round((puntosObtenidos / puntosMaximos) * 100),
+              timeSpent: timeSpent || 0,
+              mode: mode || 'study',
+            });
+          } else {
+            console.error('❌ Error al guardar resultado (retry):', retry.error);
+          }
+          return;
+        }
+        
         if (ok && data?.success) {
           console.log('✅ Resultado guardado:', data.result);
           setSavedToDb(true);

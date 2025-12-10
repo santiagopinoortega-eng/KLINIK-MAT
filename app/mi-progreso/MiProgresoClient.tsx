@@ -46,8 +46,10 @@ export default function MiProgresoClient() {
   useEffect(() => {
     async function fetchData() {
       try {
-        // Cargar resultados
-        const resResults = await fetch(`/api/results?area=${selectedArea}&limit=100`);
+        setLoading(true);
+        
+        // Cargar resultados - añadimos timestamp para evitar cache
+        const resResults = await fetch(`/api/results?area=${selectedArea}&limit=100&t=${Date.now()}`);
         const dataResults = await resResults.json();
         
         if (dataResults.success) {
@@ -70,6 +72,32 @@ export default function MiProgresoClient() {
     }
 
     fetchData();
+  }, [selectedArea]);
+
+  // Refrescar cuando la página vuelve a ser visible (usuario vuelve de otro tab/caso)
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        // Refrescar datos cuando vuelve a la pestaña
+        const fetchData = async () => {
+          try {
+            const resResults = await fetch(`/api/results?area=${selectedArea}&limit=100&t=${Date.now()}`);
+            const dataResults = await resResults.json();
+            
+            if (dataResults.success) {
+              setResults(dataResults.results);
+              setStats(dataResults.stats);
+            }
+          } catch (error) {
+            console.error('Error al refrescar datos:', error);
+          }
+        };
+        fetchData();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
   }, [selectedArea]);
 
   if (loading) {

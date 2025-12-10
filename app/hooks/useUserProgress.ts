@@ -86,6 +86,18 @@ export function useUserProgress() {
     fetchProgress();
   }, [fetchProgress]);
 
+  // Auto-refresh cuando la página vuelve a ser visible
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible' && isSignedIn) {
+        fetchProgress();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, [fetchProgress, isSignedIn]);
+
   const getCaseProgress = useCallback((caseId: string): CaseProgress | null => {
     return progress.get(caseId) || null;
   }, [progress]);
