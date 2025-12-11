@@ -17,7 +17,16 @@ export default async function AreasPage() {
   const { userId } = await auth();
   
   // Cargar todos los casos para recomendaciones
-  let allCases = [];
+  let allCases: Array<{
+    id: string;
+    titulo: string;
+    area: string;
+    modulo?: string;
+    dificultad: string;
+    vigneta: null;
+    pasos: never[];
+    summary?: string | null;
+  }> = [];
   if (userId) {
     try {
       const cases = await prisma.case.findMany({
