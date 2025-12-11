@@ -22,7 +22,7 @@ export default async function AreasPage() {
     titulo: string;
     area: string;
     modulo?: string;
-    dificultad: string;
+    dificultad: number;
     vigneta: null;
     pasos: never[];
     summary?: string | null;
