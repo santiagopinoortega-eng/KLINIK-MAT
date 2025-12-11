@@ -14,18 +14,18 @@ export default function FavoritosPageClient() {
   // Loading state
   if (!isLoaded || loading) {
     return (
-      <div className="min-h-screen bg-neutral-50/50">
-        <div className="container mx-auto max-w-6xl py-6 sm:py-8 px-3 sm:px-4 md:px-6">
+      <div className="min-h-screen bg-gray-50">
+        <div className="container mx-auto max-w-6xl py-8 px-6">
           {/* Header Skeleton */}
-          <div className="mb-6">
-            <div className="h-8 w-48 bg-neutral-200 rounded animate-pulse mb-2"></div>
-            <div className="h-4 w-64 bg-neutral-200 rounded animate-pulse"></div>
+          <div className="mb-8">
+            <div className="h-10 w-64 bg-gray-200 rounded-lg animate-pulse mb-3"></div>
+            <div className="h-5 w-80 bg-gray-200 rounded-lg animate-pulse"></div>
           </div>
 
           {/* Cards Skeleton */}
-          <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {[1, 2, 3].map(i => (
-              <div key={i} className="card h-64 bg-neutral-100 animate-pulse"></div>
+              <div key={i} className="h-72 bg-gray-100 rounded-2xl animate-pulse"></div>
             ))}
           </div>
         </div>
@@ -36,18 +36,18 @@ export default function FavoritosPageClient() {
   // Not signed in
   if (!isSignedIn) {
     return (
-      <div className="min-h-screen bg-neutral-50/50 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center p-8 max-w-md">
-          <StarIcon className="h-16 w-16 mx-auto mb-4 text-yellow-500" />
-          <h2 className="text-2xl font-bold text-km-navy mb-3">
+          <StarIcon className="h-20 w-20 mx-auto mb-6 text-yellow-500" />
+          <h2 className="text-3xl font-bold text-gray-800 mb-4">
             Inicia sesión para ver tus favoritos
           </h2>
-          <p className="text-km-navy-600 mb-6">
+          <p className="text-gray-600 mb-8 text-lg">
             Guarda casos clínicos para repasarlos más tarde
           </p>
           <Link
             href="/sign-in"
-            className="btn btn-primary inline-block"
+            className="inline-block px-8 py-4 bg-red-600 text-white font-semibold rounded-xl hover:bg-red-700 transition-all shadow-lg hover:shadow-xl hover:scale-105"
           >
             Iniciar sesión
           </Link>
@@ -59,11 +59,11 @@ export default function FavoritosPageClient() {
   // Error state
   if (error) {
     return (
-      <div className="min-h-screen bg-neutral-50/50">
-        <div className="container mx-auto max-w-6xl py-6 sm:py-8 px-3 sm:px-4 md:px-6">
-          <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
-            <p className="text-red-700 font-medium mb-2">Error al cargar favoritos</p>
-            <p className="text-red-600 text-sm">{error}</p>
+      <div className="min-h-screen bg-gray-50">
+        <div className="container mx-auto max-w-6xl py-8 px-6">
+          <div className="bg-red-50 border-2 border-red-200 rounded-2xl p-8 text-center">
+            <p className="text-red-700 font-semibold text-lg mb-2">Error al cargar favoritos</p>
+            <p className="text-red-600">{error}</p>
           </div>
         </div>
       </div>
@@ -71,32 +71,31 @@ export default function FavoritosPageClient() {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-50/50">
-      <div className="container mx-auto max-w-6xl py-4 sm:py-6 md:py-8 px-3 sm:px-4 md:px-6">
+    <div className="min-h-screen bg-gray-50 pb-16">
+      <div className="container mx-auto max-w-6xl py-8 px-6">
         {/* Back button */}
-        <div className="mb-3 sm:mb-4">
+        <div className="mb-6">
           <Link 
             href="/casos"
-            className="inline-flex items-center gap-2 text-sm text-km-crimson hover:text-km-cardinal font-medium transition-colors min-h-touch md:min-h-0 py-2"
+            className="inline-flex items-center gap-2 text-sm text-red-600 hover:text-red-700 font-semibold transition-colors"
           >
-            <ArrowLeftIcon className="h-4 w-4 sm:h-5 sm:w-5" />
-            <span className="hidden sm:inline">Volver a Casos Clínicos</span>
-            <span className="sm:hidden">Volver</span>
+            <ArrowLeftIcon className="h-5 w-5" />
+            <span>Volver a Casos Clínicos</span>
           </Link>
         </div>
 
         {/* Header */}
-        <div className="mb-6 sm:mb-8">
-          <div className="flex items-center gap-3 mb-2">
-            <StarIcon className="h-7 w-7 sm:h-8 sm:w-8 text-yellow-500" />
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold" style={{color: 'var(--km-navy)'}}>
+        <div className="mb-8">
+          <div className="flex items-center gap-4 mb-3">
+            <StarIcon className="h-10 w-10 text-yellow-500" />
+            <h1 className="text-4xl font-bold text-gray-800">
               Mis Favoritos
             </h1>
           </div>
-          <p className="text-sm sm:text-base text-neutral-600">
+          <p className="text-lg text-gray-600">
             {favorites.length === 0 
-              ? 'Aún no tienes casos favoritos'
-              : `${favorites.length} ${favorites.length === 1 ? 'caso guardado' : 'casos guardados'}`
+              ? 'Aún no tienes casos favoritos. ¡Comienza a guardar casos para repasarlos más tarde!'
+              : `${favorites.length} ${favorites.length === 1 ? 'caso guardado' : 'casos guardados'} para repasar cuando quieras`
             }
           </p>
         </div>

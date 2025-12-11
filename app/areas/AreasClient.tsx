@@ -85,47 +85,47 @@ export default function AreasClient() {
   };
 
   return (
-    <div className="min-h-screen bg-neutral-50/50">
+    <div className="min-h-screen bg-gray-50 pb-16">
       {/* Header - Responsive */}
-      <div className="bg-gradient-km-primary text-white shadow-lg">
-        <div className="container mx-auto px-3 sm:px-4 md:px-6 py-5 sm:py-6 md:py-8">
+      <div className="bg-gradient-to-br from-red-600 via-red-700 to-red-800 text-white shadow-lg">
+        <div className="max-w-6xl mx-auto px-6 md:px-8 py-10 md:py-14">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
+            <h1 className="text-2xl md:text-4xl font-bold mb-2">
               Elige el Área que Quieres Practicar
             </h1>
-            <p className="text-sm sm:text-base md:text-lg opacity-90 max-w-xl mx-auto">
-              Selecciona el área clínica y accede a casos reales
+            <p className="text-base md:text-lg text-red-50 max-w-2xl mx-auto">
+              Selecciona el área clínica y accede a casos reales basados en guías MINSAL
             </p>
           </div>
         </div>
       </div>
 
       {/* Main Content - Responsive */}
-      <div className="container mx-auto px-3 sm:px-4 md:px-6 py-6 sm:py-8 max-w-5xl">
+      <div className="max-w-6xl mx-auto px-6 md:px-8 py-6 md:py-8">
         {/* Stats Bar - Responsive */}
-        <div className="mb-5 sm:mb-6 p-3 sm:p-4 bg-white rounded-lg shadow-sm border border-neutral-200">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 text-center">
+        <div className="mb-6 p-5 bg-white rounded-xl shadow-sm border border-gray-200">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             <div>
-              <div className="text-xl sm:text-2xl font-bold text-km-red-700 mb-0.5">54</div>
-              <div className="text-xs text-km-navy-600 font-medium">Casos Totales</div>
+              <div className="text-2xl font-bold text-red-600 mb-0.5">54</div>
+              <div className="text-xs text-gray-600 font-medium">Casos Totales</div>
             </div>
             <div>
-              <div className="text-xl sm:text-2xl font-bold text-green-600 mb-0.5">4</div>
-              <div className="text-xs text-km-navy-600 font-medium">Áreas Clínicas</div>
+              <div className="text-2xl font-bold text-red-600 mb-0.5">4</div>
+              <div className="text-xs text-gray-600 font-medium">Áreas Clínicas</div>
             </div>
             <div>
-              <div className="text-xl sm:text-2xl font-bold text-purple-600 mb-0.5">2</div>
-              <div className="text-xs text-km-navy-600 font-medium">Disponibles</div>
+              <div className="text-2xl font-bold text-red-600 mb-0.5">2</div>
+              <div className="text-xs text-gray-600 font-medium">Disponibles</div>
             </div>
             <div>
-              <div className="text-xl sm:text-2xl font-bold text-orange-600 mb-0.5">2</div>
-              <div className="text-xs text-km-navy-600 font-medium">Modos</div>
+              <div className="text-2xl font-bold text-red-600 mb-0.5">2</div>
+              <div className="text-xs text-gray-600 font-medium">Modos</div>
             </div>
           </div>
         </div>
 
         {/* Areas Grid - Responsive */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 mb-5 sm:mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
           {AREAS.map((area) => {
             const Icon = area.icon;
             const isSelected = selectedArea === area.id;
@@ -135,30 +135,29 @@ export default function AreasClient() {
                 key={area.id}
                 onClick={() => handleSelectArea(area.id, area.available)}
                 className={`
-                  relative overflow-hidden rounded-xl border-2 transition-all duration-300 cursor-pointer min-h-touch md:min-h-0
-                  ${isSelected ? 'ring-4 ring-km-red-500/50 scale-[1.02]' : ''}
-                  ${area.borderColor}
+                  relative overflow-hidden rounded-xl border-2 transition-all duration-300 cursor-pointer
+                  ${isSelected ? 'ring-4 ring-red-500/50 scale-[1.02] border-red-300' : 'border-gray-200'}
                   ${area.available ? 'hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98]' : 'opacity-60 cursor-not-allowed'}
                 `}
               >
-                <div className={`bg-gradient-to-br ${area.gradient} p-4 sm:p-6`}>
-                  <div className="flex items-start justify-between mb-3 sm:mb-4">
-                    <div className={`p-2 sm:p-3 rounded-xl bg-white/80 ${area.color}`}>
-                      <Icon className="h-6 w-6 sm:h-8 sm:w-8" />
+                <div className={`bg-gradient-to-br ${area.gradient} p-5`}>
+                  <div className="flex items-start justify-between mb-3">
+                    <div className={`p-2 rounded-lg bg-white/80 ${area.color}`}>
+                      <Icon className="h-6 w-6" />
                     </div>
                     {area.available && (
-                      <div className="bg-green-100 text-green-700 px-2 sm:px-3 py-1 rounded-full text-xs font-bold">
+                      <div className="bg-green-100 text-green-700 px-2.5 py-1 rounded-full text-xs font-bold">
                         {area.caseCount} casos
                       </div>
                     )}
                     {!area.available && (
-                      <div className="bg-neutral-200 text-neutral-600 px-3 py-1 rounded-full text-xs font-bold">
+                      <div className="bg-neutral-200 text-neutral-600 px-2.5 py-1 rounded-full text-xs font-bold">
                         Próximamente
                       </div>
                     )}
                   </div>
                   
-                  <h3 className={`text-lg font-bold mb-2 ${area.color}`}>
+                  <h3 className={`text-base font-bold mb-1.5 ${area.color}`}>
                     {area.title}
                   </h3>
                   <p className="text-sm text-neutral-700 leading-relaxed">
@@ -166,8 +165,10 @@ export default function AreasClient() {
                   </p>
 
                   {isSelected && (
-                    <div className="mt-4 flex items-center gap-2 text-km-red-600 font-semibold text-sm animate-fade-in">
-                      <span>✓</span>
+                    <div className="mt-4 flex items-center gap-2 text-red-600 font-semibold text-sm">
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
                       <span>Área seleccionada</span>
                     </div>
                   )}
@@ -186,15 +187,15 @@ export default function AreasClient() {
         </div>
 
         {/* Continue Button */}
-        <div className="text-center mb-6">
+        <div className="text-center mb-5">
           <button
             onClick={handleContinue}
             disabled={!selectedArea}
             className={`
-              px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300
+              px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300
               ${selectedArea 
-                ? 'bg-gradient-km-primary text-white hover:scale-105 shadow-md hover:shadow-lg' 
-                : 'bg-neutral-300 text-neutral-500 cursor-not-allowed'
+                ? 'bg-red-600 text-white hover:bg-red-700 hover:scale-105 shadow-lg hover:shadow-xl' 
+                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
               }
             `}
           >
@@ -202,14 +203,14 @@ export default function AreasClient() {
           </button>
 
           {selectedArea && (
-            <p className="mt-3 text-xs text-km-navy-600 animate-fade-in">
+            <p className="mt-2 text-xs text-km-navy-600 animate-fade-in">
               💡 Consejo: Comienza con casos de dificultad baja
             </p>
           )}
         </div>
 
         {/* Info Card */}
-        <div className="mt-6 p-4 bg-blue-50/80 border border-blue-200 rounded-lg">
+        <div className="mt-5 p-4 bg-blue-50/80 border border-blue-200 rounded-lg">
           <div className="flex items-start gap-3">
             <div className="flex-shrink-0 mt-0.5">
               <svg className="h-5 w-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">

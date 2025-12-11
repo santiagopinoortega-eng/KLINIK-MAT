@@ -38,6 +38,7 @@ model Case {
   norms             MinsalNorm[]   @relation("CaseNorms")
   results           StudentResult[]
   favorites         Favorite[]
+  engagementMetrics EngagementMetric[]
   
   @@map("cases")
 }
@@ -130,6 +131,7 @@ model User {
   results         StudentResult[]
   favorites       Favorite[]
   studySessions   StudySession[]
+  engagementMetrics EngagementMetric[]
   
   @@map("users")
 }
@@ -161,6 +163,26 @@ model StudySession {
   
   @@map("study_sessions")
   @@index([userId, date(sort: Desc)])
+}
+
+// Modelo para métricas de engagement (recomendaciones, clics, tiempo)
+model EngagementMetric {
+  id                   String   @id @default(cuid())
+  userId               String
+  caseId               String
+  source               String   // 'recommendation', 'search', 'browse', 'trending', 'challenge'
+  recommendationGroup  String?  // 'specialty', 'review', 'challenge', 'trending'
+  action               String   // 'view', 'click', 'complete', 'favorite'
+  sessionDuration      Int?     // Tiempo en segundos (si aplica)
+  timestamp            DateTime @default(now())
+  
+  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  case                 Case     @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  
+  @@map("engagement_metrics")
+  @@index([userId, timestamp(sort: Desc)])
+  @@index([source])
+  @@index([recommendationGroup])
 }
 
 enum Role {

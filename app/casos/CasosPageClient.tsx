@@ -1,11 +1,11 @@
 'use client';
 
 import { CasoListItem } from '@/services/caso.service';
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState } from 'react';
 import CaseCard from '@/app/components/CaseCard';
 import Badge from '@/app/components/ui/Badge';
 import Link from 'next/link';
-import { ArrowLeftIcon, FunnelIcon } from '@heroicons/react/24/outline';
+import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import { useUserProgress } from '@/app/hooks/useUserProgress';
 
 // Mapeo de áreas a módulos
@@ -93,8 +93,8 @@ export default function CasosPageClient({
   }, [areaFilteredData, q, modulo, difficulty, progressFilter, getCaseStatus]);
 
   return (
-    <div className="min-h-screen bg-neutral-50/50">
-      <div className="container mx-auto max-w-6xl py-4 sm:py-6 md:py-8 px-3 sm:px-4 md:px-6">
+    <div className="min-h-screen bg-gray-50 pb-16">
+      <div className="container mx-auto max-w-6xl py-6 md:py-8 px-4 md:px-6">
         {/* Back button si hay área seleccionada - Touch-friendly */}
         {selectedArea && (
           <div className="mb-3 sm:mb-4">
@@ -110,32 +110,31 @@ export default function CasosPageClient({
         )}
 
         {/* Header con título - Responsive */}
-        <div className="mb-4 sm:mb-6">
-          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-1" style={{color: 'var(--km-navy)'}}>
+        <div className="mb-6">
+          <h1 className="text-3xl md:text-4xl font-bold mb-2 text-gray-800">
             {selectedArea ? AREA_NAMES[selectedArea] || 'Casos Clínicos' : 'Casos Clínicos'}
           </h1>
-          <p className="text-xs sm:text-sm text-neutral-600">
+          <p className="text-base text-gray-600">
             {selectedArea 
-              ? `${areaFilteredData.length} casos disponibles`
-              : 'Selecciona un caso para comenzar'
+              ? `${areaFilteredData.length} casos disponibles en esta área`
+              : 'Selecciona un caso para comenzar tu práctica clínica'
             }
         </p>
       </div>
 
       {/* Filtros mejorados con diseño de cards - Responsive */}
-      <div className="mb-6 sm:mb-8">
-        <div className="bg-white rounded-xl border border-[rgba(196,30,58,0.1)] p-4 sm:p-6 shadow-[var(--km-shadow-sm)]">
+      <div className="mb-8">
+        <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
           <div className="space-y-3 sm:space-y-4">
             {/* Buscador - Full width */}
             <div>
-              <label className="flex items-center gap-2 text-xs font-semibold mb-2" style={{color: 'var(--km-text-700)'}}>
-                <span className="text-base sm:text-lg">🔍</span>
-                <span className="hidden sm:inline">Buscar casos</span>
-                <span className="sm:hidden">Buscar</span>
+              <label className="flex items-center gap-2 text-sm font-semibold mb-2 text-gray-700">
+                <span className="text-lg">🔍</span>
+                <span>Buscar casos</span>
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 sm:pl-4 flex items-center pointer-events-none">
-                  <svg className="h-4 w-4 sm:h-5 sm:w-5" style={{color: 'var(--km-text-500)'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
                 </div>
@@ -143,13 +142,7 @@ export default function CasosPageClient({
                   value={q}
                   onChange={(e)=>setQ(e.target.value)}
                   placeholder="Buscar por título o resumen…"
-                  className="w-full pl-10 sm:pl-12 pr-4 py-2.5 sm:py-3 min-h-touch md:min-h-0 rounded-lg border-2 text-xs sm:text-sm outline-none transition-all"
-                  style={{
-                    borderColor: 'rgba(196,30,58,0.15)',
-                    backgroundColor: 'var(--km-blush)'
-                  }}
-                  onFocus={(e) => e.target.style.borderColor = 'var(--km-crimson)'}
-                  onBlur={(e) => e.target.style.borderColor = 'rgba(196,30,58,0.15)'}
+                  className="w-full pl-12 pr-4 py-3 rounded-lg border-2 border-gray-200 text-sm outline-none transition-all focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
                   aria-label="Buscar casos"
                 />
               </div>
@@ -159,19 +152,14 @@ export default function CasosPageClient({
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
               {/* Filtro módulo - Touch-friendly */}
               <div>
-                <label className="flex items-center gap-2 text-xs font-semibold mb-2" style={{color: 'var(--km-text-700)'}}>
-                  <span className="text-base sm:text-lg">📚</span>
-                  <span className="hidden sm:inline">Módulo</span>
+                <label className="flex items-center gap-2 text-sm font-semibold mb-2 text-gray-700">
+                  <span className="text-lg">📚</span>
+                  <span>Módulo</span>
                 </label>
                 <select
                   value={modulo}
                   onChange={(e)=>setModulo(e.target.value)}
-                  className="w-full rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 min-h-touch md:min-h-0 text-xs sm:text-sm font-medium outline-none cursor-pointer transition-all border-2"
-                  style={{
-                    borderColor: 'rgba(196,30,58,0.15)',
-                    backgroundColor: 'var(--km-blush)',
-                    color: 'var(--km-text-900)'
-                  }}
+                  className="w-full rounded-lg px-4 py-3 text-sm font-medium outline-none cursor-pointer transition-all border-2 border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 bg-white text-gray-800"
                   aria-label="Filtrar por módulo"
                 >
                   {modulos.map(m => <option key={m} value={m}>{m === 'all' ? 'Todos' : m}</option>)}
@@ -180,19 +168,14 @@ export default function CasosPageClient({
 
               {/* Filtro dificultad - Touch-friendly */}
               <div>
-                <label className="flex items-center gap-2 text-xs font-semibold mb-2" style={{color: 'var(--km-text-700)'}}>
-                  <span className="text-base sm:text-lg">🎯</span>
-                  <span className="hidden sm:inline">Dificultad</span>
+                <label className="flex items-center gap-2 text-sm font-semibold mb-2 text-gray-700">
+                  <span className="text-lg">🎯</span>
+                  <span>Dificultad</span>
                 </label>
                 <select
                   value={difficulty}
                   onChange={(e)=>setDifficulty(e.target.value)}
-                  className="w-full rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 min-h-touch md:min-h-0 text-xs sm:text-sm font-medium outline-none cursor-pointer transition-all border-2"
-                  style={{
-                    borderColor: 'rgba(196,30,58,0.15)',
-                    backgroundColor: 'var(--km-blush)',
-                    color: 'var(--km-text-900)'
-                  }}
+                  className="w-full rounded-lg px-4 py-3 text-sm font-medium outline-none cursor-pointer transition-all border-2 border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 bg-white text-gray-800"
                   aria-label="Filtrar por dificultad"
                 >
                   <option value="all">Todas</option>
@@ -205,18 +188,13 @@ export default function CasosPageClient({
               {/* Filtro progreso - Touch-friendly */}
               <div>
                 <label className="flex items-center gap-2 text-xs font-semibold mb-2" style={{color: 'var(--km-text-700)'}}>
-                  <FunnelIcon className="h-4 w-4 sm:h-5 sm:w-5" />
+                  <span className="text-base sm:text-lg">📊</span>
                   <span className="hidden sm:inline">Progreso</span>
                 </label>
                 <select
                   value={progressFilter}
                   onChange={(e)=>setProgressFilter(e.target.value)}
-                  className="w-full rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 min-h-touch md:min-h-0 text-xs sm:text-sm font-medium outline-none cursor-pointer transition-all border-2"
-                  style={{
-                    borderColor: 'rgba(196,30,58,0.15)',
-                    backgroundColor: 'var(--km-blush)',
-                    color: 'var(--km-text-900)'
-                  }}
+                  className="w-full rounded-lg px-4 py-3 text-sm font-medium outline-none cursor-pointer transition-all border-2 border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 bg-white text-gray-800"
                   aria-label="Filtrar por progreso"
                   disabled={progressLoading}
                 >
@@ -230,11 +208,11 @@ export default function CasosPageClient({
               </div>
 
               {/* Contador de resultados - Responsive */}
-              <div className="flex flex-col justify-center items-center bg-gradient-to-br from-[var(--km-blush)] to-white rounded-lg border-2 p-3 sm:p-4 min-h-touch md:min-h-0" style={{borderColor: 'var(--km-rose)'}}>
-                <div className="text-2xl sm:text-3xl font-bold" style={{color: 'var(--km-crimson)'}}>
+              <div className="flex flex-col justify-center items-center bg-gradient-to-br from-red-50 to-white rounded-lg border-2 border-red-200 p-4">
+                <div className="text-3xl font-bold text-red-600">
                   {filtered.length}
                 </div>
-                <div className="text-xs font-medium" style={{color: 'var(--km-text-600)'}}>
+                <div className="text-sm font-medium text-gray-600">
                   {filtered.length === 1 ? 'caso' : 'casos'}
                 </div>
               </div>

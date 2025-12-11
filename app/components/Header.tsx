@@ -1,95 +1,46 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
-import { usePathname } from 'next/navigation';
 import { UserButton, SignInButton, useUser } from '@clerk/nextjs';
 
-interface NavLink {
-  href: string;
-  label: string;
-  icon?: string;
-}
-
-const links: NavLink[] = [
-  { href: '/', label: 'Inicio' },
-  { href: '/areas', label: 'Áreas Clínicas' },
-  { href: '/favoritos', label: 'Favoritos', icon: '⭐' },
-  { href: '/mi-progreso', label: 'Mi Progreso' },
-  { href: '/recursos', label: 'Recursos' },
-];
-
 export default function Header() {
-  const pathname = usePathname();
   const { isSignedIn } = useUser();
 
   return (
-    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-km-crimson/10 shadow-sm transition-all">
-      <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 py-3 md:py-4 flex items-center justify-between gap-3 md:gap-4">
-        {/* Logo reemplazado por texto KLINIK-MAT - Responsive */}
-        <Link href="/" className="flex items-center group flex-shrink-0" aria-label="KLINIK-MAT - inicio">
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-km-crimson group-hover:text-km-rose transition-colors" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
+    <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm h-20">
+      <nav className="h-full mx-auto max-w-7xl px-6 lg:px-8 flex items-center justify-between">
+        {/* Logo - Enhanced with medical icon */}
+        <Link href="/" className="flex items-center gap-2 group" aria-label="KLINIK-MAT">
+          <div className="w-9 h-9 bg-gradient-to-br from-red-600 to-red-700 rounded-lg flex items-center justify-center shadow-md group-hover:shadow-lg transition-all group-hover:scale-105">
+            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </div>
+          <h1 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent group-hover:from-red-700 group-hover:to-red-800 transition-all" 
+              style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
             KLINIK-MAT
-          </h2>
+          </h1>
         </Link>
 
-        {/* Navegación con nueva paleta - Responsive: Ocultar algunos links en mobile */}
-        <ul className="flex items-center gap-1 sm:gap-2 flex-wrap md:flex-nowrap">
-          {links.map((l) => {
-            const active = pathname === l.href;
-            // En mobile, mostrar solo los esenciales
-            const isMobileHidden = (l.href === '/recursos' || l.href === '/mi-progreso');
-            
-            return (
-              <li key={l.href} className={isMobileHidden ? 'hidden md:block' : ''}>
-                <Link
-                  href={l.href}
-                  className={[
-                    'px-2 sm:px-3 md:px-4 py-2 min-h-touch md:min-h-0 rounded-lg md:rounded-xl text-xs sm:text-sm md:text-base font-semibold transition-all hover-lift flex items-center gap-1',
-                    active 
-                      ? 'bg-gradient-km-primary text-white shadow-km-md' 
-                      : 'text-km-navy hover:bg-km-blush hover:text-km-crimson',
-                  ].join(' ')}
-                >
-                  {/* Icono si existe */}
-                  {l.icon && <span className="text-sm sm:text-base">{l.icon}</span>}
-                  
-                  {/* Texto corto en mobile para algunos links */}
-                  <span className="hidden sm:inline">{l.label}</span>
-                  <span className="sm:hidden">
-                    {l.href === '/' ? 'Inicio' : 
-                     l.href === '/areas' ? 'Áreas' : 
-                     l.href === '/favoritos' ? '⭐' : 
-                     l.label}
-                  </span>
-                </Link>
-              </li>
-            );
-          })}
-          
-          {/* User button or Sign in - Responsive */}
-          <li className="ml-1 sm:ml-2 md:ml-3">
-            {isSignedIn ? (
-              <div className="flex items-center gap-2">
-                <UserButton 
-                  afterSignOutUrl="/"
-                  appearance={{
-                    elements: {
-                      avatarBox: 'w-9 h-9 md:w-10 md:h-10 ring-2 ring-km-crimson/20 hover:ring-km-rose/40 transition-all'
-                    }
-                  }}
-                />
-              </div>
-            ) : (
-              <SignInButton forceRedirectUrl="/areas">
-                <button className="btn btn-primary text-xs sm:text-sm md:text-base px-3 sm:px-4 py-2 min-h-touch md:min-h-0">
-                  <span className="hidden sm:inline">Iniciar sesión</span>
-                  <span className="sm:hidden">Entrar</span>
-                </button>
-              </SignInButton>
-            )}
-          </li>
-        </ul>
+        {/* User Actions Only */}
+        <div className="flex items-center gap-4">
+          {isSignedIn ? (
+            <UserButton 
+              afterSignOutUrl="/"
+              appearance={{
+                elements: {
+                  avatarBox: 'w-11 h-11 ring-2 ring-red-500/30 hover:ring-red-600/50 transition-all shadow-md hover:shadow-lg'
+                }
+              }}
+            />
+          ) : (
+            <SignInButton mode="modal">
+              <button className="px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-xl text-sm font-semibold hover:from-red-700 hover:to-red-800 transition-all shadow-lg hover:shadow-xl hover:scale-105">
+                Iniciar sesión
+              </button>
+            </SignInButton>
+          )}
+        </div>
       </nav>
     </header>
   );

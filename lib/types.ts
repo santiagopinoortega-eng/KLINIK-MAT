@@ -66,6 +66,7 @@ export type CasoClient = {
   modulo?: string;           // Nuevo: Anticoncepción, ITS, Consejería, Climaterio
   area?: string;             // Legacy, mantener compatibilidad
   dificultad: string | number; // Nuevo: "Baja"/"Media"/"Alta" o número legacy
+  summary?: string | null;   // Resumen del caso (opcional)
   vigneta?: string | null;
   imagenes?: CaseImage[];    // Imágenes asociadas a la vigneta del caso
   pasos: Paso[];

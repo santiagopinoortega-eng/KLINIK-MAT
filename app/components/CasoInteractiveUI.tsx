@@ -51,7 +51,7 @@ function CasoContent() {
       {/* Grid: preguntas a la izquierda (mayor espacio horizontal), navigator a la derecha (compacto) */}
       <div className="grid lg:grid-cols-[1fr_280px] gap-6 items-start">
         <div className="w-full">
-          <div className="bg-gradient-to-br from-white via-red-50/30 to-orange-50/20 rounded-[var(--km-radius-lg)] p-5 md:p-8 shadow-km-md border-2 border-red-100/50">
+          <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-200">
             <CasoDetalleClient />
           </div>
         </div>

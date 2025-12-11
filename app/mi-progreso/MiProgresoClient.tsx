@@ -110,11 +110,11 @@ export default function MiProgresoClient() {
 
   if (loading) {
     return (
-      <div className="container max-w-7xl mx-auto px-4 py-8">
-        <div className="card h-96 flex items-center justify-center">
+      <div className="container max-w-7xl mx-auto px-6 py-8">
+        <div className="bg-white rounded-2xl border border-gray-200 h-96 flex items-center justify-center shadow-sm">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[var(--km-crimson)] mx-auto mb-4"></div>
-            <p className="text-neutral-600">Cargando tu progreso...</p>
+            <div className="animate-spin rounded-full h-16 w-16 border-4 border-gray-200 border-t-red-600 mx-auto mb-6"></div>
+            <p className="text-gray-600 text-lg">Cargando tu progreso...</p>
           </div>
         </div>
       </div>
@@ -130,66 +130,68 @@ export default function MiProgresoClient() {
   };
 
   return (
-    <div className="container max-w-7xl mx-auto px-4 py-8 space-y-6">
-      {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+    <div className="min-h-screen bg-gray-50 pb-16">
+      <div className="container max-w-7xl mx-auto px-6 py-8 space-y-8">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
-          <h1 className="text-3xl md:text-4xl font-extrabold text-[#1E3A5F] mb-2" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-3">
             Mi Progreso
           </h1>
-          <p className="text-neutral-600">
+          <p className="text-lg text-gray-600">
             Visualiza tu rendimiento y estadísticas de estudio
           </p>
         </div>
         <Link 
           href="/casos" 
-          className="btn btn-primary w-full md:w-auto"
+          className="inline-flex items-center justify-center px-6 py-3 bg-red-600 text-white font-semibold rounded-xl hover:bg-red-700 transition-all shadow-lg hover:shadow-xl hover:scale-105"
         >
           ← Volver a Casos
         </Link>
       </div>
 
       {/* Perfil del Estudiante */}
-      <div className="card p-6">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-bold text-[#1E3A5F]" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
-            👤 Mi Perfil
+      <div className="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-3">
+            <span className="text-3xl">👤</span>
+            <span>Mi Perfil</span>
           </h2>
           <button 
             onClick={() => setEditingProfile(!editingProfile)}
-            className="text-sm text-[var(--km-crimson)] hover:underline font-medium"
+            className="text-sm text-red-600 hover:text-red-700 font-semibold px-4 py-2 rounded-lg hover:bg-red-50 transition-colors"
           >
             {editingProfile ? 'Cancelar' : 'Editar Perfil'}
           </button>
         </div>
 
         {!editingProfile ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div className="p-4 bg-neutral-50 rounded-lg">
-              <div className="text-sm text-neutral-600 mb-1">Nombre</div>
-              <div className="font-semibold text-neutral-900">{profile?.name || 'No especificado'}</div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="p-5 bg-gray-50 rounded-xl border border-gray-100">
+              <div className="text-sm text-gray-500 mb-2 font-medium">Nombre</div>
+              <div className="font-semibold text-gray-900 text-lg">{profile?.name || 'No especificado'}</div>
             </div>
-            <div className="p-4 bg-neutral-50 rounded-lg">
-              <div className="text-sm text-neutral-600 mb-1">Email</div>
-              <div className="font-semibold text-neutral-900 text-sm truncate">{profile?.email}</div>
+            <div className="p-5 bg-gray-50 rounded-xl border border-gray-100">
+              <div className="text-sm text-gray-500 mb-2 font-medium">Email</div>
+              <div className="font-semibold text-gray-900 truncate">{profile?.email}</div>
             </div>
-            <div className="p-4 bg-neutral-50 rounded-lg">
-              <div className="text-sm text-neutral-600 mb-1">País</div>
-              <div className="font-semibold text-neutral-900">{profile?.country || 'No especificado'}</div>
+            <div className="p-5 bg-gray-50 rounded-xl border border-gray-100">
+              <div className="text-sm text-gray-500 mb-2 font-medium">País</div>
+              <div className="font-semibold text-gray-900 text-lg">{profile?.country || 'No especificado'}</div>
             </div>
-            <div className="p-4 bg-neutral-50 rounded-lg">
-              <div className="text-sm text-neutral-600 mb-1">Universidad</div>
-              <div className="font-semibold text-neutral-900">{profile?.university || 'No especificada'}</div>
+            <div className="p-5 bg-gray-50 rounded-xl border border-gray-100">
+              <div className="text-sm text-gray-500 mb-2 font-medium">Universidad</div>
+              <div className="font-semibold text-gray-900 text-lg">{profile?.university || 'No especificada'}</div>
             </div>
-            <div className="p-4 bg-neutral-50 rounded-lg">
-              <div className="text-sm text-neutral-600 mb-1">Año de Estudio</div>
-              <div className="font-semibold text-neutral-900">
+            <div className="p-5 bg-gray-50 rounded-xl border border-gray-100">
+              <div className="text-sm text-gray-500 mb-2 font-medium">Año de Estudio</div>
+              <div className="font-semibold text-gray-900 text-lg">
                 {profile?.yearOfStudy ? `${profile.yearOfStudy}° año` : 'No especificado'}
               </div>
             </div>
-            <div className="p-4 bg-neutral-50 rounded-lg">
-              <div className="text-sm text-neutral-600 mb-1">Especialidad de Interés</div>
-              <div className="font-semibold text-neutral-900">{profile?.specialty || 'No especificada'}</div>
+            <div className="p-5 bg-gray-50 rounded-xl border border-gray-100">
+              <div className="text-sm text-gray-500 mb-2 font-medium">Especialidad de Interés</div>
+              <div className="font-semibold text-gray-900 text-lg">{profile?.specialty || 'No especificada'}</div>
             </div>
           </div>
         ) : (
@@ -207,44 +209,44 @@ export default function MiProgresoClient() {
       {/* Estadísticas Generales */}
       {stats && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="card p-6 bg-gradient-to-br from-blue-50 to-blue-100">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="p-3 bg-blue-500 rounded-lg">
-                <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm hover:shadow-md transition-shadow">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="p-4 bg-red-100 rounded-xl">
+                <svg className="h-8 w-8 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
               <div>
-                <div className="text-sm text-blue-700 font-medium">Casos Completados</div>
-                <div className="text-3xl font-bold text-blue-900">{stats.totalCompleted}</div>
+                <div className="text-sm text-gray-600 font-medium">Casos Completados</div>
+                <div className="text-4xl font-bold text-gray-900">{stats.totalCompleted}</div>
               </div>
             </div>
           </div>
 
-          <div className="card p-6 bg-gradient-to-br from-green-50 to-green-100">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="p-3 bg-green-500 rounded-lg">
-                <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm hover:shadow-md transition-shadow">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="p-4 bg-green-100 rounded-xl">
+                <svg className="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                 </svg>
               </div>
               <div>
-                <div className="text-sm text-green-700 font-medium">Promedio General</div>
-                <div className="text-3xl font-bold text-green-900">{stats.averageScore}%</div>
+                <div className="text-sm text-gray-600 font-medium">Promedio General</div>
+                <div className="text-4xl font-bold text-gray-900">{stats.averageScore}%</div>
               </div>
             </div>
           </div>
 
-          <div className="card p-6 bg-gradient-to-br from-purple-50 to-purple-100">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="p-3 bg-purple-500 rounded-lg">
-                <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm hover:shadow-md transition-shadow">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="p-4 bg-blue-100 rounded-xl">
+                <svg className="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                 </svg>
               </div>
               <div>
-                <div className="text-sm text-purple-700 font-medium">Áreas Estudiadas</div>
-                <div className="text-3xl font-bold text-purple-900">{Object.keys(stats.byArea).length}</div>
+                <div className="text-sm text-gray-600 font-medium">Áreas Estudiadas</div>
+                <div className="text-4xl font-bold text-gray-900">{Object.keys(stats.byArea).length}</div>
               </div>
             </div>
           </div>
@@ -345,6 +347,7 @@ export default function MiProgresoClient() {
             })}
           </div>
         )}
+      </div>
       </div>
     </div>
   );

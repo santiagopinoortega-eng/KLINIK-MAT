@@ -220,7 +220,7 @@ export default async function CasoPage({ params }: PageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--km-surface-2)]">
+    <div className="min-h-screen bg-[var(--km-surface-2)] pb-16">
       {/* Structured Data para SEO */}
       <CaseStructuredData
         title={casoClient.titulo}

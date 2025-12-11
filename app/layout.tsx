@@ -13,9 +13,12 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 const Header = dynamic(() => import('./components/Header'), { ssr: true });
 const Footer = dynamic(() => import('./components/Footer'), { ssr: true });
 const CsrfInitializer = dynamic(() => import('./components/CsrfInitializer'), { ssr: false });
+const SidebarWrapper = dynamic(() => import('./components/SidebarWrapper'), { ssr: false });
+const CookieBanner = dynamic(() => import('./components/CookieBanner'), { ssr: false });
 
 import { WebsiteStructuredData, OrganizationStructuredData, EducationalOrganizationStructuredData } from './components/StructuredData';
 import { FavoritesProvider } from './context/FavoritesContext';
+import { SidebarProvider } from './context/SidebarContext';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -143,20 +146,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Ir al contenido
         </a>
 
-        {/* Header (estilo vidrio) */}
-        <div className="sticky top-0 z-40 backdrop-blur-lg supports-[backdrop-filter]:bg-white/60 border-b border-white/80 shadow-sm">
-          <Header />
-        </div>
+        {/* Header - Minimal */}
+        <Header />
 
-        {/* Contenido (clase .container-app) */}
-        <FavoritesProvider>
-          <main id="contenido" className="min-h-[70vh] animate-fade-in">
-            {children}
-          </main>
-        </FavoritesProvider>
+        {/* Sidebar - Contextual */}
+        <SidebarProvider>
+          <SidebarWrapper />
+
+          {/* Contenido - Adjusted for sidebar */}
+          <FavoritesProvider>
+            <main id="contenido" className="min-h-[70vh] animate-fade-in transition-all duration-300" style={{ marginLeft: 'var(--sidebar-width, 0px)' }}>
+              {children}
+            </main>
+          </FavoritesProvider>
+        </SidebarProvider>
 
         {/* Footer con nuevo componente */}
         <Footer />
+
+        {/* Cookie Banner */}
+        <CookieBanner />
 
         {/* CSRF Token Initialization */}
         <CsrfInitializer />

@@ -4,6 +4,7 @@
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import FavoriteButton from './FavoriteButton';
+import { useEngagement } from '@/lib/useEngagement';
 
 type Props = {
   id: string;
@@ -12,13 +13,22 @@ type Props = {
   difficulty: number | null;
   summary?: string | null;
   createdAt?: string;
+  // Engagement tracking (opcional)
+  engagementSource?: 'recommendation' | 'search' | 'browse' | 'trending' | 'challenge';
+  recommendationGroup?: 'specialty' | 'review' | 'challenge' | 'trending';
 };
 
 export default function CaseCard({
-
-  id, title, area, difficulty, summary, createdAt,
-
+  id, 
+  title, 
+  area, 
+  difficulty, 
+  summary, 
+  createdAt,
+  engagementSource,
+  recommendationGroup,
 }: Props) {
+  const { trackRecommendationClick } = useEngagement();
   // Progreso local (no rompe si no existe)
   const [progress, setProgress] = useState<number | null>(null);
   const [total, setTotal] = useState<number | null>(null);
@@ -145,6 +155,12 @@ export default function CaseCard({
       <Link 
         href={`/casos/${id}`} 
         className="mt-auto btn btn-sm btn-primary w-full text-xs sm:text-sm py-2.5 md:py-2 min-h-touch md:min-h-0 touch-device:active:scale-95 transition-transform"
+        onClick={() => {
+          // Track engagement cuando se hace clic desde recomendaciones
+          if (engagementSource === 'recommendation' && recommendationGroup) {
+            trackRecommendationClick(id, recommendationGroup);
+          }
+        }}
       >
         Resolver caso →
       </Link>
