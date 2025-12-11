@@ -90,8 +90,11 @@ export default function SpecialtySelector({
         throw new Error('Error al guardar tu especialidad');
       }
 
-      // Recargar datos de Clerk
+      // Recargar datos de Clerk y esperar a que se sincronice
       await user?.reload();
+      
+      // Pequeño delay para asegurar que Clerk sincroniza el metadata
+      await new Promise(resolve => setTimeout(resolve, 300));
 
       // Llamar callback si existe
       if (onComplete) {
@@ -105,9 +108,48 @@ export default function SpecialtySelector({
     }
   };
 
-  const handleSkip = () => {
-    if (onSkip) {
-      onSkip();
+  const handleSkip = async () => {
+    // Cuando el usuario omite, guardar "Todas las áreas" para no volver a preguntar
+    setSaving(true);
+    setError('');
+
+    try {
+      const csrfToken = getCsrfTokenFromCookie();
+
+      if (!csrfToken) {
+        setError('Error de seguridad. Por favor recarga la página.');
+        setSaving(false);
+        return;
+      }
+
+      // Guardar "Todas las áreas" como preferencia por defecto
+      const response = await fetch('/api/profile', {
+        method: 'PATCH',
+        headers: { 
+          'Content-Type': 'application/json',
+          'x-csrf-token': csrfToken,
+        },
+        body: JSON.stringify({ specialty: 'Todas las áreas' }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Error al guardar preferencia');
+      }
+
+      // Recargar datos de Clerk
+      await user?.reload();
+
+      if (onSkip) {
+        onSkip();
+      }
+    } catch (err) {
+      console.error('Error skipping onboarding:', err);
+      // Aún así cerramos el modal
+      if (onSkip) {
+        onSkip();
+      }
+    } finally {
+      setSaving(false);
     }
   };
 

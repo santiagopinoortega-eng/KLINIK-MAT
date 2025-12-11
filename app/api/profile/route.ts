@@ -125,7 +125,17 @@ export async function PATCH(req: Request) {
     const client = await clerkClient();
     const clerkUser = await client.users.getUser(userId);
 
-    // Actualizar usuario
+    // Si se está actualizando la especialidad, también guardarla en Clerk metadata
+    if (specialty !== undefined) {
+      await client.users.updateUserMetadata(userId, {
+        unsafeMetadata: {
+          ...clerkUser.unsafeMetadata,
+          specialty: specialty,
+        },
+      });
+    }
+
+    // Actualizar usuario en la base de datos
     const updatedUser = await prisma.user.upsert({
       where: { id: userId },
       update: {

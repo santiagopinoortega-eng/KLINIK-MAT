@@ -2,7 +2,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import FavoriteButton from './FavoriteButton';
 import { useEngagement } from '@/lib/useEngagement';
 
@@ -29,31 +29,6 @@ export default function CaseCard({
   recommendationGroup,
 }: Props) {
   const { trackRecommendationClick } = useEngagement();
-  // Progreso local (no rompe si no existe)
-  const [progress, setProgress] = useState<number | null>(null);
-  const [total, setTotal] = useState<number | null>(null);
-
-  useEffect(() => {
-    try {
-      const raw = localStorage.getItem('km-progress');
-      if (!raw) return;
-      const obj = JSON.parse(raw) ?? {};
-      const data = obj?.[id];
-      if (!data) return;
-
-      // Acepta formas flexibles: { aciertos, total } o array de respuestas
-      if (typeof data === 'object' && 'aciertos' in data && 'total' in data) {
-        setProgress(Number(data.aciertos) || 0);
-        setTotal(Number(data.total) || null);
-      } else if (Array.isArray(data)) {
-        const ok = data.filter((d: any) => d?.ok === true).length;
-        setProgress(ok);
-        setTotal(data.length);
-      }
-    } catch {
-      /* silencio – no rompemos UI */
-    }
-  }, [id]);
 
   const fecha = useMemo(() => {
     if (!createdAt) return '';

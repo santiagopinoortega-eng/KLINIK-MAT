@@ -108,10 +108,13 @@ export default function RecommendedCases({
   };
 
   // Handler para completar onboarding
-  const handleOnboardingComplete = (specialty: string) => {
+  const handleOnboardingComplete = async (specialty: string) => {
     setShowSelector(false);
+    // Esperar un momento para que Clerk sincronice antes de regenerar recomendaciones
+    await new Promise(resolve => setTimeout(resolve, 500));
+    // Forzar recarga del usuario para obtener el metadata actualizado
+    await user?.reload();
     // Las recomendaciones se regenerarán automáticamente por el useEffect
-    // La especialidad ya se guardó en el perfil de Clerk por el SpecialtySelector
   };
 
   const handleSkipOnboarding = () => {

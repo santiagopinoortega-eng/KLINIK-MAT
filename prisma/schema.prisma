@@ -41,6 +41,9 @@ model Case {
   engagementMetrics EngagementMetric[]
   
   @@map("cases")
+  @@index([area, difficulty]) // Optimizar búsquedas por área y dificultad
+  @@index([isPublic, createdAt(sort: Desc)]) // Optimizar lista de casos públicos
+  @@index([area, isPublic]) // Optimizar filtrado de casos por área
 }
 
 model MinsalNorm {
@@ -134,6 +137,8 @@ model User {
   engagementMetrics EngagementMetric[]
   
   @@map("users")
+  @@index([specialty]) // Optimizar búsquedas por especialidad
+  @@index([country]) // Optimizar análisis por país
 }
 
 // Modelo para casos favoritos
