@@ -19,9 +19,10 @@ export default clerkMiddleware(async (auth, req) => {
   // Agregar headers de seguridad y optimización
   const response = NextResponse.next();
   
-  // Security headers
+  // Security headers (compatibles con Clerk/Turnstile)
   response.headers.set('X-Content-Type-Options', 'nosniff');
-  response.headers.set('X-Frame-Options', 'DENY');
+  // X-Frame-Options removido - interfiere con Clerk/Turnstile
+  // En su lugar, usa CSP frame-ancestors en next.config.mjs
   response.headers.set('X-XSS-Protection', '1; mode=block');
   response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
   
