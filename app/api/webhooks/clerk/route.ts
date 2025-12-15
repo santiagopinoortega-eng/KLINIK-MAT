@@ -79,7 +79,7 @@ export async function POST(req: Request) {
           name: `${first_name || ''} ${last_name || ''}`.trim() || null,
           role,
           emailVerified: new Date(), // Clerk already verified
-          // updatedAt se maneja automáticamente por @updatedAt en schema
+          updatedAt: new Date(),
         },
       });
       

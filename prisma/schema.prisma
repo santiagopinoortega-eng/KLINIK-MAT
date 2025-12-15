@@ -120,7 +120,7 @@ model User {
   name            String?
   role            Role              @default(STUDENT)
   createdAt       DateTime          @default(now()) @map("created_at")
-  updatedAt       DateTime          @map("updated_at")
+  updatedAt       DateTime          @updatedAt @map("updated_at")
   emailVerified   DateTime?         @map("email_verified")
   
   // Información demográfica del estudiante
