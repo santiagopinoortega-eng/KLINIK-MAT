@@ -4,7 +4,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { SignInButton, SignUpButton, useUser } from '@clerk/nextjs';
+import { useUser } from '@clerk/nextjs';
 import { Stethoscope, BookOpen, Award, Heart, ArrowRight } from 'lucide-react';
 import RecommendedCases from './components/RecommendedCases';
 import type { CasoClient } from '@/lib/types';
@@ -79,19 +79,15 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row gap-3 justify-center pt-3">
               {!isSignedIn ? (
                 <>
-                  <SignInButton forceRedirectUrl="/areas">
-                    <button className="px-6 py-3 bg-white text-red-600 font-semibold rounded-lg hover:bg-gray-50 transition-all shadow-lg hover:shadow-xl hover:scale-105">
-                      Comenzar ahora →
-                    </button>
-                  </SignInButton>
-                  <SignUpButton forceRedirectUrl="/areas">
-                    <button className="px-6 py-3 bg-white/10 backdrop-blur-md text-white font-semibold rounded-lg border-2 border-white/30 hover:bg-white/20 transition-all">
-                      Registrarse gratis
-                    </button>
-                  </SignUpButton>
+                  <Link href="/login?redirect_url=/areas" className="px-6 py-3 bg-white text-red-600 font-semibold rounded-lg hover:bg-gray-50 transition-all shadow-lg hover:shadow-xl hover:scale-105 text-center">
+                    Comenzar ahora →
+                  </Link>
+                  <Link href="/login?redirect_url=/areas" className="px-6 py-3 bg-white/10 backdrop-blur-md text-white font-semibold rounded-lg border-2 border-white/30 hover:bg-white/20 transition-all text-center">
+                    Registrarse gratis
+                  </Link>
                 </>
               ) : (
-                <Link href="/areas" className="px-6 py-3 bg-white text-red-600 font-semibold rounded-lg hover:bg-gray-50 transition-all shadow-lg hover:shadow-xl hover:scale-105">
+                <Link href="/areas" className="px-6 py-3 bg-white text-red-600 font-semibold rounded-lg hover:bg-gray-50 transition-all shadow-lg hover:shadow-xl hover:scale-105 text-center">
                   Ir a mis áreas →
                 </Link>
               )}
