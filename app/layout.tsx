@@ -125,7 +125,11 @@ export const metadata: Metadata = {
 // Tu componente Layout
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ClerkProvider localization={esES}>
+    <ClerkProvider 
+      localization={esES}
+      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+      frontendApi={process.env.NEXT_PUBLIC_CLERK_FRONTEND_API}
+    >
       <html lang="es" className={`${inter.variable} ${poppins.variable} scroll-smooth`}>
         <head>
           {/* Structured Data para SEO */}
