@@ -17,7 +17,8 @@ const CONNECT_SRC = [
   "'self'",
   'https:',           // permite APIs externas sobre HTTPS (p. ej. Neon)
   'wss:',             // websockets si los usas
-  'https://*.clerk.accounts.dev', // Clerk
+  'https://*.clerk.accounts.dev', // Clerk default
+  'https://*.klinikmat.cl', // Clerk custom domain
 ].join(' ');
 
 const IMG_SRC = [
@@ -26,6 +27,7 @@ const IMG_SRC = [
   'blob:',
   'https:',
   'https://*.clerk.accounts.dev', // Clerk avatars
+  'https://*.klinikmat.cl', // Clerk custom domain
 ].join(' ');
 
 const FONT_SRC = ["'self'", 'https:', 'data:'].join(' ');
@@ -37,6 +39,7 @@ const SCRIPT_SRC_BASE = [
   "'self'", 
   "'unsafe-inline'", 
   'https://*.clerk.accounts.dev',
+  'https://*.klinikmat.cl', // Clerk custom domain
   'https://va.vercel-scripts.com', // Vercel Analytics
 ];
 if (!isProd) {
@@ -45,8 +48,8 @@ if (!isProd) {
 const SCRIPT_SRC = SCRIPT_SRC_BASE.join(' ');
 // --- FIN DEL CAMBIO ---
 
-const STYLE_SRC  = ["'self'", "'unsafe-inline'", 'https://*.clerk.accounts.dev'].join(' ');
-const FRAME_SRC  = ["'self'", 'https://*.clerk.accounts.dev'].join(' ');
+const STYLE_SRC  = ["'self'", "'unsafe-inline'", 'https://*.clerk.accounts.dev', 'https://*.klinikmat.cl'].join(' ');
+const FRAME_SRC  = ["'self'", 'https://*.clerk.accounts.dev', 'https://*.klinikmat.cl'].join(' ');
 const WORKER_SRC = ["'self'", 'blob:'].join(' '); // Clerk workers
 
 // Construimos la CSP en una sola línea (evita saltos que algunos navegadores no aman)
