@@ -1,10 +1,11 @@
 // app/sign-in/[[...sign-in]]/page.tsx
 'use client';
 
+import { Suspense } from 'react';
 import { SignIn } from '@clerk/nextjs';
 import { useSearchParams } from 'next/navigation';
 
-export default function SignInPage() {
+function SignInContent() {
   const searchParams = useSearchParams();
   const redirectUrl = searchParams.get('redirect_url') || '/areas';
   
@@ -24,5 +25,17 @@ export default function SignInPage() {
         />
       </div>
     </div>
+  );
+}
+
+export default function SignInPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-600"></div>
+      </div>
+    }>
+      <SignInContent />
+    </Suspense>
   );
 }
