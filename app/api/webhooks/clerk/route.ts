@@ -53,53 +53,88 @@ export async function POST(req: Request) {
   if (eventType === 'user.created') {
     const { id, email_addresses, first_name, last_name, public_metadata } = evt.data;
     
+    console.log('📥 [WEBHOOK] user.created event received:', { id, email_addresses });
+    
     const primaryEmail = email_addresses.find((e) => e.id === evt.data.primary_email_address_id);
     const email = primaryEmail?.email_address;
 
     if (!email) {
-      console.error('No email found for user:', id);
-      return new Response('Error: No email found', { status: 400 });
+      console.error('❌ [WEBHOOK] No email found for user:', id);
+      return new Response(JSON.stringify({ error: 'No email found' }), { 
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
     }
 
     // Determine role from metadata or default to STUDENT
     const role = (public_metadata as any)?.role || 'STUDENT';
 
     try {
-      await prisma.user.create({
+      console.log('💾 [WEBHOOK] Attempting to create user in DB:', { id, email, role });
+      
+      const newUser = await prisma.user.create({
         data: {
           id,
           email,
           name: `${first_name || ''} ${last_name || ''}`.trim() || null,
           role,
           emailVerified: new Date(), // Clerk already verified
-          updatedAt: new Date(),
+          // updatedAt se maneja automáticamente por @updatedAt en schema
         },
       });
-      console.log('✅ User created in database:', id, email);
+      
+      console.log('✅ [WEBHOOK] User created successfully in database:', { id, email, dbId: newUser.id });
     } catch (error: any) {
-      console.error('Error creating user in database:', error?.message);
+      console.error('❌ [WEBHOOK] Error creating user in database:', {
+        message: error?.message,
+        code: error?.code,
+        meta: error?.meta,
+        stack: error?.stack,
+      });
+      
       // If user already exists, that's okay
-      if (error?.code !== 'P2002') {
-        return new Response('Error: Database error', { status: 500 });
+      if (error?.code === 'P2002') {
+        console.log('⚠️ [WEBHOOK] User already exists (duplicate), skipping:', id);
+        return new Response(JSON.stringify({ message: 'User already exists' }), { 
+          status: 200,
+          headers: { 'Content-Type': 'application/json' }
+        });
       }
+      
+      // Return 500 for real errors so Clerk retries
+      return new Response(JSON.stringify({ 
+        error: 'Database error', 
+        details: error?.message,
+        code: error?.code 
+      }), { 
+        status: 500,
+        headers: { 'Content-Type': 'application/json' }
+      });
     }
   }
 
   if (eventType === 'user.updated') {
     const { id, email_addresses, first_name, last_name, public_metadata } = evt.data;
     
+    console.log('📥 [WEBHOOK] user.updated event received:', { id });
+    
     const primaryEmail = email_addresses.find((e) => e.id === evt.data.primary_email_address_id);
     const email = primaryEmail?.email_address;
 
     if (!email) {
-      console.error('No email found for user:', id);
-      return new Response('Error: No email found', { status: 400 });
+      console.error('❌ [WEBHOOK] No email found for user:', id);
+      return new Response(JSON.stringify({ error: 'No email found' }), { 
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
     }
 
     const role = (public_metadata as any)?.role || 'STUDENT';
 
     try {
-      await prisma.user.update({
+      console.log('💾 [WEBHOOK] Attempting to update user in DB:', { id, email });
+      
+      const updatedUser = await prisma.user.update({
         where: { id },
         data: {
           email,
@@ -107,27 +142,58 @@ export async function POST(req: Request) {
           role,
         },
       });
-      console.log('✅ User updated in database:', id, email);
+      
+      console.log('✅ [WEBHOOK] User updated successfully in database:', { id, email });
     } catch (error: any) {
-      console.error('Error updating user in database:', error?.message);
-      return new Response('Error: Database error', { status: 500 });
+      console.error('❌ [WEBHOOK] Error updating user in database:', {
+        message: error?.message,
+        code: error?.code,
+        meta: error?.meta,
+      });
+      
+      return new Response(JSON.stringify({ 
+        error: 'Database error', 
+        details: error?.message,
+        code: error?.code 
+      }), { 
+        status: 500,
+        headers: { 'Content-Type': 'application/json' }
+      });
     }
   }
 
   if (eventType === 'user.deleted') {
     const { id } = evt.data;
 
+    console.log('📥 [WEBHOOK] user.deleted event received:', { id });
+
     try {
       // Optional: soft delete or hard delete
       await prisma.user.delete({
         where: { id },
       });
-      console.log('✅ User deleted from database:', id);
+      console.log('✅ [WEBHOOK] User deleted from database:', id);
     } catch (error: any) {
-      console.error('Error deleting user from database:', error?.message);
-      return new Response('Error: Database error', { status: 500 });
+      console.error('❌ [WEBHOOK] Error deleting user from database:', {
+        message: error?.message,
+        code: error?.code,
+        meta: error?.meta,
+      });
+      
+      return new Response(JSON.stringify({ 
+        error: 'Database error', 
+        details: error?.message,
+        code: error?.code 
+      }), { 
+        status: 500,
+        headers: { 'Content-Type': 'application/json' }
+      });
     }
   }
 
-  return new Response('', { status: 200 });
+  console.log('✅ [WEBHOOK] Event processed successfully:', eventType);
+  return new Response(JSON.stringify({ success: true, eventType }), { 
+    status: 200,
+    headers: { 'Content-Type': 'application/json' }
+  });
 }

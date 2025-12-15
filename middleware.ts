@@ -10,7 +10,18 @@ const isProtectedRoute = createRouteMatcher([
   '/admin(.*)',
 ]);
 
+// Define rutas públicas que NO deben ser protegidas
+const isPublicRoute = createRouteMatcher([
+  '/api/webhooks(.*)',  // Webhooks de Clerk y otros
+  '/api/health(.*)',    // Health checks
+]);
+
 export default clerkMiddleware(async (auth, req) => {
+  // Permitir rutas públicas sin autenticación
+  if (isPublicRoute(req)) {
+    return NextResponse.next();
+  }
+  
   // Protege rutas que requieren autenticación
   if (isProtectedRoute(req)) {
     await auth.protect();
