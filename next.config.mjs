@@ -19,6 +19,7 @@ const CONNECT_SRC = [
   'wss:',             // websockets si los usas
   'https://*.clerk.accounts.dev', // Clerk default
   'https://*.klinikmat.cl', // Clerk custom domain
+  'https://challenges.cloudflare.com', // Clerk Turnstile CAPTCHA
 ].join(' ');
 
 const IMG_SRC = [
@@ -40,6 +41,7 @@ const SCRIPT_SRC_BASE = [
   "'unsafe-inline'", 
   'https://*.clerk.accounts.dev',
   'https://*.klinikmat.cl', // Clerk custom domain
+  'https://challenges.cloudflare.com', // Clerk Turnstile CAPTCHA
   'https://va.vercel-scripts.com', // Vercel Analytics
 ];
 if (!isProd) {
@@ -49,7 +51,7 @@ const SCRIPT_SRC = SCRIPT_SRC_BASE.join(' ');
 // --- FIN DEL CAMBIO ---
 
 const STYLE_SRC  = ["'self'", "'unsafe-inline'", 'https://*.clerk.accounts.dev', 'https://*.klinikmat.cl'].join(' ');
-const FRAME_SRC  = ["'self'", 'https://*.clerk.accounts.dev', 'https://*.klinikmat.cl'].join(' ');
+const FRAME_SRC  = ["'self'", 'https://*.clerk.accounts.dev', 'https://*.klinikmat.cl', 'https://challenges.cloudflare.com'].join(' ');
 const WORKER_SRC = ["'self'", 'blob:'].join(' '); // Clerk workers
 
 // Construimos la CSP en una sola línea (evita saltos que algunos navegadores no aman)
