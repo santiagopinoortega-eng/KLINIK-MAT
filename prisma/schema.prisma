@@ -8,79 +8,79 @@ datasource db {
 }
 
 model CaseImage {
+  id        String   @id
+  caseId    String
+  url       String
+  alt       String
+  caption   String?
+  order     Int      @default(0)
+  createdAt DateTime @default(now()) @map("created_at")
+  case      Case     @relation(fields: [caseId], references: [id], onDelete: Cascade)
+
+  @@map("case_images")
+}
+
+model Case {
+  id                String             @id
+  title             String
+  area              String
+  difficulty        Int
+  summary           String?
+  isPublic          Boolean            @default(false)
+  vignette          String?
+  createdAt         DateTime           @default(now()) @map("created_at")
+  updatedAt         DateTime           @map("updated_at")
+  dificultad        String?
+  feedbackDinamico  Json?              @map("feedback_dinamico")
+  modulo            String?
+  images            CaseImage[]
+  questions         Question[]
+  norms             MinsalNorm[]       @relation("CaseNorms")
+  results           StudentResult[]
+  favorites         Favorite[]
+  engagementMetrics EngagementMetric[]
+
+  @@index([area, difficulty]) // Optimizar búsquedas por área y dificultad
+  @@index([isPublic, createdAt(sort: Desc)]) // Optimizar lista de casos públicos
+  @@index([area, isPublic]) // Optimizar filtrado de casos por área
+  @@map("cases")
+}
+
+model MinsalNorm {
+  id    String @id
+  name  String
+  code  String @unique
+  cases Case[] @relation("CaseNorms")
+
+  @@map("minsal_norms")
+}
+
+model Option {
   id         String   @id
-  caseId     String
+  text       String
+  isCorrect  Boolean  @default(false)
+  feedback   String?
+  questionId String
+  question   Question @relation(fields: [questionId], references: [id])
+
+  @@map("options")
+}
+
+model QuestionImage {
+  id         String   @id
+  questionId String
   url        String
   alt        String
   caption    String?
   order      Int      @default(0)
   createdAt  DateTime @default(now()) @map("created_at")
-  case       Case     @relation(fields: [caseId], references: [id], onDelete: Cascade)
-  
-  @@map("case_images")
-}
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
 
-model Case {
-  id                String         @id
-  title             String
-  area              String
-  difficulty        Int
-  summary           String?
-  isPublic          Boolean        @default(false)
-  vignette          String?
-  createdAt         DateTime       @default(now()) @map("created_at")
-  updatedAt         DateTime       @map("updated_at")
-  dificultad        String?
-  feedbackDinamico  Json?          @map("feedback_dinamico")
-  modulo            String?
-  images            CaseImage[]
-  questions         Question[]
-  norms             MinsalNorm[]   @relation("CaseNorms")
-  results           StudentResult[]
-  favorites         Favorite[]
-  engagementMetrics EngagementMetric[]
-  
-  @@map("cases")
-  @@index([area, difficulty]) // Optimizar búsquedas por área y dificultad
-  @@index([isPublic, createdAt(sort: Desc)]) // Optimizar lista de casos públicos
-  @@index([area, isPublic]) // Optimizar filtrado de casos por área
-}
-
-model MinsalNorm {
-  id    String  @id
-  name  String
-  code  String  @unique
-  cases Case[]  @relation("CaseNorms")
-  
-  @@map("minsal_norms")
-}
-
-model Option {
-  id         String    @id
-  text       String
-  isCorrect  Boolean   @default(false)
-  feedback   String?
-  questionId String
-  question   Question  @relation(fields: [questionId], references: [id])
-  
-  @@map("options")
-}
-
-model QuestionImage {
-  id         String    @id
-  questionId String
-  url        String
-  alt        String
-  caption    String?
-  order      Int       @default(0)
-  createdAt  DateTime  @default(now()) @map("created_at")
-  question   Question  @relation(fields: [questionId], references: [id], onDelete: Cascade)
-  
   @@map("question_images")
 }
 
 model Question {
-  id              String            @id
+  id              String          @id
   order           Int
   text            String
   caseId          String
@@ -88,8 +88,8 @@ model Question {
   guia            String?
   options         Option[]
   images          QuestionImage[]
-  case            Case              @relation(fields: [caseId], references: [id])
-  
+  case            Case            @relation(fields: [caseId], references: [id])
+
   @@map("questions")
 }
 
@@ -108,52 +108,58 @@ model StudentResult {
   totalPoints Int      @default(100)
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   case        Case     @relation(fields: [caseId], references: [id], onDelete: Cascade)
-  
-  @@map("student_results")
+
   @@index([caseArea])
   @@index([userId, completedAt(sort: Desc)])
+  @@map("student_results")
 }
 
 model User {
-  id              String            @id
-  email           String            @unique
-  name            String?
-  role            Role              @default(STUDENT)
-  createdAt       DateTime          @default(now()) @map("created_at")
-  updatedAt       DateTime          @updatedAt @map("updated_at")
-  emailVerified   DateTime?         @map("email_verified")
-  
+  id            String    @id
+  email         String    @unique
+  name          String?
+  role          Role      @default(STUDENT)
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+  emailVerified DateTime? @map("email_verified")
+
   // Información demográfica del estudiante
-  country         String?           // País (ej: "Chile", "Argentina", "México")
-  university      String?           // Universidad (ej: "Universidad de Chile")
-  yearOfStudy     Int?              @map("year_of_study") // Año de carrera (1-7)
-  specialty       String?           // Especialidad de interés (opcional)
-  bio             String?           // Biografía corta del estudiante
-  avatar          String?           // URL del avatar (desde Clerk o custom)
-  
-  results         StudentResult[]
-  favorites       Favorite[]
-  studySessions   StudySession[]
+  country     String? // País (ej: "Chile", "Argentina", "México")
+  university  String? // Universidad (ej: "Universidad de Chile")
+  yearOfStudy Int?    @map("year_of_study") // Año de carrera (1-7)
+  specialty   String? // Especialidad de interés (opcional)
+  bio         String? // Biografía corta del estudiante
+  avatar      String? // URL del avatar (desde Clerk o custom)
+
+  results           StudentResult[]
+  favorites         Favorite[]
+  studySessions     StudySession[]
   engagementMetrics EngagementMetric[]
-  
-  @@map("users")
+
+  // Relaciones de pagos y suscripciones
+  subscriptions Subscription[]
+  payments      Payment[]
+  couponUsages  CouponUsage[]
+  usageRecords  UsageRecord[]
+
   @@index([specialty]) // Optimizar búsquedas por especialidad
   @@index([country]) // Optimizar análisis por país
+  @@map("users")
 }
 
 // Modelo para casos favoritos
 model Favorite {
-  id         String   @id @default(cuid())
-  userId     String
-  caseId     String
-  createdAt  DateTime @default(now()) @map("created_at")
-  
-  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  case       Case     @relation(fields: [caseId], references: [id], onDelete: Cascade)
-  
+  id        String   @id @default(cuid())
+  userId    String
+  caseId    String
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  case Case @relation(fields: [caseId], references: [id], onDelete: Cascade)
+
   @@unique([userId, caseId]) // Un usuario no puede marcar el mismo caso dos veces
-  @@map("favorites")
   @@index([userId])
+  @@map("favorites")
 }
 
 // Modelo para rastrear sesiones de estudio (para racha y tiempo)
@@ -163,31 +169,31 @@ model StudySession {
   date         DateTime @default(now()) // Fecha de la sesión
   casesStudied Int      @default(0) // Casos estudiados en esta sesión
   timeSpent    Int      @default(0) // Tiempo en minutos
-  
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  
-  @@map("study_sessions")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   @@index([userId, date(sort: Desc)])
+  @@map("study_sessions")
 }
 
 // Modelo para métricas de engagement (recomendaciones, clics, tiempo)
 model EngagementMetric {
-  id                   String   @id @default(cuid())
-  userId               String
-  caseId               String
-  source               String   // 'recommendation', 'search', 'browse', 'trending', 'challenge'
-  recommendationGroup  String?  // 'specialty', 'review', 'challenge', 'trending'
-  action               String   // 'view', 'click', 'complete', 'favorite'
-  sessionDuration      Int?     // Tiempo en segundos (si aplica)
-  timestamp            DateTime @default(now())
-  
-  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  case                 Case     @relation(fields: [caseId], references: [id], onDelete: Cascade)
-  
-  @@map("engagement_metrics")
+  id                  String   @id @default(cuid())
+  userId              String
+  caseId              String
+  source              String // 'recommendation', 'search', 'browse', 'trending', 'challenge'
+  recommendationGroup String? // 'specialty', 'review', 'challenge', 'trending'
+  action              String // 'view', 'click', 'complete', 'favorite'
+  sessionDuration     Int? // Tiempo en segundos (si aplica)
+  timestamp           DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  case Case @relation(fields: [caseId], references: [id], onDelete: Cascade)
+
   @@index([userId, timestamp(sort: Desc)])
   @@index([source])
   @@index([recommendationGroup])
+  @@map("engagement_metrics")
 }
 
 enum Role {
@@ -196,3 +202,306 @@ enum Role {
   ADMIN
 }
 
+// ============================================================================
+// SISTEMA DE SUSCRIPCIONES Y PAGOS (MERCADO PAGO)
+// ============================================================================
+
+// Plan de suscripción (ej: Free, Basic, Premium, Enterprise)
+model SubscriptionPlan {
+  id            String        @id @default(cuid())
+  name          String        @unique // "Free", "Basic", "Premium", "Enterprise"
+  displayName   String // "Plan Básico", "Plan Premium"
+  description   String? // Descripción del plan
+  price         Decimal       @db.Decimal(10, 2) // Precio en CLP o USD
+  currency      String        @default("CLP") // "CLP", "USD", "ARS", "MXN"
+  billingPeriod BillingPeriod @default(MONTHLY) // MONTHLY, QUARTERLY, YEARLY
+  trialDays     Int           @default(0) // Días de prueba gratis
+  isActive      Boolean       @default(true) // Plan activo o descontinuado
+
+  // Límites y características del plan
+  features           Json // { "casesPerMonth": 50, "aiEnabled": true, "customReports": false }
+  maxCasesPerMonth   Int? // Límite de casos por mes (null = ilimitado)
+  maxStudents        Int? // Para planes institucionales
+  hasAI              Boolean @default(false) // Acceso a IA
+  hasAdvancedStats   Boolean @default(false) // Estadísticas avanzadas
+  hasPrioritySupport Boolean @default(false) // Soporte prioritario
+
+  // Mercado Pago
+  mpPreapprovalPlanId String? @unique @map("mp_preapproval_plan_id") // ID del plan en MP
+
+  // Timestamps
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // Relaciones
+  subscriptions Subscription[]
+
+  @@index([isActive, price])
+  @@map("subscription_plans")
+}
+
+// Suscripción activa de un usuario
+model Subscription {
+  id     String @id @default(cuid())
+  userId String
+  planId String
+
+  // Estado de la suscripción
+  status            SubscriptionStatus @default(ACTIVE)
+  cancelAtPeriodEnd Boolean            @default(false) // Si se cancelará al final del período
+  canceledAt        DateTime?          @map("canceled_at")
+  cancelReason      String?            @map("cancel_reason")
+
+  // Períodos de suscripción
+  currentPeriodStart DateTime  @map("current_period_start")
+  currentPeriodEnd   DateTime  @map("current_period_end")
+  trialStart         DateTime? @map("trial_start")
+  trialEnd           DateTime? @map("trial_end")
+
+  // Mercado Pago
+  mpPreapprovalId   String?   @unique @map("mp_preapproval_id") // ID de suscripción en MP
+  mpPayerEmail      String?   @map("mp_payer_email")
+  mpPayerId         String?   @map("mp_payer_id")
+  mpStatus          String?   @map("mp_status") // Estado directo de MP
+  mpLastPaymentDate DateTime? @map("mp_last_payment_date")
+
+  // Metadata
+  metadata Json? // Información adicional
+
+  // Timestamps
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // Relaciones
+  user         User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  plan         SubscriptionPlan @relation(fields: [planId], references: [id])
+  payments     Payment[]
+  usageRecords UsageRecord[]
+
+  @@index([userId, status])
+  @@index([status, currentPeriodEnd])
+  @@index([mpPreapprovalId])
+  @@map("subscriptions")
+}
+
+// Registro de pagos (exitosos y fallidos)
+model Payment {
+  id             String  @id @default(cuid())
+  subscriptionId String? // null si es pago único
+  userId         String
+
+  // Información del pago
+  amount        Decimal        @db.Decimal(10, 2)
+  currency      String         @default("CLP")
+  status        PaymentStatus  @default(PENDING)
+  paymentMethod PaymentMethod?
+
+  // Mercado Pago
+  mpPaymentId         String? @unique @map("mp_payment_id") // ID del pago en MP
+  mpPreferenceId      String? @unique @map("mp_preference_id") // ID de preferencia para links de pago
+  mpMerchantOrderId   String? @map("mp_merchant_order_id")
+  mpExternalReference String? @map("mp_external_reference") // Referencia interna
+  mpStatus            String? @map("mp_status") // Estado directo de MP
+  mpStatusDetail      String? @map("mp_status_detail")
+
+  // Información adicional
+  description   String?
+  failureReason String? @map("failure_reason")
+
+  // Fechas importantes
+  paidAt     DateTime? @map("paid_at")
+  refundedAt DateTime? @map("refunded_at")
+
+  // Timestamps
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // Relaciones
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subscription  Subscription?  @relation(fields: [subscriptionId], references: [id], onDelete: SetNull)
+  webhookEvents WebhookEvent[]
+
+  @@index([userId, status])
+  @@index([status, createdAt(sort: Desc)])
+  @@index([mpPaymentId])
+  @@index([mpPreferenceId])
+  @@map("payments")
+}
+
+// Cupones de descuento
+model Coupon {
+  id          String  @id @default(cuid())
+  code        String  @unique // Código del cupón (ej: "PROMO2025")
+  name        String // Nombre descriptivo
+  description String?
+
+  // Tipo de descuento
+  discountType  DiscountType // PERCENTAGE, FIXED_AMOUNT
+  discountValue Decimal      @db.Decimal(10, 2) // 20 (para 20%) o 5000 (para $5000)
+  currency      String?      @default("CLP") // Solo para FIXED_AMOUNT
+
+  // Restricciones
+  maxRedemptions    Int?     @map("max_redemptions") // Usos máximos totales
+  redemptionsCount  Int      @default(0) @map("redemptions_count") // Usos actuales
+  validFrom         DateTime @map("valid_from")
+  validUntil        DateTime @map("valid_until")
+  minPurchaseAmount Decimal? @map("min_purchase_amount") @db.Decimal(10, 2) // Compra mínima
+
+  // Planes aplicables
+  applicablePlans   String[] @map("applicable_plans") // IDs de planes o ["all"]
+  firstPurchaseOnly Boolean  @default(false) @map("first_purchase_only")
+
+  // Estado
+  isActive Boolean @default(true) @map("is_active")
+
+  // Timestamps
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // Relaciones
+  usageRecords CouponUsage[]
+
+  @@index([code, isActive])
+  @@index([validFrom, validUntil])
+  @@map("coupons")
+}
+
+// Registro de uso de cupones
+model CouponUsage {
+  id             String  @id @default(cuid())
+  couponId       String
+  userId         String
+  subscriptionId String?
+
+  // Información del descuento aplicado
+  discountAmount Decimal @map("discount_amount") @db.Decimal(10, 2)
+  originalAmount Decimal @map("original_amount") @db.Decimal(10, 2)
+  finalAmount    Decimal @map("final_amount") @db.Decimal(10, 2)
+
+  // Timestamps
+  usedAt DateTime @default(now()) @map("used_at")
+
+  // Relaciones
+  coupon Coupon @relation(fields: [couponId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([couponId, usedAt(sort: Desc)])
+  @@map("coupon_usage")
+}
+
+// Registro de uso del servicio (para límites de plan)
+model UsageRecord {
+  id             String  @id @default(cuid())
+  userId         String
+  subscriptionId String?
+
+  // Tipo de uso
+  resourceType UsageResourceType // CASE_COMPLETION, AI_REQUEST, EXPORT_REPORT
+  quantity     Int               @default(1)
+
+  // Período de facturación
+  billingPeriodStart DateTime @map("billing_period_start")
+  billingPeriodEnd   DateTime @map("billing_period_end")
+
+  // Metadata
+  metadata Json? // Información adicional del uso
+
+  // Timestamps
+  recordedAt DateTime @default(now()) @map("recorded_at")
+
+  // Relaciones
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subscription Subscription? @relation(fields: [subscriptionId], references: [id], onDelete: SetNull)
+
+  @@index([userId, billingPeriodStart, resourceType])
+  @@index([subscriptionId, resourceType])
+  @@map("usage_records")
+}
+
+// Webhooks de Mercado Pago (auditoría completa)
+model WebhookEvent {
+  id String @id @default(cuid())
+
+  // Información del evento
+  eventType String @map("event_type") // "payment", "subscription", etc.
+  action    String // "created", "updated", "payment.created", etc.
+
+  // Mercado Pago IDs
+  mpId     String? @map("mp_id") // ID del recurso en MP
+  mpUserId String? @map("mp_user_id")
+
+  // Payload completo
+  payload Json // Payload completo del webhook
+
+  // Procesamiento
+  processed       Boolean   @default(false)
+  processedAt     DateTime? @map("processed_at")
+  processingError String?   @map("processing_error")
+  retryCount      Int       @default(0) @map("retry_count")
+
+  // Relaciones opcionales
+  paymentId String?
+  payment   Payment? @relation(fields: [paymentId], references: [id], onDelete: SetNull)
+
+  // Timestamps
+  receivedAt DateTime @default(now()) @map("received_at")
+
+  @@index([eventType, action])
+  @@index([processed, receivedAt(sort: Asc)])
+  @@index([mpId])
+  @@map("webhook_events")
+}
+
+// ============================================================================
+// ENUMS PARA EL SISTEMA DE PAGOS
+// ============================================================================
+
+enum BillingPeriod {
+  MONTHLY
+  QUARTERLY
+  YEARLY
+}
+
+enum SubscriptionStatus {
+  ACTIVE // Suscripción activa
+  TRIALING // En período de prueba
+  PAST_DUE // Pago vencido
+  CANCELED // Cancelada por el usuario
+  EXPIRED // Expirada (fin de período sin renovación)
+  SUSPENDED // Suspendida por admin
+  PAUSED // Pausada temporalmente
+}
+
+enum PaymentStatus {
+  PENDING // Pendiente de pago
+  PROCESSING // Procesando
+  APPROVED // Aprobado
+  AUTHORIZED // Autorizado (para captura posterior)
+  IN_MEDIATION // En mediación
+  REJECTED // Rechazado
+  CANCELLED // Cancelado
+  REFUNDED // Reembolsado
+  CHARGED_BACK // Contracargo
+}
+
+enum PaymentMethod {
+  CREDIT_CARD
+  DEBIT_CARD
+  BANK_TRANSFER
+  CASH // Efectivo (PagoFacil, Rapipago, etc.)
+  DIGITAL_WALLET // Mercado Pago, etc.
+  OTHER
+}
+
+enum DiscountType {
+  PERCENTAGE // Descuento porcentual (ej: 20%)
+  FIXED_AMOUNT // Monto fijo (ej: $5000)
+}
+
+enum UsageResourceType {
+  CASE_COMPLETION // Caso clínico completado
+  AI_REQUEST // Solicitud de IA
+  EXPORT_REPORT // Exportación de reporte
+  CUSTOM_CASE // Caso personalizado creado
+}
