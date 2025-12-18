@@ -29,7 +29,8 @@ export default function PricingPage() {
     fetch('/api/subscription/plans')
       .then((res) => res.json())
       .then((data) => {
-        setPlans(data);
+        // El endpoint devuelve { success: true, plans: [...] }
+        setPlans(data.plans || []);
         setLoading(false);
       })
       .catch((error) => {
