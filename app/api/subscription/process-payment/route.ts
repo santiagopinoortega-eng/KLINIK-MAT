@@ -34,6 +34,10 @@ export async function POST(req: Request) {
 
     const finalPrice = Number(plan.price);
 
+    // En TEST, usar email del comprador de prueba MP
+    const isTestMode = process.env.MERCADOPAGO_ACCESS_TOKEN?.startsWith('TEST-');
+    const payerEmail = isTestMode ? 'TESTUSER503198759396796542@testuser.com' : user.email;
+
     // Crear pago con Mercado Pago
     const payment = await paymentClient.create({
       body: {
@@ -44,7 +48,7 @@ export async function POST(req: Request) {
         transaction_amount: finalPrice,
         description: plan.displayName,
         payer: {
-          email: user.email,
+          email: payerEmail,
         },
         external_reference: `SUB_${userId}_${planId}_${Date.now()}`,
         metadata: {
