@@ -24,6 +24,8 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { planId, couponCode } = body;
 
+    console.log('🔍 [CREATE-PAYMENT] Request data:', { userId, planId, couponCode });
+
     if (!planId) {
       return NextResponse.json(
         { error: 'Plan ID is required' },
@@ -37,6 +39,8 @@ export async function POST(req: NextRequest) {
       planId,
       couponCode
     );
+    
+    console.log('✅ [CREATE-PAYMENT] Payment created successfully:', paymentData.preferenceId);
 
     return NextResponse.json({
       success: true,

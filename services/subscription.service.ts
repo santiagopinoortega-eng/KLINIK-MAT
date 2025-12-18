@@ -163,10 +163,16 @@ export class SubscriptionService {
     planId: string,
     couponCode?: string
   ) {
+    console.log('🔍 [SUBSCRIPTION-SERVICE] Looking for user:', userId);
     const user = await prisma.user.findUnique({ where: { id: userId } });
+    console.log('👤 [SUBSCRIPTION-SERVICE] User found:', user ? `${user.email} (${user.id})` : 'NOT FOUND');
+    
+    console.log('🔍 [SUBSCRIPTION-SERVICE] Looking for plan:', planId);
     const plan = await prisma.subscriptionPlan.findUnique({ where: { id: planId } });
+    console.log('📦 [SUBSCRIPTION-SERVICE] Plan found:', plan ? `${plan.displayName} (${plan.id})` : 'NOT FOUND');
 
     if (!user || !plan) {
+      console.error('❌ [SUBSCRIPTION-SERVICE] Missing:', { userFound: !!user, planFound: !!plan });
       throw new Error('User or plan not found');
     }
 
