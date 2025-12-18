@@ -236,7 +236,19 @@ export class SubscriptionService {
           ],
           payer: {
             email: user.email,
-            name: user.name || undefined,
+            name: user.name || 'Usuario KlinikMat',
+            identification: {
+              type: 'RUT',
+              number: '11111111-1', // RUT genérico para testing
+            },
+            address: {
+              zip_code: '8320000',
+              street_name: 'Santiago',
+            },
+          },
+          payment_methods: {
+            excluded_payment_types: [],
+            installments: 1,
           },
           external_reference: externalReference,
           notification_url: MERCADOPAGO_URLS.webhook,
@@ -256,8 +268,18 @@ export class SubscriptionService {
         },
       });
 
-      return {
+      console.log('✅ [MP] Preference created:', {
+        id: preference.id,
         initPoint: preference.init_point,
+        sandboxInitPoint: preference.sandbox_init_point,
+        status: preference.status,
+      });
+
+      // Usar sandbox_init_point en TEST, init_point en producción
+      const initPoint = preference.sandbox_init_point || preference.init_point;
+
+      return {
+        initPoint,
         preferenceId: preference.id,
         externalReference,
       };
