@@ -7,15 +7,15 @@ import { useRouter } from 'next/navigation';
 interface Plan {
   id: string;
   name: string;
-  slug: string;
+  displayName: string;
   price: string;
-  interval: string;
+  billingPeriod: string;
   description: string;
   features: Record<string, boolean>;
-  maxCases: number | null;
-  maxAIRequests: number | null;
+  maxCasesPerMonth: number | null;
+  hasAI: boolean;
   trialDays: number;
-  active: boolean;
+  isActive: boolean;
 }
 
 export default function PricingPage() {
@@ -42,19 +42,19 @@ export default function PricingPage() {
       });
   }, []);
 
-  const handleSubscribe = async (planSlug: string) => {
+  const handleSubscribe = async (planName: string) => {
     if (!isLoaded || !userId) {
       router.push('/login');
       return;
     }
 
-    setProcessingPlan(planSlug);
+    setProcessingPlan(planName);
 
     try {
       const response = await fetch('/api/subscription/create-payment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ planSlug }),
+        body: JSON.stringify({ planSlug: planName }),
       });
 
       if (!response.ok) {
@@ -87,27 +87,22 @@ export default function PricingPage() {
   const getFeatureList = (plan: Plan) => {
     const features = [];
     
-    if (plan.maxCases === null) {
+    if (plan.maxCasesPerMonth === null || plan.maxCasesPerMonth < 0) {
       features.push('Casos clínicos ilimitados');
     } else {
-      features.push(`${plan.maxCases} casos clínicos por mes`);
+      features.push(`${plan.maxCasesPerMonth} casos clínicos por mes`);
     }
 
-    if (plan.maxAIRequests === null) {
-      features.push('Consultas IA ilimitadas');
-    } else if (plan.maxAIRequests > 0) {
-      features.push(`${plan.maxAIRequests} consultas IA por mes`);
+    if (plan.hasAI) {
+      features.push('Asistente IA incluido');
     } else {
       features.push('Sin acceso a IA');
     }
 
-    if (plan.features.progress_tracking) {
-      features.push('Seguimiento de progreso');
+    if (plan.hasAdvancedStats) {
+      features.push('Estadísticas avanzadas');
     }
-    if (plan.features.advanced_analytics) {
-      features.push('Análisis avanzados');
-    }
-    if (plan.features.priority_support) {
+    if (plan.hasPrioritySupport) {
       features.push('Soporte prioritario');
     }
 
@@ -119,7 +114,7 @@ export default function PricingPage() {
   };
 
   const getSavings = (plan: Plan) => {
-    if (plan.interval === 'year' && plan.slug.includes('yearly')) {
+    if (plan.billingPeriod === 'YEARLY') {
       return '15% de descuento';
     }
     return null;
@@ -133,8 +128,8 @@ export default function PricingPage() {
     );
   }
 
-  const monthlyPlans = plans.filter((p) => p.interval === 'month');
-  const yearlyPlans = plans.filter((p) => p.interval === 'year');
+  const monthlyPlans = plans.filter((p) => p.billingPeriod === 'MONTHLY');
+  const yearlyPlans = plans.filter((p) => p.billingPeriod === 'YEARLY');
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#F5E6D3] to-[#E8D4BF] py-12 px-4 sm:px-6 lg:px-8">
@@ -164,7 +159,7 @@ export default function PricingPage() {
                     : ''
                 }`}
               >
-                {plan.slug === 'premium' && (
+                {plan.name === 'PREMIUM' && (
                   <div className="absolute top-0 right-0 bg-[#D2691E] text-white px-4 py-1 rounded-bl-lg rounded-tr-lg font-semibold">
                     Recomendado
                   </div>
@@ -172,7 +167,7 @@ export default function PricingPage() {
 
                 <div className="text-center mb-6">
                   <h3 className="text-2xl font-bold text-[#8B4513] mb-2">
-                    {plan.name}
+                    {plan.displayName}
                   </h3>
                   <div className="text-4xl font-bold text-[#D2691E] mb-2">
                     {formatPrice(plan.price)}
@@ -190,23 +185,23 @@ export default function PricingPage() {
                 </ul>
 
                 <button
-                  onClick={() => handleSubscribe(plan.slug)}
-                  disabled={processingPlan === plan.slug}
+                  onClick={() => handleSubscribe(plan.name)}
+                  disabled={processingPlan === plan.name}
                   className={`w-full py-3 px-6 rounded-lg font-semibold text-white transition-all ${
-                    plan.slug === 'free'
+                    plan.name === 'FREE'
                       ? 'bg-gray-500 hover:bg-gray-600'
-                      : plan.slug === 'premium'
+                      : plan.name === 'PREMIUM'
                       ? 'bg-[#D2691E] hover:bg-[#B8621E]'
                       : 'bg-[#A0522D] hover:bg-[#8B4513]'
                   } ${
-                    processingPlan === plan.slug
+                    processingPlan === plan.name
                       ? 'opacity-50 cursor-not-allowed'
                       : ''
                   }`}
                 >
-                  {processingPlan === plan.slug
+                  {processingPlan === plan.name
                     ? 'Procesando...'
-                    : plan.slug === 'free'
+                    : plan.name === 'FREE'
                     ? 'Plan Actual'
                     : 'Suscribirse'}
                 </button>
@@ -232,7 +227,7 @@ export default function PricingPage() {
                 >
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-2xl font-bold text-[#8B4513]">
-                      {plan.name}
+                      {plan.displayName}
                     </h3>
                     <div className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">
                       {getSavings(plan)}
@@ -259,15 +254,15 @@ export default function PricingPage() {
                   </ul>
 
                   <button
-                    onClick={() => handleSubscribe(plan.slug)}
-                    disabled={processingPlan === plan.slug}
+                    onClick={() => handleSubscribe(plan.name)}
+                    disabled={processingPlan === plan.name}
                     className={`w-full py-3 px-6 rounded-lg font-semibold text-white transition-all bg-green-600 hover:bg-green-700 ${
-                      processingPlan === plan.slug
+                      processingPlan === plan.name
                         ? 'opacity-50 cursor-not-allowed'
                         : ''
                     }`}
                   >
-                    {processingPlan === plan.slug
+                    {processingPlan === plan.name
                       ? 'Procesando...'
                       : 'Suscribirse Anual'}
                   </button>
