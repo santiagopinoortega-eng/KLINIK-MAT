@@ -34,9 +34,14 @@ export async function POST(req: Request) {
 
     const finalPrice = Number(plan.price);
 
-    // En TEST, usar email del comprador de prueba MP
+    // En TEST, generar email aleatorio para evitar conflicto vendedor=comprador
     const isTestMode = process.env.MERCADOPAGO_ACCESS_TOKEN?.startsWith('TEST-');
-    const payerEmail = isTestMode ? 'test_user_3077235175@testuser.com' : user.email;
+    const randomID = Math.floor(Math.random() * 10000000);
+    const payerEmail = isTestMode 
+      ? `cliente_prueba_${randomID}@testuser.com` 
+      : user.email;
+
+    console.log('💳 [PROCESS-PAYMENT] Email del payer:', payerEmail);
 
     // Crear pago con Mercado Pago
     const payment = await paymentClient.create({
