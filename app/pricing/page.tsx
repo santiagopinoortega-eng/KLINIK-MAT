@@ -156,7 +156,7 @@ export default function PricingPage() {
               <div
                 key={plan.id}
                 className={`bg-white rounded-lg shadow-xl p-8 relative ${
-                  plan.slug === 'premium'
+                  plan.name === 'PREMIUM'
                     ? 'ring-4 ring-[#D2691E] transform scale-105'
                     : ''
                 }`}
