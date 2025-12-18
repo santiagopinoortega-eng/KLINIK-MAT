@@ -222,7 +222,12 @@ export class SubscriptionService {
       }
 
       // Para pagos únicos (anual o sin plan recurrente)
-      // Configuración MINIMA para testing con binary_mode
+      // En TEST, usar email y RUT de prueba para evitar conflicto vendedor=comprador
+      const isTestMode = process.env.MERCADOPAGO_ACCESS_TOKEN?.startsWith('TEST-');
+      const payerEmail = isTestMode ? 'test_user_klinikmat@testuser.com' : user.email;
+      const payerName = isTestMode ? 'Usuario' : (user.name || 'Usuario KlinikMat');
+      const payerRut = '12345678-9'; // RUT válido genérico
+      
       const preference = await preferenceClient.create({
         body: {
           items: [
@@ -235,7 +240,19 @@ export class SubscriptionService {
             },
           ],
           payer: {
-            email: user.email,
+            email: payerEmail,
+            name: payerName,
+            surname: 'Prueba',
+            identification: {
+              type: 'RUT',
+              number: payerRut,
+            },
+          },
+          payment_methods: {
+            excluded_payment_types: [
+              { id: 'ticket' }, // Excluir pago en efectivo
+            ],
+            installments: 1, // Forzar 1 cuota
           },
           binary_mode: true, // Forzar aprobación/rechazo inmediato
           external_reference: externalReference,
