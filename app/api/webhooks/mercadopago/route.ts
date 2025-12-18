@@ -101,7 +101,7 @@ export async function POST(req: NextRequest) {
       data: {
         processed: true,
         processedAt: new Date(),
-        paymentId: result?.paymentId,
+        paymentId: result && 'paymentId' in result ? result.paymentId : null,
       },
     });
 
