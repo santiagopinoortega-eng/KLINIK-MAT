@@ -81,7 +81,7 @@ export async function POST(req: Request) {
           subscriptionId: subscription.id,
           amount: finalPrice.toString(),
           currency: plan.currency,
-          status: 'COMPLETED',
+          status: 'APPROVED',
           provider: 'MERCADOPAGO',
           providerPaymentId: payment.id?.toString() || '',
           metadata: {
