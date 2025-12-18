@@ -79,15 +79,15 @@ export async function POST(req: Request) {
       await prisma.payment.create({
         data: {
           subscriptionId: subscription.id,
+          userId: user.id,
           amount: finalPrice.toString(),
           currency: plan.currency,
           status: 'APPROVED',
-          provider: 'MERCADOPAGO',
-          providerPaymentId: payment.id?.toString() || '',
-          metadata: {
-            paymentMethodId,
-            statusDetail: payment.status_detail,
-          },
+          mpPaymentId: payment.id?.toString() || '',
+          mpStatus: payment.status,
+          mpStatusDetail: payment.status_detail,
+          description: plan.displayName,
+          paidAt: new Date(),
         },
       });
 
