@@ -272,7 +272,6 @@ export class SubscriptionService {
         id: preference.id,
         initPoint: preference.init_point,
         sandboxInitPoint: preference.sandbox_init_point,
-        status: preference.status,
       });
 
       // Usar sandbox_init_point en TEST, init_point en producción
