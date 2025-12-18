@@ -44,19 +44,19 @@ export default function PricingPage() {
       });
   }, []);
 
-  const handleSubscribe = async (planName: string) => {
+  const handleSubscribe = async (planId: string) => {
     if (!isLoaded || !userId) {
       router.push('/login');
       return;
     }
 
-    setProcessingPlan(planName);
+    setProcessingPlan(planId);
 
     try {
       const response = await fetch('/api/subscription/create-payment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ planSlug: planName }),
+        body: JSON.stringify({ planId }),
       });
 
       if (!response.ok) {
@@ -187,8 +187,8 @@ export default function PricingPage() {
                 </ul>
 
                 <button
-                  onClick={() => handleSubscribe(plan.name)}
-                  disabled={processingPlan === plan.name}
+                  onClick={() => handleSubscribe(plan.id)}
+                  disabled={processingPlan === plan.id}
                   className={`w-full py-3 px-6 rounded-lg font-semibold text-white transition-all ${
                     plan.name === 'FREE'
                       ? 'bg-gray-500 hover:bg-gray-600'
@@ -196,12 +196,12 @@ export default function PricingPage() {
                       ? 'bg-[#D2691E] hover:bg-[#B8621E]'
                       : 'bg-[#A0522D] hover:bg-[#8B4513]'
                   } ${
-                    processingPlan === plan.name
+                    processingPlan === plan.id
                       ? 'opacity-50 cursor-not-allowed'
                       : ''
                   }`}
                 >
-                  {processingPlan === plan.name
+                  {processingPlan === plan.id
                     ? 'Procesando...'
                     : plan.name === 'FREE'
                     ? 'Plan Actual'
@@ -256,15 +256,15 @@ export default function PricingPage() {
                   </ul>
 
                   <button
-                    onClick={() => handleSubscribe(plan.name)}
-                    disabled={processingPlan === plan.name}
+                    onClick={() => handleSubscribe(plan.id)}
+                    disabled={processingPlan === plan.id}
                     className={`w-full py-3 px-6 rounded-lg font-semibold text-white transition-all bg-green-600 hover:bg-green-700 ${
-                      processingPlan === plan.name
+                      processingPlan === plan.id
                         ? 'opacity-50 cursor-not-allowed'
                         : ''
                     }`}
                   >
-                    {processingPlan === plan.name
+                    {processingPlan === plan.id
                       ? 'Procesando...'
                       : 'Suscribirse Anual'}
                   </button>
