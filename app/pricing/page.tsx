@@ -14,6 +14,8 @@ interface Plan {
   features: Record<string, boolean>;
   maxCasesPerMonth: number | null;
   hasAI: boolean;
+  hasAdvancedStats: boolean;
+  hasPrioritySupport: boolean;
   trialDays: number;
   isActive: boolean;
 }
