@@ -227,6 +227,7 @@ export class SubscriptionService {
         body: {
           items: [
             {
+              id: plan.id,
               title: plan.displayName,
               quantity: 1,
               unit_price: finalPrice,
