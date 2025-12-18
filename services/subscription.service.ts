@@ -49,7 +49,8 @@ export class SubscriptionService {
       const freePlan = await prisma.subscriptionPlan.findUnique({
         where: { name: 'FREE' },
       });
-      return freePlan?.features?.[feature] === true;
+      const features = freePlan?.features as Record<string, unknown> | null;
+      return features?.[feature] === true;
     }
 
     // Verificar si está en trial y no ha expirado
@@ -61,7 +62,8 @@ export class SubscriptionService {
       }
     }
 
-    return subscription.plan.features?.[feature] === true;
+    const features = subscription.plan.features as Record<string, unknown> | null;
+    return features?.[feature] === true;
   }
 
   /**
