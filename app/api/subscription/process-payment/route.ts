@@ -36,7 +36,7 @@ export async function POST(req: Request) {
 
     // En TEST, usar email del comprador de prueba MP
     const isTestMode = process.env.MERCADOPAGO_ACCESS_TOKEN?.startsWith('TEST-');
-    const payerEmail = isTestMode ? 'TESTUSER503198759396796542@testuser.com' : user.email;
+    const payerEmail = isTestMode ? 'test_user_3077235175@testuser.com' : user.email;
 
     // Crear pago con Mercado Pago
     const payment = await paymentClient.create({

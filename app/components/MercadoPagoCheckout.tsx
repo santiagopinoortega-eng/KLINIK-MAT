@@ -81,7 +81,7 @@ export default function MercadoPagoCheckout({
         initialization: {
           amount: Number(amount), // Asegurar que sea número
           payer: {
-            email: 'TESTUSER503198759396796542@testuser.com', // Usuario comprador de prueba MP
+            email: 'test_user_3077235175@testuser.com', // Usuario comprador de prueba MP
           },
         },
         customization: {
