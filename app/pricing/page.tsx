@@ -68,6 +68,9 @@ export default function PricingPage() {
 
       const { initPoint } = await response.json();
       
+      console.log('🔗 Init Point recibido:', initPoint);
+      console.log('🌐 Tipo de URL:', initPoint.includes('sandbox') ? 'SANDBOX (TEST)' : 'PRODUCCIÓN');
+      
       // Redirigir a Mercado Pago
       window.location.href = initPoint;
     } catch (error) {

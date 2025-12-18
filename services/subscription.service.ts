@@ -222,13 +222,12 @@ export class SubscriptionService {
       }
 
       // Para pagos únicos (anual o sin plan recurrente)
+      // Configuración MINIMA para testing
       const preference = await preferenceClient.create({
         body: {
           items: [
             {
-              id: plan.id,
               title: plan.displayName,
-              description: plan.description || undefined,
               quantity: 1,
               unit_price: finalPrice,
               currency_id: plan.currency,
@@ -236,35 +235,14 @@ export class SubscriptionService {
           ],
           payer: {
             email: user.email,
-            name: user.name || 'Usuario KlinikMat',
-            identification: {
-              type: 'RUT',
-              number: '11111111-1', // RUT genérico para testing
-            },
-            address: {
-              zip_code: '8320000',
-              street_name: 'Santiago',
-            },
-          },
-          payment_methods: {
-            excluded_payment_types: [],
-            installments: 1,
           },
           external_reference: externalReference,
-          notification_url: MERCADOPAGO_URLS.webhook,
           back_urls: {
             success: MERCADOPAGO_URLS.success,
             failure: MERCADOPAGO_URLS.failure,
             pending: MERCADOPAGO_URLS.pending,
           },
           auto_return: 'approved',
-          statement_descriptor: 'KLINIKMAT',
-          metadata: {
-            user_id: userId,
-            plan_id: planId,
-            coupon_code: couponCode,
-            discount_amount: discount,
-          },
         },
       });
 
