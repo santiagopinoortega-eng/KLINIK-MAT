@@ -22,6 +22,8 @@ const CONNECT_SRC = [
   'https://challenges.cloudflare.com', // Clerk Turnstile CAPTCHA
   'https://api.mercadopago.com', // Mercado Pago API
   'https://*.mercadopago.com', // Mercado Pago services
+  'https://*.mercadolibre.com', // Mercado Libre services
+  'https://*.mlstatic.com', // Mercado Libre CDN
 ].join(' ');
 
 const IMG_SRC = [
@@ -47,6 +49,8 @@ const SCRIPT_SRC_BASE = [
   'https://va.vercel-scripts.com', // Vercel Analytics
   'https://sdk.mercadopago.com', // Mercado Pago SDK
   'https://secure.mlstatic.com', // Mercado Pago assets
+  'https://http2.mlstatic.com', // Mercado Pago Bricks components
+  'https://*.mercadolibre.com', // Mercado Libre services
 ];
 if (!isProd) {
   SCRIPT_SRC_BASE.push("'unsafe-eval'");
@@ -54,8 +58,8 @@ if (!isProd) {
 const SCRIPT_SRC = SCRIPT_SRC_BASE.join(' ');
 // --- FIN DEL CAMBIO ---
 
-const STYLE_SRC  = ["'self'", "'unsafe-inline'", 'https://*.clerk.accounts.dev', 'https://*.klinikmat.cl'].join(' ');
-const FRAME_SRC  = ["'self'", 'https://*.clerk.accounts.dev', 'https://*.klinikmat.cl', 'https://challenges.cloudflare.com'].join(' ');
+const STYLE_SRC  = ["'self'", "'unsafe-inline'", 'https://*.clerk.accounts.dev', 'https://*.klinikmat.cl', 'https://*.mlstatic.com'].join(' ');
+const FRAME_SRC  = ["'self'", 'https://*.clerk.accounts.dev', 'https://*.klinikmat.cl', 'https://challenges.cloudflare.com', 'https://*.mercadopago.com', 'https://*.mercadolibre.com', 'https://*.mlstatic.com'].join(' ');
 const WORKER_SRC = ["'self'", 'blob:'].join(' '); // Clerk workers
 
 // Construimos la CSP en una sola línea (evita saltos que algunos navegadores no aman)
