@@ -86,6 +86,7 @@ export default function MercadoPagoCheckout({
         },
         customization: {
           paymentMethods: {
+            minInstallments: 1,
             maxInstallments: 1,
           },
           visual: {
