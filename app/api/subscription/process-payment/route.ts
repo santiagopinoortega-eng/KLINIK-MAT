@@ -38,7 +38,7 @@ export async function POST(req: Request) {
     const isTestMode = process.env.MERCADOPAGO_ACCESS_TOKEN?.startsWith('TEST-');
     const randomID = Math.floor(Math.random() * 10000000);
     const payerEmail = isTestMode 
-      ? `cliente_prueba_${randomID}@testuser.com` 
+      ? `cliente${randomID}@example.com` 
       : user.email;
 
     console.log('💳 [PROCESS-PAYMENT] Email del payer:', payerEmail);
@@ -54,6 +54,10 @@ export async function POST(req: Request) {
         description: plan.displayName,
         payer: {
           email: payerEmail,
+          identification: {
+            type: 'RUT',
+            number: '11111111-1', // RUT válido para test en Chile
+          },
         },
         external_reference: `SUB_${userId}_${planId}_${Date.now()}`,
         metadata: {
