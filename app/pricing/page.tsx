@@ -29,12 +29,15 @@ export default function PricingPage() {
     fetch('/api/subscription/plans')
       .then((res) => res.json())
       .then((data) => {
+        console.log('📦 Plans data received:', data);
         // El endpoint devuelve { success: true, plans: [...] }
-        setPlans(data.plans || []);
+        const plansList = data.plans || [];
+        console.log('📋 Plans array:', plansList, 'Length:', plansList.length);
+        setPlans(plansList);
         setLoading(false);
       })
       .catch((error) => {
-        console.error('Error loading plans:', error);
+        console.error('❌ Error loading plans:', error);
         setLoading(false);
       });
   }, []);
