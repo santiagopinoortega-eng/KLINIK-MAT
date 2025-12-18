@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
+import MercadoPagoCheckout from '../components/MercadoPagoCheckout';
 
 interface Plan {
   id: string;
@@ -26,6 +27,7 @@ export default function PricingPage() {
   const [plans, setPlans] = useState<Plan[]>([]);
   const [loading, setLoading] = useState(true);
   const [processingPlan, setProcessingPlan] = useState<string | null>(null);
+  const [checkoutPlan, setCheckoutPlan] = useState<Plan | null>(null);
 
   useEffect(() => {
     fetch('/api/subscription/plans')
@@ -44,40 +46,28 @@ export default function PricingPage() {
       });
   }, []);
 
-  const handleSubscribe = async (planId: string) => {
+  const handleSubscribe = (planId: string) => {
     if (!isLoaded || !userId) {
       router.push('/login');
       return;
     }
 
-    setProcessingPlan(planId);
+    const plan = plans.find((p) => p.id === planId);
+    if (!plan) return;
 
-    try {
-      const response = await fetch('/api/subscription/create-payment', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ planId }),
-      });
+    setCheckoutPlan(plan);
+  };
 
-      if (!response.ok) {
-        const error = await response.json();
-        alert(`Error: ${error.error || 'No se pudo crear el pago'}`);
-        setProcessingPlan(null);
-        return;
-      }
+  const handlePaymentSuccess = (paymentId: string) => {
+    console.log('✅ Payment successful:', paymentId);
+    setCheckoutPlan(null);
+    router.push(`/subscription/success?payment_id=${paymentId}`);
+  };
 
-      const { initPoint } = await response.json();
-      
-      console.log('🔗 Init Point recibido:', initPoint);
-      console.log('🌐 Tipo de URL:', initPoint.includes('sandbox') ? 'SANDBOX (TEST)' : 'PRODUCCIÓN');
-      
-      // Redirigir a Mercado Pago
-      window.location.href = initPoint;
-    } catch (error) {
-      console.error('Error creating payment:', error);
-      alert('Error al crear el pago. Intenta nuevamente.');
-      setProcessingPlan(null);
-    }
+  const handlePaymentError = (error: string) => {
+    console.error('❌ Payment error:', error);
+    alert(`Error: ${error}`);
+    setCheckoutPlan(null);
   };
 
   const formatPrice = (price: string) => {
@@ -191,24 +181,15 @@ export default function PricingPage() {
 
                 <button
                   onClick={() => handleSubscribe(plan.id)}
-                  disabled={processingPlan === plan.id}
                   className={`w-full py-3 px-6 rounded-lg font-semibold text-white transition-all ${
                     plan.name === 'FREE'
                       ? 'bg-gray-500 hover:bg-gray-600'
                       : plan.name === 'PREMIUM'
                       ? 'bg-[#D2691E] hover:bg-[#B8621E]'
                       : 'bg-[#A0522D] hover:bg-[#8B4513]'
-                  } ${
-                    processingPlan === plan.id
-                      ? 'opacity-50 cursor-not-allowed'
-                      : ''
                   }`}
                 >
-                  {processingPlan === plan.id
-                    ? 'Procesando...'
-                    : plan.name === 'FREE'
-                    ? 'Plan Actual'
-                    : 'Suscribirse'}
+                  {plan.name === 'FREE' ? 'Plan Actual' : 'Suscribirse'}
                 </button>
               </div>
             ))}
@@ -260,16 +241,9 @@ export default function PricingPage() {
 
                   <button
                     onClick={() => handleSubscribe(plan.id)}
-                    disabled={processingPlan === plan.id}
-                    className={`w-full py-3 px-6 rounded-lg font-semibold text-white transition-all bg-green-600 hover:bg-green-700 ${
-                      processingPlan === plan.id
-                        ? 'opacity-50 cursor-not-allowed'
-                        : ''
-                    }`}
+                    className="w-full py-3 px-6 rounded-lg font-semibold text-white transition-all bg-green-600 hover:bg-green-700"
                   >
-                    {processingPlan === plan.id
-                      ? 'Procesando...'
-                      : 'Suscribirse Anual'}
+                    Suscribirse Anual
                   </button>
                 </div>
               ))}
@@ -306,6 +280,18 @@ export default function PricingPage() {
             </div>
           </div>
         </div>
+
+        {/* Checkout Modal */}
+        {checkoutPlan && (
+          <MercadoPagoCheckout
+            planId={checkoutPlan.id}
+            planName={checkoutPlan.displayName}
+            amount={parseFloat(checkoutPlan.price)}
+            onSuccess={handlePaymentSuccess}
+            onError={handlePaymentError}
+            onClose={() => setCheckoutPlan(null)}
+          />
+        )}
       </div>
     </div>
   );
