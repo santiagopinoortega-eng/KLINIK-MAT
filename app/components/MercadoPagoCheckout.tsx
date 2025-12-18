@@ -44,8 +44,11 @@ export default function MercadoPagoCheckout({
   const initializeMercadoPago = async () => {
     try {
       const publicKey = process.env.NEXT_PUBLIC_MERCADOPAGO_PUBLIC_KEY;
+      
+      console.log('🔑 Public Key disponible:', publicKey ? 'SÍ' : 'NO');
+      
       if (!publicKey) {
-        throw new Error('Missing Mercado Pago public key');
+        throw new Error('Missing NEXT_PUBLIC_MERCADOPAGO_PUBLIC_KEY in environment');
       }
 
       const mp = new window.MercadoPago(publicKey, {
