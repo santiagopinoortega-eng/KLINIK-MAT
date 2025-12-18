@@ -20,6 +20,8 @@ const CONNECT_SRC = [
   'https://*.clerk.accounts.dev', // Clerk default
   'https://*.klinikmat.cl', // Clerk custom domain
   'https://challenges.cloudflare.com', // Clerk Turnstile CAPTCHA
+  'https://api.mercadopago.com', // Mercado Pago API
+  'https://*.mercadopago.com', // Mercado Pago services
 ].join(' ');
 
 const IMG_SRC = [
@@ -43,6 +45,8 @@ const SCRIPT_SRC_BASE = [
   'https://*.klinikmat.cl', // Clerk custom domain
   'https://challenges.cloudflare.com', // Clerk Turnstile CAPTCHA
   'https://va.vercel-scripts.com', // Vercel Analytics
+  'https://sdk.mercadopago.com', // Mercado Pago SDK
+  'https://secure.mlstatic.com', // Mercado Pago assets
 ];
 if (!isProd) {
   SCRIPT_SRC_BASE.push("'unsafe-eval'");
