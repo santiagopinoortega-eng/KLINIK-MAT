@@ -80,15 +80,18 @@ export default function MercadoPagoCheckout({
       const brickInstance = await bricksBuilder.create('cardPayment', 'cardPaymentBrick_container', {
         initialization: {
           amount: Number(amount), // Asegurar que sea número
+          payer: {
+            email: 'TESTUSER503198759396796542@testuser.com', // Usuario comprador de prueba MP
+          },
         },
         customization: {
+          paymentMethods: {
+            maxInstallments: 1,
+          },
           visual: {
             style: {
               theme: 'default',
             },
-          },
-          paymentMethods: {
-            maxInstallments: 1,
           },
         },
         callbacks: {
