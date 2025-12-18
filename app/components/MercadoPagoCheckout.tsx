@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 interface MercadoPagoCheckoutProps {
   planId: string;
@@ -27,8 +27,14 @@ export default function MercadoPagoCheckout({
 }: MercadoPagoCheckoutProps) {
   const [loading, setLoading] = useState(true);
   const [processing, setProcessing] = useState(false);
+  const initializationRef = useRef(false);
+  const brickInstanceRef = useRef<any>(null);
 
   useEffect(() => {
+    // Prevenir doble inicialización (React Strict Mode)
+    if (initializationRef.current) return;
+    initializationRef.current = true;
+
     // Cargar SDK de Mercado Pago
     const script = document.createElement('script');
     script.src = 'https://sdk.mercadopago.com/js/v2';
@@ -37,7 +43,17 @@ export default function MercadoPagoCheckout({
     document.body.appendChild(script);
 
     return () => {
-      document.body.removeChild(script);
+      // Cleanup: destruir brick si existe
+      if (brickInstanceRef.current) {
+        try {
+          brickInstanceRef.current.unmount();
+        } catch (e) {
+          console.log('Error unmounting brick:', e);
+        }
+      }
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
     };
   }, []);
 
@@ -46,6 +62,7 @@ export default function MercadoPagoCheckout({
       const publicKey = process.env.NEXT_PUBLIC_MERCADOPAGO_PUBLIC_KEY;
       
       console.log('🔑 Public Key disponible:', publicKey ? 'SÍ' : 'NO');
+      console.log('💰 Amount:', amount, 'Type:', typeof amount);
       
       if (!publicKey) {
         throw new Error('Missing NEXT_PUBLIC_MERCADOPAGO_PUBLIC_KEY in environment');
@@ -58,9 +75,11 @@ export default function MercadoPagoCheckout({
       // Crear Card Payment Brick
       const bricksBuilder = mp.bricks();
 
-      await bricksBuilder.create('cardPayment', 'cardPaymentBrick_container', {
+      console.log('🧱 Creando Brick con amount:', amount);
+
+      const brickInstance = await bricksBuilder.create('cardPayment', 'cardPaymentBrick_container', {
         initialization: {
-          amount: amount,
+          amount: Number(amount), // Asegurar que sea número
         },
         customization: {
           visual: {
@@ -105,13 +124,17 @@ export default function MercadoPagoCheckout({
             }
           },
           onError: (error: any) => {
-            console.error('MP Brick error:', error);
+            console.error('❌ MP Brick error DETALLADO:', JSON.stringify(error, null, 2));
             onError('Error al cargar el formulario de pago');
           },
         },
       });
+
+      // Guardar referencia para cleanup
+      brickInstanceRef.current = brickInstance;
+      console.log('✅ Brick creado exitosamente');
     } catch (error: any) {
-      console.error('Error initializing MP:', error);
+      console.error('❌ Error initializing MP:', error);
       onError('Error al inicializar Mercado Pago');
     }
   };
