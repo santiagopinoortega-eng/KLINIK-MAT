@@ -222,7 +222,7 @@ export class SubscriptionService {
       }
 
       // Para pagos únicos (anual o sin plan recurrente)
-      // Configuración MINIMA para testing
+      // Configuración MINIMA para testing con binary_mode
       const preference = await preferenceClient.create({
         body: {
           items: [
@@ -237,6 +237,7 @@ export class SubscriptionService {
           payer: {
             email: user.email,
           },
+          binary_mode: true, // Forzar aprobación/rechazo inmediato
           external_reference: externalReference,
           back_urls: {
             success: MERCADOPAGO_URLS.success,
@@ -244,6 +245,7 @@ export class SubscriptionService {
             pending: MERCADOPAGO_URLS.pending,
           },
           auto_return: 'approved',
+          notification_url: MERCADOPAGO_URLS.webhook,
         },
       });
 
