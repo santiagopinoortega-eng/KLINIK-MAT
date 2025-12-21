@@ -1,5 +1,116 @@
 # Changelog - KLINIK-MAT
 
+## [1.4.0] - 2025-01-XX
+
+### 🚀 Sistema de Límites de Casos Mensuales
+
+#### Nueva Funcionalidad: Control de Acceso por Plan
+**Implementación completa del sistema de límites para usuarios FREE (15 casos/mes)**
+
+#### Backend - Lógica de Negocio (`lib/subscription.ts`)
+- ✅ `getUserCaseLimit()` - Retorna 15 para FREE, null (ilimitado) para premium
+- ✅ `getCasesCompletedThisMonth()` - Cuenta casos completados en mes actual
+- ✅ `canAccessNewCase()` - Verifica acceso y retorna estadísticas
+- ✅ `getUserUsageStats()` - Estadísticas completas de uso con porcentaje
+- ✅ Conteo por mes calendario (día 1 al último día del mes)
+- ✅ Usa tabla existente `StudentResult` (sin migraciones necesarias)
+
+#### API Endpoints
+- ✅ `GET /api/subscription/check-access` - Verificar acceso y obtener stats
+  - Retorna: canAccess, casesUsed, caseLimit, remaining, percentage, planInfo
+  - Autenticación: Clerk
+  - Usado por: badge, modal, guards
+
+#### Componentes Frontend
+
+**UsageLimitBadge** (`app/components/UsageLimitBadge.tsx`)
+- Badge persistente en navegación
+- FREE: "X / 15 casos este mes" con barra de progreso
+- Premium: "⭐ Plan Premium • Ilimitado"
+- Colores dinámicos:
+  - 🔵 Azul (0-69%)
+  - 🟠 Naranja (70-89%)
+  - 🔴 Rojo (90-100%)
+- Badge "LÍMITE ALCANZADO" cuando no puede acceder
+- Botón CTA "Actualizar a Premium"
+
+**LimitReachedModal** (`app/components/LimitReachedModal.tsx`)
+- Modal bloqueante cuando usuario alcanza límite
+- Muestra: estadísticas 15/15, beneficios premium
+- CTAs: "Ver Planes Premium", "Volver"
+- Nota: "Tu límite se renueva el 1° de cada mes"
+- Animaciones: fadeIn + slideUp
+
+**CaseAccessGuard** (`app/components/CaseAccessGuard.tsx`)
+- Wrapper de protección para páginas de casos
+- Verifica acceso antes de renderizar caso
+- Muestra modal si límite alcanzado
+- Fail-safe: permite acceso si hay error de red
+
+**MonthlyUsageCard** (`app/components/MonthlyUsageCard.tsx`)
+- Card completa en página de perfil
+- FREE: Estadísticas detalladas, advertencias, CTA
+- Premium: Badge "Ilimitado" con mensaje motivacional
+- Progreso visual con colores dinámicos
+
+#### Integraciones
+
+**Header** (`app/components/Header.tsx`)
+```tsx
++ import UsageLimitBadge from './UsageLimitBadge';
++ <UsageLimitBadge /> // Solo visible para usuarios autenticados
+```
+
+**Caso Individual** (`app/casos/[id]/page.tsx`)
+```tsx
++ import CaseAccessGuard from '@/app/components/CaseAccessGuard';
++ <CaseAccessGuard caseId={casoClient.id}>
++   <CasoInteractiveUI casoClient={casoClient} />
++ </CaseAccessGuard>
+```
+
+**Perfil** (`app/profile/page.tsx`)
+```tsx
++ import MonthlyUsageCard from '../components/MonthlyUsageCard';
++ <MonthlyUsageCard /> // Después de card de suscripción
+```
+
+#### Seguridad
+- ✅ Validación 100% server-side (no bypass posible)
+- ✅ Queries directas a base de datos con Prisma
+- ✅ Autenticación Clerk en todos los endpoints
+- ✅ Fail-safe behavior para mejor UX
+
+#### Flujos de Usuario
+
+**FREE - Dentro del límite (12/15)**
+1. Ve badge naranja con 12/15 en header
+2. Acceso normal a casos
+3. Advertencia en perfil al pasar 70%
+
+**FREE - Límite alcanzado (15/15)**
+1. Badge rojo "LÍMITE ALCANZADO"
+2. Modal bloqueante al intentar nuevo caso
+3. Debe actualizar a premium o esperar al mes siguiente
+
+**Premium**
+1. Badge dorado "Ilimitado"
+2. Sin restricciones ni advertencias
+3. Experiencia fluida sin interrupciones
+
+#### Documentación
+- ✅ Archivo completo: `SISTEMA_LIMITES_CASOS.md`
+- Incluye: arquitectura, API, componentes, testing, troubleshooting
+
+### 🎯 Impacto
+- ✅ Monetización clara: FREE limitado, Premium ilimitado
+- ✅ UX transparente: Usuario siempre sabe su estado
+- ✅ Conversión optimizada: CTAs en múltiples puntos
+- ✅ Sistema robusto: Server-side validation, fail-safe
+- ✅ Mantenible: Lógica encapsulada, código reutilizable
+
+---
+
 ## [1.3.2] - 2025-11-23
 
 ### 🎨 Progreso del Caso y Fondo Degradado Rojo-Coral

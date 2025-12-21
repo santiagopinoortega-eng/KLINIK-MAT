@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { UserButton, SignInButton, useUser } from '@clerk/nextjs';
+import UsageLimitBadge from './UsageLimitBadge';
 
 export default function Header() {
   const { isSignedIn } = useUser();
@@ -22,8 +23,13 @@ export default function Header() {
           </h1>
         </Link>
 
-        {/* User Actions Only */}
-        <div className="flex items-center gap-4">
+        {/* User Actions and Usage Badge */}
+        <div className="flex items-center gap-3">
+          {isSignedIn && (
+            <div className="hidden sm:block">
+              <UsageLimitBadge />
+            </div>
+          )}
           {isSignedIn ? (
             <UserButton 
               afterSignOutUrl="/"

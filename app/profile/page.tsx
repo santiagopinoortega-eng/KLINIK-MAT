@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useAuth, useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import MonthlyUsageCard from '../components/MonthlyUsageCard';
 
 interface SubscriptionData {
   id: string;
@@ -320,6 +321,9 @@ export default function ProfilePage() {
                 </Link>
               </div>
             )}
+
+            {/* Uso Mensual Card */}
+            <MonthlyUsageCard />
 
             {/* Historial de pagos */}
             {paymentHistory.length > 0 && (

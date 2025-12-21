@@ -1,9 +1,11 @@
 import { prismaRO } from "@/lib/prisma";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import type { CasoClient, Paso, McqOpcion } from "@/lib/types";
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { CaseStructuredData, BreadcrumbStructuredData } from "@/app/components/StructuredData";
+import { auth } from "@clerk/nextjs/server";
+import { canAccessNewCase } from "@/lib/subscription";
 
 // ISR: Regenerar cada 2 horas (casos clínicos cambian ocasionalmente)
 export const revalidate = 7200;
@@ -86,6 +88,13 @@ const CasoInteractiveUI = dynamic(
         </div>
       </div>
     ),
+  }
+);
+
+const CaseAccessGuard = dynamic(
+  () => import("@/app/components/CaseAccessGuard"),
+  {
+    ssr: false,
   }
 );
 
@@ -239,7 +248,9 @@ export default async function CasoPage({ params }: PageProps) {
       />
       
       <main className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8 py-8">
-        <CasoInteractiveUI casoClient={casoClient} />
+        <CaseAccessGuard caseId={casoClient.id}>
+          <CasoInteractiveUI casoClient={casoClient} />
+        </CaseAccessGuard>
       </main>
     </div>
   );
