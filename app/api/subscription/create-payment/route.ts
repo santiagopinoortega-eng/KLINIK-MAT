@@ -360,11 +360,8 @@ async function validateAndApplyCoupon(
     let discount = 0;
     if (coupon.discountType === 'PERCENTAGE') {
       discount = (price * Number(coupon.discountValue)) / 100;
-      if (coupon.maxDiscountAmount) {
-        discount = Math.min(discount, Number(coupon.maxDiscountAmount));
-      }
     } else {
-      // FIXED
+      // FIXED_AMOUNT
       discount = Math.min(Number(coupon.discountValue), price);
     }
 
