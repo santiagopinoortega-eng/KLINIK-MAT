@@ -104,7 +104,7 @@ export async function POST(req: NextRequest) {
       const couponResult = await validateAndApplyCoupon(couponCode, planId, userId, finalPrice);
       if (couponResult.valid) {
         appliedCoupon = couponResult.coupon;
-        discountAmount = couponResult.discount;
+        discountAmount = couponResult.discount ?? 0;
         finalPrice -= discountAmount;
         
         console.log(`🎫 [CREATE-PAYMENT] Cupón aplicado: ${couponCode}`, {
