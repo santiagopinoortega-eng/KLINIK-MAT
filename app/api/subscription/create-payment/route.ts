@@ -336,22 +336,17 @@ async function validateAndApplyCoupon(
     }
 
     // Verificar límite de usos globales
-    if (coupon.maxUses !== null) {
-      const usageCount = await prisma.couponUsage.count({
-        where: { couponId: coupon.id },
-      });
-      if (usageCount >= coupon.maxUses) {
-        return { valid: false, reason: 'Cupón agotado' };
-      }
+    if (coupon.maxRedemptions !== null && coupon.redemptionsCount >= coupon.maxRedemptions) {
+      return { valid: false, reason: 'Cupón agotado' };
     }
 
-    // Verificar límite de usos por usuario
-    if (coupon.maxUsesPerUser !== null) {
-      const userUsageCount = await prisma.couponUsage.count({
-        where: { couponId: coupon.id, userId },
+    // Verificar si es solo para primera compra
+    if (coupon.firstPurchaseOnly) {
+      const hasSubscription = await prisma.subscription.findFirst({
+        where: { userId, status: { in: ['ACTIVE', 'PAST_DUE', 'CANCELLED'] } },
       });
-      if (userUsageCount >= coupon.maxUsesPerUser) {
-        return { valid: false, reason: 'Ya usaste este cupón' };
+      if (hasSubscription) {
+        return { valid: false, reason: 'Cupón solo válido para primera compra' };
       }
     }
 
