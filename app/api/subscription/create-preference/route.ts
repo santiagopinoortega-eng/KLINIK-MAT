@@ -195,7 +195,9 @@ export async function POST(req: NextRequest) {
       sandboxInitPoint: preference.sandbox_init_point,
     });
 
-    // 9. Registrar intento de pago en DB para auditoría
+    // 9. Registrar intento de pago en DB para auditoría (DESHABILITADO - PaymentAttempt model no existe)
+    // TODO: Agregar modelo PaymentAttempt al schema si se necesita auditoría completa
+    /*
     await prisma.paymentAttempt.create({
       data: {
         userId,
@@ -216,6 +218,7 @@ export async function POST(req: NextRequest) {
       console.error('⚠️  Failed to save payment attempt:', err);
       // No bloquear el flujo si falla el registro
     });
+    */
 
     // 10. Usar sandbox_init_point en TEST, init_point en producción
     const initPoint = isTestMode 
