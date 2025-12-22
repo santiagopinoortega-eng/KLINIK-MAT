@@ -321,14 +321,15 @@ async function validateAndApplyCoupon(
   reason?: string;
 }> {
   try {
+    const now = new Date();
     const coupon = await prisma.coupon.findFirst({
       where: {
         code: code.toUpperCase(),
         isActive: true,
-        validFrom: { lte: new Date() },
+        validFrom: { lte: now },
         OR: [
-          { validUntil: null },
-          { validUntil: { gte: new Date() } },
+          { validUntil: { gte: now } },
+          { validUntil: { equals: null } },
         ],
       },
     });
