@@ -143,8 +143,8 @@ export async function GET(req: NextRequest) {
       payment: {
         id: payment.mpPaymentId,
         paymentId: payment.mpPaymentId,
-        amount: typeof payment.amount === 'string' ? parseFloat(payment.amount) : payment.amount,
-        amountFormatted: formatPrice(payment.amount, payment.currency),
+        amount: typeof payment.amount === 'string' ? parseFloat(payment.amount) : Number(payment.amount),
+        amountFormatted: formatPrice(Number(payment.amount), payment.currency),
         currency: payment.currency,
         status: payment.status,
         mpStatus: payment.mpStatus,
