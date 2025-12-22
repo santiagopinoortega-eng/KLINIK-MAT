@@ -18,7 +18,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
 import { prisma } from '@/lib/prisma';
 import { preferenceClient, MERCADOPAGO_URLS } from '@/lib/mercadopago';
-import { rateLimit } from '@/lib/ratelimit';
+import { checkRateLimit, RATE_LIMITS } from '@/lib/ratelimit';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -42,12 +42,12 @@ export async function POST(req: NextRequest) {
     }
 
     // 2. Rate limiting (máximo 5 intentos por minuto)
-    const rateLimitResult = await rateLimit(userId, 5);
-    if (!rateLimitResult.success) {
+    const rateLimitResult = checkRateLimit(req, { windowMs: 60_000, maxRequests: 5 });
+    if (!rateLimitResult.ok) {
       return NextResponse.json(
         { 
           error: 'Demasiados intentos. Por favor espera unos minutos.',
-          retryAfter: rateLimitResult.reset 
+          retryAfter: rateLimitResult.resetAt 
         },
         { status: 429 }
       );
