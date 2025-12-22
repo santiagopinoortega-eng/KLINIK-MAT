@@ -327,10 +327,7 @@ async function validateAndApplyCoupon(
         code: code.toUpperCase(),
         isActive: true,
         validFrom: { lte: now },
-        OR: [
-          { validUntil: { gte: now } },
-          { validUntil: { equals: null } },
-        ],
+        validUntil: { gte: now },
       },
     });
 
