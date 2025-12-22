@@ -262,34 +262,29 @@ async function validateCoupon(
   userId: string
 ): Promise<any | null> {
   try {
+    const now = new Date();
     const coupon = await prisma.coupon.findFirst({
       where: {
         code: code.toUpperCase(),
         isActive: true,
-        validFrom: { lte: new Date() },
-        OR: [
-          { validUntil: null },
-          { validUntil: { gte: new Date() } },
-        ],
+        validFrom: { lte: now },
+        validUntil: { gte: now },
       },
     });
 
     if (!coupon) return null;
 
-    // Verificar límite de usos
-    if (coupon.maxUses !== null) {
-      const usageCount = await prisma.couponUsage.count({
-        where: { couponId: coupon.id },
-      });
-      if (usageCount >= coupon.maxUses) return null;
+    // Verificar límite de usos globales
+    if (coupon.maxRedemptions !== null && coupon.redemptionsCount >= coupon.maxRedemptions) {
+      return null;
     }
 
-    // Verificar límite por usuario
-    if (coupon.maxUsesPerUser !== null) {
-      const userUsageCount = await prisma.couponUsage.count({
-        where: { couponId: coupon.id, userId },
+    // Verificar si es solo para primera compra
+    if (coupon.firstPurchaseOnly) {
+      const hasSubscription = await prisma.subscription.findFirst({
+        where: { userId, status: { in: ['ACTIVE', 'PAST_DUE', 'CANCELED'] } },
       });
-      if (userUsageCount >= coupon.maxUsesPerUser) return null;
+      if (hasSubscription) return null;
     }
 
     // Verificar planes aplicables
