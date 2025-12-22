@@ -28,20 +28,24 @@ export const dynamic = 'force-dynamic';
 
 export async function POST(req: NextRequest) {
   const startTime = Date.now();
+  const requestId = crypto.randomUUID();
   
   try {
     // Headers de seguridad de Mercado Pago
     const xSignature = req.headers.get('x-signature');
     const xRequestId = req.headers.get('x-request-id');
+    const userAgent = req.headers.get('user-agent');
     
     // Parsear body
     const body = await req.json() as MercadoPagoWebhookEvent;
     
-    console.log('📥 [MP WEBHOOK] Received:', {
+    console.log(`📥 [MP WEBHOOK ${requestId}] Received:`, {
       type: body.type,
       action: body.action,
       dataId: body.data?.id,
       userId: body.user_id,
+      liveMode: body.live_mode,
+      userAgent,
     });
 
     // Guardar evento en DB para auditoría
