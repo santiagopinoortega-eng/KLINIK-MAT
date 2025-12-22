@@ -343,7 +343,7 @@ async function validateAndApplyCoupon(
     // Verificar si es solo para primera compra
     if (coupon.firstPurchaseOnly) {
       const hasSubscription = await prisma.subscription.findFirst({
-        where: { userId, status: { in: ['ACTIVE', 'PAST_DUE', 'CANCELLED'] } },
+        where: { userId, status: { in: ['ACTIVE', 'PAST_DUE', 'CANCELED'] } },
       });
       if (hasSubscription) {
         return { valid: false, reason: 'Cupón solo válido para primera compra' };
