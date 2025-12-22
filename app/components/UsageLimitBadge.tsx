@@ -53,6 +53,24 @@ export default function UsageLimitBadge() {
     );
   }
 
+  // Si es plan gratuito, mostrar badge con botón de upgrade
+  const isFreeUser = usage.planType === 'FREE' || usage.caseLimit === 15;
+  if (isFreeUser && usage.canAccess && usage.percentage < 80) {
+    return (
+      <Link href="/pricing" className="block">
+        <div className="bg-blue-50 border-2 border-blue-300 text-blue-800 rounded-lg p-3 hover:border-blue-400 hover:bg-blue-100 transition-all cursor-pointer group">
+          <div className="flex items-center justify-between mb-1">
+            <span className="text-sm font-semibold">Plan Gratuito ({usage.casesUsed}/{usage.caseLimit})</span>
+            <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </div>
+          <p className="text-xs">🚀 Actualizar a Premium</p>
+        </div>
+      </Link>
+    );
+  }
+
   // Calcular color según porcentaje de uso
   const getColorClasses = () => {
     if (usage.percentage >= 90) return 'bg-red-50 border-red-300 text-red-800';

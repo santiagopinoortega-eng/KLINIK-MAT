@@ -13,12 +13,10 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 const Header = dynamic(() => import('./components/Header'), { ssr: true });
 const Footer = dynamic(() => import('./components/Footer'), { ssr: true });
 const CsrfInitializer = dynamic(() => import('./components/CsrfInitializer'), { ssr: false });
-const SidebarWrapper = dynamic(() => import('./components/SidebarWrapper'), { ssr: false });
 const CookieBanner = dynamic(() => import('./components/CookieBanner'), { ssr: false });
 
 import { WebsiteStructuredData, OrganizationStructuredData, EducationalOrganizationStructuredData } from './components/StructuredData';
 import { FavoritesProvider } from './context/FavoritesContext';
-import { SidebarProvider } from './context/SidebarContext';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -152,17 +150,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Header - Minimal */}
         <Header />
 
-        {/* Sidebar - Contextual */}
-        <SidebarProvider>
-          <SidebarWrapper />
-
-          {/* Contenido - Adjusted for sidebar */}
-          <FavoritesProvider>
-            <main id="contenido" className="min-h-[70vh] animate-fade-in transition-all duration-300" style={{ marginLeft: 'var(--sidebar-width, 0px)' }}>
-              {children}
-            </main>
-          </FavoritesProvider>
-        </SidebarProvider>
+        {/* Contenido Principal */}
+        <FavoritesProvider>
+          <main id="contenido" className="min-h-[70vh] animate-fade-in transition-all duration-300">
+            {children}
+          </main>
+        </FavoritesProvider>
 
         {/* Footer con nuevo componente */}
         <Footer />
