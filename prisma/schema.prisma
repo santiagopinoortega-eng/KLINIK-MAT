@@ -460,6 +460,7 @@ model WebhookEvent {
 enum BillingPeriod {
   MONTHLY
   QUARTERLY
+  BIANNUAL
   YEARLY
 }
 
