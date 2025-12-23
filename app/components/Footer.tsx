@@ -51,8 +51,8 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="/recursos" className="text-white hover:text-white transition-colors flex items-center gap-2">
-                  <span>→</span> Recursos MINSAL
+                <a href="/areas" className="text-white hover:text-white transition-colors flex items-center gap-2">
+                  <span>→</span> Áreas y Recursos
                 </a>
               </li>
             </ul>
