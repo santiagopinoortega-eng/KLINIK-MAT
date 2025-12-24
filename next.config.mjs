@@ -120,6 +120,21 @@ const nextConfig = {
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'upload.wikimedia.org',
+        pathname: '/wikipedia/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.clerk.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+    ],
   },
 
   // Permitir Server Actions en GitHub Codespaces
@@ -154,16 +169,19 @@ const nextConfig = {
   },
 };
 
-// Exportar con Sentry y Bundle Analyzer
-export default withSentryConfig(
-  withBundleAnalyzer(nextConfig),
-  {
-    // Sentry configuration options
-    org: process.env.SENTRY_ORG,
-    project: process.env.SENTRY_PROJECT,
-    silent: !process.env.CI,
-    widenClientFileUpload: true,
-    hideSourceMaps: true,
-    disableLogger: true,
-  }
-);
+// Exportar con Sentry y Bundle Analyzer (Sentry deshabilitado temporalmente)
+// export default withSentryConfig(
+//   withBundleAnalyzer(nextConfig),
+//   {
+//     // Sentry configuration options
+//     org: process.env.SENTRY_ORG,
+//     project: process.env.SENTRY_PROJECT,
+//     silent: !process.env.CI,
+//     widenClientFileUpload: true,
+//     hideSourceMaps: true,
+//     disableLogger: true,
+//   }
+// );
+
+// Exportar sin Sentry temporalmente para evitar errores 403
+export default withBundleAnalyzer(nextConfig);

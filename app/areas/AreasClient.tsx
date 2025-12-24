@@ -462,7 +462,7 @@ export default function AreasClient() {
                   </div>
                   <div>
                     <p className="text-sm text-gray-600 font-medium">Recursos Disponibles</p>
-                    <p className="text-2xl font-bold text-gray-900">5</p>
+                    <p className="text-2xl font-bold text-gray-900">6</p>
                   </div>
                 </div>
               </div>
@@ -628,6 +628,58 @@ export default function AreasClient() {
                     </p>
                     <div className="flex items-center gap-2 text-purple-600 font-semibold text-xs group-hover:gap-3 transition-all">
                       <span>Usar calculadoras</span>
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </div>
+                  </div>
+                </Link>
+
+                {/* Bases de Datos - ACTIVO */}
+                <Link href="/recursos/bases-datos" className="group block">
+                  <div className="bg-white rounded-xl p-5 shadow-lg border border-gray-200 h-full transition-all duration-300 hover:shadow-xl hover:border-teal-300 hover:-translate-y-1">
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-600 shadow-lg group-hover:scale-110 transition-transform">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+                        </svg>
+                      </div>
+                      <span className="px-2 py-1 rounded text-xs font-bold border-2 bg-teal-100 text-teal-800 border-teal-200">
+                        Disponible
+                      </span>
+                    </div>
+                    <h4 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-teal-600 transition-colors">Bases de Datos Científicas</h4>
+                    <p className="text-xs text-gray-600 leading-relaxed mb-3">
+                      Acceso directo a 16+ bases de datos médicas, revistas y sociedades científicas.
+                    </p>
+                    <div className="flex items-center gap-2 text-teal-600 font-semibold text-xs group-hover:gap-3 transition-all">
+                      <span>Ver bases de datos</span>
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </div>
+                  </div>
+                </Link>
+
+                {/* Atlas Anatomía - ACTIVO */}
+                <Link href="/recursos/atlas" className="group block">
+                  <div className="bg-white rounded-xl p-5 shadow-lg border border-gray-200 h-full transition-all duration-300 hover:shadow-xl hover:border-purple-300 hover:-translate-y-1">
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 shadow-lg group-hover:scale-110 transition-transform">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                      </div>
+                      <span className="px-2 py-1 rounded text-xs font-bold border-2 bg-purple-100 text-purple-800 border-purple-200">
+                        Disponible
+                      </span>
+                    </div>
+                    <h4 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-purple-600 transition-colors">Atlas de Anatomía Obstétrica</h4>
+                    <p className="text-xs text-gray-600 leading-relaxed mb-3">
+                      10+ imágenes anatómicas con descripciones y relevancia clínica detallada.
+                    </p>
+                    <div className="flex items-center gap-2 text-purple-600 font-semibold text-xs group-hover:gap-3 transition-all">
+                      <span>Explorar atlas</span>
                       <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                       </svg>

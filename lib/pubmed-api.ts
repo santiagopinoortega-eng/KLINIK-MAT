@@ -25,7 +25,8 @@ export interface PubMedSearchResult {
 }
 
 /**
- * Busca artículos en PubMed
+ * Busca artículos en PubMed (client-side)
+ * Llama a nuestra API route para evitar problemas de CORS
  */
 export async function searchPubMed(
   query: string,
@@ -37,59 +38,34 @@ export async function searchPubMed(
   }
 ): Promise<PubMedSearchResult> {
   try {
-    // 1. Construir query con filtros
-    let searchQuery = query;
-    
-    if (filters?.yearFrom || filters?.yearTo) {
-      const yearFrom = filters.yearFrom || 1900;
-      const yearTo = filters.yearTo || new Date().getFullYear();
-      searchQuery += ` AND ${yearFrom}:${yearTo}[pdat]`;
-    }
-    
-    if (filters?.articleType) {
-      searchQuery += ` AND ${filters.articleType}[pt]`;
-    }
-
-    // 2. Búsqueda de IDs (ESearch)
-    const searchUrl = `${PUBMED_BASE_URL}/esearch.fcgi?db=pubmed&term=${encodeURIComponent(searchQuery)}&retmax=${maxResults}&retmode=json&api_key=${PUBMED_API_KEY}`;
-    
-    const searchResponse = await fetch(searchUrl);
-    const searchData = await searchResponse.json();
-    
-    const pmids = searchData.esearchresult?.idlist || [];
-    const total = parseInt(searchData.esearchresult?.count || '0');
-
-    if (pmids.length === 0) {
-      return { articles: [], total: 0, query };
-    }
-
-    // 3. Obtener detalles de artículos (ESummary)
-    const summaryUrl = `${PUBMED_BASE_URL}/esummary.fcgi?db=pubmed&id=${pmids.join(',')}&retmode=json&api_key=${PUBMED_API_KEY}`;
-    
-    const summaryResponse = await fetch(summaryUrl);
-    const summaryData = await summaryResponse.json();
-
-    // 4. Procesar resultados
-    const articles: PubMedArticle[] = pmids.map((pmid: string) => {
-      const article = summaryData.result[pmid];
-      
-      return {
-        pmid,
-        title: article.title || 'Sin título',
-        authors: article.authors?.slice(0, 3).map((a: any) => a.name) || [],
-        journal: article.fulljournalname || article.source || 'Desconocido',
-        pubDate: article.pubdate || 'Fecha no disponible',
-        doi: article.elocationid || undefined,
-        pmc: article.articleids?.find((id: any) => id.idtype === 'pmc')?.value,
-        url: `https://pubmed.ncbi.nlm.nih.gov/${pmid}/`,
-      };
+    // Llamar a nuestra API route en lugar de directamente a PubMed
+    const response = await fetch('/api/pubmed/search', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query,
+        maxResults,
+        filters,
+      }),
     });
 
-    return { articles, total, query };
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'Error al buscar en PubMed');
+    }
 
-  } catch (error) {
+    const data = await response.json();
+    
+    return {
+      articles: data.articles || [],
+      total: data.total || 0,
+      query: data.query || query,
+    };
+  } catch (error: any) {
     console.error('Error buscando en PubMed:', error);
-    throw new Error('Error al buscar en PubMed. Por favor, intenta nuevamente.');
+    throw new Error(error.message || 'Error de conexión con PubMed');
   }
 }
 
