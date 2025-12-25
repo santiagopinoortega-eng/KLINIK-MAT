@@ -18,7 +18,7 @@ export default function LcfSimulator() {
   // Audio State
   const [isPlaying, setIsPlaying] = useState(false);
   const [targetBPM, setTargetBPM] = useState(140);
-  const [volume, setVolume] = useState(0.5);
+  const [volume, setVolume] = useState(1.0); // Volumen al 100% para que sea audible
   const [beatIndicator, setBeatIndicator] = useState(false);
   
   // Timer State
@@ -37,6 +37,7 @@ export default function LcfSimulator() {
   // Refs
   const audioContextRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
+  const isPlayingRef = useRef<boolean>(false); // Ref sincrónico para scheduling
   const nextBeatTimeRef = useRef<number>(0);
   const schedulerIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const timerIntervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -116,8 +117,8 @@ export default function LcfSimulator() {
 
   // Schedule beats ahead of time for precise timing
   const scheduleBeat = useCallback(() => {
-    if (!audioContextRef.current || !isPlaying) {
-      console.log('⏸️ scheduleBeat: Not running', { hasContext: !!audioContextRef.current, isPlaying });
+    if (!audioContextRef.current || !isPlayingRef.current) {
+      console.log('⏸️ scheduleBeat: Not running', { hasContext: !!audioContextRef.current, isPlaying: isPlayingRef.current });
       return;
     }
 
@@ -136,7 +137,7 @@ export default function LcfSimulator() {
     if (beatsScheduled > 0) {
       console.log(`✅ Scheduled ${beatsScheduled} beats`);
     }
-  }, [isPlaying, targetBPM, playHeartbeat]);
+  }, [targetBPM, playHeartbeat]);
 
   // Start Audio (inicializa AudioContext solo con interacción del usuario)
   const startAudio = useCallback(async () => {
@@ -159,6 +160,9 @@ export default function LcfSimulator() {
 
     nextBeatTimeRef.current = audioContextRef.current.currentTime;
     console.log('🎬 Initial nextBeatTime set to:', nextBeatTimeRef.current);
+    
+    // Actualizar ref PRIMERO (sincrónico), luego estado (asincrónico)
+    isPlayingRef.current = true;
     setIsPlaying(true);
 
     if (schedulerIntervalRef.current) {
@@ -166,7 +170,7 @@ export default function LcfSimulator() {
     }
     
     // Llamar scheduleBeat inmediatamente una vez
-    console.log('🚀 Calling scheduleBeat immediately');
+    console.log('🚀 Calling scheduleBeat immediately (isPlayingRef:', isPlayingRef.current, ')');
     scheduleBeat();
     
     // Luego configurar el interval
@@ -179,62 +183,15 @@ export default function LcfSimulator() {
 
   // Stop Audio
   const stopAudio = useCallback(() => {
+    isPlayingRef.current = false;
     setIsPlaying(false);
     if (schedulerIntervalRef.current) {
       clearInterval(schedulerIntervalRef.current);
     }
   }, []);
 
-  // Timer Management
-  useEffect(() => {
-    if (isTimerRunning) {
-      timerIntervalRef.current = setInterval(() => {
-        setTimeElapsed(prev => {
-          if (prev >= timerDuration) {
-            stopTimer();
-            return timerDuration;
-          }
-          return prev + 0.1;
-        });
-      }, 100);
-    } else {
-      if (timerIntervalRef.current) {
-        clearInterval(timerIntervalRef.current);
-      }
-    }
-
-    return () => {
-      if (timerIntervalRef.current) {
-        clearInterval(timerIntervalRef.current);
-      }
-    };
-  }, [isTimerRunning]);
-
-  const startTimer = () => {
-    setIsTimerRunning(true);
-    startTimeRef.current = Date.now();
-    setTaps([]);
-    setTimeElapsed(0);
-    setShowResult(false);
-    setUserBPM(null);
-    setErrorPercentage(null);
-  };
-
-  const stopTimer = () => {
-    setIsTimerRunning(false);
-    calculateUserBPM();
-  };
-
-  // Handle Tap
-  const handleTap = () => {
-    if (!isTimerRunning) return;
-    
-    const now = Date.now();
-    setTaps(prev => [...prev, { timestamp: now }]);
-  };
-
   // Calculate User BPM from taps
-  const calculateUserBPM = () => {
+  const calculateUserBPM = useCallback(() => {
     if (taps.length < 2) {
       setUserBPM(0);
       setShowResult(true);
@@ -261,6 +218,55 @@ export default function LcfSimulator() {
     setErrorPercentage(parseFloat(errorPct));
     
     setShowResult(true);
+  }, [taps, targetBPM]);
+
+  const stopTimer = useCallback(() => {
+    setIsTimerRunning(false);
+    calculateUserBPM();
+  }, [calculateUserBPM]);
+
+  // Timer Management
+  useEffect(() => {
+    if (isTimerRunning) {
+      timerIntervalRef.current = setInterval(() => {
+        setTimeElapsed(prev => {
+          const newTime = prev + 0.1;
+          if (newTime >= timerDuration) {
+            stopTimer();
+            return timerDuration;
+          }
+          return newTime;
+        });
+      }, 100);
+    } else {
+      if (timerIntervalRef.current) {
+        clearInterval(timerIntervalRef.current);
+      }
+    }
+
+    return () => {
+      if (timerIntervalRef.current) {
+        clearInterval(timerIntervalRef.current);
+      }
+    };
+  }, [isTimerRunning, stopTimer]);
+
+  const startTimer = () => {
+    setIsTimerRunning(true);
+    startTimeRef.current = Date.now();
+    setTaps([]);
+    setTimeElapsed(0);
+    setShowResult(false);
+    setUserBPM(null);
+    setErrorPercentage(null);
+  };
+
+  // Handle Tap
+  const handleTap = () => {
+    if (!isTimerRunning) return;
+    
+    const now = Date.now();
+    setTaps(prev => [...prev, { timestamp: now }]);
   };
 
   // Canvas Waveform Visualization - CONEXIÓN REAL AL ANALYSER NODE
@@ -279,7 +285,7 @@ export default function LcfSimulator() {
       ctx.fillStyle = '#0f172a'; // slate-900
       ctx.fillRect(0, 0, width, height);
 
-      if (isPlaying && analyserRef.current) {
+      if (isPlayingRef.current && analyserRef.current) {
         // OBTENER DATOS REALES DEL AUDIO (no animación falsa)
         const bufferLength = analyserRef.current.frequencyBinCount;
         const dataArray = new Uint8Array(bufferLength);
