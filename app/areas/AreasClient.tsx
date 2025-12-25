@@ -725,23 +725,31 @@ export default function AreasClient() {
                   </div>
                 </Link>
 
-                {/* Protocolos */}
-                <div className="bg-white rounded-xl p-5 shadow-lg border border-gray-200 opacity-75 cursor-not-allowed">
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-red-500 to-orange-600 shadow-lg">
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                {/* Protocolos - ACTIVO */}
+                <Link href="/recursos/protocolos-urgencia" className="group block">
+                  <div className="bg-white rounded-xl p-5 shadow-lg border border-gray-200 h-full transition-all duration-300 hover:shadow-xl hover:border-red-300 hover:-translate-y-1">
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-red-500 to-orange-600 shadow-lg group-hover:scale-110 transition-transform">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                        </svg>
+                      </div>
+                      <span className="px-2 py-1 rounded text-xs font-bold border-2 bg-red-100 text-red-800 border-red-200">
+                        Disponible
+                      </span>
+                    </div>
+                    <h4 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-red-600 transition-colors">Protocolos de Urgencia</h4>
+                    <p className="text-xs text-gray-600 leading-relaxed mb-3">
+                      Guías clínicas de emergencias obstétricas basadas en MINSAL, ACOG, RCOG y evidencia gold standard.
+                    </p>
+                    <div className="flex items-center gap-2 text-red-600 font-semibold text-xs group-hover:gap-3 transition-all">
+                      <span>Ver protocolos</span>
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                       </svg>
                     </div>
-                    <span className="px-2 py-1 rounded text-xs font-bold border-2 bg-red-100 text-red-800 border-red-200">
-                      Próximamente
-                    </span>
                   </div>
-                  <h4 className="text-lg font-bold text-gray-900 mb-1">Protocolos de Urgencia</h4>
-                  <p className="text-xs text-gray-600 leading-relaxed">
-                    Algoritmos de manejo para emergencias obstétricas como hemorragia postparto.
-                  </p>
-                </div>
+                </Link>
 
                 {/* Videos */}
                 <div className="bg-white rounded-xl p-5 shadow-lg border border-gray-200 opacity-75 cursor-not-allowed">
