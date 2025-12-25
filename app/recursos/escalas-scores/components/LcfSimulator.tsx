@@ -36,6 +36,7 @@ export default function LcfSimulator() {
   
   // Refs
   const audioContextRef = useRef<AudioContext | null>(null);
+  const analyserRef = useRef<AnalyserNode | null>(null);
   const nextBeatTimeRef = useRef<number>(0);
   const schedulerIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const timerIntervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -48,15 +49,25 @@ export default function LcfSimulator() {
   const initAudio = useCallback(() => {
     if (!audioContextRef.current) {
       audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
-      console.log('AudioContext created on user interaction');
+      
+      // Crear AnalyserNode para visualización real de la onda
+      analyserRef.current = audioContextRef.current.createAnalyser();
+      analyserRef.current.fftSize = 2048; // Resolución de la onda
+      analyserRef.current.connect(audioContextRef.current.destination);
+      
+      console.log('AudioContext + AnalyserNode created on user interaction');
     }
   }, []);
 
   // Generate "Lub-Dub" heartbeat sound
   const playHeartbeat = useCallback((time: number) => {
-    if (!audioContextRef.current) return;
+    if (!audioContextRef.current) {
+      console.error('❌ playHeartbeat: No audio context');
+      return;
+    }
 
     const ctx = audioContextRef.current;
+    console.log('🔊 playHeartbeat called at time:', time, 'currentTime:', ctx.currentTime);
     
     // Indicador visual de beat
     setBeatIndicator(true);
@@ -93,23 +104,37 @@ export default function LcfSimulator() {
     osc2.start(time + 0.15);
     osc2.stop(time + 0.25);
     
-    // Conexiones: osc -> gain -> filter -> destination
+    // CONEXIÓN AL ANALIZADOR ANTES DE LA SALIDA (arquitectura correcta)
+    // Flujo: osc → gain → filter → analyser → destination
     gainNode.connect(filter);
-    filter.connect(ctx.destination);
+    if (analyserRef.current) {
+      filter.connect(analyserRef.current);
+    } else {
+      filter.connect(ctx.destination);
+    }
   }, [volume]);
 
   // Schedule beats ahead of time for precise timing
   const scheduleBeat = useCallback(() => {
-    if (!audioContextRef.current || !isPlaying) return;
+    if (!audioContextRef.current || !isPlaying) {
+      console.log('⏸️ scheduleBeat: Not running', { hasContext: !!audioContextRef.current, isPlaying });
+      return;
+    }
 
     const ctx = audioContextRef.current;
     const currentTime = ctx.currentTime;
     const scheduleAheadTime = 0.1; // Schedule 100ms ahead
 
+    let beatsScheduled = 0;
     while (nextBeatTimeRef.current < currentTime + scheduleAheadTime) {
+      console.log('📅 Scheduling beat at:', nextBeatTimeRef.current);
       playHeartbeat(nextBeatTimeRef.current);
       const secondsPerBeat = 60.0 / targetBPM;
       nextBeatTimeRef.current += secondsPerBeat;
+      beatsScheduled++;
+    }
+    if (beatsScheduled > 0) {
+      console.log(`✅ Scheduled ${beatsScheduled} beats`);
     }
   }, [isPlaying, targetBPM, playHeartbeat]);
 
@@ -133,12 +158,23 @@ export default function LcfSimulator() {
     console.log('Volume:', volume, 'BPM:', targetBPM);
 
     nextBeatTimeRef.current = audioContextRef.current.currentTime;
+    console.log('🎬 Initial nextBeatTime set to:', nextBeatTimeRef.current);
     setIsPlaying(true);
 
     if (schedulerIntervalRef.current) {
       clearInterval(schedulerIntervalRef.current);
     }
-    schedulerIntervalRef.current = setInterval(scheduleBeat, 25);
+    
+    // Llamar scheduleBeat inmediatamente una vez
+    console.log('🚀 Calling scheduleBeat immediately');
+    scheduleBeat();
+    
+    // Luego configurar el interval
+    schedulerIntervalRef.current = setInterval(() => {
+      console.log('⏰ Interval tick - calling scheduleBeat');
+      scheduleBeat();
+    }, 25);
+    console.log('✅ Scheduler interval created');
   }, [initAudio, scheduleBeat, volume, targetBPM]);
 
   // Stop Audio
@@ -227,7 +263,7 @@ export default function LcfSimulator() {
     setShowResult(true);
   };
 
-  // Canvas Waveform Visualization
+  // Canvas Waveform Visualization - CONEXIÓN REAL AL ANALYSER NODE
   useEffect(() => {
     if (!canvasRef.current) return;
 
@@ -239,62 +275,73 @@ export default function LcfSimulator() {
       const width = canvas.width;
       const height = canvas.height;
       
-      ctx.fillStyle = '#f0fdfa'; // teal-50
+      // Fondo estilo monitor médico
+      ctx.fillStyle = '#0f172a'; // slate-900
       ctx.fillRect(0, 0, width, height);
 
-      if (isPlaying) {
-        const time = Date.now() / 1000;
-        const bps = targetBPM / 60; // beats per second
-        const phase = (time * bps) % 1; // 0 to 1 for each beat
+      if (isPlaying && analyserRef.current) {
+        // OBTENER DATOS REALES DEL AUDIO (no animación falsa)
+        const bufferLength = analyserRef.current.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
+        analyserRef.current.getByteTimeDomainData(dataArray);
 
-        // Draw heartbeat waveform
-        ctx.strokeStyle = '#008080';
+        // Dibujar onda real (Time Domain Data)
         ctx.lineWidth = 3;
+        ctx.strokeStyle = '#2dd4bf'; // teal-400 (verde hospitalario)
         ctx.beginPath();
 
-        for (let x = 0; x < width; x++) {
-          const normalizedX = x / width;
-          let y = height / 2;
+        const sliceWidth = width / bufferLength;
+        let x = 0;
 
-          // Create lub-dub pattern
-          if (normalizedX < phase) {
-            const beatPhase = normalizedX / phase;
-            
-            // Lub (0-0.3)
-            if (beatPhase < 0.3) {
-              const lubPhase = beatPhase / 0.3;
-              y = height / 2 - Math.sin(lubPhase * Math.PI) * 40;
-            }
-            // Dub (0.4-0.6)
-            else if (beatPhase > 0.4 && beatPhase < 0.6) {
-              const dubPhase = (beatPhase - 0.4) / 0.2;
-              y = height / 2 - Math.sin(dubPhase * Math.PI) * 30;
-            }
-          }
+        for (let i = 0; i < bufferLength; i++) {
+          const v = dataArray[i] / 128.0; // Normalizar (0-255 → 0-2)
+          const y = (v * height) / 2;
 
-          if (x === 0) {
+          if (i === 0) {
             ctx.moveTo(x, y);
           } else {
             ctx.lineTo(x, y);
           }
+
+          x += sliceWidth;
         }
 
+        ctx.lineTo(width, height / 2);
         ctx.stroke();
 
-        // Draw beat indicator
-        const indicatorX = phase * width;
-        ctx.fillStyle = '#008080';
-        ctx.beginPath();
-        ctx.arc(indicatorX, height / 2, 6, 0, Math.PI * 2);
-        ctx.fill();
+        // Grid hospitalario (opcional, estilo EKG)
+        ctx.strokeStyle = '#1e293b'; // slate-800
+        ctx.lineWidth = 1;
+        // Líneas horizontales
+        for (let i = 0; i < 5; i++) {
+          const y = (i * height) / 4;
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(width, y);
+          ctx.stroke();
+        }
+        // Líneas verticales
+        for (let i = 0; i < 10; i++) {
+          const x = (i * width) / 9;
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, height);
+          ctx.stroke();
+        }
       } else {
-        // Static line when not playing
-        ctx.strokeStyle = '#94a3b8';
+        // Línea estática cuando no está reproduciendo
+        ctx.strokeStyle = '#475569'; // slate-600
         ctx.lineWidth = 2;
         ctx.beginPath();
         ctx.moveTo(0, height / 2);
         ctx.lineTo(width, height / 2);
         ctx.stroke();
+
+        // Texto indicador
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '14px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Presiona "Iniciar" para ver la onda real del audio', width / 2, height / 2 - 10);
       }
 
       animationFrameRef.current = requestAnimationFrame(draw);
@@ -307,7 +354,7 @@ export default function LcfSimulator() {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [isPlaying, targetBPM]);
+  }, [isPlaying]); // Solo depende de isPlaying, no de targetBPM
 
   // Reset everything
   const reset = () => {
@@ -368,8 +415,8 @@ export default function LcfSimulator() {
         </div>
       </div>
 
-      {/* Waveform Visualization */}
-      <div className="mb-6 bg-white rounded-xl p-4 shadow-sm border-2 border-teal-200 relative">
+      {/* Waveform Visualization - ANALYSER NODE */}
+      <div className="mb-6 bg-slate-900 rounded-xl p-4 shadow-lg border-2 border-teal-900 relative">
         {/* Beat Indicator */}
         {beatIndicator && (
           <div className="absolute top-2 right-2 flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500 text-white text-sm font-bold animate-pulse">
@@ -377,11 +424,15 @@ export default function LcfSimulator() {
             Lub-Dub
           </div>
         )}
+        <div className="mb-2 flex items-center justify-between px-2">
+          <span className="text-xs font-mono text-teal-400">📊 ONDA REAL (AnalyserNode)</span>
+          <span className="text-xs font-mono text-slate-500">Time Domain Data</span>
+        </div>
         <canvas
           ref={canvasRef}
           width={800}
           height={150}
-          className="w-full h-auto"
+          className="w-full h-auto rounded-lg border-2 border-teal-900 shadow-inner"
         />
       </div>
 
