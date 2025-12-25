@@ -28,10 +28,13 @@ export async function POST(request: NextRequest) {
     }
 
     // 2. Búsqueda de IDs (ESearch)
-    const searchUrl = `${PUBMED_BASE_URL}/esearch.fcgi?db=pubmed&term=${encodeURIComponent(searchQuery)}&retmax=${maxResults}&retmode=json&api_key=${PUBMED_API_KEY}`;
+    const apiKeyParam = PUBMED_API_KEY ? `&api_key=${PUBMED_API_KEY}` : '';
+    const searchUrl = `${PUBMED_BASE_URL}/esearch.fcgi?db=pubmed&term=${encodeURIComponent(searchQuery)}&retmax=${maxResults}&retmode=json${apiKeyParam}`;
     
     const searchResponse = await fetch(searchUrl);
     if (!searchResponse.ok) {
+      const errorText = await searchResponse.text();
+      console.error('PubMed search error:', errorText);
       throw new Error(`PubMed API error: ${searchResponse.status}`);
     }
     
@@ -49,10 +52,12 @@ export async function POST(request: NextRequest) {
     }
 
     // 3. Obtener detalles de artículos (ESummary)
-    const summaryUrl = `${PUBMED_BASE_URL}/esummary.fcgi?db=pubmed&id=${pmids.join(',')}&retmode=json&api_key=${PUBMED_API_KEY}`;
+    const summaryUrl = `${PUBMED_BASE_URL}/esummary.fcgi?db=pubmed&id=${pmids.join(',')}&retmode=json${apiKeyParam}`;
     
     const summaryResponse = await fetch(summaryUrl);
     if (!summaryResponse.ok) {
+      const errorText = await summaryResponse.text();
+      console.error('PubMed summary error:', errorText);
       throw new Error(`PubMed API error: ${summaryResponse.status}`);
     }
     
