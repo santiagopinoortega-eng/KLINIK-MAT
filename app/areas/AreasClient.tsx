@@ -462,7 +462,7 @@ export default function AreasClient() {
                   </div>
                   <div>
                     <p className="text-sm text-gray-600 font-medium">Recursos Disponibles</p>
-                    <p className="text-2xl font-bold text-gray-900">6</p>
+                    <p className="text-2xl font-bold text-gray-900">7</p>
                   </div>
                 </div>
               </div>
@@ -704,6 +704,26 @@ export default function AreasClient() {
                     Imágenes de referencia ecográfica obstétrica con descripciones detalladas.
                   </p>
                 </div>
+
+                {/* Timer Pomodoro */}
+                <Link href="/recursos/pomodoro" className="block group">
+                  <div className="bg-white rounded-xl p-5 shadow-lg border border-gray-200 h-full transition-all duration-300 group-hover:shadow-xl group-hover:border-orange-300 group-hover:-translate-y-1">
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-orange-500 to-red-600 shadow-lg group-hover:scale-110 transition-transform">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <span className="px-2 py-1 rounded text-xs font-bold border-2 bg-orange-100 text-orange-800 border-orange-200">
+                        Disponible
+                      </span>
+                    </div>
+                    <h4 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-orange-600 transition-colors">Timer Pomodoro</h4>
+                    <p className="text-xs text-gray-600 leading-relaxed">
+                      Técnica de estudio con intervalos de 25 minutos y descansos. Maximiza tu concentración.
+                    </p>
+                  </div>
+                </Link>
 
                 {/* Protocolos */}
                 <div className="bg-white rounded-xl p-5 shadow-lg border border-gray-200 opacity-75 cursor-not-allowed">
