@@ -462,7 +462,7 @@ export default function AreasClient() {
                   </div>
                   <div>
                     <p className="text-sm text-gray-600 font-medium">Recursos Disponibles</p>
-                    <p className="text-2xl font-bold text-gray-900">7</p>
+                    <p className="text-2xl font-bold text-gray-900">8</p>
                   </div>
                 </div>
               </div>
@@ -751,6 +751,32 @@ export default function AreasClient() {
                   </div>
                 </Link>
 
+                {/* Escalas y Scores - ACTIVO */}
+                <Link href="/recursos/escalas-scores" className="group block">
+                  <div className="bg-white rounded-xl p-5 shadow-lg border border-gray-200 h-full transition-all duration-300 hover:shadow-xl hover:border-indigo-300 hover:-translate-y-1">
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg group-hover:scale-110 transition-transform">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                      </div>
+                      <span className="px-2 py-1 rounded text-xs font-bold border-2 bg-indigo-100 text-indigo-800 border-indigo-200">
+                        Disponible
+                      </span>
+                    </div>
+                    <h4 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-indigo-600 transition-colors">Escalas y Scores Clínicos</h4>
+                    <p className="text-xs text-gray-600 leading-relaxed mb-3">
+                      Acceso rápido a escalas de valoración: Bishop, Apgar, Ballard, Silverman-Andersen, Perfil Biofísico y más. Con referencias MINSAL y libros gold standard.
+                    </p>
+                    <div className="flex items-center gap-2 text-indigo-600 font-semibold text-xs group-hover:gap-3 transition-all">
+                      <span>Ver escalas</span>
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </div>
+                  </div>
+                </Link>
+
                 {/* Videos */}
                 <div className="bg-white rounded-xl p-5 shadow-lg border border-gray-200 opacity-75 cursor-not-allowed">
                   <div className="flex items-start justify-between mb-3">
@@ -766,24 +792,6 @@ export default function AreasClient() {
                   <h4 className="text-lg font-bold text-gray-900 mb-1">Videos Educativos</h4>
                   <p className="text-xs text-gray-600 leading-relaxed">
                     Biblioteca de videos sobre técnicas de exploración física y procedimientos.
-                  </p>
-                </div>
-
-                {/* Escalas */}
-                <div className="bg-white rounded-xl p-5 shadow-lg border border-gray-200 opacity-75 cursor-not-allowed">
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-yellow-500 to-amber-600 shadow-lg">
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                      </svg>
-                    </div>
-                    <span className="px-2 py-1 rounded text-xs font-bold border-2 bg-yellow-100 text-yellow-800 border-yellow-200">
-                      Próximamente
-                    </span>
-                  </div>
-                  <h4 className="text-lg font-bold text-gray-900 mb-1">Escalas y Scores</h4>
-                  <p className="text-xs text-gray-600 leading-relaxed">
-                    Acceso rápido a escalas de valoración: Bishop, Apgar, Ballard y más.
                   </p>
                 </div>
 
