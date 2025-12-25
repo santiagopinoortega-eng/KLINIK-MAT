@@ -31,10 +31,14 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
-.env.local
-.env.production
-!.env.example
 .env
+.env*.local
+.env.development
+.env.test
+.env.production
+
+# ONLY .env.example should be committed (with placeholder values)
+# All other .env files contain secrets and should be ignored
 
 # vercel
 .vercel

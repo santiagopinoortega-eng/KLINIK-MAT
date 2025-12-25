@@ -405,208 +405,211 @@ export default function LcfSimulator() {
   const userInterpretation = userBPM ? getInterpretation(userBPM) : null;
 
   return (
-    <div className="bg-gradient-to-br from-teal-50 to-cyan-100 rounded-2xl shadow-lg p-8 border-2" style={{ borderColor: '#008080' }}>
-      {/* Header */}
-      <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 rounded-xl shadow-lg" style={{ background: '#008080' }}>
-          <SpeakerWaveIcon className="w-8 h-8 text-white" />
+    <div className="bg-gradient-to-br from-teal-50 to-cyan-100 rounded-xl shadow-lg p-4 border-2" style={{ borderColor: '#008080' }}>
+      {/* Header Compacto */}
+      <div className="flex items-center gap-2 mb-3">
+        <div className="p-2 rounded-lg" style={{ background: '#008080' }}>
+          <SpeakerWaveIcon className="w-5 h-5 text-white" />
         </div>
         <div>
-          <h3 className="text-2xl font-bold text-gray-900">
-            Simulador de Auscultación LCF
-          </h3>
-          <p className="text-sm text-gray-600">
-            Practica tu oído clínico con sonidos cardiofetales reales
-          </p>
+          <h3 className="text-lg font-bold text-gray-900">Simulador LCF</h3>
+          <p className="text-xs text-gray-600">Práctica de auscultación cardíaca fetal</p>
         </div>
       </div>
 
-      {/* Waveform Visualization - ANALYSER NODE */}
-      <div className="mb-6 bg-slate-900 rounded-xl p-4 shadow-lg border-2 border-teal-900 relative">
-        {/* Beat Indicator */}
-        {beatIndicator && (
-          <div className="absolute top-2 right-2 flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500 text-white text-sm font-bold animate-pulse">
-            <span className="w-2 h-2 rounded-full bg-white"></span>
-            Lub-Dub
-          </div>
-        )}
-        <div className="mb-2 flex items-center justify-between px-2">
-          <span className="text-xs font-mono text-teal-400">📊 ONDA REAL (AnalyserNode)</span>
-          <span className="text-xs font-mono text-slate-500">Time Domain Data</span>
-        </div>
-        <canvas
-          ref={canvasRef}
-          width={800}
-          height={150}
-          className="w-full h-auto rounded-lg border-2 border-teal-900 shadow-inner"
-        />
-      </div>
-
-      {/* BPM Control */}
-      <div className="mb-6 bg-white rounded-xl p-6 shadow-sm">
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">
-              Frecuencia Cardíaca Fetal Real
-            </label>
-            <div className="flex items-baseline gap-2">
-              <span className="text-4xl font-bold" style={{ color: '#008080' }}>
-                {targetBPM}
-              </span>
-              <span className="text-lg text-gray-600">lpm</span>
+      {/* Grid Compacto: Canvas + Controles */}
+      <div className="grid lg:grid-cols-2 gap-3 mb-3">
+        {/* Waveform Visualization */}
+        <div className="bg-slate-900 rounded-lg p-2 shadow border border-teal-900 relative">
+          {beatIndicator && (
+            <div className="absolute top-1 right-1 flex items-center gap-1 px-2 py-0.5 rounded-full bg-teal-500 text-white text-xs font-bold animate-pulse">
+              <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
+              Lub-Dub
             </div>
+          )}
+          <div className="mb-1 flex items-center justify-between text-[10px]">
+            <span className="font-mono text-teal-400">📊 Onda Real</span>
+            <span className="font-mono text-slate-500">Time Domain</span>
           </div>
-          <div className="text-right">
-            <div className="text-sm text-gray-600 mb-1">Taps registrados</div>
-            <div className="text-3xl font-bold text-gray-900">{taps.length}</div>
-          </div>
-        </div>
-
-        <input
-          type="range"
-          min="110"
-          max="180"
-          step="5"
-          value={targetBPM}
-          onChange={(e) => setTargetBPM(parseInt(e.target.value))}
-          disabled={isPlaying || isTimerRunning}
-          className="w-full h-2 rounded-lg appearance-none cursor-pointer"
-          style={{
-            background: `linear-gradient(to right, #008080 0%, #008080 ${((targetBPM - 110) / 70) * 100}%, #e2e8f0 ${((targetBPM - 110) / 70) * 100}%, #e2e8f0 100%)`
-          }}
-        />
-        <div className="flex justify-between text-xs text-gray-600 mt-1">
-          <span>110 lpm</span>
-          <span className="font-semibold">Rango: 110-160 lpm (Normal)</span>
-          <span>180 lpm</span>
-        </div>
-      </div>
-
-      {/* Volume Control */}
-      <div className="mb-6 bg-white rounded-xl p-4 shadow-sm">
-        <label className="block text-sm font-semibold text-gray-700 mb-2">
-          Volumen
-        </label>
-        <input
-          type="range"
-          min="0"
-          max="1"
-          step="0.1"
-          value={volume}
-          onChange={(e) => setVolume(parseFloat(e.target.value))}
-          className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-        />
-      </div>
-
-      {/* Timer Display */}
-      <div className="mb-6 bg-white rounded-xl p-6 shadow-sm">
-        <div className="flex items-center justify-between mb-4">
-          <div className="text-sm font-semibold text-gray-700">Tiempo de Práctica</div>
-          <div className="text-4xl font-bold" style={{ color: '#008080' }}>
-            {timeElapsed.toFixed(1)}s / {timerDuration}s
-          </div>
-        </div>
-        <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
-          <div
-            className="h-full transition-all duration-100 rounded-full"
-            style={{ 
-              width: `${Math.min((timeElapsed / timerDuration) * 100, 100)}%`,
-              background: '#008080'
-            }}
+          <canvas
+            ref={canvasRef}
+            width={500}
+            height={80}
+            className="w-full h-auto rounded border border-teal-900"
           />
         </div>
+
+        {/* Controles BPM y Volumen */}
+        <div className="space-y-2">
+          {/* BPM Control */}
+          <div className="bg-white rounded-lg p-3 shadow-sm">
+            <div className="flex items-center justify-between mb-2">
+              <div>
+                <label className="block text-xs font-semibold text-gray-700">FCF Real</label>
+                <div className="flex items-baseline gap-1">
+                  <span className="text-2xl font-bold" style={{ color: '#008080' }}>{targetBPM}</span>
+                  <span className="text-xs text-gray-600">lpm</span>
+                </div>
+              </div>
+              <div className="text-right">
+                <div className="text-xs text-gray-600">Taps</div>
+                <div className="text-xl font-bold text-gray-900">{taps.length}</div>
+              </div>
+            </div>
+            <input
+              type="range"
+              min="110"
+              max="180"
+              step="5"
+              value={targetBPM}
+              onChange={(e) => setTargetBPM(parseInt(e.target.value))}
+              disabled={isPlaying || isTimerRunning}
+              className="w-full h-1.5 rounded-lg appearance-none cursor-pointer"
+              style={{
+                background: `linear-gradient(to right, #008080 0%, #008080 ${((targetBPM - 110) / 70) * 100}%, #e2e8f0 ${((targetBPM - 110) / 70) * 100}%, #e2e8f0 100%)`
+              }}
+            />
+            <div className="flex justify-between text-[10px] text-gray-600 mt-1">
+              <span>110</span>
+              <span className="font-semibold">Normal: 110-160</span>
+              <span>180</span>
+            </div>
+          </div>
+
+          {/* Volume Control */}
+          <div className="bg-white rounded-lg p-2 shadow-sm">
+            <label className="block text-xs font-semibold text-gray-700 mb-1">Volumen</label>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.1"
+              value={volume}
+              onChange={(e) => setVolume(parseFloat(e.target.value))}
+              className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+            />
+          </div>
+        </div>
       </div>
 
-      {/* Tap Button */}
-      <div className="mb-6">
-        <button
-          onClick={handleTap}
-          disabled={!isTimerRunning}
-          className={`w-full py-12 rounded-2xl font-bold text-2xl transition-all transform active:scale-95 shadow-lg ${
-            !isTimerRunning
-              ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-              : 'text-white hover:shadow-2xl'
-          }`}
-          style={{
-            background: isTimerRunning ? '#008080' : undefined,
-            boxShadow: isTimerRunning ? '0 10px 40px rgba(0, 128, 128, 0.3)' : undefined
-          }}
-        >
-          {isTimerRunning ? (
-            <span className="flex items-center justify-center gap-4">
-              <span className="text-5xl animate-pulse">💓</span>
-              TAP al escuchar cada latido
-            </span>
-          ) : (
-            'Inicia el temporizador para comenzar'
-          )}
-        </button>
+
+
+      {/* Timer y Tap Button - Layout Horizontal */}
+      <div className="grid lg:grid-cols-3 gap-3 mb-3">
+        {/* Timer Display */}
+        <div className="lg:col-span-1 bg-white rounded-lg p-2 shadow-sm">
+          <div className="text-xs font-semibold text-gray-700 mb-0.5">Tiempo</div>
+          <div className="text-xl font-bold mb-1" style={{ color: '#008080' }}>
+            {timeElapsed.toFixed(1)}s <span className="text-xs text-gray-600">/ {timerDuration}s</span>
+          </div>
+          <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+            <div
+              className="h-full transition-all duration-100 rounded-full"
+              style={{ 
+                width: `${Math.min((timeElapsed / timerDuration) * 100, 100)}%`,
+                background: '#008080'
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Tap Button */}
+        <div className="lg:col-span-2">
+          <button
+            onClick={handleTap}
+            disabled={!isTimerRunning}
+            className={`w-full h-full py-4 rounded-lg font-bold text-base transition-all transform active:scale-95 shadow ${
+              !isTimerRunning
+                ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                : 'text-white hover:shadow-lg'
+            }`}
+            style={{
+              background: isTimerRunning ? '#008080' : undefined,
+              boxShadow: isTimerRunning ? '0 4px 20px rgba(0, 128, 128, 0.3)' : undefined
+            }}
+          >
+            {isTimerRunning ? (
+              <span className="flex items-center justify-center gap-2">
+                <span className="text-2xl animate-pulse">💓</span>
+                <span>TAP al escuchar latido</span>
+              </span>
+            ) : (
+              'Inicia para comenzar a contar'
+            )}
+          </button>
+        </div>
       </div>
 
-      {/* Controls */}
-      <div className="flex gap-4 mb-6">
+      {/* Controls Compactos */}
+      <div className="flex gap-2 mb-3">
         {!isPlaying && !isTimerRunning && (
           <button
             onClick={() => {
               startAudio();
               startTimer();
             }}
-            className="flex-1 flex items-center justify-center gap-2 px-6 py-4 text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all"
+            className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-white rounded-lg font-semibold shadow hover:shadow-md transition-all text-sm"
             style={{ background: '#008080' }}
           >
-            <PlayIcon className="w-6 h-6" />
-            Iniciar Simulación
+            <PlayIcon className="w-4 h-4" />
+            Iniciar
           </button>
         )}
 
         {isPlaying && (
           <button
             onClick={stopAudio}
-            className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-yellow-500 to-amber-600 text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all"
+            className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-amber-500 text-white rounded-lg font-semibold shadow hover:shadow-md transition-all text-sm"
           >
-            <PauseIcon className="w-6 h-6" />
-            Detener Audio
+            <PauseIcon className="w-4 h-4" />
+            Detener
           </button>
         )}
 
         <button
           onClick={reset}
-          className="flex items-center justify-center gap-2 px-6 py-4 bg-gray-200 text-gray-700 rounded-xl font-bold shadow-sm hover:bg-gray-300 transition-all"
+          className="flex items-center justify-center gap-1.5 px-4 py-2.5 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 transition-all text-sm"
         >
-          <ArrowPathIcon className="w-6 h-6" />
+          <ArrowPathIcon className="w-4 h-4" />
           Reiniciar
         </button>
       </div>
 
-      {/* Results */}
+      {/* Results Compactos */}
       {showResult && userBPM !== null && (
-        <div className="bg-white rounded-xl p-6 border-2 shadow-lg animate-fade-in" style={{ borderColor: '#008080' }}>
-          <h4 className="text-xl font-bold text-gray-900 mb-4">Resultado de tu Auscultación</h4>
+        <div className="bg-white rounded-lg p-3 border-2 shadow animate-fade-in" style={{ borderColor: '#008080' }}>
+          <h4 className="text-sm font-bold text-gray-900 mb-2">Resultado de Auscultación</h4>
           
-          <div className="grid grid-cols-2 gap-4 mb-4">
-            <div className="bg-teal-50 rounded-lg p-4">
-              <div className="text-sm text-gray-600 mb-1">Tu Detección</div>
-              <div className="text-3xl font-bold" style={{ color: '#008080' }}>
-                {userBPM} lpm
+          <div className="grid grid-cols-3 gap-2 mb-3">
+            <div className="bg-teal-50 rounded-lg p-2">
+              <div className="text-xs text-gray-600 mb-0.5">Tu Detección</div>
+              <div className="text-xl font-bold" style={{ color: '#008080' }}>
+                {userBPM} <span className="text-xs">lpm</span>
               </div>
             </div>
-            <div className="bg-gray-50 rounded-lg p-4">
-              <div className="text-sm text-gray-600 mb-1">FCF Real</div>
-              <div className="text-3xl font-bold text-gray-900">
-                {targetBPM} lpm
+            <div className="bg-gray-50 rounded-lg p-2">
+              <div className="text-xs text-gray-600 mb-0.5">FCF Real</div>
+              <div className="text-xl font-bold text-gray-900">
+                {targetBPM} <span className="text-xs">lpm</span>
+              </div>
+            </div>
+            <div className="bg-slate-50 rounded-lg p-2">
+              <div className="text-xs text-gray-600 mb-0.5">Error</div>
+              <div className="text-xl font-bold text-red-600">
+                {errorPercentage}%
               </div>
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-teal-500 to-cyan-600 rounded-lg p-4 text-white mb-4">
+          <div className="bg-gradient-to-r from-teal-500 to-cyan-600 rounded-lg p-2 text-white mb-2 text-sm">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-sm opacity-90">Margen de Error</div>
-                <div className="text-3xl font-bold">{errorPercentage}%</div>
+                <div className="text-xs opacity-90">Margen de Error</div>
+                <div className="text-xl font-bold">{errorPercentage}%</div>
               </div>
               <div className="text-right">
-                <div className="text-sm opacity-90">Diferencia</div>
-                <div className="text-2xl font-bold">
+                <div className="text-xs opacity-90">Diferencia</div>
+                <div className="text-lg font-bold">
                   {Math.abs(userBPM - targetBPM)} lpm
                 </div>
               </div>
@@ -615,22 +618,22 @@ export default function LcfSimulator() {
 
           {/* Clinical Interpretation */}
           {userInterpretation && (
-            <div className={`rounded-xl p-6 border-2 ${
+            <div className={`rounded-lg p-3 border-2 ${
               userInterpretation.alert ? 'bg-red-50 border-red-500' : 'bg-green-50 border-green-500'
             }`}>
-              <div className="flex items-start gap-3 mb-3">
+              <div className="flex items-start gap-2 mb-2">
                 {userInterpretation.alert ? (
-                  <ExclamationTriangleIcon className="w-8 h-8 text-red-600 flex-shrink-0" />
+                  <ExclamationTriangleIcon className="w-5 h-5 text-red-600 flex-shrink-0" />
                 ) : (
-                  <CheckCircleIcon className="w-8 h-8 text-green-600 flex-shrink-0" />
+                  <CheckCircleIcon className="w-5 h-5 text-green-600 flex-shrink-0" />
                 )}
                 <div>
-                  <h5 className={`text-lg font-bold mb-2 ${
+                  <h5 className={`text-base font-bold mb-1 ${
                     userInterpretation.alert ? 'text-red-900' : 'text-green-900'
                   }`}>
                     {userInterpretation.classification}
                   </h5>
-                  <p className={`text-sm mb-3 ${
+                  <p className={`text-xs mb-2 ${
                     userInterpretation.alert ? 'text-red-800' : 'text-green-800'
                   }`}>
                     {userInterpretation.message}
@@ -638,13 +641,13 @@ export default function LcfSimulator() {
                 </div>
               </div>
               
-              <div className="bg-white rounded-lg p-4 border-l-4" style={{ 
+              <div className="bg-white rounded-lg p-2 border-l-4" style={{ 
                 borderColor: userInterpretation.alert ? '#dc2626' : '#10b981' 
               }}>
-                <div className="text-xs font-semibold text-gray-600 mb-1 uppercase">
+                <div className="text-xs font-semibold text-gray-600 mb-0.5 uppercase">
                   Recomendación Clínica (MINSAL)
                 </div>
-                <p className="text-sm text-gray-800 leading-relaxed">
+                <p className="text-xs text-gray-800 leading-relaxed">
                   {userInterpretation.recommendation}
                 </p>
               </div>
@@ -667,16 +670,16 @@ export default function LcfSimulator() {
       )}
 
       {/* Instructions */}
-      <div className="mt-6 bg-white rounded-xl p-6 shadow-sm">
-        <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
+      <div className="mt-4 bg-white rounded-lg p-4 shadow-sm">
+        <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2 text-sm">
           <svg className="w-5 h-5" style={{ color: '#008080' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           Instrucciones de Uso
         </h4>
-        <ol className="space-y-2 text-sm text-gray-700">
+        <ol className="space-y-1.5 text-xs text-gray-700">
           <li className="flex items-start gap-2">
-            <span className="flex-shrink-0 w-6 h-6 rounded-full text-white font-bold text-xs flex items-center justify-center" style={{ background: '#008080' }}>1</span>
+            <span className="flex-shrink-0 w-5 h-5 rounded-full text-white font-bold text-xs flex items-center justify-center" style={{ background: '#008080' }}>1</span>
             <span>Ajusta la FCF real con el slider (110-180 lpm)</span>
           </li>
           <li className="flex items-start gap-2">
@@ -699,11 +702,11 @@ export default function LcfSimulator() {
       </div>
 
       {/* Clinical Pearls */}
-      <div className="mt-6 bg-gradient-to-br from-amber-50 to-yellow-100 rounded-xl p-6 border-2 border-amber-200">
-        <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
+      <div className="mt-4 bg-gradient-to-br from-amber-50 to-yellow-100 rounded-lg p-4 border-2 border-amber-200">
+        <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2 text-sm">
           💡 Perlas Clínicas - Auscultación LCF
         </h4>
-        <ul className="space-y-2 text-sm text-gray-800">
+        <ul className="space-y-1.5 text-xs text-gray-800">
           <li className="flex items-start gap-2">
             <span className="text-amber-600 font-bold">•</span>
             <span><strong>Patrón normal:</strong> &quot;Lub-dub&quot; rítmico, 110-160 lpm en reposo</span>
