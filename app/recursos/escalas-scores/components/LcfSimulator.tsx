@@ -86,7 +86,7 @@ export default function LcfSimulator() {
     // Gain Envelope correcto (según ejemplo)
     // El volumen empieza en 0, sube rápido y baja rápido
     gainNode.gain.setValueAtTime(0, time);
-    gainNode.gain.linearRampToValueAtTime(0.8 * volume, time + 0.05); // Attack
+    gainNode.gain.linearRampToValueAtTime(3.5 * volume, time + 0.05); // Attack con mayor ganancia
     gainNode.gain.exponentialRampToValueAtTime(0.001, time + 0.3); // Release
 
     // "Lub" - Low frequency (65Hz para sonido grave de estetoscopio)
