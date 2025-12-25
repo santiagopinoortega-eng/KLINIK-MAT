@@ -136,7 +136,7 @@ export default function AtlasPage() {
         {isSearching && (
           <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
             <p className="text-blue-800">
-              Se encontraron <strong>{searchResults.length}</strong> resultados para "{searchQuery}"
+              Se encontraron <strong>{searchResults.length}</strong> resultados para &quot;{searchQuery}&quot;
             </p>
           </div>
         )}
@@ -213,7 +213,7 @@ export default function AtlasPage() {
             <div>
               <h3 className="font-semibold text-gray-900 mb-2">Sobre las Imágenes</h3>
               <p className="text-sm text-gray-600 mb-2">
-                Todas las imágenes provienen de fuentes de dominio público verificadas (Wikimedia Commons, Gray's Anatomy) 
+                Todas las imágenes provienen de fuentes de dominio público verificadas (Wikimedia Commons, Gray&apos;s Anatomy) 
                 y han sido seleccionadas por su valor educativo en obstetricia.
               </p>
               <p className="text-xs text-gray-500">
