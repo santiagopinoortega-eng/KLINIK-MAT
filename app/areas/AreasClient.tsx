@@ -29,46 +29,90 @@ interface ClinicalArea {
 
 const AREAS: ClinicalArea[] = [
   {
-    id: 'ginecologia',
-    title: 'ÁREA 1: GINECOLOGÍA Y SALUD DE LA MUJER',
-    subtitle: 'Patología, disfunciones y endocrinología ginecológica',
-    icon: HeartIcon,
-    color: 'text-rose-700',
-    gradient: 'from-rose-50 via-pink-50 to-red-50',
-    borderColor: 'border-rose-300 hover:border-rose-500',
-    available: true,
-    caseCount: 25
-  },
-  {
-    id: 'ssr',
-    title: 'ÁREA 2: SALUD SEXUAL Y REPRODUCTIVA',
-    subtitle: 'APS, regulación de fertilidad y promoción de la salud',
-    icon: SparklesIcon,
-    color: 'text-purple-700',
-    gradient: 'from-purple-50 via-violet-50 to-indigo-50',
-    borderColor: 'border-purple-300 hover:border-purple-500',
-    available: true,
-    caseCount: 29
-  },
-  {
-    id: 'obstetricia',
-    title: 'ÁREA 3: OBSTETRICIA Y PUERPERIO',
-    subtitle: 'Control prenatal, parto, puerperio y urgencias obstétricas',
+    id: 'embarazo',
+    title: 'EMBARAZO Y CONTROL PRENATAL',
+    subtitle: 'Control prenatal, ecografía, patología del embarazo',
     icon: UserGroupIcon,
-    color: 'text-blue-700',
-    gradient: 'from-blue-50 via-cyan-50 to-teal-50',
+    color: 'text-blue-600',
+    gradient: 'from-blue-50 via-sky-50 to-cyan-50',
     borderColor: 'border-blue-300 hover:border-blue-500',
     available: false,
     caseCount: 0
   },
   {
-    id: 'neonatologia',
-    title: 'ÁREA 4: NEONATOLOGÍA',
-    subtitle: 'Recién nacido sano, patológico y lactancia materna',
+    id: 'parto',
+    title: 'PARTO Y ATENCIÓN INTRAPARTO',
+    subtitle: 'Trabajo de parto, monitoreo fetal, atención del parto',
     icon: BeakerIcon,
-    color: 'text-amber-700',
-    gradient: 'from-amber-50 via-yellow-50 to-orange-50',
-    borderColor: 'border-amber-300 hover:border-amber-500',
+    color: 'text-indigo-600',
+    gradient: 'from-indigo-50 via-purple-50 to-violet-50',
+    borderColor: 'border-indigo-300 hover:border-indigo-500',
+    available: false,
+    caseCount: 0
+  },
+  {
+    id: 'puerperio',
+    title: 'PUERPERIO Y LACTANCIA',
+    subtitle: 'Puerperio normal y patológico, lactancia materna',
+    icon: HeartIcon,
+    color: 'text-pink-600',
+    gradient: 'from-pink-50 via-rose-50 to-red-50',
+    borderColor: 'border-pink-300 hover:border-pink-500',
+    available: false,
+    caseCount: 0
+  },
+  {
+    id: 'urgencias-obstetricas',
+    title: 'URGENCIAS OBSTÉTRICAS',
+    subtitle: 'Hemorragias, preeclampsia, emergencias maternas',
+    icon: SparklesIcon,
+    color: 'text-red-600',
+    gradient: 'from-red-50 via-orange-50 to-amber-50',
+    borderColor: 'border-red-300 hover:border-red-500',
+    available: true,
+    caseCount: 1
+  },
+  {
+    id: 'ginecologia',
+    title: 'GINECOLOGÍA',
+    subtitle: 'Patología ginecológica, climaterio, endocrinología',
+    icon: HeartIcon,
+    color: 'text-rose-600',
+    gradient: 'from-rose-50 via-pink-50 to-fuchsia-50',
+    borderColor: 'border-rose-300 hover:border-rose-500',
+    available: false,
+    caseCount: 0
+  },
+  {
+    id: 'salud-sexual',
+    title: 'SALUD SEXUAL Y ANTICONCEPCIÓN',
+    subtitle: 'Regulación de fertilidad, métodos anticonceptivos',
+    icon: SparklesIcon,
+    color: 'text-purple-600',
+    gradient: 'from-purple-50 via-violet-50 to-indigo-50',
+    borderColor: 'border-purple-300 hover:border-purple-500',
+    available: false,
+    caseCount: 0
+  },
+  {
+    id: 'its',
+    title: 'ITS (INFECCIONES DE TRANSMISIÓN SEXUAL)',
+    subtitle: 'Diagnóstico y manejo de infecciones de transmisión sexual',
+    icon: BeakerIcon,
+    color: 'text-orange-600',
+    gradient: 'from-orange-50 via-amber-50 to-yellow-50',
+    borderColor: 'border-orange-300 hover:border-orange-500',
+    available: false,
+    caseCount: 0
+  },
+  {
+    id: 'neonatologia',
+    title: 'NEONATOLOGÍA / RECIÉN NACIDO',
+    subtitle: 'Atención inmediata, patología neonatal, reanimación',
+    icon: UserGroupIcon,
+    color: 'text-teal-600',
+    gradient: 'from-teal-50 via-emerald-50 to-green-50',
+    borderColor: 'border-teal-300 hover:border-teal-500',
     available: false,
     caseCount: 0
   }

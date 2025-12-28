@@ -4,6 +4,7 @@ import { auth, clerkClient } from '@clerk/nextjs/server';
 import { prisma } from '@/lib/prisma';
 import { checkRateLimit, RATE_LIMITS, createRateLimitResponse } from '@/lib/ratelimit';
 import { requireCsrfToken } from '@/lib/csrf';
+import { sanitizeString } from '@/lib/sanitize';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -109,7 +110,13 @@ export async function PATCH(req: Request) {
     }
 
     const body = await req.json();
-    const { country, university, yearOfStudy, specialty, bio } = body;
+    
+    // Sanitizar inputs de texto
+    const country = body.country ? sanitizeString(body.country, 100) : undefined;
+    const university = body.university ? sanitizeString(body.university, 200) : undefined;
+    const specialty = body.specialty ? sanitizeString(body.specialty, 100) : undefined;
+    const bio = body.bio ? sanitizeString(body.bio, 500) : undefined;
+    const yearOfStudy = body.yearOfStudy;
 
     // Validación del año de estudio
     if (yearOfStudy !== undefined && yearOfStudy !== null) {

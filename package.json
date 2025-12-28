@@ -18,6 +18,8 @@
     "test:ci": "jest --ci --coverage --maxWorkers=2",
     "db:seed": "node -r dotenv/config node_modules/ts-node/dist/bin.js --compiler-options '{\"module\":\"CommonJS\"}' prisma/seed.ts",
     "seed:cases": "node -r dotenv/config node_modules/ts-node/dist/bin.js --compiler-options '{\"module\":\"CommonJS\"}' scripts/seed-cases.ts",
+    "generar:casos": "npx ts-node --compiler-options '{\"module\":\"CommonJS\"}' scripts/ai/generar-caso.ts",
+    "validar:casos": "npx ts-node --compiler-options '{\"module\":\"CommonJS\"}' scripts/ai/validar-casos-batch.ts",
     "typecheck": "tsc --noEmit",
     "typecheck:paths": "tsc --noEmit --traceResolution",
     "db:push": "node -r dotenv/config node_modules/.bin/prisma db push",
@@ -26,6 +28,7 @@
   "dependencies": {
     "@clerk/localizations": "^3.29.1",
     "@clerk/nextjs": "^6.36.0",
+    "@google/generative-ai": "^0.24.1",
     "@heroicons/react": "^2.2.0",
     "@prisma/client": "6.19.0",
     "@sentry/nextjs": "^10.29.0",

@@ -12,6 +12,8 @@ import type { Case, MinsalNorm, Option } from '@prisma/client';
 
 // Usamos Omit para excluir campos que no queremos exponer y Pick para los esenciales
 export type CasoListItem = Pick<Case, 'id' | 'title' | 'area' | 'difficulty' | 'summary'> & {
+  // Campo módulo para filtros granulares
+  modulo: string | null;
   // Las normas vienen anidadas
   norms: Pick<MinsalNorm, 'name' | 'code'>[];
   // Opcional: Si quieres contar el total de pasos para la UI, asegúrate de contarlos en la DB.
@@ -32,6 +34,7 @@ export async function getCasosActivos(): Promise<CasoListItem[]> {
         id: true,
         title: true,
         area: true,
+        modulo: true, // Para filtros por submódulo
         difficulty: true,
         summary: true, // Nuevo campo 'summary'
         norms: {

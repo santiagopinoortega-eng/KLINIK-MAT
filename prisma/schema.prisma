@@ -21,28 +21,48 @@ model CaseImage {
 }
 
 model Case {
-  id                String             @id
-  title             String
-  area              String
-  difficulty        Int
-  summary           String?
-  isPublic          Boolean            @default(false)
-  vignette          String?
-  createdAt         DateTime           @default(now()) @map("created_at")
-  updatedAt         DateTime           @map("updated_at")
-  dificultad        String?
-  feedbackDinamico  Json?              @map("feedback_dinamico")
-  modulo            String?
+  id         String   @id
+  version    Int      @default(1) // Versionado del caso
+  title      String
+  area       String // Áreas: "Embarazo y control prenatal", etc.
+  difficulty Int // 1=Baja (6 MCQ), 2=Media (6 MCQ + 1 SHORT), 3=Alta (7 MCQ + 1 SHORT)
+  dificultad String? // "Alta", "Media", "Baja" (texto legible)
+  modulo     String? // Submódulo específico (ej: "Hemorragia postparto")
+  summary    String?
+  isPublic   Boolean  @default(false)
+  vignette   String?  @db.Text // Viñeta clínica completa (DEPRECATED - usar escenario)
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  // Nueva estructura académica
+  objetivosAprendizaje String[] @default([]) @map("objetivos_aprendizaje")
+  blueprint            Json? // { nivelCognitivo, leadInTipos, competencias, nivelAtencion }
+  escenario            Json? // { contexto, etapas: [{id, titulo, texto, datos}] }
+
+  // Feedback y referencias
+  feedbackDinamico Json?    @map("feedback_dinamico") // {bajo, medio, alto}
+  referencias      String[] @default([])
+
+  // Aprendizaje y gamificación
+  aprendizaje Json? // { activarSpacedRepetition, tarjetas, erroresFrecuentes }
+
+  // Configuración IA
+  ai Json? // { habilitado, usosPermitidos, reglas }
+
+  // Relaciones
   images            CaseImage[]
   questions         Question[]
   norms             MinsalNorm[]       @relation("CaseNorms")
   results           StudentResult[]
   favorites         Favorite[]
   engagementMetrics EngagementMetric[]
+  aiUsage           AiUsage[]
 
-  @@index([area, difficulty]) // Optimizar búsquedas por área y dificultad
-  @@index([isPublic, createdAt(sort: Desc)]) // Optimizar lista de casos públicos
-  @@index([area, isPublic]) // Optimizar filtrado de casos por área
+  @@index([area, difficulty])
+  @@index([isPublic, createdAt(sort: Desc)])
+  @@index([area, isPublic])
+  @@index([modulo])
+  @@index([version])
   @@map("cases")
 }
 
@@ -56,12 +76,14 @@ model MinsalNorm {
 }
 
 model Option {
-  id         String   @id
-  text       String
-  isCorrect  Boolean  @default(false)
-  feedback   String?
-  questionId String
-  question   Question @relation(fields: [questionId], references: [id])
+  id          String   @id
+  text        String   @db.Text // Texto de la opción (puede ser largo)
+  isCorrect   Boolean  @default(false) @map("is_correct")
+  explicacion String?  @db.Text // Explicación detallada de por qué es correcta/incorrecta
+  feedback    String?  @db.Text // Feedback adicional (legacy, mantener compatibilidad)
+  order       Int      @default(0) // Orden de presentación (a, b, c, d)
+  questionId  String   @map("question_id")
+  question    Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
 
   @@map("options")
 }
@@ -80,16 +102,25 @@ model QuestionImage {
 }
 
 model Question {
-  id              String          @id
-  order           Int
-  text            String
-  caseId          String
-  feedbackDocente String?
-  guia            String?
-  options         Option[]
-  images          QuestionImage[]
-  case            Case            @relation(fields: [caseId], references: [id])
+  id              String  @id
+  order           Int // Orden de la pregunta en el caso
+  tipo            String  @default("mcq") // "mcq", "short", "multiselect", etc.
+  enunciado       String  @db.Text // Texto de la pregunta
+  text            String? @db.Text // Legacy field (mantener compatibilidad)
+  caseId          String  @map("case_id")
+  feedbackDocente String? @map("feedback_docente") @db.Text // Feedback pedagógico
+  guia            String? @db.Text // Guía para preguntas abiertas
 
+  // Para preguntas tipo SHORT
+  puntosMaximos Int?     @default(0) @map("puntos_maximos") // Puntaje máximo
+  criteriosEval String[] @default([]) @map("criterios_evaluacion") // Keywords para evaluar
+
+  options Option[]
+  images  QuestionImage[]
+  case    Case            @relation(fields: [caseId], references: [id], onDelete: Cascade)
+
+  @@index([caseId, order]) // Optimizar carga ordenada de preguntas
+  @@index([tipo]) // Filtrar por tipo de pregunta
   @@map("questions")
 }
 
@@ -141,6 +172,9 @@ model User {
   payments      Payment[]
   couponUsages  CouponUsage[]
   usageRecords  UsageRecord[]
+
+  // Relación con IA
+  aiUsage AiUsage[]
 
   @@index([specialty]) // Optimizar búsquedas por especialidad
   @@index([country]) // Optimizar análisis por país
@@ -505,4 +539,41 @@ enum UsageResourceType {
   AI_REQUEST // Solicitud de IA
   EXPORT_REPORT // Exportación de reporte
   CUSTOM_CASE // Caso personalizado creado
+}
+
+// ============================================================================
+// SISTEMA DE IA (GEMINI FLASH)
+// ============================================================================
+
+// Registro de uso de IA para analytics y control de costos
+model AiUsage {
+  id           String   @id @default(cuid())
+  userId       String
+  caseId       String
+  preguntaId   String? // Pregunta relacionada (si aplica)
+  tipo         String // "tutor_socratico", "evaluar_short", "detectar_gaps"
+  tokensInput  Int // Tokens de entrada
+  tokensOutput Int // Tokens de salida
+  cached       Boolean  @default(false) // Si se usó caché
+  metadata     Json? // Datos adicionales (puntaje, concepto débil, etc.)
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  case Case @relation(fields: [caseId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt(sort: Desc)])
+  @@index([tipo, createdAt(sort: Desc)])
+  @@index([caseId])
+  @@map("ai_usage")
+}
+
+// Cache general para rate limiting y datos temporales
+model CacheEntry {
+  key       String   @id
+  value     String   @db.Text
+  expiresAt DateTime
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([expiresAt])
+  @@map("cache_entries")
 }

@@ -7,7 +7,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
 import { prisma } from '@/lib/prisma';
-import { checkUserRateLimit, createRateLimitResponse, RATE_LIMITS } from '@/lib/ratelimit';
+import { checkRateLimit, createRateLimitResponse, RATE_LIMITS } from '@/lib/ratelimit';
+import { requireCsrfToken } from '@/lib/csrf';
+import { sanitizeCaseId, sanitizeEnum } from '@/lib/sanitize';
 
 type EngagementData = {
   caseId: string;
@@ -19,6 +21,10 @@ type EngagementData = {
 
 export async function POST(req: NextRequest) {
   try {
+    // CSRF Protection
+    const csrfError = await requireCsrfToken(req);
+    if (csrfError) return csrfError;
+
     // Autenticación
     const { userId } = await auth();
     if (!userId) {
@@ -29,7 +35,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Rate limiting
-    const rateLimitResult = await checkUserRateLimit(userId, RATE_LIMITS.AUTHENTICATED);
+    const rateLimitResult = checkRateLimit(req, RATE_LIMITS.AUTHENTICATED);
     if (!rateLimitResult.ok) {
       return createRateLimitResponse(rateLimitResult.resetAt);
     }
@@ -45,9 +51,25 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Sanitizar y validar inputs
+    let sanitizedCaseId: string;
+    try {
+      sanitizedCaseId = sanitizeCaseId(data.caseId);
+      sanitizeEnum(data.source, ['recommendation', 'search', 'browse', 'trending', 'challenge'] as const, 'source');
+      sanitizeEnum(data.action, ['view', 'click', 'complete', 'favorite'] as const, 'action');
+      if (data.recommendationGroup) {
+        sanitizeEnum(data.recommendationGroup, ['specialty', 'review', 'challenge', 'trending'] as const, 'recommendationGroup');
+      }
+    } catch (error: any) {
+      return NextResponse.json(
+        { error: error.message },
+        { status: 400 }
+      );
+    }
+
     // Verificar que el caso existe
     const caseExists = await prisma.case.findUnique({
-      where: { id: data.caseId },
+      where: { id: sanitizedCaseId },
       select: { id: true },
     });
 
@@ -62,7 +84,7 @@ export async function POST(req: NextRequest) {
     const metric = await prisma.engagementMetric.create({
       data: {
         userId,
-        caseId: data.caseId,
+        caseId: sanitizedCaseId,
         source: data.source,
         recommendationGroup: data.recommendationGroup || null,
         action: data.action,

@@ -84,7 +84,8 @@ export async function GET(req: Request) {
           select: { 
             id: true, 
             title: true, 
-            area: true, 
+            area: true,
+            modulo: true, // Campo para filtros granulares
             difficulty: true, 
             createdAt: true,
             summary: true,

@@ -8,20 +8,31 @@ import Link from 'next/link';
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import { useUserProgress } from '@/app/hooks/useUserProgress';
 
-// Mapeo de áreas a módulos
-const AREA_TO_MODULES: Record<string, string[]> = {
-  'ginecologia': ['ITS', 'Climaterio y Menopausia'],
-  'ssr': ['Anticoncepción', 'Consejería'],
-  'obstetricia': ['Embarazo', 'Parto', 'Puerperio'],
-  'neonatologia': ['RN']
+// Nombres legibles de áreas (normalizado desde DB)
+const AREA_NAMES: Record<string, string> = {
+  'embarazo': 'Embarazo y Control Prenatal',
+  'parto': 'Parto y Atención Intraparto',
+  'puerperio': 'Puerperio y Lactancia',
+  'urgencias-obstetricas': 'Urgencias Obstétricas',
+  'ginecologia': 'Ginecología',
+  'salud-sexual': 'Salud Sexual y Anticoncepción',
+  'its': 'ITS (Infecciones de Transmisión Sexual)',
+  'neonatologia': 'Neonatología / Recién Nacido'
 };
 
-const AREA_NAMES: Record<string, string> = {
-  'ginecologia': 'Ginecología y Salud de la Mujer',
-  'ssr': 'Salud Sexual y Reproductiva',
-  'obstetricia': 'Obstetricia y Puerperio',
-  'neonatologia': 'Neonatología'
-};
+// Normalización de nombres de área desde DB
+function normalizeAreaName(area: string): string {
+  const normalized = area.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  if (normalized.includes('embarazo') || normalized.includes('prenatal')) return 'embarazo';
+  if (normalized.includes('parto') && normalized.includes('intra')) return 'parto';
+  if (normalized.includes('puerperio') || normalized.includes('lactancia')) return 'puerperio';
+  if (normalized.includes('urgencias') && normalized.includes('obstetr')) return 'urgencias-obstetricas';
+  if (normalized.includes('ginecol')) return 'ginecologia';
+  if (normalized.includes('salud sexual') || normalized.includes('anticoncep')) return 'salud-sexual';
+  if (normalized.includes('its') || normalized.includes('infecciones de transmision')) return 'its';
+  if (normalized.includes('neonat') || normalized.includes('recien nacido')) return 'neonatologia';
+  return normalized;
+}
 
 export default function CasosPageClient({ 
   data, 
@@ -37,25 +48,25 @@ export default function CasosPageClient({
   const [progressFilter, setProgressFilter] = useState('all'); // Nuevo filtro
   const { progress, loading: progressLoading, getCaseStatus } = useUserProgress();
 
-  // Filtrar casos por área seleccionada
+  // Filtrar casos por área seleccionada (escalable - usa campo 'area' de DB)
   const areaFilteredData = useMemo(() => {
     if (!selectedArea || selectedArea === 'all') return data;
     
-    const allowedModules = AREA_TO_MODULES[selectedArea] || [];
     return data.filter(caso => {
-      const casoModulo = (caso as any).modulo || caso.area;
-      return allowedModules.includes(casoModulo);
+      const casoArea = normalizeAreaName(caso.area);
+      return casoArea === selectedArea;
     });
   }, [data, selectedArea]);
 
-  // Extraer módulos únicos (soportando tanto 'area' como 'modulo')
+  // Extraer módulos únicos dinámicamente desde los casos filtrados
   const modulos = useMemo(() => {
     const uniqueModulos = new Set<string>();
     areaFilteredData.forEach(d => {
+      // Usar campo 'modulo' si existe, si no usar 'area'
       const mod = (d as any).modulo || d.area;
       if (mod) uniqueModulos.add(mod);
     });
-    return ['all', ...Array.from(uniqueModulos)];
+    return ['all', ...Array.from(uniqueModulos).sort()];
   }, [areaFilteredData]);
 
   const filtered = useMemo(() => {

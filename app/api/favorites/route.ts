@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { auth, currentUser } from '@clerk/nextjs/server';
 import { prisma } from '@/lib/prisma';
 import { checkRateLimit, RATE_LIMITS } from '@/lib/ratelimit';
+import { requireCsrfToken } from '@/lib/csrf';
+import { sanitizeCaseId } from '@/lib/sanitize';
 
 // GET /api/favorites - Obtener todos los favoritos del usuario
 export async function GET(req: NextRequest) {
@@ -58,6 +60,10 @@ export async function GET(req: NextRequest) {
 // POST /api/favorites - Agregar un caso a favoritos
 export async function POST(req: NextRequest) {
   try {
+    // CSRF Protection
+    const csrfError = await requireCsrfToken(req);
+    if (csrfError) return csrfError;
+
     const { userId } = await auth();
     
     if (!userId) {
@@ -77,9 +83,17 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'caseId es requerido' }, { status: 400 });
     }
 
+    // Sanitize caseId
+    let sanitizedCaseId: string;
+    try {
+      sanitizedCaseId = sanitizeCaseId(caseId);
+    } catch (error: any) {
+      return NextResponse.json({ error: error.message }, { status: 400 });
+    }
+
     // Verificar que el caso existe
     const caseExists = await prisma.case.findUnique({
-      where: { id: caseId }
+      where: { id: sanitizedCaseId }
     });
 
     if (!caseExists) {
@@ -149,6 +163,10 @@ export async function POST(req: NextRequest) {
 // DELETE /api/favorites?caseId=xxx - Eliminar un favorito
 export async function DELETE(req: NextRequest) {
   try {
+    // CSRF Protection
+    const csrfError = await requireCsrfToken(req);
+    if (csrfError) return csrfError;
+
     const { userId } = await auth();
     
     if (!userId) {
@@ -168,11 +186,19 @@ export async function DELETE(req: NextRequest) {
       return NextResponse.json({ error: 'caseId es requerido' }, { status: 400 });
     }
 
+    // Sanitize caseId
+    let sanitizedCaseId: string;
+    try {
+      sanitizedCaseId = sanitizeCaseId(caseId);
+    } catch (error: any) {
+      return NextResponse.json({ error: error.message }, { status: 400 });
+    }
+
     // Eliminar favorito
     const deleted = await prisma.favorite.deleteMany({
       where: {
         userId,
-        caseId
+        caseId: sanitizedCaseId
       }
     });
 
