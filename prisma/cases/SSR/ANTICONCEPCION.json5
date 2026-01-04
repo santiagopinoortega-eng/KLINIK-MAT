@@ -1,0 +1,3517 @@
+// Casos Clínicos: Anticoncepción
+// Área: SSR
+// Total de casos: 19
+// Última actualización: 2025-11-25
+
+[
+  {
+    "id": "ac-alta-metodos-naturales-irregulares",
+    "modulo": "Anticoncepción",
+    "dificultad": "Alta",
+    "titulo": "Consejería en métodos naturales en usuaria con ciclos irregulares",
+    "vigneta": "Mujer de 32 años consulta con su pareja. No desean métodos hormonales por efectos adversos previos. Sus ciclos son muy variables (28–42 días). Desean un método 'natural y seguro'. Él comenta: 'hemos probado calendario, pero igual nos asustamos porque a veces se atrasa'. No tienen deseos de embarazo actual. No presentan comorbilidades.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "¿Por qué los métodos basados exclusivamente en calendario (Ogino-Knaus) NO son recomendables en esta usuaria?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "La irregularidad del ciclo (variabilidad >10 días) hace impredecible el cálculo de la ovulación prospectiva.",
+            "explicacion": "Correcto. El método de calendario requiere ciclos regulares (diferencia entre el ciclo más corto y el más largo < 10 días). Con rangos de 28-42 días, la ventana fértil calculada sería inmensa e inexacta.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Porque solo funcionan si hay abstinencia total.",
+            "explicacion": "Incorrecto. Permiten relaciones en periodos infértiles.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Porque son peligrosos para la salud.",
+            "explicacion": "Incorrecto. No tienen efectos secundarios sistémicos.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Porque no pueden usarlos mujeres mayores de 30.",
+            "explicacion": "Incorrecto. La edad no es limitante per se.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "Si la pareja insiste en un método natural, ¿cuál sería la opción con mejor eficacia relativa para su caso?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Coito interrumpido como único método.",
+            "explicacion": "Incorrecto. Alta tasa de falla por pre-eyaculación y error humano.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Método del calendario tradicional.",
+            "explicacion": "Incorrecto. Ya se descartó por irregularidad.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Contar días según aplicaciones móviles sin monitoreo corporal.",
+            "explicacion": "Incorrecto. Las apps suelen usar algoritmos de calendario estándar que fallan en ciclos irregulares.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Método sintotérmico combinado (temperatura basal + moco cervical).",
+            "explicacion": "Correcto. Al combinar un indicador prospectivo (moco) y uno retrospectivo (temperatura), se puede identificar la ovulación en tiempo real, independiente de la duración del ciclo.",
+            "esCorrecta": true
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "¿Qué requisito es CLAVE para que los métodos naturales tengan una eficacia aceptable?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Que la pareja viva sin estrés.",
+            "explicacion": "Incorrecto. El estrés afecta el ciclo, pero el método debe detectarlo.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Que no haya deseo sexual frecuente.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Capacitación rigurosa y observación/registro diario de signos de fertilidad.",
+            "explicacion": "Correcto. La eficacia depende totalmente de la correcta identificación de los signos y la disciplina en el registro. Sin educación formal, la tasa de falla es altísima.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Que existan ciclos perfectos de 28 días.",
+            "explicacion": "Incorrecto. El sintotérmico sirve en ciclos irregulares si se lleva bien.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "En relación con la eficacia (uso típico), debe aclararse honestamente que:",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Son tan seguros como un DIU en uso típico.",
+            "explicacion": "Incorrecto. El DIU tiene falla <1%; los naturales >15-20% en uso típico.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Los métodos naturales tienen mayor tasa de falla en uso típico (real) que los métodos modernos hormonales o LARC.",
+            "explicacion": "Correcto. El 'error humano' (interpretación, toma de temperatura, abstinencia fallida) eleva significativamente el riesgo de embarazo.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "La falla depende del grupo sanguíneo.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "No requieren práctica diaria.",
+            "explicacion": "Incorrecto. Requieren monitoreo diario.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "En caso de error de cálculo o relación sexual en período identificado como fértil, ¿qué debe abordarse en la consejería?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Iniciar ACO sin evaluar preferencias.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Sugerir cambiar totalmente de método sin analizar motivos.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Negar la posibilidad de embarazo.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Ofrecer acceso anticipado a Anticoncepción de Emergencia (AE) y reforzar que es compatible con el método.",
+            "explicacion": "Correcto. Tener AE a mano es una estrategia de respaldo vital para usuarias de métodos basados en el conocimiento de la fertilidad.",
+            "esCorrecta": true
+          }
+        ]
+      },
+      {
+        "id": "p6",
+        "tipo": "mcq",
+        "enunciado": "¿Cuál es el enfoque comunicacional ético en este caso?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Validar su preferencia por lo 'natural', pero entregar información realista sobre eficacia y exigencias para una decisión informada.",
+            "explicacion": "Correcto. No se impone el método médico, pero se asegura que comprendan las implicancias de su elección (consentimiento informado).",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Ridiculizar sus preferencias por no usar hormonales.",
+            "explicacion": "Incorrecto. Daña la relación terapéutica.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Evitar hablar de riesgo de embarazo para no preocuparlos.",
+            "explicacion": "Incorrecto. Es negligente ocultar las tasas de falla.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Sugerir que 'aprendan solos' viendo internet.",
+            "explicacion": "Incorrecto. Requieren instrucción calificada.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p7",
+        "tipo": "short",
+        "enunciado": "Redacta una consejería integral para esta pareja, explicando por qué el calendario no les sirve, qué implica usar el método sintotérmico (exigencias) y cuál es el plan de seguridad (AE).",
+        "puntosMaximos": 2,
+        "criteriosEvaluacion": [
+          "calendario",
+          "irregular",
+          "temperatura",
+          "moco",
+          "sintotérmico",
+          "diario",
+          "registro",
+          "eficacia",
+          "emergencia",
+          "abstinencia"
+        ],
+        "guia": "• Calendario: 'No sirve porque tus ciclos varían mucho'.\n• Sintotérmico: 'Hay que medir temperatura y moco todos los días. Es trabajo en equipo'.\n• Seguridad: 'Si hay dudas o error, usar condón o tener pastilla de emergencia a mano'.",
+        "feedbackDocente": "Evalúa si el estudiante logra transmitir la complejidad del método natural en ciclos irregulares sin desalentar la preferencia de la paciente, pero asegurando la comprensión del riesgo."
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "Los métodos naturales no son 'adivinar'. En ciclos irregulares, el calendario es peligroso. Debes conocer el Método Sintotérmico (Moco + T°) que es el único científico para estos casos. Revisa el Manual de Regulación de Fertilidad.",
+      "medio": "Bien. Entiendes que el calendario no aplica. Para el nivel experto, enfócate en la 'exigencia de usuario': explica claramente que esto requiere disciplina diaria y abstinencia en días fértiles. Si no se cumple eso, la falla es alta.",
+      "alto": "¡Excelente! Has respetado la decisión de la paciente (no hormonas) pero con responsabilidad técnica, ofreciendo la única alternativa natural viable (sintotérmico) y asegurando redes de protección (AE). Eso es consejería de alto nivel."
+    },
+    "referencias": [
+      "norma-fertilidad.pdf.pdf",
+      "LibroAnticoncepcion(FInalWeb-Flip).pdf"
+    ]
+  },
+  {
+    "id": "ac-alta-mapuche-menorragia",
+    "modulo": "Anticoncepción",
+    "dificultad": "Alta",
+    "titulo": "Elección anticonceptiva en mujer con menorragia, anemia y enfoque intercultural",
+    "vigneta": "Mujer mapuche de 38 años acude al CESFAM por reglas abundantes en los últimos 8 meses (menorragia). Refiere cambiar toalla cada 2–3 horas, coágulos y fatiga. Hemoglobina 10.8 g/dL (Anemia leve). No desea embarazo. Busca algo que 'regule su sangre' porque su kimche le dijo que debe equilibrar su cuerpo. No tiene otras patologías.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Considerando la menorragia y la anemia, ¿cuál es el método anticonceptivo médico de primera línea para reducir el sangrado?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "DIU de cobre.",
+            "explicacion": "Incorrecto. El cobre puede aumentar el volumen y duración del sangrado menstrual, empeorando la anemia.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "DIU con levonorgestrel (LNG-IUS).",
+            "explicacion": "Correcto. El LNG intrauterino atrofia el endometrio, reduciendo el sangrado menstrual hasta en un 90-95% y corrigiendo la anemia secundaria.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Parche anticonceptivo.",
+            "explicacion": "Incorrecto. Reduce algo el sangrado, pero no es tan potente terapéuticamente como el DIU-LNG.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Condón masculino.",
+            "explicacion": "Incorrecto. No tiene efecto sobre el ciclo menstrual.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "Respecto a su anemia leve (Hb 10.8), ¿cómo influye la elección del método?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Debe evitar cualquier método hormonal.",
+            "explicacion": "Incorrecto. Los hormonales son beneficiosos aquí.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Debe usar DIU de cobre para 'limpiar la sangre'.",
+            "explicacion": "Incorrecto. Mito peligroso en este contexto clínico.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "La anemia contraindica todo tipo de DIU.",
+            "explicacion": "Incorrecto. Solo el de cobre requiere precaución; el hormonal es tratamiento.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Un método que induzca hipomenorrea o amenorrea (como DIU-LNG) es terapéutico para recuperar depósitos de hierro.",
+            "explicacion": "Correcto. Al sangrar menos, la paciente deja de perder hierro y recupera su hemoglobina.",
+            "esCorrecta": true
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "¿Cuál sería el enfoque intercultural adecuado para presentar la opción?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Preguntar por su visión de salud, validar la recomendación de la kimche e integrar el DIU-LNG como una forma de 'recuperar el equilibrio de su sangre'.",
+            "explicacion": "Correcto. Alinear el objetivo biomédico (tratar anemia) con el objetivo cultural (equilibrio) favorece la aceptación.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Desestimar sus creencias como 'ignorancia'.",
+            "explicacion": "Incorrecto. Racismo/Discriminación.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Imponer el método por eficacia médica.",
+            "explicacion": "Incorrecto. Vulneración de autonomía.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Evitar hablar de su cosmovisión.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "Antes de insertar un DIU-LNG, ¿qué requisito clínico es indispensable en APS?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Solicitar ecografía pelviana obligatoria.",
+            "explicacion": "Incorrecto. El examen bimanual suele ser suficiente para descartar anomalías groseras.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Requerir PAP del mismo mes.",
+            "explicacion": "Incorrecto. El PAP vigente es necesario por salud pública, pero no requisito sine qua non para inserción si no hay sospecha de cáncer.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Suspender actividad sexual 1 mes antes.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Descartar embarazo (anamnesis/test) y descartar infección cervicovaginal activa.",
+            "explicacion": "Correcto. No se inserta en embarazo ni en presencia de cervicitis mucopurulenta/EPI.",
+            "esCorrecta": true
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "Mensaje educativo clave para su contexto cultural:",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "El método no debe explicarse, solo aplicarse.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Debe seguir solo la medicina occidental.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "El DIU-LNG ayudará a que su cuerpo no pierda tanta fuerza por la sangre, respetando su ciclo.",
+            "explicacion": "Correcto. Explicar el beneficio en términos de 'fuerza/energía' suele tener sentido en la cosmovisión mapuche.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Su menorragia es 'normal'.",
+            "explicacion": "Incorrecto. La anemia indica patología.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p6",
+        "tipo": "mcq",
+        "enunciado": "Además del método, el manejo integral en APS debe incluir:",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Pedir exámenes de coagulación obligatorios.",
+            "explicacion": "Incorrecto. Solo si hay historia de sangrado mucocutáneo.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Iniciar suplementación con Sulfato Ferroso y educación alimentaria.",
+            "explicacion": "Correcto. Se trata la causa (DIU) y la consecuencia (Hierro) simultáneamente.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Derivar de inmediato a ginecología por menorragia leve.",
+            "explicacion": "Incorrecto. APS resuelve.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Esperar 6 meses más para evaluar.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p7",
+        "tipo": "short",
+        "enunciado": "Redacta una consejería intercultural explicando cómo el DIU-LNG le ayudará a 'recuperar su equilibrio' (curar la anemia) reduciendo el sangrado, respetando sus creencias.",
+        "puntosMaximos": 2,
+        "criteriosEvaluacion": [
+          "intercultural",
+          "respeto",
+          "sangrado",
+          "equilibrio",
+          "LNG",
+          "fuerza",
+          "anemia",
+          "hierro"
+        ],
+        "guia": "• Respeto: 'Entiendo que para usted es importante el equilibrio'.\n• Explicación: 'Este dispositivo ayuda a que no pierda tanta sangre vital, así recupera su fuerza (newen)'.\n• Beneficio: 'Al sangrar menos, se pasa la anemia'.",
+        "feedbackDocente": "Evalúa la capacidad de 'traducir' el beneficio biomédico (hipomenorrea) a un beneficio cultural (retención de energía vital/sangre)."
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "La menorragia causa anemia y afecta la vida. El DIU-LNG (con hormona) es el mejor tratamiento porque 'seca' el endometrio. El DIU de cobre empeoraría todo. Y recuerda: en salud intercultural, no imponemos; dialogamos. Revisa la Norma de Fertilidad.",
+      "medio": "Bien. Elegiste el método correcto (DIU-LNG) y trataste la anemia. Para el nivel experto, trabaja el 'puente cultural': ¿cómo explicas la amenorrea (no sangrar) como algo positivo a alguien que cree que sangrar es limpiarse? Ese es el desafío.",
+      "alto": "¡Excelente! Has logrado la síntesis perfecta entre biomedicina (DIU-LNG para anemia) y salud intercultural (respeto y lenguaje adecuado). Has tratado la patología sin transgredir la cosmovisión de la paciente."
+    },
+    "referencias": [
+      "Nuevos criterios de elegibilidad..pdf",
+      "Manual-obstetricia.ginecologia.pdf.pdf"
+    ]
+  },
+  {
+    "id": "ac-alta-posaborto-inmediato-riesgo",
+    "modulo": "Anticoncepción",
+    "dificultad": "Alta",
+    "titulo": "Elección de MAC posaborto inmediato en mujer con riesgo de nuevo embarazo no planificado",
+    "vigneta": "Mujer de 31 años consulta en APS 24 horas después de un aborto espontáneo completo confirmado en urgencias. FUR incierta. Tiene vida sexual activa, condón intermitente y una experiencia emocional difícil tras la pérdida. PA 132/86. Tabaquismo ocasional. IMC 29. Expresa temor: 'no quiero volver a pasar por esto, pero tampoco quiero hormonas fuertes'.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Según OMS/MINSAL, ¿qué MAC es elegible inmediatamente posaborto (primer trimestre, sin complicaciones)?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "ACO combinados exclusivamente.",
+            "explicacion": "Incorrecto. Son elegibles, pero no la única ni la mejor opción si hay dudas de adherencia.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Implante subdérmico o DIU (LNG o cobre).",
+            "explicacion": "Correcto. Todos los métodos (incluidos DIU) son Categoría 1 post-aborto inmediato, siempre que no haya infección séptica.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Ningún MAC hormonal por 30 días.",
+            "explicacion": "Incorrecto. Retrasar el inicio aumenta riesgo de embarazo inmediato.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Solo métodos de barrera hasta próxima regla.",
+            "explicacion": "Incorrecto. Dejan una ventana de vulnerabilidad alta.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "La paciente teme 'hormonas fuertes'. ¿Qué explicación basada en evidencia es adecuada para desmitificar?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Todos los MAC hormonales tienen riesgo alto para el corazón.",
+            "explicacion": "Incorrecto. Generalización falsa.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Los métodos de progestágeno solo (implante, DIU-LNG) usan dosis muy bajas, actúan localmente o sistémicamente con alta seguridad.",
+            "explicacion": "Correcto. Explicar que 'no tienen estrógenos' suele calmar el temor a 'lo fuerte'.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "El DIU con cobre también libera hormonas.",
+            "explicacion": "Incorrecto. Es libre de hormonas.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Debe evitar toda hormona por ser posaborto.",
+            "explicacion": "Incorrecto. No hay contraindicación hormonal post-aborto per se.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "¿Cuál es la razón clínica más urgente para iniciar MAC *ahora* y no esperar?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Evita completamente sangrado post-legrado.",
+            "explicacion": "Incorrecto. El sangrado post-aborto ocurre igual.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "El retorno a la fertilidad (ovulación) puede ocurrir tan pronto como 10-14 días post-aborto.",
+            "explicacion": "Correcto. Si espera a la 'próxima regla', podría embarazarse antes de que llegue.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Es obligatorio por ley.",
+            "explicacion": "Incorrecto. La anticoncepción es voluntaria.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Permite evitar controles APS.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "Considerando su HTA limítrofe (132/86) y tabaquismo ocasional (>30 años), ¿qué MAC sería prudente evitar como primera opción a largo plazo?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Implante.",
+            "explicacion": "Incorrecto. Es seguro.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "ACO combinados.",
+            "explicacion": "Correcto. Aunque puede ser Cat 2, la suma de edad + tabaco + posible HTA sugiere preferir métodos sin estrógeno para reducir riesgo CV acumulado.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "DIU cobre.",
+            "explicacion": "Incorrecto. Es excelente opción.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "DIU-LNG.",
+            "explicacion": "Incorrecto. Es excelente opción.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "En cuanto al manejo emocional posaborto, ¿qué estrategia es vital en la consejería anticonceptiva?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Decirle que 'ya pasó' y centrarse solo en el método.",
+            "explicacion": "Incorrecto. Ignorar el duelo o trauma bloquea la receptividad.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Validar sus emociones ('es normal sentir pena o miedo'), separar la pérdida de la prevención futura y ofrecer escucha.",
+            "explicacion": "Correcto. La anticoncepción post-evento debe ofrecerse con tacto, respetando el momento vulnerable.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Evitar hablar de emociones.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Indicar que debe embarazarse pronto para superar la pena.",
+            "explicacion": "Incorrecto. Consejo no médico y riesgoso.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p6",
+        "tipo": "mcq",
+        "enunciado": "¿Qué signo de alarma específico debe vigilar en relación al procedimiento reciente?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Fiebre, dolor pélvico intenso o sangrado mayor a una regla (hemorragia).",
+            "explicacion": "Correcto. Signos de infección (endometritis) o restos, que requieren consulta urgencia.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Leve dolor tipo cólico.",
+            "explicacion": "Incorrecto. Esperable por involución uterina.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Manchado café.",
+            "explicacion": "Incorrecto. Normal.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Tristeza leve.",
+            "explicacion": "Incorrecto. Esperable en duelo.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p7",
+        "tipo": "short",
+        "enunciado": "Redacta una consejería empática que explique: 1) Por qué es necesario cuidarse 'tan pronto' (ovulación), 2) Por qué los métodos sin estrógeno (Implante/DIU) son ideales para ella (seguridad/tabaco) y 3) Signos de alerta.",
+        "puntosMaximos": 2,
+        "criteriosEvaluacion": [
+          "ovulación",
+          "14 días",
+          "rápido",
+          "estrógeno",
+          "tabaco",
+          "implante",
+          "DIU",
+          "fiebre",
+          "sangrado",
+          "dolor"
+        ],
+        "guia": "• Fisiología: 'Tu cuerpo puede volver a ovular en 2 semanas'.\n• Método: 'Como fumas un poco, mejor evitamos el estrógeno. El implante/DIU es más seguro'.\n• Alarma: 'Si tienes fiebre o dolor fuerte, al SAPU'.",
+        "feedbackDocente": "Evalúa si el estudiante integra la urgencia biológica (ovulación) con la precaución clínica (evitar estrógenos por tabaco/HTA) en un tono contenedor."
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "El post-aborto es una situación de 'alto riesgo de repetición' porque la ovulación vuelve rapidísimo (10 días). No la dejes ir sin método. Y ojo con los estrógenos si fuma y tiene HTA limítrofe; prefiere lo seguro (progestágeno puro).",
+      "medio": "Buen manejo. Entiendes la ventana de fertilidad. Para nivel experto, afina la selección del método: en una paciente con estrés post-aborto + tabaco, un LARC sin estrógeno (Implante/DIU) le quita un peso de encima y protege su salud CV.",
+      "alto": "¡Impecable! Has navegado una situación clínica y emocional compleja con maestría. Protegiste su fertilidad futura (evitando infecciones), preveniste un nuevo embarazo no deseado (LARC inmediato) y cuidaste su riesgo cardiovascular. Eso es atención integral."
+    },
+    "referencias": [
+      "norma-fertilidad.pdf.pdf",
+      "Nuevos criterios de elegibilidad..pdf",
+      "Manual-obstetricia.ginecologia.pdf.pdf"
+    ]
+  },
+  {
+    "id": "ac-alta-elegibilidad-aco-riesgo-cv",
+    "modulo": "Anticoncepción",
+    "dificultad": "Alta",
+    "titulo": "Evaluación compleja de elegibilidad para ACO en mujer con factores de riesgo cardiovascular",
+    "vigneta": "Mujer de 37 años consulta porque desea reiniciar anticonceptivo oral combinado (ACO) que usó sin problemas hace años. Tiene IMC 32 (Obesidad I) y es fumadora ocasional (2-4 cigarrillos/semana). PA de hoy: 138/88 mmHg. Su madre tuvo una trombosis venosa profunda a los 42 años. Vida sexual activa con pareja estable. No usa MAC actual. Test de embarazo negativo.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Según Criterios Médicos de Elegibilidad (OMS), ¿qué factor individual representa mayor precaución para el uso de estrógenos en esta mujer?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "IMC 32 sin otras comorbilidades.",
+            "explicacion": "Incorrecto. La obesidad (IMC ≥ 30) es Categoría 2 para ACOs combinados (los beneficios superan los riesgos).",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Antecedente familiar de trombosis venosa profunda en familiar de primer grado.",
+            "explicacion": "Correcto. Aunque la historia familiar sin trombofilia conocida es Categoría 2, es una señal de alerta importante. Si se confirmara trombofilia hereditaria, sería Categoría 4.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Tener 37 años.",
+            "explicacion": "Incorrecto. La edad > 35 años es Categoría 2 para ACO, a menos que fume ≥ 15 cig/día (que sería Cat 4).",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Uso previo de ACO sin problemas.",
+            "explicacion": "Incorrecto. El uso previo exitoso no garantiza seguridad actual dado el cambio en sus factores de riesgo (edad, peso).",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "Considerando la 'Suma de Factores de Riesgo' (Edad >35 + Obesidad + Tabaquismo leve + Historia Familiar + PA limítrofe), ¿cuál es la conducta clínica más prudente?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Iniciar ACO inmediatamente, ya que individualmente todos son Categoría 2.",
+            "explicacion": "Incorrecto. La Guía OMS advierte que cuando existen múltiples factores de riesgo de la misma categoría (CV), el riesgo global aumenta, pudiendo convertirse en Categoría 3 (Riesgo > Beneficio).",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Elegir un método sin estrógeno, como implante o DIU-LNG.",
+            "explicacion": "Correcto. Evitar el componente estrogénico elimina el riesgo trombótico añadido, siendo la opción más segura para una paciente con múltiples factores de riesgo cardiovascular leves.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Sugerir método natural mientras decide.",
+            "explicacion": "Incorrecto. Dejarla desprotegida aumenta el riesgo de embarazo no planificado, que conlleva un riesgo trombótico mucho mayor que los ACO.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Esperar seis meses para repetir PA y luego decidir.",
+            "explicacion": "Incorrecto. Se debe ofrecer anticoncepción efectiva en la visita actual.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "La paciente pregunta: '¿Si uso implante engordaré?'. ¿Cuál es la respuesta adecuada basada en evidencia?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Sí, aumenta al menos 5 kg el primer año.",
+            "explicacion": "Incorrecto. Estudios masivos no muestran ganancia de peso clínica diferente al grupo control (DIU Cobre).",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "No hay evidencia de aumento significativo de peso asociado al implante.",
+            "explicacion": "Correcto. Aunque es una percepción común, la evidencia científica no demuestra una relación causal directa con aumento de peso significativo.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Depende de la cantidad de estrógeno del implante.",
+            "explicacion": "Incorrecto. El implante no contiene estrógenos.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "El implante siempre aumenta el apetito.",
+            "explicacion": "Incorrecto. Es un reporte anecdótico no sustentado como efecto farmacológico universal.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "Si a pesar de la consejería ella insistiera en usar ACO, ¿qué evaluación mínima es OBLIGATORIA antes de prescribir?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Solicitar mamografía.",
+            "explicacion": "Incorrecto. El tamizaje de cáncer de mama es vital por su edad, pero no es un requisito previo para iniciar anticoncepción hormonal.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Ecografía doppler de extremidades.",
+            "explicacion": "Incorrecto. No se solicita screening de trombosis a asintomáticas.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Evaluar tabaquismo real, presión arterial y antecedentes familiares específicos.",
+            "explicacion": "Correcto. Estos son los tamizajes esenciales (Categoría A de la OMS) antes de iniciar hormonales combinados.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Radiografía de tórax.",
+            "explicacion": "Incorrecto. No tiene indicación.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "Respecto a su PA actual (138/88 mmHg), ¿qué implica esto para el uso de ACO?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Es una contraindicación absoluta inmediata.",
+            "explicacion": "Incorrecto. No está en rango de HTA severa (≥160/100), pero requiere seguimiento.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Es un riesgo adicional, y si se confirma PA elevada persistente (≥140/90), el ACO pasa a ser Categoría 3.",
+            "explicacion": "Correcto. La HTA diagnosticada hace que los riesgos del estrógeno (ACV, IAM) superen los beneficios. Se debe confirmar si es HTA real o 'bata blanca'.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "No tiene ninguna implicancia clínica.",
+            "explicacion": "Incorrecto. La PA es el factor de riesgo modificable más importante para ACV en usuarias de ACO.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Indica que debe suspender toda actividad física.",
+            "explicacion": "Incorrecto. El ejercicio es parte del manejo de la PA elevada.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p6",
+        "tipo": "mcq",
+        "enunciado": "Finalmente, ella acepta usar un método más seguro. ¿Cuál es la mejor opción de primera línea?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "ACO combinados en régimen tradicional.",
+            "explicacion": "Incorrecto. Ya establecimos que es la opción menos segura en este perfil.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "DIU levonorgestrel o implante subdérmico.",
+            "explicacion": "Correcto. LARC (Alta eficacia) + Sin estrógenos (Seguridad CV). Es la combinación perfecta para su perfil de riesgo.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Anillo vaginal.",
+            "explicacion": "Incorrecto. Tiene absorción sistémica de etinilestradiol, manteniendo el riesgo trombótico.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Métodos naturales.",
+            "explicacion": "Incorrecto. En una mujer de 37 años con factores de riesgo, un embarazo no planificado sería de alto riesgo obstétrico.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p7",
+        "tipo": "short",
+        "enunciado": "Redacta una consejería integral para esta paciente que explique por qué los MAC sin estrógeno son la opción más segura en su caso. Usa lenguaje claro.",
+        "puntosMaximos": 2,
+        "criteriosEvaluacion": [
+          "riesgo",
+          "trombosis",
+          "estrógeno",
+          "suma",
+          "tabaco",
+          "presión",
+          "seguro",
+          "eficacia"
+        ],
+        "guia": "• Explica que el estrógeno aumenta levemente el riesgo de coágulos.\n• Señala que ella tiene varios factores que 'se suman' (edad, peso, tabaco, antecedentes).\n• Presenta las alternativas (Implante/DIU) como igual de efectivas pero sin ese riesgo cardiovascular.\n• Ofrece reevaluar la presión arterial.",
+        "feedbackDocente": "Evalúa si el estudiante es capaz de comunicar el concepto de 'Suma de Riesgos' sin asustar a la paciente, ofreciendo alternativas positivas."
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "Este caso es difícil porque requiere sumar riesgos. No te quedes solo con que 'fuma poco'. Edad + Peso + Tabaco + Antecedente = ¡Cuidado con el estrógeno! Revisa las tablas de Categorías 3 y 4 de la OMS.",
+      "medio": "Buen análisis. Identificaste que los ACO no son lo ideal. Para el nivel experto, afina tu explicación sobre por qué la suma de factores leves crea un riesgo moderado/alto y cómo comunicarlo asertivamente.",
+      "alto": "¡Brillante! Has aplicado el criterio clínico avanzado: no mirar el dato aislado, sino a la paciente completa. Evitar estrógenos en este perfil 'multiriesgo' es la decisión que salva vidas (previene trombosis/ACV)."
+    },
+    "referencias": [
+      "Nuevos criterios de elegibilidad..pdf",
+      "LibroAnticoncepcion(FInalWeb-Flip).pdf",
+      "norma-fertilidad.pdf.pdf"
+    ]
+  },
+  {
+    "id": "ac-media-migrana-aura",
+    "modulo": "Anticoncepción",
+    "dificultad": "Media",
+    "titulo": "Cefalea en usuaria de ACO: identificando el riesgo neurológico",
+    "vigneta": "MOTIVO DE CONSULTA: 'Me duele mucho la cabeza y tomo pastillas'.\n\nHISTORIA ACTUAL:\nEstudiante de 22 años, usuaria de ACO combinados hace 6 meses. Consulta porque ha notado que sus dolores de cabeza son más frecuentes e intensos. Relata que antes del dolor ve 'lucesitas brillantes' o siente 'hormigueo en la mano' (Aura). Está preocupada porque el paracetamol ya no le hace efecto. PA 110/70. Examen neurológico básico normal.\n\nIMPRESIÓN CLÍNICA:\nMigraña con aura en usuaria de estrógenos.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Según la anamnesis ('lucesitas/hormigueo' previo al dolor), ¿cómo se clasifica este cuadro y cuál es su categoría OMS para uso de estrógenos?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Cefalea tensional. Categoría 1 (Sin restricción).",
+            "explicacion": "Incorrecto. La tensión no presenta síntomas focales neurológicos (aura)."
+          },
+          {
+            "id": "b",
+            "texto": "Migraña sin aura. Categoría 2 (Ventajas > Riesgos) en <35 años.",
+            "explicacion": "Incorrecto. La paciente describe claramente fenómenos visuales/sensitivos previos (aura)."
+          },
+          {
+            "id": "c",
+            "texto": "Migraña con aura. Categoría 4 (Riesgo inaceptable para la salud).",
+            "explicacion": "Correcto. La migraña con aura aumenta el riesgo de Accidente Cerebrovascular (ACV) isquémico, y los estrógenos potencian este riesgo inaceptablemente.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Sinusitis aguda.",
+            "explicacion": "Incorrecto. No hay clínica respiratoria."
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "¿Cuál es la conducta clínica inmediata respecto a su anticoncepción actual?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Mantener los ACO y agregar un antimigrañoso fuerte.",
+            "explicacion": "Incorrecto. Tratar el síntoma sin retirar la causa (estrógeno) mantiene el riesgo de trombosis cerebral."
+          },
+          {
+            "id": "b",
+            "texto": "Cambiar a Anillo Vaginal.",
+            "explicacion": "Incorrecto. El anillo también tiene etinilestradiol y el mismo riesgo sistémico."
+          },
+          {
+            "id": "c",
+            "texto": "Esperar a terminar la caja actual.",
+            "explicacion": "Incorrecto. El riesgo es agudo."
+          },
+          {
+            "id": "d",
+            "texto": "Suspender los ACO combinados de inmediato y ofrecer un método sin estrógeno.",
+            "explicacion": "Correcto. Ante el riesgo de ACV, la suspensión debe ser inmediata. Se debe hacer el cambio a un método seguro (Progestágeno solo o No hormonal).",
+            "esCorrecta": true
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "¿Qué alternativa anticonceptiva es SEGURA (Categoría 1 o 2) para ella?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Parche transdérmico.",
+            "explicacion": "Incorrecto. Tiene estrógenos."
+          },
+          {
+            "id": "b",
+            "texto": "Cualquier método de Progestágeno solo (Implante, DIU-LNG, POP) o DIU de Cobre.",
+            "explicacion": "Correcto. Los progestágenos puros y el cobre no aumentan el riesgo de ACV isquémico en pacientes con migraña.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Inyección mensual.",
+            "explicacion": "Incorrecto. Tiene estrógenos."
+          },
+          {
+            "id": "d",
+            "texto": "Ninguno, debe usar abstinencia.",
+            "explicacion": "Incorrecto. Existen muchas opciones seguras."
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "La paciente pregunta: '¿Por qué me duele más la cabeza en la semana de descanso?'. ¿Cuál es la explicación fisiológica?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Es por la caída brusca de los niveles de estrógeno (deprivación) en esos días.",
+            "explicacion": "Correcto. La 'migraña catamenial' o por deprivación se gatilla por el descenso hormonal. Cambiar a un método continuo (sin descanso) o sin estrógenos suele aliviar esto.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Es psicológico por tener la regla.",
+            "explicacion": "Incorrecto."
+          },
+          {
+            "id": "c",
+            "texto": "Es por anemia menstrual.",
+            "explicacion": "Incorrecto. Poco probable en cefalea aguda."
+          },
+          {
+            "id": "d",
+            "texto": "Es por comer chocolate.",
+            "explicacion": "Incorrecto. Aunque es gatillante, el patrón cíclico apunta a lo hormonal."
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "¿Qué recomendación de estilo de vida complementaria ayuda en el manejo de la migraña?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Aumentar el consumo de cafeína.",
+            "explicacion": "Incorrecto. Puede dar cefalea de rebote."
+          },
+          {
+            "id": "b",
+            "texto": "Dormir siestas largas.",
+            "explicacion": "Incorrecto. Altera el ciclo sueño-vigilia."
+          },
+          {
+            "id": "c",
+            "texto": "Higiene del sueño, hidratación adecuada y evitar ayunos prolongados.",
+            "explicacion": "Correcto. Mantener la homeostasis (equilibrio) reduce el umbral de gatillo para las crisis.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Hacer ejercicio anaeróbico intenso.",
+            "explicacion": "Incorrecto. El esfuerzo explosivo puede gatillar dolor (cefalea de esfuerzo)."
+          }
+        ]
+      },
+      {
+        "id": "p6",
+        "tipo": "short",
+        "enunciado": "Explica brevemente a la paciente por qué le vas a cambiar las pastillas hoy mismo, relacionando sus síntomas visuales ('lucesitas') con la seguridad de su cerebro.",
+        "guia": "• Síntoma: 'Esas luces que ves (aura) son una señal de tu cerebro'.\n• Riesgo: 'El estrógeno de la pastilla, sumado a esas luces, aumenta un poquito el riesgo de tener un problema vascular (trombosis)'.\n• Solución: 'Vamos a cambiar a un método sin esa hormona (Implante/DIU) para que estés protegida del embarazo y segura de tu salud'.",
+        "feedbackDocente": "Evalúa si el estudiante logra comunicar el riesgo de ACV sin generar pánico, pero siendo firme en la contraindicación."
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "¡No te desanimes! La neurología y las hormonas pueden ser una mezcla difícil de entender al principio. Lo importante es que hoy aprendiste que 'lucesitas' (aura) + 'estrógeno' no son amigos. Si recuerdas eso, ¡ya estás protegiendo a tus pacientes! Repasa los Criterios OMS con calma, vas muy bien.",
+      "medio": "Bien detectado. La seguridad es lo primero. Para el nivel experto, maneja la transición: el cambio a un método de progestágeno solo (como el Implante) no solo es más seguro, sino que al eliminar la variación cíclica de estrógenos, muchas veces ¡quita el dolor de cabeza!",
+      "alto": "¡Excelente criterio! Has prevenido una complicación mayor. Reconocer la contraindicación neurológica de los estrógenos y ofrecer una alternativa eficaz inmediata (LARC/POP) es el estándar de oro en seguridad clínica anticonceptiva."
+    },
+    "referencias": [
+      "Nuevos criterios de elegibilidad..pdf",
+      "Manual-obstetricia.ginecologia.pdf.pdf"
+    ]
+  },
+  {
+    "id": "ac-media-diu-nuligesta",
+    "modulo": "Anticoncepción",
+    "dificultad": "Media",
+    "titulo": "Consejería para inserción de DIU en mujer nuligesta: derribando mitos",
+    "vigneta": "Mujer de 24 años, nuligesta (sin hijos), acude a la consulta de salud sexual. Refiere: 'Quiero ponerme la T de Cobre porque las hormonas me caen mal, pero mi tía me dijo que eso es solo para mujeres que ya fueron mamás y que a mí me va a dejar estéril o me va a perforar el útero porque es muy chico'. Se muestra ansiosa pero motivada por un método no hormonal. Examen ginecológico: Útero anteverso de tamaño normal, cuello sano.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Según los Criterios Médicos de Elegibilidad (OMS/MINSAL), ¿es el DIU (Cobre o LNG) una opción para nuligestas?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "No, es Categoría 4 (Riesgo inaceptable) por riesgo de expulsión.",
+            "explicacion": "Incorrecto. Es un mito antiguo."
+          },
+          {
+            "id": "b",
+            "texto": "Sí, es Categoría 2 (Ventajas superan riesgos). Es seguro y eficaz.",
+            "esCorrecta": true,
+            "explicacion": "Correcto. La nuliparidad NO es contraindicación. El riesgo de expulsión es levemente mayor que en multíparas, pero sigue siendo un método de primera línea."
+          },
+          {
+            "id": "c",
+            "texto": "Solo si es mayor de 30 años.",
+            "explicacion": "Incorrecto. La edad no es limitante para el DIU."
+          },
+          {
+            "id": "d",
+            "texto": "Sí, pero solo el hormonal, no la T de cobre.",
+            "explicacion": "Incorrecto. Ambos son elegibles."
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "Respecto al mito de la infertilidad ('me va a dejar estéril'), ¿qué explicación basada en evidencia es correcta?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "El DIU moderno no causa infertilidad; el riesgo histórico se asociaba a ITS no tratadas (Clamidia/Gonorrea), no al dispositivo en sí.",
+            "esCorrecta": true,
+            "explicacion": "Correcto. El retorno a la fertilidad es inmediato tras el retiro. El riesgo de EPI es bajo y se concentra en los primeros 20 días post-inserción."
+          },
+          {
+            "id": "b",
+            "texto": "Es cierto, el cobre daña los ovarios permanentemente.",
+            "explicacion": "Incorrecto. El cobre es espermicida local, no afecta la función ovárica."
+          },
+          {
+            "id": "c",
+            "texto": "Puede causar adherencias si se usa más de 2 años.",
+            "explicacion": "Incorrecto."
+          },
+          {
+            "id": "d",
+            "texto": "Solo causa infertilidad si se encarna.",
+            "explicacion": "Incorrecto. La perforación es un evento agudo y raro, no causa común de infertilidad."
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "Para mejorar la experiencia de la inserción (dolor) en una mujer nuligesta, ¿qué manejo se recomienda en APS?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Anestesia general obligatoria.",
+            "explicacion": "Incorrecto. Procedimiento ambulatorio."
+          },
+          {
+            "id": "b",
+            "texto": "Uso de misoprostol previo de rutina.",
+            "explicacion": "Incorrecto. La evidencia actual no apoya el uso rutinario de misoprostol para inserción de DIU (aumenta dolor/calambres sin facilitar tanto la inserción).",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Premedicación con AINEs (ej: Ibuprofeno) 1 hora antes y/o bloqueo paracervical si hay dificultad.",
+            "explicacion": "Correcto. Los AINEs reducen el dolor tipo cólico posterior. La técnica aséptica y suave es fundamental.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Realizarlo durante la menstruación exclusivamente para aprovechar la dilatación.",
+            "explicacion": "Incorrecto. Se puede insertar en cualquier momento del ciclo si se descarta embarazo, aunque la regla facilita descartarlo.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "¿Qué signo de alarma post-inserción debe motivar una consulta inmediata?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Dolor pélvico leve tipo regla el primer día.",
+            "explicacion": "Incorrecto. Es esperable."
+          },
+          {
+            "id": "b",
+            "texto": "Fiebre, dolor pélvico intenso o flujo purulento en los primeros días.",
+            "explicacion": "Correcto. Sugiere infección pélvica post-procedimiento o perforación, requiriendo evaluación urgente.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Manchado escaso (spotting).",
+            "explicacion": "Incorrecto. Normal post-procedimiento."
+          },
+          {
+            "id": "d",
+            "texto": "Sentir los hilos al tacto vaginal.",
+            "explicacion": "Incorrecto. Es signo de buena posición."
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "Si la paciente teme al dolor menstrual aumentado con la T de Cobre, ¿qué alternativa LARC le ofrecerías?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "DIU con Levonorgestrel (Mirena/Kyleena).",
+            "explicacion": "Correcto. Al tener hormona local, reduce el sangrado y el dolor menstrual, siendo ideal si busca LARC pero teme a la dismenorrea.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Anillo vaginal.",
+            "explicacion": "Incorrecto. No es LARC (depende de la usuaria).",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Inyección trimestral.",
+            "explicacion": "Incorrecto. No es LARC (requiere reinyección).",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Método del ritmo.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p6",
+        "tipo": "short",
+        "enunciado": "Redacta una frase empática para responder al miedo de la paciente sobre que el DIU 'es muy grande para su útero' o que 'no cabe'.",
+        "guia": "• Anatomía: 'El útero es un músculo flexible'.\n• Medición: 'Antes de ponerlo, medimos tu útero con un instrumento especial (histerometría) para asegurarnos de que cabe perfecto'.\n• Seguridad: 'Si tu útero es muy pequeño (poco común), te avisaré y no lo pondremos a la fuerza'.",
+        "feedbackDocente": "Evalúa si el estudiante menciona el paso de la 'Histerometría' como garantía de seguridad antes de la inserción."
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "¡No le tengas miedo al DIU en nuligestas! Es un mito antiguo. La OMS dice que es Categoría 2 (¡Se puede!). Lo importante es descartar ITS antes de ponerlo y usar una buena técnica. Revisa los Criterios de Elegibilidad.",
+      "medio": "Bien. Sabes que se puede usar. Para ser experto, maneja el dolor: indicar un Ibuprofeno antes y explicar paso a paso el procedimiento ('voy a medir tu útero primero') baja la ansiedad y el dolor percibido. ¡La comunicación es tu mejor anestesia!",
+      "alto": "¡Excelente! Has derribado mitos con evidencia científica. Al validar el DIU en nuligestas y manejar la analgesia/ansiedad, estás abriendo la puerta a la anticoncepción más efectiva para una joven que no quiere hormonas. Gran criterio."
+    },
+    "referencias": [
+      "Nuevos criterios de elegibilidad..pdf",
+      "Manual-obstetricia.ginecologia.pdf.pdf"
+    ]
+  },
+  {
+    "id": "ac-media-preconcepcional-tiroides",
+    "modulo": "Anticoncepción",
+    "dificultad": "Media",
+    "titulo": "Consejería preconcepcional en mujer con hipotiroidismo y obesidad",
+    "vigneta": "MOTIVO DE CONSULTA: 'Quiero dejar las pastillas para embarazarme'.\n\nHISTORIA ENFERMEDAD ACTUAL:\nMujer de 32 años, nuligesta, acude a matrona con su pareja. Refiere deseo de embarazo a corto plazo. Usuaria de Levotiroxina 75 mcg/día por Hipotiroidismo diagnosticado hace 4 años, con control irregular (último hace 1 año). Relata fatiga y aumento de peso reciente.\n\nANTECEDENTES:\nIMC 33 (Obesidad grado I). Sedentaria. No fuma. Niega DM/HTA. Trae exámenes de hace 1 semana: TSH 6.8 uUI/mL, T4 libre normal. Glicemia ayuno 98 mg/dL.\n\nEXAMEN FÍSICO:\nPA 120/80. Tiroides palpable, no dolorosa, aumentada de tamaño difusamente (bocio leve). Piel seca. Resto normal.\n\nIMPRESIÓN DIAGNÓSTICA:\nHipotiroidismo descompensado (TSH elevada) y Obesidad. Riesgo obstétrico aumentado si concibe ahora.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Considerando la TSH de 6.8 uUI/mL en una mujer que busca embarazo, ¿cuál es el objetivo terapéutico ideal (meta de TSH) antes de la concepción?",
+        "opciones": [
+          {
+            "id": "c",
+            "texto": "Lograr una TSH < 2.5 uUI/mL.",
+            "explicacion": "Correcto. Las guías internacionales y MINSAL recomiendan TSH < 2.5 para optimizar la fertilidad y asegurar el desarrollo neurológico fetal temprano.",
+            "esCorrecta": true
+          },
+          {
+            "id": "a",
+            "texto": "Mantener TSH bajo 10.0 uUI/mL.",
+            "explicacion": "Incorrecto. Demasiado alto; riesgo de aborto y daño neurológico."
+          },
+          {
+            "id": "b",
+            "texto": "Cualquier valor dentro del rango normal de laboratorio (hasta 4.5).",
+            "explicacion": "Incorrecto. Para preconcepción/primer trimestre, el rango es más estricto (<2.5)."
+          },
+          {
+            "id": "d",
+            "texto": "Suprimir la TSH a 0 (indetectable).",
+            "explicacion": "Incorrecto. Eso sería iatrogenia (hipertiroidismo inducido)."
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "¿Cuál es el principal riesgo obstétrico/fetal de embarazarse con hipotiroidismo NO tratado o descompensado?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Aborto espontáneo, parto prematuro y alteración del desarrollo neurocognitivo fetal.",
+            "explicacion": "Correcto. Las hormonas tiroideas maternas son críticas para el cerebro fetal en el primer trimestre.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Macrosomía fetal.",
+            "explicacion": "Incorrecto. Se asocia más a Diabetes."
+          },
+          {
+            "id": "c",
+            "texto": "Malformaciones cardíacas específicas.",
+            "explicacion": "Incorrecto. No es el riesgo principal del hipotiroidismo."
+          },
+          {
+            "id": "d",
+            "texto": "Embarazo gemelar.",
+            "explicacion": "Incorrecto."
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "¿Qué recomendación inmediata se debe dar respecto a su deseo de dejar los anticonceptivos hoy?",
+        "opciones": [
+          {
+            "id": "b",
+            "texto": "Aconsejar posponer la concepción (mantener MAC), derivar a especialista y esperar hasta ajustar dosis de Levotiroxina y normalizar TSH.",
+            "explicacion": "Correcto. La prioridad es embarazarse en eutiroidismo (TSH normal) para prevenir riesgos.",
+            "esCorrecta": true
+          },
+          {
+            "id": "a",
+            "texto": "Suspender anticonceptivos hoy, el embarazo arregla la tiroides.",
+            "explicacion": "Incorrecto y peligroso. El embarazo aumenta la demanda de hormona tiroidea."
+          },
+          {
+            "id": "c",
+            "texto": "Cambiar a método natural.",
+            "explicacion": "Incorrecto. Se necesita anticoncepción eficaz hasta compensar."
+          },
+          {
+            "id": "d",
+            "texto": "Derivar a fertilidad inmediatamente.",
+            "explicacion": "Incorrecto. No tiene problema de fertilidad, sino de condición clínica previa."
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "Respecto a su IMC de 33 (Obesidad), ¿qué suplementación específica se recomienda en la etapa preconcepcional?",
+        "opciones": [
+          {
+            "id": "d",
+            "texto": "Ácido Fólico en dosis alta (5 mg/día) al menos 3 meses antes.",
+            "explicacion": "Correcto. La obesidad materna es factor de riesgo para defectos del tubo neural, por lo que se indica dosis mayor a la estándar (0.4mg).",
+            "esCorrecta": true
+          },
+          {
+            "id": "a",
+            "texto": "Hierro endovenoso.",
+            "explicacion": "Incorrecto. No tiene anemia."
+          },
+          {
+            "id": "b",
+            "texto": "Calcio 1 gramo.",
+            "explicacion": "Incorrecto. No es específico de preconcepción."
+          },
+          {
+            "id": "c",
+            "texto": "Vitamina C.",
+            "explicacion": "Incorrecto."
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "¿Qué otra derivación preventiva (Programa GES) debe gestionarse en la etapa preconcepcional/embarazo?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Salud Oral Integral de la Embarazada (Odontología).",
+            "explicacion": "Correcto. La enfermedad periodontal se asocia a parto prematuro. El saneamiento bucal es ideal antes o al inicio del embarazo.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Kinesiología respiratoria.",
+            "explicacion": "Incorrecto."
+          },
+          {
+            "id": "c",
+            "texto": "Oftalmología.",
+            "explicacion": "Incorrecto. No es rutina GES embarazo."
+          },
+          {
+            "id": "d",
+            "texto": "Dermatología.",
+            "explicacion": "Incorrecto."
+          }
+        ]
+      },
+      {
+        "id": "p6",
+        "tipo": "short",
+        "enunciado": "Explica brevemente a la paciente por qué es necesario 'esperar un poquito' (ajustar la tiroides) antes de buscar el embarazo, enfocándote en el beneficio para su futuro hijo.",
+        "guia": "• Tiroides y Cerebro: 'Tu guagua no tiene tiroides al principio, depende 100% de la tuya para desarrollar su cerebro'.\n• Riesgo actual: 'Con el examen como está (alto), hay riesgo de que se pierda el embarazo'.\n• Plan: 'Ajustamos la pastilla, bajamos la TSH y en 2-3 meses buscamos embarazo seguro'.",
+        "feedbackDocente": "Evalúa si el estudiante comunica el riesgo (neurodesarrollo/aborto) de forma motivadora para lograr la adherencia a posponer el embarazo."
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "¡Ánimo! Sé que la paciente quiere embarazarse 'ya', pero tu rol es proteger ese futuro embarazo. Recuerda: Hipotiroidismo descompensado = Riesgo de aborto y daño cognitivo. La meta de TSH es estricta (<2.5). Revisa el capítulo de Patología Médica y Embarazo en el Manual de Obstetricia.",
+      "medio": "¡Bien pensado! Identificaste que no está lista metabólicamente. No olvides el Ácido Fólico: en obesidad, la dosis sube a 5mg. Esos detalles hacen la diferencia entre un control estándar y uno de excelencia.",
+      "alto": "¡Excelente! Has actuado como un verdadero guardián de la salud materno-fetal. Al postergar el embarazo para compensar la TSH y manejar el peso, estás previniendo las complicaciones más graves. Eso es medicina preventiva de alto nivel."
+    },
+    "referencias": [
+      "MINSAL. Guía Perinatal 2015 (Capítulo Enfermedad Tiroidea).",
+      "Manual-obstetricia.ginecologia.pdf.pdf"
+    ]
+  },
+  {
+    "id": "ac-media-diu-hilos-no-visibles",
+    "modulo": "Anticoncepción",
+    "dificultad": "Media",
+    "titulo": "Control de DIU: Manejo ante hilos no visibles en APS",
+    "vigneta": "Mujer de 28 años acude a control anual de su DIU T de Cobre (insertado hace 2 años). Refiere estar asintomática, con reglas normales. Sin embargo, está angustiada porque 'intenté tocarme los hilos como me enseñaron y no los siento'. Teme que el dispositivo se haya encarnado o perdido. Al examen especular: Cérvix sano, epitelizado, flujo fisiológico, pero NO se visualizan las guías del DIU en el orificio cervical externo.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Ante la no visualización de las guías (hilos) del DIU, ¿cuál es la causa más frecuente en una paciente asintomática?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Perforación uterina completa.",
+            "explicacion": "Incorrecto. Es una complicación grave y rara, generalmente sintomática o inmediata a la inserción.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Ascenso de los hilos hacia el canal endocervical o cavidad uterina.",
+            "explicacion": "Correcto. A menudo los hilos se retraen hacia el canal, especialmente si fueron cortados cortos, sin significar que el DIU esté desplazado.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Expulsión completa inadvertida.",
+            "explicacion": "Incorrecto. Aunque posible, la paciente suele notar cambios en el sangrado o dolor si se expulsa.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Embarazo ectópico.",
+            "explicacion": "Incorrecto. No es la causa primaria de no ver los hilos.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "¿Cuál es la conducta inicial en el box antes de derivar o pedir exámenes?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Intentar explorar el canal cervical con una pinza estéril suavemente para recuperar los hilos.",
+            "explicacion": "Correcto. Si se cuenta con experiencia e instrumental (pinza Cheron/Bozeman), se puede intentar traccionar suavemente los hilos si están justo en el canal. Si no es fácil, no insistir.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Retirar el DIU a ciegas inmediatamente.",
+            "explicacion": "Incorrecto. Maniobra peligrosa y dolorosa.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Derivar a urgencia hospitalaria.",
+            "explicacion": "Incorrecto. No es una urgencia vital.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Indicar que el DIU se cayó y poner otro.",
+            "explicacion": "Incorrecto. Se debe confirmar ubicación primero.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "Si no se logran recuperar los hilos, ¿cuál es el examen 'Gold Standard' para localizar el dispositivo?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Radiografía de abdomen simple.",
+            "explicacion": "Incorrecto. Solo ve si está en pelvis, no si está intrauterino correcto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Ecografía Transvaginal.",
+            "explicacion": "Correcto. Permite visualizar la ubicación exacta del DIU dentro del útero, la distancia al fondo uterino y descartar perforación o expulsión.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Resonancia magnética.",
+            "explicacion": "Incorrecto. Costoso e innecesario.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Test de embarazo en sangre.",
+            "explicacion": "Incorrecto. Necesario descartar embarazo, pero no localiza el DIU.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "Mientras se espera la ecografía, ¿qué indicación de seguridad se debe dar a la paciente?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Usar protección adicional (condón) o abstinencia hasta confirmar que el DIU está en su sitio.",
+            "explicacion": "Correcto. Ante la duda de una expulsión inadvertida, se debe manejar como si no tuviera anticoncepción hasta demostrar lo contrario.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Tomar anticonceptivos orales de inmediato.",
+            "explicacion": "Incorrecto. No se inicia hormonal sin descartar embarazo y ubicación.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Que no se preocupe, el DIU nunca falla.",
+            "explicacion": "Incorrecto. Falsa seguridad.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Reposo absoluto.",
+            "explicacion": "Incorrecto. Innecesario.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "Si la ecografía confirma que el DIU está *in situ* (bien ubicado en fondo uterino), ¿cuál es el manejo?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Mantener el DIU y tranquilizar a la paciente, explicando que es seguro aunque no se toquen los hilos.",
+            "explicacion": "Correcto. Si el DIU está normoinserto, sigue siendo eficaz. No es necesario retirarlo solo por falta de hilos visibles, salvo deseo de la usuaria o fecha de vencimiento.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Retirarlo quirúrgicamente de inmediato.",
+            "explicacion": "Incorrecto. Invasivo e innecesario.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Cambiarlo por uno nuevo obligatoriamente.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Acortar la duración del dispositivo a 1 año.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p6",
+        "tipo": "short",
+        "enunciado": "Escribe cómo le explicarías a la paciente que 'no sentir los hilos' no significa necesariamente algo grave, para calmar su angustia mientras espera la eco.",
+        "guia": "• Normalización: 'Es muy común que los hilos se suban un poquito por el canal'.\n• Seguridad: 'Lo más probable es que tu T esté funcionando perfecto ahí adentro'.\n• Plan: 'Haremos la eco solo para estar 100% seguros. Mientras tanto, usa condón por precaución'.",
+        "feedbackDocente": "Evalúa si el estudiante logra transmitir calma y seguridad técnica ante un hallazgo que suele generar pánico en las usuarias."
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "¡No entres en pánico si no ves los hilos! Lo más común es que se hayan 'escondido' en el canal cervical. No asumas que se le cayó el útero ni que está perforada si ella no tiene dolor. Tu mejor amiga aquí es la Ecografía Transvaginal. Revisa el manejo de complicaciones de DIU en el Manual.",
+      "medio": "Bien. Sabes que hay que pedir Eco. Para ser experto, enfócate en la indicación de respaldo: 'Usa condón hasta que veamos la foto'. Si resulta que el DIU se había caído, esa indicación la salva de un embarazo no deseado.",
+      "alto": "¡Excelente! Has manejado la incertidumbre clínica con un plan racional: 1) Exploración suave, 2) Imagenología (Gold Standard), 3) Protección de respaldo. Y lo mejor: has tranquilizado a la paciente con información veraz."
+    },
+    "referencias": [
+      "Manual-obstetricia.ginecologia.pdf.pdf",
+      "Nuevos criterios de elegibilidad..pdf"
+    ]
+  },
+  {
+    "id": "ac-media-posparto-inmediato-larc",
+    "modulo": "Anticoncepción",
+    "dificultad": "Media",
+    "titulo": "Elección de MAC en puerperio inmediato con lactancia exclusiva",
+    "vigneta": "Mujer de 25 años, 48 horas post parto vaginal sin complicaciones. Lactancia exclusiva. Dice: 'el embarazo me tomó por sorpresa, no quiero repetir esto tan pronto'. Solicita un método seguro antes del alta. PA normal, sin comorbilidades. No desea algo que requiera recordar diariamente.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "¿Qué MAC es elegible desde el puerperio inmediato (<48h) con lactancia exclusiva según criterios OMS?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Anticonceptivos combinados orales.",
+            "explicacion": "Incorrecto. Los estrógenos están contraindicados (Categoría 4) en las primeras 6 semanas postparto por alto riesgo trombótico y posible impacto en lactancia.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Parche combinado.",
+            "explicacion": "Incorrecto. Contiene etinilestradiol, por lo tanto, está contraindicado en este periodo.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Implante subdérmico de progestágeno.",
+            "explicacion": "Correcto. Los progestágenos solos (Implante/DIU-LNG) son seguros (Cat 2) y pueden iniciarse inmediatamente (AIP) sin afectar la lactancia.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Métodos naturales (Calendario).",
+            "explicacion": "Incorrecto. No son aplicables en puerperio debido a la anovulación inicial y falta de ciclos menstruales.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "¿Qué beneficio de salud pública tiene ofrecer un LARC (Implante/DIU) en el puerperio inmediato (AIP)?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Aumenta la producción de leche.",
+            "explicacion": "Incorrecto. No tienen efecto galactogogo.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Disminuye riesgo de mastitis.",
+            "explicacion": "Incorrecto. No tiene relación con la patología mamaria infecciosa.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Evita depresión posparto.",
+            "explicacion": "Incorrecto. No es un efecto demostrado.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Evita embarazos recurrentes en intervalos intergenésicos cortos.",
+            "explicacion": "Correcto. Asegura la anticoncepción antes de que la paciente se pierda del sistema de salud, reduciendo embarazos no planificados rápidos.",
+            "esCorrecta": true
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "La paciente pregunta si el implante puede afectar a su bebé por la leche. ¿Qué corresponde explicar?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Pasa a la leche en altas dosis y daña el hígado.",
+            "explicacion": "Incorrecto. Mito sin evidencia.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Es seguro y compatible con lactancia; la transferencia a la leche es ínfima y sin efectos adversos en el RN.",
+            "explicacion": "Correcto. La OMS y sociedades pediátricas lo avalan como seguro para el lactante.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Debe suspender lactancia si lo usa.",
+            "explicacion": "Incorrecto. Se promueve la lactancia materna exclusiva junto con el método.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Puede causar alergia al bebé.",
+            "explicacion": "Incorrecto. No es un alérgeno conocido transmitido por leche.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "¿Cuál es un efecto esperado del implante que debe anticiparse para evitar que la usuaria se asuste y lo abandone?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Aumento de riesgo trombótico venoso.",
+            "explicacion": "Incorrecto. Es un riesgo asociado a estrógenos, no a progestágenos solos.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Hiperlactancia descontrolada.",
+            "explicacion": "Incorrecto. No ocurre.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Cambios en el patrón de sangrado (spotting prolongado o amenorrea).",
+            "explicacion": "Correcto. El sangrado impredecible es la causa #1 de discontinuación. Explicar que es normal y transitorio mejora la adherencia.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Dolor pélvico persistente.",
+            "explicacion": "Incorrecto. No es característico del implante (subdérmico).",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "¿Qué mensaje educativo es esencial antes del alta hospitalaria?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "No requiere control mientras tenga el LARC.",
+            "explicacion": "Incorrecto. Siempre se debe ofrecer seguimiento.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Puede volver al CESFAM si tiene dudas y el control de la díada (madre-hijo) incluirá revisión del sitio de inserción.",
+            "explicacion": "Correcto. Conectar el nivel secundario (parto) con APS (control) asegura la continuidad del cuidado.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Debe retirarlo en un mes obligatoriamente.",
+            "explicacion": "Incorrecto. Dura 3 años.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Debe usar condón siempre porque el implante no sirve si amamanta.",
+            "explicacion": "Incorrecto. El implante es altamente eficaz por sí solo para evitar embarazo.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p6",
+        "tipo": "short",
+        "enunciado": "Explica de forma breve cómo presentarías las ventajas del implante en posparto inmediato a esta mujer, considerando su deseo de 'no recordar nada'.",
+        "guia": "• Eficacia: 'Es uno de los métodos más seguros que existen, te olvidas de pastillas'.\n• Lactancia: 'No le hace nada a tu guagua ni a tu leche'.\n• Comodidad: 'Te vas de alta protegida, sin trámites extra'.\n• Sangrado: 'Puede que manches un poco al principio, es normal'.",
+        "feedbackDocente": "Evalúa si el estudiante conecta la necesidad de la usuaria (olvido/seguridad) con las características del método (LARC/Inocuidad), usando lenguaje simple."
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "Ojo: En puerperio inmediato + lactancia, los estrógenos son el enemigo (trombosis/lactancia). Los progestágenos (Implante) son los aliados. Revisa la tabla de Categorías del MINSAL para 'Lactancia < 6 semanas'.",
+      "medio": "Vas bien. Sabes que el Implante es seguro. Para ser experto, enfócate en la 'Anticipación': avísale del sangrado irregular antes de que ocurra, así evitarás que llegue asustada a la urgencia pensando que algo anda mal.",
+      "alto": "¡Excelente! Has aprovechado la oportunidad de oro del parto para iniciar anticoncepción de alta eficacia (AIP). Tu manejo clínico protege a la paciente de un embarazo no planificado rápido y respeta su lactancia."
+    },
+    "referencias": [
+      "Nuevos criterios de elegibilidad..pdf",
+      "norma-fertilidad.pdf.pdf",
+      "Manual-obstetricia.ginecologia.pdf.pdf"
+    ]
+  },
+  {
+    "id": "ac-media-pp-implante-posparto",
+    "modulo": "Anticoncepción",
+    "dificultad": "Media",
+    "titulo": "Elección de un método anticonceptivo en puerperio inmediato",
+    "vigneta": "Mujer de 24 años, puérpera de 2 días post parto vaginal fisiológico. Lactancia materna exclusiva. Expresa preocupación por 'volver a quedar embarazada rápido' y quiere un método seguro antes del alta. No antecedentes mórbidos. No complicaciones obstétricas. Desea un método de larga duración y con pocas exigencias de adherencia.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "¿Qué método anticonceptivo es seguro y elegible en puerperio con lactancia exclusiva desde el día 1?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Anticonceptivo oral combinado desde el alta.",
+            "explicacion": "Incorrecto. Los estrógenos están contraindicados (Categoría 4 OMS) en las primeras 6 semanas postparto por el riesgo elevado de trombosis venosa y posible impacto en la lactancia.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Anillo vaginal combinado.",
+            "explicacion": "Incorrecto. Al igual que los orales combinados, contiene etinilestradiol, por lo que no es elegible en puerperio inmediato.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Implante subdérmico de progestágeno.",
+            "explicacion": "Correcto. Los métodos de solo progestágeno (Implante/DIU) son seguros (Categoría 1/2), no afectan la lactancia y pueden insertarse antes del alta hospitalaria (AIP).",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Métodos naturales.",
+            "explicacion": "Incorrecto. La amenorrea de lactancia (MELA) tiene requisitos estrictos. Los métodos de calendario o temperatura son poco fiables en el puerperio por la anovulación inicial impredecible.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "La paciente pregunta si el implante afecta la lactancia. ¿Cuál es la respuesta correcta basada en evidencia?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Sí, disminuye la producción de leche.",
+            "explicacion": "Incorrecto. Estudios comparativos no han mostrado diferencias significativas en el volumen de leche ni en el crecimiento del lactante.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Solo afecta si se usa antes de 6 meses.",
+            "explicacion": "Incorrecto. No hay restricción de tiempo para el inicio de progestágenos puros según los Criterios de Elegibilidad OMS.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "No, es compatible con lactancia y seguro para el recién nacido.",
+            "explicacion": "Correcto. El etonogestrel se excreta en cantidades ínfimas en la leche materna sin efectos adversos demostrados en el recién nacido.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Debe suspender lactancia si lo usa.",
+            "explicacion": "Incorrecto. Sería una mala práctica clínica privar al recién nacido de la lactancia por el uso de este método.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "¿Qué beneficio adicional tiene el implante en comparación con otros métodos en el contexto de una puérpera reciente?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Requiere controles semanales.",
+            "explicacion": "Incorrecto. Al contrario, es ideal para puérperas que tienen poco tiempo, ya que no requiere rutinas diarias ni visitas frecuentes.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Alta eficacia independiente del uso diario.",
+            "explicacion": "Correcto. Al ser un LARC (Long-Acting Reversible Contraception), su eficacia no depende de que la usuaria recuerde tomarlo entre los cuidados del bebé.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Contiene estrógeno, lo que reduce sangrados.",
+            "explicacion": "Incorrecto. Es libre de estrógenos.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Evita la caída del cabello en el posparto.",
+            "explicacion": "Incorrecto. El efluvio telógeno postparto es fisiológico y no se previene con el implante.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "Durante la consejería, ¿qué efecto secundario es el más importante de anticipar para asegurar la continuidad?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Que aumentará de peso inevitablemente.",
+            "explicacion": "Incorrecto. Aunque es una preocupación común, no es un efecto universal y no debe presentarse como una certeza.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Cambios en el patrón de sangrado (amenorrea o spotting).",
+            "explicacion": "Correcto. El sangrado irregular es la principal causa de discontinuación. Explicar que es 'normal y esperado' reduce la ansiedad y las solicitudes de retiro.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Que debe retirarlo en un mes para evaluar tolerancia.",
+            "explicacion": "Incorrecto. Se instala con la intención de uso prolongado (3 años).",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Que no necesitará control nunca más.",
+            "explicacion": "Incorrecto. Siempre se debe ofrecer control, especialmente para revisar el sitio de inserción y dudas.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "¿Qué acción clínica es clave antes de insertar un LARC en puerperio inmediato?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Suspender lactancia 24 horas.",
+            "explicacion": "Incorrecto. No tiene fundamento científico.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Confirmar que no existan complicaciones puerperales agudas (infección puerperal).",
+            "explicacion": "Correcto. La sepsis puerperal es una contraindicación de procedimiento (Categoría 4 para DIU, precaución para implante por riesgo de infección del sitio).",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Solicitar ecografía mamaria.",
+            "explicacion": "Incorrecto. No es un requisito para la anticoncepción.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Indicar reposo absoluto tras la inserción.",
+            "explicacion": "Incorrecto. La paciente puede movilizarse libremente.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p6",
+        "tipo": "short",
+        "enunciado": "Explica brevemente cómo estructurarías la consejería en esta mujer para favorecer adherencia y continuidad del método.",
+        "guia": "• Validar temores y resolver dudas.\n• Explicar compatibilidad con lactancia (seguridad).\n• Anticipar cambios en sangrado (spotting/amenorrea).\n• Reforzar eficacia (olvidos).\n• Ofrecer control posterior y 'puertas abiertas'.",
+        "feedbackDocente": "Evalúa si integraste la empatía con la información técnica. Lo crucial es mencionar la ANTICIPACIÓN del sangrado irregular, ya que es la causa #1 de abandono si no se avisa."
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "Es fundamental distinguir qué hormonas se pueden usar en lactancia. Recuerda: Estrógenos NO (riesgo trombosis/lactancia), Progestágenos SÍ (seguros). Revisa los 'Criterios de Elegibilidad OMS' para puerperio.",
+      "medio": "Buen razonamiento clínico. Tienes claro que el implante es seguro. Para el nivel experto, enfócate más en la consejería de efectos secundarios (sangrado), que es donde se juega la adherencia real de la usuaria.",
+      "alto": "¡Excelente manejo! Has seleccionado el método ideal (LARC progestágeno) para el contexto (Puerperio + Lactancia) y has estructurado una consejería que anticipa problemas. Así se hace prevención terciaria efectiva."
+    },
+    "referencias": [
+      "Nuevos criterios de elegibilidad..pdf",
+      "norma-fertilidad.pdf.pdf",
+      "Manual-obstetricia.ginecologia.pdf.pdf"
+    ]
+  },
+  {
+    "id": "ac-media-olvidos-joven",
+    "modulo": "Anticoncepción",
+    "dificultad": "Media",
+    "titulo": "Joven con olvidos frecuentes de ACO: adherencia y cambio de método",
+    "vigneta": "Mujer de 20 años consulta por múltiples olvidos de su anticonceptivo oral combinado. Relata que trabaja y estudia, tiene horarios irregulares y suele olvidar 3–4 pastillas al mes. Ha tenido sangrado intermenstrual (spotting por olvido). No desea embarazo. Dice sentirse 'culpable e incapaz de tomar algo todos los días'. Examen físico normal.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "El principal problema identificado que pone en riesgo la eficacia anticonceptiva es:",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Baja adherencia secundaria a la dificultad para cumplir la toma diaria.",
+            "explicacion": "Correcto. La eficacia 'típica' de los ACO cae al 91% (o menos) por olvidos, siendo la principal causa de embarazo no planificado en usuarias jóvenes.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Contraindicación absoluta de estrógeno.",
+            "explicacion": "Incorrecto. No tiene factores de riesgo médicos, el problema es conductual.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Falla del medicamento.",
+            "explicacion": "Incorrecto. El fármaco funciona; el uso es el incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Incapacidad cognitiva para comprender instrucciones.",
+            "explicacion": "Incorrecto. Es un problema de estilo de vida/rutina, no cognitivo.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "¿Qué tipo de método es el más recomendado según Criterios de Elegibilidad OMS para mejorar la adherencia en este perfil?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Continuar ACO pero sin alarmas o recordatorios.",
+            "explicacion": "Incorrecto. No soluciona el problema de base.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Métodos naturales como única estrategia.",
+            "explicacion": "Incorrecto. Requieren aún mayor disciplina diaria.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Inyección combinada mensual.",
+            "explicacion": "Incorrecto. Aunque reduce la frecuencia, sigue requiriendo una acción regular (mensual) que puede olvidarse.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Implante subdérmico o DIU (LARC).",
+            "explicacion": "Correcto. Los Anticonceptivos Reversibles de Larga Duración (LARC) son 'usuario-independientes', eliminando el error de toma y garantizando eficacia >99%.",
+            "esCorrecta": true
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "Mientras decide el cambio, en caso de olvidos >24h de su ACO actual, corresponde indicar:",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Suspender el ACO definitivamente.",
+            "explicacion": "Incorrecto. Se debe mantener hasta iniciar el nuevo para evitar ovulación de rebote.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Tomar la pastilla olvidada apenas recuerde y usar condón por 7 días.",
+            "explicacion": "Correcto. Es la recomendación estándar para recuperar niveles inhibitorios y proteger la ventana de riesgo.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Tomar 4 pastillas juntas para 'compensar'.",
+            "explicacion": "Incorrecto. Dosis excesiva que causa vómitos.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Continuar sin protección adicional.",
+            "explicacion": "Incorrecto. Riesgo de embarazo.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "Enfoque comunicacional correcto para abordar la 'culpa' que siente:",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Criticar sus olvidos para generar cambio.",
+            "explicacion": "Incorrecto. Genera rechazo.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Evitar hablar del tema para no incomodar.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Validar su experiencia ('es difícil con tu ritmo de vida') y presentar alternativas que se adapten a ella, no ella al método.",
+            "explicacion": "Correcto. Desculpabilizar y ofrecer soluciones prácticas mejora la relación clínica y la aceptación del nuevo método.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Imponer el método más eficaz sin preguntar preferencias.",
+            "explicacion": "Incorrecto. La elección debe ser informada y voluntaria.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "¿Cuál mensaje final es clave para motivar el uso de LARC?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Los métodos LARC te protegen por años sin que tengas que hacer nada día a día, dándote libertad mental.",
+            "explicacion": "Correcto. Resalta el beneficio principal: la comodidad y la 'paz mental' de estar protegida.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Debe forzarse a seguir tomando ACO.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Todos los métodos son igual de eficaces.",
+            "explicacion": "Incorrecto. LARC > ACO en uso típico.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Los olvidos no importan si no hay síntomas.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p6",
+        "tipo": "short",
+        "enunciado": "Desarrolla una consejería breve para abordar la baja adherencia y proponer el cambio a LARC respetando sus preferencias.",
+        "guia": "• Validación: 'Entiendo que con tu trabajo y estudios es casi imposible acordarse siempre'.\n• Propuesta: 'Existen métodos como el Implante o la T que se ponen una vez y te olvidas por años'.\n• Beneficio: 'Son más seguros que la pastilla porque no dependen de tu memoria'.",
+        "feedbackDocente": "Evalúa si el estudiante cambia el foco de 'culpa del paciente' a 'inadecuación del método' para su estilo de vida."
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "La pastilla es excelente, pero solo si se toma. Si la paciente olvida >2 al mes, el método falló para ella. No insistas. Ofrécele un LARC (Implante/DIU). Es Categoría 1 y le quita el peso de la memoria. Revisa la eficacia comparada en la Norma de Fertilidad.",
+      "medio": "Bien. Identificaste el problema de adherencia. Para nivel experto, trabaja en cómo presentar el LARC: no como una imposición médica, sino como una solución a su 'carga mental' diaria. Eso mejora la aceptación.",
+      "alto": "¡Excelente! Has aplicado el principio de 'ajustar el método a la paciente'. Al ofrecer LARC frente a la falla de adherencia, estás previniendo el embarazo no planificado de la manera más efectiva posible."
+    },
+    "referencias": [
+      "Nuevos criterios de elegibilidad..pdf",
+      "OT-Control-Adolescente-v3.pdf"
+    ]
+  },
+  {
+    "id": "ac-media-implante-sangrado",
+    "modulo": "Anticoncepción",
+    "dificultad": "Media",
+    "titulo": "Manejo de sangrado irregular (spotting) en usuaria de Implante Subdérmico",
+    "vigneta": "Adolescente de 19 años, usuaria de Implante Subdérmico hace 4 meses. Consulta molesta porque presenta 'sangrado manchado' (spotting) casi todos los días desde hace 3 semanas. No tiene dolor ni fiebre. Vida sexual activa, pareja única. Está pensando en retirárselo si esto no para. Al examen: Implante palpable en brazo, genitales sanos, escaso flujo hemático oscuro en vagina.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Fisiopatológicamente, ¿a qué se debe este sangrado frecuente en usuarias de progestágeno solo?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Desplazamiento del implante.",
+            "explicacion": "Incorrecto. La ubicación no afecta el patrón de sangrado.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Atrofia endometrial con vascularización frágil por efecto del progestágeno.",
+            "explicacion": "Correcto. El progestágeno adelgaza el endometrio, dejando capilares superficiales que se rompen y sangran de forma irregular (spotting).",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Infección del sitio de inserción.",
+            "explicacion": "Incorrecto. Daría dolor y calor local en el brazo.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Reacción alérgica al titanio.",
+            "explicacion": "Incorrecto. El implante no es de titanio y la alergia sería local.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "Antes de tratar el sangrado, ¿qué condición clínica se debe descartar razonablemente en APS?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Embarazo (Test de orina) e Infección (Cervicitis/ITS).",
+            "explicacion": "Correcto. Aunque el implante es muy eficaz, el sangrado anormal obliga a descartar embarazo (ectópico) o una ITS (Clamidia/Gonorrea) que cause sangrado por inflamación.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Cáncer de ovario.",
+            "explicacion": "Incorrecto. Poco probable a los 19 años.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Hipertensión arterial.",
+            "explicacion": "Incorrecto. No causa metrorragia.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Déficit de vitamina D.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "Si se descarta patología y la paciente desea conservar el implante, ¿cuál es el manejo farmacológico transitorio de primera línea?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Antibióticos profilácticos.",
+            "explicacion": "Incorrecto. No hay infección.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "AINEs (ej: Ibuprofeno 400-600mg c/8h) por 5-7 días.",
+            "explicacion": "Correcto. Los antiinflamatorios reducen la síntesis de prostaglandinas en el endometrio, disminuyendo el sangrado y la inflamación local. Es una prueba terapéutica costo-efectiva.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Retiro inmediato del implante.",
+            "explicacion": "Incorrecto. Se debe intentar manejo médico primero si ella está dispuesta.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Vitamina K.",
+            "explicacion": "Incorrecto. No es un problema de coagulación sistémica.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "Si los AINEs no funcionan y no hay contraindicación para estrógenos, ¿qué segunda línea de manejo transitorio se puede ofrecer?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Un ciclo de ACO combinados (o Etinilestradiol solo) por 10-21 días.",
+            "explicacion": "Correcto. El estrógeno exógeno ayuda a estabilizar y proliferar el endometrio atrófico, deteniendo el sangrado ('parche endometrial').",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Inyección trimestral encima.",
+            "explicacion": "Incorrecto. Sumar más progestágeno puede empeorar la atrofia.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Ácido Tranexámico endovenoso.",
+            "explicacion": "Incorrecto. Excesivo para spotting en APS.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "DIU de cobre.",
+            "explicacion": "Incorrecto. Aumentaría el sangrado.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "¿Qué consejería es fundamental para manejar las expectativas a largo plazo?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Explicar que el patrón de sangrado es impredecible, pero suele disminuir en cantidad y frecuencia con el tiempo (amenorrea secundaria).",
+            "explicacion": "Correcto. La 'paciencia informada' es clave. Muchas usuarias entran en amenorrea después del primer año.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Prometer que el sangrado parará hoy mismo.",
+            "explicacion": "Incorrecto. Falsa promesa.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Decirle que es su culpa por estrés.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Asegurar que tendrá reglas regulares todos los meses.",
+            "explicacion": "Incorrecto. El implante anovulatorio quita la ciclicidad menstrual.",
+            "esCorrecta": false
+          }
+        ]
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "El spotting es la molestia #1 del Implante. No lo retires de inmediato. Explica que es por 'atrofia' (el endometrio se pone muy flaquito y sangra). Prueba con AINEs (Ibuprofeno) por unos días. Si no cede, se pueden usar estrógenos transitorios. Revisa el 'Manejo de Sangrado' en la Norma.",
+      "medio": "Bien. Entiendes que es un efecto esperado y no una enfermedad grave. Para ser experto, recuerda siempre descartar ITS (Clamidia) o embarazo antes de asumir que es solo por el implante. Eso es seguridad clínica.",
+      "alto": "¡Excelente! Has manejado la complicación más frecuente de los LARC con criterio clínico escalonado: 1) Descarte de patología, 2) Manejo AINEs, 3) Manejo Hormonal transitorio. Evitaste un retiro innecesario y educaste a la paciente. Muy bien."
+    },
+    "referencias": [
+      "norma-fertilidad.pdf.pdf",
+      "LibroAnticoncepcion(FInalWeb-Flip).pdf"
+    ]
+  },
+  {
+    "id": "ac-media-dmpa-retraso",
+    "modulo": "Anticoncepción",
+    "dificultad": "Media",
+    "titulo": "Retraso en la inyección anticonceptiva trimestral: manejo seguro en APS",
+    "vigneta": "Mujer de 27 años usuaria de inyección trimestral (DMPA) acude porque se atrasó 18 días respecto de su fecha habitual de reinyección (le tocaba hace 2 semanas y 4 días). Dice: 'pensé que tenía un mes más, me confundí'. Relata relación sexual sin condón hace 4 días. No tiene síntomas. Preocupada por embarazo. No desea cambiar de método.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Según la Norma de Fertilidad MINSAL y Criterios OMS, ¿cuál es el período de gracia (ventana de seguridad) para la reinyección de DMPA?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Hasta 1 mes.",
+            "explicacion": "Incorrecto. Es demasiado tiempo.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Hasta el día 21.",
+            "explicacion": "Incorrecto. Riesgo de ovulación.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "No existe período de gracia.",
+            "explicacion": "Incorrecto. Existe un margen de seguridad.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Hasta 2 semanas (14 días) después de la fecha programada sin perder eficacia.",
+            "explicacion": "Correcto. Dentro de este margen, se puede inyectar sin necesidad de protección adicional. La paciente se pasó de este margen (lleva 18 días de atraso).",
+            "esCorrecta": true
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "Dado que tiene un retraso de 18 días (> 2 semanas) y una relación sexual de riesgo reciente (hace 4 días), ¿qué conducta clínica corresponde?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Administrar la inyección sin evaluar riesgo.",
+            "explicacion": "Incorrecto. Podría estar embarazada (fase lútea o implantación).",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Realizar test de embarazo, ofrecer Anticoncepción de Emergencia (si procede) y luego inyectar.",
+            "explicacion": "Correcto. Al haber relación de riesgo en los últimos 5 días y estar fuera del margen de seguridad, se debe descartar embarazo y ofrecer AE (Levonorgestrel) antes de reiniciar el método.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Esperar un ciclo para reiniciar el método.",
+            "explicacion": "Incorrecto. Aumenta el tiempo de desprotección.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Suspender definitivamente el DMPA.",
+            "explicacion": "Incorrecto. La paciente desea continuar.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "Si se descarta embarazo y se administra la inyección hoy, ¿qué indicación de respaldo es OBLIGATORIA?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Usar condón o abstinencia por 7 días hasta recuperar niveles protectores.",
+            "explicacion": "Correcto. Al reiniciar fuera de fecha, se considera como un 'inicio nuevo' y demora 7 días en inhibir la ovulación eficazmente.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Usar doble dosis inicial.",
+            "explicacion": "Incorrecto. No mejora la rapidez de acción.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Realizar coito solo en días 'seguros'.",
+            "explicacion": "Incorrecto. El método de calendario no sirve en usuarias de hormonales irregulares.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Evitar relaciones por 3 meses.",
+            "explicacion": "Incorrecto. Excesivo.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "¿Cuál efecto secundario frecuente del DMPA debe reforzarse en la consejería para evitar abandono futuro?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Aumento marcado de presión arterial.",
+            "explicacion": "Incorrecto. No es un efecto clase de progestágenos.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Incremento inmediato de fertilidad.",
+            "explicacion": "Incorrecto. El DMPA tiene un retorno a la fertilidad retardado (hasta 6-10 meses post suspensión).",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Alteraciones del patrón menstrual (irregularidad) y eventual amenorrea.",
+            "explicacion": "Correcto. La amenorrea es muy frecuente con el uso continuado y es benigna.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Riesgo alto de trombosis.",
+            "explicacion": "Incorrecto. Mínimo riesgo comparado con estrógenos.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "Factor que ayuda a mejorar la adherencia futura en usuarias de inyectables:",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Cambiar a método natural sin evaluar preferencia.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Decir que los atrasos no importan.",
+            "explicacion": "Incorrecto. Falso.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Evitar hablar de efectos secundarios.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Entregar calendario físico/digital con la fecha exacta de la próxima dosis y agendar hora.",
+            "explicacion": "Correcto. Las herramientas de recordatorio visual son eficaces para métodos de intervalo largo.",
+            "esCorrecta": true
+          }
+        ]
+      },
+      {
+        "id": "p6",
+        "tipo": "short",
+        "enunciado": "Explica brevemente a la paciente por qué, a pesar de inyectarse hoy, tiene riesgo de embarazo por la relación de hace 4 días y por qué debe usar condón 7 días más.",
+        "guia": "• Riesgo pasado: 'La inyección de hoy no borra la relación de hace 4 días (el espermio vive hasta 5 días)'. -> Por eso la AE.\n• Riesgo futuro: 'La inyección demora 7 días en hacer efecto completo'. -> Por eso el condón.",
+        "feedbackDocente": "Evalúa si el estudiante distingue el riesgo retrospectivo (necesidad de AE) del riesgo prospectivo (necesidad de barrera 7 días)."
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "Los inyectables trimestrales perdonan hasta 2 semanas de atraso. Pasado eso, hay riesgo de ovulación. Si llega tarde y tuvo relaciones, ¡alerta roja! Debes descartar embarazo y ofrecer AE antes de pinchar. Revisa la sección de 'Manejo de Atrasos' en la Norma de Fertilidad.",
+      "medio": "Bien. Identificaste el riesgo y la necesidad de protección adicional. Para el nivel experto, recuerda el concepto de 'Retorno a la Fertilidad': en DMPA es lento, pero si se atrasa la dosis, la ovulación puede ocurrir sorpresivamente.",
+      "alto": "¡Excelente manejo! Has aplicado el protocolo de 'Reinicio Tardío' a la perfección: 1) Evaluar riesgo embarazo, 2) AE si corresponde, 3) Reiniciar método, 4) Protección de respaldo (7 días). Así se previene el embarazo no planificado en la vida real."
+    },
+    "referencias": [
+      "norma-fertilidad.pdf.pdf",
+      "Nuevos criterios de elegibilidad..pdf"
+    ]
+  },
+  {
+    "id": "ac-baja-postparto-migrante",
+    "modulo": "Anticoncepción",
+    "dificultad": "Baja",
+    "titulo": "Anticoncepción postparto en mujer migrante en APS",
+    "vigneta": "Mujer migrante venezolana de 32 años consulta a los 3 meses postparto. Lactancia materna exclusiva. Relata que en su país usaba inyecciones mensuales combinadas pero no sabe si puede retomarlas. Preocupada por un nuevo embarazo. Habla español fluido. Sin antecedentes mórbidos.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "¿Qué método es seguro (Categoría 1/2) y recomendado a los 3 meses postparto con lactancia exclusiva?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Anticonceptivos combinados (ACO).",
+            "explicacion": "Incorrecto. Aunque el riesgo trombótico baja a los 42 días, los estrógenos pueden disminuir la producción láctea (teóricamente Cat 2, pero se prefieren otros).",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Inyección mensual combinada.",
+            "explicacion": "Incorrecto. Mismo riesgo potencial sobre la lactancia por el estrógeno.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Implante subdérmico de etonogestrel.",
+            "explicacion": "Correcto. Los métodos de progestágeno solo (Implante, Inyección Trimestral, POP) son Categoría 1 en lactancia y no afectan la producción de leche.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "DIU T de cobre solo después de 1 año postparto.",
+            "explicacion": "Incorrecto. Puede insertarse desde las 4-6 semanas postparto.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "La paciente pregunta si debe suspender la lactancia para cuidarse. ¿Qué respuesta es correcta?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Sí, debe suspender la lactancia para usar cualquier hormona.",
+            "explicacion": "Incorrecto. Mito.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "No, existen métodos (como el implante o la T de cobre) que son totalmente compatibles y seguros para la lactancia.",
+            "explicacion": "Correcto. Se debe fomentar la continuidad de la lactancia.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Que debe esperar a que vuelva la regla.",
+            "explicacion": "Incorrecto. La ovulación puede preceder a la regla.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Que el implante es solo para mujeres sin hijos.",
+            "explicacion": "Incorrecto. Mito.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "Respecto a la fertilidad postparto, ¿qué información es vital entregar?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "No puede embarazarse si está amamantando.",
+            "explicacion": "Incorrecto. La protección de la lactancia (MELA) no es absoluta, especialmente si se introducen otros alimentos o pasan más de 6 meses.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "La ovulación puede ocurrir antes de la primera menstruación postparto.",
+            "explicacion": "Correcto. Por eso no se debe esperar al sangrado para iniciar un método.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "La fertilidad tarda años en regresar.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Requiere prueba ovulatoria para iniciar método.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "En la consejería intercultural, ¿qué actitud favorece la adherencia?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Indicar un método sin preguntarle preferencias.",
+            "explicacion": "Incorrecto. Paternalista.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Desestimar su experiencia previa en su país.",
+            "explicacion": "Incorrecto. Se debe validar su historia anticonceptiva.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Decir que solo hay una opción disponible.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Validar sus dudas, explicar las opciones disponibles en Chile con lenguaje simple y respetar su decisión.",
+            "explicacion": "Correcto. La acogida y la claridad sobre la disponibilidad de métodos en el sistema público chileno son claves.",
+            "esCorrecta": true
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "¿Qué mensaje final debe llevarse la paciente?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "El implante es una opción segura que la protege del embarazo sin afectar a su bebé.",
+            "explicacion": "Correcto. Refuerza la seguridad del binomio madre-hijo.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Debe reiniciar su inyección mensual antigua sí o sí.",
+            "explicacion": "Incorrecto. La combinada no es ideal en lactancia.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Solo puede usar métodos naturales.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "El método debe decidirlo su pareja.",
+            "explicacion": "Incorrecto. Es un derecho personal.",
+            "esCorrecta": false
+          }
+        ]
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "En lactancia, prefiere siempre 'Progestágeno Solo' (Implante, Inyección trimestral, Minipíldora). Los estrógenos pueden bajar la producción de leche. Y nunca esperes a que llegue la regla para iniciar: ¡la ovulación gana por puesta de mano! Revisa los Criterios de Elegibilidad.",
+      "medio": "Bien. Identificaste el método ideal (Implante). Para ser experto, trabaja la competencia cultural: explica que en Chile el sistema ofrece opciones gratuitas de alta calidad (LARC) que quizás no conocía, validando su experiencia previa.",
+      "alto": "¡Excelente! Has navegado la consejería postparto con precisión técnica (evitando estrógenos) y sensibilidad cultural. Asegurar la anticoncepción eficaz en esta etapa es la mejor prevención del embarazo no planificado recurrente."
+    },
+    "referencias": [
+      "Nuevos criterios de elegibilidad..pdf",
+      "norma-fertilidad.pdf.pdf"
+    ]
+  },
+  {
+    "id": "ac-baja-eleccion-metodo-adolescente",
+    "modulo": "Anticoncepción",
+    "dificultad": "Baja",
+    "titulo": "Elección de método anticonceptivo en adolescente en APS",
+    "vigneta": "Adolescente de 17 años acude sola a control en el CESFAM. Dice: 'quiero cuidarme mejor porque a veces se me olvida el condón'. Tiene pareja estable y relaciones sexuales regulares. No antecedentes mórbidos, sin uso de MAC previo. Test de embarazo negativo. Se muestra motivada pero ansiosa por 'elegir bien'.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Según normativa chilena, ¿puede acceder a anticoncepción sin acompañamiento adulto?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "No, siempre debe venir con un adulto responsable.",
+            "explicacion": "Incorrecto. Exigir compañía adulta vulnera la confidencialidad garantizada por la Ley 20.418 para mayores de 14 años.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Solo si solicita condones.",
+            "explicacion": "Incorrecto. El acceso autónomo aplica a toda la gama de métodos anticonceptivos disponibles en APS.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Sí, tiene derecho a atención confidencial y acceso a MAC.",
+            "explicacion": "Correcto. La adolescente ejerce su autonomía progresiva y el Estado garantiza su acceso a salud sexual y reproductiva (Ley 20.418).",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Debe firmar un consentimiento de riesgo por ser menor de edad.",
+            "explicacion": "Incorrecto. No existe tal consentimiento de 'riesgo'. Se realiza el consentimiento informado estándar del método.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "En una adolescente sin condiciones médicas, ¿qué método es considerado primera línea por su alta eficacia y seguridad?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Métodos naturales basados en el ciclo.",
+            "explicacion": "Incorrecto. Tienen tasas de falla típicas altas (>20%) y requieren ciclos regulares, algo no siempre presente en la adolescencia.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Implante subdérmico de etonogestrel.",
+            "explicacion": "Correcto. Los LARC (Implante/DIU) son la recomendación de primera línea (OMS/Minsal) por ser independientes de la usuaria y tener la mayor eficacia teórica y real.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Anticonceptivo oral combinado sin evaluación de elegibilidad.",
+            "explicacion": "Incorrecto. Aunque es una opción común (Categoría 1), requiere descartar contraindicaciones y tiene mayor tasa de fallo por olvido.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Parche transdérmico como única primera opción.",
+            "explicacion": "Incorrecto. Es un método combinado válido, pero su eficacia depende de la adherencia semanal, inferior a un LARC.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "Cuando la usuaria dice que 'a veces se le olvida el condón', ¿qué enfoque educativo corresponde reforzar?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Explicar el concepto de doble método: condón + método eficaz.",
+            "explicacion": "Correcto. Se debe validar su motivación por un método hormonal (eficacia embarazo) pero reforzar el condón como única barrera para ITS ('Doble Protección').",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Indicar uso exclusivo de MAC hormonal.",
+            "explicacion": "Incorrecto. Dejar el condón expone a riesgo de ITS, prevalentes en este grupo etario.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Recomendar solo abstinencia.",
+            "explicacion": "Incorrecto. La evidencia demuestra que la educación solo en abstinencia no es efectiva y aleja a la usuaria.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Sugerir que no se preocupe, porque es joven.",
+            "explicacion": "Incorrecto. La juventud biológica no protege contra las ITS ni el embarazo.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "La adolescente pregunta si el implante 'engorda'. ¿Cuál es la respuesta basada en evidencia?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Sí, todas aumentan de peso significativamente.",
+            "explicacion": "Incorrecto. Es un mito generalizado. La evidencia no muestra causalidad directa de aumento severo de peso en la mayoría de usuarias.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Sí, pero solo el primer mes.",
+            "explicacion": "Incorrecto. El patrón de peso es variable y multifactorial, no limitado al primer mes.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "No necesariamente; algunas personas experimentan cambios leves, pero no es un efecto universal.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Si sube de peso, debe retirarlo inmediatamente.",
+            "explicacion": "Incorrecto. El manejo inicial es consejería nutricional y evaluación de hábitos, no el retiro inmediato.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "¿Qué mensaje de cierre es adecuado en consejería adolescente?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Indicar que no vuelva a menos que tenga complicaciones.",
+            "explicacion": "Incorrecto. Se deben programar controles para evaluar satisfacción y adherencia.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Recuérdale que puede volver siempre y que el seguimiento es parte del proceso.",
+            "explicacion": "Correcto. La política de 'puertas abiertas' es vital para asegurar la continuidad del método en adolescentes.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Decir que no pregunte tanto para no confundirse.",
+            "explicacion": "Incorrecto. Se debe fomentar la curiosidad y el empoderamiento en salud.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Insistir en que debe contarle obligatoriamente a su madre.",
+            "explicacion": "Incorrecto. Insistir en romper la confidencialidad sin su deseo vulnera sus derechos.",
+            "esCorrecta": false
+          }
+        ]
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "Es normal tener dudas con los aspectos legales y la elección de método al principio. Lo clave aquí es recordar: 1) Confidencialidad desde los 14 años, y 2) Los LARC (Implante/DIU) son los mejores amigos de la adolescencia por su alta eficacia. ¡Repasa la OT Adolescente y lo tendrás claro!",
+      "medio": "Buen manejo general. Tienes claros los derechos y el concepto de doble protección. Te falta profundizar un poco más en la consejería específica sobre mitos (peso) y la superioridad técnica de los LARC frente a los orales en este grupo.",
+      "alto": "¡Excelente razonamiento clínico! Integras perfectamente el marco legal (autonomía), la evidencia científica (LARC como primera línea) y la educación en autocuidado (mitos y doble protección). Estás listo/a para consejería real."
+    },
+    "referencias": [
+      "OT-Control-Adolescente-v3.pdf",
+      "Nuevos criterios de elegibilidad..pdf",
+      "LibroAnticoncepcion(FInalWeb-Flip).pdf"
+    ]
+  },
+  {
+    "id": "ac-baja-anillo-vaginal-inicio",
+    "modulo": "Anticoncepción",
+    "dificultad": "Baja",
+    "titulo": "Inicio de método anticonceptivo con anillo vaginal en APS",
+    "vigneta": "Mujer de 20 años, sin antecedentes mórbidos, consulta para iniciar anillo vaginal. Dice: 'me da miedo ponerlo mal, no sé si tengo que meterlo muy profundo'. Ciclos regulares. Vida sexual activa. No tabaquismo. Desea un método cómodo y reversible.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "¿Cuál es la instrucción correcta sobre la colocación del anillo vaginal para asegurar su eficacia?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Debe quedar pegado al cuello uterino obligatoriamente.",
+            "explicacion": "Incorrecto. No requiere 'encajar' en el cuello como un diafragma.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Debe colocarse con aplicador estéril en cada inserción.",
+            "explicacion": "Incorrecto. Se inserta manualmente con manos limpias.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Debe colocarse en la vagina sin necesidad de ubicar una posición específica, basta con que sea cómodo.",
+            "explicacion": "Correcto. La absorción hormonal ocurre a través de la mucosa vaginal en cualquier posición, siempre que esté en contacto con ella.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Debe retirarlo durante el coito.",
+            "explicacion": "Incorrecto. Está diseñado para permanecer puesto durante las relaciones sexuales.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "¿Cuál es el esquema de uso estándar del anillo vaginal combinado?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "5 días colocado y 2 semanas de descanso.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "3 días colocado y cambio inmediato.",
+            "explicacion": "Incorrecto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "1 mes continuo sin recambio.",
+            "explicacion": "Incorrecto. Perdería eficacia al final del mes.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "3 semanas (21 días) colocado y 1 semana (7 días) de descanso.",
+            "explicacion": "Correcto. Durante la semana de descanso ocurre el sangrado por deprivación.",
+            "esCorrecta": true
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "¿Qué hacer si el anillo se sale accidentalmente (ej: al retirar un tampón o durante el coito)?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Lavar con agua fría/tibia y reinsertarlo antes de 3 horas.",
+            "explicacion": "Correcto. Si está fuera menos de 3 horas, la eficacia anticonceptiva no se pierde. Si pasa más tiempo, se requiere protección adicional.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Desecharlo y colocar uno nuevo siempre.",
+            "explicacion": "Incorrecto. No es necesario desecharlo si no ha pasado el tiempo límite.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Suspender el método por ese ciclo.",
+            "explicacion": "Incorrecto. Se puede continuar si se reinserta a tiempo.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Usar doble anillo por 24 horas para compensar.",
+            "explicacion": "Incorrecto. Aumenta dosis hormonal innecesariamente.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "¿Qué beneficio farmacocinético destaca en el uso del anillo vaginal versus las pastillas?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Evita ITS de forma completa.",
+            "explicacion": "Incorrecto. No es barrera para ITS.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Aporta niveles hormonales séricos más estables, evitando los 'picos' diarios de la toma oral.",
+            "explicacion": "Correcto. La liberación continua a través de la mucosa evita el primer paso hepático y las fluctuaciones diarias.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Aumenta la fertilidad posterior al uso.",
+            "explicacion": "Incorrecto. El retorno a la fertilidad es igual que otros hormonales.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Reduce infección urinaria.",
+            "explicacion": "Incorrecto. No tiene efecto antibacteriano.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "Recomendación final de APS al cerrar la consejería de inicio:",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Pedirle evitar actividad sexual el primer mes.",
+            "explicacion": "Incorrecto. Innecesario si se inicia correctamente.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Indicarle dejar el método si no siente el anillo.",
+            "explicacion": "Incorrecto. Precisamente no debe sentirlo si está bien puesto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Recomendarle cambiarlo semanalmente.",
+            "explicacion": "Incorrecto. Es cada 3 semanas.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Invitarla a volver si tiene dudas y reforzar uso de condón para prevención de ITS (Doble Protección).",
+            "explicacion": "Correcto. El anillo protege del embarazo, pero el condón es indispensable para salud sexual integral.",
+            "esCorrecta": true
+          }
+        ]
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "El anillo vaginal es un método muy cómodo, pero tiene sus reglas. Recuerda: 3 semanas dentro, 1 fuera. Y la regla de oro: si se sale, tienes 3 horas para volver a ponerlo. Revisa el capítulo de Métodos Combinados en el Manual de Obstetricia.",
+      "medio": "Bien. Conoces la pauta de uso. Para ser experto, asegúrate de explicar bien qué hacer en caso de 'olvido' (dejarlo más tiempo o sacarlo antes) o expulsión. Esas son las preguntas reales de las usuarias.",
+      "alto": "¡Excelente! Has explicado perfectamente la inserción, el tiempo de uso y el manejo de contingencias (expulsión <3h). Este nivel de detalle da seguridad a la usuaria para usar un método que no requiere memoria diaria."
+    },
+    "referencias": [
+      "Manual-obstetricia.ginecologia.pdf.pdf",
+      "norma-fertilidad.pdf.pdf"
+    ]
+  },
+  {
+    "id": "ac-baja-mito-aco-ciclo-irregular",
+    "modulo": "Anticoncepción",
+    "dificultad": "Baja",
+    "titulo": "Manejo de ciclos irregulares y mito sobre anticonceptivos orales en adolescente",
+    "vigneta": "Adolescente de 16 años consulta en APS porque 'tengo el periodo desordenado y mis amigas dicen que las pastillas arreglan todo'. Tiene menstruaciones cada 30–50 días desde la menarquia. Vida sexual reciente con pareja estable. Niega síntomas de hiperandrogenismo. Test de embarazo negativo. No usa MAC previo. Está preocupada porque 'si no me llega, me asusto'.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "¿Cuál es la explicación correcta sobre ciclos irregulares en los primeros años post menarquia?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Siempre indica un trastorno endocrino grave.",
+            "explicacion": "Incorrecto. Pensar en patología de entrada es un error; la mayoría son variantes fisiológicas.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Debe iniciarse tratamiento hormonal obligatorio.",
+            "explicacion": "Incorrecto. No se medica la 'irregularidad fisiológica' per se, a menos que haya otra necesidad (anticoncepción, anemia severa).",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Es frecuente tener ciclos irregulares por inmadurez del eje hipotálamo-hipófisis-ovario.",
+            "explicacion": "Correcto. Durante los primeros 2-3 años de edad ginecológica, la anovulación es común debido a la inmadurez en la pulsatilidad de la GnRH.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Significa baja reserva ovárica.",
+            "explicacion": "Incorrecto. La reserva ovárica no se evalúa por la regularidad del ciclo en la adolescencia.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "Si la adolescente desea un método anticonceptivo eficaz, ¿qué opción es primera línea según OMS/MINSAL?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Métodos naturales.",
+            "explicacion": "Incorrecto. Tienen alta tasa de falla típica y requieren ciclos regulares, lo cual esta paciente no tiene.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Implante subdérmico.",
+            "explicacion": "Correcto. Los LARC (Implante/DIU) son la recomendación 'Gold Standard' en adolescentes por su alta eficacia independiente de la usuaria.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Anticonceptivo oral combinado sin evaluación.",
+            "explicacion": "Incorrecto. Aunque es válido (Categoría 1/2), no es superior en eficacia a un LARC y requiere adherencia diaria.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Anillo vaginal como única alternativa preferente.",
+            "explicacion": "Incorrecto. Es un método combinado válido, pero requiere manipulación genital con la que no todas las adolescentes se sienten cómodas inicialmente.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "La adolescente pregunta: '¿las pastillas regulan mi ciclo para siempre?'. ¿Cuál es la explicación correcta?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Regulan el ciclo mientras se usan, pero no modifican la causa de la irregularidad.",
+            "explicacion": "Correcto. Los ACO inducen un 'sangrado por deprivación' artificial. Al suspenderlos, el patrón fisiológico (y la irregularidad) reaparecerá si el eje aún es inmaduro.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Corrigen definitivamente la madurez del eje hormonal.",
+            "explicacion": "Incorrecto. Los ACO suprimen el eje, no aceleran su maduración.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Vuelven a ovular inmediatamente después de una semana de uso.",
+            "explicacion": "Incorrecto. La inhibición ovulatoria se mantiene durante el uso correcto.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Solo regulan si la paciente tiene ovario poliquístico.",
+            "explicacion": "Incorrecto. El sangrado por deprivación ocurre en cualquier usuaria, tenga o no SOP.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "¿Qué estrategia educativa es esencial en adolescentes que inician un MAC?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Promover doble método (condón + MAC).",
+            "explicacion": "Correcto. El MAC protege del embarazo (su principal temor), pero solo el condón protege de las ITS. Ambos son necesarios.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Indicar abstinencia obligatoria.",
+            "explicacion": "Incorrecto. No es realista ni respeta la autonomía sexual de la adolescente.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Usar un MAC diferente cada mes para 'probar'.",
+            "explicacion": "Incorrecto. La rotación frecuente disminuye la eficacia y aumenta los efectos adversos.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Evitar controles posteriores.",
+            "explicacion": "Incorrecto. El seguimiento es vital para evaluar adherencia y satisfacción.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "¿Qué mensaje de cierre es adecuado para disminuir ansiedad por el ciclo irregular?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Decirle que es 'normal' sin dar más información.",
+            "explicacion": "Incorrecto. La normalización sin educación no calma la ansiedad.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Pedir que use test de embarazo todos los meses.",
+            "explicacion": "Incorrecto. Genera más ansiedad y medicaliza la vida sexual.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Recordar que la irregularidad es habitual post menarquia y que puede consultar siempre que tenga dudas.",
+            "explicacion": "Correcto. Valida su preocupación, educa sobre la fisiología y deja la puerta abierta al sistema de salud.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Asegurar que pronto será regular de forma automática.",
+            "explicacion": "Incorrecto. No podemos prometer fechas exactas de maduración del eje.",
+            "esCorrecta": false
+          }
+        ]
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "Es normal confundir 'regularidad' con 'salud' al principio. Recuerda: en los primeros años post-menarquia, el eje está 'aprendiendo' a ovular, y eso causa desorden. No es una enfermedad. Revisa el capítulo de Fisiología en la OT Adolescente y verás que todo encaja.",
+      "medio": "Buen manejo general. Entiendes que no es patológico, pero falta afinar la explicación sobre cómo funcionan las pastillas (sangrado por deprivación vs. ciclo real) para no crear falsas expectativas en la paciente.",
+      "alto": "¡Excelente! Has desmitificado el uso de ACO como 'cura mágica', explicado la fisiología de la inmadurez del eje y priorizado la protección real (LARC + Condón). Esa es una consejería de matronería de alto nivel."
+    },
+    "referencias": [
+      "OT-Control-Adolescente-v3.pdf",
+      "LibroAnticoncepcion(FInalWeb-Flip).pdf",
+      "Nuevos criterios de elegibilidad..pdf"
+    ]
+  },
+  {
+    "id": "ac-baja-adolescente-olvidos-aco",
+    "modulo": "Anticoncepción",
+    "dificultad": "Baja",
+    "titulo": "Olvidos frecuentes de ACO en adolescente y elección de un método de mejor adherencia",
+    "vigneta": "Adolescente de 17 años consulta porque 'no puedo acordarme de tomar las pastillas, siempre se me olvida'. Ha tenido 3 olvidos la última semana. Vida sexual activa con pareja estable, condón intermitente. Sin antecedentes mórbidos. Test de embarazo negativo. Dice: 'sé que las pastillas son buenas, pero yo soy muy despistada'.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "¿Cuál es la principal causa de falla del método anticonceptivo oral (ACO) en adolescentes?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Incompatibilidad hormonal adolescente.",
+            "explicacion": "Incorrecto. No existe evidencia de 'incompatibilidad' biológica.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Que el cuerpo 'se acostumbra' a las pastillas.",
+            "explicacion": "Incorrecto. La eficacia no disminuye con el tiempo de uso (taquifilaxia) en anticonceptivos.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Uso de condón al mismo tiempo.",
+            "explicacion": "Incorrecto. El uso concomitante de condón aumenta la eficacia global (doble protección).",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Olvidos frecuentes que disminuyen la eficacia real (uso típico).",
+            "explicacion": "Correcto. La tasa de falla de uso típico en ACO es del 7-9% anual, principalmente por problemas de adherencia diaria.",
+            "esCorrecta": true
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "Según evidencia OMS/MINSAL, ¿qué método es de primera línea para adolescentes con dificultad de adherencia?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Anillo vaginal combinado.",
+            "explicacion": "Incorrecto. Aunque es mensual, requiere recordar el cambio y manipulación, y sigue siendo usuario-dependiente.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Implante subdérmico de progestágeno.",
+            "explicacion": "Correcto. Al ser un LARC (Long-Acting Reversible Contraception), su eficacia es >99% y no depende de la memoria de la usuaria.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Parche semanal.",
+            "explicacion": "Incorrecto. Mejora algo la adherencia respecto a la toma diaria, pero requiere cambios semanales y puede despegarse.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Métodos naturales.",
+            "explicacion": "Incorrecto. Tienen la tasa de falla más alta y requieren máxima disciplina y regularidad.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "La adolescente pregunta si el implante 'dolerá mucho'. ¿Qué respuesta es correcta para disminuir su ansiedad?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "La inserción es un procedimiento rápido, ambulatorio, con anestesia local y mínima molestia.",
+            "explicacion": "Correcto. Explicar el procedimiento (anestesia, tiempo breve) desmitifica el dolor y aumenta la aceptabilidad.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Requiere anestesia general y pabellón.",
+            "explicacion": "Incorrecto. Es un procedimiento de APS.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Necesitará reposo absoluto 48 horas.",
+            "explicacion": "Incorrecto. Puede retomar sus actividades normales de inmediato (evitando golpes directos o levantar peso excesivo con ese brazo por 24h).",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Es muy doloroso y arriesgado.",
+            "explicacion": "Incorrecto. Genera miedo infundado (iatrogenia verbal).",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "Además de cambiar el método hormonal, ¿qué recomendación educativa es clave en su caso?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Usar test de embarazo mensual.",
+            "explicacion": "Incorrecto. Con un LARC no es necesario y puede aumentar ansiedad.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Decirle que siga intentando con ACO.",
+            "explicacion": "Incorrecto. Insistir en un método que ya falló por adherencia aumenta el riesgo de embarazo no planificado.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Reforzar el uso consistente de condón (Doble Protección).",
+            "explicacion": "Correcto. El implante es excelente para evitar embarazo, pero nulo para ITS. El uso dual es el estándar en adolescencia.",
+            "esCorrecta": true
+          },
+          {
+            "id": "d",
+            "texto": "Evitar hablar de sexualidad.",
+            "explicacion": "Incorrecto. La educación sexual integral es un derecho.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "¿Cómo cerrar una consejería efectiva que fortalezca el vínculo?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Recordarle que puede volver cuando quiera y que elegiremos juntas el mejor método.",
+            "explicacion": "Correcto. La disponibilidad ('puertas abiertas') y la toma de decisiones compartida son predictores de continuidad.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Indicar que si no cumple, es responsable de las consecuencias.",
+            "explicacion": "Incorrecto. El tono amenazante aleja a la adolescente del sistema de salud.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Pedir que no haga más preguntas.",
+            "explicacion": "Incorrecto. Se debe fomentar la curiosidad y el autocuidado.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Retarla por sus olvidos.",
+            "explicacion": "Incorrecto. El juicio negativo daña la autoestima y la relación terapéutica.",
+            "esCorrecta": false
+          }
+        ]
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "Los olvidos de pastillas son la causa #1 de embarazo adolescente. Por eso los LARC (Implante) son la solución. No insistas con ACO si la adherencia falla. Revisa los Criterios de Elegibilidad y verás que el Implante es Categoría 1 para ella.",
+      "medio": "Buen criterio. Identificaste el problema (adherencia) y la solución (LARC). Para el nivel experto, enfócate en cómo 'vender' el cambio de método: explica la eficacia superior y la tranquilidad mental de no tener que recordar la pastilla.",
+      "alto": "¡Excelente! Has aplicado el principio de 'mejor método para el estilo de vida'. Al cambiar a un método usuario-independiente (LARC) y reforzar el condón, le has dado la máxima protección posible. Gran manejo clínico."
+    },
+    "referencias": [
+      "Nuevos criterios de elegibilidad..pdf",
+      "OT-Control-Adolescente-v3.pdf",
+      "LibroAnticoncepcion(FInalWeb-Flip).pdf"
+    ]
+  },
+  {
+    "id": "ac-baja-ae-adolescente",
+    "modulo": "Anticoncepción",
+    "dificultad": "Baja",
+    "titulo": "Solicitud de Anticoncepción de Emergencia (AE) en adolescente: acceso y manejo",
+    "vigneta": "Adolescente de 15 años consulta en el SAPU un domingo por la mañana. Relata relación sexual no protegida hace 12 horas (rotura de condón). Refiere: 'estoy en mis días fértiles y tengo miedo de quedar embarazada'. FUR hace 14 días. No usa otro método anticonceptivo. Acude sola y pregunta si le pueden dar la 'pastilla del día después' o si necesita receta médica.",
+    "pasos": [
+      {
+        "id": "p1",
+        "tipo": "mcq",
+        "enunciado": "Respecto a la solicitud de Anticoncepción de Emergencia (AE) en el sistema público, ¿cuál es la conducta administrativa correcta?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Negar el fármaco hasta que traiga a un apoderado.",
+            "explicacion": "Incorrecto. La AE se entrega a toda mujer en edad fértil que la solicite, incluidas adolescentes, sin exigir acompañante (Ley 20.418).",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Entregar el medicamento de forma inmediata y realizar consejería posterior.",
+            "explicacion": "Correcto. La AE es una urgencia. Se entrega el fármaco para asegurar la toma oportuna y se registra/aconseja en el mismo acto.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Exigir una ecografía previa para descartar embarazo.",
+            "explicacion": "Incorrecto. No es requisito. La AE no daña un embarazo en curso, y el tiempo es crítico para su eficacia.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Derivar al consultorio para el día lunes.",
+            "explicacion": "Incorrecto. La eficacia disminuye con el tiempo; debe entregarse en el momento de la consulta (SAPU/Urgencia).",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "tipo": "mcq",
+        "enunciado": "La adolescente teme que la pastilla sea abortiva. ¿Cuál es el mecanismo de acción principal del Levonorgestrel 1.5 mg?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Provoca el desprendimiento del embrión implantado.",
+            "explicacion": "Incorrecto. La AE no es efectiva si ya hubo implantación.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Inhibe o retrasa la ovulación.",
+            "explicacion": "Correcto. Su principal efecto es impedir que el óvulo se libere si aún no ha ocurrido, evitando la fecundación.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Mata a los espermatozoides en el útero.",
+            "explicacion": "Incorrecto. No es un espermicida, su acción es a nivel del ovario y moco cervical.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Genera una menstruación inmediata.",
+            "explicacion": "Incorrecto. El sangrado puede adelantarse o retrasarse, pero no es el mecanismo anticonceptivo.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "tipo": "mcq",
+        "enunciado": "¿Cuál es la indicación clave respecto a los vómitos post-toma?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Si vomita antes de 2 horas de la toma, debe repetir la dosis completa.",
+            "explicacion": "Correcto. Se considera que el fármaco no se absorbió completamente; se debe administrar una nueva dosis (y usar antiemético si es necesario).",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Si vomita, ya no hace efecto y debe esperar al próximo ciclo.",
+            "explicacion": "Incorrecto. Se debe repetir la dosis, no abandonar el tratamiento.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Solo debe repetir la dosis si vomita después de 5 horas.",
+            "explicacion": "Incorrecto. Pasadas las 2-3 horas, el fármaco ya se absorbió y no es necesario repetir.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Los vómitos indican alergia grave y se contraindica el uso.",
+            "explicacion": "Incorrecto. Las náuseas son un efecto adverso común (progestágeno), no alergia.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "tipo": "mcq",
+        "enunciado": "La paciente pregunta: '¿Cuándo me puedo empezar a cuidar con pastillas normales?'. ¿Qué es lo recomendado?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Esperar a que llegue la próxima menstruación.",
+            "explicacion": "Incorrecto. Esto la deja desprotegida durante el resto del ciclo actual.",
+            "esCorrecta": false
+          },
+          {
+            "id": "b",
+            "texto": "Iniciar anticoncepción regular inmediatamente (Quick Start) y usar condón por 7 días.",
+            "explicacion": "Correcto. Se aprovecha la motivación para iniciar un método regular de inmediato, cubriendo la ventana de riesgo con barrera.",
+            "esCorrecta": true
+          },
+          {
+            "id": "c",
+            "texto": "Tomar AE cada vez que tenga relaciones este mes.",
+            "explicacion": "Incorrecto. La AE es para emergencia, no para uso regular por su menor eficacia acumulada y carga hormonal.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "No puede usar hormonas hasta dentro de 6 meses.",
+            "explicacion": "Incorrecto. No hay contraindicación para iniciar métodos regulares post-AE.",
+            "esCorrecta": false
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "tipo": "mcq",
+        "enunciado": "¿Qué signo de alarma debe vigilar la paciente en las próximas semanas?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Atraso menstrual mayor a 7 días sobre la fecha esperada o dolor abdominal bajo intenso.",
+            "explicacion": "Correcto. Se debe descartar embarazo (incluido ectópico) si no llega la regla o hay dolor sugestivo.",
+            "esCorrecta": true
+          },
+          {
+            "id": "b",
+            "texto": "Leve manchado (spotting) a los 3 días.",
+            "explicacion": "Incorrecto. Es un efecto secundario esperable por deprivación hormonal.",
+            "esCorrecta": false
+          },
+          {
+            "id": "c",
+            "texto": "Dolor de cabeza leve.",
+            "explicacion": "Incorrecto. Cefalea es común y transitoria.",
+            "esCorrecta": false
+          },
+          {
+            "id": "d",
+            "texto": "Aumento del flujo vaginal transparente.",
+            "explicacion": "Incorrecto. No es un signo de alarma post-AE.",
+            "esCorrecta": false
+          }
+        ]
+      }
+    ],
+    "feedbackDinamico": {
+      "bajo": "La AE es una urgencia ginecológica. Recuerda los 3 pilares: 1) Se entrega sin barreras (Ley 20.418), 2) Actúa inhibiendo la ovulación (no aborta), y 3) Si vomita antes de 2 horas, ¡se repite! Revisa la Norma de Fertilidad.",
+      "medio": "Bien. Manejas la indicación y el mecanismo. Para nivel experto, enfócate en el 'después': ¿cómo la conectas con un método regular (Quick Start) para que no vuelva a necesitar la urgencia?",
+      "alto": "¡Excelente! Has manejado la urgencia con criterio clínico (tiempo, dosis, vómitos) y legal (acceso adolescente). Además, aprovechas la oportunidad para iniciar anticoncepción regular. Manejo integral perfecto."
+    },
+    "referencias": [
+      "norma-fertilidad.pdf.pdf",
+      "OT-Control-Adolescente-v3.pdf",
+      "LibroAnticoncepcion(FInalWeb-Flip).pdf"
+    ]
+  }
+]
