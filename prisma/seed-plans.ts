@@ -6,6 +6,38 @@ const prisma = new PrismaClient();
 async function main() {
   console.log('🌱 Seeding subscription plans...');
 
+  // Plan FREE - Gratuito con límites
+  const freePlan = await prisma.subscriptionPlan.upsert({
+    where: { name: 'FREE' },
+    update: {},
+    create: {
+      name: 'FREE',
+      displayName: 'Plan Gratuito',
+      description: 'Acceso limitado para explorar la plataforma',
+      price: 0,
+      currency: 'CLP',
+      billingPeriod: 'MONTHLY',
+      trialDays: 0,
+      isActive: true,
+      features: {
+        casesPerMonth: 10, // Solo 10 casos al mes
+        allAreas: false,
+        minsal: false,
+        pubmed: true, // SOLO PubMed en recursos
+        anticonceptivos: false,
+        customReports: false,
+        advancedStats: false,
+        exportPDF: false,
+        offlineMode: false,
+      },
+      maxCasesPerMonth: 10, // Límite estricto
+      hasAI: false,
+      hasAdvancedStats: false,
+      hasPrioritySupport: false,
+    },
+  });
+  console.log('✅ Plan FREE created:', freePlan.id);
+
   // Plan Mensual - $4,990 CLP/mes
   const monthlyPlan = await prisma.subscriptionPlan.upsert({
     where: { name: 'MONTHLY' },
@@ -71,14 +103,14 @@ async function main() {
   });
   console.log('✅ Plan QUARTERLY created:', quarterlyPlan.id);
 
-  // Plan Anual (9 meses) - $24,700 CLP/9 meses (45% descuento) - MEJOR VALOR
+  // Plan Semestral (6 meses) - $24,700 CLP/6 meses (17% descuento) - MEJOR VALOR
   const biannualPlan = await prisma.subscriptionPlan.upsert({
     where: { name: 'BIANNUAL' },
     update: {},
     create: {
       name: 'BIANNUAL',
-      displayName: 'Plan Anual (9 meses)',
-      description: '9 meses con 45% de descuento - Ahorra $20,210 CLP - ¡MEJOR VALOR!',
+      displayName: 'Plan Semestral (6 meses)',
+      description: '6 meses - Mejor valor con acceso anticipado',
       price: 24700, // $44,910 - 45% = $24,700
       currency: 'CLP',
       billingPeriod: 'BIANNUAL',
@@ -104,17 +136,18 @@ async function main() {
       hasPrioritySupport: true,
     },
   });
-  console.log('✅ Plan BIANNUAL (9 meses) created:', biannualPlan.id);
+  console.log('✅ Plan BIANNUAL (6 meses) created:', biannualPlan.id);
 
   console.log('');
   console.log('📊 Summary:');
+  console.log('  - Plan FREE: GRATIS (10 casos/mes, solo PubMed)');
   console.log('  - Plan MONTHLY: $4,990/mes (~$4,990/mes real)');
   console.log('  - Plan QUARTERLY: $11,230/3 meses (~$3,743/mes real) - Ahorro 25%');
-  console.log('  - Plan BIANNUAL: $24,700/9 meses (~$2,744/mes real) - Ahorro 45% ⭐ MEJOR VALOR');
+  console.log('  - Plan BIANNUAL: $24,700/6 meses (~$4,117/mes real) - 17% desc ⭐ MEJOR VALOR');
   console.log('');
-  console.log('💰 Ahorro máximo con Plan Anual: $20,210 CLP');
+  console.log('💰 Ahorro máximo con Plan Semestral: $5,240 CLP');
   console.log('');
-  console.log('📦 Todos los planes incluyen:');
+  console.log('📦 Planes pagos incluyen:');
   console.log('  ✅ Casos clínicos ilimitados (8 áreas)');
   console.log('  ✅ Guía interactiva de anticonceptivos');
   console.log('  ✅ Normativas MINSAL');

@@ -89,12 +89,42 @@ export default function CalculadorasPage() {
           </div>
         </div>
 
+        {/* Banner de Calculadoras de Medicamentos */}
+        {!activeCalculator && (
+          <div className="mb-8">
+            <Link 
+              href="/recursos/medicamentos"
+              className="block bg-gradient-to-r from-rose-500 via-pink-500 to-rose-600 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all transform hover:scale-[1.02] border-2 border-white"
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+                    <span className="text-3xl">💊</span>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-1 flex items-center gap-2">
+                      ✨ Calculadoras de Medicamentos Obstétricos
+                      <span className="text-xs bg-yellow-400 text-yellow-900 px-2 py-1 rounded-full font-bold">NUEVO</span>
+                    </h3>
+                    <p className="text-white/90 text-sm">
+                      Sulfato de Magnesio, Oxitocina, Misoprostol, Profilaxis ATB y más
+                    </p>
+                  </div>
+                </div>
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </Link>
+          </div>
+        )}
+
         {/* Selector de Calculadoras */}
         {!activeCalculator && (
           <div>
             <div className="flex items-center gap-2 mb-6">
               <InformationCircleIcon className="w-6 h-6 text-purple-600" />
-              <p className="text-gray-700 font-medium">Selecciona una calculadora para comenzar</p>
+              <p className="text-gray-700 font-medium">Calculadoras de Evaluación Obstétrica</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

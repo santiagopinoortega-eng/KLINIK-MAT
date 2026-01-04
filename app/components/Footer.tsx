@@ -3,6 +3,8 @@
  * Footer completo con información de contacto, enlaces y disclaimer médico
  */
 
+import Logo from './Logo';
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -13,8 +15,8 @@ export default function Footer() {
           
           {/* Columna 1: Logo y descripción */}
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold text-white" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>KLINIK-MAT</h3>
-            <p className="text-sm text-white leading-relaxed">
+            <Logo size="sm" href="/" />
+            <p className="text-sm text-white/90 leading-relaxed">
               Plataforma educativa de casos clínicos para estudiantes de Obstetricia y Matronería en Chile.
             </p>
             <div className="flex gap-3 pt-2">

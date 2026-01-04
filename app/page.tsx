@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { useUser } from '@clerk/nextjs';
 import { Stethoscope, BookOpen, Award, Heart, ArrowRight } from 'lucide-react';
 import RecommendedCases from './components/RecommendedCases';
+import Logo from './components/Logo';
 import type { CasoClient } from '@/lib/types';
 
 export default function HomePage() {
@@ -47,15 +48,14 @@ export default function HomePage() {
           </svg>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24 relative">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-12 md:py-20 relative">
           <div className="text-center max-w-4xl mx-auto space-y-6">
             
-            {/* Logo/Título de la plataforma */}
-            <div className="mb-4">
-              <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-2" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
-                KLINIK-MAT
-              </h1>
-              <div className="h-1 w-24 bg-white/30 mx-auto rounded-full"></div>
+            {/* Logo de la plataforma - Hero */}
+            <div className="mb-8 flex justify-center">
+              <div className="transform hover:scale-105 transition-transform bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                <Logo size="xl" href={null} priority />
+              </div>
             </div>
 
             {/* Badge superior */}

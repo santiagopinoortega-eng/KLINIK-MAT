@@ -6,6 +6,7 @@ import { logger, ErrorMessages, logApiError } from '@/lib/logger';
 import { checkRateLimit, RATE_LIMITS, createRateLimitResponse } from '@/lib/ratelimit';
 import { sanitizeObject, sanitizeCaseId, sanitizeNumber, sanitizeEnum } from '@/lib/sanitize';
 import { requireCsrfToken } from '@/lib/csrf';
+import { checkCaseAccessLimit, recordCaseCompletion } from '@/lib/subscription-limits';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -34,6 +35,21 @@ export async function POST(req: Request) {
       return NextResponse.json(
         { error: 'No autenticado' },
         { status: 401 }
+      );
+    }
+
+    // VERIFICAR LÍMITES DE SUSCRIPCIÓN
+    const limitCheck = await checkCaseAccessLimit(userId);
+    if (!limitCheck.allowed) {
+      return NextResponse.json(
+        { 
+          error: limitCheck.reason,
+          usageCount: limitCheck.usageCount,
+          limit: limitCheck.limit,
+          planName: limitCheck.planName,
+          requiresUpgrade: true,
+        },
+        { status: 403 }
       );
     }
 
@@ -111,6 +127,9 @@ export async function POST(req: Request) {
         completedAt: new Date(),
       },
     });
+
+    // REGISTRAR USO PARA SISTEMA DE LÍMITES
+    await recordCaseCompletion(userId, caseId as string);
 
     return NextResponse.json(
       { 

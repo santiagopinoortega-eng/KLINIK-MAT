@@ -75,6 +75,12 @@ export async function POST(req: Request) {
 
     // Si el pago fue aprobado, crear suscripción
     if (payment.status === 'approved') {
+      // Calcular días según el período
+      let daysToAdd = 30; // Por defecto mensual
+      if (plan.billingPeriod === 'QUARTERLY') daysToAdd = 90; // 3 meses
+      if (plan.billingPeriod === 'BIANNUAL') daysToAdd = 180; // 6 meses
+      if (plan.billingPeriod === 'YEARLY') daysToAdd = 365; // 12 meses
+
       const subscription = await prisma.subscription.create({
         data: {
           userId: user.id,
@@ -82,8 +88,7 @@ export async function POST(req: Request) {
           status: 'ACTIVE',
           currentPeriodStart: new Date(),
           currentPeriodEnd: new Date(
-            Date.now() +
-              (plan.billingPeriod === 'YEARLY' ? 365 : 30) * 24 * 60 * 60 * 1000
+            Date.now() + daysToAdd * 24 * 60 * 60 * 1000
           ),
         },
       });
