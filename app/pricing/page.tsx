@@ -96,25 +96,41 @@ export default function PricingPage() {
   const getFeatureList = (plan: Plan) => {
     const features = [];
     
-    if (plan.maxCasesPerMonth === null || plan.maxCasesPerMonth < 0) {
-      features.push('Casos clínicos ilimitados');
-    } else {
-      features.push(`${plan.maxCasesPerMonth} casos clínicos por mes`);
+    // Casos clínicos ilimitados
+    features.push('✅ Casos clínicos ilimitados (8 áreas)');
+    
+    // Áreas incluidas
+    features.push('📚 Embarazo y Control Prenatal');
+    features.push('📚 Parto y Atención Intraparto');
+    features.push('📚 Puerperio y Lactancia');
+    features.push('📚 Urgencias Obstétricas');
+    features.push('📚 Ginecología');
+    features.push('📚 Salud Sexual y Anticoncepción');
+    features.push('📚 ITS (Infecciones de Transmisión Sexual)');
+    features.push('📚 Neonatología / Recién Nacido');
+    
+    // Recursos incluidos
+    features.push('💊 Guía interactiva de anticonceptivos');
+    features.push('📋 Normativas MINSAL actualizadas');
+    features.push('🔬 Búsqueda PubMed integrada');
+    
+    // Características del plan
+    features.push('📊 Estadísticas avanzadas de progreso');
+    features.push('📄 Exportar reportes a PDF');
+    features.push('💾 Modo offline disponible');
+    
+    // Soporte prioritario para planes trimestrales y anuales
+    if (plan.billingPeriod === 'QUARTERLY' || plan.billingPeriod === 'BIANNUAL') {
+      features.push('⭐ Soporte prioritario');
+    }
+    
+    // Acceso anticipado para plan anual
+    if (plan.billingPeriod === 'BIANNUAL') {
+      features.push('🎯 Acceso anticipado a nuevas funcionalidades');
+      features.push('🎓 Certificado de estudios descargable');
     }
 
-    if (plan.hasAI) {
-      features.push('Asistente IA incluido');
-    } else {
-      features.push('Sin acceso a IA');
-    }
-
-    if (plan.hasAdvancedStats) {
-      features.push('Estadísticas avanzadas');
-    }
-    if (plan.hasPrioritySupport) {
-      features.push('Soporte prioritario');
-    }
-
+    // Período de prueba
     if (plan.trialDays > 0) {
       features.push(`🎁 ${plan.trialDays} días de prueba gratis`);
     }
@@ -129,7 +145,7 @@ export default function PricingPage() {
       case 'QUARTERLY':
         return '3 meses';
       case 'BIANNUAL':
-        return '6 meses';
+        return '9 meses';
       case 'YEARLY':
         return '12 meses';
       default:
@@ -140,15 +156,15 @@ export default function PricingPage() {
   const getDiscountInfo = (plan: Plan) => {
     const monthlyPrice = 4990;
     if (plan.billingPeriod === 'QUARTERLY') {
-      const normalPrice = monthlyPrice * 3;
-      const savings = normalPrice - parseFloat(plan.price);
-      const discount = Math.round((savings / normalPrice) * 100);
+      const normalPrice = monthlyPrice * 3; // $14,970
+      const savings = normalPrice - parseFloat(plan.price); // $3,740
+      const discount = 25; // 25%
       return { savings, discount, show: true };
     }
     if (plan.billingPeriod === 'BIANNUAL') {
-      const normalPrice = monthlyPrice * 6;
-      const savings = normalPrice - parseFloat(plan.price);
-      const discount = Math.round((savings / normalPrice) * 100);
+      const normalPrice = monthlyPrice * 9; // $44,910
+      const savings = normalPrice - parseFloat(plan.price); // $20,210
+      const discount = 45; // 45%
       return { savings, discount, show: true };
     }
     return { savings: 0, discount: 0, show: false };

@@ -424,40 +424,76 @@ export default function AreasClient() {
                 <div className="flex-1">
                   <h4 className="font-bold text-blue-900 mb-3 text-lg">📚 Organización de Áreas Clínicas</h4>
                   <div className="space-y-3 text-sm text-blue-900">
-                    <div className="flex items-start gap-3 p-3 bg-white/70 rounded-xl">
-                      <div className="flex-shrink-0 w-6 h-6 bg-rose-100 rounded-lg flex items-center justify-center">
-                        <span className="text-xs font-bold text-rose-700">1</span>
-                      </div>
-                      <div>
-                        <p className="font-bold text-gray-900">Ginecología y Salud de la Mujer</p>
-                        <p className="text-xs text-gray-700 mt-1">Patología ginecológica, endocrinología e infectología</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3 p-3 bg-white/70 rounded-xl">
-                      <div className="flex-shrink-0 w-6 h-6 bg-purple-100 rounded-lg flex items-center justify-center">
-                        <span className="text-xs font-bold text-purple-700">2</span>
-                      </div>
-                      <div>
-                        <p className="font-bold text-gray-900">Salud Sexual y Reproductiva</p>
-                        <p className="text-xs text-gray-700 mt-1">Atención Primaria, regulación de fertilidad y consejería</p>
-                      </div>
-                    </div>
                     <div className="flex items-start gap-3 p-3 bg-white/70 rounded-xl opacity-60">
                       <div className="flex-shrink-0 w-6 h-6 bg-blue-100 rounded-lg flex items-center justify-center">
-                        <span className="text-xs font-bold text-blue-700">3</span>
+                        <span className="text-xs font-bold text-blue-700">1</span>
                       </div>
                       <div>
-                        <p className="font-bold text-gray-900">Obstetricia y Puerperio</p>
-                        <p className="text-xs text-gray-700 mt-1">Control prenatal, parto, puerperio y urgencias • <span className="font-bold">Próximamente</span></p>
+                        <p className="font-bold text-gray-900">Embarazo y Control Prenatal</p>
+                        <p className="text-xs text-gray-700 mt-1">Control prenatal, ecografía, patología del embarazo • <span className="font-bold">Próximamente</span></p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3 p-3 bg-white/70 rounded-xl opacity-60">
-                      <div className="flex-shrink-0 w-6 h-6 bg-amber-100 rounded-lg flex items-center justify-center">
-                        <span className="text-xs font-bold text-amber-700">4</span>
+                      <div className="flex-shrink-0 w-6 h-6 bg-indigo-100 rounded-lg flex items-center justify-center">
+                        <span className="text-xs font-bold text-indigo-700">2</span>
                       </div>
                       <div>
-                        <p className="font-bold text-gray-900">Neonatología</p>
-                        <p className="text-xs text-gray-700 mt-1">Recién nacido sano, patológico y lactancia • <span className="font-bold">Próximamente</span></p>
+                        <p className="font-bold text-gray-900">Parto y Atención Intraparto</p>
+                        <p className="text-xs text-gray-700 mt-1">Trabajo de parto, monitoreo fetal, atención del parto • <span className="font-bold">Próximamente</span></p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 bg-white/70 rounded-xl opacity-60">
+                      <div className="flex-shrink-0 w-6 h-6 bg-pink-100 rounded-lg flex items-center justify-center">
+                        <span className="text-xs font-bold text-pink-700">3</span>
+                      </div>
+                      <div>
+                        <p className="font-bold text-gray-900">Puerperio y Lactancia</p>
+                        <p className="text-xs text-gray-700 mt-1">Puerperio normal y patológico, lactancia materna • <span className="font-bold">Próximamente</span></p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 bg-white/70 rounded-xl">
+                      <div className="flex-shrink-0 w-6 h-6 bg-red-100 rounded-lg flex items-center justify-center">
+                        <span className="text-xs font-bold text-red-700">4</span>
+                      </div>
+                      <div>
+                        <p className="font-bold text-gray-900">Urgencias Obstétricas</p>
+                        <p className="text-xs text-gray-700 mt-1">Hemorragias, preeclampsia, emergencias maternas</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 bg-white/70 rounded-xl opacity-60">
+                      <div className="flex-shrink-0 w-6 h-6 bg-rose-100 rounded-lg flex items-center justify-center">
+                        <span className="text-xs font-bold text-rose-700">5</span>
+                      </div>
+                      <div>
+                        <p className="font-bold text-gray-900">Ginecología</p>
+                        <p className="text-xs text-gray-700 mt-1">Patología ginecológica, climaterio, endocrinología • <span className="font-bold">Próximamente</span></p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 bg-white/70 rounded-xl opacity-60">
+                      <div className="flex-shrink-0 w-6 h-6 bg-purple-100 rounded-lg flex items-center justify-center">
+                        <span className="text-xs font-bold text-purple-700">6</span>
+                      </div>
+                      <div>
+                        <p className="font-bold text-gray-900">Salud Sexual y Anticoncepción</p>
+                        <p className="text-xs text-gray-700 mt-1">Regulación de fertilidad, métodos anticonceptivos • <span className="font-bold">Próximamente</span></p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 bg-white/70 rounded-xl opacity-60">
+                      <div className="flex-shrink-0 w-6 h-6 bg-orange-100 rounded-lg flex items-center justify-center">
+                        <span className="text-xs font-bold text-orange-700">7</span>
+                      </div>
+                      <div>
+                        <p className="font-bold text-gray-900">ITS (Infecciones de Transmisión Sexual)</p>
+                        <p className="text-xs text-gray-700 mt-1">Diagnóstico y manejo de infecciones de transmisión sexual • <span className="font-bold">Próximamente</span></p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 bg-white/70 rounded-xl opacity-60">
+                      <div className="flex-shrink-0 w-6 h-6 bg-teal-100 rounded-lg flex items-center justify-center">
+                        <span className="text-xs font-bold text-teal-700">8</span>
+                      </div>
+                      <div>
+                        <p className="font-bold text-gray-900">Neonatología / Recién Nacido</p>
+                        <p className="text-xs text-gray-700 mt-1">Atención inmediata, patología neonatal, reanimación • <span className="font-bold">Próximamente</span></p>
                       </div>
                     </div>
                   </div>
