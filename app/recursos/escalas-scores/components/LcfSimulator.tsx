@@ -24,7 +24,7 @@ export default function LcfSimulator() {
   // Timer State
   const [timeElapsed, setTimeElapsed] = useState(0);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
-  const timerDuration = 15; // 15 segundos exactos
+  const [timerDuration, setTimerDuration] = useState(10); // Duración seleccionable: 6 o 10 segundos
   
   // Tap State
   const [taps, setTaps] = useState<TapRecord[]>([]);
@@ -53,7 +53,8 @@ export default function LcfSimulator() {
       
       // Crear AnalyserNode para visualización real de la onda
       analyserRef.current = audioContextRef.current.createAnalyser();
-      analyserRef.current.fftSize = 2048; // Resolución de la onda
+      analyserRef.current.fftSize = 4096; // Mayor resolución para mejor visualización
+      analyserRef.current.smoothingTimeConstant = 0.85; // Suavizado de la onda
       analyserRef.current.connect(audioContextRef.current.destination);
       
       console.log('AudioContext + AnalyserNode created on user interaction');
@@ -81,29 +82,31 @@ export default function LcfSimulator() {
     
     // Filtro lowpass para emular sonido de estetoscopio
     filter.type = 'lowpass';
-    filter.frequency.value = 200; // Corta sonidos agudos molestos
+    filter.frequency.value = 180; // Corta sonidos agudos molestos
+    filter.Q.value = 1.5; // Más selectivo
     
-    // Gain Envelope correcto (según ejemplo)
-    // El volumen empieza en 0, sube rápido y baja rápido
+    // Gain Envelope mejorado con mayor claridad
     gainNode.gain.setValueAtTime(0, time);
-    gainNode.gain.linearRampToValueAtTime(3.5 * volume, time + 0.05); // Attack con mayor ganancia
-    gainNode.gain.exponentialRampToValueAtTime(0.001, time + 0.3); // Release
+    gainNode.gain.linearRampToValueAtTime(4.0 * volume, time + 0.04); // Attack más rápido y fuerte
+    gainNode.gain.exponentialRampToValueAtTime(0.001, time + 0.25); // Release más corto
 
-    // "Lub" - Low frequency (65Hz para sonido grave de estetoscopio)
+    // "Lub" - Low frequency mejorado (60Hz para sonido grave profundo)
     const osc1 = ctx.createOscillator();
     osc1.type = 'sine';
-    osc1.frequency.setValueAtTime(65, time);
+    osc1.frequency.setValueAtTime(60, time);
+    osc1.frequency.exponentialRampToValueAtTime(55, time + 0.08); // Caída de frecuencia
     osc1.connect(gainNode);
     osc1.start(time);
-    osc1.stop(time + 0.1);
+    osc1.stop(time + 0.08);
 
-    // "Dub" - Slightly higher frequency, delayed (75Hz)
+    // "Dub" - Slightly higher frequency, delayed (70Hz)
     const osc2 = ctx.createOscillator();
     osc2.type = 'sine';
-    osc2.frequency.setValueAtTime(75, time + 0.15);
+    osc2.frequency.setValueAtTime(70, time + 0.12);
+    osc2.frequency.exponentialRampToValueAtTime(65, time + 0.18);
     osc2.connect(gainNode);
-    osc2.start(time + 0.15);
-    osc2.stop(time + 0.25);
+    osc2.start(time + 0.12);
+    osc2.stop(time + 0.18);
     
     // CONEXIÓN AL ANALIZADOR ANTES DE LA SALIDA (arquitectura correcta)
     // Flujo: osc → gain → filter → analyser → destination
@@ -292,8 +295,17 @@ export default function LcfSimulator() {
         analyserRef.current.getByteTimeDomainData(dataArray);
 
         // Dibujar onda real (Time Domain Data)
-        ctx.lineWidth = 3;
-        ctx.strokeStyle = '#2dd4bf'; // teal-400 (verde hospitalario)
+        ctx.lineWidth = 2.5;
+        
+        // Crear gradiente para la línea
+        const gradient = ctx.createLinearGradient(0, 0, width, 0);
+        gradient.addColorStop(0, '#14b8a6'); // teal-500
+        gradient.addColorStop(0.5, '#2dd4bf'); // teal-400
+        gradient.addColorStop(1, '#5eead4'); // teal-300
+        
+        ctx.strokeStyle = gradient;
+        ctx.shadowBlur = 3;
+        ctx.shadowColor = '#2dd4bf';
         ctx.beginPath();
 
         const sliceWidth = width / bufferLength;
@@ -314,10 +326,11 @@ export default function LcfSimulator() {
 
         ctx.lineTo(width, height / 2);
         ctx.stroke();
+        ctx.shadowBlur = 0; // Reset shadow
 
-        // Grid hospitalario (opcional, estilo EKG)
-        ctx.strokeStyle = '#1e293b'; // slate-800
-        ctx.lineWidth = 1;
+        // Grid hospitalario mejorado (estilo EKG)
+        ctx.strokeStyle = '#1e293b80'; // slate-800 con transparencia
+        ctx.lineWidth = 0.5;
         // Líneas horizontales
         for (let i = 0; i < 5; i++) {
           const y = (i * height) / 4;
@@ -375,29 +388,45 @@ export default function LcfSimulator() {
 
   // Get clinical interpretation
   const getInterpretation = (bpm: number) => {
-    if (bpm < 110) {
+    if (bpm < 80) {
+      return {
+        classification: '⚠️ Bradicardia Fetal Severa',
+        alert: true,
+        color: 'red',
+        message: '¡EMERGENCIA OBSTÉTRICA! Bradicardia fetal severa detectada.',
+        recommendation: 'FCF <80 lpm es EMERGENCIA. Requiere evaluación INMEDIATA. Activar código rojo obstétrico: cambio urgente de posición materna, oxígeno al 100%, suspender oxitocina si presente, preparar cesárea de urgencia. Descartar desprendimiento placentario, compresión de cordón, hipoxia severa.'
+      };
+    } else if (bpm >= 80 && bpm < 110) {
       return {
         classification: 'Bradicardia Fetal',
         alert: true,
         color: 'red',
         message: '¡ALERTA! Bradicardia fetal detectada según Normas MINSAL.',
-        recommendation: 'FCF <110 lpm requiere evaluación inmediata. Descartar hipoxia fetal, bloqueo cardíaco congénito, medicación materna (betabloqueadores). Considerar cambio de posición, oxígeno materno, cesárea urgente si persiste.'
+        recommendation: 'FCF 80-109 lpm requiere evaluación inmediata. Descartar hipoxia fetal, bloqueo cardíaco congénito, medicación materna (betabloqueadores). Considerar cambio de posición, oxígeno materno, suspender oxitocina. Evaluar necesidad de cesárea urgente si persiste o empeora.'
       };
     } else if (bpm >= 110 && bpm <= 160) {
       return {
-        classification: 'Rango Normal',
+        classification: 'Rango Normal ✓',
         alert: false,
         color: 'green',
         message: 'FCF dentro del rango fisiológico normal.',
-        recommendation: 'Continuar vigilancia de rutina. Evaluar variabilidad y patrón de FCF con monitoreo continuo.'
+        recommendation: 'Continuar vigilancia de rutina. Evaluar variabilidad y patrón de FCF con monitoreo continuo. En trabajo de parto, verificar presencia de aceleraciones (signo de bienestar fetal).'
       };
-    } else {
+    } else if (bpm > 160 && bpm <= 180) {
       return {
         classification: 'Taquicardia Fetal',
         alert: true,
         color: 'orange',
         message: '¡ALERTA! Taquicardia fetal detectada según Normas MINSAL.',
-        recommendation: 'FCF >160 lpm requiere investigación. Descartar fiebre materna, corioamnionitis, medicación (betamiméticos), hipertiroidismo, arritmia fetal. Evaluar necesidad de antibióticos si sospecha infección.'
+        recommendation: 'FCF 161-180 lpm requiere investigación. Descartar fiebre materna, corioamnionitis, medicación (betamiméticos, atropina), hipertiroidismo materno, deshidratación, arritmia fetal. Evaluar necesidad de antibióticos si sospecha infección. Monitoreo continuo.'
+      };
+    } else {
+      return {
+        classification: '⚠️ Taquicardia Fetal Severa',
+        alert: true,
+        color: 'red',
+        message: '¡ALERTA GRAVE! Taquicardia fetal severa detectada.',
+        recommendation: 'FCF >180 lpm requiere acción URGENTE. Alta sospecha de compromiso fetal. Descartar corioamnionitis (fiebre materna, leucocitosis), hipoxia fetal, arritmia cardíaca fetal. Iniciar antibióticos empíricos si signos de infección. Considerar finalización del embarazo si no responde a manejo.'
       };
     }
   };
@@ -458,21 +487,21 @@ export default function LcfSimulator() {
             </div>
             <input
               type="range"
-              min="110"
-              max="180"
+              min="80"
+              max="200"
               step="5"
               value={targetBPM}
               onChange={(e) => setTargetBPM(parseInt(e.target.value))}
               disabled={isPlaying || isTimerRunning}
               className="w-full h-1.5 rounded-lg appearance-none cursor-pointer"
               style={{
-                background: `linear-gradient(to right, #008080 0%, #008080 ${((targetBPM - 110) / 70) * 100}%, #e2e8f0 ${((targetBPM - 110) / 70) * 100}%, #e2e8f0 100%)`
+                background: `linear-gradient(to right, #008080 0%, #008080 ${((targetBPM - 80) / 120) * 100}%, #e2e8f0 ${((targetBPM - 80) / 120) * 100}%, #e2e8f0 100%)`
               }}
             />
             <div className="flex justify-between text-[10px] text-gray-600 mt-1">
-              <span>110</span>
+              <span>80</span>
               <span className="font-semibold">Normal: 110-160</span>
-              <span>180</span>
+              <span>200</span>
             </div>
           </div>
 
@@ -496,8 +525,35 @@ export default function LcfSimulator() {
 
       {/* Timer y Tap Button - Layout Horizontal */}
       <div className="grid lg:grid-cols-3 gap-3 mb-3">
-        {/* Timer Display */}
+        {/* Timer Display + Duration Selector */}
         <div className="lg:col-span-1 bg-white rounded-lg p-2 shadow-sm">
+          <div className="text-xs font-semibold text-gray-700 mb-1">Duración de conteo</div>
+          <div className="flex gap-1 mb-2">
+            <button
+              onClick={() => setTimerDuration(6)}
+              disabled={isPlaying || isTimerRunning}
+              className={`flex-1 px-2 py-1 rounded text-xs font-semibold transition-all ${
+                timerDuration === 6
+                  ? 'text-white shadow-md'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              } ${isPlaying || isTimerRunning ? 'opacity-50 cursor-not-allowed' : ''}`}
+              style={timerDuration === 6 ? { background: '#008080' } : {}}
+            >
+              6s
+            </button>
+            <button
+              onClick={() => setTimerDuration(10)}
+              disabled={isPlaying || isTimerRunning}
+              className={`flex-1 px-2 py-1 rounded text-xs font-semibold transition-all ${
+                timerDuration === 10
+                  ? 'text-white shadow-md'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              } ${isPlaying || isTimerRunning ? 'opacity-50 cursor-not-allowed' : ''}`}
+              style={timerDuration === 10 ? { background: '#008080' } : {}}
+            >
+              10s
+            </button>
+          </div>
           <div className="text-xs font-semibold text-gray-700 mb-0.5">Tiempo</div>
           <div className="text-xl font-bold mb-1" style={{ color: '#008080' }}>
             {timeElapsed.toFixed(1)}s <span className="text-xs text-gray-600">/ {timerDuration}s</span>
@@ -540,7 +596,7 @@ export default function LcfSimulator() {
         </div>
       </div>
 
-      {/* Controls Compactos */}
+      {/* Controls Mejorados */}
       <div className="flex gap-2 mb-3">
         {!isPlaying && !isTimerRunning && (
           <button
@@ -548,31 +604,54 @@ export default function LcfSimulator() {
               startAudio();
               startTimer();
             }}
-            className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-white rounded-lg font-semibold shadow hover:shadow-md transition-all text-sm"
-            style={{ background: '#008080' }}
+            className="flex-1 flex items-center justify-center gap-2 px-4 py-3 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:scale-[1.02] active:scale-95"
+            style={{ background: 'linear-gradient(135deg, #008080 0%, #00a896 100%)' }}
           >
-            <PlayIcon className="w-4 h-4" />
-            Iniciar
+            <PlayIcon className="w-5 h-5" />
+            <span>Iniciar Simulación</span>
           </button>
         )}
 
-        {isPlaying && (
+        {isPlaying && isTimerRunning && (
+          <>
+            <button
+              onClick={stopAudio}
+              className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:scale-[1.02] active:scale-95"
+            >
+              <PauseIcon className="w-5 h-5" />
+              <span>Pausar Audio</span>
+            </button>
+            <button
+              onClick={stopTimer}
+              className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-red-500 to-rose-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:scale-[1.02] active:scale-95"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Finalizar y Ver Resultado</span>
+            </button>
+          </>
+        )}
+
+        {(isPlaying || isTimerRunning) && (
           <button
-            onClick={stopAudio}
-            className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-amber-500 text-white rounded-lg font-semibold shadow hover:shadow-md transition-all text-sm"
+            onClick={reset}
+            className="flex items-center justify-center gap-1.5 px-4 py-3 bg-gradient-to-r from-gray-500 to-gray-600 text-white rounded-lg font-semibold hover:from-gray-600 hover:to-gray-700 transition-all shadow-md hover:shadow-lg transform hover:scale-[1.02] active:scale-95"
           >
-            <PauseIcon className="w-4 h-4" />
-            Detener
+            <ArrowPathIcon className="w-5 h-5" />
+            <span>Reiniciar</span>
           </button>
         )}
 
-        <button
-          onClick={reset}
-          className="flex items-center justify-center gap-1.5 px-4 py-2.5 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 transition-all text-sm"
-        >
-          <ArrowPathIcon className="w-4 h-4" />
-          Reiniciar
-        </button>
+        {!isPlaying && !isTimerRunning && (
+          <button
+            onClick={reset}
+            className="flex items-center justify-center gap-1.5 px-4 py-3 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 transition-all"
+          >
+            <ArrowPathIcon className="w-5 h-5" />
+            <span>Limpiar</span>
+          </button>
+        )}
       </div>
 
       {/* Results Compactos */}
@@ -680,23 +759,27 @@ export default function LcfSimulator() {
         <ol className="space-y-1.5 text-xs text-gray-700">
           <li className="flex items-start gap-2">
             <span className="flex-shrink-0 w-5 h-5 rounded-full text-white font-bold text-xs flex items-center justify-center" style={{ background: '#008080' }}>1</span>
-            <span>Ajusta la FCF real con el slider (110-180 lpm)</span>
+            <span>Selecciona la duración de conteo: <strong>6 segundos</strong> o <strong>10 segundos</strong></span>
           </li>
           <li className="flex items-start gap-2">
-            <span className="flex-shrink-0 w-6 h-6 rounded-full text-white font-bold text-xs flex items-center justify-center" style={{ background: '#008080' }}>2</span>
+            <span className="flex-shrink-0 w-5 h-5 rounded-full text-white font-bold text-xs flex items-center justify-center" style={{ background: '#008080' }}>2</span>
+            <span>Ajusta la FCF real con el slider (<strong>80-200 lpm</strong>)</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="flex-shrink-0 w-5 h-5 rounded-full text-white font-bold text-xs flex items-center justify-center" style={{ background: '#008080' }}>3</span>
             <span>Presiona <strong>&quot;Iniciar Simulación&quot;</strong> para comenzar el audio y el temporizador</span>
           </li>
           <li className="flex items-start gap-2">
-            <span className="flex-shrink-0 w-6 h-6 rounded-full text-white font-bold text-xs flex items-center justify-center" style={{ background: '#008080' }}>3</span>
+            <span className="flex-shrink-0 w-5 h-5 rounded-full text-white font-bold text-xs flex items-center justify-center" style={{ background: '#008080' }}>4</span>
             <span>Escucha atentamente el patrón <strong>&quot;lub-dub&quot;</strong> del latido cardíaco</span>
           </li>
           <li className="flex items-start gap-2">
-            <span className="flex-shrink-0 w-6 h-6 rounded-full text-white font-bold text-xs flex items-center justify-center" style={{ background: '#008080' }}>4</span>
+            <span className="flex-shrink-0 w-5 h-5 rounded-full text-white font-bold text-xs flex items-center justify-center" style={{ background: '#008080' }}>5</span>
             <span>Presiona <strong>TAP</strong> cada vez que escuches un latido completo</span>
           </li>
           <li className="flex items-start gap-2">
-            <span className="flex-shrink-0 w-6 h-6 rounded-full text-white font-bold text-xs flex items-center justify-center" style={{ background: '#008080' }}>5</span>
-            <span>Al terminar los 15 segundos, revisa tu precisión y el feedback clínico</span>
+            <span className="flex-shrink-0 w-5 h-5 rounded-full text-white font-bold text-xs flex items-center justify-center" style={{ background: '#008080' }}>6</span>
+            <span>Al terminar el tiempo, presiona <strong>&quot;Finalizar y Ver Resultado&quot;</strong> para revisar tu precisión</span>
           </li>
         </ol>
       </div>
@@ -713,7 +796,15 @@ export default function LcfSimulator() {
           </li>
           <li className="flex items-start gap-2">
             <span className="text-amber-600 font-bold">•</span>
-            <span><strong>Mejor técnica:</strong> Cuenta durante 15 segundos y multiplica x4</span>
+            <span><strong>Mejor técnica:</strong> Cuenta durante 6-10 segundos y calcula los lpm</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-amber-600 font-bold">•</span>
+            <span><strong>Bradicardia severa:</strong> {'<'}80 lpm - Emergencia obstétrica, evaluar inmediatamente</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-amber-600 font-bold">•</span>
+            <span><strong>Taquicardia severa:</strong> {'>'}180 lpm - Riesgo de compromiso fetal</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-amber-600 font-bold">•</span>
@@ -725,7 +816,7 @@ export default function LcfSimulator() {
           </li>
           <li className="flex items-start gap-2">
             <span className="text-amber-600 font-bold">•</span>
-            <span><strong>Instrumentos:</strong> Estetoscopio de Pinard, Doppler fetal, o CTG para variabilidad</span>
+            <span><strong>Instrumentos:</strong> Estetoscopio de Pinard, Doppler fetal, o CTG para variabilidad continua</span>
           </li>
         </ul>
       </div>

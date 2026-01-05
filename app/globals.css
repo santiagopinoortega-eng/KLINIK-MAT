@@ -207,9 +207,6 @@
   }
   a:hover { 
     color: var(--km-red-700);
-    text-decoration: underline;
-    text-decoration-color: var(--km-red-300);
-    text-underline-offset: 3px;
   }
 }
 

@@ -15,7 +15,6 @@ import {
   searchScales,
   getScalesByCategory 
 } from './data';
-import LcfSimulator from './components/LcfSimulator';
 
 export default function EscalasScoresPage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -162,11 +161,6 @@ export default function EscalasScoresPage() {
               {filteredScales.length === 1 ? 'escala' : 'escalas'}
             </>
           )}
-        </div>
-
-        {/* LCF Simulator - Herramienta Práctica Avanzada */}
-        <div className="mb-8">
-          <LcfSimulator />
         </div>
 
         {/* Scales Grid */}

@@ -9,10 +9,10 @@ export default function Header() {
   const { isSignedIn } = useUser();
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm h-16">
+    <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm h-20">
       <nav className="h-full mx-auto max-w-7xl px-4 md:px-6 lg:px-8 flex items-center justify-between">
-        {/* Logo */}
-        <Logo size="sm" priority className="transition-transform hover:scale-105" />
+        {/* Logo rojo para header */}
+        <Logo variant="red" size="md" priority className="transition-all hover:scale-105" />
 
         {/* User Actions and Usage Badge */}
         <div className="flex items-center gap-3">

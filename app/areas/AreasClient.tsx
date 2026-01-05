@@ -137,16 +137,17 @@ export default function AreasClient() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-red-50/20 to-white pb-20 md:pb-8">
       {/* Top Navigation Bar - Desktop (hidden on mobile) */}
-      <div className="hidden md:block sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
+      <div className="hidden md:block sticky top-0 z-40 bg-white border-b border-gray-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-8">
+            {/* Navegación principal - Distribuida */}
+            <nav className="flex items-center gap-2">
               <button
                 onClick={() => setActiveTab('areas')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all ${
+                className={`flex items-center gap-2.5 px-5 py-2.5 rounded-xl font-semibold transition-all duration-200 ${
                   activeTab === 'areas'
-                    ? 'text-red-600 bg-red-50'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    ? 'text-white bg-gradient-to-r from-red-600 to-red-700 shadow-lg shadow-red-500/30'
+                    : 'text-gray-600 hover:text-red-600 hover:bg-red-50'
                 }`}
               >
                 <BookOpenIcon className="w-5 h-5" />
@@ -154,10 +155,10 @@ export default function AreasClient() {
               </button>
               <button
                 onClick={() => setActiveTab('stats')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all ${
+                className={`flex items-center gap-2.5 px-5 py-2.5 rounded-xl font-semibold transition-all duration-200 ${
                   activeTab === 'stats'
-                    ? 'text-red-600 bg-red-50'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    ? 'text-white bg-gradient-to-r from-red-600 to-red-700 shadow-lg shadow-red-500/30'
+                    : 'text-gray-600 hover:text-red-600 hover:bg-red-50'
                 }`}
               >
                 <ChartBarIcon className="w-5 h-5" />
@@ -165,10 +166,10 @@ export default function AreasClient() {
               </button>
               <button
                 onClick={() => setActiveTab('recursos')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all ${
+                className={`flex items-center gap-2.5 px-5 py-2.5 rounded-xl font-semibold transition-all duration-200 ${
                   activeTab === 'recursos'
-                    ? 'text-red-600 bg-red-50'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    ? 'text-white bg-gradient-to-r from-red-600 to-red-700 shadow-lg shadow-red-500/30'
+                    : 'text-gray-600 hover:text-red-600 hover:bg-red-50'
                 }`}
               >
                 <AcademicCapIcon className="w-5 h-5" />
@@ -176,19 +177,21 @@ export default function AreasClient() {
               </button>
               <button
                 onClick={() => setActiveTab('progreso')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all ${
+                className={`flex items-center gap-2.5 px-5 py-2.5 rounded-xl font-semibold transition-all duration-200 ${
                   activeTab === 'progreso'
-                    ? 'text-red-600 bg-red-50'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    ? 'text-white bg-gradient-to-r from-red-600 to-red-700 shadow-lg shadow-red-500/30'
+                    : 'text-gray-600 hover:text-red-600 hover:bg-red-50'
                 }`}
               >
                 <StarIcon className="w-5 h-5" />
                 <span>Mi Progreso</span>
               </button>
-            </div>
-            <div className="flex items-center gap-2 text-sm text-gray-600">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="font-medium">2 áreas disponibles</span>
+            </nav>
+            
+            {/* Badge de disponibilidad */}
+            <div className="flex items-center gap-2.5 px-4 py-2 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-lg shadow-green-500/50"></div>
+              <span className="font-semibold text-green-700 text-sm">2 áreas disponibles</span>
             </div>
           </div>
         </div>
@@ -542,7 +545,7 @@ export default function AreasClient() {
                   </div>
                   <div>
                     <p className="text-sm text-gray-600 font-medium">Recursos Disponibles</p>
-                    <p className="text-2xl font-bold text-gray-900">8</p>
+                    <p className="text-2xl font-bold text-gray-900">10</p>
                   </div>
                 </div>
               </div>
@@ -584,11 +587,228 @@ export default function AreasClient() {
               </h3>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-                {/* Anticonceptivos */}
-                <Link href="/recursos/anticonceptivos" className="group block">
+                {/* Simulador FCF - DESTACADO */}
+                <Link href="/recursos/simulador-fcf" className="group block">
+                  <div className="bg-white rounded-xl p-6 shadow-lg border-2 border-emerald-300 h-full transition-all duration-300 group-hover:shadow-2xl group-hover:border-emerald-400 group-hover:-translate-y-1">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex-shrink-0 flex items-center justify-center h-14 w-14 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 shadow-lg group-hover:scale-110 transition-transform">
+                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                      </div>
+                      <span className="px-3 py-1 rounded-lg text-xs font-bold border-2 bg-emerald-100 text-emerald-800 border-emerald-300 animate-pulse">
+                        ⭐ Destacado
+                      </span>
+                    </div>
+                    
+                    <h4 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-emerald-600 transition-colors">
+                      Simulador de Latidos Cardiofetales
+                    </h4>
+                    
+                    <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                      Simulador interactivo de frecuencia cardiaca fetal con patrones normales y patológicos. Practica la interpretación de FCF con audio realista y casos clínicos.
+                    </p>
+                    
+                    <div className="flex items-center gap-2 text-emerald-600 font-bold text-sm group-hover:gap-3 transition-all">
+                      <span>Iniciar simulador</span>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </div>
+                  </div>
+                </Link>
+
+                {/* Calculadoras Obstétricas */}
+                <Link href="/recursos/calculadoras" className="group block">
+                  <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-200 h-full transition-all duration-300 group-hover:shadow-xl group-hover:border-purple-300 group-hover:-translate-y-1">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex-shrink-0 flex items-center justify-center h-14 w-14 rounded-xl bg-gradient-to-br from-purple-500 to-violet-600 shadow-lg group-hover:scale-110 transition-transform">
+                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                      </div>
+                      <span className="px-3 py-1 rounded-lg text-xs font-bold border-2 bg-purple-100 text-purple-800 border-purple-200">
+                        Interactivo
+                      </span>
+                    </div>
+                    
+                    <h4 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
+                      Calculadoras Obstétricas
+                    </h4>
+                    
+                    <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                      Calcula edad gestacional, fecha probable de parto, IMC pregestacional, percentiles de peso fetal y más herramientas clínicas esenciales.
+                    </p>
+                    
+                    <div className="flex items-center gap-2 text-purple-600 font-bold text-sm group-hover:gap-3 transition-all">
+                      <span>Usar calculadoras</span>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </div>
+                  </div>
+                </Link>
+
+                {/* PubMed Search - Mejorado */}
+                <Link href="/recursos/pubmed" className="group block">
+                  <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-200 h-full transition-all duration-300 group-hover:shadow-xl group-hover:border-indigo-300 group-hover:-translate-y-1">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex-shrink-0 flex items-center justify-center h-14 w-14 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg group-hover:scale-110 transition-transform">
+                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                      </div>
+                      <span className="px-3 py-1 rounded-lg text-xs font-bold border-2 bg-indigo-100 text-indigo-800 border-indigo-200">
+                        API Integrada
+                      </span>
+                    </div>
+                    
+                    <h4 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-indigo-600 transition-colors">
+                      Buscador PubMed Especializado
+                    </h4>
+                    
+                    <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                      API oficial de PubMed integrada. Búsqueda especializada en +35 millones de artículos con filtros obstétricos predefinidos y acceso directo.
+                    </p>
+                    
+                    <div className="flex items-center gap-2 text-indigo-600 font-bold text-sm group-hover:gap-3 transition-all">
+                      <span>Buscar artículos</span>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </div>
+                  </div>
+                </Link>
+
+                {/* Bases de Datos Científicas */}
+                <Link href="/recursos/bases-datos" className="group block">
+                  <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-200 h-full transition-all duration-300 group-hover:shadow-xl group-hover:border-teal-300 group-hover:-translate-y-1">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex-shrink-0 flex items-center justify-center h-14 w-14 rounded-xl bg-gradient-to-br from-teal-500 to-cyan-600 shadow-lg group-hover:scale-110 transition-transform">
+                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+                        </svg>
+                      </div>
+                      <span className="px-3 py-1 rounded-lg text-xs font-bold border-2 bg-teal-100 text-teal-800 border-teal-200">
+                        Colección
+                      </span>
+                    </div>
+                    
+                    <h4 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-teal-600 transition-colors">
+                      Bases de Datos Científicas
+                    </h4>
+                    
+                    <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                      Acceso directo a 16+ bases de datos médicas, revistas internacionales y sociedades científicas. Cochrane, UpToDate, ACOG, RCOG y más.
+                    </p>
+                    
+                    <div className="flex items-center gap-2 text-teal-600 font-bold text-sm group-hover:gap-3 transition-all">
+                      <span>Ver bases de datos</span>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </div>
+                  </div>
+                </Link>
+
+                {/* Timer Pomodoro */}
+                <Link href="/recursos/pomodoro" className="group block">
+                  <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-200 h-full transition-all duration-300 group-hover:shadow-xl group-hover:border-orange-300 group-hover:-translate-y-1">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex-shrink-0 flex items-center justify-center h-14 w-14 rounded-xl bg-gradient-to-br from-orange-500 to-red-600 shadow-lg group-hover:scale-110 transition-transform">
+                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <span className="px-3 py-1 rounded-lg text-xs font-bold border-2 bg-orange-100 text-orange-800 border-orange-200">
+                        Productividad
+                      </span>
+                    </div>
+                    
+                    <h4 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors">
+                      Timer Pomodoro
+                    </h4>
+                    
+                    <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                      Técnica de estudio con intervalos de 25 minutos y descansos programados. Maximiza tu concentración y rendimiento académico.
+                    </p>
+                    
+                    <div className="flex items-center gap-2 text-orange-600 font-bold text-sm group-hover:gap-3 transition-all">
+                      <span>Iniciar timer</span>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </div>
+                  </div>
+                </Link>
+
+                {/* Protocolos de Urgencia */}
+                <Link href="/recursos/protocolos-urgencia" className="group block">
                   <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-200 h-full transition-all duration-300 group-hover:shadow-xl group-hover:border-red-300 group-hover:-translate-y-1">
                     <div className="flex items-start justify-between mb-4">
-                      <div className="flex-shrink-0 flex items-center justify-center h-14 w-14 rounded-xl bg-gradient-to-br from-rose-500 to-pink-600 shadow-lg">
+                      <div className="flex-shrink-0 flex items-center justify-center h-14 w-14 rounded-xl bg-gradient-to-br from-red-500 to-orange-600 shadow-lg group-hover:scale-110 transition-transform">
+                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                        </svg>
+                      </div>
+                      <span className="px-3 py-1 rounded-lg text-xs font-bold border-2 bg-red-100 text-red-800 border-red-200">
+                        Urgencias
+                      </span>
+                    </div>
+                    
+                    <h4 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-red-600 transition-colors">
+                      Protocolos de Urgencia Obstétrica
+                    </h4>
+                    
+                    <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                      Guías clínicas de emergencias obstétricas basadas en MINSAL, ACOG, RCOG y evidencia gold standard. Acceso rápido en situaciones críticas.
+                    </p>
+                    
+                    <div className="flex items-center gap-2 text-red-600 font-bold text-sm group-hover:gap-3 transition-all">
+                      <span>Ver protocolos</span>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </div>
+                  </div>
+                </Link>
+
+                {/* Escalas y Scores */}
+                <Link href="/recursos/escalas-scores" className="group block">
+                  <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-200 h-full transition-all duration-300 group-hover:shadow-xl group-hover:border-indigo-300 group-hover:-translate-y-1">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex-shrink-0 flex items-center justify-center h-14 w-14 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg group-hover:scale-110 transition-transform">
+                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                      </div>
+                      <span className="px-3 py-1 rounded-lg text-xs font-bold border-2 bg-indigo-100 text-indigo-800 border-indigo-200">
+                        Valoración
+                      </span>
+                    </div>
+                    
+                    <h4 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-indigo-600 transition-colors">
+                      Escalas y Scores Clínicos
+                    </h4>
+                    
+                    <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                      Acceso rápido a escalas de valoración: Bishop, Apgar, Ballard, Silverman-Andersen, Perfil Biofísico y más. Con referencias MINSAL y gold standard.
+                    </p>
+                    
+                    <div className="flex items-center gap-2 text-indigo-600 font-bold text-sm group-hover:gap-3 transition-all">
+                      <span>Ver escalas</span>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </div>
+                  </div>
+                </Link>
+
+                {/* Anticonceptivos */}
+                <Link href="/recursos/anticonceptivos" className="group block">
+                  <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-200 h-full transition-all duration-300 group-hover:shadow-xl group-hover:border-rose-300 group-hover:-translate-y-1">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex-shrink-0 flex items-center justify-center h-14 w-14 rounded-xl bg-gradient-to-br from-rose-500 to-pink-600 shadow-lg group-hover:scale-110 transition-transform">
                         <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                         </svg>
@@ -598,7 +818,7 @@ export default function AreasClient() {
                       </span>
                     </div>
                     
-                    <h4 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-red-600 transition-colors">
+                    <h4 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-rose-600 transition-colors">
                       Guía Rápida de Anticonceptivos
                     </h4>
                     
@@ -606,7 +826,7 @@ export default function AreasClient() {
                       Guía interactiva completa con criterios de elegibilidad OMS, efectividad, contraindicaciones y recomendaciones para cada método anticonceptivo.
                     </p>
                     
-                    <div className="flex items-center gap-2 text-red-600 font-bold text-sm group-hover:gap-3 transition-all">
+                    <div className="flex items-center gap-2 text-rose-600 font-bold text-sm group-hover:gap-3 transition-all">
                       <span>Explorar recurso</span>
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -619,7 +839,7 @@ export default function AreasClient() {
                 <Link href="/recursos/minsal" className="group block">
                   <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-200 h-full transition-all duration-300 group-hover:shadow-xl group-hover:border-blue-300 group-hover:-translate-y-1">
                     <div className="flex items-start justify-between mb-4">
-                      <div className="flex-shrink-0 flex items-center justify-center h-14 w-14 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-600 shadow-lg">
+                      <div className="flex-shrink-0 flex items-center justify-center h-14 w-14 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-600 shadow-lg group-hover:scale-110 transition-transform">
                         <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
@@ -645,41 +865,10 @@ export default function AreasClient() {
                     </div>
                   </div>
                 </Link>
-
-                {/* PubMed Search */}
-                <Link href="/recursos/pubmed" className="group block">
-                  <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-200 h-full transition-all duration-300 group-hover:shadow-xl group-hover:border-indigo-300 group-hover:-translate-y-1">
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex-shrink-0 flex items-center justify-center h-14 w-14 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg">
-                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                      </div>
-                      <span className="px-3 py-1 rounded-lg text-xs font-bold border-2 bg-indigo-100 text-indigo-800 border-indigo-200">
-                        API Integrada
-                      </span>
-                    </div>
-                    
-                    <h4 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-indigo-600 transition-colors">
-                      Búsqueda PubMed
-                    </h4>
-                    
-                    <p className="text-sm text-gray-600 leading-relaxed mb-4">
-                      Busca en más de 35 millones de artículos científicos directamente desde la plataforma con búsquedas rápidas predefinidas.
-                    </p>
-                    
-                    <div className="flex items-center gap-2 text-indigo-600 font-bold text-sm group-hover:gap-3 transition-all">
-                      <span>Buscar artículos</span>
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                      </svg>
-                    </div>
-                  </div>
-                </Link>
               </div>
             </div>
 
-            {/* Próximamente */}
+            {/* Próximos Recursos */}
             <div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
                 <svg className="w-7 h-7 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -689,59 +878,7 @@ export default function AreasClient() {
               </h3>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {/* Calculadoras - ACTIVO */}
-                <Link href="/recursos/calculadoras" className="group block">
-                  <div className="bg-white rounded-xl p-5 shadow-lg border border-gray-200 h-full transition-all duration-300 hover:shadow-xl hover:border-purple-300 hover:-translate-y-1">
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-purple-500 to-violet-600 shadow-lg group-hover:scale-110 transition-transform">
-                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                        </svg>
-                      </div>
-                      <span className="px-2 py-1 rounded text-xs font-bold border-2 bg-purple-100 text-purple-800 border-purple-200">
-                        Disponible
-                      </span>
-                    </div>
-                    <h4 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-purple-600 transition-colors">Calculadoras Obstétricas</h4>
-                    <p className="text-xs text-gray-600 leading-relaxed mb-3">
-                      Calcula edad gestacional, fecha probable de parto, IMC pregestacional y más.
-                    </p>
-                    <div className="flex items-center gap-2 text-purple-600 font-semibold text-xs group-hover:gap-3 transition-all">
-                      <span>Usar calculadoras</span>
-                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                      </svg>
-                    </div>
-                  </div>
-                </Link>
-
-                {/* Bases de Datos - ACTIVO */}
-                <Link href="/recursos/bases-datos" className="group block">
-                  <div className="bg-white rounded-xl p-5 shadow-lg border border-gray-200 h-full transition-all duration-300 hover:shadow-xl hover:border-teal-300 hover:-translate-y-1">
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-600 shadow-lg group-hover:scale-110 transition-transform">
-                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
-                        </svg>
-                      </div>
-                      <span className="px-2 py-1 rounded text-xs font-bold border-2 bg-teal-100 text-teal-800 border-teal-200">
-                        Disponible
-                      </span>
-                    </div>
-                    <h4 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-teal-600 transition-colors">Bases de Datos Científicas</h4>
-                    <p className="text-xs text-gray-600 leading-relaxed mb-3">
-                      Acceso directo a 16+ bases de datos médicas, revistas y sociedades científicas.
-                    </p>
-                    <div className="flex items-center gap-2 text-teal-600 font-semibold text-xs group-hover:gap-3 transition-all">
-                      <span>Ver bases de datos</span>
-                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                      </svg>
-                    </div>
-                  </div>
-                </Link>
-
-                {/* Atlas Anatomía - ACTIVO */}
+                {/* Atlas Anatomía */}
                 <Link href="/recursos/atlas" className="group block">
                   <div className="bg-white rounded-xl p-5 shadow-lg border border-gray-200 h-full transition-all duration-300 hover:shadow-xl hover:border-purple-300 hover:-translate-y-1">
                     <div className="flex items-start justify-between mb-3">
@@ -775,7 +912,7 @@ export default function AreasClient() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                       </svg>
                     </div>
-                    <span className="px-2 py-1 rounded text-xs font-bold border-2 bg-green-100 text-green-800 border-green-200">
+                    <span className="px-2 py-1 rounded text-xs font-bold border-2 bg-gray-100 text-gray-800 border-gray-200">
                       Próximamente
                     </span>
                   </div>
@@ -785,79 +922,7 @@ export default function AreasClient() {
                   </p>
                 </div>
 
-                {/* Timer Pomodoro */}
-                <Link href="/recursos/pomodoro" className="block group">
-                  <div className="bg-white rounded-xl p-5 shadow-lg border border-gray-200 h-full transition-all duration-300 group-hover:shadow-xl group-hover:border-orange-300 group-hover:-translate-y-1">
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-orange-500 to-red-600 shadow-lg group-hover:scale-110 transition-transform">
-                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </div>
-                      <span className="px-2 py-1 rounded text-xs font-bold border-2 bg-orange-100 text-orange-800 border-orange-200">
-                        Disponible
-                      </span>
-                    </div>
-                    <h4 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-orange-600 transition-colors">Timer Pomodoro</h4>
-                    <p className="text-xs text-gray-600 leading-relaxed">
-                      Técnica de estudio con intervalos de 25 minutos y descansos. Maximiza tu concentración.
-                    </p>
-                  </div>
-                </Link>
-
-                {/* Protocolos - ACTIVO */}
-                <Link href="/recursos/protocolos-urgencia" className="group block">
-                  <div className="bg-white rounded-xl p-5 shadow-lg border border-gray-200 h-full transition-all duration-300 hover:shadow-xl hover:border-red-300 hover:-translate-y-1">
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-red-500 to-orange-600 shadow-lg group-hover:scale-110 transition-transform">
-                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                        </svg>
-                      </div>
-                      <span className="px-2 py-1 rounded text-xs font-bold border-2 bg-red-100 text-red-800 border-red-200">
-                        Disponible
-                      </span>
-                    </div>
-                    <h4 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-red-600 transition-colors">Protocolos de Urgencia</h4>
-                    <p className="text-xs text-gray-600 leading-relaxed mb-3">
-                      Guías clínicas de emergencias obstétricas basadas en MINSAL, ACOG, RCOG y evidencia gold standard.
-                    </p>
-                    <div className="flex items-center gap-2 text-red-600 font-semibold text-xs group-hover:gap-3 transition-all">
-                      <span>Ver protocolos</span>
-                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                      </svg>
-                    </div>
-                  </div>
-                </Link>
-
-                {/* Escalas y Scores - ACTIVO */}
-                <Link href="/recursos/escalas-scores" className="group block">
-                  <div className="bg-white rounded-xl p-5 shadow-lg border border-gray-200 h-full transition-all duration-300 hover:shadow-xl hover:border-indigo-300 hover:-translate-y-1">
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg group-hover:scale-110 transition-transform">
-                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                        </svg>
-                      </div>
-                      <span className="px-2 py-1 rounded text-xs font-bold border-2 bg-indigo-100 text-indigo-800 border-indigo-200">
-                        Disponible
-                      </span>
-                    </div>
-                    <h4 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-indigo-600 transition-colors">Escalas y Scores Clínicos</h4>
-                    <p className="text-xs text-gray-600 leading-relaxed mb-3">
-                      Acceso rápido a escalas de valoración: Bishop, Apgar, Ballard, Silverman-Andersen, Perfil Biofísico y más. Con referencias MINSAL y libros gold standard.
-                    </p>
-                    <div className="flex items-center gap-2 text-indigo-600 font-semibold text-xs group-hover:gap-3 transition-all">
-                      <span>Ver escalas</span>
-                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                      </svg>
-                    </div>
-                  </div>
-                </Link>
-
-                {/* Videos */}
+                {/* Videos Educativos */}
                 <div className="bg-white rounded-xl p-5 shadow-lg border border-gray-200 opacity-75 cursor-not-allowed">
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-indigo-500 to-blue-600 shadow-lg">
@@ -865,7 +930,7 @@ export default function AreasClient() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                       </svg>
                     </div>
-                    <span className="px-2 py-1 rounded text-xs font-bold border-2 bg-indigo-100 text-indigo-800 border-indigo-200">
+                    <span className="px-2 py-1 rounded text-xs font-bold border-2 bg-gray-100 text-gray-800 border-gray-200">
                       Próximamente
                     </span>
                   </div>
@@ -874,32 +939,6 @@ export default function AreasClient() {
                     Biblioteca de videos sobre técnicas de exploración física y procedimientos.
                   </p>
                 </div>
-
-                {/* Bases de datos - ACTIVO */}
-                <Link href="/recursos/bases-datos" className="group block">
-                  <div className="bg-white rounded-xl p-5 shadow-lg border border-gray-200 h-full transition-all duration-300 hover:shadow-xl hover:border-teal-300 hover:-translate-y-1">
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-600 shadow-lg group-hover:scale-110 transition-transform">
-                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </div>
-                      <span className="px-2 py-1 rounded text-xs font-bold border-2 bg-teal-100 text-teal-800 border-teal-200">
-                        Disponible
-                      </span>
-                    </div>
-                    <h4 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-teal-600 transition-colors">Bases de Datos Científicas</h4>
-                    <p className="text-xs text-gray-600 leading-relaxed mb-3">
-                      Enlaces directos a PubMed, Cochrane, RCOG, ACOG y otras fuentes científicas.
-                    </p>
-                    <div className="flex items-center gap-2 text-teal-600 font-semibold text-xs group-hover:gap-3 transition-all">
-                      <span>Explorar bases de datos</span>
-                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                      </svg>
-                    </div>
-                  </div>
-                </Link>
               </div>
             </div>
           </div>

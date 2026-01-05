@@ -2,45 +2,48 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 type LogoVariant = 'full' | 'icon' | 'text';
-type LogoSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+type LogoSize = 'xs' | 'sm' | 'md' | 'lg' | 'hero' | 'xl';
 type LogoTheme = 'light' | 'dark';
 
 interface LogoProps {
-  variant?: LogoVariant;
+  variant?: 'white' | 'red';
   size?: LogoSize;
   theme?: LogoTheme;
   href?: string | null;
   className?: string;
   showText?: boolean;
   priority?: boolean;
+  withBackground?: boolean; // Nuevo: agregar fondo rojo
 }
 
 const sizeClasses = {
-  xs: { height: 20, width: 38 },   // Proporción ~2:1 para logo horizontal
-  sm: { height: 28, width: 53 },
-  md: { height: 36, width: 68 },
-  lg: { height: 48, width: 91 },
-  xl: { height: 72, width: 137 },
+  xs: { height: 32, width: 64 },
+  sm: { height: 45, width: 90 },
+  md: { height: 55, width: 110 },
+  lg: { height: 80, width: 160 },
+  hero: { height: 100, width: 200 },
+  xl: { height: 200, width: 400 },
 };
 
 export default function Logo({
-  variant = 'full',
+  variant = 'white',
   size = 'md',
   theme = 'light',
   href,
   className = '',
   showText = true,
   priority = false,
+  withBackground = false,
 }: LogoProps) {
   const { height, width } = sizeClasses[size];
 
   const LogoContent = () => {
-    // Para este logo, la imagen ya contiene el texto y el símbolo
-    // Por lo tanto, siempre mostramos la imagen completa
+    const logoSrc = variant === 'red' ? '/brand/logo-centro-rojo.png' : '/brand/logo-centro.png';
+    
     return (
-      <div className="flex items-center">
+      <div className={`flex items-center ${withBackground ? 'bg-gradient-to-br from-red-600 to-red-700 rounded-lg px-3 py-2 shadow-md' : ''}`}>
         <Image
-          src="/brand/logo-centro.png"
+          src={logoSrc}
           alt="KLINIK-MAT - Plataforma de casos clínicos de obstetricia"
           width={width}
           height={height}
@@ -77,15 +80,15 @@ export default function Logo({
 
 // Componentes especializados para casos comunes
 export function LogoHeader() {
-  return <Logo size="sm" priority />;
+  return <Logo variant="red" size="md" priority />;
 }
 
 export function LogoFooter() {
-  return <Logo size="md" href="/" />;
+  return <Logo size="lg" href="/" />;
 }
 
 export function LogoSidebar() {
-  return <Logo size="sm" />;
+  return <Logo size="sm" withBackground />;
 }
 
 export function LogoHero() {

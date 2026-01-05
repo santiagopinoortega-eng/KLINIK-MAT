@@ -34,9 +34,9 @@ export default function Sidebar({ variant = 'full' }: SidebarProps) {
                     ${isCollapsed ? 'w-16' : 'w-64'}`}
       >
         <div className="flex flex-col h-full">
-          {/* Logo en el sidebar */}
-          <div className="p-3 border-b border-gray-200 flex items-center justify-center">
-            {!isCollapsed && <Logo size="xs" />}
+          {/* Logo en el sidebar con fondo rojo */}
+          <div className="p-3 border-b border-gray-200 flex items-center justify-center bg-gray-50">
+            {!isCollapsed && <Logo size="sm" withBackground />}
           </div>
 
           {/* Main Navigation */}

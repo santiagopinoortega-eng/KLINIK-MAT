@@ -14,9 +14,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           
           {/* Columna 1: Logo y descripción */}
-          <div className="space-y-4">
-            <Logo size="sm" href="/" />
-            <p className="text-sm text-white/90 leading-relaxed">
+          <div className="space-y-6">
+            <div className="inline-block transform hover:scale-105 transition-transform">
+              <Logo size="lg" href="/" className="filter brightness-110" />
+            </div>
+            <p className="text-sm text-white/95 leading-relaxed font-light max-w-xs">
               Plataforma educativa de casos clínicos para estudiantes de Obstetricia y Matronería en Chile.
             </p>
             <div className="flex gap-3 pt-2">

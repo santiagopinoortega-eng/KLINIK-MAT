@@ -1,3 +1,4 @@
+
 // app/page.tsx
 'use client';
 
@@ -36,7 +37,7 @@ export default function HomePage() {
 
   return (
     <main className="min-h-screen bg-gray-50">
-      {/* Hero Section - Diseño moderno clínico */}
+      {/* Hero Section - Diseño centrado y moderno */}
       <section className="relative overflow-hidden bg-gradient-to-br from-red-600 via-red-700 to-red-800">
         {/* Patrón de fondo sutil médico */}
         <div className="absolute inset-0 opacity-[0.07]">
@@ -48,90 +49,76 @@ export default function HomePage() {
           </svg>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 md:px-6 py-12 md:py-20 relative">
-          <div className="text-center max-w-4xl mx-auto space-y-6">
+        <div className="max-w-5xl mx-auto px-4 md:px-6 py-12 md:py-16 relative">
+          {/* Contenido centrado */}
+          <div className="flex flex-col items-center text-center space-y-6">
             
-            {/* Logo de la plataforma - Hero */}
-            <div className="mb-8 flex justify-center">
-              <div className="transform hover:scale-105 transition-transform bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-                <Logo size="xl" href={null} priority />
-              </div>
+            {/* Logo con animación */}
+            <div className="transform hover:scale-105 transition-all duration-500 ease-out filter drop-shadow-2xl">
+              <Logo size="hero" href={null} priority />
             </div>
 
-            {/* Badge superior */}
+            {/* Badge superior - Más corto y con autoridad */}
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
-              <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-              <span className="text-sm font-medium text-white">Plataforma de simulación clínica</span>
+              <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
+              <span className="text-sm font-medium text-white tracking-wide">
+                1ª Plataforma de Entrenamiento Clínico en Chile
+              </span>
             </div>
 
-            {/* Título principal */}
-            <div className="space-y-3">
-              <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
-                Practica casos clínicos<br />
-                <span className="text-red-200">antes de la realidad</span>
-              </h2>
-              <p className="text-base md:text-lg text-white/90 max-w-2xl mx-auto leading-relaxed">
-                Mejora tu razonamiento clínico con casos reales de Obstetricia. Feedback inmediato en cada decisión.
+            {/* Título principal - Enfocado en "Realidad" y "Confianza" */}
+            <div className="space-y-4 max-w-4xl">
+              <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold text-white leading-tight" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
+                Del aula al hospital: <br className="hidden md:block" />
+                Domina la Obstetricia con
+                <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-red-200 to-white">
+                  Casos Clínicos Reales
+                </span>
+              </h1>
+              
+              {/* Subtítulo - Ataca el dolor (miedo/fragmentación) y ofrece la solución */}
+              <p className="text-lg md:text-xl text-white/90 leading-relaxed font-light max-w-2xl mx-auto">
+                Rompe el ciclo del aprendizaje fragmentado. Entrena sin riesgos con datos del <strong>MINSAL</strong>, gana seguridad y reduce la ansiedad antes de tu práctica real.
               </p>
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-3 justify-center pt-3">
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
               {!isSignedIn ? (
                 <>
-                  <Link href="/login?redirect_url=/areas" className="px-6 py-3 bg-white text-red-600 font-semibold rounded-lg hover:bg-gray-50 transition-all shadow-lg hover:shadow-xl hover:scale-105 text-center">
-                    Comenzar ahora →
+                  <Link href="/sign-up" className="group px-8 py-4 bg-white text-red-700 font-bold rounded-xl hover:bg-gray-50 transition-all shadow-2xl hover:shadow-3xl hover:scale-105 text-center text-lg flex items-center justify-center gap-2">
+                    Comenzar gratis
+                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
                   </Link>
-                  <Link href="/login?redirect_url=/areas" className="px-6 py-3 bg-white/10 backdrop-blur-md text-white font-semibold rounded-lg border-2 border-white/30 hover:bg-white/20 transition-all text-center">
-                    Registrarse gratis
+                  <Link href="/pricing" className="px-8 py-4 bg-white/10 backdrop-blur-md text-white font-semibold rounded-xl border-2 border-white/40 hover:bg-white/20 transition-all text-center text-lg hover:scale-105">
+                    Ver planes
                   </Link>
                 </>
               ) : (
-                <Link href="/areas" className="px-6 py-3 bg-white text-red-600 font-semibold rounded-lg hover:bg-gray-50 transition-all shadow-lg hover:shadow-xl hover:scale-105 text-center">
-                  Ir a mis áreas →
+                <Link href="/areas" className="group px-8 py-4 bg-white text-red-700 font-bold rounded-xl hover:bg-gray-50 transition-all shadow-2xl hover:shadow-3xl hover:scale-105 text-center text-lg flex items-center justify-center gap-2">
+                  Ir a mis áreas
+                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
                 </Link>
               )}
             </div>
 
-            {/* Stats - Glassmorphism cards */}
-            <div className="grid grid-cols-3 gap-3 md:gap-4 pt-8 max-w-2xl mx-auto">
-              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 hover:bg-white/20 transition-all hover:scale-105 hover:shadow-xl">
-                <div className="text-3xl md:text-4xl font-bold text-white mb-1">54</div>
-                <div className="text-xs md:text-sm text-white/90 font-medium">Casos clínicos</div>
+            {/* Stats - Social proof */}
+            <div className="grid grid-cols-3 gap-4 md:gap-8 max-w-3xl mx-auto pt-8">
+              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all hover:scale-105 hover:shadow-2xl group">
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2 group-hover:scale-110 transition-transform">54+</div>
+                <div className="text-sm md:text-base text-white/95 font-medium">Casos clínicos</div>
               </div>
-              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 hover:bg-white/20 transition-all hover:scale-105 hover:shadow-xl">
-                <div className="text-3xl md:text-4xl font-bold text-white mb-1">4</div>
-                <div className="text-xs md:text-sm text-white/90 font-medium">Áreas</div>
+              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all hover:scale-105 hover:shadow-2xl group">
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2 group-hover:scale-110 transition-transform">1000+</div>
+                <div className="text-sm md:text-base text-white/95 font-medium">Estudiantes</div>
               </div>
-              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 hover:bg-white/20 transition-all hover:scale-105 hover:shadow-xl">
-                <div className="text-3xl md:text-4xl font-bold text-emerald-300 mb-1">100%</div>
-                <div className="text-xs md:text-sm text-white/90 font-medium">Gratuito</div>
-              </div>
-            </div>
-
-            {/* Trust badges - Enhanced */}
-            <div className="flex flex-wrap gap-3 justify-center pt-6">
-              <div className="group flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 hover:bg-white/20 transition-all hover:scale-105 hover:shadow-lg">
-                <div className="w-6 h-6 bg-emerald-500/20 rounded-full flex items-center justify-center group-hover:bg-emerald-500/30 transition-colors">
-                  <svg className="w-4 h-4 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <span className="text-xs md:text-sm font-semibold text-white">Validado por expertos</span>
-              </div>
-              <div className="group flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 hover:bg-white/20 transition-all hover:scale-105 hover:shadow-lg">
-                <div className="w-6 h-6 bg-red-300/20 rounded-full flex items-center justify-center group-hover:bg-red-300/30 transition-colors">
-                  <span className="text-lg">🎓</span>
-                </div>
-                <span className="text-xs md:text-sm font-semibold text-white">Basado en MINSAL</span>
-              </div>
-              <div className="group flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 hover:bg-white/20 transition-all hover:scale-105 hover:shadow-lg">
-                <div className="w-6 h-6 bg-blue-400/20 rounded-full flex items-center justify-center group-hover:bg-blue-400/30 transition-colors">
-                  <svg className="w-4 h-4 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                  </svg>
-                </div>
-                <span className="text-xs md:text-sm font-semibold text-white">Datos protegidos</span>
+              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all hover:scale-105 hover:shadow-2xl group">
+                <div className="text-4xl md:text-5xl font-bold text-emerald-300 mb-2 group-hover:scale-110 transition-transform">100%</div>
+                <div className="text-sm md:text-base text-white/95 font-medium">Validado</div>
               </div>
             </div>
           </div>
@@ -166,9 +153,9 @@ export default function HomePage() {
               <div className="w-14 h-14 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center mb-5 shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all">
                 <Stethoscope className="w-7 h-7 text-white" strokeWidth={2.5} />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-red-600 transition-colors">Casos clínicos reales</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-red-600 transition-colors">Casos Reales (No Ficción)</h3>
               <p className="text-gray-600 leading-relaxed text-base">
-                Practica con escenarios basados en situaciones reales de Obstetricia en Chile, validados por profesionales.
+                Escenarios basados en prevalencia real y Ley de Transparencia. No inventamos pacientes, replicamos Chile.
               </p>
             </div>
           </div>
@@ -180,9 +167,9 @@ export default function HomePage() {
               <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-5 shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all">
                 <BookOpen className="w-7 h-7 text-white" strokeWidth={2.5} />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">Feedback inmediato</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">Corrección al Instante</h3>
               <p className="text-gray-600 leading-relaxed text-base">
-                Aprende por qué cada decisión es correcta o incorrecta con explicaciones detalladas al instante.
+                No esperes al examen. Entiende el 'porqué' clínico de cada error con fundamentos de las normas técnicas vigentes.
               </p>
             </div>
           </div>
@@ -194,9 +181,9 @@ export default function HomePage() {
               <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mb-5 shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all">
                 <Award className="w-7 h-7 text-white" strokeWidth={2.5} />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-green-600 transition-colors">Sigue tu progreso</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-green-600 transition-colors">Mide tu Competencia</h3>
               <p className="text-gray-600 leading-relaxed text-base">
-                Visualiza tu avance y áreas de mejora con estadísticas detalladas y personalizadas.
+                Detecta tus lagunas de conocimiento antes de llegar al campo clínico. Estadísticas personalizadas por área.
               </p>
             </div>
           </div>
@@ -348,9 +335,12 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <p className="text-lg md:text-xl font-extrabold text-white text-center pt-4">
-                Úsala para fallar aquí, aprender, y no fallar allá afuera.
-              </p>
+              {/* Punchline con énfasis dramático */}
+              <div className="mt-6 pt-6 border-t border-white/10">
+                <p className="text-xl md:text-2xl font-bold text-white text-center italic opacity-90">
+                  "Falla aquí con nosotros, para no fallar allá afuera con ellas."
+                </p>
+              </div>
             </div>
 
             {/* Badges informativos */}
@@ -387,79 +377,171 @@ export default function HomePage() {
             </div>
             <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-3">Áreas clínicas disponibles</h2>
             <p className="text-base md:text-lg text-gray-600">
-              Practica en las 4 áreas fundamentales de la Obstetricia con casos reales
+              Practica en las 8 áreas fundamentales de la Obstetricia y Ginecología con casos reales
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="group relative bg-white rounded-2xl p-6 border-2 border-red-100 hover:border-red-400 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-red-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              <div className="relative">
-                <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center mb-4 shadow-md group-hover:scale-110 transition-transform">
-                  <span className="text-2xl">🩺</span>
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-red-600 transition-colors">Ginecología</h3>
-                <p className="text-gray-600 text-sm leading-relaxed mb-4">ITS, Climaterio y patología ginecológica</p>
-                <div className="inline-flex items-center text-red-600 font-bold text-sm group-hover:gap-3 gap-2 transition-all">
-                  <span>Ver casos</span>
-                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-
-            <div className="group relative bg-gradient-to-br from-pink-50 to-white rounded-2xl p-6 border-2 border-pink-200 hover:border-pink-400 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-pink-100/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              <div className="relative">
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
-                    <span className="text-2xl">🤰</span>
-                  </div>
-                  <div className="px-2 py-1 bg-pink-600 rounded-md shadow-sm">
-                    <span className="text-[10px] font-bold text-white tracking-wide">54 CASOS</span>
-                  </div>
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-pink-600 transition-colors">Obstetricia</h3>
-                <p className="text-gray-600 text-sm leading-relaxed mb-4">Embarazo, parto y puerperio</p>
-                <div className="inline-flex items-center text-pink-600 font-bold text-sm group-hover:gap-3 gap-2 transition-all">
-                  <span>Ver casos</span>
-                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-
-            <div className="group relative bg-white rounded-2xl p-6 border-2 border-blue-100 hover:border-blue-300 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] overflow-hidden opacity-75 hover:opacity-100">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {/* EMBARAZO Y CONTROL PRENATAL */}
+            <div className="group relative bg-white rounded-2xl p-5 border-2 border-blue-100 hover:border-blue-400 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] overflow-hidden opacity-75 hover:opacity-100">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="relative">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center mb-4 shadow-md group-hover:scale-110 transition-transform">
-                  <span className="text-2xl">👶</span>
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center mb-3 shadow-md group-hover:scale-110 transition-transform">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">Neonatología</h3>
-                <p className="text-gray-600 text-sm leading-relaxed mb-4">Atención del recién nacido</p>
+                <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">Embarazo y Control Prenatal</h3>
+                <p className="text-gray-600 text-xs leading-relaxed mb-3">Control prenatal, ecografía, patología del embarazo</p>
                 <div className="inline-flex items-center text-blue-500 font-bold text-xs group-hover:gap-2 gap-1 transition-all">
                   <span>Próximamente</span>
-                  <svg className="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-3 h-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                   </svg>
                 </div>
               </div>
             </div>
 
-            <div className="group relative bg-white rounded-2xl p-6 border-2 border-purple-100 hover:border-purple-400 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] overflow-hidden">
+            {/* PARTO Y ATENCIÓN INTRAPARTO */}
+            <div className="group relative bg-white rounded-2xl p-5 border-2 border-indigo-100 hover:border-indigo-400 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] overflow-hidden opacity-75 hover:opacity-100">
+              <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="relative">
+                <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center mb-3 shadow-md group-hover:scale-110 transition-transform">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                  </svg>
+                </div>
+                <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-indigo-600 transition-colors">Parto y Atención Intraparto</h3>
+                <p className="text-gray-600 text-xs leading-relaxed mb-3">Trabajo de parto, monitoreo fetal, atención del parto</p>
+                <div className="inline-flex items-center text-indigo-500 font-bold text-xs group-hover:gap-2 gap-1 transition-all">
+                  <span>Próximamente</span>
+                  <svg className="w-3 h-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            {/* PUERPERIO Y LACTANCIA */}
+            <div className="group relative bg-white rounded-2xl p-5 border-2 border-pink-100 hover:border-pink-400 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] overflow-hidden opacity-75 hover:opacity-100">
+              <div className="absolute inset-0 bg-gradient-to-br from-pink-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="relative">
+                <div className="w-10 h-10 bg-gradient-to-br from-pink-500 to-rose-600 rounded-xl flex items-center justify-center mb-3 shadow-md group-hover:scale-110 transition-transform">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-pink-600 transition-colors">Puerperio y Lactancia</h3>
+                <p className="text-gray-600 text-xs leading-relaxed mb-3">Puerperio normal y patológico, lactancia materna</p>
+                <div className="inline-flex items-center text-pink-500 font-bold text-xs group-hover:gap-2 gap-1 transition-all">
+                  <span>Próximamente</span>
+                  <svg className="w-3 h-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            {/* URGENCIAS OBSTÉTRICAS - DISPONIBLE */}
+            <div className="group relative bg-gradient-to-br from-red-50 to-white rounded-2xl p-5 border-2 border-red-200 hover:border-red-400 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-red-100/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="relative">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <div className="px-2 py-0.5 bg-red-600 rounded-md shadow-sm">
+                    <span className="text-[9px] font-bold text-white tracking-wide">1 CASO</span>
+                  </div>
+                </div>
+                <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-red-600 transition-colors">Urgencias Obstétricas</h3>
+                <p className="text-gray-600 text-xs leading-relaxed mb-3">Hemorragias, preeclampsia, emergencias maternas</p>
+                <div className="inline-flex items-center text-red-600 font-bold text-xs group-hover:gap-2 gap-1 transition-all">
+                  <span>Ver casos</span>
+                  <svg className="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            {/* GINECOLOGÍA */}
+            <div className="group relative bg-white rounded-2xl p-5 border-2 border-rose-100 hover:border-rose-400 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] overflow-hidden opacity-75 hover:opacity-100">
+              <div className="absolute inset-0 bg-gradient-to-br from-rose-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="relative">
+                <div className="w-10 h-10 bg-gradient-to-br from-rose-500 to-pink-600 rounded-xl flex items-center justify-center mb-3 shadow-md group-hover:scale-110 transition-transform">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-rose-600 transition-colors">Ginecología</h3>
+                <p className="text-gray-600 text-xs leading-relaxed mb-3">Patología ginecológica, climaterio, endocrinología</p>
+                <div className="inline-flex items-center text-rose-500 font-bold text-xs group-hover:gap-2 gap-1 transition-all">
+                  <span>Próximamente</span>
+                  <svg className="w-3 h-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            {/* SALUD SEXUAL Y ANTICONCEPCIÓN */}
+            <div className="group relative bg-white rounded-2xl p-5 border-2 border-purple-100 hover:border-purple-400 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] overflow-hidden opacity-75 hover:opacity-100">
               <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="relative">
-                <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center mb-4 shadow-md group-hover:scale-110 transition-transform">
-                  <span className="text-2xl">💬</span>
+                <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-violet-600 rounded-xl flex items-center justify-center mb-3 shadow-md group-hover:scale-110 transition-transform">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">Salud Sexual y Reproductiva</h3>
-                <p className="text-gray-600 text-sm leading-relaxed mb-4">Anticoncepción y consejería</p>
-                <div className="inline-flex items-center text-purple-600 font-bold text-sm group-hover:gap-3 gap-2 transition-all">
-                  <span>Ver casos</span>
-                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">Salud Sexual y Anticoncepción</h3>
+                <p className="text-gray-600 text-xs leading-relaxed mb-3">Regulación de fertilidad, métodos anticonceptivos</p>
+                <div className="inline-flex items-center text-purple-500 font-bold text-xs group-hover:gap-2 gap-1 transition-all">
+                  <span>Próximamente</span>
+                  <svg className="w-3 h-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            {/* ITS (INFECCIONES DE TRANSMISIÓN SEXUAL) */}
+            <div className="group relative bg-white rounded-2xl p-5 border-2 border-orange-100 hover:border-orange-400 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] overflow-hidden opacity-75 hover:opacity-100">
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="relative">
+                <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-amber-600 rounded-xl flex items-center justify-center mb-3 shadow-md group-hover:scale-110 transition-transform">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                </div>
+                <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors">ITS</h3>
+                <p className="text-gray-600 text-xs leading-relaxed mb-3">Diagnóstico y manejo de infecciones de transmisión sexual</p>
+                <div className="inline-flex items-center text-orange-500 font-bold text-xs group-hover:gap-2 gap-1 transition-all">
+                  <span>Próximamente</span>
+                  <svg className="w-3 h-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            {/* NEONATOLOGÍA / RECIÉN NACIDO */}
+            <div className="group relative bg-white rounded-2xl p-5 border-2 border-teal-100 hover:border-teal-400 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] overflow-hidden opacity-75 hover:opacity-100">
+              <div className="absolute inset-0 bg-gradient-to-br from-teal-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="relative">
+                <div className="w-10 h-10 bg-gradient-to-br from-teal-500 to-emerald-600 rounded-xl flex items-center justify-center mb-3 shadow-md group-hover:scale-110 transition-transform">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-teal-600 transition-colors">Neonatología / Recién Nacido</h3>
+                <p className="text-gray-600 text-xs leading-relaxed mb-3">Atención inmediata, patología neonatal, reanimación</p>
+                <div className="inline-flex items-center text-teal-500 font-bold text-xs group-hover:gap-2 gap-1 transition-all">
+                  <span>Próximamente</span>
+                  <svg className="w-3 h-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                   </svg>
                 </div>
               </div>
