@@ -169,7 +169,7 @@ export default function HomePage() {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">Corrección al Instante</h3>
               <p className="text-gray-600 leading-relaxed text-base">
-                No esperes al examen. Entiende el 'porqué' clínico de cada error con fundamentos de las normas técnicas vigentes.
+                No esperes al examen. Entiende el &apos;porqué&apos; clínico de cada error con fundamentos de las normas técnicas vigentes.
               </p>
             </div>
           </div>
@@ -338,7 +338,7 @@ export default function HomePage() {
               {/* Punchline con énfasis dramático */}
               <div className="mt-6 pt-6 border-t border-white/10">
                 <p className="text-xl md:text-2xl font-bold text-white text-center italic opacity-90">
-                  "Falla aquí con nosotros, para no fallar allá afuera con ellas."
+                  &quot;Falla aquí con nosotros, para no fallar allá afuera con ellas.&quot;
                 </p>
               </div>
             </div>
