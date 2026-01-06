@@ -868,6 +868,97 @@ export default function AreasClient() {
               </div>
             </div>
 
+            {/* Juegos Educativos */}
+            <div className="mb-8">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <svg className="w-7 h-7 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
+                </svg>
+                Juegos Educativos
+              </h3>
+
+              <div className="grid lg:grid-cols-2 gap-6">
+                {/* Sopa de Letras */}
+                <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 border-2 border-purple-200">
+                  <div className="flex items-start justify-between mb-4">
+                    <div>
+                      <h4 className="text-xl font-bold text-gray-900 mb-2">🔤 Sopa de Letras</h4>
+                      <p className="text-sm text-gray-600">
+                        Encuentra términos médicos ocultos en el tablero
+                      </p>
+                    </div>
+                    <span className="px-3 py-1.5 bg-purple-500 text-white text-xs font-bold rounded-lg">
+                      NUEVO
+                    </span>
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-2 mb-4">
+                    <div className="bg-white rounded-lg p-3 text-center">
+                      <p className="text-xs text-gray-600 mb-1">Temas</p>
+                      <p className="font-bold text-purple-600">4 áreas</p>
+                    </div>
+                    <div className="bg-white rounded-lg p-3 text-center">
+                      <p className="text-xs text-gray-600 mb-1">Palabras</p>
+                      <p className="font-bold text-purple-600">10 por juego</p>
+                    </div>
+                  </div>
+
+                  <Link 
+                    href="/recursos/juegos/sopa-de-letras"
+                    className="block w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-xl text-center hover:shadow-lg transition-all hover:scale-105"
+                  >
+                    Jugar Ahora →
+                  </Link>
+                </div>
+
+                {/* Ahorcado */}
+                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-6 border-2 border-blue-200">
+                  <div className="flex items-start justify-between mb-4">
+                    <div>
+                      <h4 className="text-xl font-bold text-gray-900 mb-2">🎮 Ahorcado Matronil</h4>
+                      <p className="text-sm text-gray-600">
+                        Adivina términos obstétricos con pistas clínicas
+                      </p>
+                    </div>
+                    <span className="px-3 py-1.5 bg-blue-500 text-white text-xs font-bold rounded-lg">
+                      NUEVO
+                    </span>
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-2 mb-4">
+                    <div className="bg-white rounded-lg p-3 text-center">
+                      <p className="text-xs text-gray-600 mb-1">Categorías</p>
+                      <p className="font-bold text-blue-600">4 áreas</p>
+                    </div>
+                    <div className="bg-white rounded-lg p-3 text-center">
+                      <p className="text-xs text-gray-600 mb-1">Términos</p>
+                      <p className="font-bold text-blue-600">25+ palabras</p>
+                    </div>
+                  </div>
+
+                  <Link 
+                    href="/recursos/juegos/ahorcado"
+                    className="block w-full py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-bold rounded-xl text-center hover:shadow-lg transition-all hover:scale-105"
+                  >
+                    Jugar Ahora →
+                  </Link>
+                </div>
+              </div>
+
+              {/* Banner de beneficios */}
+              <div className="mt-6 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 rounded-xl p-5 border-2 border-indigo-200">
+                <div className="flex items-start gap-4">
+                  <div className="text-4xl">🧠</div>
+                  <div>
+                    <h5 className="font-bold text-gray-900 mb-2">Aprende jugando</h5>
+                    <p className="text-sm text-gray-700 leading-relaxed">
+                      Mejora tu retención de terminología medica con juegos diseñados específicamente para obstetricia, ginecología, lactancia y neonatología. Perfectos para estudiar entre casos clínicos.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Próximos Recursos */}
             <div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">

@@ -50,7 +50,7 @@ export default function HomePage() {
         </div>
 
         <div className="max-w-5xl mx-auto px-4 md:px-6 py-12 md:py-16 relative">
-          {/* Contenido centrado */}
+          {/* Contenido centrado y vertical */}
           <div className="flex flex-col items-center text-center space-y-6">
             
             {/* Logo con animación */}
@@ -58,7 +58,7 @@ export default function HomePage() {
               <Logo size="hero" href={null} priority />
             </div>
 
-            {/* Badge superior - Más corto y con autoridad */}
+            {/* Badge superior */}
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
               <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
               <span className="text-sm font-medium text-white tracking-wide">
@@ -66,8 +66,8 @@ export default function HomePage() {
               </span>
             </div>
 
-            {/* Título principal - Enfocado en "Realidad" y "Confianza" */}
-            <div className="space-y-4 max-w-4xl">
+            {/* Título principal con slogan */}
+            <div className="space-y-6 max-w-4xl">
               <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold text-white leading-tight" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
                 Del aula al hospital: <br className="hidden md:block" />
                 Domina la Obstetricia con
@@ -76,10 +76,12 @@ export default function HomePage() {
                 </span>
               </h1>
               
-              {/* Subtítulo - Ataca el dolor (miedo/fragmentación) y ofrece la solución */}
-              <p className="text-lg md:text-xl text-white/90 leading-relaxed font-light max-w-2xl mx-auto">
-                Rompe el ciclo del aprendizaje fragmentado. Entrena sin riesgos con datos del <strong>MINSAL</strong>, gana seguridad y reduce la ansiedad antes de tu práctica real.
-              </p>
+              {/* Slogan poderoso */}
+              <div className="px-6 py-4 bg-white/10 backdrop-blur-lg rounded-2xl border-2 border-white/30 shadow-2xl max-w-3xl mx-auto">
+                <p className="text-xl md:text-2xl font-bold text-white italic leading-tight">
+                  &quot;Falla aquí con nosotros, para no fallar allá afuera con ellas.&quot;
+                </p>
+              </div>
             </div>
 
             {/* CTAs */}
@@ -109,7 +111,7 @@ export default function HomePage() {
             {/* Stats - Social proof */}
             <div className="grid grid-cols-3 gap-4 md:gap-8 max-w-3xl mx-auto pt-8">
               <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all hover:scale-105 hover:shadow-2xl group">
-                <div className="text-4xl md:text-5xl font-bold text-white mb-2 group-hover:scale-110 transition-transform">54+</div>
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2 group-hover:scale-110 transition-transform">320+</div>
                 <div className="text-sm md:text-base text-white/95 font-medium">Casos clínicos</div>
               </div>
               <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all hover:scale-105 hover:shadow-2xl group">
@@ -546,115 +548,6 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Mini Blog - Recursos y Artículos */}
-      <section className="relative bg-gradient-to-b from-white via-gray-50 to-white py-12 md:py-16">
-        <div className="max-w-6xl mx-auto px-6 md:px-8">
-          <div className="text-center mb-10">
-            <div className="inline-block px-3 py-1.5 bg-blue-100 rounded-full border border-blue-200 mb-3">
-              <span className="text-xs font-semibold text-blue-700">📚 Recursos educativos</span>
-            </div>
-            <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-3">
-              Blog y Guías Clínicas
-            </h2>
-            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
-              Artículos, protocolos y recursos actualizados para tu práctica clínica
-            </p>
-          </div>          {/* Grid de artículos */}
-          <div className="grid md:grid-cols-3 gap-6">
-          {/* Artículo 1 */}
-          <article className="group bg-white rounded-3xl border-2 border-gray-100 hover:border-red-300 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-[1.03] hover:-translate-y-1">
-            <div className="bg-gradient-to-br from-red-500 to-red-700 h-48 flex items-center justify-center relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
-              <span className="text-7xl relative z-10">🤰</span>
-            </div>
-            <div className="p-7">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="px-2 py-1 bg-red-100 text-red-700 text-xs font-semibold rounded">Obstetricia</span>
-                <span className="text-xs text-gray-500">• 5 min lectura</span>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-red-600 transition-colors">
-                Protocolos MINSAL 2025: Manejo del Trabajo de Parto
-              </h3>
-              <p className="text-gray-600 text-sm mb-4 leading-relaxed">
-                Actualización de las guías clínicas para la atención del trabajo de parto según normativa vigente.
-              </p>
-              <a href="#" className="inline-flex items-center text-red-600 font-semibold text-sm group-hover:gap-3 gap-2 transition-all">
-                <span>Leer más</span>
-                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </a>
-            </div>
-          </article>
-
-          {/* Artículo 2 */}
-          <article className="group bg-white rounded-3xl border-2 border-gray-100 hover:border-blue-300 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-[1.03] hover:-translate-y-1">
-            <div className="bg-gradient-to-br from-blue-500 to-blue-700 h-48 flex items-center justify-center relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
-              <span className="text-7xl relative z-10">👶</span>
-            </div>
-            <div className="p-7">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded">Neonatología</span>
-                <span className="text-xs text-gray-500">• 7 min lectura</span>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
-                Reanimación Neonatal: Algoritmo Actualizado
-              </h3>
-              <p className="text-gray-600 text-sm mb-4 leading-relaxed">
-                Guía paso a paso para la reanimación del recién nacido en sala de partos según estándares internacionales.
-              </p>
-              <a href="#" className="inline-flex items-center text-blue-600 font-semibold text-sm group-hover:gap-3 gap-2 transition-all">
-                <span>Leer más</span>
-                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </a>
-            </div>
-          </article>
-
-          {/* Artículo 3 */}
-          <article className="group bg-white rounded-3xl border-2 border-gray-100 hover:border-purple-300 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-[1.03] hover:-translate-y-1">
-            <div className="bg-gradient-to-br from-purple-500 to-purple-700 h-48 flex items-center justify-center relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
-              <span className="text-7xl relative z-10">💊</span>
-            </div>
-            <div className="p-7">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="px-2 py-1 bg-purple-100 text-purple-700 text-xs font-semibold rounded">SSR</span>
-                <span className="text-xs text-gray-500">• 4 min lectura</span>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
-                Anticoncepción de Emergencia: Actualización 2025
-              </h3>
-              <p className="text-gray-600 text-sm mb-4 leading-relaxed">
-                Métodos disponibles, indicaciones y consejería según las últimas evidencias científicas.
-              </p>
-              <a href="#" className="inline-flex items-center text-purple-600 font-semibold text-sm group-hover:gap-3 gap-2 transition-all">
-                <span>Leer más</span>
-                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </a>
-            </div>
-          </article>
-        </div>
-
-          {/* CTA al blog completo */}
-          <div className="text-center mt-12">
-            <a 
-              href="#" 
-              className="group inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-600 hover:from-blue-700 hover:via-blue-800 hover:to-blue-700 text-white font-bold text-lg rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-blue-500"
-            >
-              <span>Ver todos los artículos</span>
-              <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-              </svg>
-            </a>
           </div>
         </div>
       </section>

@@ -40,14 +40,15 @@
     "prisma": "6.19.0",
     "react": "^18",
     "react-dom": "^18",
-    "svix": "^1.82.0"
+    "svix": "^1.82.0",
+    "zod": "^4.3.5"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^16.0.8",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/typography": "^0.5.19",
-    "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.1",
     "@types/jest": "^29.5.11",

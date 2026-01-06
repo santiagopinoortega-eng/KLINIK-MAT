@@ -1,10 +1,42 @@
 /**
  * PubMed API Integration
  * Utiliza E-utilities de NCBI para búsquedas de literatura médica
+ * 
+ * 🔥 OPTIMIZACIÓN: Circuit breaker para prevenir rate limit bans
+ * - Límite: 10 req/s con API key (dejamos margen a 8 req/s)
+ * - Si se excede, devuelve error en vez de llamar a PubMed
+ * - Se resetea cada minuto automáticamente
  */
+
+import { logger } from './logger';
 
 const PUBMED_API_KEY = process.env.PUBMED_API_KEY || '';
 const PUBMED_BASE_URL = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils';
+
+// 🔥 Circuit Breaker: Control de rate limiting
+const circuitBreaker = {
+  callsThisMinute: 0,
+  maxCallsPerMinute: 8, // Límite seguro (PubMed permite 10 con API key)
+  lastResetTime: Date.now(),
+  
+  canMakeRequest(): boolean {
+    // Reset contador cada minuto
+    if (Date.now() - this.lastResetTime > 60_000) {
+      this.callsThisMinute = 0;
+      this.lastResetTime = Date.now();
+    }
+    
+    return this.callsThisMinute < this.maxCallsPerMinute;
+  },
+  
+  recordRequest(): void {
+    this.callsThisMinute++;
+  },
+  
+  getWaitTime(): number {
+    return Math.ceil((60_000 - (Date.now() - this.lastResetTime)) / 1000);
+  },
+};
 
 export interface PubMedArticle {
   pmid: string;
@@ -38,6 +70,15 @@ export async function searchPubMed(
   }
 ): Promise<PubMedSearchResult> {
   try {
+    // 🔥 Circuit Breaker: Verificar rate limit antes de llamar
+    if (!circuitBreaker.canMakeRequest()) {
+      throw new Error(
+        `PubMed rate limit alcanzado. Intenta en ${circuitBreaker.getWaitTime()}s.`
+      );
+    }
+    
+    circuitBreaker.recordRequest();
+    
     // Llamar a nuestra API route en lugar de directamente a PubMed
     const response = await fetch('/api/pubmed/search', {
       method: 'POST',
@@ -64,7 +105,7 @@ export async function searchPubMed(
       query: data.query || query,
     };
   } catch (error: any) {
-    console.error('Error buscando en PubMed:', error);
+    logger.error('PubMed search failed', error, { query, maxResults });
     throw new Error(error.message || 'Error de conexión con PubMed');
   }
 }
@@ -88,7 +129,7 @@ export async function getArticleAbstract(pmid: string): Promise<string> {
     
     return 'Abstract no disponible';
   } catch (error) {
-    console.error('Error obteniendo abstract:', error);
+    logger.error('Failed to fetch PubMed abstract', error, { pmid });
     return 'Error al cargar abstract';
   }
 }

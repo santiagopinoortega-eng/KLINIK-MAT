@@ -1,6 +1,9 @@
 // jest.setup.js
 // Learn more: https://github.com/testing-library/jest-dom
-import '@testing-library/jest-dom'
+import '@testing-library/jest-dom';
+
+// Asegurar que TypeScript cargue las declaraciones de tipos
+/// <reference path="./jest.setup.d.ts" />
 
 // Mock environment variables for tests
 process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY = 'pk_test_mock'

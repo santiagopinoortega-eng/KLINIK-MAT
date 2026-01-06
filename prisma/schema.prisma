@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model CaseImage {
@@ -17,6 +18,7 @@ model CaseImage {
   createdAt DateTime @default(now()) @map("created_at")
   case      Case     @relation(fields: [caseId], references: [id], onDelete: Cascade)
 
+  @@index([caseId, order]) // 🔥 Optimizar carga ordenada de imágenes
   @@map("case_images")
 }
 
@@ -69,6 +71,7 @@ model Option {
   questionId  String   @map("question_id")
   question    Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
 
+  @@index([questionId, order]) // 🔥 Optimizar carga ordenada de opciones
   @@map("options")
 }
 
@@ -82,6 +85,7 @@ model QuestionImage {
   createdAt  DateTime @default(now()) @map("created_at")
   question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
 
+  @@index([questionId, order]) // 🔥 Optimizar carga ordenada de imágenes
   @@map("question_images")
 }
 
@@ -126,6 +130,8 @@ model StudentResult {
 
   @@index([caseArea])
   @@index([userId, completedAt(sort: Desc)])
+  @@index([userId, caseArea]) // 🔥 Optimizar estadísticas por área
+  @@index([caseId]) // 🔥 Optimizar búsqueda de resultados por caso
   @@map("student_results")
 }
 
@@ -159,6 +165,8 @@ model User {
 
   @@index([specialty]) // Optimizar búsquedas por especialidad
   @@index([country]) // Optimizar análisis por país
+  @@index([email]) // 🔥 Optimizar login (búsqueda frecuente)
+  @@index([createdAt(sort: Desc)]) // 🔥 Optimizar listado de usuarios nuevos
   @@map("users")
 }
 
@@ -174,6 +182,7 @@ model Favorite {
 
   @@unique([userId, caseId]) // Un usuario no puede marcar el mismo caso dos veces
   @@index([userId])
+  @@index([caseId, createdAt(sort: Desc)]) // 🔥 Optimizar trending cases
   @@map("favorites")
 }
 
@@ -520,4 +529,26 @@ enum UsageResourceType {
   AI_REQUEST // Solicitud de IA
   EXPORT_REPORT // Exportación de reporte
   CUSTOM_CASE // Caso personalizado creado
+}
+
+// ============================================================================
+// MODELO PARA ESTADÍSTICAS DE JUEGOS
+// ============================================================================
+
+model GameStats {
+  id            String   @id @default(cuid())
+  userId        String   @map("user_id")
+  gameType      String   @map("game_type") // "wordsearch" | "hangman"
+  totalScore    Int      @default(0) @map("total_score")
+  gamesPlayed   Int      @default(0) @map("games_played")
+  gamesWon      Int      @default(0) @map("games_won")
+  bestStreak    Int      @default(0) @map("best_streak")
+  currentStreak Int      @default(0) @map("current_streak")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  @@unique([userId, gameType])
+  @@index([userId])
+  @@index([gameType])
+  @@map("game_stats")
 }

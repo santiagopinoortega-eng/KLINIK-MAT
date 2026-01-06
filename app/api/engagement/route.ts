@@ -9,15 +9,9 @@ import { auth } from '@clerk/nextjs/server';
 import { prisma } from '@/lib/prisma';
 import { checkRateLimit, createRateLimitResponse, RATE_LIMITS } from '@/lib/ratelimit';
 import { requireCsrfToken } from '@/lib/csrf';
-import { sanitizeCaseId, sanitizeEnum } from '@/lib/sanitize';
+import { sanitizeCaseId } from '@/lib/sanitize';
+import { EngagementSchema, validateSchema } from '@/lib/validators';
 
-type EngagementData = {
-  caseId: string;
-  source: 'recommendation' | 'search' | 'browse' | 'trending' | 'challenge';
-  recommendationGroup?: 'specialty' | 'review' | 'challenge' | 'trending';
-  action: 'view' | 'click' | 'complete' | 'favorite';
-  sessionDuration?: number; // en segundos
-};
 
 export async function POST(req: NextRequest) {
   try {
@@ -40,32 +34,19 @@ export async function POST(req: NextRequest) {
       return createRateLimitResponse(rateLimitResult.resetAt);
     }
 
-    // Parse body
-    const data: EngagementData = await req.json();
+    // Parse body y validar con Zod
+    const body = await req.json();
+    const validationResult = validateSchema(EngagementSchema, body);
 
-    // Validación básica
-    if (!data.caseId || !data.source || !data.action) {
+    if (!validationResult.success) {
       return NextResponse.json(
-        { error: 'Faltan campos requeridos: caseId, source, action' },
+        { error: 'Datos inválidos', details: validationResult.error },
         { status: 400 }
       );
     }
 
-    // Sanitizar y validar inputs
-    let sanitizedCaseId: string;
-    try {
-      sanitizedCaseId = sanitizeCaseId(data.caseId);
-      sanitizeEnum(data.source, ['recommendation', 'search', 'browse', 'trending', 'challenge'] as const, 'source');
-      sanitizeEnum(data.action, ['view', 'click', 'complete', 'favorite'] as const, 'action');
-      if (data.recommendationGroup) {
-        sanitizeEnum(data.recommendationGroup, ['specialty', 'review', 'challenge', 'trending'] as const, 'recommendationGroup');
-      }
-    } catch (error: any) {
-      return NextResponse.json(
-        { error: error.message },
-        { status: 400 }
-      );
-    }
+    const data = validationResult.data;
+    const sanitizedCaseId = sanitizeCaseId(data.caseId);
 
     // Verificar que el caso existe
     const caseExists = await prisma.case.findUnique({

@@ -8,12 +8,12 @@ import { describe, it, expect, jest } from '@jest/globals';
 describe('Tests de Escalabilidad', () => {
   describe('Carga Concurrente - check-access endpoint', () => {
     it('debe manejar 100 requests concurrentes', async () => {
-      const mockFetch = jest.fn().mockResolvedValue({
-        ok: true,
-        json: async () => ({ success: true, canAccess: true }),
-      });
-
-      global.fetch = mockFetch as any;
+      global.fetch = jest.fn<typeof fetch>(() => 
+        Promise.resolve({
+          ok: true,
+          json: async () => ({ success: true, canAccess: true }),
+        } as Response)
+      );
 
       const requests = Array(100)
         .fill(null)
@@ -35,7 +35,7 @@ describe('Tests de Escalabilidad', () => {
     });
 
     it('debe manejar 1000 usuarios verificando límites', async () => {
-      const mockCheckAccess = jest.fn().mockResolvedValue({
+      const mockCheckAccess = jest.fn<() => Promise<{canAccess: boolean; casesUsed: number; caseLimit: number}>>().mockResolvedValue({
         canAccess: true,
         casesUsed: Math.floor(Math.random() * 15),
         caseLimit: 15,

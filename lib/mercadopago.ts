@@ -110,39 +110,82 @@ export function mapMercadoPagoSubscriptionStatus(
 /**
  * Verifica la firma del webhook de Mercado Pago
  * Documentación: https://www.mercadopago.com.ar/developers/es/docs/checkout-api/additional-content/your-integrations/notifications/webhooks
+ * 
+ * Mercado Pago envía dos headers:
+ * - x-signature: ts={timestamp},v1={hash}
+ * - x-request-id: ID único de la petición
+ * 
+ * El hash se calcula: HMAC-SHA256(manifest, secret)
+ * donde manifest = "id:{data.id};request-id:{x-request-id};ts:{timestamp};"
  */
 export function verifyWebhookSignature(
-  xSignature: string,
-  xRequestId: string,
-  dataId: string
+  xSignature: string | null,
+  xRequestId: string | null,
+  dataId: string | undefined
 ): boolean {
+  // Si no hay secret configurado, solo advertir en desarrollo
   if (!process.env.MERCADOPAGO_WEBHOOK_SECRET) {
+    if (process.env.NODE_ENV === 'production') {
+      console.error('🔴 MERCADOPAGO_WEBHOOK_SECRET not set in production!');
+      return false;
+    }
     console.warn('⚠️  MERCADOPAGO_WEBHOOK_SECRET not set, skipping signature verification');
-    return true; // En desarrollo podemos permitir sin firma
+    return true;
+  }
+
+  // Validar que tengamos todos los datos necesarios
+  if (!xSignature || !xRequestId || !dataId) {
+    console.error('❌ Missing required headers or data for signature verification');
+    return false;
   }
 
   try {
     const crypto = require('crypto');
     const secret = process.env.MERCADOPAGO_WEBHOOK_SECRET;
     
-    // Template: x-signature = ts={timestamp},v1={signature}
+    // Parsear x-signature header: "ts={timestamp},v1={signature}"
     const parts = xSignature.split(',');
     const ts = parts.find((p) => p.startsWith('ts='))?.split('=')[1];
-    const signature = parts.find((p) => p.startsWith('v1='))?.split('=')[1];
+    const v1 = parts.find((p) => p.startsWith('v1='))?.split('=')[1];
 
-    if (!ts || !signature) {
-      console.error('❌ Invalid x-signature format');
+    if (!ts || !v1) {
+      console.error('❌ Invalid x-signature format:', xSignature);
       return false;
     }
 
-    // Crear el hash esperado
+    // Validar que el timestamp no sea muy antiguo (máximo 5 minutos)
+    const timestamp = parseInt(ts, 10);
+    const now = Math.floor(Date.now() / 1000);
+    const maxAge = 5 * 60; // 5 minutos
+
+    if (now - timestamp > maxAge) {
+      console.error('❌ Webhook timestamp too old:', { ts: timestamp, now });
+      return false;
+    }
+
+    // Construir manifest según documentación MP
     const manifest = `id:${dataId};request-id:${xRequestId};ts:${ts};`;
+    
+    // Calcular firma esperada
     const expectedSignature = crypto
       .createHmac('sha256', secret)
       .update(manifest)
       .digest('hex');
 
-    return signature === expectedSignature;
+    // Comparación segura contra timing attacks
+    const isValid = crypto.timingSafeEqual(
+      Buffer.from(v1, 'hex'),
+      Buffer.from(expectedSignature, 'hex')
+    );
+
+    if (!isValid) {
+      console.error('❌ Invalid webhook signature', {
+        received: v1.substring(0, 10) + '...',
+        expected: expectedSignature.substring(0, 10) + '...',
+      });
+    }
+
+    return isValid;
   } catch (error) {
     console.error('❌ Error verifying webhook signature:', error);
     return false;

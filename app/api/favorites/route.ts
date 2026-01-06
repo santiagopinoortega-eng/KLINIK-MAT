@@ -5,6 +5,7 @@ import { prisma } from '@/lib/prisma';
 import { checkRateLimit, RATE_LIMITS } from '@/lib/ratelimit';
 import { requireCsrfToken } from '@/lib/csrf';
 import { sanitizeCaseId } from '@/lib/sanitize';
+import type { FavoriteWithCase, FavoriteResponse } from '@/lib/types/api-types';
 
 // GET /api/favorites - Obtener todos los favoritos del usuario
 export async function GET(req: NextRequest) {
@@ -43,7 +44,7 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      favorites: favorites.map((f: any) => ({
+      favorites: favorites.map((f: FavoriteWithCase): FavoriteResponse => ({
         id: f.id,
         caseId: f.caseId,
         createdAt: f.createdAt,

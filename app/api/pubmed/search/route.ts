@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import type { PubMedArticleSummary, PubMedArticle, PubMedAuthor, PubMedArticleId } from '@/lib/types/api-types';
 
 const PUBMED_API_KEY = process.env.PUBMED_API_KEY || '';
 const PUBMED_BASE_URL = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils';
@@ -67,16 +68,18 @@ export async function POST(request: NextRequest) {
     const articles = pmids.map((pmid: string) => {
       const article = summaryData.result[pmid];
       
+      const articleData = article as PubMedArticleSummary;
+      
       return {
         pmid,
-        title: article.title || 'Sin título',
-        authors: article.authors?.slice(0, 3).map((a: any) => a.name) || [],
-        journal: article.fulljournalname || article.source || 'Desconocido',
-        pubDate: article.pubdate || article.epubdate || 'Fecha desconocida',
-        doi: article.elocationid?.split(' ')[0] || '',
-        pmc: article.articleids?.find((id: any) => id.idtype === 'pmc')?.value || '',
+        title: articleData.title || 'Sin título',
+        authors: articleData.authors?.slice(0, 3).map((a: PubMedAuthor) => a.name) || [],
+        journal: articleData.fulljournalname || articleData.source || 'Desconocido',
+        pubDate: articleData.pubdate || articleData.epubdate || 'Fecha desconocida',
+        doi: articleData.elocationid?.split(' ')[0] || '',
+        pmc: articleData.articleids?.find((id: PubMedArticleId) => id.idtype === 'pmc')?.value || '',
         url: `https://pubmed.ncbi.nlm.nih.gov/${pmid}/`,
-      };
+      } as PubMedArticle;
     });
 
     return NextResponse.json({

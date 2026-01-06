@@ -7,15 +7,15 @@ import { CaseStructuredData, BreadcrumbStructuredData } from "@/app/components/S
 import { auth } from "@clerk/nextjs/server";
 import { canAccessNewCase } from "@/lib/subscription";
 
-// ISR: Regenerar cada 2 horas (casos clínicos cambian ocasionalmente)
-export const revalidate = 7200;
+// ISR: Regenerar cada 1 hora (casos clínicos cambian ocasionalmente)
+export const revalidate = 3600;
 
 // Pre-renderizar casos más populares en build time
 export async function generateStaticParams() {
   const casos = await prismaRO.case.findMany({
     where: { isPublic: true },
     select: { id: true },
-    take: 20, // Pre-renderizar los primeros 20 casos
+    take: 100, // Pre-renderizar top 100 casos para mejor cobertura
   });
 
   return casos.map((caso) => ({

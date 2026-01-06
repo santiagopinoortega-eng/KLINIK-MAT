@@ -37,7 +37,7 @@ export default function PubMedSearchPage() {
     setSearchPerformed(true);
 
     try {
-      const filters: any = {};
+      const filters: { yearFrom?: number; yearTo?: number } = {};
       
       if (yearFrom) filters.yearFrom = parseInt(yearFrom);
       if (yearTo) filters.yearTo = parseInt(yearTo);

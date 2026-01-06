@@ -46,9 +46,37 @@ export async function POST(req: NextRequest) {
       userId: body.user_id,
       liveMode: body.live_mode,
       userAgent,
+      hasSignature: !!xSignature,
     });
 
-    // Guardar evento en DB para auditoría
+    // ✅ VERIFICAR FIRMA SIEMPRE (crítico para seguridad)
+    const isValidSignature = verifyWebhookSignature(
+      xSignature,
+      xRequestId,
+      body.data?.id?.toString()
+    );
+    
+    if (!isValidSignature) {
+      console.error('❌ [MP WEBHOOK] Invalid signature - rejecting webhook');
+      
+      // Guardar intento fallido para auditoría
+      await prisma.webhookEvent.create({
+        data: {
+          eventType: 'signature_verification_failed',
+          action: body.action || 'unknown',
+          mpId: body.data?.id?.toString(),
+          payload: { error: 'Invalid signature', ...body } as any,
+          processed: false,
+        },
+      });
+      
+      return NextResponse.json(
+        { error: 'Invalid signature' },
+        { status: 401 }
+      );
+    }
+
+    // Guardar evento en DB para auditoría (después de verificar firma)
     const webhookEvent = await prisma.webhookEvent.create({
       data: {
         eventType: body.type,
@@ -59,23 +87,6 @@ export async function POST(req: NextRequest) {
         processed: false,
       },
     });
-
-    // Verificar firma (en producción)
-    if (process.env.NODE_ENV === 'production' && xSignature && xRequestId) {
-      const isValid = verifyWebhookSignature(
-        xSignature,
-        xRequestId,
-        body.data?.id?.toString()
-      );
-      
-      if (!isValid) {
-        console.error('❌ [MP WEBHOOK] Invalid signature');
-        return NextResponse.json(
-          { error: 'Invalid signature' },
-          { status: 401 }
-        );
-      }
-    }
 
     // Procesar según el tipo de evento
     let result;

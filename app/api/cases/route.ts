@@ -2,6 +2,9 @@
 import { prismaRO } from '@/lib/prisma';
 import { checkRateLimit, RATE_LIMITS, createRateLimitResponse } from '@/lib/ratelimit';
 import { cache, generateCacheKey } from '@/lib/cache';
+import type { CaseWhereClause, CaseQueryResult, CaseListItem } from '@/lib/types/api-types';
+import { CaseQuerySchema, validateSchema } from '@/lib/validators';
+import { NextResponse } from 'next/server';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -18,27 +21,37 @@ export async function GET(req: Request) {
 
     // Obtener parámetros de búsqueda con paginación y filtros
     const { searchParams } = new URL(req.url);
-    const searchQuery = searchParams.get('search')?.trim().toLowerCase();
-    const area = searchParams.get('area');
-    const difficulty = searchParams.get('difficulty');
-    const page = Math.max(1, parseInt(searchParams.get('page') || '1', 10));
-    const limit = Math.min(100, Math.max(1, parseInt(searchParams.get('limit') || '50', 10)));
+    
+    // Validar con Zod
+    const validationResult = validateSchema(CaseQuerySchema, {
+      search: searchParams.get('search'),
+      area: searchParams.get('area'),
+      difficulty: searchParams.get('difficulty'),
+      page: searchParams.get('page'),
+      limit: searchParams.get('limit'),
+    });
+
+    if (!validationResult.success) {
+      return NextResponse.json(
+        { error: 'Parámetros inválidos', details: validationResult.error },
+        { status: 400 }
+      );
+    }
+
+    const { search: searchQuery, area, difficulty, page, limit } = validationResult.data;
     const skip = (page - 1) * limit;
 
     // Query base - solo casos públicos
-    let whereClause: any = { isPublic: true };
+    const whereClause: CaseWhereClause = { isPublic: true };
 
-    // Filtrar por área
+    // Filtrar por área (ya validado por Zod)
     if (area && area !== 'all') {
       whereClause.area = area;
     }
 
-    // Filtrar por dificultad
+    // Filtrar por dificultad (ya validado por Zod, 1-3)
     if (difficulty) {
-      const difficultyNum = parseInt(difficulty, 10);
-      if (!isNaN(difficultyNum) && difficultyNum >= 1 && difficultyNum <= 3) {
-        whereClause.difficulty = difficultyNum;
-      }
+      whereClause.difficulty = difficulty;
     }
 
     // Si hay búsqueda, buscar en título, viñeta y contenido de preguntas
@@ -68,8 +81,8 @@ export async function GET(req: Request) {
     });
 
     // Intentar obtener del caché
-    const cached = cache.get<{ data: any[]; total: number }>(cacheKey);
-    let data: any[];
+    const cached = cache.get<CaseQueryResult>(cacheKey);
+    let data: CaseListItem[];
     let total: number;
 
     if (cached) {
@@ -89,6 +102,10 @@ export async function GET(req: Request) {
             difficulty: true, 
             createdAt: true,
             summary: true,
+            isPublic: true,
+            _count: {
+              select: { questions: true }
+            }
           },
           skip,
           take: limit,

@@ -1,4 +1,12 @@
 // lib/logger.ts
+/**
+ * Sistema de logging estructurado para KLINIK-MAT
+ * 
+ * FILOSOFÍA: Proyecto de fundador solo = logging eficiente
+ * - Desarrollo: console colorizado
+ * - Producción: Sentry automático (ya instalado)
+ * - $0 de costo extra
+ */
 import * as Sentry from '@sentry/nextjs';
 
 type LogLevel = 'debug' | 'info' | 'warn' | 'error';
@@ -7,40 +15,50 @@ interface LogContext {
   [key: string]: any;
 }
 
+const isDev = process.env.NODE_ENV === 'development';
+const isProd = process.env.NODE_ENV === 'production';
+const isTest = process.env.NODE_ENV === 'test';
+
 /**
  * Logger estructurado que envía eventos a Sentry y console
  */
 export const logger = {
   /**
-   * Log de debug (solo en desarrollo)
+   * 🔵 DEBUG: Solo en desarrollo
    */
   debug: (message: string, context?: LogContext) => {
-    if (process.env.NODE_ENV === 'development') {
-      console.debug(`[DEBUG] ${message}`, context);
+    if (isDev && !isTest) {
+      console.log(`🔵 [DEBUG] ${message}`, context || '');
     }
   },
 
   /**
-   * Log informativo
+   * ✅ INFO: Eventos normales (breadcrumb en prod)
    */
   info: (message: string, context?: LogContext) => {
-    console.info(`[INFO] ${message}`, context);
+    if (isTest) return;
     
-    if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
-      Sentry.captureMessage(message, {
+    if (isDev) {
+      console.log(`✅ [INFO] ${message}`, context || '');
+    } else if (isProd) {
+      // Solo breadcrumb, no envía evento a Sentry
+      Sentry.addBreadcrumb({
+        message,
         level: 'info',
-        extra: context,
+        data: context,
       });
     }
   },
 
   /**
-   * Log de advertencia
+   * ⚠️ WARN: Situaciones inusuales (envía a Sentry)
    */
   warn: (message: string, context?: LogContext) => {
-    console.warn(`[WARN] ${message}`, context);
+    if (isTest) return;
     
-    if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
+    if (isDev) {
+      console.warn(`⚠️ [WARN] ${message}`, context || '');
+    } else if (isProd) {
       Sentry.captureMessage(message, {
         level: 'warning',
         extra: context,
@@ -49,28 +67,77 @@ export const logger = {
   },
 
   /**
-   * Log de error - Siempre envía a Sentry
+   * 🔴 ERROR: Siempre envía a Sentry en producción
    */
   error: (message: string, error?: Error | unknown, context?: LogContext) => {
-    console.error(`[ERROR] ${message}`, error, context);
+    if (isTest) return;
     
-    if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
-      if (error instanceof Error) {
-        Sentry.captureException(error, {
-          extra: {
-            message,
-            ...context,
-          },
-        });
-      } else {
-        Sentry.captureMessage(message, {
-          level: 'error',
-          extra: {
-            error,
-            ...context,
-          },
-        });
-      }
+    const errorObj = error instanceof Error ? error : new Error(String(error));
+    
+    if (isDev) {
+      console.error(`🔴 [ERROR] ${message}`, errorObj, context || '');
+    } else if (isProd) {
+      Sentry.captureException(errorObj, {
+        extra: {
+          message,
+          ...context,
+        },
+      });
+    }
+  },
+
+  /**
+   * 💰 PAYMENT: Eventos de pagos (siempre logguear)
+   */
+  payment: (
+    event: 'created' | 'approved' | 'rejected' | 'refunded',
+    data: {
+      userId: string;
+      planId?: string;
+      amount?: number;
+      paymentId?: string;
+      reason?: string;
+    }
+  ) => {
+    if (isTest) return;
+    
+    const message = `Payment ${event}: User ${data.userId}`;
+    
+    if (isDev) {
+      console.log(`💰 [PAYMENT] ${message}`, data);
+    } else if (isProd) {
+      Sentry.captureMessage(message, {
+        level: 'info',
+        tags: { event_type: 'payment', payment_event: event },
+        extra: data,
+      });
+    }
+  },
+
+  /**
+   * 🔐 AUTH: Eventos de autenticación
+   */
+  auth: (
+    event: 'login' | 'logout' | 'signup' | 'failed',
+    data: {
+      userId?: string;
+      email?: string;
+      reason?: string;
+    }
+  ) => {
+    if (isTest) return;
+    
+    const message = `Auth ${event}${data.email ? `: ${data.email}` : ''}`;
+    
+    if (isDev) {
+      console.log(`🔐 [AUTH] ${message}`, data);
+    } else if (isProd) {
+      Sentry.addBreadcrumb({
+        category: 'auth',
+        message,
+        level: event === 'failed' ? 'warning' : 'info',
+        data,
+      });
     }
   },
 
@@ -78,16 +145,8 @@ export const logger = {
    * Setear contexto de usuario para tracking
    */
   setUser: (userId: string | null, email?: string, name?: string) => {
-    if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
-      if (userId) {
-        Sentry.setUser({
-          id: userId,
-          email,
-          username: name,
-        });
-      } else {
-        Sentry.setUser(null);
-      }
+    if (isProd) {
+      Sentry.setUser(userId ? { id: userId, email, username: name } : null);
     }
   },
 
@@ -95,13 +154,8 @@ export const logger = {
    * Agregar contexto global (breadcrumb)
    */
   addBreadcrumb: (message: string, category: string, data?: LogContext) => {
-    if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
-      Sentry.addBreadcrumb({
-        message,
-        category,
-        data,
-        level: 'info',
-      });
+    if (isProd) {
+      Sentry.addBreadcrumb({ message, category, data, level: 'info' });
     }
   },
 };

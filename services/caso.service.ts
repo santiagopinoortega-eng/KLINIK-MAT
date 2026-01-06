@@ -3,6 +3,7 @@
 // Asegúrate de usar la importación { prisma } directamente,
 // ya que es la única instancia exportada de forma segura
 import { prisma } from '@/lib/prisma';
+import { logger } from '@/lib/logger';
 // Usamos los tipos que definiste en tu nuevo schema.
 import type { Case, MinsalNorm, Option } from '@prisma/client';
 
@@ -54,8 +55,7 @@ export async function getCasosActivos(): Promise<CasoListItem[]> {
     // La aserción de tipo es válida aquí, ya que el 'select' fuerza la estructura.
     return casos as CasoListItem[];
   } catch (error) {
-    console.error("Error al obtener casos activos:", error);
-    // Lanzar un error controlado para que Next.js lo capte
+    logger.error('Failed to fetch active cases', error);
     throw new Error("No se pudo cargar el listado de casos clínicos. (DB Error)");
   }
 }
@@ -76,8 +76,7 @@ export async function getOptionDetails(optionId: string): Promise<Option | null>
       where: { id: optionId },
     });
   } catch (error) {
-    // Captura cualquier fallo de conexión/consulta y lo reporta
-    console.error(`Error al obtener detalles de la opción ID: ${optionId}`, error);
-    return null; // En este caso, devolvemos null, asumiendo que la opción no existe o hubo un fallo de DB
+    logger.error(`Failed to fetch option details: ${optionId}`, error);
+    return null;
   }
 }

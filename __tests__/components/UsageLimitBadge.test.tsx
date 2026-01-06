@@ -8,7 +8,7 @@ import { describe, it, expect, jest, beforeEach } from '@jest/globals';
 import UsageLimitBadge from '@/app/components/UsageLimitBadge';
 
 // Mock fetch global
-global.fetch = jest.fn();
+global.fetch = jest.fn() as jest.MockedFunction<typeof fetch>;
 
 describe('UsageLimitBadge Component', () => {
   beforeEach(() => {
@@ -16,8 +16,8 @@ describe('UsageLimitBadge Component', () => {
   });
 
   it('debe mostrar loading state inicialmente', () => {
-    (global.fetch as jest.Mock).mockImplementation(
-      () => new Promise(() => {}) // Never resolves
+    (global.fetch as jest.MockedFunction<typeof fetch>).mockImplementation(
+      () => new Promise(() => {}) as Promise<Response> // Never resolves
     );
 
     render(<UsageLimitBadge />);
@@ -26,7 +26,7 @@ describe('UsageLimitBadge Component', () => {
   });
 
   it('debe mostrar badge FREE con conteo correcto (12/15)', async () => {
-    (global.fetch as jest.Mock).mockResolvedValue({
+    (global.fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue({
       ok: true,
       json: async () => ({
         success: true,
@@ -40,7 +40,7 @@ describe('UsageLimitBadge Component', () => {
         percentage: 80,
         isPremium: false,
       }),
-    });
+    } as Response);
 
     render(<UsageLimitBadge />);
 
@@ -52,7 +52,7 @@ describe('UsageLimitBadge Component', () => {
   });
 
   it('debe mostrar badge PREMIUM ilimitado', async () => {
-    (global.fetch as jest.Mock).mockResolvedValue({
+    (global.fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue({
       ok: true,
       json: async () => ({
         success: true,
@@ -66,7 +66,7 @@ describe('UsageLimitBadge Component', () => {
         percentage: 0,
         isPremium: true,
       }),
-    });
+    } as Response);
 
     render(<UsageLimitBadge />);
 
@@ -77,7 +77,7 @@ describe('UsageLimitBadge Component', () => {
   });
 
   it('debe mostrar advertencia cuando límite alcanzado', async () => {
-    (global.fetch as jest.Mock).mockResolvedValue({
+    (global.fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue({
       ok: true,
       json: async () => ({
         success: true,
@@ -91,7 +91,7 @@ describe('UsageLimitBadge Component', () => {
         percentage: 100,
         isPremium: false,
       }),
-    });
+    } as Response);
 
     render(<UsageLimitBadge />);
 
@@ -102,7 +102,7 @@ describe('UsageLimitBadge Component', () => {
   });
 
   it('debe mostrar barra de progreso con color correcto (azul <70%)', async () => {
-    (global.fetch as jest.Mock).mockResolvedValue({
+    (global.fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue({
       ok: true,
       json: async () => ({
         success: true,
@@ -112,7 +112,7 @@ describe('UsageLimitBadge Component', () => {
         percentage: 33,
         isPremium: false,
       }),
-    });
+    } as Response);
 
     const { container } = render(<UsageLimitBadge />);
 
@@ -123,7 +123,7 @@ describe('UsageLimitBadge Component', () => {
   });
 
   it('debe mostrar barra naranja cuando uso >70%', async () => {
-    (global.fetch as jest.Mock).mockResolvedValue({
+    (global.fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue({
       ok: true,
       json: async () => ({
         success: true,
@@ -133,7 +133,7 @@ describe('UsageLimitBadge Component', () => {
         percentage: 80,
         isPremium: false,
       }),
-    });
+    } as Response);
 
     const { container } = render(<UsageLimitBadge />);
 
@@ -144,7 +144,7 @@ describe('UsageLimitBadge Component', () => {
   });
 
   it('debe mostrar barra roja cuando uso >90%', async () => {
-    (global.fetch as jest.Mock).mockResolvedValue({
+    (global.fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue({
       ok: true,
       json: async () => ({
         success: true,
@@ -154,7 +154,7 @@ describe('UsageLimitBadge Component', () => {
         percentage: 93,
         isPremium: false,
       }),
-    });
+    } as Response);
 
     const { container } = render(<UsageLimitBadge />);
 
@@ -165,7 +165,7 @@ describe('UsageLimitBadge Component', () => {
   });
 
   it('debe manejar errores de fetch correctamente', async () => {
-    (global.fetch as jest.Mock).mockRejectedValue(new Error('Network error'));
+    (global.fetch as jest.MockedFunction<typeof fetch>).mockRejectedValue(new Error('Network error'));
 
     render(<UsageLimitBadge />);
 
@@ -176,10 +176,10 @@ describe('UsageLimitBadge Component', () => {
   });
 
   it('debe llamar al endpoint correcto', async () => {
-    (global.fetch as jest.Mock).mockResolvedValue({
+    (global.fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue({
       ok: true,
       json: async () => ({ success: true, isPremium: false }),
-    });
+    } as Response);
 
     render(<UsageLimitBadge />);
 

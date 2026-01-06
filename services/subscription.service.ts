@@ -5,6 +5,7 @@
  */
 
 import { prisma } from '@/lib/prisma';
+import { logger } from '@/lib/logger';
 import { preApprovalClient, preferenceClient, MERCADOPAGO_URLS } from '@/lib/mercadopago';
 import type { SubscriptionPlan, Subscription, User, Coupon } from '@prisma/client';
 
@@ -163,16 +164,16 @@ export class SubscriptionService {
     planId: string,
     couponCode?: string
   ) {
-    console.log('🔍 [SUBSCRIPTION-SERVICE] Looking for user:', userId);
+    logger.debug('Looking for user', { userId });
     const user = await prisma.user.findUnique({ where: { id: userId } });
-    console.log('👤 [SUBSCRIPTION-SERVICE] User found:', user ? `${user.email} (${user.id})` : 'NOT FOUND');
+    logger.debug('User lookup result', { found: !!user, email: user?.email });
     
-    console.log('🔍 [SUBSCRIPTION-SERVICE] Looking for plan:', planId);
+    logger.debug('Looking for plan', { planId });
     const plan = await prisma.subscriptionPlan.findUnique({ where: { id: planId } });
-    console.log('📦 [SUBSCRIPTION-SERVICE] Plan found:', plan ? `${plan.displayName} (${plan.id})` : 'NOT FOUND');
+    logger.debug('Plan lookup result', { found: !!plan, name: plan?.displayName });
 
     if (!user || !plan) {
-      console.error('❌ [SUBSCRIPTION-SERVICE] Missing:', { userFound: !!user, planFound: !!plan });
+      logger.error('Missing user or plan', undefined, { userFound: !!user, planFound: !!plan });
       throw new Error('User or plan not found');
     }
 
@@ -266,10 +267,11 @@ export class SubscriptionService {
         },
       });
 
-      console.log('✅ [MP] Preference created:', {
-        id: preference.id,
-        initPoint: preference.init_point,
-        sandboxInitPoint: preference.sandbox_init_point,
+      logger.payment('created', {
+        userId: user.id,
+        planId: plan.id,
+        amount: finalPrice,
+        paymentId: preference.id,
       });
 
       // Usar sandbox_init_point en TEST, init_point en producción
@@ -281,7 +283,9 @@ export class SubscriptionService {
         externalReference,
       };
     } catch (error) {
-      console.error('❌ Error creating MP payment:', error);
+      logger.error('Failed to create MP payment preference', error, {
+        userId, planId, finalPrice
+      });
       throw error;
     }
   }
@@ -410,8 +414,15 @@ export class SubscriptionService {
           id: subscription.mpPreapprovalId,
           body: { status: 'cancelled' },
         });
+        logger.info('MP preapproval cancelled', {
+          preapprovalId: subscription.mpPreapprovalId,
+          userId: subscription.userId,
+        });
       } catch (error) {
-        console.error('❌ Error canceling MP preapproval:', error);
+        logger.warn('Failed to cancel MP preapproval', {
+          preapprovalId: subscription.mpPreapprovalId,
+          error: String(error),
+        });
       }
     }
 

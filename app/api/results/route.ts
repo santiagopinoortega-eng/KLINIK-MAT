@@ -7,6 +7,7 @@ import { checkRateLimit, RATE_LIMITS, createRateLimitResponse } from '@/lib/rate
 import { sanitizeObject, sanitizeCaseId, sanitizeNumber, sanitizeEnum } from '@/lib/sanitize';
 import { requireCsrfToken } from '@/lib/csrf';
 import { checkCaseAccessLimit, recordCaseCompletion } from '@/lib/subscription-limits';
+import type { CreateResultBody } from '@/lib/types/api-types';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -16,7 +17,7 @@ export const dynamic = 'force-dynamic';
  * Guarda el resultado de un caso clínico completado
  */
 export async function POST(req: Request) {
-  let body: any;
+  let body: Partial<CreateResultBody> = {};
   
   try {
     // CSRF Protection - validar token antes que nada
@@ -92,7 +93,7 @@ export async function POST(req: Request) {
     } = sanitized;
 
     // Sanitizar answers si existe (mantener estructura original pero validar)
-    let answers = body.answers;
+    let answers: CreateResultBody['answers'] | undefined = body.answers;
     if (answers && typeof answers === 'object') {
       // Validar que sea un objeto/array válido JSON
       try {

@@ -21,16 +21,16 @@ export default function CalculadorasPage() {
   // Estado FPP
   const [fur, setFur] = useState('');
   const [metodo, setMetodo] = useState<'naegele' | 'wahl'>('naegele');
-  const [resultadoFPP, setResultadoFPP] = useState<any>(null);
+  const [resultadoFPP, setResultadoFPP] = useState<ReturnType<typeof calculateObstetricData> | null>(null);
   
   // Estado IMC
   const [peso, setPeso] = useState('');
   const [altura, setAltura] = useState('');
-  const [resultadoIMC, setResultadoIMC] = useState<any>(null);
+  const [resultadoIMC, setResultadoIMC] = useState<ReturnType<typeof calculateIMC> | null>(null);
   
   // Estado Ecografía
   const [lcc, setLcc] = useState('');
-  const [resultadoEco, setResultadoEco] = useState<any>(null);
+  const [resultadoEco, setResultadoEco] = useState<ReturnType<typeof calculateEGByUSG> | null>(null);
 
   const calcularFPP = () => {
     if (!fur) return;

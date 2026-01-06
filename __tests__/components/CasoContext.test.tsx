@@ -5,40 +5,39 @@
 
 import { renderHook, act } from '@testing-library/react';
 import { CasoProvider, useCaso, CaseMode } from '@/app/components/CasoContext';
-import type { CasoClient } from '@/lib/types';
+import type { CasoClient, McqPaso, ShortPaso } from '@/lib/types';
+import { isMcq } from '@/lib/types';
 
 // Mock de caso de prueba
 const mockCaso: CasoClient = {
   id: 'test-caso',
-  title: 'Caso de Prueba',
-  slug: 'caso-prueba',
-  difficulty: 'Intermedio',
+  titulo: 'Caso de Prueba',
   area: 'GINECOLOGIA',
-  group: 'Test',
-  timeLimit: null,
+  dificultad: 'Media',
+  summary: 'Caso de prueba para testing',
   pasos: [
     {
       id: 'paso1',
-      type: 'mcq',
-      pregunta: '¿Pregunta 1?',
+      tipo: 'mcq',
+      enunciado: '¿Pregunta 1?',
       opciones: [
-        { id: 'a', texto: 'Opción A', esCorrecta: true, feedback: 'Correcto' },
-        { id: 'b', texto: 'Opción B', esCorrecta: false, feedback: 'Incorrecto' },
+        { id: 'a', texto: 'Opción A', esCorrecta: true, explicacion: 'Correcto' },
+        { id: 'b', texto: 'Opción B', esCorrecta: false, explicacion: 'Incorrecto' },
       ],
     },
     {
       id: 'paso2',
-      type: 'mcq',
-      pregunta: '¿Pregunta 2?',
+      tipo: 'mcq',
+      enunciado: '¿Pregunta 2?',
       opciones: [
-        { id: 'c', texto: 'Opción C', esCorrecta: false, feedback: 'Incorrecto' },
-        { id: 'd', texto: 'Opción D', esCorrecta: true, feedback: 'Correcto' },
+        { id: 'c', texto: 'Opción C', esCorrecta: false, explicacion: 'Incorrecto' },
+        { id: 'd', texto: 'Opción D', esCorrecta: true, explicacion: 'Correcto' },
       ],
     },
     {
       id: 'paso3',
-      type: 'short',
-      pregunta: '¿Pregunta abierta?',
+      tipo: 'short',
+      enunciado: '¿Pregunta abierta?',
       puntosMaximos: 2,
       criteriosEvaluacion: ['criterio1', 'criterio2'],
     },
@@ -100,8 +99,9 @@ describe('CasoContext', () => {
       const { result } = renderHook(() => useCaso(), { wrapper });
 
       // Responder primer paso
+      const paso1 = mockCaso.pasos[0] as McqPaso;
       act(() => {
-        result.current.handleSelect('paso1', mockCaso.pasos[0].opciones![0]);
+        result.current.handleSelect('paso1', paso1.opciones[0]);
       });
 
       act(() => {
@@ -115,11 +115,13 @@ describe('CasoContext', () => {
       const { result } = renderHook(() => useCaso(), { wrapper });
 
       // Responder primeros dos pasos
+      const paso1 = mockCaso.pasos[0] as McqPaso;
+      const paso2 = mockCaso.pasos[1] as McqPaso;
       act(() => {
-        result.current.handleSelect('paso1', mockCaso.pasos[0].opciones![0]);
+        result.current.handleSelect('paso1', paso1.opciones[0]);
       });
       act(() => {
-        result.current.handleSelect('paso2', mockCaso.pasos[1].opciones![1]);
+        result.current.handleSelect('paso2', paso2.opciones[1]);
       });
 
       // Navegar al paso 0
@@ -159,9 +161,11 @@ describe('CasoContext', () => {
       expect(result.current.currentStep).toBe(0); // No permite
 
       // Responder todos
+      const paso1 = mockCaso.pasos[0] as McqPaso;
+      const paso2 = mockCaso.pasos[1] as McqPaso;
       act(() => {
-        result.current.handleSelect('paso1', mockCaso.pasos[0].opciones![0]);
-        result.current.handleSelect('paso2', mockCaso.pasos[1].opciones![1]);
+        result.current.handleSelect('paso1', paso1.opciones[0]);
+        result.current.handleSelect('paso2', paso2.opciones[1]);
         result.current.handleSelect('paso3', { id: 'short1', texto: 'Respuesta abierta', puntos: 2 });
       });
 
@@ -178,8 +182,9 @@ describe('CasoContext', () => {
     test('handleSelect agrega respuesta correcta', () => {
       const { result } = renderHook(() => useCaso(), { wrapper });
 
+      const paso1 = mockCaso.pasos[0] as McqPaso;
       act(() => {
-        result.current.handleSelect('paso1', mockCaso.pasos[0].opciones![0]);
+        result.current.handleSelect('paso1', paso1.opciones[0]);
       });
 
       expect(result.current.respuestas).toHaveLength(1);
@@ -193,13 +198,14 @@ describe('CasoContext', () => {
     test('handleSelect NO permite responder dos veces el mismo paso', () => {
       const { result } = renderHook(() => useCaso(), { wrapper });
 
+      const paso1 = mockCaso.pasos[0] as McqPaso;
       act(() => {
-        result.current.handleSelect('paso1', mockCaso.pasos[0].opciones![0]);
+        result.current.handleSelect('paso1', paso1.opciones[0]);
       });
 
       // Intentar responder de nuevo
       act(() => {
-        result.current.handleSelect('paso1', mockCaso.pasos[0].opciones![1]);
+        result.current.handleSelect('paso1', paso1.opciones[1]);
       });
 
       expect(result.current.respuestas).toHaveLength(1); // Solo 1 respuesta
@@ -260,9 +266,11 @@ describe('CasoContext', () => {
       const { result } = renderHook(() => useCaso(), { wrapper });
 
       // Responder todos los pasos
+      const paso1 = mockCaso.pasos[0] as McqPaso;
+      const paso2 = mockCaso.pasos[1] as McqPaso;
       act(() => {
-        result.current.handleSelect('paso1', mockCaso.pasos[0].opciones![0]);
-        result.current.handleSelect('paso2', mockCaso.pasos[1].opciones![1]);
+        result.current.handleSelect('paso1', paso1.opciones[0]);
+        result.current.handleSelect('paso2', paso2.opciones[1]);
         result.current.handleSelect('paso3', { id: 'short1', texto: 'Respuesta', puntos: 2 });
       });
 
@@ -300,8 +308,9 @@ describe('CasoContext', () => {
       });
 
       // Intentar responder
+      const paso1 = mockCaso.pasos[0] as McqPaso;
       act(() => {
-        result.current.handleSelect('paso1', mockCaso.pasos[0].opciones![0]);
+        result.current.handleSelect('paso1', paso1.opciones[0]);
       });
 
       expect(result.current.respuestas).toHaveLength(0); // No permite
