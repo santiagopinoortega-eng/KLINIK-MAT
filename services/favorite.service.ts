@@ -2,9 +2,12 @@
 /**
  * Servicio de gestión de favoritos
  * Maneja toda la lógica de negocio relacionada con casos favoritos
+ * 
+ * REFACTORED: Now uses FavoriteRepository for data access
+ * Educational platform: Students bookmark clinical cases for later study
  */
 
-import { prisma } from '@/lib/prisma';
+import { favoriteRepository, caseRepository } from '@/lib/repositories';
 import { logger } from '@/lib/logger';
 import type { Favorite, Case } from '@prisma/client';
 
@@ -15,26 +18,12 @@ export type FavoriteWithCase = Favorite & {
 export class FavoriteService {
   /**
    * Obtiene todos los favoritos de un usuario
+   * Educational: Student's bookmarked cases for review
    */
   static async getUserFavorites(userId: string): Promise<FavoriteWithCase[]> {
     try {
-      const favorites = await prisma.favorite.findMany({
-        where: { userId },
-        include: {
-          case: {
-            select: {
-              id: true,
-              title: true,
-              area: true,
-              difficulty: true,
-              summary: true,
-            },
-          },
-        },
-        orderBy: { createdAt: 'desc' },
-      });
-
-      return favorites;
+      const result = await favoriteRepository.getUserFavorites(userId, 1, 100);
+      return result.favorites;
     } catch (error) {
       logger.error('Failed to get user favorites', { userId, error });
       throw error;
@@ -46,14 +35,7 @@ export class FavoriteService {
    */
   static async isFavorite(userId: string, caseId: string): Promise<boolean> {
     try {
-      const count = await prisma.favorite.count({
-        where: {
-          userId,
-          caseId,
-        },
-      });
-
-      return count > 0;
+      return await favoriteRepository.isFavorite(userId, caseId);
     } catch (error) {
       logger.error('Failed to check if favorite', { userId, caseId, error });
       return false;
@@ -62,33 +44,19 @@ export class FavoriteService {
 
   /**
    * Agrega un caso a favoritos
+   * Educational: Student bookmarks case for later study
    */
   static async addFavorite(userId: string, caseId: string): Promise<Favorite> {
     try {
-      // Verificar que el caso existe
-      const caseExists = await prisma.case.findUnique({
-        where: { id: caseId },
-        select: { id: true },
-      });
+      // Verificar que el caso existe usando repository
+      const caseExists = await caseRepository.exists({ id: caseId });
 
       if (!caseExists) {
         throw new Error('Case not found');
       }
 
-      // Crear favorito (upsert para evitar duplicados)
-      const favorite = await prisma.favorite.upsert({
-        where: {
-          userId_caseId: {
-            userId,
-            caseId,
-          },
-        },
-        update: {}, // No actualizar nada si ya existe
-        create: {
-          userId,
-          caseId,
-        },
-      });
+      // Crear favorito usando repository
+      const favorite = await favoriteRepository.addFavorite(userId, caseId);
 
       logger.info('Favorite added', { userId, caseId });
       return favorite;
@@ -103,15 +71,7 @@ export class FavoriteService {
    */
   static async removeFavorite(userId: string, caseId: string): Promise<void> {
     try {
-      await prisma.favorite.delete({
-        where: {
-          userId_caseId: {
-            userId,
-            caseId,
-          },
-        },
-      });
-
+      await favoriteRepository.removeFavorite(userId, caseId);
       logger.info('Favorite removed', { userId, caseId });
     } catch (error) {
       // Si no existe, no es un error crítico
@@ -130,15 +90,7 @@ export class FavoriteService {
    */
   static async toggleFavorite(userId: string, caseId: string): Promise<{ isFavorite: boolean }> {
     try {
-      const exists = await this.isFavorite(userId, caseId);
-
-      if (exists) {
-        await this.removeFavorite(userId, caseId);
-        return { isFavorite: false };
-      } else {
-        await this.addFavorite(userId, caseId);
-        return { isFavorite: true };
-      }
+      return await favoriteRepository.toggleFavorite(userId, caseId);
     } catch (error) {
       logger.error('Failed to toggle favorite', { userId, caseId, error });
       throw error;
@@ -147,14 +99,11 @@ export class FavoriteService {
 
   /**
    * Obtiene el conteo de favoritos de un caso
+   * Educational: Shows popularity of clinical cases
    */
   static async getFavoriteCount(caseId: string): Promise<number> {
     try {
-      const count = await prisma.favorite.count({
-        where: { caseId },
-      });
-
-      return count;
+      return await favoriteRepository.getFavoriteCount(caseId);
     } catch (error) {
       logger.error('Failed to get favorite count', { caseId, error });
       return 0;
@@ -163,44 +112,12 @@ export class FavoriteService {
 
   /**
    * Obtiene casos más populares (más favoritos)
+   * Educational: Recommends popular cases to students
    */
   static async getTrendingCases(limit: number = 10) {
     try {
-      const trending = await prisma.favorite.groupBy({
-        by: ['caseId'],
-        _count: { id: true },
-        orderBy: {
-          _count: {
-            id: 'desc',
-          },
-        },
-        take: limit,
-      });
-
-      // Obtener información completa de los casos
-      const caseIds = trending.map(t => t.caseId);
-      const cases = await prisma.case.findMany({
-        where: {
-          id: { in: caseIds },
-          isPublic: true,
-        },
-        select: {
-          id: true,
-          title: true,
-          area: true,
-          difficulty: true,
-          summary: true,
-        },
-      });
-
-      // Combinar con conteo de favoritos
-      return cases.map(caso => {
-        const trend = trending.find(t => t.caseId === caso.id);
-        return {
-          ...caso,
-          favoriteCount: trend?._count.id || 0,
-        };
-      });
+      const result = await favoriteRepository.getTrendingCases(limit);
+      return result;
     } catch (error) {
       logger.error('Failed to get trending cases', { error });
       return [];
@@ -212,10 +129,7 @@ export class FavoriteService {
    */
   static async clearUserFavorites(userId: string): Promise<number> {
     try {
-      const result = await prisma.favorite.deleteMany({
-        where: { userId },
-      });
-
+      const result = await favoriteRepository.clearUserFavorites(userId);
       logger.info('User favorites cleared', { userId, count: result.count });
       return result.count;
     } catch (error) {
@@ -229,12 +143,7 @@ export class FavoriteService {
    */
   static async getFavoriteIds(userId: string): Promise<string[]> {
     try {
-      const favorites = await prisma.favorite.findMany({
-        where: { userId },
-        select: { caseId: true },
-      });
-
-      return favorites.map(f => f.caseId);
+      return await favoriteRepository.getFavoriteIds(userId);
     } catch (error) {
       logger.error('Failed to get favorite IDs', { userId, error });
       return [];

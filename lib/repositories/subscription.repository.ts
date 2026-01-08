@@ -123,11 +123,11 @@ export class SubscriptionRepository extends BaseRepository<Subscription> {
     immediate: boolean = false
   ): Promise<Subscription> {
     const data: Prisma.SubscriptionUpdateInput = {
-      cancelledAt: new Date(),
+      canceledAt: new Date(),
     };
 
     if (immediate) {
-      data.status = 'CANCELLED';
+      data.status = 'CANCELED';
     }
 
     return this.update(subscriptionId, data);
@@ -138,7 +138,7 @@ export class SubscriptionRepository extends BaseRepository<Subscription> {
    */
   async reactivateSubscription(subscriptionId: string): Promise<Subscription> {
     return this.update(subscriptionId, {
-      cancelledAt: null,
+      canceledAt: null,
       status: 'ACTIVE',
     });
   }
@@ -449,7 +449,7 @@ export class UsageRecordRepository extends BaseRepository<UsageRecord> {
         _count: { id: true },
       });
 
-      return stats.map(stat => ({
+      return stats.map((stat: any) => ({
         resourceType: stat.resourceType,
         totalQuantity: stat._sum.quantity || 0,
         recordCount: stat._count.id,
