@@ -41,6 +41,47 @@ export const CancelSubscriptionDto = z.object({
 export type CancelSubscriptionInput = z.infer<typeof CancelSubscriptionDto>;
 
 /**
+ * DTO para engagement metrics
+ * POST /api/engagement
+ */
+export const CreateEngagementDto = z.object({
+  caseId: z.string().uuid('Case ID debe ser un UUID válido'),
+  source: z.enum(['recommendation', 'search', 'direct', 'favorite']),
+  recommendationGroup: z.string().max(100).optional(),
+  action: z.enum(['view', 'start', 'complete', 'favorite', 'share']),
+  sessionDuration: z.number().int().min(0).max(86400).optional(), // Max 24 hours
+}).strict();
+
+export type CreateEngagementInput = z.infer<typeof CreateEngagementDto>;
+
+/**
+ * DTO para query de engagement metrics
+ * GET /api/engagement
+ */
+export const GetEngagementQueryDto = z.object({
+  limit: z.number().int().min(1).max(100).default(50),
+  source: z.enum(['recommendation', 'search', 'direct', 'favorite']).optional(),
+});
+
+export type GetEngagementQuery = z.infer<typeof GetEngagementQueryDto>;
+
+/**
+ * DTO para búsqueda en PubMed
+ * POST /api/pubmed/search
+ */
+export const PubMedSearchDto = z.object({
+  query: z.string().min(1, 'Query es requerido').max(500, 'Query muy largo'),
+  maxResults: z.number().int().min(1).max(50).default(15),
+  filters: z.object({
+    yearFrom: z.number().int().min(1900).max(new Date().getFullYear()).optional(),
+    yearTo: z.number().int().min(1900).max(new Date().getFullYear()).optional(),
+    articleType: z.string().max(50).optional(),
+  }).optional(),
+}).strict();
+
+export type PubMedSearchInput = z.infer<typeof PubMedSearchDto>;
+
+/**
  * DELETE /api/subscription/cancel?subscription_id=xxx
  * Reactivar suscripción cancelada
  */

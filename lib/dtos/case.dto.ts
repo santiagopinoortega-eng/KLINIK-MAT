@@ -58,3 +58,13 @@ export const CreateCaseDto = z.object({
 });
 
 export type CreateCaseDto = z.infer<typeof CreateCaseDto>;
+
+/**
+ * Schema para verificar respuesta de opción en caso
+ * POST /api/cases/[id]/answer
+ */
+export const AnswerCaseDto = z.object({
+  optionId: z.string().uuid('Option ID debe ser un UUID válido'),
+}).strict();
+
+export type AnswerCaseDto = z.infer<typeof AnswerCaseDto>;

@@ -1,316 +1,226 @@
 // app/api/subscription/create-preference/route.ts
 /**
- * API para crear preferencias de pago en Mercado Pago
+ * API para crear preferencias de pago en Mercado Pago (Legacy endpoint)
+ * Arquitectura: Services + DTOs + Middleware composable + Error handling
  * 
  * POST /api/subscription/create-preference
  * Body: { planId: string, couponCode?: string }
  * 
- * Flujo profesional:
- * 1. Validar usuario autenticado
- * 2. Validar plan existe y está activo
- * 3. Aplicar cupón si existe
- * 4. Crear preferencia en MP con metadata completa
- * 5. Registrar intento de pago en DB
- * 6. Retornar init_point para redirección
+ * Nota: Este endpoint es similar a create-payment, mantenido por compatibilidad
+ * Se recomienda usar /api/subscription/create-payment para nuevas integraciones
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { auth } from '@clerk/nextjs/server';
 import { prisma } from '@/lib/prisma';
 import { preferenceClient, MERCADOPAGO_URLS } from '@/lib/mercadopago';
-import { checkRateLimit, RATE_LIMITS } from '@/lib/ratelimit';
+import { RATE_LIMITS } from '@/lib/ratelimit';
+import {
+  compose,
+  withAuth,
+  withRateLimit,
+  withValidation,
+  withLogging,
+  type ApiContext,
+} from '@/lib/middleware/api-middleware';
+import { CreatePreferenceDto } from '@/lib/dtos/subscription.dto';
+import { NotFoundError, ValidationError } from '@/lib/errors/app-errors';
+import { logger } from '@/lib/logger';
+import { validateAndApplyCoupon, generatePaymentReference, preparePayer } from '@/lib/payment-helpers';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-interface CreatePreferenceRequest {
-  planId: string;
-  couponCode?: string;
-}
+/**
+ * POST /api/subscription/create-preference
+ * Crear preferencia de pago en Mercado Pago (Legacy)
+ * 
+ * @middleware withAuth - Requiere autenticación
+ * @middleware withRateLimit - 5 req/min (protección contra spam)
+ * @middleware withValidation - Valida body con CreatePreferenceDto
+ * @middleware withLogging - Log de requests/responses
+ */
+export const POST = compose(
+  withAuth,
+  withRateLimit({ windowMs: 60_000, maxRequests: 5 }),
+  withValidation(CreatePreferenceDto),
+  withLogging
+)(async (req: NextRequest, context: ApiContext) => {
+  const userId = context.userId!;
+  const { planId, couponCode } = context.body;
 
-export async function POST(req: NextRequest) {
-  const startTime = Date.now();
+  logger.info('[CREATE-PREFERENCE] Nueva solicitud', {
+    userId,
+    planId,
+    hasCoupon: !!couponCode,
+  });
 
-  try {
-    // 1. Autenticación
-    const { userId } = await auth();
-    if (!userId) {
-      return NextResponse.json(
-        { error: 'No autorizado' },
-        { status: 401 }
-      );
+  // 1. Obtener usuario y plan en paralelo
+  const [user, plan] = await Promise.all([
+    prisma.user.findUnique({
+      where: { id: userId },
+      select: { id: true, email: true, name: true },
+    }),
+    prisma.subscriptionPlan.findUnique({
+      where: { id: planId },
+      include: { subscriptions: false },
+    }),
+  ]);
+
+  if (!user) {
+    throw new NotFoundError('User');
+  }
+
+  if (!plan || !plan.isActive) {
+    throw new NotFoundError('Plan or plan is inactive');
+  }
+
+  // 2. Calcular precio final con descuento
+  let finalPrice = Number(plan.price);
+  let discountAmount = 0;
+  let appliedCoupon = null;
+
+  if (couponCode) {
+    const couponResult = await validateAndApplyCoupon(couponCode, planId, userId, finalPrice);
+    if (couponResult.valid) {
+      appliedCoupon = couponResult.coupon;
+      discountAmount = couponResult.discount ?? 0;
+      finalPrice -= discountAmount;
+
+      logger.info('[CREATE-PREFERENCE] Cupón aplicado', {
+        code: couponCode,
+        discount: discountAmount,
+        finalPrice,
+      });
+    } else {
+      logger.warn('[CREATE-PREFERENCE] Cupón inválido', {
+        code: couponCode,
+        reason: couponResult.reason,
+      });
     }
+  }
 
-    // 2. Rate limiting (5 intentos por minuto)
-    const rateLimitResult = checkRateLimit(req, { windowMs: 60_000, maxRequests: 5 });
-    if (!rateLimitResult.ok) {
-      return NextResponse.json(
-        { 
-          error: 'Demasiados intentos. Intenta de nuevo en unos minutos.',
-          retryAfter: rateLimitResult.resetAt 
+  // 3. Validar precio final
+  if (finalPrice < 0) {
+    throw new ValidationError('Price cannot be negative after discount');
+  }
+
+  // 4. Generar referencia única y preparar pagador
+  const externalReference = generatePaymentReference(userId, planId);
+  const isTestMode = process.env.MERCADOPAGO_ACCESS_TOKEN?.startsWith('TEST-');
+  const payer = preparePayer(user, isTestMode);
+
+  logger.info('[CREATE-PREFERENCE] Creando preferencia MP', {
+    externalReference,
+    finalPrice,
+    environment: isTestMode ? 'TEST' : 'PROD',
+  });
+
+  // 5. Crear preferencia en Mercado Pago
+  const preference = await preferenceClient.create({
+    body: {
+      items: [
+        {
+          id: plan.id,
+          title: `KlinikMat - ${plan.displayName}`,
+          description: plan.description || `Plan ${plan.billingPeriod === 'MONTHLY' ? 'Mensual' : 'Anual'}`,
+          category_id: 'education',
+          quantity: 1,
+          unit_price: finalPrice,
+          currency_id: plan.currency,
         },
-        { status: 429 }
-      );
-    }
-
-    // 3. Parsear body
-    const body = await req.json() as CreatePreferenceRequest;
-    const { planId, couponCode } = body;
-
-    if (!planId) {
-      return NextResponse.json(
-        { error: 'planId es requerido' },
-        { status: 400 }
-      );
-    }
-
-    console.log(`💳 [CREATE-PREFERENCE] User ${userId} requesting plan ${planId}`);
-
-    // 4. Obtener usuario y plan
-    const [user, plan] = await Promise.all([
-      prisma.user.findUnique({ where: { id: userId } }),
-      prisma.subscriptionPlan.findUnique({ 
-        where: { id: planId, isActive: true } 
-      }),
-    ]);
-
-    if (!user) {
-      return NextResponse.json(
-        { error: 'Usuario no encontrado' },
-        { status: 404 }
-      );
-    }
-
-    if (!plan) {
-      return NextResponse.json(
-        { error: 'Plan no encontrado o inactivo' },
-        { status: 404 }
-      );
-    }
-
-    // 5. Calcular precio con descuento si aplica
-    let finalPrice = Number(plan.price);
-    let discountAmount = 0;
-    let coupon = null;
-
-    if (couponCode) {
-      coupon = await validateCoupon(couponCode, planId, userId);
-      if (coupon) {
-        discountAmount = await calculateDiscount(coupon, finalPrice);
-        finalPrice -= discountAmount;
-        console.log(`🎫 [CREATE-PREFERENCE] Coupon applied: ${couponCode}, discount: $${discountAmount}`);
-      } else {
-        console.warn(`⚠️  [CREATE-PREFERENCE] Invalid coupon: ${couponCode}`);
-      }
-    }
-
-    // 6. Generar referencia única
-    const externalReference = `KMAT_${userId.slice(0, 8)}_${planId.slice(0, 8)}_${Date.now()}`;
-
-    // 7. Determinar email del pagador
-    const isTestMode = process.env.MERCADOPAGO_ACCESS_TOKEN?.startsWith('TEST-');
-    const payerEmail = isTestMode ? 'test_user_92801501@testuser.com' : user.email;
-    const payerName = user.name || 'Usuario KlinikMat';
-
-    console.log(`📝 [CREATE-PREFERENCE] Creating preference:`, {
-      userId,
-      planId: plan.id,
-      planName: plan.displayName,
-      originalPrice: plan.price,
-      finalPrice,
-      discount: discountAmount,
-      externalReference,
-      isTestMode,
-    });
-
-    // 8. Crear preferencia en Mercado Pago
-    const preference = await preferenceClient.create({
-      body: {
-        items: [
-          {
-            id: plan.id,
-            title: `KlinikMat - ${plan.displayName}`,
-            description: plan.description || `Suscripción ${plan.billingPeriod === 'MONTHLY' ? 'Mensual' : 'Anual'}`,
-            quantity: 1,
-            unit_price: finalPrice,
-            currency_id: plan.currency,
-            category_id: 'education', // Categoría de educación
-          },
+      ],
+      payer: {
+        name: payer.firstName,
+        surname: payer.lastName,
+        email: payer.email,
+        phone: {
+          area_code: '56',
+          number: '',
+        },
+        identification: {
+          type: 'RUT',
+          number: '12345678-9',
+        },
+        address: {
+          zip_code: '',
+          street_name: '',
+        },
+      },
+      back_urls: {
+        success: `${MERCADOPAGO_URLS.success}?plan_id=${planId}&ref=${externalReference}`,
+        failure: `${MERCADOPAGO_URLS.failure}?plan_id=${planId}&ref=${externalReference}`,
+        pending: `${MERCADOPAGO_URLS.pending}?plan_id=${planId}&ref=${externalReference}`,
+      },
+      auto_return: 'approved',
+      notification_url: MERCADOPAGO_URLS.webhook,
+      external_reference: externalReference,
+      statement_descriptor: 'KLINIKMAT',
+      payment_methods: {
+        excluded_payment_types: [
+          { id: 'ticket' },
+          { id: 'atm' },
         ],
-        payer: {
-          name: payerName.split(' ')[0] || 'Usuario',
-          surname: payerName.split(' ').slice(1).join(' ') || 'KlinikMat',
-          email: payerEmail,
-          phone: {
-            area_code: '56', // Código de Chile
-            number: '',
-          },
-          identification: {
-            type: 'RUT',
-            number: '12345678-9', // Genérico para testing
-          },
-        },
-        back_urls: {
-          success: `${MERCADOPAGO_URLS.success}?plan_id=${planId}&ref=${externalReference}`,
-          failure: `${MERCADOPAGO_URLS.failure}?plan_id=${planId}&ref=${externalReference}`,
-          pending: `${MERCADOPAGO_URLS.pending}?plan_id=${planId}&ref=${externalReference}`,
-        },
-        auto_return: 'approved', // Auto-redirect en aprobación
-        notification_url: MERCADOPAGO_URLS.webhook,
-        external_reference: externalReference,
-        payment_methods: {
-          excluded_payment_types: [
-            { id: 'ticket' }, // Sin efectivo
-          ],
-          excluded_payment_methods: [
-            { id: 'rapipago' },
-            { id: 'pagofacil' },
-          ],
-          installments: plan.billingPeriod === 'MONTHLY' ? 1 : 12, // Hasta 12 cuotas en anual
-        },
-        statement_descriptor: 'KLINIKMAT', // Nombre en resumen tarjeta
-        binary_mode: true, // Aprobación/rechazo inmediato
-        expires: true,
-        expiration_date_from: new Date().toISOString(),
-        expiration_date_to: new Date(Date.now() + 30 * 60 * 1000).toISOString(), // 30 minutos
-        metadata: {
-          user_id: userId,
-          user_email: user.email,
-          plan_id: planId,
-          plan_name: plan.name,
-          coupon_code: couponCode || null,
-          discount_amount: discountAmount,
-          original_price: Number(plan.price),
-          final_price: finalPrice,
-          billing_period: plan.billingPeriod,
-          external_reference: externalReference,
-        },
+        excluded_payment_methods: [
+          { id: 'rapipago' },
+          { id: 'pagofacil' },
+          { id: 'servipag' },
+        ],
+        installments: plan.billingPeriod === 'MONTHLY' ? 1 : 12,
       },
-    });
-
-    const duration = Date.now() - startTime;
-    console.log(`✅ [CREATE-PREFERENCE] Created in ${duration}ms:`, {
-      preferenceId: preference.id,
-      initPoint: preference.init_point,
-      sandboxInitPoint: preference.sandbox_init_point,
-    });
-
-    // 9. Registrar intento de pago en DB para auditoría (DESHABILITADO - PaymentAttempt model no existe)
-    // TODO: Agregar modelo PaymentAttempt al schema si se necesita auditoría completa
-    /*
-    await prisma.paymentAttempt.create({
-      data: {
-        userId,
-        planId,
-        amount: finalPrice,
-        currency: plan.currency,
-        mpPreferenceId: preference.id!,
-        externalReference,
-        couponCode: couponCode || null,
-        discountAmount,
-        metadata: {
-          preferenceId: preference.id,
-          planName: plan.displayName,
-          userEmail: user.email,
-        },
+      binary_mode: true,
+      expires: true,
+      expiration_date_from: new Date().toISOString(),
+      expiration_date_to: new Date(Date.now() + 30 * 60 * 1000).toISOString(), // 30 minutes
+      metadata: {
+        user_id: userId,
+        plan_id: planId,
+        plan_name: plan.displayName,
+        billing_period: plan.billingPeriod,
+        original_price: plan.price,
+        final_price: finalPrice,
+        discount_amount: discountAmount,
+        coupon_code: couponCode || null,
+        trial_days: plan.trialDays,
+        features: JSON.stringify(plan.features),
+        timestamp: new Date().toISOString(),
       },
-    }).catch(err => {
-      console.error('⚠️  Failed to save payment attempt:', err);
-      // No bloquear el flujo si falla el registro
-    });
-    */
+    },
+  });
 
-    // 10. Usar sandbox_init_point en TEST, init_point en producción
-    const initPoint = isTestMode 
-      ? (preference.sandbox_init_point || preference.init_point)
-      : preference.init_point;
+  if (!preference.id || !preference.init_point) {
+    throw new Error('Failed to create Mercado Pago preference');
+  }
 
-    return NextResponse.json({
-      success: true,
-      preferenceId: preference.id,
-      initPoint,
-      externalReference,
+  logger.info('[CREATE-PREFERENCE] Preferencia creada', {
+    preferenceId: preference.id,
+  });
+
+  // 6. Retornar datos para el frontend
+  const initPoint = isTestMode
+    ? (preference.sandbox_init_point || preference.init_point)
+    : preference.init_point;
+
+  return NextResponse.json({
+    success: true,
+    preferenceId: preference.id,
+    initPoint,
+    externalReference,
+    payment: {
       amount: finalPrice,
       originalAmount: Number(plan.price),
       discount: discountAmount,
+      currency: plan.currency,
       planName: plan.displayName,
-    });
-
-  } catch (error: any) {
-    const duration = Date.now() - startTime;
-    console.error(`❌ [CREATE-PREFERENCE] Error after ${duration}ms:`, {
-      error: error.message,
-      stack: error.stack,
-    });
-
-    return NextResponse.json(
-      { 
-        error: 'Error al crear preferencia de pago',
-        message: process.env.NODE_ENV === 'development' ? error.message : undefined,
-      },
-      { status: 500 }
-    );
-  }
-}
-
-/**
- * Valida un cupón
- */
-async function validateCoupon(
-  code: string,
-  planId: string,
-  userId: string
-): Promise<any | null> {
-  try {
-    const now = new Date();
-    const coupon = await prisma.coupon.findFirst({
-      where: {
-        code: code.toUpperCase(),
-        isActive: true,
-        validFrom: { lte: now },
-        validUntil: { gte: now },
-      },
-    });
-
-    if (!coupon) return null;
-
-    // Verificar límite de usos globales
-    if (coupon.maxRedemptions !== null && coupon.redemptionsCount >= coupon.maxRedemptions) {
-      return null;
-    }
-
-    // Verificar si es solo para primera compra
-    if (coupon.firstPurchaseOnly) {
-      const hasSubscription = await prisma.subscription.findFirst({
-        where: { userId, status: { in: ['ACTIVE', 'PAST_DUE', 'CANCELED'] } },
-      });
-      if (hasSubscription) return null;
-    }
-
-    // Verificar planes aplicables
-    const applicablePlans = coupon.applicablePlans as string[] | null;
-    if (applicablePlans && !applicablePlans.includes(planId)) {
-      return null;
-    }
-
-    return coupon;
-  } catch (error) {
-    console.error('Error validating coupon:', error);
-    return null;
-  }
-}
-
-/**
- * Calcula el descuento a aplicar
- */
-async function calculateDiscount(coupon: any, price: number): Promise<number> {
-  if (coupon.discountType === 'PERCENTAGE') {
-    const discount = (price * coupon.discountValue) / 100;
-    return coupon.maxDiscountAmount 
-      ? Math.min(discount, coupon.maxDiscountAmount)
-      : discount;
-  } else {
-    // FIXED
-    return Math.min(coupon.discountValue, price);
-  }
-}
+      billingPeriod: plan.billingPeriod,
+      expiresIn: 30, // minutes
+    },
+    coupon: appliedCoupon
+      ? {
+          code: appliedCoupon.code,
+          discountType: appliedCoupon.discountType,
+          discountValue: Number(appliedCoupon.discountValue),
+          applied: true,
+        }
+      : null,
+  });
+});

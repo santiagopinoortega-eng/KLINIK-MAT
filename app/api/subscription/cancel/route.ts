@@ -1,19 +1,25 @@
+// app/api/subscription/cancel/route.ts
+/**
+ * Endpoint para cancelar y reactivar suscripciones
+ * Arquitectura: DTOs + Middleware composable + Error handling
+ */
+
 import { NextResponse } from 'next/server';
 import { compose, withAuth, withRateLimit, withLogging, withValidation, withQueryValidation } from '@/lib/middleware/api-middleware';
 import { prisma } from '@/lib/prisma';
 import { RATE_LIMITS } from '@/lib/ratelimit';
 import { NotFoundError } from '@/lib/errors/app-errors';
-import { z } from 'zod';
+import { CancelSubscriptionDto, ReactivateSubscriptionQueryDto } from '@/lib/dtos/subscription.dto';
 
-const CancelSubscriptionDto = z.object({
-  subscriptionId: z.string().min(1),
-  reason: z.string().optional(),
-});
-
-const ReactivateQueryDto = z.object({
-  subscription_id: z.string().min(1),
-});
-
+/**
+ * POST /api/subscription/cancel
+ * Cancelar suscripción activa (al final del período)
+ * 
+ * @middleware withAuth - Requiere autenticación
+ * @middleware withRateLimit - Protección contra spam
+ * @middleware withValidation - Valida body con CancelSubscriptionDto
+ * @middleware withLogging - Log de requests/responses
+ */
 export const POST = compose(
   withAuth,
   withRateLimit(RATE_LIMITS.WRITE),
@@ -57,11 +63,19 @@ export const POST = compose(
   });
 });
 
-// Endpoint para reactivar suscripción cancelada
+/**
+ * DELETE /api/subscription/cancel?subscription_id=xxx
+ * Reactivar suscripción cancelada
+ * 
+ * @middleware withAuth - Requiere autenticación
+ * @middleware withRateLimit - Protección contra spam
+ * @middleware withQueryValidation - Valida query con ReactivateSubscriptionQueryDto
+ * @middleware withLogging - Log de requests/responses
+ */
 export const DELETE = compose(
   withAuth,
   withRateLimit(RATE_LIMITS.WRITE),
-  withQueryValidation(ReactivateQueryDto),
+  withQueryValidation(ReactivateSubscriptionQueryDto),
   withLogging
 )(async (req, context) => {
   const userId = context.userId!;

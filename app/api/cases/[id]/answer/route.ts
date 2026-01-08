@@ -1,22 +1,29 @@
 // app/api/casos/[id]/answer/route.ts
-// Lógica para verificar la opción seleccionada.
+/**
+ * Endpoint para verificar respuestas de opciones en casos clínicos
+ * Arquitectura: DTOs + Middleware composable + Error handling
+ */
 
 import { NextResponse } from 'next/server';
 import { compose, withAuth, withRateLimit, withLogging, withValidation } from '@/lib/middleware/api-middleware';
 import { getOptionDetails } from '@/services/caso.service';
 import { RATE_LIMITS } from '@/lib/ratelimit';
-import { NotFoundError, ValidationError } from '@/lib/errors/app-errors';
-import { z } from 'zod';
+import { NotFoundError } from '@/lib/errors/app-errors';
+import { AnswerCaseDto } from '@/lib/dtos/case.dto';
 
-const AnswerDto = z.object({
-  optionId: z.string().min(1, 'Option ID es requerido'),
-});
-
-// Manejador POST para verificar la respuesta del usuario.
+/**
+ * POST /api/cases/[id]/answer
+ * Verificar respuesta de opción seleccionada
+ * 
+ * @middleware withAuth - Requiere autenticación
+ * @middleware withRateLimit - Protección contra spam
+ * @middleware withValidation - Valida body con AnswerCaseDto
+ * @middleware withLogging - Log de requests/responses
+ */
 export const POST = compose(
   withAuth,
   withRateLimit(RATE_LIMITS.WRITE),
-  withValidation(AnswerDto),
+  withValidation(AnswerCaseDto),
   withLogging
 )(async (req, context, params: { id: string }) => {
   const { optionId } = context.body;

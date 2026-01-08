@@ -1,23 +1,27 @@
+// app/api/pubmed/search/route.ts
+/**
+ * API para búsqueda de artículos en PubMed
+ * Arquitectura: DTOs + Middleware composable + Error handling
+ */
+
 import { NextResponse } from 'next/server';
 import { compose, withAuth, withRateLimit, withLogging, withValidation } from '@/lib/middleware/api-middleware';
 import { RATE_LIMITS } from '@/lib/ratelimit';
-import { z } from 'zod';
+import { PubMedSearchDto } from '@/lib/dtos/subscription.dto';
 import type { PubMedArticleSummary, PubMedArticle, PubMedAuthor, PubMedArticleId } from '@/lib/types/api-types';
 
 const PUBMED_API_KEY = process.env.PUBMED_API_KEY || '';
 const PUBMED_BASE_URL = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils';
 
-// DTO para búsqueda PubMed
-const PubMedSearchDto = z.object({
-  query: z.string().min(1, 'Query es requerido'),
-  maxResults: z.number().int().min(1).max(50).optional().default(15),
-  filters: z.object({
-    yearFrom: z.number().int().optional(),
-    yearTo: z.number().int().optional(),
-    articleType: z.string().optional(),
-  }).optional(),
-});
-
+/**
+ * POST /api/pubmed/search
+ * Buscar artículos en PubMed
+ * 
+ * @middleware withAuth - Requiere autenticación
+ * @middleware withRateLimit - Protección contra spam
+ * @middleware withValidation - Valida body con PubMedSearchDto
+ * @middleware withLogging - Log de requests/responses
+ */
 export const POST = compose(
   withAuth,
   withRateLimit(RATE_LIMITS.AUTHENTICATED),

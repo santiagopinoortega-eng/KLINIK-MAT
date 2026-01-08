@@ -2,29 +2,24 @@
 /**
  * API endpoint para tracking de métricas de engagement
  * Registra interacciones del usuario con recomendaciones y casos
+ * Arquitectura: DTOs + Middleware composable + Error handling
  */
 
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { RATE_LIMITS } from '@/lib/ratelimit';
 import { compose, withAuth, withRateLimit, withLogging, withValidation, withQueryValidation } from '@/lib/middleware/api-middleware';
-import { z } from 'zod';
+import { CreateEngagementDto, GetEngagementQueryDto } from '@/lib/dtos/subscription.dto';
 
-// DTO para crear engagement metric
-const CreateEngagementDto = z.object({
-  caseId: z.string().min(1, 'Case ID es requerido'),
-  source: z.enum(['recommendation', 'search', 'direct', 'favorite']),
-  recommendationGroup: z.string().optional(),
-  action: z.enum(['view', 'start', 'complete', 'favorite', 'share']),
-  sessionDuration: z.number().int().min(0).optional(),
-});
-
-// DTO para query params del GET
-const GetEngagementQueryDto = z.object({
-  limit: z.string().optional().transform(val => val ? parseInt(val) : 50),
-  source: z.enum(['recommendation', 'search', 'direct', 'favorite']).optional(),
-});
-
+/**
+ * POST /api/engagement
+ * Crear métrica de engagement
+ * 
+ * @middleware withAuth - Requiere autenticación
+ * @middleware withRateLimit - Protección contra spam
+ * @middleware withValidation - Valida body con CreateEngagementDto
+ * @middleware withLogging - Log de requests/responses
+ */
 export const POST = compose(
   withAuth,
   withRateLimit(RATE_LIMITS.AUTHENTICATED),
@@ -54,7 +49,13 @@ export const POST = compose(
 });
 
 /**
- * GET: Obtener métricas de engagement del usuario
+ * GET /api/engagement
+ * Obtener métricas de engagement del usuario
+ * 
+ * @middleware withAuth - Requiere autenticación
+ * @middleware withRateLimit - Protección contra spam
+ * @middleware withQueryValidation - Valida query con GetEngagementQueryDto
+ * @middleware withLogging - Log de requests/responses
  */
 export const GET = compose(
   withAuth,
