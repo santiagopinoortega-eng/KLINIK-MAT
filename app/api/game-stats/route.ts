@@ -33,8 +33,7 @@ export const POST = compose(
   const userId = context.userId!;
   const { gameType, won, score } = context.body;
 
-  const updatedStats = await GameService.updateGameStats(userId, {
-    gameType,
+  const updatedStats = await GameService.updateGameStats(userId, gameType, {
     won,
     score
   });

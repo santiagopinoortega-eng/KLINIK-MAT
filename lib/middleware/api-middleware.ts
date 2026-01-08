@@ -25,17 +25,19 @@ export type ApiContext = {
 
 /**
  * Handler type para route handlers
+ * Soporta params opcionales para rutas dinámicas (ej: /api/cases/[id])
  */
 export type ApiHandler = (
   req: NextRequest,
-  context: ApiContext
+  context: ApiContext,
+  params?: any
 ) => Promise<NextResponse> | NextResponse;
 
 /**
  * Middleware: Autenticación requerida
  */
 export function withAuth(handler: ApiHandler): ApiHandler {
-  return async (req, context) => {
+  return async (req, context, params) => {
     try {
       const { userId } = await auth();
       
@@ -46,7 +48,7 @@ export function withAuth(handler: ApiHandler): ApiHandler {
       // Agregar userId al contexto
       context.userId = userId;
       
-      return await handler(req, context);
+      return await handler(req, context, params);
     } catch (error) {
       return handleApiError(error);
     }
@@ -59,7 +61,7 @@ export function withAuth(handler: ApiHandler): ApiHandler {
 export function withRateLimit(
   config: RateLimitConfig
 ): (handler: ApiHandler) => ApiHandler {
-  return (handler) => async (req, context) => {
+  return (handler) => async (req, context, params) => {
     try {
       const result = checkRateLimit(req, config);
       
@@ -74,7 +76,7 @@ export function withRateLimit(
       }
 
       // Agregar info de rate limit a headers de respuesta
-      const response = await handler(req, context);
+      const response = await handler(req, context, params);
       response.headers.set('X-RateLimit-Remaining', String(result.remaining));
       response.headers.set('X-RateLimit-Reset', String(result.resetAt));
       
@@ -91,7 +93,7 @@ export function withRateLimit(
 export function withValidation<T extends ZodSchema>(
   schema: T
 ): (handler: ApiHandler) => ApiHandler {
-  return (handler) => async (req, context) => {
+  return (handler) => async (req, context, params) => {
     try {
       const body = await req.json();
       
@@ -101,7 +103,7 @@ export function withValidation<T extends ZodSchema>(
       // Agregar datos validados al contexto
       context.body = validated;
       
-      return await handler(req, context);
+      return await handler(req, context, params);
     } catch (error) {
       return handleApiError(error);
     }
@@ -114,7 +116,7 @@ export function withValidation<T extends ZodSchema>(
 export function withQueryValidation<T extends ZodSchema>(
   schema: T
 ): (handler: ApiHandler) => ApiHandler {
-  return (handler) => async (req, context) => {
+  return (handler) => async (req, context, params) => {
     try {
       const searchParams = new URL(req.url).searchParams;
       const queryObj: any = Object.fromEntries(searchParams.entries());
@@ -134,7 +136,7 @@ export function withQueryValidation<T extends ZodSchema>(
       context.query = validated;
       context.searchParams = searchParams;
       
-      return await handler(req, context);
+      return await handler(req, context, params);
     } catch (error) {
       return handleApiError(error);
     }
@@ -145,7 +147,7 @@ export function withQueryValidation<T extends ZodSchema>(
  * Middleware: Logging de requests
  */
 export function withLogging(handler: ApiHandler): ApiHandler {
-  return async (req, context) => {
+  return async (req, context, params) => {
     const startTime = Date.now();
     const method = req.method;
     const url = new URL(req.url);
@@ -157,7 +159,7 @@ export function withLogging(handler: ApiHandler): ApiHandler {
     });
 
     try {
-      const response = await handler(req, context);
+      const response = await handler(req, context, params);
       const duration = Date.now() - startTime;
       
       logger.info('API Response', {
@@ -198,8 +200,8 @@ export function withCORS(
     credentials?: boolean;
   } = {}
 ): (handler: ApiHandler) => ApiHandler {
-  return (handler) => async (req, context) => {
-    const response = await handler(req, context);
+  return (handler) => async (req, context, params) => {
+    const response = await handler(req, context, params);
     
     // Configurar CORS headers
     const origin = Array.isArray(options.origin)
@@ -230,7 +232,7 @@ export function withCORS(
 export function withRole(
   allowedRoles: string[]
 ): (handler: ApiHandler) => ApiHandler {
-  return (handler) => async (req, context) => {
+  return (handler) => async (req, context, params) => {
     if (!context.userId) {
       throw new UnauthorizedError('Authentication required');
     }
@@ -245,7 +247,7 @@ export function withRole(
 
     context.userRole = user.role;
     
-    return await handler(req, context);
+    return await handler(req, context, params);
   };
 }
 
