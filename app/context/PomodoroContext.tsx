@@ -53,23 +53,29 @@ export function PomodoroProvider({ children }: { children: React.ReactNode }) {
 
   // Cargar estado desde localStorage al montar
   useEffect(() => {
+    let hasActiveSession = false;
     const saved = localStorage.getItem(STORAGE_KEY);
+    
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
         
-        // Si hay sesión activa, restaurar
-        if (parsed.sessionId && parsed.status === 'ACTIVE') {
+        // Si hay sesión activa o pausada, restaurar
+        if (parsed.sessionId && (parsed.status === 'ACTIVE' || parsed.status === 'PAUSED')) {
           setState(parsed);
           startTimeRef.current = Date.now() - (parsed.timeSpent * 1000);
+          hasActiveSession = true;
         }
       } catch (error) {
         console.error('Error loading Pomodoro state:', error);
       }
     }
 
-    // Recuperar sesión activa del servidor
-    loadActiveSession();
+    // Solo recuperar del servidor si hay indicios de sesión activa
+    // Esto evita llamadas innecesarias en cada página
+    if (hasActiveSession) {
+      loadActiveSession();
+    }
 
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
