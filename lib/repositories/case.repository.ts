@@ -101,11 +101,19 @@ export class CaseRepository {
 
   /**
    * Count cases with filters
-   * Used for pagination
+   * Used for pagination and stats
    */
   static async count(filters: CaseFilters = {}): Promise<number> {
     const where = this.buildWhereClause(filters);
     return prismaRO.case.count({ where });
+  }
+
+  /**
+   * Check if case exists (minimal query)
+   */
+  static async exists(caseId: string): Promise<boolean> {
+    const result = await this.findByIdMinimal(caseId);
+    return result !== null;
   }
 
   /**
@@ -148,10 +156,38 @@ export class CaseRepository {
 
   /**
    * Find all public cases (active catalog)
-   * Used for main case list
+   * Used for main case list with full details (norms, _count)
    */
   static async findAllPublic(options: PaginationOptions = {}): Promise<CaseListItem[]> {
-    return this.findMany({ isPublic: true }, options);
+    const { limit, skip, take } = options;
+    
+    const cases = await prismaRO.case.findMany({
+      where: { isPublic: true },
+      select: {
+        id: true,
+        title: true,
+        area: true,
+        modulo: true,
+        difficulty: true,
+        summary: true,
+        createdAt: true,
+        isPublic: true,
+        norms: {
+          select: {
+            name: true,
+            code: true,
+          },
+        },
+        _count: {
+          select: { questions: true },
+        },
+      },
+      orderBy: { createdAt: 'desc' },
+      skip,
+      take: take || limit,
+    });
+
+    return cases;
   }
 
   /**

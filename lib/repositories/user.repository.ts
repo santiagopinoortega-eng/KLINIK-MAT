@@ -25,6 +25,59 @@ export class UserRepository extends BaseRepository<User> {
   }
 
   /**
+   * Obtener perfil de usuario (campos seguros)
+   * Educational: Student profile for Chilean obstetrics students
+   */
+  async findProfileById(userId: string, readOnly: boolean = true) {
+    return this.executeQuery('findProfileById', async () => {
+      const client = this.getClient(readOnly);
+      return client.user.findUnique({
+        where: { id: userId },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          role: true,
+          country: true,
+          university: true,
+          yearOfStudy: true,
+          specialty: true,
+          avatar: true,
+          createdAt: true,
+        },
+      });
+    });
+  }
+
+  /**
+   * Upsert user (sync from Clerk)
+   */
+  async upsert(userData: {
+    id: string;
+    email: string;
+    name?: string;
+    avatar?: string;
+  }): Promise<User> {
+    return this.executeQuery('upsert', async () => {
+      const client = this.getClient(false); // Write operation
+      return client.user.upsert({
+        where: { id: userData.id },
+        update: {
+          email: userData.email,
+          name: userData.name,
+          avatar: userData.avatar,
+        },
+        create: {
+          id: userData.id,
+          email: userData.email,
+          name: userData.name,
+          avatar: userData.avatar,
+        },
+      });
+    });
+  }
+
+  /**
    * Buscar usuario con su suscripción activa
    */
   async findWithSubscription(userId: string, readOnly: boolean = true): Promise<UserWithRelations | null> {

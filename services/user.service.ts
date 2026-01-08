@@ -2,8 +2,13 @@
 /**
  * Servicio de gestión de usuarios
  * Maneja toda la lógica de negocio relacionada con usuarios
+ * 
+ * REFACTORED: Now uses UserRepository and ResultRepository
+ * Educational platform: Manages Chilean obstetrics student profiles and progress
  */
 
+import { userRepository, resultRepository } from '@/lib/repositories';
+import { StaticCaseRepository as CaseRepo } from '@/lib/repositories';
 import { prisma } from '@/lib/prisma';
 import { logger } from '@/lib/logger';
 import type { User, Prisma } from '@prisma/client';
@@ -13,24 +18,11 @@ export type UserProfile = Pick<User, 'id' | 'email' | 'name' | 'role' | 'country
 export class UserService {
   /**
    * Obtiene el perfil completo de un usuario
+   * Educational: Student profile with university and year data
    */
   static async getUserProfile(userId: string): Promise<UserProfile | null> {
     try {
-      const user = await prisma.user.findUnique({
-        where: { id: userId },
-        select: {
-          id: true,
-          email: true,
-          name: true,
-          role: true,
-          country: true,
-          university: true,
-          yearOfStudy: true,
-          specialty: true,
-          avatar: true,
-          createdAt: true,
-        },
-      });
+      const user = await userRepository.findProfileById(userId);
 
       if (!user) {
         logger.warn('User not found', { userId });
@@ -52,11 +44,7 @@ export class UserService {
     data: Prisma.UserUpdateInput
   ): Promise<User> {
     try {
-      const user = await prisma.user.update({
-        where: { id: userId },
-        data,
-      });
-
+      const user = await userRepository.update(userId, data);
       logger.info('User profile updated', { userId });
       return user;
     } catch (error) {
@@ -75,21 +63,7 @@ export class UserService {
     avatar?: string;
   }): Promise<User> {
     try {
-      const user = await prisma.user.upsert({
-        where: { id: userData.id },
-        update: {
-          email: userData.email,
-          name: userData.name,
-          avatar: userData.avatar,
-        },
-        create: {
-          id: userData.id,
-          email: userData.email,
-          name: userData.name,
-          avatar: userData.avatar,
-        },
-      });
-
+      const user = await userRepository.upsert(userData);
       logger.info('User synced', { userId: user.id });
       return user;
     } catch (error) {
@@ -100,48 +74,28 @@ export class UserService {
 
   /**
    * Obtiene estadísticas de progreso del usuario
+   * Educational: Critical dashboard showing student completion rates and performance
    */
   static async getUserProgress(userId: string) {
     try {
-      const [totalCases, completedCases, totalScore, avgScore] = await Promise.all([
+      const [totalCases, stats, progressByArea] = await Promise.all([
         // Total de casos disponibles
-        prisma.case.count({ where: { isPublic: true } }),
+        CaseRepo.count({ isPublic: true }),
         
-        // Casos completados por el usuario
-        prisma.studentResult.count({ where: { userId } }),
+        // Estadísticas de resultados
+        resultRepository.getUserStats(userId),
         
-        // Puntuación total
-        prisma.studentResult.aggregate({
-          where: { userId },
-          _sum: { score: true },
-        }),
-        
-        // Promedio de puntuación
-        prisma.studentResult.aggregate({
-          where: { userId },
-          _avg: { score: true },
-        }),
+        // Progreso por área
+        resultRepository.getStatsByArea(userId),
       ]);
-
-      // Calcular progreso por área
-      const progressByArea = await prisma.studentResult.groupBy({
-        by: ['caseArea'],
-        where: { userId },
-        _count: { id: true },
-        _avg: { score: true },
-      });
 
       return {
         totalCases,
-        completedCases,
-        completionPercentage: (completedCases / totalCases) * 100,
-        totalScore: totalScore._sum.score || 0,
-        averageScore: avgScore._avg.score || 0,
-        progressByArea: progressByArea.map(area => ({
-          area: area.caseArea,
-          casesCompleted: area._count.id,
-          averageScore: area._avg.score || 0,
-        })),
+        completedCases: stats.totalCases,
+        completionPercentage: (stats.totalCases / totalCases) * 100,
+        totalScore: stats.totalPoints,
+        averageScore: stats.averageScore,
+        progressByArea,
       };
     } catch (error) {
       logger.error('Failed to get user progress', { userId, error });
@@ -256,8 +210,7 @@ export class UserService {
    */
   static async userExists(userId: string): Promise<boolean> {
     try {
-      const count = await prisma.user.count({ where: { id: userId } });
-      return count > 0;
+      return await userRepository.exists(userId);
     } catch (error) {
       logger.error('Failed to check user existence', { userId, error });
       return false;
@@ -269,8 +222,7 @@ export class UserService {
    */
   static async deleteUser(userId: string): Promise<void> {
     try {
-      // Prisma maneja las cascadas automáticamente
-      await prisma.user.delete({ where: { id: userId } });
+      await userRepository.delete(userId);
       logger.info('User deleted', { userId });
     } catch (error) {
       logger.error('Failed to delete user', { userId, error });

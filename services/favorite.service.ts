@@ -7,7 +7,7 @@
  * Educational platform: Students bookmark clinical cases for later study
  */
 
-import { favoriteRepository, caseRepository } from '@/lib/repositories';
+import { favoriteRepository, casoRepository } from '@/lib/repositories';
 import { logger } from '@/lib/logger';
 import type { Favorite, Case } from '@prisma/client';
 
@@ -49,7 +49,7 @@ export class FavoriteService {
   static async addFavorite(userId: string, caseId: string): Promise<Favorite> {
     try {
       // Verificar que el caso existe usando repository
-      const caseExists = await caseRepository.exists({ id: caseId });
+      const caseExists = await casoRepository.exists({ id: caseId });
 
       if (!caseExists) {
         throw new Error('Case not found');

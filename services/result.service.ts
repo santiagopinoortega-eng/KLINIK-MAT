@@ -2,9 +2,13 @@
 /**
  * Servicio de gestión de resultados de casos
  * Maneja toda la lógica de negocio relacionada con resultados de estudiantes
+ * 
+ * REFACTORED: Now uses ResultRepository and CaseRepository
+ * Educational platform: Critical for tracking Chilean obstetrics student progress
  */
 
-import { prisma } from '@/lib/prisma';
+import { resultRepository } from '@/lib/repositories';
+import { StaticCaseRepository as CaseRepo } from '@/lib/repositories';
 import { logger } from '@/lib/logger';
 import type { StudentResult, Prisma } from '@prisma/client';
 
@@ -36,11 +40,8 @@ export class ResultService {
    */
   static async createResult(data: CreateResultData): Promise<StudentResult> {
     try {
-      // Validar que el caso existe
-      const caseExists = await prisma.case.findUnique({
-        where: { id: data.caseId },
-        select: { id: true, isPublic: true },
-      });
+      // Validar que el caso existe usando repository
+      const caseExists = await CaseRepo.findByIdMinimal(data.caseId);
 
       if (!caseExists) {
         throw new Error('Case not found');
@@ -50,35 +51,17 @@ export class ResultService {
         throw new Error('Case is not public');
       }
 
-      // Crear resultado
-      const result = await prisma.studentResult.create({
-        data: {
-          id: `result_${Date.now()}_${data.userId.slice(0, 8)}`,
-          userId: data.userId,
-          caseId: data.caseId,
-          caseTitle: data.caseTitle,
-          caseArea: data.caseArea,
-          score: data.score,
-          totalPoints: data.totalPoints,
-          mode: data.mode,
-          timeSpent: data.timeSpent,
-          timeLimit: data.timeLimit,
-          answers: data.answers || {},
-        },
-      });
-
-      // Registrar métrica de engagement
-      await prisma.engagementMetric.create({
-        data: {
-          userId: data.userId,
-          caseId: data.caseId,
-          source: 'case_completion',
-          action: 'complete',
-          sessionDuration: data.timeSpent,
-        },
-      }).catch(error => {
-        // No es crítico si falla el engagement
-        logger.warn('Failed to create engagement metric', { error });
+      // Crear resultado usando repository (sin id, Prisma lo generará)
+      const result = await resultRepository.createResult({
+        userId: data.userId,
+        caseId: data.caseId,
+        caseTitle: data.caseTitle,
+        caseArea: data.caseArea,
+        score: data.score,
+        totalPoints: data.totalPoints,
+        mode: data.mode,
+        timeSpent: data.timeSpent,
+        answers: data.answers || {},
       });
 
       logger.info('Result created', { userId: data.userId, caseId: data.caseId, score: data.score });
@@ -91,6 +74,7 @@ export class ResultService {
 
   /**
    * Obtiene todos los resultados de un usuario
+   * Educational: Student's case completion history
    */
   static async getUserResults(
     userId: string,
@@ -101,21 +85,12 @@ export class ResultService {
     }
   ): Promise<StudentResult[]> {
     try {
-      const where: Prisma.StudentResultWhereInput = { userId };
-      
-      if (options?.area) {
-        where.caseArea = options.area;
-      }
-
-      const results = await prisma.studentResult.findMany({
-        where,
-        orderBy: options?.sortBy === 'score' 
-          ? { score: 'desc' }
-          : { completedAt: 'desc' },
-        take: options?.limit || 50,
+      const result = await resultRepository.getUserResults({
+        userId,
+        caseArea: options?.area,
+        limit: options?.limit || 50,
       });
-
-      return results;
+      return result.results;
     } catch (error) {
       logger.error('Failed to get user results', { userId, error });
       throw error;
@@ -127,12 +102,7 @@ export class ResultService {
    */
   static async getBestResult(userId: string, caseId: string): Promise<StudentResult | null> {
     try {
-      const result = await prisma.studentResult.findFirst({
-        where: { userId, caseId },
-        orderBy: { score: 'desc' },
-      });
-
-      return result;
+      return await resultRepository.getBestResult(userId, caseId);
     } catch (error) {
       logger.error('Failed to get best result', { userId, caseId, error });
       return null;
@@ -141,35 +111,12 @@ export class ResultService {
 
   /**
    * Obtiene estadísticas de resultados de un usuario
+   * Educational: Critical metrics for student progress tracking
    */
   static async getUserStats(userId: string, area?: string): Promise<ResultStats> {
     try {
-      const where: Prisma.StudentResultWhereInput = { userId };
-      if (area) where.caseArea = area;
-
-      const [count, aggregate, timeAggregate] = await Promise.all([
-        prisma.studentResult.count({ where }),
-        prisma.studentResult.aggregate({
-          where,
-          _avg: { score: true },
-          _sum: { totalPoints: true },
-          _max: { score: true },
-          _min: { score: true },
-        }),
-        prisma.studentResult.aggregate({
-          where: { ...where, timeSpent: { not: null } },
-          _avg: { timeSpent: true },
-        }),
-      ]);
-
-      return {
-        totalCases: count,
-        averageScore: aggregate._avg.score || 0,
-        totalPoints: aggregate._sum.totalPoints || 0,
-        bestScore: aggregate._max.score || 0,
-        worstScore: aggregate._min.score || 0,
-        timeAverage: timeAggregate._avg.timeSpent || 0,
-      };
+      const stats = await resultRepository.getUserStats(userId);
+      return stats;
     } catch (error) {
       logger.error('Failed to get user stats', { userId, error });
       throw error;
@@ -178,23 +125,11 @@ export class ResultService {
 
   /**
    * Obtiene estadísticas por área
+   * Educational: Shows student performance by obstetrics topic
    */
   static async getStatsByArea(userId: string) {
     try {
-      const stats = await prisma.studentResult.groupBy({
-        by: ['caseArea'],
-        where: { userId },
-        _count: { id: true },
-        _avg: { score: true },
-        _sum: { totalPoints: true },
-      });
-
-      return stats.map(stat => ({
-        area: stat.caseArea,
-        casesCompleted: stat._count.id,
-        averageScore: stat._avg.score || 0,
-        totalPoints: stat._sum.totalPoints || 0,
-      }));
+      return await resultRepository.getStatsByArea(userId);
     } catch (error) {
       logger.error('Failed to get stats by area', { userId, error });
       return [];
@@ -206,12 +141,7 @@ export class ResultService {
    */
   static async getCaseHistory(userId: string, caseId: string): Promise<StudentResult[]> {
     try {
-      const results = await prisma.studentResult.findMany({
-        where: { userId, caseId },
-        orderBy: { completedAt: 'desc' },
-      });
-
-      return results;
+      return await resultRepository.getCaseHistory(userId, caseId);
     } catch (error) {
       logger.error('Failed to get case history', { userId, caseId, error });
       return [];
@@ -223,11 +153,7 @@ export class ResultService {
    */
   static async hasCompletedCase(userId: string, caseId: string): Promise<boolean> {
     try {
-      const count = await prisma.studentResult.count({
-        where: { userId, caseId },
-      });
-
-      return count > 0;
+      return await resultRepository.hasCompletedCase(userId, caseId);
     } catch (error) {
       logger.error('Failed to check case completion', { userId, caseId, error });
       return false;
@@ -236,31 +162,14 @@ export class ResultService {
 
   /**
    * Obtiene el ranking de usuarios por puntuación
+   * Educational: Leaderboard for Chilean medical students
    */
   static async getLeaderboard(options?: {
     area?: string;
     limit?: number;
   }): Promise<Array<{ userId: string; totalScore: number; casesCompleted: number }>> {
     try {
-      const where: Prisma.StudentResultWhereInput = {};
-      if (options?.area) where.caseArea = options.area;
-
-      const leaderboard = await prisma.studentResult.groupBy({
-        by: ['userId'],
-        where,
-        _count: { id: true },
-        _sum: { score: true },
-        orderBy: {
-          _sum: { score: 'desc' },
-        },
-        take: options?.limit || 20,
-      });
-
-      return leaderboard.map(entry => ({
-        userId: entry.userId,
-        totalScore: entry._sum.score || 0,
-        casesCompleted: entry._count.id,
-      }));
+      return await resultRepository.getLeaderboard(options?.area, options?.limit);
     } catch (error) {
       logger.error('Failed to get leaderboard', { error });
       return [];
@@ -272,10 +181,7 @@ export class ResultService {
    */
   static async deleteUserResults(userId: string): Promise<number> {
     try {
-      const result = await prisma.studentResult.deleteMany({
-        where: { userId },
-      });
-
+      const result = await resultRepository.deleteUserResults(userId);
       logger.info('User results deleted', { userId, count: result.count });
       return result.count;
     } catch (error) {
@@ -289,13 +195,11 @@ export class ResultService {
    */
   static async getRecentResults(userId: string, limit: number = 10): Promise<StudentResult[]> {
     try {
-      const results = await prisma.studentResult.findMany({
-        where: { userId },
-        orderBy: { completedAt: 'desc' },
-        take: limit,
+      const result = await resultRepository.getUserResults({
+        userId,
+        limit,
       });
-
-      return results;
+      return result.results;
     } catch (error) {
       logger.error('Failed to get recent results', { userId, error });
       return [];

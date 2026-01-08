@@ -2,9 +2,18 @@
 /**
  * Servicio de gestión de suscripciones
  * Maneja toda la lógica de negocio relacionada con planes y suscripciones
+ * 
+ * REFACTORED: Now uses subscription repositories
+ * Educational platform: Manages payment plans and access control for Chilean students
  */
 
-import { prisma } from '@/lib/prisma';
+import {
+  subscriptionRepository,
+  subscriptionPlanRepository,
+  couponRepository,
+  paymentRepository,
+  usageRecordRepository,
+} from '@/lib/repositories';
 import { logger } from '@/lib/logger';
 import { preApprovalClient, preferenceClient, MERCADOPAGO_URLS } from '@/lib/mercadopago';
 import type { SubscriptionPlan, Subscription, User, Coupon } from '@prisma/client';
@@ -12,32 +21,22 @@ import type { SubscriptionPlan, Subscription, User, Coupon } from '@prisma/clien
 export class SubscriptionService {
   /**
    * Obtiene todos los planes activos
+   * Educational: Shows available subscription tiers (Free, Premium) for Chilean students
    */
   static async getActivePlans() {
-    return await prisma.subscriptionPlan.findMany({
-      where: { isActive: true },
-      orderBy: { price: 'asc' },
-    });
+    return await subscriptionPlanRepository.findAllActive();
   }
 
   /**
    * Obtiene la suscripción activa de un usuario
    */
   static async getUserSubscription(userId: string) {
-    return await prisma.subscription.findFirst({
-      where: {
-        userId,
-        status: { in: ['ACTIVE', 'TRIALING'] },
-      },
-      include: {
-        plan: true,
-      },
-      orderBy: { createdAt: 'desc' },
-    });
+    return await subscriptionRepository.findActiveByUser(userId);
   }
 
   /**
    * Verifica si un usuario puede acceder a una característica
+   * Educational: Controls access to premium features for students
    */
   static async canAccessFeature(
     userId: string,
@@ -47,9 +46,7 @@ export class SubscriptionService {
 
     if (!subscription) {
       // Sin suscripción = solo acceso FREE
-      const freePlan = await prisma.subscriptionPlan.findUnique({
-        where: { name: 'FREE' },
-      });
+      const freePlan = await subscriptionPlanRepository.findByName('FREE');
       const features = freePlan?.features as Record<string, unknown> | null;
       return features?.[feature] === true;
     }
@@ -69,6 +66,7 @@ export class SubscriptionService {
 
   /**
    * Verifica límites de uso (ej: casos por mes)
+   * Educational: Enforces case limits for Free tier students
    */
   static async checkUsageLimit(
     userId: string,
@@ -78,9 +76,7 @@ export class SubscriptionService {
     
     if (!subscription) {
       // Plan FREE
-      const freePlan = await prisma.subscriptionPlan.findUnique({
-        where: { name: 'FREE' },
-      });
+      const freePlan = await subscriptionPlanRepository.findByName('FREE');
       const limit = freePlan?.maxCasesPerMonth || 10;
       
       // Contar uso del mes actual
@@ -88,12 +84,10 @@ export class SubscriptionService {
       startOfMonth.setDate(1);
       startOfMonth.setHours(0, 0, 0, 0);
       
-      const used = await prisma.usageRecord.count({
-        where: {
-          userId,
-          resourceType,
-          recordedAt: { gte: startOfMonth },
-        },
+      const used = await usageRecordRepository.count({
+        userId,
+        resourceType,
+        recordedAt: { gte: startOfMonth },
       });
 
       return {
@@ -112,14 +106,12 @@ export class SubscriptionService {
     }
 
     // Contar uso del período actual
-    const used = await prisma.usageRecord.count({
-      where: {
-        userId,
-        subscriptionId: subscription.id,
-        resourceType,
-        billingPeriodStart: { lte: new Date() },
-        billingPeriodEnd: { gte: new Date() },
-      },
+    const used = await usageRecordRepository.count({
+      userId,
+      subscriptionId: subscription.id,
+      resourceType,
+      billingPeriodStart: { lte: new Date() },
+      billingPeriodEnd: { gte: new Date() },
     });
 
     return {
@@ -131,6 +123,7 @@ export class SubscriptionService {
 
   /**
    * Registra uso de un recurso
+   * Educational: Tracks case completions and AI usage for billing
    */
   static async recordUsage(
     userId: string,
@@ -143,21 +136,20 @@ export class SubscriptionService {
     const billingPeriodStart = subscription?.currentPeriodStart || new Date();
     const billingPeriodEnd = subscription?.currentPeriodEnd || new Date();
 
-    return await prisma.usageRecord.create({
-      data: {
-        userId,
-        subscriptionId: subscription?.id,
-        resourceType,
-        quantity,
-        billingPeriodStart,
-        billingPeriodEnd,
-        metadata,
-      },
+    return await usageRecordRepository.create({
+      userId,
+      subscriptionId: subscription?.id,
+      resourceType,
+      quantity,
+      billingPeriodStart,
+      billingPeriodEnd,
+      metadata,
     });
   }
 
   /**
    * Crea una preferencia de pago para suscripción en Mercado Pago
+   * Educational: Handles payment integration for Chilean students via Mercado Pago
    */
   static async createSubscriptionPayment(
     userId: string,
@@ -165,11 +157,14 @@ export class SubscriptionService {
     couponCode?: string
   ) {
     logger.debug('Looking for user', { userId });
-    const user = await prisma.user.findUnique({ where: { id: userId } });
+    // Note: User lookup still uses userRepository which would need to be imported
+    // For now, keeping direct import to avoid circular dependency
+    const { userRepository } = await import('@/lib/repositories');
+    const user = await userRepository.findById(userId);
     logger.debug('User lookup result', { found: !!user, email: user?.email });
     
     logger.debug('Looking for plan', { planId });
-    const plan = await prisma.subscriptionPlan.findUnique({ where: { id: planId } });
+    const plan = await subscriptionPlanRepository.findById(planId);
     logger.debug('Plan lookup result', { found: !!plan, name: plan?.displayName });
 
     if (!user || !plan) {
@@ -292,20 +287,14 @@ export class SubscriptionService {
 
   /**
    * Valida y retorna un cupón si es válido
+   * Educational: Supports promotional codes for student discounts
    */
   private static async validateCoupon(
     code: string,
     planId: string,
     userId: string
   ): Promise<Coupon | null> {
-    const coupon = await prisma.coupon.findFirst({
-      where: {
-        code: code.toUpperCase(),
-        isActive: true,
-        validFrom: { lte: new Date() },
-        validUntil: { gte: new Date() },
-      },
-    });
+    const coupon = await couponRepository.findByCode(code.toUpperCase());
 
     if (!coupon) return null;
 
@@ -321,10 +310,11 @@ export class SubscriptionService {
 
     // Verificar si es solo primera compra
     if (coupon.firstPurchaseOnly) {
-      const hasPreviousPurchase = await prisma.payment.findFirst({
-        where: { userId, status: 'APPROVED' },
+      const approvedCount = await paymentRepository.count({
+        userId,
+        status: 'APPROVED',
       });
-      if (hasPreviousPurchase) return null;
+      if (approvedCount > 0) return null;
     }
 
     return coupon;
@@ -343,6 +333,7 @@ export class SubscriptionService {
 
   /**
    * Activa una suscripción después de pago exitoso
+   * Educational: Grants premium access after successful payment
    */
   static async activateSubscription(
     userId: string,
@@ -350,7 +341,7 @@ export class SubscriptionService {
     mpPreapprovalId?: string,
     mpPaymentId?: string
   ) {
-    const plan = await prisma.subscriptionPlan.findUnique({ where: { id: planId } });
+    const plan = await subscriptionPlanRepository.findById(planId);
     if (!plan) throw new Error('Plan not found');
 
     const now = new Date();
@@ -379,31 +370,28 @@ export class SubscriptionService {
       trialEnd.setDate(trialEnd.getDate() + plan.trialDays);
     }
 
-    return await prisma.subscription.create({
-      data: {
-        userId,
-        planId,
-        status: plan.trialDays > 0 ? 'TRIALING' : 'ACTIVE',
-        currentPeriodStart: now,
-        currentPeriodEnd: periodEnd,
-        trialStart,
-        trialEnd,
-        mpPreapprovalId,
-      },
+    return await subscriptionRepository.create({
+      userId,
+      planId,
+      status: plan.trialDays > 0 ? 'TRIALING' : 'ACTIVE',
+      currentPeriodStart: now,
+      currentPeriodEnd: periodEnd,
+      trialStart,
+      trialEnd,
+      mpPreapprovalId,
     });
   }
 
   /**
    * Cancela una suscripción
+   * Educational: Allows students to cancel premium subscription
    */
   static async cancelSubscription(
     subscriptionId: string,
     cancelAtPeriodEnd: boolean = true,
     reason?: string
   ) {
-    const subscription = await prisma.subscription.findUnique({
-      where: { id: subscriptionId },
-    });
+    const subscription = await subscriptionRepository.findById(subscriptionId);
 
     if (!subscription) throw new Error('Subscription not found');
 
@@ -426,14 +414,11 @@ export class SubscriptionService {
       }
     }
 
-    return await prisma.subscription.update({
-      where: { id: subscriptionId },
-      data: {
-        status: cancelAtPeriodEnd ? 'ACTIVE' : 'CANCELED',
-        cancelAtPeriodEnd,
-        canceledAt: new Date(),
-        cancelReason: reason,
-      },
+    return await subscriptionRepository.update(subscriptionId, {
+      status: cancelAtPeriodEnd ? 'ACTIVE' : 'CANCELED',
+      cancelAtPeriodEnd,
+      canceledAt: new Date(),
+      cancelReason: reason,
     });
   }
 
@@ -441,9 +426,8 @@ export class SubscriptionService {
    * Marca una suscripción como expirada
    */
   private static async expireSubscription(subscriptionId: string) {
-    return await prisma.subscription.update({
-      where: { id: subscriptionId },
-      data: { status: 'EXPIRED' },
+    return await subscriptionRepository.update(subscriptionId, {
+      status: 'EXPIRED',
     });
   }
 }
