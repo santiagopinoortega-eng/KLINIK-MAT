@@ -158,6 +158,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <main id="contenido" className="min-h-[70vh] animate-fade-in transition-all duration-300">
               {children}
             </main>
+            
+            {/* Floating Pomodoro Widget - Debe estar dentro del Provider */}
+            <FloatingPomodoroWidget />
           </PomodoroProvider>
         </FavoritesProvider>
 
@@ -166,9 +169,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         {/* Cookie Banner */}
         <CookieBanner />
-
-        {/* Floating Pomodoro Widget */}
-        <FloatingPomodoroWidget />
 
         {/* CSRF Token Initialization */}
         <CsrfInitializer />
