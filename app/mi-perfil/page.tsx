@@ -98,7 +98,7 @@ export default function MiPerfilPage() {
       const response = await fetch('/api/profile');
       const data = await response.json();
 
-      if (data.success) {
+      if (data.success && data.user) {
         setProfile(data.user);
         setFormData({
           country: data.user.country || 'Chile',
@@ -119,12 +119,26 @@ export default function MiPerfilPage() {
     setSaving(true);
 
     try {
-      const result = await patchJSON('/api/profile', {
-        country: formData.country || null,
-        university: formData.university || null,
-        yearOfStudy: formData.yearOfStudy ? parseInt(formData.yearOfStudy.toString()) : null,
-        specialty: formData.specialty || null,
-      });
+      // Construir objeto solo con campos que tienen valor
+      const updateData: any = {};
+      
+      if (formData.country?.trim()) {
+        updateData.country = formData.country.trim();
+      }
+      
+      if (formData.university?.trim()) {
+        updateData.university = formData.university.trim();
+      }
+      
+      if (formData.yearOfStudy) {
+        updateData.yearOfStudy = parseInt(formData.yearOfStudy.toString());
+      }
+      
+      if (formData.specialty?.trim()) {
+        updateData.specialty = formData.specialty.trim();
+      }
+
+      const result = await patchJSON('/api/profile', updateData);
 
       if (result.ok && result.data?.success) {
         setProfile(result.data.user);

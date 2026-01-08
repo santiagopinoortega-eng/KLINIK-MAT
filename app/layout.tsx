@@ -14,9 +14,11 @@ const Header = dynamic(() => import('./components/Header'), { ssr: true });
 const Footer = dynamic(() => import('./components/Footer'), { ssr: true });
 const CsrfInitializer = dynamic(() => import('./components/CsrfInitializer'), { ssr: false });
 const CookieBanner = dynamic(() => import('./components/CookieBanner'), { ssr: false });
+const FloatingPomodoroWidget = dynamic(() => import('./components/FloatingPomodoroWidget'), { ssr: false });
 
 import { WebsiteStructuredData, OrganizationStructuredData, EducationalOrganizationStructuredData } from './components/StructuredData';
 import { FavoritesProvider } from './context/FavoritesContext';
+import { PomodoroProvider } from './context/PomodoroContext';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -152,9 +154,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         {/* Contenido Principal */}
         <FavoritesProvider>
-          <main id="contenido" className="min-h-[70vh] animate-fade-in transition-all duration-300">
-            {children}
-          </main>
+          <PomodoroProvider>
+            <main id="contenido" className="min-h-[70vh] animate-fade-in transition-all duration-300">
+              {children}
+            </main>
+          </PomodoroProvider>
         </FavoritesProvider>
 
         {/* Footer con nuevo componente */}
@@ -162,6 +166,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         {/* Cookie Banner */}
         <CookieBanner />
+
+        {/* Floating Pomodoro Widget */}
+        <FloatingPomodoroWidget />
 
         {/* CSRF Token Initialization */}
         <CsrfInitializer />

@@ -21,6 +21,7 @@
 export { BaseRepository } from './base.repository';
 export { UserRepository, userRepository } from './user.repository';
 export { ResultRepository, resultRepository } from './result.repository';
+export { PomodoroRepository, pomodoroRepository } from './pomodoro.repository';
 export { CaseRepository, caseRepository as casoRepository } from './caso.repository';
 export { CaseRepository as StaticCaseRepository } from './case.repository';
 export { FavoriteRepository, favoriteRepository } from './favorite.repository';

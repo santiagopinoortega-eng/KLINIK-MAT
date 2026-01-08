@@ -188,7 +188,12 @@ export default function WordSearch({ category }: WordSearchProps) {
     setStartCell({row, col});
     setSelectedCells(new Set([`${row},${col}`]));
   };
-
+  const handleTouchStart = (row: number, col: number, e: React.TouchEvent) => {
+    e.preventDefault();
+    setIsSelecting(true);
+    setStartCell({ row, col });
+    setSelectedCells(new Set([`${row},${col}`]));
+  };
   const handleMouseEnter = (row: number, col: number) => {
     if (!isSelecting || !startCell) return;
     
@@ -220,6 +225,21 @@ export default function WordSearch({ category }: WordSearchProps) {
     }
     
     setSelectedCells(newSelected);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isSelecting || !startCell) return;
+    e.preventDefault();
+    
+    const touch = e.touches[0];
+    const element = document.elementFromPoint(touch.clientX, touch.clientY);
+    if (!element) return;
+    
+    const cellData = element.getAttribute('data-cell');
+    if (!cellData) return;
+    
+    const [row, col] = cellData.split(',').map(Number);
+    handleMouseEnter(row, col);
   };
 
   const handleMouseUp = async () => {
@@ -354,9 +374,11 @@ export default function WordSearch({ category }: WordSearchProps) {
         {/* Grid de búsqueda */}
         <div className="lg:col-span-3">
           <div 
-            className="inline-grid gap-1 select-none bg-gradient-to-br from-gray-50 to-gray-100 p-4 rounded-xl border-2 border-gray-200"
+            className="inline-grid gap-1 select-none bg-gradient-to-br from-gray-50 to-gray-100 p-2 sm:p-4 rounded-xl border-2 border-gray-200 max-w-full overflow-x-auto"
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseUp}
+            onTouchEnd={handleMouseUp}
+            onTouchMove={handleTouchMove}
           >
             {grid.map((row, rowIndex) => (
               <div key={rowIndex} className="flex gap-1">
@@ -368,9 +390,10 @@ export default function WordSearch({ category }: WordSearchProps) {
                   return (
                     <div
                       key={colIndex}
+                      data-cell={`${rowIndex},${colIndex}`}
                       className={`
-                        w-8 h-8 flex items-center justify-center font-bold text-sm
-                        rounded cursor-pointer transition-all
+                        w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center font-bold text-xs sm:text-sm
+                        rounded cursor-pointer transition-all touch-none
                         ${isFound 
                           ? 'bg-gradient-to-br from-green-400 to-emerald-500 text-white shadow-md scale-105 border-2 border-green-500' 
                           : isSelected 
@@ -380,6 +403,7 @@ export default function WordSearch({ category }: WordSearchProps) {
                       `}
                       onMouseDown={() => handleMouseDown(rowIndex, colIndex)}
                       onMouseEnter={() => handleMouseEnter(rowIndex, colIndex)}
+                      onTouchStart={(e) => handleTouchStart(rowIndex, colIndex, e)}
                     >
                       {cell}
                     </div>
@@ -389,7 +413,7 @@ export default function WordSearch({ category }: WordSearchProps) {
             ))}
           </div>
           <p className="text-xs text-gray-500 mt-3 text-center">
-            💡 Arrastra el mouse para seleccionar palabras (horizontal o vertical)
+            💡 <span className="hidden sm:inline">Arrastra el mouse</span><span className="sm:hidden">Desliza tu dedo</span> para seleccionar palabras (horizontal, vertical o diagonal)
           </p>
         </div>
 

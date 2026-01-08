@@ -1,0 +1,237 @@
+
+> klinikmat@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.33
+  - Local:        http://localhost:3000
+  - Environments: .env.local, .env
+
+ ✓ Starting...
+ ✓ Ready in 2.3s
+ ✓ Compiled /middleware in 222ms (233 modules)
+ ○ Compiling /api/health ...
+ ⚠ ./node_modules/require-in-the-middle/index.js
+Critical dependency: require function is used in a way in which dependencies cannot be statically extracted
+
+Import trace for requested module:
+./node_modules/require-in-the-middle/index.js
+./node_modules/@opentelemetry/instrumentation/build/esm/platform/node/instrumentation.js
+./node_modules/@opentelemetry/instrumentation/build/esm/platform/node/index.js
+./node_modules/@opentelemetry/instrumentation/build/esm/platform/index.js
+./node_modules/@opentelemetry/instrumentation/build/esm/index.js
+./node_modules/@sentry/node/build/cjs/integrations/tracing/postgresjs.js
+./node_modules/@sentry/node/build/cjs/index.js
+./node_modules/@sentry/nextjs/build/cjs/index.server.js
+./lib/logger.ts
+./app/api/health/route.ts
+✅ [INFO] API Request { method: 'GET', path: '/api/health', userId: undefined }
+prisma:query BEGIN
+prisma:query DEALLOCATE ALL
+prisma:query SELECT 1 as health
+prisma:query COMMIT
+✅ [INFO] API Response {
+  method: 'GET',
+  path: '/api/health',
+  status: 200,
+  duration: '2148ms',
+  userId: undefined
+}
+ GET /api/health 200 in 3855ms
+ ⚠ ./node_modules/require-in-the-middle/index.js
+Critical dependency: require function is used in a way in which dependencies cannot be statically extracted
+
+Import trace for requested module:
+./node_modules/require-in-the-middle/index.js
+./node_modules/@opentelemetry/instrumentation/build/esm/platform/node/instrumentation.js
+./node_modules/@opentelemetry/instrumentation/build/esm/platform/node/index.js
+./node_modules/@opentelemetry/instrumentation/build/esm/platform/index.js
+./node_modules/@opentelemetry/instrumentation/build/esm/index.js
+./node_modules/@sentry/node/build/cjs/integrations/tracing/postgresjs.js
+./node_modules/@sentry/node/build/cjs/index.js
+./node_modules/@sentry/nextjs/build/cjs/index.server.js
+./lib/logger.ts
+./app/api/health/route.ts
+ ⚠ ./node_modules/require-in-the-middle/index.js
+Critical dependency: require function is used in a way in which dependencies cannot be statically extracted
+
+Import trace for requested module:
+./node_modules/require-in-the-middle/index.js
+./node_modules/@opentelemetry/instrumentation/build/esm/platform/node/instrumentation.js
+./node_modules/@opentelemetry/instrumentation/build/esm/platform/node/index.js
+./node_modules/@opentelemetry/instrumentation/build/esm/platform/index.js
+./node_modules/@opentelemetry/instrumentation/build/esm/index.js
+./node_modules/@sentry/node/build/cjs/integrations/tracing/postgresjs.js
+./node_modules/@sentry/node/build/cjs/index.js
+./node_modules/@sentry/nextjs/build/cjs/index.server.js
+./lib/logger.ts
+./app/api/health/route.ts
+[RedisCache] ⚠️  No Upstash credentials found, caching disabled
+[Cache] 💾 Using Memory (Fallback)
+✅ [INFO] API Request { method: 'GET', path: '/api/cases', userId: undefined }
+prisma:query BEGIN
+prisma:query DEALLOCATE ALL
+prisma:query SELECT "public"."cases"."id", "public"."cases"."title", "public"."cases"."area", "public"."cases"."modulo", "public"."cases"."difficulty", "public"."cases"."summary", "public"."cases"."created_at", "public"."cases"."isPublic", COALESCE("aggr_selection_0_Question"."_aggr_count_questions", 0) AS "_aggr_count_questions" FROM "public"."cases" LEFT JOIN (SELECT "public"."questions"."case_id", COUNT(*) AS "_aggr_count_questions" FROM "public"."questions" WHERE 1=1 GROUP BY "public"."questions"."case_id") AS "aggr_selection_0_Question" ON ("public"."cases"."id" = "aggr_selection_0_Question"."case_id") WHERE "public"."cases"."isPublic" = $1 ORDER BY "public"."cases"."created_at" DESC LIMIT $2 OFFSET $3
+prisma:query SELECT "public"."_CaseNorms"."A", "public"."_CaseNorms"."B" FROM "public"."_CaseNorms" WHERE "public"."_CaseNorms"."A" IN ($1)
+prisma:query COMMIT
+prisma:query BEGIN
+prisma:query DEALLOCATE ALL
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."cases"."id" FROM "public"."cases" WHERE "public"."cases"."isPublic" = $1 OFFSET $2) AS "sub"
+prisma:query COMMIT
+✅ [INFO] API Response {
+  method: 'GET',
+  path: '/api/cases',
+  status: 200,
+  duration: '1622ms',
+  userId: undefined
+}
+ GET /api/cases?limit=3 200 in 2320ms
+✅ [INFO] API Request { method: 'GET', path: '/api/cases', userId: undefined }
+prisma:query BEGIN
+prisma:query SELECT 1
+prisma:query DEALLOCATE ALL
+prisma:query BEGIN
+prisma:query DEALLOCATE ALL
+prisma:query SELECT "public"."cases"."id", "public"."cases"."title", "public"."cases"."area", "public"."cases"."modulo", "public"."cases"."difficulty", "public"."cases"."summary", "public"."cases"."created_at", "public"."cases"."isPublic", COALESCE("aggr_selection_0_Question"."_aggr_count_questions", 0) AS "_aggr_count_questions" FROM "public"."cases" LEFT JOIN (SELECT "public"."questions"."case_id", COUNT(*) AS "_aggr_count_questions" FROM "public"."questions" WHERE 1=1 GROUP BY "public"."questions"."case_id") AS "aggr_selection_0_Question" ON ("public"."cases"."id" = "aggr_selection_0_Question"."case_id") WHERE "public"."cases"."isPublic" = $1 ORDER BY "public"."cases"."created_at" DESC LIMIT $2 OFFSET $3
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."cases"."id" FROM "public"."cases" WHERE "public"."cases"."isPublic" = $1 OFFSET $2) AS "sub"
+prisma:query SELECT "public"."_CaseNorms"."A", "public"."_CaseNorms"."B" FROM "public"."_CaseNorms" WHERE "public"."_CaseNorms"."A" IN ($1)
+prisma:query COMMIT
+prisma:query COMMIT
+✅ [INFO] API Response {
+  method: 'GET',
+  path: '/api/cases',
+  status: 200,
+  duration: '971ms',
+  userId: undefined
+}
+ GET /api/cases 200 in 982ms
+ ⚠ ./node_modules/require-in-the-middle/index.js
+Critical dependency: require function is used in a way in which dependencies cannot be statically extracted
+
+Import trace for requested module:
+./node_modules/require-in-the-middle/index.js
+./node_modules/@opentelemetry/instrumentation/build/esm/platform/node/instrumentation.js
+./node_modules/@opentelemetry/instrumentation/build/esm/platform/node/index.js
+./node_modules/@opentelemetry/instrumentation/build/esm/platform/index.js
+./node_modules/@opentelemetry/instrumentation/build/esm/index.js
+./node_modules/@sentry/node/build/cjs/integrations/tracing/postgresjs.js
+./node_modules/@sentry/node/build/cjs/index.js
+./node_modules/@sentry/nextjs/build/cjs/index.server.js
+./lib/logger.ts
+./app/api/health/route.ts
+ ⚠ ./node_modules/require-in-the-middle/index.js
+Critical dependency: require function is used in a way in which dependencies cannot be statically extracted
+
+Import trace for requested module:
+./node_modules/require-in-the-middle/index.js
+./node_modules/@opentelemetry/instrumentation/build/esm/platform/node/instrumentation.js
+./node_modules/@opentelemetry/instrumentation/build/esm/platform/node/index.js
+./node_modules/@opentelemetry/instrumentation/build/esm/platform/index.js
+./node_modules/@opentelemetry/instrumentation/build/esm/index.js
+./node_modules/@sentry/node/build/cjs/integrations/tracing/postgresjs.js
+./node_modules/@sentry/node/build/cjs/index.js
+./node_modules/@sentry/nextjs/build/cjs/index.server.js
+./lib/logger.ts
+./app/api/health/route.ts
+✅ [INFO] API Request { method: 'GET', path: '/api/subscription/plans', userId: undefined }
+prisma:query BEGIN
+prisma:query DEALLOCATE ALL
+prisma:query SELECT "public"."subscription_plans"."id", "public"."subscription_plans"."name", "public"."subscription_plans"."displayName", "public"."subscription_plans"."description", "public"."subscription_plans"."price", "public"."subscription_plans"."currency", "public"."subscription_plans"."billingPeriod"::text, "public"."subscription_plans"."trialDays", "public"."subscription_plans"."isActive", "public"."subscription_plans"."features", "public"."subscription_plans"."maxCasesPerMonth", "public"."subscription_plans"."maxStudents", "public"."subscription_plans"."hasAI", "public"."subscription_plans"."hasAdvancedStats", "public"."subscription_plans"."hasPrioritySupport", "public"."subscription_plans"."mp_preapproval_plan_id", "public"."subscription_plans"."created_at", "public"."subscription_plans"."updated_at" FROM "public"."subscription_plans" WHERE "public"."subscription_plans"."isActive" = $1 ORDER BY "public"."subscription_plans"."price" ASC OFFSET $2
+prisma:query COMMIT
+✅ [INFO] API Response {
+  method: 'GET',
+  path: '/api/subscription/plans',
+  status: 200,
+  duration: '743ms',
+  userId: undefined
+}
+ GET /api/subscription/plans 200 in 1672ms
+[RedisCache] ⚠️  No Upstash credentials found, caching disabled
+[Cache] 💾 Using Memory (Fallback)
+✅ [INFO] API Request { method: 'GET', path: '/api/cases', userId: undefined }
+prisma:query SELECT 1
+prisma:query SELECT 1
+prisma:query BEGIN
+prisma:query BEGIN
+prisma:query DEALLOCATE ALL
+prisma:query DEALLOCATE ALL
+prisma:query SELECT "public"."cases"."id", "public"."cases"."title", "public"."cases"."area", "public"."cases"."modulo", "public"."cases"."difficulty", "public"."cases"."summary", "public"."cases"."created_at", "public"."cases"."isPublic", COALESCE("aggr_selection_0_Question"."_aggr_count_questions", 0) AS "_aggr_count_questions" FROM "public"."cases" LEFT JOIN (SELECT "public"."questions"."case_id", COUNT(*) AS "_aggr_count_questions" FROM "public"."questions" WHERE 1=1 GROUP BY "public"."questions"."case_id") AS "aggr_selection_0_Question" ON ("public"."cases"."id" = "aggr_selection_0_Question"."case_id") WHERE "public"."cases"."isPublic" = $1 ORDER BY "public"."cases"."created_at" DESC LIMIT $2 OFFSET $3
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."cases"."id" FROM "public"."cases" WHERE "public"."cases"."isPublic" = $1 OFFSET $2) AS "sub"
+prisma:query COMMIT
+prisma:query SELECT "public"."_CaseNorms"."A", "public"."_CaseNorms"."B" FROM "public"."_CaseNorms" WHERE "public"."_CaseNorms"."A" IN ($1)
+prisma:query COMMIT
+✅ [INFO] API Response {
+  method: 'GET',
+  path: '/api/cases',
+  status: 200,
+  duration: '1130ms',
+  userId: undefined
+}
+ GET /api/cases?limit=3 200 in 1159ms
+✅ [INFO] API Request { method: 'GET', path: '/api/cases', userId: undefined }
+prisma:query BEGIN
+prisma:query BEGIN
+prisma:query DEALLOCATE ALL
+prisma:query DEALLOCATE ALL
+prisma:query SELECT "public"."cases"."id", "public"."cases"."title", "public"."cases"."area", "public"."cases"."modulo", "public"."cases"."difficulty", "public"."cases"."summary", "public"."cases"."created_at", "public"."cases"."isPublic", COALESCE("aggr_selection_0_Question"."_aggr_count_questions", 0) AS "_aggr_count_questions" FROM "public"."cases" LEFT JOIN (SELECT "public"."questions"."case_id", COUNT(*) AS "_aggr_count_questions" FROM "public"."questions" WHERE 1=1 GROUP BY "public"."questions"."case_id") AS "aggr_selection_0_Question" ON ("public"."cases"."id" = "aggr_selection_0_Question"."case_id") WHERE "public"."cases"."isPublic" = $1 ORDER BY "public"."cases"."created_at" DESC LIMIT $2 OFFSET $3
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."cases"."id" FROM "public"."cases" WHERE "public"."cases"."isPublic" = $1 OFFSET $2) AS "sub"
+prisma:query COMMIT
+prisma:query SELECT "public"."_CaseNorms"."A", "public"."_CaseNorms"."B" FROM "public"."_CaseNorms" WHERE "public"."_CaseNorms"."A" IN ($1)
+prisma:query COMMIT
+✅ [INFO] API Response {
+  method: 'GET',
+  path: '/api/cases',
+  status: 200,
+  duration: '1033ms',
+  userId: undefined
+}
+ GET /api/cases 200 in 1046ms
+✅ [INFO] API Request { method: 'GET', path: '/api/subscription/plans', userId: undefined }
+prisma:query BEGIN
+prisma:query DEALLOCATE ALL
+prisma:query SELECT "public"."subscription_plans"."id", "public"."subscription_plans"."name", "public"."subscription_plans"."displayName", "public"."subscription_plans"."description", "public"."subscription_plans"."price", "public"."subscription_plans"."currency", "public"."subscription_plans"."billingPeriod"::text, "public"."subscription_plans"."trialDays", "public"."subscription_plans"."isActive", "public"."subscription_plans"."features", "public"."subscription_plans"."maxCasesPerMonth", "public"."subscription_plans"."maxStudents", "public"."subscription_plans"."hasAI", "public"."subscription_plans"."hasAdvancedStats", "public"."subscription_plans"."hasPrioritySupport", "public"."subscription_plans"."mp_preapproval_plan_id", "public"."subscription_plans"."created_at", "public"."subscription_plans"."updated_at" FROM "public"."subscription_plans" WHERE "public"."subscription_plans"."isActive" = $1 ORDER BY "public"."subscription_plans"."price" ASC OFFSET $2
+prisma:query COMMIT
+✅ [INFO] API Response {
+  method: 'GET',
+  path: '/api/subscription/plans',
+  status: 200,
+  duration: '761ms',
+  userId: undefined
+}
+ GET /api/subscription/plans 200 in 771ms
+✅ [INFO] API Request { method: 'GET', path: '/api/cases', userId: undefined }
+prisma:query BEGIN
+prisma:query BEGIN
+prisma:query DEALLOCATE ALL
+prisma:query DEALLOCATE ALL
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."cases"."id" FROM "public"."cases" WHERE "public"."cases"."isPublic" = $1 OFFSET $2) AS "sub"
+prisma:query SELECT "public"."cases"."id", "public"."cases"."title", "public"."cases"."area", "public"."cases"."modulo", "public"."cases"."difficulty", "public"."cases"."summary", "public"."cases"."created_at", "public"."cases"."isPublic", COALESCE("aggr_selection_0_Question"."_aggr_count_questions", 0) AS "_aggr_count_questions" FROM "public"."cases" LEFT JOIN (SELECT "public"."questions"."case_id", COUNT(*) AS "_aggr_count_questions" FROM "public"."questions" WHERE 1=1 GROUP BY "public"."questions"."case_id") AS "aggr_selection_0_Question" ON ("public"."cases"."id" = "aggr_selection_0_Question"."case_id") WHERE "public"."cases"."isPublic" = $1 ORDER BY "public"."cases"."created_at" DESC LIMIT $2 OFFSET $3
+prisma:query COMMIT
+prisma:query SELECT "public"."_CaseNorms"."A", "public"."_CaseNorms"."B" FROM "public"."_CaseNorms" WHERE "public"."_CaseNorms"."A" IN ($1)
+prisma:query COMMIT
+✅ [INFO] API Response {
+  method: 'GET',
+  path: '/api/cases',
+  status: 200,
+  duration: '1016ms',
+  userId: undefined
+}
+ GET /api/cases?limit=2 200 in 1038ms
+✅ [INFO] API Request { method: 'GET', path: '/api/subscription/plans', userId: undefined }
+prisma:query SELECT 1
+prisma:query BEGIN
+prisma:query DEALLOCATE ALL
+prisma:query SELECT "public"."subscription_plans"."id", "public"."subscription_plans"."name", "public"."subscription_plans"."displayName", "public"."subscription_plans"."description", "public"."subscription_plans"."price", "public"."subscription_plans"."currency", "public"."subscription_plans"."billingPeriod"::text, "public"."subscription_plans"."trialDays", "public"."subscription_plans"."isActive", "public"."subscription_plans"."features", "public"."subscription_plans"."maxCasesPerMonth", "public"."subscription_plans"."maxStudents", "public"."subscription_plans"."hasAI", "public"."subscription_plans"."hasAdvancedStats", "public"."subscription_plans"."hasPrioritySupport", "public"."subscription_plans"."mp_preapproval_plan_id", "public"."subscription_plans"."created_at", "public"."subscription_plans"."updated_at" FROM "public"."subscription_plans" WHERE "public"."subscription_plans"."isActive" = $1 ORDER BY "public"."subscription_plans"."price" ASC OFFSET $2
+prisma:query COMMIT
+✅ [INFO] API Response {
+  method: 'GET',
+  path: '/api/subscription/plans',
+  status: 200,
+  duration: '925ms',
+  userId: undefined
+}
+ GET /api/subscription/plans 200 in 940ms
+prisma:error Error in PostgreSQL connection: Error { kind: Closed, cause: None }
+prisma:error Error in PostgreSQL connection: Error { kind: Closed, cause: None }
+[MemoryCache] Cleaned 2 expired entries
+[MemoryCache] Cleaned 3 expired entries
+[?25h

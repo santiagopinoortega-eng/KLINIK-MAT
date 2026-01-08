@@ -97,16 +97,14 @@ export default function PricingPage() {
     const features = [];
     
     // Casos clínicos ilimitados
-    features.push('✅ Casos clínicos ilimitados (8 áreas)');
+    features.push('✅ Casos clínicos ilimitados (6 áreas)');
     
     // Áreas incluidas
     features.push('📚 Embarazo y Control Prenatal');
     features.push('📚 Parto y Atención Intraparto');
     features.push('📚 Puerperio y Lactancia');
-    features.push('📚 Urgencias Obstétricas');
     features.push('📚 Ginecología');
     features.push('📚 Salud Sexual y Anticoncepción');
-    features.push('📚 ITS (Infecciones de Transmisión Sexual)');
     features.push('📚 Neonatología / Recién Nacido');
     
     // Recursos incluidos
@@ -329,7 +327,7 @@ export default function PricingPage() {
         <div className="mb-20">
           {/* Tabla comparativa de precios destacada */}
           <div className="bg-white rounded-2xl shadow-xl p-6 mb-10 max-w-5xl mx-auto border-2 border-red-100">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center flex items-center justify-center gap-2">
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 text-center flex items-center justify-center gap-2">
               <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
               </svg>
@@ -395,7 +393,7 @@ export default function PricingPage() {
           </div>
 
           {/* Tarjetas de planes con mejor diseño */}
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
             {activePlans.map((plan) => {
               const discountInfo = getDiscountInfo(plan);
               const isBestValue = plan.billingPeriod === 'BIANNUAL'; // 6 meses - DESTACAR

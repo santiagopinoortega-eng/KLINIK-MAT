@@ -379,11 +379,11 @@ export default function HomePage() {
             </div>
             <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-3">Áreas clínicas disponibles</h2>
             <p className="text-base md:text-lg text-gray-600">
-              Practica en las 8 áreas fundamentales de la Obstetricia y Ginecología con casos reales
+              Practica en las 6 áreas fundamentales de la Obstetricia y Ginecología con casos reales
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {/* EMBARAZO Y CONTROL PRENATAL */}
             <div className="group relative bg-white rounded-2xl p-5 border-2 border-blue-100 hover:border-blue-400 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] overflow-hidden opacity-75 hover:opacity-100">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -404,21 +404,26 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* PARTO Y ATENCIÓN INTRAPARTO */}
-            <div className="group relative bg-white rounded-2xl p-5 border-2 border-indigo-100 hover:border-indigo-400 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] overflow-hidden opacity-75 hover:opacity-100">
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            {/* PARTO Y ATENCIÓN INTRAPARTO - DISPONIBLE */}
+            <div className="group relative bg-gradient-to-br from-indigo-50 to-white rounded-2xl p-5 border-2 border-indigo-200 hover:border-indigo-400 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-indigo-100/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="relative">
-                <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center mb-3 shadow-md group-hover:scale-110 transition-transform">
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                  </svg>
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    </svg>
+                  </div>
+                  <div className="px-2 py-0.5 bg-indigo-600 rounded-md shadow-sm">
+                    <span className="text-[9px] font-bold text-white tracking-wide">1 CASO</span>
+                  </div>
                 </div>
                 <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-indigo-600 transition-colors">Parto y Atención Intraparto</h3>
-                <p className="text-gray-600 text-xs leading-relaxed mb-3">Trabajo de parto, monitoreo fetal, atención del parto</p>
-                <div className="inline-flex items-center text-indigo-500 font-bold text-xs group-hover:gap-2 gap-1 transition-all">
-                  <span>Próximamente</span>
-                  <svg className="w-3 h-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                <p className="text-gray-600 text-xs leading-relaxed mb-3">Trabajo de parto, monitoreo fetal, atención del parto, urgencias obstétricas</p>
+                <div className="inline-flex items-center text-indigo-600 font-bold text-xs group-hover:gap-2 gap-1 transition-all">
+                  <span>Ver casos</span>
+                  <svg className="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
                   </svg>
                 </div>
               </div>
@@ -439,31 +444,6 @@ export default function HomePage() {
                   <span>Próximamente</span>
                   <svg className="w-3 h-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-
-            {/* URGENCIAS OBSTÉTRICAS - DISPONIBLE */}
-            <div className="group relative bg-gradient-to-br from-red-50 to-white rounded-2xl p-5 border-2 border-red-200 hover:border-red-400 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-red-100/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              <div className="relative">
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </div>
-                  <div className="px-2 py-0.5 bg-red-600 rounded-md shadow-sm">
-                    <span className="text-[9px] font-bold text-white tracking-wide">1 CASO</span>
-                  </div>
-                </div>
-                <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-red-600 transition-colors">Urgencias Obstétricas</h3>
-                <p className="text-gray-600 text-xs leading-relaxed mb-3">Hemorragias, preeclampsia, emergencias maternas</p>
-                <div className="inline-flex items-center text-red-600 font-bold text-xs group-hover:gap-2 gap-1 transition-all">
-                  <span>Ver casos</span>
-                  <svg className="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
                   </svg>
                 </div>
               </div>
@@ -499,28 +479,8 @@ export default function HomePage() {
                   </svg>
                 </div>
                 <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">Salud Sexual y Anticoncepción</h3>
-                <p className="text-gray-600 text-xs leading-relaxed mb-3">Regulación de fertilidad, métodos anticonceptivos</p>
+                <p className="text-gray-600 text-xs leading-relaxed mb-3">Regulación de fertilidad, métodos anticonceptivos, ITS</p>
                 <div className="inline-flex items-center text-purple-500 font-bold text-xs group-hover:gap-2 gap-1 transition-all">
-                  <span>Próximamente</span>
-                  <svg className="w-3 h-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-
-            {/* ITS (INFECCIONES DE TRANSMISIÓN SEXUAL) */}
-            <div className="group relative bg-white rounded-2xl p-5 border-2 border-orange-100 hover:border-orange-400 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] overflow-hidden opacity-75 hover:opacity-100">
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              <div className="relative">
-                <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-amber-600 rounded-xl flex items-center justify-center mb-3 shadow-md group-hover:scale-110 transition-transform">
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                  </svg>
-                </div>
-                <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors">ITS</h3>
-                <p className="text-gray-600 text-xs leading-relaxed mb-3">Diagnóstico y manejo de infecciones de transmisión sexual</p>
-                <div className="inline-flex items-center text-orange-500 font-bold text-xs group-hover:gap-2 gap-1 transition-all">
                   <span>Próximamente</span>
                   <svg className="w-3 h-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />

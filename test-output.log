@@ -1,0 +1,4221 @@
+
+> klinikmat@0.1.0 test
+> jest
+
+FAIL __tests__/lib/subscription.test.ts
+  ● Console
+
+    console.error
+      Error fetching user subscription: Error: Database connection failed
+          at Object.<anonymous> (/home/shago22/proyectos/KLINIK-MAT/__tests__/lib/subscription.test.ts:283:9)
+          at Promise.then.completed (/home/shago22/proyectos/KLINIK-MAT/node_modules/jest-circus/build/utils.js:298:28)
+          at new Promise (<anonymous>)
+          at callAsyncCircusFn (/home/shago22/proyectos/KLINIK-MAT/node_modules/jest-circus/build/utils.js:231:10)
+          at _callCircusTest (/home/shago22/proyectos/KLINIK-MAT/node_modules/jest-circus/build/run.js:316:40)
+          at processTicksAndRejections (node:internal/process/task_queues:103:5)
+          at _runTest (/home/shago22/proyectos/KLINIK-MAT/node_modules/jest-circus/build/run.js:252:3)
+          at _runTestsForDescribeBlock (/home/shago22/proyectos/KLINIK-MAT/node_modules/jest-circus/build/run.js:126:9)
+          at _runTestsForDescribeBlock (/home/shago22/proyectos/KLINIK-MAT/node_modules/jest-circus/build/run.js:121:9)
+          at _runTestsForDescribeBlock (/home/shago22/proyectos/KLINIK-MAT/node_modules/jest-circus/build/run.js:121:9)
+          at run (/home/shago22/proyectos/KLINIK-MAT/node_modules/jest-circus/build/run.js:71:3)
+          at runAndTransformResultsToJestFormat (/home/shago22/proyectos/KLINIK-MAT/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+          at jestAdapter (/home/shago22/proyectos/KLINIK-MAT/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+          at runTestInternal (/home/shago22/proyectos/KLINIK-MAT/node_modules/jest-runner/build/runTest.js:367:16)
+          at runTest (/home/shago22/proyectos/KLINIK-MAT/node_modules/jest-runner/build/runTest.js:444:34)
+          at Object.worker (/home/shago22/proyectos/KLINIK-MAT/node_modules/jest-runner/build/testWorker.js:106:12)
+
+      42 |     return subscription as UserSubscription | null;
+      43 |   } catch (error) {
+    > 44 |     console.error('Error fetching user subscription:', error);
+         |             ^
+      45 |     return null;
+      46 |   }
+      47 | }
+
+      at error (lib/subscription.ts:44:13)
+      at getUserCaseLimit (lib/subscription.ts:121:24)
+      at Object.<anonymous> (__tests__/lib/subscription.test.ts:286:7)
+
+  ● Sistema de Límites de Casos › getUserCaseLimit › debe retornar 15 para suscripción expirada
+
+    TypeError: Cannot read properties of undefined (reading 'name')
+
+      122 |   
+      123 |   // Si no tiene suscripción o es FREE, límite de 15 casos
+    > 124 |   if (!subscription || subscription.plan.name === 'FREE') {
+          |                                          ^
+      125 |     return 15;
+      126 |   }
+      127 |   
+
+      at name (lib/subscription.ts:124:42)
+      at Object.<anonymous> (__tests__/lib/subscription.test.ts:89:21)
+
+  ● Sistema de Límites de Casos › Edge Cases › debe manejar errores de base de datos
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: 15
+
+      284 |       );
+      285 |
+    > 286 |       await expect(getUserCaseLimit('user_123')).rejects.toThrow();
+          |                   ^
+      287 |     });
+      288 |
+      289 |     it('debe manejar suscripción sin plan asociado', async () => {
+
+      at expect (node_modules/expect/build/index.js:113:15)
+      at Object.<anonymous> (__tests__/lib/subscription.test.ts:286:19)
+
+  ● Sistema de Límites de Casos › Edge Cases › debe manejar suscripción sin plan asociado
+
+    TypeError: Cannot read properties of null (reading 'name')
+
+      122 |   
+      123 |   // Si no tiene suscripción o es FREE, límite de 15 casos
+    > 124 |   if (!subscription || subscription.plan.name === 'FREE') {
+          |                                          ^
+      125 |     return 15;
+      126 |   }
+      127 |   
+
+      at name (lib/subscription.ts:124:42)
+      at Object.<anonymous> (__tests__/lib/subscription.test.ts:297:21)
+
+FAIL __tests__/services/result.service.test.ts
+  ● ResultService › createResult › debería crear resultado exitosamente
+
+    TypeError: Cannot read properties of undefined (reading 'case')
+
+      149 |    */
+      150 |   static async findByIdMinimal(caseId: string): Promise<Pick<Case, 'id' | 'isPublic'> | null> {
+    > 151 |     return prismaRO.case.findUnique({
+          |                     ^
+      152 |       where: { id: caseId },
+      153 |       select: { id: true, isPublic: true },
+      154 |     });
+
+      at CaseRepository.case [as findByIdMinimal] (lib/repositories/case.repository.ts:151:21)
+      at ResultService.findByIdMinimal [as createResult] (services/result.service.ts:44:41)
+      at Object.createResult (__tests__/services/result.service.test.ts:61:42)
+
+  ● ResultService › createResult › debería fallar si caso no existe
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "Case not found"
+    Received message:   "Cannot read properties of undefined (reading 'case')"
+
+          149 |    */
+          150 |   static async findByIdMinimal(caseId: string): Promise<Pick<Case, 'id' | 'isPublic'> | null> {
+        > 151 |     return prismaRO.case.findUnique({
+              |                     ^
+          152 |       where: { id: caseId },
+          153 |       select: { id: true, isPublic: true },
+          154 |     });
+
+      at CaseRepository.case [as findByIdMinimal] (lib/repositories/case.repository.ts:151:21)
+      at ResultService.findByIdMinimal [as createResult] (services/result.service.ts:44:41)
+      at Object.createResult (__tests__/services/result.service.test.ts:88:23)
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (__tests__/services/result.service.test.ts:97:17)
+
+  ● ResultService › createResult › debería fallar si caso no es público
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "Case is not public"
+    Received message:   "Cannot read properties of undefined (reading 'case')"
+
+          149 |    */
+          150 |   static async findByIdMinimal(caseId: string): Promise<Pick<Case, 'id' | 'isPublic'> | null> {
+        > 151 |     return prismaRO.case.findUnique({
+              |                     ^
+          152 |       where: { id: caseId },
+          153 |       select: { id: true, isPublic: true },
+          154 |     });
+
+      at CaseRepository.case [as findByIdMinimal] (lib/repositories/case.repository.ts:151:21)
+      at ResultService.findByIdMinimal [as createResult] (services/result.service.ts:44:41)
+      at Object.createResult (__tests__/services/result.service.test.ts:109:23)
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (__tests__/services/result.service.test.ts:118:17)
+
+  ● ResultService › createResult › debería crear resultado aunque falle engagement metric
+
+    TypeError: Cannot read properties of undefined (reading 'case')
+
+      149 |    */
+      150 |   static async findByIdMinimal(caseId: string): Promise<Pick<Case, 'id' | 'isPublic'> | null> {
+    > 151 |     return prismaRO.case.findUnique({
+          |                     ^
+      152 |       where: { id: caseId },
+      153 |       select: { id: true, isPublic: true },
+      154 |     });
+
+      at CaseRepository.case [as findByIdMinimal] (lib/repositories/case.repository.ts:151:21)
+      at ResultService.findByIdMinimal [as createResult] (services/result.service.ts:44:41)
+      at Object.createResult (__tests__/services/result.service.test.ts:131:42)
+
+  ● ResultService › getUserResults › debería obtener resultados de usuario
+
+    DatabaseError: studentResult.getUserResults failed: Cannot read properties of undefined (reading 'studentResult')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at ResultRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● ResultService › getUserResults › debería filtrar por área
+
+    DatabaseError: studentResult.getUserResults failed: Cannot read properties of undefined (reading 'studentResult')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at ResultRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● ResultService › getUserResults › debería ordenar por score
+
+    DatabaseError: studentResult.getUserResults failed: Cannot read properties of undefined (reading 'studentResult')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at ResultRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● ResultService › getUserResults › debería respetar límite personalizado
+
+    DatabaseError: studentResult.getUserResults failed: Cannot read properties of undefined (reading 'studentResult')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at ResultRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● ResultService › getBestResult › debería obtener mejor resultado
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: {"caseId": "case-123", "id": "result-1", "score": 95, "userId": "user-123"}
+    Received: null
+
+      232 |       const result = await ResultService.getBestResult('user-123', 'case-123');
+      233 |
+    > 234 |       expect(result).toEqual(mockResult);
+          |                      ^
+      235 |       expect(prisma.studentResult.findFirst).toHaveBeenCalledWith({
+      236 |         where: { userId: 'user-123', caseId: 'case-123' },
+      237 |         orderBy: { score: 'desc' },
+
+      at Object.toEqual (__tests__/services/result.service.test.ts:234:22)
+
+  ● ResultService › getUserStats › debería obtener estadísticas de usuario
+
+    DatabaseError: studentResult.getUserStats failed: Cannot read properties of undefined (reading 'studentResult')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at ResultRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● ResultService › getUserStats › debería filtrar por área
+
+    DatabaseError: studentResult.getUserStats failed: Cannot read properties of undefined (reading 'studentResult')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at ResultRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+FAIL __tests__/lib/sanitize.test.ts
+  ● sanitizeCaseId › rechaza IDs inválidos
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "ID de caso inválido"
+
+    Received function did not throw
+
+      87 |
+      88 |   it('rechaza IDs inválidos', () => {
+    > 89 |     expect(() => sanitizeCaseId('not-a-uuid')).toThrow('ID de caso inválido');
+         |                                                ^
+      90 |     expect(() => sanitizeCaseId('550e8400-e29b-31d4-a716-446655440000')).toThrow(); // v3 UUID
+      91 |   });
+      92 | });
+
+      at Object.toThrow (__tests__/lib/sanitize.test.ts:89:48)
+
+FAIL __tests__/lib/repositories/result.repository.test.ts
+  ● ResultRepository › getUserStats › debería calcular estadísticas de usuario
+
+    DatabaseError: studentResult.getUserStats failed: Cannot read properties of undefined (reading 'totalPoints')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at ResultRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.<anonymous> (__tests__/lib/repositories/result.repository.test.ts:173:22)
+
+  ● ResultRepository › getUserStats › debería manejar usuario sin intentos
+
+    DatabaseError: studentResult.getUserStats failed: Cannot read properties of undefined (reading 'totalPoints')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at ResultRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.<anonymous> (__tests__/lib/repositories/result.repository.test.ts:189:22)
+
+  ● ResultRepository › getUserStats › debería redondear promedios correctamente
+
+    DatabaseError: studentResult.getUserStats failed: Cannot read properties of undefined (reading 'totalPoints')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at ResultRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.<anonymous> (__tests__/lib/repositories/result.repository.test.ts:205:22)
+
+  ● ResultRepository › getStatsByArea › debería obtener estadísticas por área
+
+    DatabaseError: studentResult.getStatsByArea failed: Cannot read properties of undefined (reading 'totalPoints')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at ResultRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.<anonymous> (__tests__/lib/repositories/result.repository.test.ts:221:22)
+
+  ● ResultRepository › getStatsByArea › debería redondear promedios
+
+    DatabaseError: studentResult.getStatsByArea failed: Cannot read properties of undefined (reading 'totalPoints')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at ResultRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.<anonymous> (__tests__/lib/repositories/result.repository.test.ts:244:22)
+
+  ● ResultRepository › getLeaderboard › debería obtener leaderboard global
+
+    DatabaseError: studentResult.getLeaderboard failed: Cannot read properties of undefined (reading 'score')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at ResultRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.<anonymous> (__tests__/lib/repositories/result.repository.test.ts:265:22)
+
+  ● ResultRepository › getLeaderboard › debería usar nombre por defecto si usuario no encontrado
+
+    DatabaseError: studentResult.getLeaderboard failed: Cannot read properties of undefined (reading 'score')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at ResultRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.<anonymous> (__tests__/lib/repositories/result.repository.test.ts:308:22)
+
+PASS __tests__/lib/shortAnswer.test.ts
+PASS __tests__/business-logic.test.ts
+  ● Console
+
+    console.log
+      ✓ Fechas de reset calculadas correctamente
+
+      at Object.log (__tests__/business-logic.test.ts:231:15)
+
+    console.log
+      ✓ 1000 cálculos completados en 0.57ms
+
+      at Object.log (__tests__/business-logic.test.ts:411:15)
+
+PASS __tests__/api/results.test.ts
+PASS __tests__/lib/scoring.test.ts
+FAIL __tests__/services/subscription.service.test.ts
+  ● SubscriptionService › getActivePlans › should return active plans ordered by price
+
+    DatabaseError: subscriptionPlan.findMany failed: Cannot read properties of undefined (reading 'subscriptionPlan')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionPlanRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › getActivePlans › should return empty array when no active plans
+
+    DatabaseError: subscriptionPlan.findMany failed: Cannot read properties of undefined (reading 'subscriptionPlan')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionPlanRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › getUserSubscription › should return active subscription with plan details
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › getUserSubscription › should return null when user has no active subscription
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › getUserSubscription › should include TRIALING status in query
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › canAccessFeature › should allow feature when subscription has feature enabled
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › canAccessFeature › should deny feature when subscription lacks feature
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › canAccessFeature › should check FREE plan features when no subscription
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › canAccessFeature › should deny access when trial has expired
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › canAccessFeature › should allow access when trial is still valid
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › canAccessFeature › should handle null features gracefully
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › checkUsageLimit › should enforce FREE plan limit
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › checkUsageLimit › should deny when FREE limit reached
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › checkUsageLimit › should allow unlimited usage for plans with null limit
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › checkUsageLimit › should count usage within billing period for paid plan
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › checkUsageLimit › should query from start of month for FREE plan
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › recordUsage › should create usage record for user with subscription
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › recordUsage › should create usage record for user without subscription
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › recordUsage › should default quantity to 1 if not provided
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › createSubscriptionPayment › should create payment preference for one-time payment
+
+    DatabaseError: user.findById failed: Cannot read properties of undefined (reading 'user')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at UserRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › createSubscriptionPayment › should throw error when user not found
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "User or plan not found"
+    Received message:   "user.findById failed: Cannot read properties of undefined (reading 'user')"
+
+          56 |       return await query();
+          57 |     } catch (error: any) {
+        > 58 |       throw new DatabaseError(
+             |             ^
+          59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+          60 |         { originalError: error }
+          61 |       );
+
+      at UserRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (__tests__/services/subscription.service.test.ts:500:17)
+
+  ● SubscriptionService › createSubscriptionPayment › should throw error when plan not found
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "User or plan not found"
+    Received message:   "user.findById failed: Cannot read properties of undefined (reading 'user')"
+
+          56 |       return await query();
+          57 |     } catch (error: any) {
+        > 58 |       throw new DatabaseError(
+             |             ^
+          59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+          60 |         { originalError: error }
+          61 |       );
+
+      at UserRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (__tests__/services/subscription.service.test.ts:508:17)
+
+  ● SubscriptionService › createSubscriptionPayment › should use sandbox init point in test mode
+
+    DatabaseError: user.findById failed: Cannot read properties of undefined (reading 'user')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at UserRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › createSubscriptionPayment › should create preapproval for recurring monthly plan
+
+    DatabaseError: user.findById failed: Cannot read properties of undefined (reading 'user')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at UserRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › createSubscriptionPayment › should log payment creation
+
+    DatabaseError: user.findById failed: Cannot read properties of undefined (reading 'user')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at UserRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › createSubscriptionPayment › should handle Mercado Pago API errors
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "MP API Error"
+    Received message:   "user.findById failed: Cannot read properties of undefined (reading 'user')"
+
+          56 |       return await query();
+          57 |     } catch (error: any) {
+        > 58 |       throw new DatabaseError(
+             |             ^
+          59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+          60 |         { originalError: error }
+          61 |       );
+
+      at UserRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (__tests__/services/subscription.service.test.ts:585:17)
+
+  ● SubscriptionService › activateSubscription › should create active subscription for monthly plan
+
+    DatabaseError: subscriptionPlan.findById failed: Cannot read properties of undefined (reading 'subscriptionPlan')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionPlanRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › activateSubscription › should create subscription with trial period
+
+    DatabaseError: subscriptionPlan.findById failed: Cannot read properties of undefined (reading 'subscriptionPlan')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionPlanRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › activateSubscription › should calculate quarterly period correctly
+
+    DatabaseError: subscriptionPlan.findById failed: Cannot read properties of undefined (reading 'subscriptionPlan')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionPlanRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › activateSubscription › should calculate yearly period correctly
+
+    DatabaseError: subscriptionPlan.findById failed: Cannot read properties of undefined (reading 'subscriptionPlan')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionPlanRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › activateSubscription › should throw error when plan not found
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "Plan not found"
+    Received message:   "subscriptionPlan.findById failed: Cannot read properties of undefined (reading 'subscriptionPlan')"
+
+          56 |       return await query();
+          57 |     } catch (error: any) {
+        > 58 |       throw new DatabaseError(
+             |             ^
+          59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+          60 |         { originalError: error }
+          61 |       );
+
+      at SubscriptionPlanRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (__tests__/services/subscription.service.test.ts:705:17)
+
+  ● SubscriptionService › activateSubscription › should store Mercado Pago preapproval ID
+
+    DatabaseError: subscriptionPlan.findById failed: Cannot read properties of undefined (reading 'subscriptionPlan')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionPlanRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › cancelSubscription › should cancel subscription at period end
+
+    DatabaseError: subscription.findById failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › cancelSubscription › should cancel subscription immediately
+
+    DatabaseError: subscription.findById failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › cancelSubscription › should cancel Mercado Pago preapproval when present
+
+    DatabaseError: subscription.findById failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › cancelSubscription › should continue cancellation even if MP preapproval fails
+
+    DatabaseError: subscription.findById failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › cancelSubscription › should throw error when subscription not found
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "Subscription not found"
+    Received message:   "subscription.findById failed: Cannot read properties of undefined (reading 'subscription')"
+
+          56 |       return await query();
+          57 |     } catch (error: any) {
+        > 58 |       throw new DatabaseError(
+             |             ^
+          59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+          60 |         { originalError: error }
+          61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (__tests__/services/subscription.service.test.ts:832:17)
+
+  ● SubscriptionService › cancelSubscription › should default to cancel at period end
+
+    DatabaseError: subscription.findById failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+PASS __tests__/lib/progress.test.ts
+PASS __tests__/lib/dtos/result.dto.test.ts
+PASS __tests__/lib/repositories/user.repository.test.ts
+PASS __tests__/lib/dtos/case.dto.test.ts
+PASS __tests__/lib/dtos/favorite.dto.test.ts
+PASS __tests__/lib/repositories/favorite.repository.test.ts
+FAIL __tests__/services/caso.service.test.ts
+  ● CasoService › getCasosActivos › debería obtener casos activos
+
+    No se pudo cargar el listado de casos clínicos. (DB Error)
+
+       97 |   } catch (error) {
+       98 |     logger.error('Failed to fetch active cases', error);
+    >  99 |     throw new Error("No se pudo cargar el listado de casos clínicos. (DB Error)");
+          |           ^
+      100 |   }
+      101 | }
+      102 |
+
+      at getCasosActivos (services/caso.service.ts:99:11)
+      at Object.<anonymous> (__tests__/services/caso.service.test.ts:193:22)
+
+  ● CasoService › getCasosActivos › debería retornar array vacío si no hay casos
+
+    No se pudo cargar el listado de casos clínicos. (DB Error)
+
+       97 |   } catch (error) {
+       98 |     logger.error('Failed to fetch active cases', error);
+    >  99 |     throw new Error("No se pudo cargar el listado de casos clínicos. (DB Error)");
+          |           ^
+      100 |   }
+      101 | }
+      102 |
+
+      at getCasosActivos (services/caso.service.ts:99:11)
+      at Object.<anonymous> (__tests__/services/caso.service.test.ts:219:22)
+
+PASS __tests__/lib/errors/app-errors.test.ts
+PASS __tests__/lib/middleware/api-middleware.test.ts
+PASS __tests__/lib/errors/error-handler.test.ts
+PASS __tests__/lib/dtos/game.dto.test.ts
+PASS __tests__/lib/dtos/user.dto.test.ts
+FAIL __tests__/services/user.service.test.ts
+  ● UserService › getUserProfile › should return user profile when user exists
+
+    DatabaseError: user.findProfileById failed: Cannot read properties of undefined (reading 'user')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at UserRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● UserService › getUserProfile › should return null when user does not exist
+
+    DatabaseError: user.findProfileById failed: Cannot read properties of undefined (reading 'user')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at UserRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● UserService › getUserProfile › should propagate errors from database
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "Database error"
+    Received message:   "user.findProfileById failed: Cannot read properties of undefined (reading 'user')"
+
+          56 |       return await query();
+          57 |     } catch (error: any) {
+        > 58 |       throw new DatabaseError(
+             |             ^
+          59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+          60 |         { originalError: error }
+          61 |       );
+
+      at UserRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (__tests__/services/user.service.test.ts:96:68)
+
+  ● UserService › updateUserProfile › should propagate errors from update operation
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    - Expected
+    + Received
+
+      "Failed to update user profile",
+      Object {
+    -   "error": [Error: Update failed],
+    +   "error": [DatabaseError: user.update failed: Update failed],
+        "userId": "user-123",
+      },
+
+    Number of calls: 1
+
+      139 |
+      140 |       await expect(UserService.updateUserProfile('user-123', { name: 'Test' })).rejects.toThrow('Update failed');
+    > 141 |       expect(logger.error).toHaveBeenCalledWith('Failed to update user profile', {
+          |                            ^
+      142 |         userId: 'user-123',
+      143 |         error,
+      144 |       });
+
+      at Object.toHaveBeenCalledWith (__tests__/services/user.service.test.ts:141:28)
+
+  ● UserService › syncUser › should propagate errors from sync operation
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    - Expected
+    + Received
+
+      "Failed to sync user",
+      Object {
+    -   "error": [Error: Sync failed],
+    +   "error": [DatabaseError: user.upsert failed: Sync failed],
+        "userData": Object {
+          "email": "test@example.com",
+          "id": "clerk-123",
+        },
+      },
+
+    Number of calls: 1
+
+      256 |
+      257 |       await expect(UserService.syncUser(userData)).rejects.toThrow('Sync failed');
+    > 258 |       expect(logger.error).toHaveBeenCalledWith('Failed to sync user', {
+          |                            ^
+      259 |         userData,
+      260 |         error,
+      261 |       });
+
+      at Object.toHaveBeenCalledWith (__tests__/services/user.service.test.ts:258:28)
+
+  ● UserService › getUserProgress › should calculate user progress correctly
+
+    TypeError: Cannot read properties of undefined (reading 'case')
+
+      106 |   static async count(filters: CaseFilters = {}): Promise<number> {
+      107 |     const where = this.buildWhereClause(filters);
+    > 108 |     return prismaRO.case.count({ where });
+          |                     ^
+      109 |   }
+      110 |
+      111 |   /**
+
+      at CaseRepository.case [as count] (lib/repositories/case.repository.ts:108:21)
+      at UserService.count [as getUserProgress] (services/user.service.ts:83:18)
+      at Object.getUserProgress (__tests__/services/user.service.test.ts:277:40)
+
+  ● UserService › getUserProgress › should handle zero completed cases
+
+    TypeError: Cannot read properties of undefined (reading 'case')
+
+      106 |   static async count(filters: CaseFilters = {}): Promise<number> {
+      107 |     const where = this.buildWhereClause(filters);
+    > 108 |     return prismaRO.case.count({ where });
+          |                     ^
+      109 |   }
+      110 |
+      111 |   /**
+
+      at CaseRepository.case [as count] (lib/repositories/case.repository.ts:108:21)
+      at UserService.count [as getUserProgress] (services/user.service.ts:83:18)
+      at Object.getUserProgress (__tests__/services/user.service.test.ts:300:40)
+
+  ● UserService › getUserProgress › should handle null aggregate values
+
+    TypeError: Cannot read properties of undefined (reading 'case')
+
+      106 |   static async count(filters: CaseFilters = {}): Promise<number> {
+      107 |     const where = this.buildWhereClause(filters);
+    > 108 |     return prismaRO.case.count({ where });
+          |                     ^
+      109 |   }
+      110 |
+      111 |   /**
+
+      at CaseRepository.case [as count] (lib/repositories/case.repository.ts:108:21)
+      at UserService.count [as getUserProgress] (services/user.service.ts:83:18)
+      at Object.getUserProgress (__tests__/services/user.service.test.ts:322:40)
+
+  ● UserService › getUserProgress › should propagate errors from progress calculation
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "Database error"
+    Received message:   "Cannot read properties of undefined (reading 'case')"
+
+          106 |   static async count(filters: CaseFilters = {}): Promise<number> {
+          107 |     const where = this.buildWhereClause(filters);
+        > 108 |     return prismaRO.case.count({ where });
+              |                     ^
+          109 |   }
+          110 |
+          111 |   /**
+
+      at CaseRepository.case [as count] (lib/repositories/case.repository.ts:108:21)
+      at UserService.count [as getUserProgress] (services/user.service.ts:83:18)
+      at Object.getUserProgress (__tests__/services/user.service.test.ts:333:32)
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (__tests__/services/user.service.test.ts:333:69)
+
+  ● UserService › userExists › should return true when user exists
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      567 |       const result = await UserService.userExists('user-123');
+      568 |
+    > 569 |       expect(result).toBe(true);
+          |                      ^
+      570 |       expect(prisma.user.count).toHaveBeenCalledWith({ where: { id: 'user-123' } });
+      571 |     });
+      572 |
+
+      at Object.toBe (__tests__/services/user.service.test.ts:569:22)
+
+  ● UserService › userExists › should return false on error
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    - Expected
+    + Received
+
+      "Failed to check user existence",
+      Object {
+    -   "error": [Error: Database error],
+    +   "error": [DatabaseError: user.count failed: Cannot read properties of undefined (reading 'user')],
+        "userId": "user-123",
+      },
+
+    Number of calls: 1
+
+      586 |
+      587 |       expect(result).toBe(false);
+    > 588 |       expect(logger.error).toHaveBeenCalledWith('Failed to check user existence', {
+          |                            ^
+      589 |         userId: 'user-123',
+      590 |         error,
+      591 |       });
+
+      at Object.toHaveBeenCalledWith (__tests__/services/user.service.test.ts:588:28)
+
+  ● UserService › deleteUser › should propagate errors from delete operation
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    - Expected
+    + Received
+
+      "Failed to delete user",
+      Object {
+    -   "error": [Error: Delete failed],
+    +   "error": [DatabaseError: user.delete failed: Delete failed],
+        "userId": "user-123",
+      },
+
+    Number of calls: 1
+
+      611 |
+      612 |       await expect(UserService.deleteUser('user-123')).rejects.toThrow('Delete failed');
+    > 613 |       expect(logger.error).toHaveBeenCalledWith('Failed to delete user', {
+          |                            ^
+      614 |         userId: 'user-123',
+      615 |         error,
+      616 |       });
+
+      at Object.toHaveBeenCalledWith (__tests__/services/user.service.test.ts:613:28)
+
+PASS __tests__/lib/repositories/case.repository.test.ts
+PASS __tests__/components/CasoContext.test.tsx
+FAIL __tests__/api/subscription/check-access.test.ts
+  ● API /api/subscription/check-access › debe retornar 401 si usuario no autenticado
+
+    Cannot find module '@sentry/nextjs' from 'lib/logger.ts'
+
+    Require stack:
+      lib/logger.ts
+      lib/ratelimit.ts
+      lib/middleware/api-middleware.ts
+      app/api/subscription/check-access/route.ts
+      __tests__/api/subscription/check-access.test.ts
+
+      28 |    */
+      29 |   debug: (message: string, context?: LogContext) => {
+    > 30 |     if (isDev && !isTest) {
+         |                            ^
+      31 |       console.log(`🔵 [DEBUG] ${message}`, context || '');
+      32 |     }
+      33 |   },
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.<anonymous> (lib/logger.ts:30:57)
+      at Object.<anonymous> (lib/ratelimit.ts:28:17)
+      at Object.<anonymous> (lib/middleware/api-middleware.ts:42:20)
+      at Object.<anonymous> (app/api/subscription/check-access/route.ts:12:24)
+      at __tests__/api/subscription/check-access.test.ts:31:27
+      at Object.<anonymous> (__tests__/api/subscription/check-access.test.ts:31:21)
+
+  ● API /api/subscription/check-access › debe retornar datos correctos para usuario FREE con acceso
+
+    Cannot find module '@sentry/nextjs' from 'lib/logger.ts'
+
+    Require stack:
+      lib/logger.ts
+      lib/ratelimit.ts
+      lib/middleware/api-middleware.ts
+      app/api/subscription/check-access/route.ts
+      __tests__/api/subscription/check-access.test.ts
+
+      28 |    */
+      29 |   debug: (message: string, context?: LogContext) => {
+    > 30 |     if (isDev && !isTest) {
+         |                            ^
+      31 |       console.log(`🔵 [DEBUG] ${message}`, context || '');
+      32 |     }
+      33 |   },
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.<anonymous> (lib/logger.ts:30:57)
+      at Object.<anonymous> (lib/ratelimit.ts:28:17)
+      at Object.<anonymous> (lib/middleware/api-middleware.ts:42:20)
+      at Object.<anonymous> (app/api/subscription/check-access/route.ts:12:24)
+      at __tests__/api/subscription/check-access.test.ts:58:27
+      at Object.<anonymous> (__tests__/api/subscription/check-access.test.ts:58:21)
+
+  ● API /api/subscription/check-access › debe retornar canAccess: false cuando límite alcanzado
+
+    Cannot find module '@sentry/nextjs' from 'lib/logger.ts'
+
+    Require stack:
+      lib/logger.ts
+      lib/ratelimit.ts
+      lib/middleware/api-middleware.ts
+      app/api/subscription/check-access/route.ts
+      __tests__/api/subscription/check-access.test.ts
+
+      28 |    */
+      29 |   debug: (message: string, context?: LogContext) => {
+    > 30 |     if (isDev && !isTest) {
+         |                            ^
+      31 |       console.log(`🔵 [DEBUG] ${message}`, context || '');
+      32 |     }
+      33 |   },
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.<anonymous> (lib/logger.ts:30:57)
+      at Object.<anonymous> (lib/ratelimit.ts:28:17)
+      at Object.<anonymous> (lib/middleware/api-middleware.ts:42:20)
+      at Object.<anonymous> (app/api/subscription/check-access/route.ts:12:24)
+      at __tests__/api/subscription/check-access.test.ts:91:27
+      at Object.<anonymous> (__tests__/api/subscription/check-access.test.ts:91:21)
+
+  ● API /api/subscription/check-access › debe retornar datos correctos para usuario PREMIUM
+
+    Cannot find module '@sentry/nextjs' from 'lib/logger.ts'
+
+    Require stack:
+      lib/logger.ts
+      lib/ratelimit.ts
+      lib/middleware/api-middleware.ts
+      app/api/subscription/check-access/route.ts
+      __tests__/api/subscription/check-access.test.ts
+
+      28 |    */
+      29 |   debug: (message: string, context?: LogContext) => {
+    > 30 |     if (isDev && !isTest) {
+         |                            ^
+      31 |       console.log(`🔵 [DEBUG] ${message}`, context || '');
+      32 |     }
+      33 |   },
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.<anonymous> (lib/logger.ts:30:57)
+      at Object.<anonymous> (lib/ratelimit.ts:28:17)
+      at Object.<anonymous> (lib/middleware/api-middleware.ts:42:20)
+      at Object.<anonymous> (app/api/subscription/check-access/route.ts:12:24)
+      at __tests__/api/subscription/check-access.test.ts:119:27
+      at Object.<anonymous> (__tests__/api/subscription/check-access.test.ts:119:21)
+
+  ● API /api/subscription/check-access › debe manejar errores internos correctamente
+
+    Cannot find module '@sentry/nextjs' from 'lib/logger.ts'
+
+    Require stack:
+      lib/logger.ts
+      lib/ratelimit.ts
+      lib/middleware/api-middleware.ts
+      app/api/subscription/check-access/route.ts
+      __tests__/api/subscription/check-access.test.ts
+
+      28 |    */
+      29 |   debug: (message: string, context?: LogContext) => {
+    > 30 |     if (isDev && !isTest) {
+         |                            ^
+      31 |       console.log(`🔵 [DEBUG] ${message}`, context || '');
+      32 |     }
+      33 |   },
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.<anonymous> (lib/logger.ts:30:57)
+      at Object.<anonymous> (lib/ratelimit.ts:28:17)
+      at Object.<anonymous> (lib/middleware/api-middleware.ts:42:20)
+      at Object.<anonymous> (app/api/subscription/check-access/route.ts:12:24)
+      at __tests__/api/subscription/check-access.test.ts:133:27
+      at Object.<anonymous> (__tests__/api/subscription/check-access.test.ts:133:21)
+
+  ● API /api/subscription/check-access › debe retornar estructura completa de datos
+
+    Cannot find module '@sentry/nextjs' from 'lib/logger.ts'
+
+    Require stack:
+      lib/logger.ts
+      lib/ratelimit.ts
+      lib/middleware/api-middleware.ts
+      app/api/subscription/check-access/route.ts
+      __tests__/api/subscription/check-access.test.ts
+
+      28 |    */
+      29 |   debug: (message: string, context?: LogContext) => {
+    > 30 |     if (isDev && !isTest) {
+         |                            ^
+      31 |       console.log(`🔵 [DEBUG] ${message}`, context || '');
+      32 |     }
+      33 |   },
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.<anonymous> (lib/logger.ts:30:57)
+      at Object.<anonymous> (lib/ratelimit.ts:28:17)
+      at Object.<anonymous> (lib/middleware/api-middleware.ts:42:20)
+      at Object.<anonymous> (app/api/subscription/check-access/route.ts:12:24)
+      at __tests__/api/subscription/check-access.test.ts:160:27
+      at Object.<anonymous> (__tests__/api/subscription/check-access.test.ts:160:21)
+
+FAIL __tests__/services/favorite.service.test.ts
+  ● FavoriteService › getUserFavorites › debería obtener favoritos del usuario con casos
+
+    DatabaseError: favorite.getUserFavorites failed: Cannot read properties of undefined (reading 'favorite')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at FavoriteRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● FavoriteService › getUserFavorites › debería propagar error si falla
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "DB Error"
+    Received message:   "favorite.getUserFavorites failed: Cannot read properties of undefined (reading 'favorite')"
+
+          56 |       return await query();
+          57 |     } catch (error: any) {
+        > 58 |       throw new DatabaseError(
+             |             ^
+          59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+          60 |         { originalError: error }
+          61 |       );
+
+      at FavoriteRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (__tests__/services/favorite.service.test.ts:79:74)
+
+  ● FavoriteService › isFavorite › debería retornar true si es favorito
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      87 |       const result = await FavoriteService.isFavorite('user-123', 'case-123');
+      88 |
+    > 89 |       expect(result).toBe(true);
+         |                      ^
+      90 |       expect(prisma.favorite.count).toHaveBeenCalledWith({
+      91 |         where: {
+      92 |           userId: 'user-123',
+
+      at Object.toBe (__tests__/services/favorite.service.test.ts:89:22)
+
+  ● FavoriteService › addFavorite › debería agregar favorito si caso existe
+
+    DatabaseError: case.count failed: Cannot read properties of undefined (reading 'case')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at CaseRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● FavoriteService › addFavorite › debería lanzar error si caso no existe
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "Case not found"
+    Received message:   "case.count failed: Cannot read properties of undefined (reading 'case')"
+
+          56 |       return await query();
+          57 |     } catch (error: any) {
+        > 58 |       throw new DatabaseError(
+             |             ^
+          59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+          60 |         { originalError: error }
+          61 |       );
+
+      at CaseRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (__tests__/services/favorite.service.test.ts:140:81)
+
+  ● FavoriteService › addFavorite › debería propagar error de BD
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "DB Error"
+    Received message:   "case.count failed: Cannot read properties of undefined (reading 'case')"
+
+          56 |       return await query();
+          57 |     } catch (error: any) {
+        > 58 |       throw new DatabaseError(
+             |             ^
+          59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+          60 |         { originalError: error }
+          61 |       );
+
+      at CaseRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (__tests__/services/favorite.service.test.ts:149:81)
+
+  ● FavoriteService › removeFavorite › debería eliminar favorito correctamente
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: {"where": {"userId_caseId": {"caseId": "case-123", "userId": "user-123"}}}
+
+    Number of calls: 0
+
+      159 |       await FavoriteService.removeFavorite('user-123', 'case-123');
+      160 |
+    > 161 |       expect(prisma.favorite.delete).toHaveBeenCalledWith({
+          |                                      ^
+      162 |         where: {
+      163 |           userId_caseId: {
+      164 |             userId: 'user-123',
+
+      at Object.toHaveBeenCalledWith (__tests__/services/favorite.service.test.ts:161:38)
+
+  ● FavoriteService › removeFavorite › debería propagar otros errores
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: undefined
+
+      180 |       (prisma.favorite.delete as jest.Mock).mockRejectedValue(new Error('DB Error'));
+      181 |
+    > 182 |       await expect(FavoriteService.removeFavorite('user-123', 'case-123')).rejects.toThrow(
+          |             ^
+      183 |         'DB Error'
+      184 |       );
+      185 |     });
+
+      at expect (node_modules/expect/build/index.js:113:15)
+      at Object.expect (__tests__/services/favorite.service.test.ts:182:13)
+
+  ● FavoriteService › toggleFavorite › debería agregar favorito si no existe
+
+    DatabaseError: favorite.toggleFavorite failed: favorite.findOne failed: Cannot read properties of undefined (reading 'favorite')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at FavoriteRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at FavoriteService.toggleFavorite (services/favorite.service.ts:93:14)
+      at Object.<anonymous> (__tests__/services/favorite.service.test.ts:201:22)
+
+  ● FavoriteService › toggleFavorite › debería eliminar favorito si ya existe
+
+    DatabaseError: favorite.toggleFavorite failed: favorite.findOne failed: Cannot read properties of undefined (reading 'favorite')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at FavoriteRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at FavoriteService.toggleFavorite (services/favorite.service.ts:93:14)
+      at Object.<anonymous> (__tests__/services/favorite.service.test.ts:210:22)
+
+  ● FavoriteService › toggleFavorite › debería propagar errores de addFavorite
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "Case not found"
+    Received message:   "favorite.toggleFavorite failed: favorite.findOne failed: Cannot read properties of undefined (reading 'favorite')"
+
+          56 |       return await query();
+          57 |     } catch (error: any) {
+        > 58 |       throw new DatabaseError(
+             |             ^
+          59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+          60 |         { originalError: error }
+          61 |       );
+
+      at FavoriteRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at FavoriteService.toggleFavorite (services/favorite.service.ts:93:14)
+      at Object.<anonymous> (__tests__/services/favorite.service.test.ts:219:7)
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (__tests__/services/favorite.service.test.ts:219:84)
+
+  ● FavoriteService › getFavoriteCount › debería obtener conteo de favoritos
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 15
+    Received: 0
+
+      229 |       const result = await FavoriteService.getFavoriteCount('case-123');
+      230 |
+    > 231 |       expect(result).toBe(15);
+          |                      ^
+      232 |       expect(prisma.favorite.count).toHaveBeenCalledWith({
+      233 |         where: { caseId: 'case-123' },
+      234 |       });
+
+      at Object.toBe (__tests__/services/favorite.service.test.ts:231:22)
+
+  ● FavoriteService › getTrendingCases › debería obtener casos trending con conteo
+
+    expect(received).toHaveLength(expected)
+
+    Expected length: 1
+    Received length: 0
+    Received array:  []
+
+      266 |       const result = await FavoriteService.getTrendingCases(10);
+      267 |
+    > 268 |       expect(result).toHaveLength(1);
+          |                      ^
+      269 |       expect(result[0]).toEqual({
+      270 |         ...mockCases[0],
+      271 |         favoriteCount: 25,
+
+      at Object.toHaveLength (__tests__/services/favorite.service.test.ts:268:22)
+
+  ● FavoriteService › getFavoriteIds › debería obtener IDs de favoritos
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 4
+    + Received  + 1
+
+    - Array [
+    -   "case-1",
+    -   "case-2",
+    - ]
+    + Array []
+
+      309 |       const result = await FavoriteService.getFavoriteIds('user-123');
+      310 |
+    > 311 |       expect(result).toEqual(['case-1', 'case-2']);
+          |                      ^
+      312 |       expect(prisma.favorite.findMany).toHaveBeenCalledWith({
+      313 |         where: { userId: 'user-123' },
+      314 |         select: { caseId: true },
+
+      at Object.toEqual (__tests__/services/favorite.service.test.ts:311:22)
+
+PASS __tests__/integration/full-flow.test.ts
+  ● Console
+
+    console.log
+      ✓ 5 casos: 33% usado, sin advertencia
+
+      at Object.log (__tests__/integration/full-flow.test.ts:93:15)
+
+    console.log
+      ✓ 10 casos: 67% usado, sin advertencia
+
+      at Object.log (__tests__/integration/full-flow.test.ts:93:15)
+
+    console.log
+      ✓ 11 casos: 73% usado, CON advertencia
+
+      at Object.log (__tests__/integration/full-flow.test.ts:93:15)
+
+    console.log
+      ✓ 14 casos: 93% usado, CON advertencia
+
+      at Object.log (__tests__/integration/full-flow.test.ts:93:15)
+
+    console.log
+      ✓ 15 casos: 100% usado, CON advertencia
+
+      at Object.log (__tests__/integration/full-flow.test.ts:93:15)
+
+    console.log
+      ✓ Usuario upgradeó de FREE (15/15) a PREMIUM (50+ casos sin límite)
+
+      at Object.log (__tests__/integration/full-flow.test.ts:156:13)
+
+    console.log
+      ✓ Contador reseteado correctamente el día 1 del mes
+
+      at Object.log (__tests__/integration/full-flow.test.ts:199:13)
+
+    console.log
+      ⚠️  Error de DB, permitiendo acceso (fail open)
+
+      at log (__tests__/integration/full-flow.test.ts:210:17)
+
+    console.log
+      ✓ Sistema maneja error y permite acceso (fail open)
+
+      at Object.log (__tests__/integration/full-flow.test.ts:227:13)
+
+    console.log
+      ⚠️  Intento 1 falló, reintentando...
+
+      at log (__tests__/integration/full-flow.test.ts:255:19)
+
+    console.log
+      ⚠️  Intento 2 falló, reintentando...
+
+      at log (__tests__/integration/full-flow.test.ts:255:19)
+
+    console.log
+      ✓ Sistema recuperado después de 2 reintentos
+
+      at Object.log (__tests__/integration/full-flow.test.ts:266:13)
+
+FAIL __tests__/components/CaseCard.test.tsx
+  ● Test suite failed to run
+
+    Jest encountered an unexpected token
+
+    Jest failed to parse a file. This happens e.g. when your code or its dependencies use non-standard JavaScript syntax, or when Jest is not configured to support such syntax.
+
+    Out of the box Jest supports Babel, which will be used to transform your files into valid JS based on your Babel configuration.
+
+    By default "node_modules" folder is ignored by transformers.
+
+    Here's what you can do:
+     • If you are trying to use ECMAScript Modules, see https://jestjs.io/docs/ecmascript-modules for how to enable it.
+     • If you are trying to use TypeScript, see https://jestjs.io/docs/getting-started#using-typescript
+     • To have some of your "node_modules" files transformed, you can specify a custom "transformIgnorePatterns" in your config.
+     • If you need a custom transformation specify a "transform" option in your config.
+     • If you simply want to mock your non-JS modules (e.g. binary assets) you can stub them out with the "moduleNameMapper" config option.
+
+    You'll find more details and examples of these config options in the docs:
+    https://jestjs.io/docs/configuration
+    For information about custom transformations, see:
+    https://jestjs.io/docs/code-transformation
+
+    Details:
+
+    /home/shago22/proyectos/KLINIK-MAT/node_modules/@clerk/backend/dist/runtime/browser/crypto.mjs:1
+    ({"Object.<anonymous>":function(module,exports,require,__dirname,__filename,jest){export const webcrypto = crypto;
+                                                                                      ^^^^^^
+
+    SyntaxError: Unexpected token 'export'
+
+      12 |   summary: string | null;
+      13 |   createdAt: string;
+    > 14 | }
+         |  ^
+      15 |
+      16 | interface Favorite {
+      17 |   id: string;
+
+      at Runtime.createScriptFromCode (node_modules/jest-runtime/build/index.js:1505:14)
+      at Object.<anonymous> (node_modules/@clerk/backend/src/runtime.ts:16:37)
+      at Object.<anonymous> (node_modules/@clerk/nextjs/src/server/headers-utils.ts:1:27)
+      at Object.<anonymous> (node_modules/@clerk/nextjs/dist/cjs/app-router/keyless-actions.js:41:28)
+      at Object.<anonymous> (node_modules/@clerk/nextjs/src/app-router/client/ClerkProvider.tsx:18:45)
+      at Object.<anonymous> (node_modules/@clerk/nextjs/src/client-boundary/ClerkProvider.tsx:6:37)
+      at Object.<anonymous> (node_modules/@clerk/nextjs/src/components.client.ts:1:31)
+      at Object.<anonymous> (node_modules/@clerk/nextjs/src/index.ts:71:35)
+      at Object.<anonymous> (app/hooks/useFavorites.ts:14:17)
+      at Object.<anonymous> (app/context/FavoritesContext.tsx:23:23)
+      at Object.<anonymous> (app/components/FavoriteButton.tsx:17:27)
+      at Object.<anonymous> (app/components/CaseCard.tsx:16:64)
+      at Object.<anonymous> (__tests__/components/CaseCard.test.tsx:10:58)
+
+FAIL __tests__/services/game.service.test.ts
+  ● GameService › getGameStats › debería obtener estadísticas del juego
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: {"bestStreak": 5, "currentStreak": 3, "gameType": "wordsearch", "gamesPlayed": 10, "gamesWon": 8, "id": "stats-1", "totalScore": 500, "userId": "user-123"}
+    Received: null
+
+      48 |       const result = await GameService.getGameStats('user-123', 'wordsearch');
+      49 |
+    > 50 |       expect(result).toEqual(mockStats);
+         |                      ^
+      51 |       expect(prisma.gameStats.findUnique).toHaveBeenCalledWith({
+      52 |         where: {
+      53 |           userId_gameType: {
+
+      at Object.toEqual (__tests__/services/game.service.test.ts:50:22)
+
+  ● GameService › updateGameStats › debería actualizar estadísticas después de ganar
+
+    DatabaseError: gameStats.findByUserAndType failed: Cannot read properties of undefined (reading 'gameStats')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at GameRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● GameService › updateGameStats › debería resetear racha si pierde
+
+    DatabaseError: gameStats.findByUserAndType failed: Cannot read properties of undefined (reading 'gameStats')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at GameRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● GameService › updateGameStats › debería crear estadísticas si no existen
+
+    DatabaseError: gameStats.findByUserAndType failed: Cannot read properties of undefined (reading 'gameStats')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at GameRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● GameService › updateGameStats › debería actualizar bestStreak si la racha es nueva
+
+    DatabaseError: gameStats.findByUserAndType failed: Cannot read properties of undefined (reading 'gameStats')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at GameRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● GameService › getAllUserStats › debería obtener todas las estadísticas del usuario
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 14
+    + Received  +  1
+
+    - Array [
+    -   Object {
+    -     "gameType": "wordsearch",
+    -     "id": "stats-1",
+    -     "totalScore": 500,
+    -     "userId": "user-123",
+    -   },
+    -   Object {
+    -     "gameType": "hangman",
+    -     "id": "stats-2",
+    -     "totalScore": 300,
+    -     "userId": "user-123",
+    -   },
+    - ]
+    + Array []
+
+      286 |       const result = await GameService.getAllUserStats('user-123');
+      287 |
+    > 288 |       expect(result).toEqual(mockStats);
+          |                      ^
+      289 |       expect(prisma.gameStats.findMany).toHaveBeenCalledWith({
+      290 |         where: { userId: 'user-123' },
+      291 |         orderBy: { totalScore: 'desc' },
+
+      at Object.toEqual (__tests__/services/game.service.test.ts:288:22)
+
+  ● GameService › getLeaderboard › debería obtener leaderboard del juego
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 16
+    + Received  +  1
+
+    - Array [
+    -   Object {
+    -     "gameType": "wordsearch",
+    -     "gamesWon": 50,
+    -     "id": "stats-1",
+    -     "totalScore": 1000,
+    -     "userId": "user-1",
+    -   },
+    -   Object {
+    -     "gameType": "wordsearch",
+    -     "gamesWon": 40,
+    -     "id": "stats-2",
+    -     "totalScore": 800,
+    -     "userId": "user-2",
+    -   },
+    - ]
+    + Array []
+
+      325 |       const result = await GameService.getLeaderboard('wordsearch', 20);
+      326 |
+    > 327 |       expect(result).toEqual(mockLeaderboard);
+          |                      ^
+      328 |       expect(prisma.gameStats.findMany).toHaveBeenCalledWith({
+      329 |         where: { gameType: 'wordsearch' },
+      330 |         orderBy: [{ totalScore: 'desc' }, { gamesWon: 'desc' }],
+
+      at Object.toEqual (__tests__/services/game.service.test.ts:327:22)
+
+  ● GameService › checkAndResetStreak › debería resetear racha si pasó más de 1 día
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: {"data": {"currentStreak": 0}, "where": {"userId_gameType": {"gameType": "wordsearch", "userId": "user-123"}}}
+
+    Number of calls: 0
+
+      360 |       await GameService.checkAndResetStreak('user-123', 'wordsearch');
+      361 |
+    > 362 |       expect(prisma.gameStats.update).toHaveBeenCalledWith({
+          |                                       ^
+      363 |         where: {
+      364 |           userId_gameType: {
+      365 |             userId: 'user-123',
+
+      at Object.toHaveBeenCalledWith (__tests__/services/game.service.test.ts:362:39)
+
+  ● GameService › getGlobalStats › debería obtener estadísticas globales
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: {"averageScore": 500, "averageWins": 7.5, "bestStreak": 25, "highestScore": 2000, "totalGamesPlayed": 1000, "totalGamesWon": 750, "totalPlayers": 100, "totalScore": 50000}
+    Received: null
+
+      429 |       const result = await GameService.getGlobalStats('wordsearch');
+      430 |
+    > 431 |       expect(result).toEqual({
+          |                      ^
+      432 |         totalPlayers: 100,
+      433 |         totalGamesPlayed: 1000,
+      434 |         totalGamesWon: 750,
+
+      at Object.toEqual (__tests__/services/game.service.test.ts:431:22)
+
+  ● GameService › getGlobalStats › debería manejar valores null en aggregate
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: {"averageScore": 0, "averageWins": 0, "bestStreak": 0, "highestScore": 0, "totalGamesPlayed": 0, "totalGamesWon": 0, "totalPlayers": 0, "totalScore": 0}
+    Received: null
+
+      463 |       const result = await GameService.getGlobalStats('wordsearch');
+      464 |
+    > 465 |       expect(result).toEqual({
+          |                      ^
+      466 |         totalPlayers: 0,
+      467 |         totalGamesPlayed: 0,
+      468 |         totalGamesWon: 0,
+
+      at Object.toEqual (__tests__/services/game.service.test.ts:465:22)
+
+  ● GameService › getUserRank › debería obtener posición del usuario
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 4
+    Received: null
+
+      517 |       const result = await GameService.getUserRank('user-123', 'wordsearch');
+      518 |
+    > 519 |       expect(result).toBe(4); // 3 usuarios con más score + 1
+          |                      ^
+      520 |       expect(prisma.gameStats.count).toHaveBeenCalledWith({
+      521 |         where: {
+      522 |           gameType: 'wordsearch',
+
+      at Object.toBe (__tests__/services/game.service.test.ts:519:22)
+
+PASS __tests__/performance/load.test.ts
+  ● Console
+
+    console.log
+      ✓ 100 requests completadas en 0ms
+
+      at Object.log (__tests__/performance/load.test.ts:34:15)
+
+    console.log
+      ✓ 1000 verificaciones en 1ms
+
+      at Object.log (__tests__/performance/load.test.ts:56:15)
+
+    console.log
+      ✓ Promedio: 0.00ms por verificación
+
+      at Object.log (__tests__/performance/load.test.ts:57:15)
+
+    console.log
+      ✓ 500 queries de conteo en 53ms
+
+      at Object.log (__tests__/performance/load.test.ts:80:15)
+
+    console.log
+      ✓ Throughput: 9434 queries/segundo
+
+      at Object.log (__tests__/performance/load.test.ts:81:15)
+
+    console.log
+      ✓ 500 requests en spike pattern: 49ms
+
+      at Object.log (__tests__/performance/load.test.ts:111:15)
+
+    console.log
+      ✓ Crecimiento de memoria: 1.21MB
+
+      at Object.log (__tests__/performance/load.test.ts:141:15)
+
+    console.log
+      ✓ Tiempo promedio: 0.00ms
+
+      at Object.log (__tests__/performance/load.test.ts:179:15)
+
+    console.log
+      ✓ Tiempo máximo: 0ms
+
+      at Object.log (__tests__/performance/load.test.ts:180:15)
+
+    console.log
+      ✓ Tiempo mínimo: 0ms
+
+      at Object.log (__tests__/performance/load.test.ts:181:15)
+
+    console.log
+      ✓ Tiempo promedio: 0.001ms
+
+      at Object.log (__tests__/performance/load.test.ts:211:15)
+
+    console.log
+      ✓ P95: 0.002ms
+
+      at Object.log (__tests__/performance/load.test.ts:212:15)
+
+    console.log
+      ✓ Exitosos: 100
+
+      at Object.log (__tests__/performance/load.test.ts:250:15)
+
+    console.log
+      ✓ Rate limited: 50
+
+      at Object.log (__tests__/performance/load.test.ts:251:15)
+
+    console.log
+      ✓ Sin caché: 52ms
+
+      at Object.log (__tests__/performance/load.test.ts:285:15)
+
+    console.log
+      ✓ Con caché: 0ms
+
+      at Object.log (__tests__/performance/load.test.ts:286:15)
+
+    console.log
+      ✓ Mejora: 100.0%
+
+      at Object.log (__tests__/performance/load.test.ts:287:15)
+
+FAIL __tests__/components/UsageLimitBadge.test.tsx
+  ● Console
+
+    console.error
+      Error fetching usage: Error: Network error
+          at Object.<anonymous> (/home/shago22/proyectos/KLINIK-MAT/__tests__/components/UsageLimitBadge.test.tsx:168:75)
+          at Promise.then.completed (/home/shago22/proyectos/KLINIK-MAT/node_modules/jest-circus/build/utils.js:298:28)
+          at new Promise (<anonymous>)
+          at callAsyncCircusFn (/home/shago22/proyectos/KLINIK-MAT/node_modules/jest-circus/build/utils.js:231:10)
+          at _callCircusTest (/home/shago22/proyectos/KLINIK-MAT/node_modules/jest-circus/build/run.js:316:40)
+          at _runTest (/home/shago22/proyectos/KLINIK-MAT/node_modules/jest-circus/build/run.js:252:3)
+          at _runTestsForDescribeBlock (/home/shago22/proyectos/KLINIK-MAT/node_modules/jest-circus/build/run.js:126:9)
+          at _runTestsForDescribeBlock (/home/shago22/proyectos/KLINIK-MAT/node_modules/jest-circus/build/run.js:121:9)
+          at run (/home/shago22/proyectos/KLINIK-MAT/node_modules/jest-circus/build/run.js:71:3)
+          at runAndTransformResultsToJestFormat (/home/shago22/proyectos/KLINIK-MAT/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+          at jestAdapter (/home/shago22/proyectos/KLINIK-MAT/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+          at runTestInternal (/home/shago22/proyectos/KLINIK-MAT/node_modules/jest-runner/build/runTest.js:367:16)
+          at runTest (/home/shago22/proyectos/KLINIK-MAT/node_modules/jest-runner/build/runTest.js:444:34)
+          at Object.worker (/home/shago22/proyectos/KLINIK-MAT/node_modules/jest-runner/build/testWorker.js:106:12)
+
+      33 |       setLoading(false);
+      34 |     } catch (error) {
+    > 35 |       console.error('Error fetching usage:', error);
+         |               ^
+      36 |       setLoading(false);
+      37 |     }
+      38 |   };
+
+      at error (app/components/UsageLimitBadge.tsx:35:15)
+
+  ● UsageLimitBadge Component › debe mostrar loading state inicialmente
+
+    TestingLibraryElementError: Unable to find an element with the text: /cargando/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div />[39m
+    [36m</body>[39m
+
+      23 |     render(<UsageLimitBadge />);
+      24 |
+    > 25 |     expect(screen.getByText(/cargando/i)).toBeInTheDocument();
+         |                   ^
+      26 |   });
+      27 |
+      28 |   it('debe mostrar badge FREE con conteo correcto (12/15)', async () => {
+
+      at Object.getElementError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at Object.getByText (__tests__/components/UsageLimitBadge.test.tsx:25:19)
+
+  ● UsageLimitBadge Component › debe mostrar barra de progreso con color correcto (azul <70%)
+
+    expect(received).toBeInTheDocument()
+
+    received value must be an HTMLElement or an SVGElement.
+    Received has value: null
+
+    Ignored nodes: comments, script, style
+    [36m<html>[39m
+      [36m<head />[39m
+      [36m<body>[39m
+        [36m<div>[39m
+          [36m<a[39m
+            [33mclass[39m=[32m"block"[39m
+            [33mhref[39m=[32m"/pricing"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"bg-blue-50 border-2 border-blue-300 text-blue-800 rounded-lg p-3 hover:border-blue-400 hover:bg-blue-100 transition-all cursor-pointer group"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"flex items-center justify-between mb-1"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"text-sm font-semibold"[39m
+                [36m>[39m
+                  [0mPlan Gratuito ([0m
+                  [0m5[0m
+                  [0m/[0m
+                  [0m15[0m
+                  [0m)[0m
+                [36m</span>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"w-4 h-4 group-hover:translate-x-1 transition-transform"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M13 7l5 5m0 0l-5 5m5-5H6"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+              [36m</div>[39m
+              [36m<p[39m
+                [33mclass[39m=[32m"text-xs"[39m
+              [36m>[39m
+                [0m🚀 Actualizar a Premium[0m
+              [36m</p>[39m
+            [36m</div>[39m
+          [36m</a>[39m
+        [36m</div>[39m
+      [36m</body>[39m
+    [36m</html>[39m
+
+      119 |     await waitFor(() => {
+      120 |       const progressBar = container.querySelector('[style*="width: 33%"]');
+    > 121 |       expect(progressBar).toBeInTheDocument();
+          |                           ^
+      122 |     });
+      123 |   });
+      124 |
+
+      at __EXTERNAL_MATCHER_TRAP__ (node_modules/expect/build/index.js:325:30)
+      at Object.throwingMatcher [as toBeInTheDocument] (node_modules/expect/build/index.js:326:15)
+      at toBeInTheDocument (__tests__/components/UsageLimitBadge.test.tsx:121:27)
+      at runWithExpensiveErrorDiagnosticsDisabled (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:47:12)
+      at checkCallback (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/wait-for.js:124:77)
+      at checkRealTimersCallback (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/wait-for.js:118:16)
+      at Timeout.task [as _onTimeout] (node_modules/jsdom/lib/jsdom/browser/Window.js:520:19)
+
+  ● UsageLimitBadge Component › debe manejar errores de fetch correctamente
+
+    expect(received).toBeInTheDocument()
+
+    received value must be an HTMLElement or an SVGElement.
+    Received has value: null
+
+    Ignored nodes: comments, script, style
+    [36m<html>[39m
+      [36m<head />[39m
+      [36m<body>[39m
+        [36m<div />[39m
+      [36m</body>[39m
+    [36m</html>[39m
+
+      172 |     await waitFor(() => {
+      173 |       // Componente no debe crashear, debe mostrar estado por defecto o error
+    > 174 |       expect(screen.queryByText(/error/i)).toBeInTheDocument();
+          |                                            ^
+      175 |     });
+      176 |   });
+      177 |
+
+      at __EXTERNAL_MATCHER_TRAP__ (node_modules/expect/build/index.js:325:30)
+      at Object.throwingMatcher [as toBeInTheDocument] (node_modules/expect/build/index.js:326:15)
+      at toBeInTheDocument (__tests__/components/UsageLimitBadge.test.tsx:174:44)
+      at runWithExpensiveErrorDiagnosticsDisabled (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:47:12)
+      at checkCallback (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/wait-for.js:124:77)
+      at checkRealTimersCallback (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/wait-for.js:118:16)
+      at Timeout.task [as _onTimeout] (node_modules/jsdom/lib/jsdom/browser/Window.js:520:19)
+
+Summary of all failing tests
+FAIL __tests__/lib/subscription.test.ts
+  ● Sistema de Límites de Casos › getUserCaseLimit › debe retornar 15 para suscripción expirada
+
+    TypeError: Cannot read properties of undefined (reading 'name')
+
+      122 |   
+      123 |   // Si no tiene suscripción o es FREE, límite de 15 casos
+    > 124 |   if (!subscription || subscription.plan.name === 'FREE') {
+          |                                          ^
+      125 |     return 15;
+      126 |   }
+      127 |   
+
+      at name (lib/subscription.ts:124:42)
+      at Object.<anonymous> (__tests__/lib/subscription.test.ts:89:21)
+
+  ● Sistema de Límites de Casos › Edge Cases › debe manejar errores de base de datos
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: 15
+
+      284 |       );
+      285 |
+    > 286 |       await expect(getUserCaseLimit('user_123')).rejects.toThrow();
+          |                   ^
+      287 |     });
+      288 |
+      289 |     it('debe manejar suscripción sin plan asociado', async () => {
+
+      at expect (node_modules/expect/build/index.js:113:15)
+      at Object.<anonymous> (__tests__/lib/subscription.test.ts:286:19)
+
+  ● Sistema de Límites de Casos › Edge Cases › debe manejar suscripción sin plan asociado
+
+    TypeError: Cannot read properties of null (reading 'name')
+
+      122 |   
+      123 |   // Si no tiene suscripción o es FREE, límite de 15 casos
+    > 124 |   if (!subscription || subscription.plan.name === 'FREE') {
+          |                                          ^
+      125 |     return 15;
+      126 |   }
+      127 |   
+
+      at name (lib/subscription.ts:124:42)
+      at Object.<anonymous> (__tests__/lib/subscription.test.ts:297:21)
+
+FAIL __tests__/services/result.service.test.ts
+  ● ResultService › createResult › debería crear resultado exitosamente
+
+    TypeError: Cannot read properties of undefined (reading 'case')
+
+      149 |    */
+      150 |   static async findByIdMinimal(caseId: string): Promise<Pick<Case, 'id' | 'isPublic'> | null> {
+    > 151 |     return prismaRO.case.findUnique({
+          |                     ^
+      152 |       where: { id: caseId },
+      153 |       select: { id: true, isPublic: true },
+      154 |     });
+
+      at CaseRepository.case [as findByIdMinimal] (lib/repositories/case.repository.ts:151:21)
+      at ResultService.findByIdMinimal [as createResult] (services/result.service.ts:44:41)
+      at Object.createResult (__tests__/services/result.service.test.ts:61:42)
+
+  ● ResultService › createResult › debería fallar si caso no existe
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "Case not found"
+    Received message:   "Cannot read properties of undefined (reading 'case')"
+
+          149 |    */
+          150 |   static async findByIdMinimal(caseId: string): Promise<Pick<Case, 'id' | 'isPublic'> | null> {
+        > 151 |     return prismaRO.case.findUnique({
+              |                     ^
+          152 |       where: { id: caseId },
+          153 |       select: { id: true, isPublic: true },
+          154 |     });
+
+      at CaseRepository.case [as findByIdMinimal] (lib/repositories/case.repository.ts:151:21)
+      at ResultService.findByIdMinimal [as createResult] (services/result.service.ts:44:41)
+      at Object.createResult (__tests__/services/result.service.test.ts:88:23)
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (__tests__/services/result.service.test.ts:97:17)
+
+  ● ResultService › createResult › debería fallar si caso no es público
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "Case is not public"
+    Received message:   "Cannot read properties of undefined (reading 'case')"
+
+          149 |    */
+          150 |   static async findByIdMinimal(caseId: string): Promise<Pick<Case, 'id' | 'isPublic'> | null> {
+        > 151 |     return prismaRO.case.findUnique({
+              |                     ^
+          152 |       where: { id: caseId },
+          153 |       select: { id: true, isPublic: true },
+          154 |     });
+
+      at CaseRepository.case [as findByIdMinimal] (lib/repositories/case.repository.ts:151:21)
+      at ResultService.findByIdMinimal [as createResult] (services/result.service.ts:44:41)
+      at Object.createResult (__tests__/services/result.service.test.ts:109:23)
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (__tests__/services/result.service.test.ts:118:17)
+
+  ● ResultService › createResult › debería crear resultado aunque falle engagement metric
+
+    TypeError: Cannot read properties of undefined (reading 'case')
+
+      149 |    */
+      150 |   static async findByIdMinimal(caseId: string): Promise<Pick<Case, 'id' | 'isPublic'> | null> {
+    > 151 |     return prismaRO.case.findUnique({
+          |                     ^
+      152 |       where: { id: caseId },
+      153 |       select: { id: true, isPublic: true },
+      154 |     });
+
+      at CaseRepository.case [as findByIdMinimal] (lib/repositories/case.repository.ts:151:21)
+      at ResultService.findByIdMinimal [as createResult] (services/result.service.ts:44:41)
+      at Object.createResult (__tests__/services/result.service.test.ts:131:42)
+
+  ● ResultService › getUserResults › debería obtener resultados de usuario
+
+    DatabaseError: studentResult.getUserResults failed: Cannot read properties of undefined (reading 'studentResult')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at ResultRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● ResultService › getUserResults › debería filtrar por área
+
+    DatabaseError: studentResult.getUserResults failed: Cannot read properties of undefined (reading 'studentResult')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at ResultRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● ResultService › getUserResults › debería ordenar por score
+
+    DatabaseError: studentResult.getUserResults failed: Cannot read properties of undefined (reading 'studentResult')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at ResultRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● ResultService › getUserResults › debería respetar límite personalizado
+
+    DatabaseError: studentResult.getUserResults failed: Cannot read properties of undefined (reading 'studentResult')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at ResultRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● ResultService › getBestResult › debería obtener mejor resultado
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: {"caseId": "case-123", "id": "result-1", "score": 95, "userId": "user-123"}
+    Received: null
+
+      232 |       const result = await ResultService.getBestResult('user-123', 'case-123');
+      233 |
+    > 234 |       expect(result).toEqual(mockResult);
+          |                      ^
+      235 |       expect(prisma.studentResult.findFirst).toHaveBeenCalledWith({
+      236 |         where: { userId: 'user-123', caseId: 'case-123' },
+      237 |         orderBy: { score: 'desc' },
+
+      at Object.toEqual (__tests__/services/result.service.test.ts:234:22)
+
+  ● ResultService › getUserStats › debería obtener estadísticas de usuario
+
+    DatabaseError: studentResult.getUserStats failed: Cannot read properties of undefined (reading 'studentResult')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at ResultRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● ResultService › getUserStats › debería filtrar por área
+
+    DatabaseError: studentResult.getUserStats failed: Cannot read properties of undefined (reading 'studentResult')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at ResultRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+FAIL __tests__/lib/sanitize.test.ts
+  ● sanitizeCaseId › rechaza IDs inválidos
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "ID de caso inválido"
+
+    Received function did not throw
+
+      87 |
+      88 |   it('rechaza IDs inválidos', () => {
+    > 89 |     expect(() => sanitizeCaseId('not-a-uuid')).toThrow('ID de caso inválido');
+         |                                                ^
+      90 |     expect(() => sanitizeCaseId('550e8400-e29b-31d4-a716-446655440000')).toThrow(); // v3 UUID
+      91 |   });
+      92 | });
+
+      at Object.toThrow (__tests__/lib/sanitize.test.ts:89:48)
+
+FAIL __tests__/lib/repositories/result.repository.test.ts
+  ● ResultRepository › getUserStats › debería calcular estadísticas de usuario
+
+    DatabaseError: studentResult.getUserStats failed: Cannot read properties of undefined (reading 'totalPoints')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at ResultRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.<anonymous> (__tests__/lib/repositories/result.repository.test.ts:173:22)
+
+  ● ResultRepository › getUserStats › debería manejar usuario sin intentos
+
+    DatabaseError: studentResult.getUserStats failed: Cannot read properties of undefined (reading 'totalPoints')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at ResultRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.<anonymous> (__tests__/lib/repositories/result.repository.test.ts:189:22)
+
+  ● ResultRepository › getUserStats › debería redondear promedios correctamente
+
+    DatabaseError: studentResult.getUserStats failed: Cannot read properties of undefined (reading 'totalPoints')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at ResultRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.<anonymous> (__tests__/lib/repositories/result.repository.test.ts:205:22)
+
+  ● ResultRepository › getStatsByArea › debería obtener estadísticas por área
+
+    DatabaseError: studentResult.getStatsByArea failed: Cannot read properties of undefined (reading 'totalPoints')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at ResultRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.<anonymous> (__tests__/lib/repositories/result.repository.test.ts:221:22)
+
+  ● ResultRepository › getStatsByArea › debería redondear promedios
+
+    DatabaseError: studentResult.getStatsByArea failed: Cannot read properties of undefined (reading 'totalPoints')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at ResultRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.<anonymous> (__tests__/lib/repositories/result.repository.test.ts:244:22)
+
+  ● ResultRepository › getLeaderboard › debería obtener leaderboard global
+
+    DatabaseError: studentResult.getLeaderboard failed: Cannot read properties of undefined (reading 'score')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at ResultRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.<anonymous> (__tests__/lib/repositories/result.repository.test.ts:265:22)
+
+  ● ResultRepository › getLeaderboard › debería usar nombre por defecto si usuario no encontrado
+
+    DatabaseError: studentResult.getLeaderboard failed: Cannot read properties of undefined (reading 'score')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at ResultRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.<anonymous> (__tests__/lib/repositories/result.repository.test.ts:308:22)
+
+FAIL __tests__/services/subscription.service.test.ts
+  ● SubscriptionService › getActivePlans › should return active plans ordered by price
+
+    DatabaseError: subscriptionPlan.findMany failed: Cannot read properties of undefined (reading 'subscriptionPlan')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionPlanRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › getActivePlans › should return empty array when no active plans
+
+    DatabaseError: subscriptionPlan.findMany failed: Cannot read properties of undefined (reading 'subscriptionPlan')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionPlanRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › getUserSubscription › should return active subscription with plan details
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › getUserSubscription › should return null when user has no active subscription
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › getUserSubscription › should include TRIALING status in query
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › canAccessFeature › should allow feature when subscription has feature enabled
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › canAccessFeature › should deny feature when subscription lacks feature
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › canAccessFeature › should check FREE plan features when no subscription
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › canAccessFeature › should deny access when trial has expired
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › canAccessFeature › should allow access when trial is still valid
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › canAccessFeature › should handle null features gracefully
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › checkUsageLimit › should enforce FREE plan limit
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › checkUsageLimit › should deny when FREE limit reached
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › checkUsageLimit › should allow unlimited usage for plans with null limit
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › checkUsageLimit › should count usage within billing period for paid plan
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › checkUsageLimit › should query from start of month for FREE plan
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › recordUsage › should create usage record for user with subscription
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › recordUsage › should create usage record for user without subscription
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › recordUsage › should default quantity to 1 if not provided
+
+    DatabaseError: subscription.findActiveByUser failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › createSubscriptionPayment › should create payment preference for one-time payment
+
+    DatabaseError: user.findById failed: Cannot read properties of undefined (reading 'user')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at UserRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › createSubscriptionPayment › should throw error when user not found
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "User or plan not found"
+    Received message:   "user.findById failed: Cannot read properties of undefined (reading 'user')"
+
+          56 |       return await query();
+          57 |     } catch (error: any) {
+        > 58 |       throw new DatabaseError(
+             |             ^
+          59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+          60 |         { originalError: error }
+          61 |       );
+
+      at UserRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (__tests__/services/subscription.service.test.ts:500:17)
+
+  ● SubscriptionService › createSubscriptionPayment › should throw error when plan not found
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "User or plan not found"
+    Received message:   "user.findById failed: Cannot read properties of undefined (reading 'user')"
+
+          56 |       return await query();
+          57 |     } catch (error: any) {
+        > 58 |       throw new DatabaseError(
+             |             ^
+          59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+          60 |         { originalError: error }
+          61 |       );
+
+      at UserRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (__tests__/services/subscription.service.test.ts:508:17)
+
+  ● SubscriptionService › createSubscriptionPayment › should use sandbox init point in test mode
+
+    DatabaseError: user.findById failed: Cannot read properties of undefined (reading 'user')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at UserRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › createSubscriptionPayment › should create preapproval for recurring monthly plan
+
+    DatabaseError: user.findById failed: Cannot read properties of undefined (reading 'user')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at UserRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › createSubscriptionPayment › should log payment creation
+
+    DatabaseError: user.findById failed: Cannot read properties of undefined (reading 'user')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at UserRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › createSubscriptionPayment › should handle Mercado Pago API errors
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "MP API Error"
+    Received message:   "user.findById failed: Cannot read properties of undefined (reading 'user')"
+
+          56 |       return await query();
+          57 |     } catch (error: any) {
+        > 58 |       throw new DatabaseError(
+             |             ^
+          59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+          60 |         { originalError: error }
+          61 |       );
+
+      at UserRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (__tests__/services/subscription.service.test.ts:585:17)
+
+  ● SubscriptionService › activateSubscription › should create active subscription for monthly plan
+
+    DatabaseError: subscriptionPlan.findById failed: Cannot read properties of undefined (reading 'subscriptionPlan')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionPlanRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › activateSubscription › should create subscription with trial period
+
+    DatabaseError: subscriptionPlan.findById failed: Cannot read properties of undefined (reading 'subscriptionPlan')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionPlanRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › activateSubscription › should calculate quarterly period correctly
+
+    DatabaseError: subscriptionPlan.findById failed: Cannot read properties of undefined (reading 'subscriptionPlan')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionPlanRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › activateSubscription › should calculate yearly period correctly
+
+    DatabaseError: subscriptionPlan.findById failed: Cannot read properties of undefined (reading 'subscriptionPlan')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionPlanRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › activateSubscription › should throw error when plan not found
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "Plan not found"
+    Received message:   "subscriptionPlan.findById failed: Cannot read properties of undefined (reading 'subscriptionPlan')"
+
+          56 |       return await query();
+          57 |     } catch (error: any) {
+        > 58 |       throw new DatabaseError(
+             |             ^
+          59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+          60 |         { originalError: error }
+          61 |       );
+
+      at SubscriptionPlanRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (__tests__/services/subscription.service.test.ts:705:17)
+
+  ● SubscriptionService › activateSubscription › should store Mercado Pago preapproval ID
+
+    DatabaseError: subscriptionPlan.findById failed: Cannot read properties of undefined (reading 'subscriptionPlan')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionPlanRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › cancelSubscription › should cancel subscription at period end
+
+    DatabaseError: subscription.findById failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › cancelSubscription › should cancel subscription immediately
+
+    DatabaseError: subscription.findById failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › cancelSubscription › should cancel Mercado Pago preapproval when present
+
+    DatabaseError: subscription.findById failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › cancelSubscription › should continue cancellation even if MP preapproval fails
+
+    DatabaseError: subscription.findById failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● SubscriptionService › cancelSubscription › should throw error when subscription not found
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "Subscription not found"
+    Received message:   "subscription.findById failed: Cannot read properties of undefined (reading 'subscription')"
+
+          56 |       return await query();
+          57 |     } catch (error: any) {
+        > 58 |       throw new DatabaseError(
+             |             ^
+          59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+          60 |         { originalError: error }
+          61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (__tests__/services/subscription.service.test.ts:832:17)
+
+  ● SubscriptionService › cancelSubscription › should default to cancel at period end
+
+    DatabaseError: subscription.findById failed: Cannot read properties of undefined (reading 'subscription')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at SubscriptionRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+FAIL __tests__/services/caso.service.test.ts
+  ● CasoService › getCasosActivos › debería obtener casos activos
+
+    No se pudo cargar el listado de casos clínicos. (DB Error)
+
+       97 |   } catch (error) {
+       98 |     logger.error('Failed to fetch active cases', error);
+    >  99 |     throw new Error("No se pudo cargar el listado de casos clínicos. (DB Error)");
+          |           ^
+      100 |   }
+      101 | }
+      102 |
+
+      at getCasosActivos (services/caso.service.ts:99:11)
+      at Object.<anonymous> (__tests__/services/caso.service.test.ts:193:22)
+
+  ● CasoService › getCasosActivos › debería retornar array vacío si no hay casos
+
+    No se pudo cargar el listado de casos clínicos. (DB Error)
+
+       97 |   } catch (error) {
+       98 |     logger.error('Failed to fetch active cases', error);
+    >  99 |     throw new Error("No se pudo cargar el listado de casos clínicos. (DB Error)");
+          |           ^
+      100 |   }
+      101 | }
+      102 |
+
+      at getCasosActivos (services/caso.service.ts:99:11)
+      at Object.<anonymous> (__tests__/services/caso.service.test.ts:219:22)
+
+FAIL __tests__/services/user.service.test.ts
+  ● UserService › getUserProfile › should return user profile when user exists
+
+    DatabaseError: user.findProfileById failed: Cannot read properties of undefined (reading 'user')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at UserRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● UserService › getUserProfile › should return null when user does not exist
+
+    DatabaseError: user.findProfileById failed: Cannot read properties of undefined (reading 'user')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at UserRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● UserService › getUserProfile › should propagate errors from database
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "Database error"
+    Received message:   "user.findProfileById failed: Cannot read properties of undefined (reading 'user')"
+
+          56 |       return await query();
+          57 |     } catch (error: any) {
+        > 58 |       throw new DatabaseError(
+             |             ^
+          59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+          60 |         { originalError: error }
+          61 |       );
+
+      at UserRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (__tests__/services/user.service.test.ts:96:68)
+
+  ● UserService › updateUserProfile › should propagate errors from update operation
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    - Expected
+    + Received
+
+      "Failed to update user profile",
+      Object {
+    -   "error": [Error: Update failed],
+    +   "error": [DatabaseError: user.update failed: Update failed],
+        "userId": "user-123",
+      },
+
+    Number of calls: 1
+
+      139 |
+      140 |       await expect(UserService.updateUserProfile('user-123', { name: 'Test' })).rejects.toThrow('Update failed');
+    > 141 |       expect(logger.error).toHaveBeenCalledWith('Failed to update user profile', {
+          |                            ^
+      142 |         userId: 'user-123',
+      143 |         error,
+      144 |       });
+
+      at Object.toHaveBeenCalledWith (__tests__/services/user.service.test.ts:141:28)
+
+  ● UserService › syncUser › should propagate errors from sync operation
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    - Expected
+    + Received
+
+      "Failed to sync user",
+      Object {
+    -   "error": [Error: Sync failed],
+    +   "error": [DatabaseError: user.upsert failed: Sync failed],
+        "userData": Object {
+          "email": "test@example.com",
+          "id": "clerk-123",
+        },
+      },
+
+    Number of calls: 1
+
+      256 |
+      257 |       await expect(UserService.syncUser(userData)).rejects.toThrow('Sync failed');
+    > 258 |       expect(logger.error).toHaveBeenCalledWith('Failed to sync user', {
+          |                            ^
+      259 |         userData,
+      260 |         error,
+      261 |       });
+
+      at Object.toHaveBeenCalledWith (__tests__/services/user.service.test.ts:258:28)
+
+  ● UserService › getUserProgress › should calculate user progress correctly
+
+    TypeError: Cannot read properties of undefined (reading 'case')
+
+      106 |   static async count(filters: CaseFilters = {}): Promise<number> {
+      107 |     const where = this.buildWhereClause(filters);
+    > 108 |     return prismaRO.case.count({ where });
+          |                     ^
+      109 |   }
+      110 |
+      111 |   /**
+
+      at CaseRepository.case [as count] (lib/repositories/case.repository.ts:108:21)
+      at UserService.count [as getUserProgress] (services/user.service.ts:83:18)
+      at Object.getUserProgress (__tests__/services/user.service.test.ts:277:40)
+
+  ● UserService › getUserProgress › should handle zero completed cases
+
+    TypeError: Cannot read properties of undefined (reading 'case')
+
+      106 |   static async count(filters: CaseFilters = {}): Promise<number> {
+      107 |     const where = this.buildWhereClause(filters);
+    > 108 |     return prismaRO.case.count({ where });
+          |                     ^
+      109 |   }
+      110 |
+      111 |   /**
+
+      at CaseRepository.case [as count] (lib/repositories/case.repository.ts:108:21)
+      at UserService.count [as getUserProgress] (services/user.service.ts:83:18)
+      at Object.getUserProgress (__tests__/services/user.service.test.ts:300:40)
+
+  ● UserService › getUserProgress › should handle null aggregate values
+
+    TypeError: Cannot read properties of undefined (reading 'case')
+
+      106 |   static async count(filters: CaseFilters = {}): Promise<number> {
+      107 |     const where = this.buildWhereClause(filters);
+    > 108 |     return prismaRO.case.count({ where });
+          |                     ^
+      109 |   }
+      110 |
+      111 |   /**
+
+      at CaseRepository.case [as count] (lib/repositories/case.repository.ts:108:21)
+      at UserService.count [as getUserProgress] (services/user.service.ts:83:18)
+      at Object.getUserProgress (__tests__/services/user.service.test.ts:322:40)
+
+  ● UserService › getUserProgress › should propagate errors from progress calculation
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "Database error"
+    Received message:   "Cannot read properties of undefined (reading 'case')"
+
+          106 |   static async count(filters: CaseFilters = {}): Promise<number> {
+          107 |     const where = this.buildWhereClause(filters);
+        > 108 |     return prismaRO.case.count({ where });
+              |                     ^
+          109 |   }
+          110 |
+          111 |   /**
+
+      at CaseRepository.case [as count] (lib/repositories/case.repository.ts:108:21)
+      at UserService.count [as getUserProgress] (services/user.service.ts:83:18)
+      at Object.getUserProgress (__tests__/services/user.service.test.ts:333:32)
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (__tests__/services/user.service.test.ts:333:69)
+
+  ● UserService › userExists › should return true when user exists
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      567 |       const result = await UserService.userExists('user-123');
+      568 |
+    > 569 |       expect(result).toBe(true);
+          |                      ^
+      570 |       expect(prisma.user.count).toHaveBeenCalledWith({ where: { id: 'user-123' } });
+      571 |     });
+      572 |
+
+      at Object.toBe (__tests__/services/user.service.test.ts:569:22)
+
+  ● UserService › userExists › should return false on error
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    - Expected
+    + Received
+
+      "Failed to check user existence",
+      Object {
+    -   "error": [Error: Database error],
+    +   "error": [DatabaseError: user.count failed: Cannot read properties of undefined (reading 'user')],
+        "userId": "user-123",
+      },
+
+    Number of calls: 1
+
+      586 |
+      587 |       expect(result).toBe(false);
+    > 588 |       expect(logger.error).toHaveBeenCalledWith('Failed to check user existence', {
+          |                            ^
+      589 |         userId: 'user-123',
+      590 |         error,
+      591 |       });
+
+      at Object.toHaveBeenCalledWith (__tests__/services/user.service.test.ts:588:28)
+
+  ● UserService › deleteUser › should propagate errors from delete operation
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    - Expected
+    + Received
+
+      "Failed to delete user",
+      Object {
+    -   "error": [Error: Delete failed],
+    +   "error": [DatabaseError: user.delete failed: Delete failed],
+        "userId": "user-123",
+      },
+
+    Number of calls: 1
+
+      611 |
+      612 |       await expect(UserService.deleteUser('user-123')).rejects.toThrow('Delete failed');
+    > 613 |       expect(logger.error).toHaveBeenCalledWith('Failed to delete user', {
+          |                            ^
+      614 |         userId: 'user-123',
+      615 |         error,
+      616 |       });
+
+      at Object.toHaveBeenCalledWith (__tests__/services/user.service.test.ts:613:28)
+
+FAIL __tests__/api/subscription/check-access.test.ts
+  ● API /api/subscription/check-access › debe retornar 401 si usuario no autenticado
+
+    Cannot find module '@sentry/nextjs' from 'lib/logger.ts'
+
+    Require stack:
+      lib/logger.ts
+      lib/ratelimit.ts
+      lib/middleware/api-middleware.ts
+      app/api/subscription/check-access/route.ts
+      __tests__/api/subscription/check-access.test.ts
+
+      28 |    */
+      29 |   debug: (message: string, context?: LogContext) => {
+    > 30 |     if (isDev && !isTest) {
+         |                            ^
+      31 |       console.log(`�� [DEBUG] ${message}`, context || '');
+      32 |     }
+      33 |   },
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.<anonymous> (lib/logger.ts:30:57)
+      at Object.<anonymous> (lib/ratelimit.ts:28:17)
+      at Object.<anonymous> (lib/middleware/api-middleware.ts:42:20)
+      at Object.<anonymous> (app/api/subscription/check-access/route.ts:12:24)
+      at __tests__/api/subscription/check-access.test.ts:31:27
+      at Object.<anonymous> (__tests__/api/subscription/check-access.test.ts:31:21)
+
+  ● API /api/subscription/check-access › debe retornar datos correctos para usuario FREE con acceso
+
+    Cannot find module '@sentry/nextjs' from 'lib/logger.ts'
+
+    Require stack:
+      lib/logger.ts
+      lib/ratelimit.ts
+      lib/middleware/api-middleware.ts
+      app/api/subscription/check-access/route.ts
+      __tests__/api/subscription/check-access.test.ts
+
+      28 |    */
+      29 |   debug: (message: string, context?: LogContext) => {
+    > 30 |     if (isDev && !isTest) {
+         |                            ^
+      31 |       console.log(`�� [DEBUG] ${message}`, context || '');
+      32 |     }
+      33 |   },
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.<anonymous> (lib/logger.ts:30:57)
+      at Object.<anonymous> (lib/ratelimit.ts:28:17)
+      at Object.<anonymous> (lib/middleware/api-middleware.ts:42:20)
+      at Object.<anonymous> (app/api/subscription/check-access/route.ts:12:24)
+      at __tests__/api/subscription/check-access.test.ts:58:27
+      at Object.<anonymous> (__tests__/api/subscription/check-access.test.ts:58:21)
+
+  ● API /api/subscription/check-access › debe retornar canAccess: false cuando límite alcanzado
+
+    Cannot find module '@sentry/nextjs' from 'lib/logger.ts'
+
+    Require stack:
+      lib/logger.ts
+      lib/ratelimit.ts
+      lib/middleware/api-middleware.ts
+      app/api/subscription/check-access/route.ts
+      __tests__/api/subscription/check-access.test.ts
+
+      28 |    */
+      29 |   debug: (message: string, context?: LogContext) => {
+    > 30 |     if (isDev && !isTest) {
+         |                            ^
+      31 |       console.log(`�� [DEBUG] ${message}`, context || '');
+      32 |     }
+      33 |   },
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.<anonymous> (lib/logger.ts:30:57)
+      at Object.<anonymous> (lib/ratelimit.ts:28:17)
+      at Object.<anonymous> (lib/middleware/api-middleware.ts:42:20)
+      at Object.<anonymous> (app/api/subscription/check-access/route.ts:12:24)
+      at __tests__/api/subscription/check-access.test.ts:91:27
+      at Object.<anonymous> (__tests__/api/subscription/check-access.test.ts:91:21)
+
+  ● API /api/subscription/check-access › debe retornar datos correctos para usuario PREMIUM
+
+    Cannot find module '@sentry/nextjs' from 'lib/logger.ts'
+
+    Require stack:
+      lib/logger.ts
+      lib/ratelimit.ts
+      lib/middleware/api-middleware.ts
+      app/api/subscription/check-access/route.ts
+      __tests__/api/subscription/check-access.test.ts
+
+      28 |    */
+      29 |   debug: (message: string, context?: LogContext) => {
+    > 30 |     if (isDev && !isTest) {
+         |                            ^
+      31 |       console.log(`�� [DEBUG] ${message}`, context || '');
+      32 |     }
+      33 |   },
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.<anonymous> (lib/logger.ts:30:57)
+      at Object.<anonymous> (lib/ratelimit.ts:28:17)
+      at Object.<anonymous> (lib/middleware/api-middleware.ts:42:20)
+      at Object.<anonymous> (app/api/subscription/check-access/route.ts:12:24)
+      at __tests__/api/subscription/check-access.test.ts:119:27
+      at Object.<anonymous> (__tests__/api/subscription/check-access.test.ts:119:21)
+
+  ● API /api/subscription/check-access › debe manejar errores internos correctamente
+
+    Cannot find module '@sentry/nextjs' from 'lib/logger.ts'
+
+    Require stack:
+      lib/logger.ts
+      lib/ratelimit.ts
+      lib/middleware/api-middleware.ts
+      app/api/subscription/check-access/route.ts
+      __tests__/api/subscription/check-access.test.ts
+
+      28 |    */
+      29 |   debug: (message: string, context?: LogContext) => {
+    > 30 |     if (isDev && !isTest) {
+         |                            ^
+      31 |       console.log(`�� [DEBUG] ${message}`, context || '');
+      32 |     }
+      33 |   },
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.<anonymous> (lib/logger.ts:30:57)
+      at Object.<anonymous> (lib/ratelimit.ts:28:17)
+      at Object.<anonymous> (lib/middleware/api-middleware.ts:42:20)
+      at Object.<anonymous> (app/api/subscription/check-access/route.ts:12:24)
+      at __tests__/api/subscription/check-access.test.ts:133:27
+      at Object.<anonymous> (__tests__/api/subscription/check-access.test.ts:133:21)
+
+  ● API /api/subscription/check-access › debe retornar estructura completa de datos
+
+    Cannot find module '@sentry/nextjs' from 'lib/logger.ts'
+
+    Require stack:
+      lib/logger.ts
+      lib/ratelimit.ts
+      lib/middleware/api-middleware.ts
+      app/api/subscription/check-access/route.ts
+      __tests__/api/subscription/check-access.test.ts
+
+      28 |    */
+      29 |   debug: (message: string, context?: LogContext) => {
+    > 30 |     if (isDev && !isTest) {
+         |                            ^
+      31 |       console.log(`�� [DEBUG] ${message}`, context || '');
+      32 |     }
+      33 |   },
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.<anonymous> (lib/logger.ts:30:57)
+      at Object.<anonymous> (lib/ratelimit.ts:28:17)
+      at Object.<anonymous> (lib/middleware/api-middleware.ts:42:20)
+      at Object.<anonymous> (app/api/subscription/check-access/route.ts:12:24)
+      at __tests__/api/subscription/check-access.test.ts:160:27
+      at Object.<anonymous> (__tests__/api/subscription/check-access.test.ts:160:21)
+
+FAIL __tests__/services/favorite.service.test.ts
+  ● FavoriteService › getUserFavorites › debería obtener favoritos del usuario con casos
+
+    DatabaseError: favorite.getUserFavorites failed: Cannot read properties of undefined (reading 'favorite')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at FavoriteRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● FavoriteService › getUserFavorites › debería propagar error si falla
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "DB Error"
+    Received message:   "favorite.getUserFavorites failed: Cannot read properties of undefined (reading 'favorite')"
+
+          56 |       return await query();
+          57 |     } catch (error: any) {
+        > 58 |       throw new DatabaseError(
+             |             ^
+          59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+          60 |         { originalError: error }
+          61 |       );
+
+      at FavoriteRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (__tests__/services/favorite.service.test.ts:79:74)
+
+  ● FavoriteService › isFavorite › debería retornar true si es favorito
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      87 |       const result = await FavoriteService.isFavorite('user-123', 'case-123');
+      88 |
+    > 89 |       expect(result).toBe(true);
+         |                      ^
+      90 |       expect(prisma.favorite.count).toHaveBeenCalledWith({
+      91 |         where: {
+      92 |           userId: 'user-123',
+
+      at Object.toBe (__tests__/services/favorite.service.test.ts:89:22)
+
+  ● FavoriteService › addFavorite › debería agregar favorito si caso existe
+
+    DatabaseError: case.count failed: Cannot read properties of undefined (reading 'case')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at CaseRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● FavoriteService › addFavorite › debería lanzar error si caso no existe
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "Case not found"
+    Received message:   "case.count failed: Cannot read properties of undefined (reading 'case')"
+
+          56 |       return await query();
+          57 |     } catch (error: any) {
+        > 58 |       throw new DatabaseError(
+             |             ^
+          59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+          60 |         { originalError: error }
+          61 |       );
+
+      at CaseRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (__tests__/services/favorite.service.test.ts:140:81)
+
+  ● FavoriteService › addFavorite › debería propagar error de BD
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "DB Error"
+    Received message:   "case.count failed: Cannot read properties of undefined (reading 'case')"
+
+          56 |       return await query();
+          57 |     } catch (error: any) {
+        > 58 |       throw new DatabaseError(
+             |             ^
+          59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+          60 |         { originalError: error }
+          61 |       );
+
+      at CaseRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (__tests__/services/favorite.service.test.ts:149:81)
+
+  ● FavoriteService › removeFavorite › debería eliminar favorito correctamente
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: {"where": {"userId_caseId": {"caseId": "case-123", "userId": "user-123"}}}
+
+    Number of calls: 0
+
+      159 |       await FavoriteService.removeFavorite('user-123', 'case-123');
+      160 |
+    > 161 |       expect(prisma.favorite.delete).toHaveBeenCalledWith({
+          |                                      ^
+      162 |         where: {
+      163 |           userId_caseId: {
+      164 |             userId: 'user-123',
+
+      at Object.toHaveBeenCalledWith (__tests__/services/favorite.service.test.ts:161:38)
+
+  ● FavoriteService › removeFavorite › debería propagar otros errores
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: undefined
+
+      180 |       (prisma.favorite.delete as jest.Mock).mockRejectedValue(new Error('DB Error'));
+      181 |
+    > 182 |       await expect(FavoriteService.removeFavorite('user-123', 'case-123')).rejects.toThrow(
+          |             ^
+      183 |         'DB Error'
+      184 |       );
+      185 |     });
+
+      at expect (node_modules/expect/build/index.js:113:15)
+      at Object.expect (__tests__/services/favorite.service.test.ts:182:13)
+
+  ● FavoriteService › toggleFavorite › debería agregar favorito si no existe
+
+    DatabaseError: favorite.toggleFavorite failed: favorite.findOne failed: Cannot read properties of undefined (reading 'favorite')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at FavoriteRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at FavoriteService.toggleFavorite (services/favorite.service.ts:93:14)
+      at Object.<anonymous> (__tests__/services/favorite.service.test.ts:201:22)
+
+  ● FavoriteService › toggleFavorite › debería eliminar favorito si ya existe
+
+    DatabaseError: favorite.toggleFavorite failed: favorite.findOne failed: Cannot read properties of undefined (reading 'favorite')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at FavoriteRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at FavoriteService.toggleFavorite (services/favorite.service.ts:93:14)
+      at Object.<anonymous> (__tests__/services/favorite.service.test.ts:210:22)
+
+  ● FavoriteService › toggleFavorite › debería propagar errores de addFavorite
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "Case not found"
+    Received message:   "favorite.toggleFavorite failed: favorite.findOne failed: Cannot read properties of undefined (reading 'favorite')"
+
+          56 |       return await query();
+          57 |     } catch (error: any) {
+        > 58 |       throw new DatabaseError(
+             |             ^
+          59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+          60 |         { originalError: error }
+          61 |       );
+
+      at FavoriteRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+      at FavoriteService.toggleFavorite (services/favorite.service.ts:93:14)
+      at Object.<anonymous> (__tests__/services/favorite.service.test.ts:219:7)
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (__tests__/services/favorite.service.test.ts:219:84)
+
+  ● FavoriteService › getFavoriteCount › debería obtener conteo de favoritos
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 15
+    Received: 0
+
+      229 |       const result = await FavoriteService.getFavoriteCount('case-123');
+      230 |
+    > 231 |       expect(result).toBe(15);
+          |                      ^
+      232 |       expect(prisma.favorite.count).toHaveBeenCalledWith({
+      233 |         where: { caseId: 'case-123' },
+      234 |       });
+
+      at Object.toBe (__tests__/services/favorite.service.test.ts:231:22)
+
+  ● FavoriteService › getTrendingCases › debería obtener casos trending con conteo
+
+    expect(received).toHaveLength(expected)
+
+    Expected length: 1
+    Received length: 0
+    Received array:  []
+
+      266 |       const result = await FavoriteService.getTrendingCases(10);
+      267 |
+    > 268 |       expect(result).toHaveLength(1);
+          |                      ^
+      269 |       expect(result[0]).toEqual({
+      270 |         ...mockCases[0],
+      271 |         favoriteCount: 25,
+
+      at Object.toHaveLength (__tests__/services/favorite.service.test.ts:268:22)
+
+  ● FavoriteService › getFavoriteIds › debería obtener IDs de favoritos
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 4
+    + Received  + 1
+
+    - Array [
+    -   "case-1",
+    -   "case-2",
+    - ]
+    + Array []
+
+      309 |       const result = await FavoriteService.getFavoriteIds('user-123');
+      310 |
+    > 311 |       expect(result).toEqual(['case-1', 'case-2']);
+          |                      ^
+      312 |       expect(prisma.favorite.findMany).toHaveBeenCalledWith({
+      313 |         where: { userId: 'user-123' },
+      314 |         select: { caseId: true },
+
+      at Object.toEqual (__tests__/services/favorite.service.test.ts:311:22)
+
+FAIL __tests__/components/CaseCard.test.tsx
+  ● Test suite failed to run
+
+    Jest encountered an unexpected token
+
+    Jest failed to parse a file. This happens e.g. when your code or its dependencies use non-standard JavaScript syntax, or when Jest is not configured to support such syntax.
+
+    Out of the box Jest supports Babel, which will be used to transform your files into valid JS based on your Babel configuration.
+
+    By default "node_modules" folder is ignored by transformers.
+
+    Here's what you can do:
+     • If you are trying to use ECMAScript Modules, see https://jestjs.io/docs/ecmascript-modules for how to enable it.
+     • If you are trying to use TypeScript, see https://jestjs.io/docs/getting-started#using-typescript
+     • To have some of your "node_modules" files transformed, you can specify a custom "transformIgnorePatterns" in your config.
+     • If you need a custom transformation specify a "transform" option in your config.
+     • If you simply want to mock your non-JS modules (e.g. binary assets) you can stub them out with the "moduleNameMapper" config option.
+
+    You'll find more details and examples of these config options in the docs:
+    https://jestjs.io/docs/configuration
+    For information about custom transformations, see:
+    https://jestjs.io/docs/code-transformation
+
+    Details:
+
+    /home/shago22/proyectos/KLINIK-MAT/node_modules/@clerk/backend/dist/runtime/browser/crypto.mjs:1
+    ({"Object.<anonymous>":function(module,exports,require,__dirname,__filename,jest){export const webcrypto = crypto;
+                                                                                      ^^^^^^
+
+    SyntaxError: Unexpected token 'export'
+
+      12 |   summary: string | null;
+      13 |   createdAt: string;
+    > 14 | }
+         |  ^
+      15 |
+      16 | interface Favorite {
+      17 |   id: string;
+
+      at Runtime.createScriptFromCode (node_modules/jest-runtime/build/index.js:1505:14)
+      at Object.<anonymous> (node_modules/@clerk/backend/src/runtime.ts:16:37)
+      at Object.<anonymous> (node_modules/@clerk/nextjs/src/server/headers-utils.ts:1:27)
+      at Object.<anonymous> (node_modules/@clerk/nextjs/dist/cjs/app-router/keyless-actions.js:41:28)
+      at Object.<anonymous> (node_modules/@clerk/nextjs/src/app-router/client/ClerkProvider.tsx:18:45)
+      at Object.<anonymous> (node_modules/@clerk/nextjs/src/client-boundary/ClerkProvider.tsx:6:37)
+      at Object.<anonymous> (node_modules/@clerk/nextjs/src/components.client.ts:1:31)
+      at Object.<anonymous> (node_modules/@clerk/nextjs/src/index.ts:71:35)
+      at Object.<anonymous> (app/hooks/useFavorites.ts:14:17)
+      at Object.<anonymous> (app/context/FavoritesContext.tsx:23:23)
+      at Object.<anonymous> (app/components/FavoriteButton.tsx:17:27)
+      at Object.<anonymous> (app/components/CaseCard.tsx:16:64)
+      at Object.<anonymous> (__tests__/components/CaseCard.test.tsx:10:58)
+
+FAIL __tests__/services/game.service.test.ts
+  ● GameService › getGameStats › debería obtener estadísticas del juego
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: {"bestStreak": 5, "currentStreak": 3, "gameType": "wordsearch", "gamesPlayed": 10, "gamesWon": 8, "id": "stats-1", "totalScore": 500, "userId": "user-123"}
+    Received: null
+
+      48 |       const result = await GameService.getGameStats('user-123', 'wordsearch');
+      49 |
+    > 50 |       expect(result).toEqual(mockStats);
+         |                      ^
+      51 |       expect(prisma.gameStats.findUnique).toHaveBeenCalledWith({
+      52 |         where: {
+      53 |           userId_gameType: {
+
+      at Object.toEqual (__tests__/services/game.service.test.ts:50:22)
+
+  ● GameService › updateGameStats › debería actualizar estadísticas después de ganar
+
+    DatabaseError: gameStats.findByUserAndType failed: Cannot read properties of undefined (reading 'gameStats')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at GameRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● GameService › updateGameStats › debería resetear racha si pierde
+
+    DatabaseError: gameStats.findByUserAndType failed: Cannot read properties of undefined (reading 'gameStats')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at GameRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● GameService › updateGameStats › debería crear estadísticas si no existen
+
+    DatabaseError: gameStats.findByUserAndType failed: Cannot read properties of undefined (reading 'gameStats')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at GameRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● GameService › updateGameStats › debería actualizar bestStreak si la racha es nueva
+
+    DatabaseError: gameStats.findByUserAndType failed: Cannot read properties of undefined (reading 'gameStats')
+
+      56 |       return await query();
+      57 |     } catch (error: any) {
+    > 58 |       throw new DatabaseError(
+         |             ^
+      59 |         `${this.modelName}.${operation} failed: ${error.message}`,
+      60 |         { originalError: error }
+      61 |       );
+
+      at GameRepository.executeQuery (lib/repositories/base.repository.ts:58:13)
+
+  ● GameService › getAllUserStats › debería obtener todas las estadísticas del usuario
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 14
+    + Received  +  1
+
+    - Array [
+    -   Object {
+    -     "gameType": "wordsearch",
+    -     "id": "stats-1",
+    -     "totalScore": 500,
+    -     "userId": "user-123",
+    -   },
+    -   Object {
+    -     "gameType": "hangman",
+    -     "id": "stats-2",
+    -     "totalScore": 300,
+    -     "userId": "user-123",
+    -   },
+    - ]
+    + Array []
+
+      286 |       const result = await GameService.getAllUserStats('user-123');
+      287 |
+    > 288 |       expect(result).toEqual(mockStats);
+          |                      ^
+      289 |       expect(prisma.gameStats.findMany).toHaveBeenCalledWith({
+      290 |         where: { userId: 'user-123' },
+      291 |         orderBy: { totalScore: 'desc' },
+
+      at Object.toEqual (__tests__/services/game.service.test.ts:288:22)
+
+  ● GameService › getLeaderboard › debería obtener leaderboard del juego
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 16
+    + Received  +  1
+
+    - Array [
+    -   Object {
+    -     "gameType": "wordsearch",
+    -     "gamesWon": 50,
+    -     "id": "stats-1",
+    -     "totalScore": 1000,
+    -     "userId": "user-1",
+    -   },
+    -   Object {
+    -     "gameType": "wordsearch",
+    -     "gamesWon": 40,
+    -     "id": "stats-2",
+    -     "totalScore": 800,
+    -     "userId": "user-2",
+    -   },
+    - ]
+    + Array []
+
+      325 |       const result = await GameService.getLeaderboard('wordsearch', 20);
+      326 |
+    > 327 |       expect(result).toEqual(mockLeaderboard);
+          |                      ^
+      328 |       expect(prisma.gameStats.findMany).toHaveBeenCalledWith({
+      329 |         where: { gameType: 'wordsearch' },
+      330 |         orderBy: [{ totalScore: 'desc' }, { gamesWon: 'desc' }],
+
+      at Object.toEqual (__tests__/services/game.service.test.ts:327:22)
+
+  ● GameService › checkAndResetStreak › debería resetear racha si pasó más de 1 día
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: {"data": {"currentStreak": 0}, "where": {"userId_gameType": {"gameType": "wordsearch", "userId": "user-123"}}}
+
+    Number of calls: 0
+
+      360 |       await GameService.checkAndResetStreak('user-123', 'wordsearch');
+      361 |
+    > 362 |       expect(prisma.gameStats.update).toHaveBeenCalledWith({
+          |                                       ^
+      363 |         where: {
+      364 |           userId_gameType: {
+      365 |             userId: 'user-123',
+
+      at Object.toHaveBeenCalledWith (__tests__/services/game.service.test.ts:362:39)
+
+  ● GameService › getGlobalStats › debería obtener estadísticas globales
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: {"averageScore": 500, "averageWins": 7.5, "bestStreak": 25, "highestScore": 2000, "totalGamesPlayed": 1000, "totalGamesWon": 750, "totalPlayers": 100, "totalScore": 50000}
+    Received: null
+
+      429 |       const result = await GameService.getGlobalStats('wordsearch');
+      430 |
+    > 431 |       expect(result).toEqual({
+          |                      ^
+      432 |         totalPlayers: 100,
+      433 |         totalGamesPlayed: 1000,
+      434 |         totalGamesWon: 750,
+
+      at Object.toEqual (__tests__/services/game.service.test.ts:431:22)
+
+  ● GameService › getGlobalStats › debería manejar valores null en aggregate
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: {"averageScore": 0, "averageWins": 0, "bestStreak": 0, "highestScore": 0, "totalGamesPlayed": 0, "totalGamesWon": 0, "totalPlayers": 0, "totalScore": 0}
+    Received: null
+
+      463 |       const result = await GameService.getGlobalStats('wordsearch');
+      464 |
+    > 465 |       expect(result).toEqual({
+          |                      ^
+      466 |         totalPlayers: 0,
+      467 |         totalGamesPlayed: 0,
+      468 |         totalGamesWon: 0,
+
+      at Object.toEqual (__tests__/services/game.service.test.ts:465:22)
+
+  ● GameService › getUserRank › debería obtener posición del usuario
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 4
+    Received: null
+
+      517 |       const result = await GameService.getUserRank('user-123', 'wordsearch');
+      518 |
+    > 519 |       expect(result).toBe(4); // 3 usuarios con más score + 1
+          |                      ^
+      520 |       expect(prisma.gameStats.count).toHaveBeenCalledWith({
+      521 |         where: {
+      522 |           gameType: 'wordsearch',
+
+      at Object.toBe (__tests__/services/game.service.test.ts:519:22)
+
+FAIL __tests__/components/UsageLimitBadge.test.tsx
+  ● UsageLimitBadge Component › debe mostrar loading state inicialmente
+
+    TestingLibraryElementError: Unable to find an element with the text: /cargando/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div />[39m
+    [36m</body>[39m
+
+      23 |     render(<UsageLimitBadge />);
+      24 |
+    > 25 |     expect(screen.getByText(/cargando/i)).toBeInTheDocument();
+         |                   ^
+      26 |   });
+      27 |
+      28 |   it('debe mostrar badge FREE con conteo correcto (12/15)', async () => {
+
+      at Object.getElementError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at Object.getByText (__tests__/components/UsageLimitBadge.test.tsx:25:19)
+
+  ● UsageLimitBadge Component › debe mostrar barra de progreso con color correcto (azul <70%)
+
+    expect(received).toBeInTheDocument()
+
+    received value must be an HTMLElement or an SVGElement.
+    Received has value: null
+
+    Ignored nodes: comments, script, style
+    [36m<html>[39m
+      [36m<head />[39m
+      [36m<body>[39m
+        [36m<div>[39m
+          [36m<a[39m
+            [33mclass[39m=[32m"block"[39m
+            [33mhref[39m=[32m"/pricing"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"bg-blue-50 border-2 border-blue-300 text-blue-800 rounded-lg p-3 hover:border-blue-400 hover:bg-blue-100 transition-all cursor-pointer group"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"flex items-center justify-between mb-1"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"text-sm font-semibold"[39m
+                [36m>[39m
+                  [0mPlan Gratuito ([0m
+                  [0m5[0m
+                  [0m/[0m
+                  [0m15[0m
+                  [0m)[0m
+                [36m</span>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"w-4 h-4 group-hover:translate-x-1 transition-transform"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M13 7l5 5m0 0l-5 5m5-5H6"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+              [36m</div>[39m
+              [36m<p[39m
+                [33mclass[39m=[32m"text-xs"[39m
+              [36m>[39m
+                [0m�� Actualizar a Premium[0m
+              [36m</p>[39m
+            [36m</div>[39m
+          [36m</a>[39m
+        [36m</div>[39m
+      [36m</body>[39m
+    [36m</html>[39m
+
+      119 |     await waitFor(() => {
+      120 |       const progressBar = container.querySelector('[style*="width: 33%"]');
+    > 121 |       expect(progressBar).toBeInTheDocument();
+          |                           ^
+      122 |     });
+      123 |   });
+      124 |
+
+      at __EXTERNAL_MATCHER_TRAP__ (node_modules/expect/build/index.js:325:30)
+      at Object.throwingMatcher [as toBeInTheDocument] (node_modules/expect/build/index.js:326:15)
+      at toBeInTheDocument (__tests__/components/UsageLimitBadge.test.tsx:121:27)
+      at runWithExpensiveErrorDiagnosticsDisabled (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:47:12)
+      at checkCallback (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/wait-for.js:124:77)
+      at checkRealTimersCallback (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/wait-for.js:118:16)
+      at Timeout.task [as _onTimeout] (node_modules/jsdom/lib/jsdom/browser/Window.js:520:19)
+
+  ● UsageLimitBadge Component › debe manejar errores de fetch correctamente
+
+    expect(received).toBeInTheDocument()
+
+    received value must be an HTMLElement or an SVGElement.
+    Received has value: null
+
+    Ignored nodes: comments, script, style
+    [36m<html>[39m
+      [36m<head />[39m
+      [36m<body>[39m
+        [36m<div />[39m
+      [36m</body>[39m
+    [36m</html>[39m
+
+      172 |     await waitFor(() => {
+      173 |       // Componente no debe crashear, debe mostrar estado por defecto o error
+    > 174 |       expect(screen.queryByText(/error/i)).toBeInTheDocument();
+          |                                            ^
+      175 |     });
+      176 |   });
+      177 |
+
+      at __EXTERNAL_MATCHER_TRAP__ (node_modules/expect/build/index.js:325:30)
+      at Object.throwingMatcher [as toBeInTheDocument] (node_modules/expect/build/index.js:326:15)
+      at toBeInTheDocument (__tests__/components/UsageLimitBadge.test.tsx:174:44)
+      at runWithExpensiveErrorDiagnosticsDisabled (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:47:12)
+      at checkCallback (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/wait-for.js:124:77)
+      at checkRealTimersCallback (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/wait-for.js:118:16)
+      at Timeout.task [as _onTimeout] (node_modules/jsdom/lib/jsdom/browser/Window.js:520:19)
+
+
+Test Suites: 12 failed, 19 passed, 31 total
+Tests:       108 failed, 414 passed, 522 total
+Snapshots:   0 total
+Time:        4.308 s
+Ran all test suites.

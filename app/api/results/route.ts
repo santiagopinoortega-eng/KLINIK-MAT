@@ -141,13 +141,13 @@ export const GET = compose(
       totalPoints: stats.totalPoints,
       bestScore: stats.bestScore,
       timeAverage: Math.round(stats.timeAverage),
-      byArea: statsByArea.reduce((acc, stat) => {
+      byArea: statsByArea.reduce((acc: Record<string, { count: number; average: number }>, stat: any) => {
         acc[stat.area || 'unknown'] = {
           count: stat.casesCompleted,
           average: Math.round(stat.averageScore),
         };
         return acc;
-      }, {} as Record<string, { count: number; average: number }>),
+      }, {}),
     },
     meta: {
       count: results.length,

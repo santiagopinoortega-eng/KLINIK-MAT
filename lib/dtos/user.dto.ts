@@ -11,12 +11,12 @@ import { z } from 'zod';
  */
 export const UpdateUserProfileDto = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters').max(100).optional(),
-  country: z.string().max(50).optional(),
-  university: z.string().max(200).optional(),
-  yearOfStudy: z.number().int().min(1).max(7, 'Year of study must be between 1 and 7').optional(),
-  specialty: z.string().max(100).optional(),
-  bio: z.string().max(500, 'Bio must be less than 500 characters').optional(),
-  avatar: z.string().url('Avatar must be a valid URL').optional(),
+  country: z.string().max(50).optional().nullable(),
+  university: z.string().max(200).optional().nullable(),
+  yearOfStudy: z.number().int().min(1).max(7, 'Year of study must be between 1 and 7').optional().nullable(),
+  specialty: z.string().max(100).optional().nullable(),
+  bio: z.string().max(500, 'Bio must be less than 500 characters').optional().nullable(),
+  avatar: z.string().url('Avatar must be a valid URL').optional().nullable(),
 });
 
 export type UpdateUserProfileDto = z.infer<typeof UpdateUserProfileDto>;

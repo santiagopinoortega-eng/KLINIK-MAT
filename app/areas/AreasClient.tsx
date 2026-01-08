@@ -42,13 +42,13 @@ const AREAS: ClinicalArea[] = [
   {
     id: 'parto',
     title: 'PARTO Y ATENCIÓN INTRAPARTO',
-    subtitle: 'Trabajo de parto, monitoreo fetal, atención del parto',
+    subtitle: 'Trabajo de parto, monitoreo fetal, atención del parto, urgencias obstétricas',
     icon: BeakerIcon,
     color: 'text-indigo-600',
     gradient: 'from-indigo-50 via-purple-50 to-violet-50',
     borderColor: 'border-indigo-300 hover:border-indigo-500',
-    available: false,
-    caseCount: 0
+    available: true,
+    caseCount: 1
   },
   {
     id: 'puerperio',
@@ -60,17 +60,6 @@ const AREAS: ClinicalArea[] = [
     borderColor: 'border-pink-300 hover:border-pink-500',
     available: false,
     caseCount: 0
-  },
-  {
-    id: 'urgencias-obstetricas',
-    title: 'URGENCIAS OBSTÉTRICAS',
-    subtitle: 'Hemorragias, preeclampsia, emergencias maternas',
-    icon: SparklesIcon,
-    color: 'text-red-600',
-    gradient: 'from-red-50 via-orange-50 to-amber-50',
-    borderColor: 'border-red-300 hover:border-red-500',
-    available: true,
-    caseCount: 1
   },
   {
     id: 'ginecologia',
@@ -86,22 +75,11 @@ const AREAS: ClinicalArea[] = [
   {
     id: 'salud-sexual',
     title: 'SALUD SEXUAL Y ANTICONCEPCIÓN',
-    subtitle: 'Regulación de fertilidad, métodos anticonceptivos',
+    subtitle: 'Regulación de fertilidad, métodos anticonceptivos, ITS',
     icon: SparklesIcon,
     color: 'text-purple-600',
     gradient: 'from-purple-50 via-violet-50 to-indigo-50',
     borderColor: 'border-purple-300 hover:border-purple-500',
-    available: false,
-    caseCount: 0
-  },
-  {
-    id: 'its',
-    title: 'ITS (INFECCIONES DE TRANSMISIÓN SEXUAL)',
-    subtitle: 'Diagnóstico y manejo de infecciones de transmisión sexual',
-    icon: BeakerIcon,
-    color: 'text-orange-600',
-    gradient: 'from-orange-50 via-amber-50 to-yellow-50',
-    borderColor: 'border-orange-300 hover:border-orange-500',
     available: false,
     caseCount: 0
   },
@@ -191,7 +169,7 @@ export default function AreasClient() {
             {/* Badge de disponibilidad */}
             <div className="flex items-center gap-2.5 px-4 py-2 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-lg shadow-green-500/50"></div>
-              <span className="font-semibold text-green-700 text-sm">2 áreas disponibles</span>
+              <span className="font-semibold text-green-700 text-sm">1 área disponible</span>
             </div>
           </div>
         </div>
@@ -244,7 +222,7 @@ export default function AreasClient() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                     </svg>
                   </div>
-                  <div className="text-3xl font-bold text-gray-900">4</div>
+                  <div className="text-3xl font-bold text-gray-900">6</div>
                 </div>
                 <div className="text-xs font-semibold text-gray-600 uppercase tracking-wide">Áreas Clínicas</div>
               </div>
@@ -436,13 +414,13 @@ export default function AreasClient() {
                         <p className="text-xs text-gray-700 mt-1">Control prenatal, ecografía, patología del embarazo • <span className="font-bold">Próximamente</span></p>
                       </div>
                     </div>
-                    <div className="flex items-start gap-3 p-3 bg-white/70 rounded-xl opacity-60">
+                    <div className="flex items-start gap-3 p-3 bg-white/70 rounded-xl">
                       <div className="flex-shrink-0 w-6 h-6 bg-indigo-100 rounded-lg flex items-center justify-center">
                         <span className="text-xs font-bold text-indigo-700">2</span>
                       </div>
                       <div>
                         <p className="font-bold text-gray-900">Parto y Atención Intraparto</p>
-                        <p className="text-xs text-gray-700 mt-1">Trabajo de parto, monitoreo fetal, atención del parto • <span className="font-bold">Próximamente</span></p>
+                        <p className="text-xs text-gray-700 mt-1">Trabajo de parto, monitoreo fetal, atención del parto, urgencias obstétricas • <span className="font-bold">1 caso disponible</span></p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3 p-3 bg-white/70 rounded-xl opacity-60">
@@ -454,18 +432,9 @@ export default function AreasClient() {
                         <p className="text-xs text-gray-700 mt-1">Puerperio normal y patológico, lactancia materna • <span className="font-bold">Próximamente</span></p>
                       </div>
                     </div>
-                    <div className="flex items-start gap-3 p-3 bg-white/70 rounded-xl">
-                      <div className="flex-shrink-0 w-6 h-6 bg-red-100 rounded-lg flex items-center justify-center">
-                        <span className="text-xs font-bold text-red-700">4</span>
-                      </div>
-                      <div>
-                        <p className="font-bold text-gray-900">Urgencias Obstétricas</p>
-                        <p className="text-xs text-gray-700 mt-1">Hemorragias, preeclampsia, emergencias maternas</p>
-                      </div>
-                    </div>
                     <div className="flex items-start gap-3 p-3 bg-white/70 rounded-xl opacity-60">
                       <div className="flex-shrink-0 w-6 h-6 bg-rose-100 rounded-lg flex items-center justify-center">
-                        <span className="text-xs font-bold text-rose-700">5</span>
+                        <span className="text-xs font-bold text-rose-700">4</span>
                       </div>
                       <div>
                         <p className="font-bold text-gray-900">Ginecología</p>
@@ -474,25 +443,16 @@ export default function AreasClient() {
                     </div>
                     <div className="flex items-start gap-3 p-3 bg-white/70 rounded-xl opacity-60">
                       <div className="flex-shrink-0 w-6 h-6 bg-purple-100 rounded-lg flex items-center justify-center">
-                        <span className="text-xs font-bold text-purple-700">6</span>
+                        <span className="text-xs font-bold text-purple-700">5</span>
                       </div>
                       <div>
                         <p className="font-bold text-gray-900">Salud Sexual y Anticoncepción</p>
-                        <p className="text-xs text-gray-700 mt-1">Regulación de fertilidad, métodos anticonceptivos • <span className="font-bold">Próximamente</span></p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3 p-3 bg-white/70 rounded-xl opacity-60">
-                      <div className="flex-shrink-0 w-6 h-6 bg-orange-100 rounded-lg flex items-center justify-center">
-                        <span className="text-xs font-bold text-orange-700">7</span>
-                      </div>
-                      <div>
-                        <p className="font-bold text-gray-900">ITS (Infecciones de Transmisión Sexual)</p>
-                        <p className="text-xs text-gray-700 mt-1">Diagnóstico y manejo de infecciones de transmisión sexual • <span className="font-bold">Próximamente</span></p>
+                        <p className="text-xs text-gray-700 mt-1">Regulación de fertilidad, métodos anticonceptivos, ITS • <span className="font-bold">Próximamente</span></p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3 p-3 bg-white/70 rounded-xl opacity-60">
                       <div className="flex-shrink-0 w-6 h-6 bg-teal-100 rounded-lg flex items-center justify-center">
-                        <span className="text-xs font-bold text-teal-700">8</span>
+                        <span className="text-xs font-bold text-teal-700">6</span>
                       </div>
                       <div>
                         <p className="font-bold text-gray-900">Neonatología / Recién Nacido</p>

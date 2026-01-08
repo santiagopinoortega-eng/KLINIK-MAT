@@ -42,6 +42,7 @@ model Case {
   norms             MinsalNorm[]       @relation("CaseNorms")
   results           StudentResult[]
   favorites         Favorite[]
+  pomodoroSessions  PomodoroSession[]
   engagementMetrics EngagementMetric[]
 
   @@index([area, difficulty])
@@ -155,6 +156,7 @@ model User {
   results           StudentResult[]
   favorites         Favorite[]
   studySessions     StudySession[]
+  pomodoroSessions  PomodoroSession[]
   engagementMetrics EngagementMetric[]
 
   // Relaciones de pagos y suscripciones
@@ -200,6 +202,31 @@ model StudySession {
   @@map("study_sessions")
 }
 
+// Modelo para sesiones Pomodoro (técnica de productividad)
+model PomodoroSession {
+  id            String          @id @default(cuid())
+  userId        String
+  type          PomodoroType    @default(WORK)
+  status        PomodoroStatus  @default(ACTIVE)
+  duration      Int             @default(25) // Duración configurada en minutos
+  timeRemaining Int // Tiempo restante en segundos
+  timeSpent     Int             @default(0) // Tiempo real gastado en segundos
+  completedAt   DateTime? // Fecha de completado
+  caseId        String? // Caso asociado (opcional)
+  caseTitle     String? // Título del caso para histórico
+  notes         String? // Notas de la sesión
+  createdAt     DateTime        @default(now()) @map("created_at")
+  updatedAt     DateTime        @updatedAt @map("updated_at")
+
+  user User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  case Case? @relation(fields: [caseId], references: [id], onDelete: SetNull)
+
+  @@index([userId, createdAt(sort: Desc)])
+  @@index([userId, status])
+  @@index([caseId])
+  @@map("pomodoro_sessions")
+}
+
 // Modelo para métricas de engagement (recomendaciones, clics, tiempo)
 model EngagementMetric {
   id                  String   @id @default(cuid())
@@ -224,6 +251,19 @@ enum Role {
   STUDENT
   EDITOR
   ADMIN
+}
+
+enum PomodoroType {
+  WORK
+  SHORT_BREAK
+  LONG_BREAK
+}
+
+enum PomodoroStatus {
+  ACTIVE
+  PAUSED
+  COMPLETED
+  CANCELLED
 }
 
 // ============================================================================

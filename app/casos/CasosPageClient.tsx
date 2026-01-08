@@ -13,10 +13,8 @@ const AREA_NAMES: Record<string, string> = {
   'embarazo': 'Embarazo y Control Prenatal',
   'parto': 'Parto y Atención Intraparto',
   'puerperio': 'Puerperio y Lactancia',
-  'urgencias-obstetricas': 'Urgencias Obstétricas',
   'ginecologia': 'Ginecología',
   'salud-sexual': 'Salud Sexual y Anticoncepción',
-  'its': 'ITS (Infecciones de Transmisión Sexual)',
   'neonatologia': 'Neonatología / Recién Nacido'
 };
 
