@@ -13,9 +13,18 @@ const config = {
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   
+  // Support for Next.js server components
+  testEnvironmentOptions: {
+    customExportConditions: [''],
+  },
+  
   // Module paths
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
+    // Mock Next.js server-only modules for client-side tests
+    '^next/server$': '<rootDir>/__mocks__/next-server.ts',
+    // Mock Prisma client
+    '^@prisma/client$': '<rootDir>/__mocks__/prisma-client.ts',
   },
   
   // Coverage configuration
