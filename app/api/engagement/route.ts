@@ -4,146 +4,100 @@
  * Registra interacciones del usuario con recomendaciones y casos
  */
 
-import { NextRequest, NextResponse } from 'next/server';
-import { auth } from '@clerk/nextjs/server';
+import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { checkRateLimit, createRateLimitResponse, RATE_LIMITS } from '@/lib/ratelimit';
-import { requireCsrfToken } from '@/lib/csrf';
-import { sanitizeCaseId } from '@/lib/sanitize';
-import { EngagementSchema, validateSchema } from '@/lib/validators';
+import { RATE_LIMITS } from '@/lib/ratelimit';
+import { compose, withAuth, withRateLimit, withLogging, withValidation, withQueryValidation } from '@/lib/middleware/api-middleware';
+import { z } from 'zod';
 
+// DTO para crear engagement metric
+const CreateEngagementDto = z.object({
+  caseId: z.string().min(1, 'Case ID es requerido'),
+  source: z.enum(['recommendation', 'search', 'direct', 'favorite']),
+  recommendationGroup: z.string().optional(),
+  action: z.enum(['view', 'start', 'complete', 'favorite', 'share']),
+  sessionDuration: z.number().int().min(0).optional(),
+});
 
-export async function POST(req: NextRequest) {
-  try {
-    // CSRF Protection
-    const csrfError = await requireCsrfToken(req);
-    if (csrfError) return csrfError;
+// DTO para query params del GET
+const GetEngagementQueryDto = z.object({
+  limit: z.string().optional().transform(val => val ? parseInt(val) : 50),
+  source: z.enum(['recommendation', 'search', 'direct', 'favorite']).optional(),
+});
 
-    // Autenticación
-    const { userId } = await auth();
-    if (!userId) {
-      return NextResponse.json(
-        { error: 'No autorizado' },
-        { status: 401 }
-      );
-    }
+export const POST = compose(
+  withAuth,
+  withRateLimit(RATE_LIMITS.AUTHENTICATED),
+  withValidation(CreateEngagementDto),
+  withLogging
+)(async (req, context) => {
+  const userId = context.userId!;
+  const data = context.body;
 
-    // Rate limiting
-    const rateLimitResult = checkRateLimit(req, RATE_LIMITS.AUTHENTICATED);
-    if (!rateLimitResult.ok) {
-      return createRateLimitResponse(rateLimitResult.resetAt);
-    }
+  // Crear métrica de engagement directamente
+  const metric = await prisma.engagementMetric.create({
+    data: {
+      userId,
+      caseId: data.caseId,
+      source: data.source,
+      recommendationGroup: data.recommendationGroup || null,
+      action: data.action,
+      sessionDuration: data.sessionDuration || null,
+      timestamp: new Date(),
+    },
+  });
 
-    // Parse body y validar con Zod
-    const body = await req.json();
-    const validationResult = validateSchema(EngagementSchema, body);
-
-    if (!validationResult.success) {
-      return NextResponse.json(
-        { error: 'Datos inválidos', details: validationResult.error },
-        { status: 400 }
-      );
-    }
-
-    const data = validationResult.data;
-    const sanitizedCaseId = sanitizeCaseId(data.caseId);
-
-    // Verificar que el caso existe
-    const caseExists = await prisma.case.findUnique({
-      where: { id: sanitizedCaseId },
-      select: { id: true },
-    });
-
-    if (!caseExists) {
-      return NextResponse.json(
-        { error: 'Caso no encontrado' },
-        { status: 404 }
-      );
-    }
-
-    // Crear métrica de engagement
-    const metric = await prisma.engagementMetric.create({
-      data: {
-        userId,
-        caseId: sanitizedCaseId,
-        source: data.source,
-        recommendationGroup: data.recommendationGroup || null,
-        action: data.action,
-        sessionDuration: data.sessionDuration || null,
-        timestamp: new Date(),
-      },
-    });
-
-    return NextResponse.json({
-      success: true,
-      metricId: metric.id,
-    });
-  } catch (error) {
-    console.error('[ENGAGEMENT API] Error:', error);
-    return NextResponse.json(
-      { error: 'Error al registrar métrica' },
-      { status: 500 }
-    );
-  }
-}
+  return NextResponse.json({
+    success: true,
+    metricId: metric.id,
+  });
+});
 
 /**
  * GET: Obtener métricas de engagement del usuario
  */
-export async function GET(req: NextRequest) {
-  try {
-    const { userId } = await auth();
-    if (!userId) {
-      return NextResponse.json(
-        { error: 'No autorizado' },
-        { status: 401 }
-      );
-    }
+export const GET = compose(
+  withAuth,
+  withRateLimit(RATE_LIMITS.AUTHENTICATED),
+  withQueryValidation(GetEngagementQueryDto),
+  withLogging
+)(async (req, context) => {
+  const userId = context.userId!;
+  const { limit, source } = context.query;
 
-    // Query params
-    const { searchParams } = new URL(req.url);
-    const limit = parseInt(searchParams.get('limit') || '50');
-    const source = searchParams.get('source');
-
-    // Construir query
-    const where: any = { userId };
-    if (source) {
-      where.source = source;
-    }
-
-    // Obtener métricas
-    const metrics = await prisma.engagementMetric.findMany({
-      where,
-      orderBy: { timestamp: 'desc' },
-      take: limit,
-      select: {
-        id: true,
-        caseId: true,
-        source: true,
-        recommendationGroup: true,
-        action: true,
-        sessionDuration: true,
-        timestamp: true,
-      },
-    });
-
-    // Estadísticas agregadas
-    const stats = await prisma.engagementMetric.groupBy({
-      by: ['source', 'action'],
-      where: { userId },
-      _count: true,
-    });
-
-    return NextResponse.json({
-      metrics,
-      stats,
-      total: metrics.length,
-    });
-  } catch (error) {
-    console.error('[ENGAGEMENT API GET] Error:', error);
-    return NextResponse.json(
-      { error: 'Error al obtener métricas' },
-      { status: 500 }
-    );
+  // Construir query
+  const where: any = { userId };
+  if (source) {
+    where.source = source;
   }
-}
+
+  // Obtener métricas
+  const metrics = await prisma.engagementMetric.findMany({
+    where,
+    orderBy: { timestamp: 'desc' },
+    take: limit,
+    select: {
+      id: true,
+      caseId: true,
+      source: true,
+      recommendationGroup: true,
+      action: true,
+      sessionDuration: true,
+      timestamp: true,
+    },
+  });
+
+  // Estadísticas agregadas
+  const stats = await prisma.engagementMetric.groupBy({
+    by: ['source', 'action'],
+    where: { userId },
+    _count: true,
+  });
+
+  return NextResponse.json({
+    success: true,
+    metrics,
+    stats,
+    total: metrics.length,
+  });
+});

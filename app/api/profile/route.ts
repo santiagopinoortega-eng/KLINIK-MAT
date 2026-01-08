@@ -1,10 +1,9 @@
 // app/api/profile/route.ts
 import { NextResponse } from 'next/server';
-import { auth, clerkClient } from '@clerk/nextjs/server';
-import { prisma } from '@/lib/prisma';
-import { checkRateLimit, RATE_LIMITS, createRateLimitResponse } from '@/lib/ratelimit';
-import { requireCsrfToken } from '@/lib/csrf';
-import { sanitizeString } from '@/lib/sanitize';
+import { RATE_LIMITS } from '@/lib/ratelimit';
+import { compose, withAuth, withRateLimit, withLogging, withValidation } from '@/lib/middleware/api-middleware';
+import { UserService } from '@/services/user.service';
+import { UpdateUserProfileDto } from '@/lib/dtos/user.dto';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -13,169 +12,39 @@ export const dynamic = 'force-dynamic';
  * GET /api/profile
  * Obtiene el perfil completo del usuario actual
  */
-export async function GET(req: Request) {
-  try {
-    // Rate limiting - límite generoso para lectura
-    const rateLimit = checkRateLimit(req, RATE_LIMITS.AUTHENTICATED);
-    if (!rateLimit.ok) {
-      return createRateLimitResponse(rateLimit.resetAt);
-    }
+export const GET = compose(
+  withAuth,
+  withRateLimit(RATE_LIMITS.AUTHENTICATED),
+  withLogging
+)(async (req, context) => {
+  const userId = context.userId!;
 
-    const { userId } = await auth();
-    
-    if (!userId) {
-      return NextResponse.json(
-        { error: 'No autenticado' },
-        { status: 401 }
-      );
-    }
+  const user = await UserService.getUserProfile(userId);
 
-    // Obtener información del usuario desde Clerk
-    const client = await clerkClient();
-    const clerkUser = await client.users.getUser(userId);
-
-    // Buscar usuario en la base de datos
-    const dbUser = await prisma.user.findUnique({
-      where: { id: userId },
-      select: {
-        id: true,
-        email: true,
-        name: true,
-        role: true,
-        country: true,
-        university: true,
-        yearOfStudy: true,
-        specialty: true,
-        bio: true,
-        avatar: true,
-        createdAt: true,
-      },
-    });
-
-    // Si no existe en la DB, crearlo automáticamente
-    if (!dbUser) {
-      const newUser = await prisma.user.create({
-        data: {
-          id: userId,
-          email: clerkUser.emailAddresses[0]?.emailAddress || '',
-          name: `${clerkUser.firstName || ''} ${clerkUser.lastName || ''}`.trim() || null,
-          avatar: clerkUser.imageUrl || null,
-          updatedAt: new Date(),
-        },
-      });
-
-      return NextResponse.json({
-        success: true,
-        user: newUser,
-      });
-    }
-
-    return NextResponse.json({
-      success: true,
-      user: dbUser,
-    });
-
-  } catch (error: any) {
-    console.error('Error al obtener perfil:', error);
-    return NextResponse.json(
-      { error: 'Error interno del servidor', details: error.message },
-      { status: 500 }
-    );
-  }
-}
+  return NextResponse.json({
+    success: true,
+    user
+  });
+});
 
 /**
  * PATCH /api/profile
  * Actualiza información demográfica del usuario
  */
-export async function PATCH(req: Request) {
-  try {
-    // CSRF Protection
-    const csrfError = await requireCsrfToken(req);
-    if (csrfError) return csrfError;
+export const PATCH = compose(
+  withAuth,
+  withRateLimit(RATE_LIMITS.WRITE),
+  withValidation(UpdateUserProfileDto),
+  withLogging
+)(async (req, context) => {
+  const userId = context.userId!;
+  const data = context.body;
 
-    // Rate limiting - límite moderado para escritura
-    const rateLimit = checkRateLimit(req, RATE_LIMITS.WRITE);
-    if (!rateLimit.ok) {
-      return createRateLimitResponse(rateLimit.resetAt);
-    }
+  const updatedUser = await UserService.updateUserProfile(userId, data);
 
-    const { userId } = await auth();
-    
-    if (!userId) {
-      return NextResponse.json(
-        { error: 'No autenticado' },
-        { status: 401 }
-      );
-    }
-
-    const body = await req.json();
-    
-    // Sanitizar inputs de texto
-    const country = body.country ? sanitizeString(body.country, 100) : undefined;
-    const university = body.university ? sanitizeString(body.university, 200) : undefined;
-    const specialty = body.specialty ? sanitizeString(body.specialty, 100) : undefined;
-    const bio = body.bio ? sanitizeString(body.bio, 500) : undefined;
-    const yearOfStudy = body.yearOfStudy;
-
-    // Validación del año de estudio
-    if (yearOfStudy !== undefined && yearOfStudy !== null) {
-      if (!Number.isInteger(yearOfStudy) || yearOfStudy < 1 || yearOfStudy > 7) {
-        return NextResponse.json(
-          { error: 'El año de estudio debe ser un número entre 1 y 7' },
-          { status: 400 }
-        );
-      }
-    }
-
-    // Obtener información del usuario desde Clerk para caso de creación
-    const client = await clerkClient();
-    const clerkUser = await client.users.getUser(userId);
-
-    // Si se está actualizando la especialidad, también guardarla en Clerk metadata
-    if (specialty !== undefined) {
-      await client.users.updateUserMetadata(userId, {
-        unsafeMetadata: {
-          ...clerkUser.unsafeMetadata,
-          specialty: specialty,
-        },
-      });
-    }
-
-    // Actualizar usuario en la base de datos
-    const updatedUser = await prisma.user.upsert({
-      where: { id: userId },
-      update: {
-        country: country || null,
-        university: university || null,
-        yearOfStudy: yearOfStudy || null,
-        specialty: specialty || null,
-        bio: bio || null,
-        updatedAt: new Date(),
-      },
-      create: {
-        id: userId,
-        email: clerkUser.emailAddresses[0]?.emailAddress || '',
-        name: `${clerkUser.firstName || ''} ${clerkUser.lastName || ''}`.trim() || null,
-        country: country || null,
-        university: university || null,
-        yearOfStudy: yearOfStudy || null,
-        specialty: specialty || null,
-        bio: bio || null,
-        updatedAt: new Date(),
-      },
-    });
-
-    return NextResponse.json({
-      success: true,
-      user: updatedUser,
-    });
-
-  } catch (error: any) {
-    console.error('Error al actualizar perfil:', error);
-    return NextResponse.json(
-      { error: 'Error interno del servidor', details: error.message },
-      { status: 500 }
-    );
-  }
-}
+  return NextResponse.json({
+    success: true,
+    user: updatedUser,
+    message: 'Perfil actualizado exitosamente'
+  });
+});

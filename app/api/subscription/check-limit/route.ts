@@ -1,33 +1,27 @@
-import { auth } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
+import { compose, withAuth, withRateLimit, withLogging } from '@/lib/middleware/api-middleware';
 import { checkCaseAccessLimit } from '@/lib/subscription-limits';
+import { RATE_LIMITS } from '@/lib/ratelimit';
 
 /**
  * GET /api/subscription/check-limit
  * Verifica si el usuario puede acceder a un nuevo caso
  */
-export async function GET() {
-  try {
-    const { userId } = await auth();
+export const GET = compose(
+  withAuth,
+  withRateLimit(RATE_LIMITS.AUTHENTICATED),
+  withLogging
+)(async (req, context) => {
+  const userId = context.userId!;
 
-    if (!userId) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+  const limitCheck = await checkCaseAccessLimit(userId);
 
-    const limitCheck = await checkCaseAccessLimit(userId);
-
-    return NextResponse.json({
-      allowed: limitCheck.allowed,
-      reason: limitCheck.reason,
-      usage: limitCheck.usageCount,
-      limit: limitCheck.limit,
-      planName: limitCheck.planName,
-    });
-  } catch (error) {
-    console.error('[check-limit] Error:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
-  }
-}
+  return NextResponse.json({
+    success: true,
+    allowed: limitCheck.allowed,
+    reason: limitCheck.reason,
+    usage: limitCheck.usageCount,
+    limit: limitCheck.limit,
+    planName: limitCheck.planName,
+  });
+});

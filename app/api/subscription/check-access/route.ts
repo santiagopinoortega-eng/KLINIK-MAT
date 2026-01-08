@@ -1,31 +1,24 @@
-import { auth } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
+import { compose, withAuth, withRateLimit, withLogging } from '@/lib/middleware/api-middleware';
 import { canAccessNewCase, getUserUsageStats } from '@/lib/subscription';
+import { RATE_LIMITS } from '@/lib/ratelimit';
 
-export async function GET() {
-  try {
-    const { userId } = await auth();
+export const GET = compose(
+  withAuth,
+  withRateLimit(RATE_LIMITS.AUTHENTICATED),
+  withLogging
+)(async (req, context) => {
+  const userId = context.userId!;
 
-    if (!userId) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+  // Obtener acceso y estadísticas en paralelo
+  const [accessInfo, usageStats] = await Promise.all([
+    canAccessNewCase(userId),
+    getUserUsageStats(userId)
+  ]);
 
-    // Verificar acceso a nuevos casos
-    const accessInfo = await canAccessNewCase(userId);
-    
-    // Obtener estadísticas de uso
-    const usageStats = await getUserUsageStats(userId);
-
-    return NextResponse.json({
-      success: true,
-      canAccess: accessInfo.canAccess,
-      ...usageStats,
-    });
-  } catch (error: any) {
-    console.error('❌ [CHECK-ACCESS] Error:', error);
-    return NextResponse.json(
-      { error: 'Error checking access' },
-      { status: 500 }
-    );
-  }
-}
+  return NextResponse.json({
+    success: true,
+    canAccess: accessInfo.canAccess,
+    ...usageStats,
+  });
+});

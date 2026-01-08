@@ -1,7 +1,8 @@
 // app/api/health/route.ts
+import { NextResponse } from 'next/server';
+import { compose, withLogging } from '@/lib/middleware/api-middleware';
 import { prisma } from '@/lib/prisma';
 import { logger } from '@/lib/logger';
-import { NextResponse } from 'next/server';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -18,8 +19,9 @@ interface HealthCheck {
   version?: string;
 }
 
-export async function GET() {
-  const startTime = Date.now();
+export const GET = compose(
+  withLogging
+)(async () => {
   const checks = {
     database: false,
     databaseLatency: 0,
@@ -37,7 +39,6 @@ export async function GET() {
     
     checks.database = true;
     checks.databaseLatency = Date.now() - dbStart;
-
   } catch (error) {
     logger.warn('Health check: Database connection failed', { error });
     checks.database = false;
@@ -69,4 +70,4 @@ export async function GET() {
       },
     }
   );
-}
+});

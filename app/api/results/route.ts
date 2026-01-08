@@ -1,13 +1,25 @@
 // app/api/results/route.ts
-import { NextResponse } from 'next/server';
-import { auth } from '@clerk/nextjs/server';
-import { prisma } from '@/lib/prisma';
-import { logger, ErrorMessages, logApiError } from '@/lib/logger';
-import { checkRateLimit, RATE_LIMITS, createRateLimitResponse } from '@/lib/ratelimit';
-import { sanitizeObject, sanitizeCaseId, sanitizeNumber, sanitizeEnum } from '@/lib/sanitize';
-import { requireCsrfToken } from '@/lib/csrf';
+/**
+ * API de resultados de casos clínicos
+ * Arquitectura: Services + DTOs + Middleware composable + Error handling
+ */
+
+import { NextResponse, type NextRequest } from 'next/server';
+import { ResultService } from '@/services/result.service';
+import { CreateResultDto, GetResultsQueryDto } from '@/lib/dtos/result.dto';
+import {
+  withAuth,
+  withRateLimit,
+  withValidation,
+  withQueryValidation,
+  withLogging,
+  compose,
+  type ApiContext,
+} from '@/lib/middleware/api-middleware';
+import { RATE_LIMITS } from '@/lib/ratelimit';
 import { checkCaseAccessLimit, recordCaseCompletion } from '@/lib/subscription-limits';
-import type { CreateResultBody } from '@/lib/types/api-types';
+import { PaymentRequiredError, ValidationError } from '@/lib/errors/app-errors';
+import { logger } from '@/lib/logger';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -15,9 +27,20 @@ export const dynamic = 'force-dynamic';
 /**
  * POST /api/results
  * Guarda el resultado de un caso clínico completado
+ * 
+ * @middleware withAuth - Requiere autenticación
+ * @middleware withRateLimit - 50 req/min
+ * @middleware withValidation - Valida body con CreateResultDto
+ * @middleware withLogging - Log de requests/responses
  */
-export async function POST(req: Request) {
-  let body: Partial<CreateResultBody> = {};
+export const POST = compose(
+  withAuth,
+  withRateLimit(RATE_LIMITS.RESULTS),
+  withValidation(CreateResultDto),
+  withLogging
+)(async (req: NextRequest, context: ApiContext) => {
+  const userId = context.userId!;
+  const validatedData = context.body;
   
   try {
     // CSRF Protection - validar token antes que nada
@@ -74,158 +97,124 @@ export async function POST(req: Request) {
       totalPoints: { type: 'number', required: true, min: 1 },
       mode: { 
         type: 'enum', 
-        required: false,
-        allowedValues: ['study', 'timed', 'exam'] as const
-      },
-      timeLimit: { type: 'number', required: false, min: 0 },
-      timeSpent: { type: 'number', required: false, min: 0 },
+  
+  // Verificar límites de suscripción
+  const limitCheck = await checkCaseAccessLimit(userId);
+  if (!limitCheck.allowed) {
+    throw new PaymentRequiredError(limitCheck.reason, {
+      usageCount: limitCheck.usageCount,
+      limit: limitCheck.limit,
+      planName: limitCheck.planName,
     });
-
-    const { 
-      caseId, 
-      caseTitle, 
-      caseArea, 
-      score, 
-      totalPoints, 
-      mode, 
-      timeLimit, 
-      timeSpent,
-    } = sanitized;
-
-    // Sanitizar answers si existe (mantener estructura original pero validar)
-    let answers: CreateResultBody['answers'] | undefined = body.answers;
-    if (answers && typeof answers === 'object') {
-      // Validar que sea un objeto/array válido JSON
-      try {
-        JSON.stringify(answers);
-      } catch {
-        answers = undefined;
-      }
-    }
-
-    // Validación adicional: score no puede exceder totalPoints
-    if (score! > totalPoints!) {
-      return NextResponse.json(
-        { error: 'Score no puede ser mayor que totalPoints' },
-        { status: 400 }
-      );
-    }
-
-    // Crear resultado en la base de datos
-    const result = await prisma.studentResult.create({
-      data: {
-        id: `${userId}-${caseId}-${Date.now()}`, // ID único
-        userId,
-        caseId: caseId as string,
-        caseTitle: caseTitle as string,
-        caseArea: (caseArea as string) || 'General',
-        score: Math.round(score as number),
-        totalPoints: Math.round(totalPoints as number),
-        mode: (mode || 'study') as 'study' | 'timed' | 'exam',
-        timeLimit: (timeLimit as number) || null,
-        timeSpent: (timeSpent as number) || null,
-        answers: answers ? JSON.stringify(answers) : undefined,
-        completedAt: new Date(),
-      },
-    });
-
-    // REGISTRAR USO PARA SISTEMA DE LÍMITES
-    await recordCaseCompletion(userId, caseId as string);
-
-    return NextResponse.json(
-      { 
-        success: true, 
-        result: {
-          id: result.id,
-          score: result.score,
-          totalPoints: result.totalPoints,
-          percentage: Math.round((result.score / result.totalPoints) * 100),
-        }
-      },
-      { status: 201 }
-    );
-
-  } catch (error: any) {
-    logApiError('/api/results', error, {
-      userId: (await auth()).userId,
-      caseId: body?.caseId,
-      method: 'POST',
-    });
-
-    return NextResponse.json(
-      { error: ErrorMessages.SAVE_RESULT_FAILED },
-      { status: 500 }
-    );
   }
-}
+
+  // Validación de negocio: score no puede exceder totalPoints
+  if (validatedData.score > validatedData.totalPoints) {
+    throw new ValidationError('Score cannot exceed totalPoints');
+  }
+
+  // Crear resultado usando el servicio
+  const result = await ResultService.createResult({
+    userId,
+    caseId: validatedData.caseId,
+    caseTitle: validatedData.caseTitle,
+    caseArea: validatedData.caseArea,
+    score: validatedData.score,
+    totalPoints: validatedData.totalPoints,
+    mode: validatedData.mode || 'study',
+    timeSpent: validatedData.timeSpent,
+    timeLimit: validatedData.timeLimit,
+    answers: validatedData.answers,
+  });
+
+  // Registrar uso para sistema de límites
+  await recordCaseCompletion(userId, validatedData.caseId);
+
+  logger.info('Result created successfully', {
+    userId,
+    caseId: validatedData.caseId,
+    score: validatedData.score,
+  });
+
+  return NextResponse.json(
+    {
+      success: true,
+      result: {
+        id: result.id,
+        score: result.score,
+        totalPoints: result.totalPoints,
+        percentage: Math.round((result.score / result.totalPoints) * 100),
+      },
+    },
+    { status: 201 }
+  );
+});
 
 /**
- * GET /api/results?area=ginecologia
+ * GET /api/results?area=ginecologia&limit=50
  * Obtiene el historial de resultados del usuario actual
+ * 
+ * @middleware withAuth - Requiere autenticación
+ * @middleware withQueryValidation - Valida query params
+ * @middleware withLogging - Log de requests/responses
  */
-export async function GET(req: Request) {
-  try {
-    const { userId } = await auth();
-    
-    if (!userId) {
-      return NextResponse.json(
-        { error: 'No autenticado' },
-        { status: 401 }
-      );
-    }
+export const GET = compose(
+  withAuth,
+  withQueryValidation(GetResultsQueryDto),
+  withLogging
+)(async (req: NextRequest, context: ApiContext) => {
+  const userId = context.userId!;
+  const { area, limit, sortBy } = context.query;
 
-    const { searchParams } = new URL(req.url);
-    const area = searchParams.get('area');
-    const limit = parseInt(searchParams.get('limit') || '50');
+  // Obtener resultados usando el servicio
+  const results = await ResultService.getUserResults(userId, {
+    area,
+    limit,
+    sortBy,
+  });
 
-    const results = await prisma.studentResult.findMany({
-      where: {
-        userId,
-        ...(area && area !== 'all' ? { caseArea: area } : {}),
-      },
-      orderBy: { completedAt: 'desc' },
-      take: limit,
-      select: {
-        id: true,
-        caseId: true,
-        caseTitle: true,
-        caseArea: true,
-        score: true,
-        totalPoints: true,
-        mode: true,
-        timeSpent: true,
-        completedAt: true,
-      },
-    });
+  // Obtener estadísticas
+  const stats = await ResultService.getUserStats(userId, area);
+  const statsByArea = await ResultService.getStatsByArea(userId);
 
-    // Calcular estadísticas
-    const stats = {
-      totalCompleted: results.length,
-      averageScore: results.length > 0 
-        ? Math.round(results.reduce((sum: number, r: typeof results[0]) => sum + (r.score / r.totalPoints * 100), 0) / results.length)
-        : 0,
-      byArea: {} as Record<string, number>,
-      byMode: {} as Record<string, number>,
-    };
+  return NextResponse.json({
+    success: true,
+    results: results.map(r => ({
+      id: r.id,
+      caseId: r.caseId,
+      caseTitle: r.caseTitle,
+      caseArea: r.caseArea,
+      score: r.score,
+      totalPoints: r.totalPoints,
+      percentage: Math.round((r.score / r.totalPoints) * 100),
+      mode: r.mode,
+      timeSpent: r.timeSpent,
+      completedAt: r.completedAt,
+    })),
+    stats: {
+      totalCompleted: stats.totalCases,
+      averageScore: Math.round(stats.averageScore),
+      totalPoints: stats.totalPoints,
+      bestScore: stats.bestScore,
+      timeAverage: Math.round(stats.timeAverage),
+      byArea: statsByArea.reduce((acc, stat) => {
+        acc[stat.area || 'unknown'] = {
+          count: stat.casesCompleted,
+          average: Math.round(stat.averageScore),
+        };
+        return acc;
+      }, {} as Record<string, { count: number; average: number }>),
+    },
+    meta: {
+      count: results.length,
+      limit,
+      area: area || 'all',
+    },
+  });
+});
 
     results.forEach((r: typeof results[0]) => {
       const area = r.caseArea || 'General';
       const mode = r.mode || 'study';
       stats.byArea[area] = (stats.byArea[area] || 0) + 1;
-      stats.byMode[mode] = (stats.byMode[mode] || 0) + 1;
-    });
 
-    return NextResponse.json({
-      success: true,
-      results,
-      stats,
-    });
-
-  } catch (error: any) {
-    console.error('Error al obtener resultados:', error);
-    return NextResponse.json(
-      { error: 'Error interno del servidor', details: error.message },
-      { status: 500 }
-    );
-  }
-}

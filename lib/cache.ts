@@ -1,184 +1,90 @@
 // lib/cache.ts
 /**
- * Sistema de caché en memoria simple para casos clínicos
- * Ideal para reducir carga de BD en consultas frecuentes
- * Para escalar a Redis en producción, solo cambiar la implementación
+ * Sistema de caché híbrido: Redis (producción) + Memory (desarrollo)
+ * 
+ * Estrategia automática:
+ * - ✅ Redis (Upstash) si UPSTASH_REDIS_REST_URL está configurado
+ * - ✅ Memory como fallback en desarrollo o cuando Redis no disponible
  * 
  * 🔥 OPTIMIZACIÓN: TTL inteligente según tipo de dato
  * - Casos clínicos: 15 min (raramente cambian)
  * - Resultados de usuario: 5 min
  * - PubMed búsquedas: 24h (literature no cambia)
+ * 
+ * Setup Redis:
+ * 1. Crear cuenta en console.upstash.com
+ * 2. Crear Redis database
+ * 3. Copiar UPSTASH_REDIS_REST_URL y UPSTASH_REDIS_REST_TOKEN
+ * 4. Agregar a .env.local (desarrollo) y Vercel (producción)
  */
 
-interface CacheEntry<T> {
-  data: T;
-  timestamp: number;
-  expiresAt: number;
-  hits: number; // Contador de accesos (para LRU mejorado)
-}
+import { redisCache } from './cache/redis';
+import { memoryCache } from './cache/memory';
 
 // TTL preconfigurado según tipo de dato
 export const CACHE_TTL = {
-  CASES: 15 * 60 * 1000,      // 15 minutos
-  RESULTS: 5 * 60 * 1000,     // 5 minutos
-  PUBMED: 24 * 60 * 60 * 1000, // 24 horas
-  USER_PROFILE: 10 * 60 * 1000, // 10 minutos
-  SHORT: 60 * 1000,            // 1 minuto
+  CASES: 15 * 60 * 1000,         // 15 minutos
+  RESULTS: 5 * 60 * 1000,        // 5 minutos
+  PUBMED: 24 * 60 * 60 * 1000,   // 24 horas
+  USER_PROFILE: 10 * 60 * 1000,  // 10 minutos
+  SHORT: 60 * 1000,              // 1 minuto
 } as const;
 
-class MemoryCache {
-  private cache: Map<string, CacheEntry<any>>;
-  private defaultTTL: number; // Time To Live en milisegundos
-  private maxEntries: number;
-  private hitCount: number = 0;
-  private missCount: number = 0;
+/**
+ * Cache Interface - Abstracción para soportar Redis y Memory
+ */
+interface CacheAdapter {
+  get<T>(key: string): Promise<T | null> | T | null;
+  set<T>(key: string, data: T, ttl?: number): Promise<void> | void;
+  delete(key: string): Promise<boolean> | boolean;
+  clear(): Promise<void> | void;
+  stats(): Promise<any> | any;
+}
 
-  constructor(defaultTTL: number = 5 * 60 * 1000, maxEntries: number = 1000) {
-    this.cache = new Map();
-    this.defaultTTL = defaultTTL;
-    this.maxEntries = maxEntries;
+/**
+ * Wrapper para MemoryCache con interfaz async
+ */
+class MemoryCacheAdapter implements CacheAdapter {
+  async get<T>(key: string): Promise<T | null> {
+    return memoryCache.get<T>(key);
   }
 
-  /**
-   * Obtener valor del caché
-   */
-  get<T>(key: string): T | null {
-    const entry = this.cache.get(key);
-    
-    if (!entry) {
-      this.missCount++;
-      return null;
-    }
-
-    // Verificar si expiró
-    if (Date.now() > entry.expiresAt) {
-      this.cache.delete(key);
-      this.missCount++;
-      return null;
-    }
-
-    // 🔥 OPTIMIZACIÓN: Incrementar hits para LRU mejorado
-    entry.hits++;
-    this.hitCount++;
-
-    return entry.data as T;
+  async set<T>(key: string, data: T, ttl?: number): Promise<void> {
+    return memoryCache.set(key, data, ttl);
   }
 
-  /**
-   * Guardar valor en caché
-   */
-  set<T>(key: string, data: T, ttl?: number): void {
-    const expiresAt = Date.now() + (ttl || this.defaultTTL);
-
-    // Si llegamos al límite, eliminar las entradas más antiguas
-    if (this.cache.size >= this.maxEntries) {
-      this.evictOldest();
-    }
-
-    this.cache.set(key, {
-      data,
-      timestamp: Date.now(),
-      expiresAt,
-      hits: 0, // Inicializar contador
-    });
+  async delete(key: string): Promise<boolean> {
+    return memoryCache.delete(key);
   }
 
-  /**
-   * Eliminar valor del caché
-   */
-  delete(key: string): boolean {
-    return this.cache.delete(key);
+  async clear(): Promise<void> {
+    return memoryCache.clear();
   }
 
-  /**
-   * Limpiar todo el caché
-   */
-  clear(): void {
-    this.cache.clear();
-  }
-
-  /**
-   * Obtener estadísticas del caché
-   */
-  stats(): { 
-    size: number; 
-    maxEntries: number; 
-    hitRate: number;
-    hits: number;
-    misses: number;
-  } {
-    const total = this.hitCount + this.missCount;
-    return {
-      size: this.cache.size,
-      maxEntries: this.maxEntries,
-      hitRate: total > 0 ? (this.hitCount / total) * 100 : 0,
-      hits: this.hitCount,
-      misses: this.missCount,
-    };
-  }
-
-  /**
-   * 🔥 OPTIMIZACIÓN: Eliminar las entradas menos usadas (LFU + LRU híbrido)
-   * Combina frecuencia de uso (hits) con antigüedad para mejor eviction
-   */
-  private evictOldest(): void {
-    let worstKey: string | null = null;
-    let worstScore = Infinity;
-
-    const now = Date.now();
-
-    for (const [key, entry] of this.cache.entries()) {
-      // Score = hits / age_in_minutes (priorizamos datos frecuentes y recientes)
-      const ageMinutes = (now - entry.timestamp) / 60000 || 1;
-      const score = entry.hits / ageMinutes;
-
-      if (score < worstScore) {
-        worstScore = score;
-        worstKey = key;
-      }
-    }
-
-    if (worstKey) {
-      this.cache.delete(worstKey);
-    }
-  }
-
-  /**
-   * Limpiar entradas expiradas (llamar periódicamente)
-   */
-  cleanExpired(): number {
-    const now = Date.now();
-    let cleaned = 0;
-
-    for (const [key, entry] of this.cache.entries()) {
-      if (now > entry.expiresAt) {
-        this.cache.delete(key);
-        cleaned++;
-      }
-    }
-
-    return cleaned;
+  async stats() {
+    return memoryCache.stats();
   }
 }
 
-// Instancia singleton
-export const cache = new MemoryCache(
-  5 * 60 * 1000,  // 5 minutos TTL por defecto
-  1000             // Máximo 1000 entradas (ajustar según memoria disponible)
-);
-
-// Limpiar caché expirado cada 10 minutos
-if (typeof setInterval !== 'undefined') {
-  setInterval(() => {
-    const cleaned = cache.cleanExpired();
-    if (cleaned > 0) {
-      // Solo debug, no enviar a Sentry
-      if (process.env.NODE_ENV === 'development') {
-        console.log(`[Cache] Cleaned ${cleaned} expired entries`);
-      }
+/**
+ * Seleccionar automáticamente Redis o Memory
+ */
+function selectCacheAdapter(): CacheAdapter {
+  if (redisCache.isReady()) {
+    if (process.env.NODE_ENV === 'development') {
+      console.log('[Cache] 🚀 Using Redis (Upstash)');
     }
-  }, 10 * 60 * 1000);
+    return redisCache;
+  } else {
+    if (process.env.NODE_ENV === 'development') {
+      console.log('[Cache] 💾 Using Memory (Fallback)');
+    }
+    return new MemoryCacheAdapter();
+  }
 }
+
+// Instancia singleton con estrategia automática
+export const cache = selectCacheAdapter();
 
 /**
  * Helper para generar claves de caché consistentes
@@ -200,13 +106,13 @@ export async function cacheWrapper<T>(
   ttl?: number
 ): Promise<T> {
   // Intentar obtener del caché
-  const cached = cache.get<T>(key);
+  const cached = await cache.get<T>(key);
   if (cached !== null) {
     return cached;
   }
 
   // Si no está en caché, ejecutar función y guardar resultado
   const data = await fetchFunction();
-  cache.set(key, data, ttl);
+  await cache.set(key, data, ttl);
   return data;
 }
