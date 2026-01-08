@@ -42,62 +42,6 @@ export const POST = compose(
   const userId = context.userId!;
   const validatedData = context.body;
   
-  try {
-    // CSRF Protection - validar token antes que nada
-    const csrfError = await requireCsrfToken(req);
-    if (csrfError) return csrfError;
-
-    // Rate limiting - límite estricto para escritura
-    const rateLimit = checkRateLimit(req, RATE_LIMITS.RESULTS);
-    if (!rateLimit.ok) {
-      return createRateLimitResponse(rateLimit.resetAt);
-    }
-
-    const { userId } = await auth();
-    
-    if (!userId) {
-      return NextResponse.json(
-        { error: 'No autenticado' },
-        { status: 401 }
-      );
-    }
-
-    // VERIFICAR LÍMITES DE SUSCRIPCIÓN
-    const limitCheck = await checkCaseAccessLimit(userId);
-    if (!limitCheck.allowed) {
-      return NextResponse.json(
-        { 
-          error: limitCheck.reason,
-          usageCount: limitCheck.usageCount,
-          limit: limitCheck.limit,
-          planName: limitCheck.planName,
-          requiresUpgrade: true,
-        },
-        { status: 403 }
-      );
-    }
-
-    body = await req.json();
-    
-    // Sanitizar y validar datos de entrada
-    const sanitized = sanitizeObject<{
-      caseId: string;
-      caseTitle: string;
-      caseArea?: string;
-      score: number;
-      totalPoints: number;
-      mode?: 'study' | 'timed' | 'exam';
-      timeLimit?: number;
-      timeSpent?: number;
-    }>(body, {
-      caseId: { type: 'caseId', required: true },
-      caseTitle: { type: 'string', required: true, maxLength: 200 },
-      caseArea: { type: 'string', required: false, maxLength: 100 },
-      score: { type: 'number', required: true, min: 0 },
-      totalPoints: { type: 'number', required: true, min: 1 },
-      mode: { 
-        type: 'enum', 
-  
   // Verificar límites de suscripción
   const limitCheck = await checkCaseAccessLimit(userId);
   if (!limitCheck.allowed) {
@@ -212,9 +156,3 @@ export const GET = compose(
     },
   });
 });
-
-    results.forEach((r: typeof results[0]) => {
-      const area = r.caseArea || 'General';
-      const mode = r.mode || 'study';
-      stats.byArea[area] = (stats.byArea[area] || 0) + 1;
-
