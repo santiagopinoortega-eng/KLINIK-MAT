@@ -2,7 +2,7 @@
 
 // Asegúrate de usar la importación { prisma } directamente,
 // ya que es la única instancia exportada de forma segura
-import { prisma } from '@/lib/prisma';
+import { prisma, prismaRO } from '@/lib/prisma';
 import { logger } from '@/lib/logger';
 // Usamos los tipos que definiste en tu nuevo schema.
 import type { Case, MinsalNorm, Option } from '@prisma/client';
@@ -20,6 +20,101 @@ export type CasoListItem = Pick<Case, 'id' | 'title' | 'area' | 'difficulty' | '
   // Opcional: Si quieres contar el total de pasos para la UI, asegúrate de contarlos en la DB.
   // stepCount?: number; 
 };
+
+/**
+ * CasoService - Servicio centralizado para gestión de casos clínicos
+ */
+export class CasoService {
+  /**
+   * Obtiene casos con filtros avanzados y paginación
+   */
+  static async getCases(params: {
+    search?: string;
+    area?: string;
+    difficulty?: number;
+    page?: number;
+    limit?: number;
+  }) {
+    try {
+      const { search, area, difficulty, page = 1, limit = 20 } = params;
+      const skip = (page - 1) * limit;
+
+      // Query base - solo casos públicos
+      const whereClause: any = { isPublic: true };
+
+      // Filtrar por área
+      if (area) {
+        whereClause.area = area;
+      }
+
+      // Filtrar por dificultad
+      if (difficulty) {
+        whereClause.difficulty = difficulty;
+      }
+
+      // Si hay búsqueda, buscar en múltiples campos
+      if (search && search.length > 0) {
+        whereClause.OR = [
+          { title: { contains: search, mode: 'insensitive' } },
+          { vignette: { contains: search, mode: 'insensitive' } },
+          { summary: { contains: search, mode: 'insensitive' } },
+          {
+            questions: {
+              some: {
+                text: { contains: search, mode: 'insensitive' }
+              }
+            }
+          }
+        ];
+      }
+
+      // Consultar BD con prismaRO (read-only optimizado)
+      const [data, total] = await Promise.all([
+        prismaRO.case.findMany({
+          where: whereClause,
+          orderBy: { createdAt: 'desc' },
+          select: { 
+            id: true, 
+            title: true, 
+            area: true,
+            modulo: true,
+            difficulty: true, 
+            createdAt: true,
+            summary: true,
+            isPublic: true,
+            _count: {
+              select: { questions: true }
+            }
+          },
+          skip,
+          take: limit,
+        }),
+        prismaRO.case.count({ where: whereClause })
+      ]);
+
+      const totalPages = Math.ceil(total / limit);
+
+      return {
+        data,
+        pagination: {
+          page,
+          limit,
+          total,
+          totalPages,
+          hasMore: page < totalPages
+        },
+        filters: {
+          search: search || null,
+          area: area || null,
+          difficulty: difficulty || null
+        }
+      };
+    } catch (error) {
+      logger.error('Failed to get cases', { params, error });
+      throw error;
+    }
+  }
+}
 
 /**
  * Función que obtiene el listado de casos activos para el catálogo principal.

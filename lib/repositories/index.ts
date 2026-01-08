@@ -1,0 +1,30 @@
+// lib/repositories/index.ts
+/**
+ * Repositories - Capa de acceso a datos
+ * 
+ * Ventajas del Repository Pattern:
+ * - ✅ Abstrae Prisma de la lógica de negocio
+ * - ✅ Facilita testing (mock repositories)
+ * - ✅ Centraliza queries complejas
+ * - ✅ Permite cambio de ORM sin afectar servicios
+ * - ✅ Operaciones CRUD reutilizables
+ * 
+ * Uso en servicios:
+ * ```typescript
+ * import { userRepository } from '@/lib/repositories';
+ * 
+ * const user = await userRepository.findById(userId);
+ * const profile = await userRepository.findWithSubscription(userId);
+ * ```
+ */
+
+export { BaseRepository } from './base.repository';
+export { UserRepository, userRepository } from './user.repository';
+export { ResultRepository, resultRepository } from './result.repository';
+export { CaseRepository, caseRepository } from './caso.repository';
+export { FavoriteRepository, favoriteRepository } from './favorite.repository';
+
+export type { UserWithRelations } from './user.repository';
+export type { ResultWithCase, ResultFilters } from './result.repository';
+export type { CaseWithOptions, CaseFilters } from './caso.repository';
+export type { FavoriteWithCase } from './favorite.repository';
