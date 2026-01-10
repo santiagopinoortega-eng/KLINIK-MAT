@@ -6,6 +6,7 @@
 
 import { NextResponse } from 'next/server';
 import { compose, withAuth, withRateLimit, withLogging, withValidation, withQueryValidation } from '@/lib/middleware/api-middleware';
+import { withStrictCSRF } from '@/lib/middleware/csrf-middleware';
 import { prisma } from '@/lib/prisma';
 import { RATE_LIMITS } from '@/lib/ratelimit';
 import { NotFoundError } from '@/lib/errors/app-errors';
@@ -16,12 +17,14 @@ import { CancelSubscriptionDto, ReactivateSubscriptionQueryDto } from '@/lib/dto
  * Cancelar suscripción activa (al final del período)
  * 
  * @middleware withAuth - Requiere autenticación
+ * @middleware withStrictCSRF - Protección CSRF crítica
  * @middleware withRateLimit - Protección contra spam
  * @middleware withValidation - Valida body con CancelSubscriptionDto
  * @middleware withLogging - Log de requests/responses
  */
 export const POST = compose(
   withAuth,
+  withStrictCSRF,
   withRateLimit(RATE_LIMITS.WRITE),
   withValidation(CancelSubscriptionDto),
   withLogging

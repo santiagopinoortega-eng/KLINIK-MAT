@@ -22,6 +22,9 @@ import {
   withLogging,
   type ApiContext,
 } from '@/lib/middleware/api-middleware';
+import { withStrictCSRF } from '@/lib/middleware/csrf-middleware';
+import { withIdempotency } from '@/lib/idempotency';
+import { sanitizeMetadata } from '@/lib/sanitize-payment';
 import { CreatePreferenceDto } from '@/lib/dtos/subscription.dto';
 import { NotFoundError, ValidationError } from '@/lib/errors/app-errors';
 import { logger } from '@/lib/logger';
@@ -35,12 +38,15 @@ export const dynamic = 'force-dynamic';
  * Crear preferencia de pago en Mercado Pago (Legacy)
  * 
  * @middleware withAuth - Requiere autenticación
+ * @middleware withStrictCSRF - Protección CSRF crítica para pagos
  * @middleware withRateLimit - 5 req/min (protección contra spam)
  * @middleware withValidation - Valida body con CreatePreferenceDto
  * @middleware withLogging - Log de requests/responses
  */
 export const POST = compose(
   withAuth,
+  withStrictCSRF,
+  withIdempotency(86400),
   withRateLimit({ windowMs: 60_000, maxRequests: 5 }),
   withValidation(CreatePreferenceDto),
   withLogging
@@ -171,7 +177,7 @@ export const POST = compose(
       expires: true,
       expiration_date_from: new Date().toISOString(),
       expiration_date_to: new Date(Date.now() + 30 * 60 * 1000).toISOString(), // 30 minutes
-      metadata: {
+      metadata: sanitizeMetadata({
         user_id: userId,
         plan_id: planId,
         plan_name: plan.displayName,
@@ -183,7 +189,7 @@ export const POST = compose(
         trial_days: plan.trialDays,
         features: JSON.stringify(plan.features),
         timestamp: new Date().toISOString(),
-      },
+      }),
     },
   });
 

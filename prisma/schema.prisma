@@ -522,10 +522,9 @@ model WebhookEvent {
 // ============================================================================
 
 enum BillingPeriod {
-  MONTHLY
-  QUARTERLY
-  BIANNUAL
-  YEARLY
+  MONTHLY     // 1 mes - $4,990
+  SEMIANNUAL  // 6 meses - $22,455 (25% descuento)
+  ANNUAL      // 12 meses - $35,928 (40% descuento)
 }
 
 enum SubscriptionStatus {
@@ -591,4 +590,17 @@ model GameStats {
   @@index([userId])
   @@index([gameType])
   @@map("game_stats")
+}
+
+// Tabla para prevenir operaciones duplicadas (pagos, etc)
+model IdempotencyKey {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  response  Json
+  createdAt DateTime @default(now()) @map("created_at")
+  expiresAt DateTime @map("expires_at")
+
+  @@index([expiresAt])
+  @@index([createdAt])
+  @@map("idempotency_keys")
 }

@@ -27,6 +27,7 @@ export default function MercadoPagoCheckout({
 }: MercadoPagoCheckoutProps) {
   const [loading, setLoading] = useState(true);
   const [processing, setProcessing] = useState(false);
+  const [csrfToken, setCsrfToken] = useState<string>('');
   const initializationRef = useRef(false);
   const brickInstanceRef = useRef<any>(null);
 
@@ -59,17 +60,30 @@ export default function MercadoPagoCheckout({
 
   const initializeMercadoPago = async () => {
     try {
+      // 1. Obtener token CSRF
+      console.log('🔒 Obteniendo token CSRF...');
+      const csrfResponse = await fetch('/api/csrf');
+      if (!csrfResponse.ok) {
+        throw new Error('Failed to get CSRF token');
+      }
+      const { token } = await csrfResponse.json();
+      setCsrfToken(token);
+      console.log('✅ CSRF token obtenido');
+
+      // 2. Validar public key
       const publicKey = process.env.NEXT_PUBLIC_MERCADOPAGO_PUBLIC_KEY;
       
       console.log('🔑 Public Key disponible:', publicKey ? 'SÍ' : 'NO');
       console.log('💰 Amount:', amount, 'Type:', typeof amount);
       
-      if (!publicKey) {
-        throw new Error('Missing NEXT_PUBLIC_MERCADOPAGO_PUBLIC_KEY in environment');
+      if (!publicKey || !publicKey.startsWith('APP_')) {
+        console.error('Invalid MercadoPago configuration');
+        throw new Error('Payment service unavailable');
       }
 
       const mp = new window.MercadoPago(publicKey, {
         locale: 'es-CL',
+        advancedFraudPrevention: true,
       });
 
       // Crear Card Payment Brick
@@ -79,10 +93,7 @@ export default function MercadoPagoCheckout({
 
       const brickInstance = await bricksBuilder.create('cardPayment', 'cardPaymentBrick_container', {
         initialization: {
-          amount: Number(amount), // Asegurar que sea número
-          payer: {
-            email: 'test_user_3077235175@testuser.com', // Usuario comprador de prueba MP
-          },
+          amount: Number(amount),
         },
         customization: {
           paymentMethods: {
@@ -102,9 +113,16 @@ export default function MercadoPagoCheckout({
           onSubmit: async (formData: any) => {
             setProcessing(true);
             try {
+              // Generar idempotency key único para este intento
+              const idempotencyKey = `IDEM_${planId}_${Date.now()}_${Math.random().toString(36).substring(7)}`;
+              
               const response = await fetch('/api/subscription/process-payment', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                  'Content-Type': 'application/json',
+                  'x-csrf-token': csrfToken,
+                  'idempotency-key': idempotencyKey,
+                },
                 body: JSON.stringify({
                   planId,
                   token: formData.token,
