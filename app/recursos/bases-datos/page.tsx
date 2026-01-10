@@ -1,14 +1,11 @@
-'use client';
-
 import Link from 'next/link';
 import { 
-  GlobeAltIcon,
   ArrowLeftIcon,
   BookOpenIcon,
   AcademicCapIcon,
   BeakerIcon,
   DocumentTextIcon,
-  ArrowTopRightOnSquareIcon,
+  GlobeAltIcon,
 } from '@heroicons/react/24/outline';
 
 interface DatabaseLink {
@@ -163,144 +160,101 @@ const databases: DatabaseLink[] = [
 ];
 
 export default function BasesDatosPage() {
-  const categories = Array.from(new Set(databases.map(db => db.category)));
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-teal-50/20 to-white py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        
-        {/* Header */}
-        <div className="mb-8">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-red-50">
+      {/* Header con botón de retorno */}
+      <div className="bg-gradient-to-r from-red-600 to-red-700 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
           <Link 
             href="/areas"
-            className="inline-flex items-center gap-2 text-teal-600 hover:text-teal-700 font-semibold mb-4 transition-colors"
+            className="inline-flex items-center gap-2 text-white/90 hover:text-white mb-6 transition-colors"
           >
             <ArrowLeftIcon className="w-5 h-5" />
-            Volver a Áreas
+            <span className="font-medium">Volver a Áreas</span>
           </Link>
           
-          <div className="flex items-center gap-4 mb-4">
-            <div className="w-16 h-16 bg-gradient-to-br from-teal-600 to-cyan-600 rounded-2xl flex items-center justify-center shadow-lg">
-              <GlobeAltIcon className="w-9 h-9 text-white" />
-            </div>
-            <div>
-              <h1 className="text-4xl font-bold text-gray-900">
-                Bases de Datos <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">Científicas</span>
-              </h1>
-              <p className="text-gray-600 mt-1">Recursos de evidencia actualizada en obstetricia y ginecología</p>
-            </div>
+          <div className="text-center">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
+              Bases de Datos Científicas
+            </h1>
+            <p className="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto">
+              Recursos de evidencia actualizada en obstetricia, ginecología y neonatología
+            </p>
           </div>
         </div>
+      </div>
 
-        {/* Estadísticas */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-white rounded-2xl p-6 shadow-lg border-2 border-gray-100">
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl flex items-center justify-center">
-                <GlobeAltIcon className="w-8 h-8 text-white" />
-              </div>
-              <div>
-                <p className="text-sm text-gray-600 font-medium">Bases de Datos</p>
-                <p className="text-3xl font-bold text-gray-900">{databases.length}</p>
-              </div>
-            </div>
-          </div>
-          <div className="bg-white rounded-2xl p-6 shadow-lg border-2 border-gray-100">
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl flex items-center justify-center">
-                <AcademicCapIcon className="w-8 h-8 text-white" />
-              </div>
-              <div>
-                <p className="text-sm text-gray-600 font-medium">Sociedades Científicas</p>
-                <p className="text-3xl font-bold text-gray-900">5</p>
-              </div>
-            </div>
-          </div>
-          <div className="bg-white rounded-2xl p-6 shadow-lg border-2 border-gray-100">
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl flex items-center justify-center">
-                <BookOpenIcon className="w-8 h-8 text-white" />
-              </div>
-              <div>
-                <p className="text-sm text-gray-600 font-medium">Revistas Especializadas</p>
-                <p className="text-3xl font-bold text-gray-900">5</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Categorías y Bases de Datos */}
-        <div className="space-y-8">
-          {categories.map(category => {
-            const categoryDbs = databases.filter(db => db.category === category);
+      {/* Grid de Bases de Datos */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          {databases.map((db) => {
+            const Icon = db.icon;
             return (
-              <div key={category}>
-                <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                  <div className="w-2 h-8 bg-gradient-to-b from-teal-600 to-cyan-600 rounded-full"></div>
-                  {category}
-                </h2>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {categoryDbs.map((db) => {
-                    const Icon = db.icon;
-                    return (
-                      <a
-                        key={db.name}
-                        href={db.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group bg-white rounded-2xl p-6 shadow-lg border-2 border-gray-100 hover:border-teal-300 hover:shadow-xl transition-all hover:-translate-y-1"
-                      >
-                        <div className="flex items-start gap-4">
-                          <div className={`flex-shrink-0 w-14 h-14 bg-gradient-to-br ${db.bgGradient} rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform`}>
-                            <Icon className="w-7 h-7 text-white" />
-                          </div>
-                          
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-start justify-between gap-2 mb-2">
-                              <h3 className="text-lg font-bold text-gray-900 group-hover:text-teal-600 transition-colors">
-                                {db.name}
-                              </h3>
-                              <ArrowTopRightOnSquareIcon className="w-5 h-5 text-gray-400 group-hover:text-teal-600 flex-shrink-0 transition-colors" />
-                            </div>
-                            
-                            <p className="text-sm text-gray-600 leading-relaxed">
-                              {db.description}
-                            </p>
-                            
-                            <div className="mt-3 flex items-center gap-2 text-teal-600 font-semibold text-sm">
-                              <span>Visitar sitio</span>
-                              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                              </svg>
-                            </div>
-                          </div>
-                        </div>
-                      </a>
-                    );
-                  })}
+              <a
+                key={db.name}
+                href={db.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group"
+              >
+                <div className="
+                  relative h-full bg-gradient-to-br from-red-600 to-red-700
+                  rounded-xl p-6 
+                  transition-all duration-300 
+                  hover:scale-105 hover:shadow-2xl hover:shadow-red-200/50
+                  border border-red-500
+                ">
+                  {/* Icono */}
+                  <div className="mb-4">
+                    <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                      <Icon className="w-6 h-6 text-white" />
+                    </div>
+                  </div>
+
+                  {/* Título */}
+                  <h3 className="text-lg font-bold text-white leading-tight mb-2">
+                    {db.name}
+                  </h3>
+
+                  {/* Categoría */}
+                  <div className="text-xs text-white/80 font-medium mb-3">
+                    📚 {db.category}
+                  </div>
+
+                  {/* Descripción */}
+                  <p className="text-sm text-white/90 leading-relaxed line-clamp-3 mb-4">
+                    {db.description}
+                  </p>
+
+                  {/* Arrow en hover */}
+                  <div className="flex items-center justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+                    <svg 
+                      className="w-5 h-5 text-white transform group-hover:translate-x-1 transition-transform"
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </div>
+
+                  {/* Decoración */}
+                  <div className="absolute bottom-0 right-0 w-20 h-20 bg-white/10 rounded-tl-full" />
                 </div>
-              </div>
+              </a>
             );
           })}
         </div>
 
-        {/* Disclaimer */}
-        <div className="mt-12 bg-gradient-to-r from-teal-600 via-cyan-600 to-teal-700 rounded-2xl p-8 md:p-10 shadow-2xl">
-          <div className="text-center text-white">
-            <BookOpenIcon className="w-16 h-16 mx-auto mb-6 opacity-90" />
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Medicina Basada en Evidencia
-            </h2>
-            <p className="text-xl opacity-90 mb-2 max-w-3xl mx-auto leading-relaxed">
-              Estos recursos representan las fuentes de información médica más actualizadas y confiables en obstetricia y ginecología.
-            </p>
-            <p className="text-lg opacity-80 max-w-2xl mx-auto">
-              Utilízalos para fundamentar decisiones clínicas y mantenerte actualizado con la evidencia científica más reciente.
-            </p>
-          </div>
+        {/* Footer informativo */}
+        <div className="mt-12 bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+          <p className="text-center text-sm text-gray-600 mb-2">
+            📚 <strong>Medicina Basada en Evidencia:</strong> Estos recursos representan las fuentes de información médica más actualizadas y confiables en obstetricia y ginecología.
+          </p>
+          <p className="text-center text-xs text-gray-500">
+            Utilízalos para fundamentar decisiones clínicas y mantenerte actualizado con la evidencia científica más reciente.
+          </p>
         </div>
-
       </div>
     </div>
   );

@@ -2,24 +2,24 @@
 
 import Link from 'next/link';
 import { ArrowLeftIcon, HeartIcon } from '@heroicons/react/24/outline';
-import LcfSimulator from '../escalas-scores/components/LcfSimulator';
+import LcfSimulator from './components/LcfSimulator';
 
 export default function SimuladorFCFPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 py-8 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-red-50 via-rose-50 to-red-50 py-8 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
           <Link
-            href="/areas"
-            className="inline-flex items-center text-emerald-600 hover:text-emerald-800 mb-4 group"
+            href="/recursos/calculadoras"
+            className="inline-flex items-center text-red-600 hover:text-red-800 mb-4 group"
           >
             <ArrowLeftIcon className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
-            Volver a Recursos
+            Volver a Calculadoras
           </Link>
           
           <div className="flex items-center gap-3 mb-4">
-            <div className="p-3 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl shadow-lg">
+            <div className="p-3 bg-gradient-to-br from-red-600 to-red-700 rounded-xl shadow-lg">
               <HeartIcon className="w-8 h-8 text-white" />
             </div>
             <div>
@@ -33,14 +33,14 @@ export default function SimuladorFCFPage() {
           </div>
 
           {/* Info Banner */}
-          <div className="bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded-r-lg mt-6">
+          <div className="bg-red-50 border-l-4 border-red-600 p-4 rounded-r-lg mt-6">
             <div className="flex items-start gap-3">
-              <HeartIcon className="w-6 h-6 text-emerald-600 flex-shrink-0 mt-0.5" />
+              <HeartIcon className="w-6 h-6 text-red-600 flex-shrink-0 mt-0.5" />
               <div>
-                <h3 className="font-semibold text-emerald-900 mb-1">
+                <h3 className="font-semibold text-red-900 mb-1">
                   Herramienta de Práctica Interactiva
                 </h3>
-                <p className="text-sm text-emerald-800">
+                <p className="text-sm text-red-800">
                   Este simulador te permite practicar la interpretación de frecuencia cardiaca fetal 
                   con audio realista y casos clínicos. Experimenta con diferentes patrones: 
                   bradicardia, taquicardia, variabilidad normal/reducida, aceleraciones y desaceleraciones.
