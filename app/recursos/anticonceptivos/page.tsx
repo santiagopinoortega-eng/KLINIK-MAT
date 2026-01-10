@@ -1,32 +1,77 @@
 import Link from 'next/link';
 import { METODOS_ANTICONCEPTIVOS } from './data';
+import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 
 export default function GuiaAnticonceptivosPage() {
   return (
-    <div className="bg-km-cream py-12">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-extrabold text-km-cardinal">Guía Rápida de Anticonceptivos</h1>
-          <p className="mt-4 text-lg text-km-text-700">
-            Información basada en las normativas del Ministerio de Salud de Chile.
-          </p>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-red-50">
+      {/* Header con botón de retorno */}
+      <div className="bg-gradient-to-r from-red-600 to-red-700 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+          <Link 
+            href="/areas"
+            className="inline-flex items-center gap-2 text-white/90 hover:text-white mb-6 transition-colors"
+          >
+            <ArrowLeftIcon className="w-5 h-5" />
+            <span className="font-medium">Volver a Áreas</span>
+          </Link>
+          
+          <div className="text-center">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
+              Guía de Anticonceptivos
+            </h1>
+            <p className="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto">
+              Información completa basada en protocolos MINSAL
+            </p>
+          </div>
         </div>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* Grid de Métodos - Solo títulos */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
           {METODOS_ANTICONCEPTIVOS.map((metodo) => (
-            <Link key={metodo.id} href={`/recursos/anticonceptivos/${metodo.id}`} className="block group">
-              <div className="h-full card rounded-2xl p-8 transition-all duration-300 hover:shadow-km-lg hover:border-km-rose/30">
-                <h3 className="text-xl font-bold text-km-crimson group-hover:text-km-rose transition-colors">{metodo.nombre}</h3>
-                <p className="mt-2 text-sm text-km-text-500 font-medium">{metodo.tipo}</p>
-                <p className="mt-4 text-base text-km-text-700 leading-relaxed">{metodo.descripcion}</p>
-                <div className="mt-6">
-                    <span className="font-bold text-km-crimson group-hover:text-km-rose transition-colors">
-                        Ver detalles →
-                    </span>
+            <Link 
+              key={metodo.id} 
+              href={`/recursos/anticonceptivos/${metodo.id}`}
+              className="group"
+            >
+              <div className="
+                relative h-full bg-gradient-to-br from-red-600 to-red-700
+                rounded-xl p-6 
+                transition-all duration-300 
+                hover:scale-105 hover:shadow-2xl hover:shadow-red-200/50
+                border border-red-500
+              ">
+                {/* Solo el título */}
+                <h3 className="text-lg font-bold text-white leading-tight">
+                  {metodo.nombre}
+                </h3>
+
+                {/* Arrow en hover */}
+                <div className="mt-4 flex items-center justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+                  <svg 
+                    className="w-5 h-5 text-white transform group-hover:translate-x-1 transition-transform"
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
                 </div>
+
+                {/* Decoración */}
+                <div className="absolute bottom-0 right-0 w-20 h-20 bg-white/10 rounded-tl-full" />
               </div>
             </Link>
           ))}
+        </div>
+
+        {/* Footer informativo */}
+        <div className="mt-12 bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+          <p className="text-center text-sm text-gray-600">
+            📋 Material elaborado en base a las <strong>Normas Nacionales sobre Regulación de la Fertilidad</strong> del Ministerio de Salud de Chile (MINSAL)
+          </p>
         </div>
       </div>
     </div>
