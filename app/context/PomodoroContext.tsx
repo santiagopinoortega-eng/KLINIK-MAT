@@ -141,6 +141,17 @@ export function PomodoroProvider({ children }: { children: React.ReactNode }) {
   const loadActiveSession = async () => {
     try {
       const response = await fetch('/api/pomodoro/active');
+      
+      // Si no está autenticado (401) o cualquier error, simplemente retornar
+      if (!response.ok) {
+        if (response.status === 401) {
+          // Usuario no autenticado, es esperado
+          return;
+        }
+        console.warn('Failed to load active session:', response.status);
+        return;
+      }
+
       const data = await response.json();
 
       if (data.success && data.session) {
@@ -161,7 +172,8 @@ export function PomodoroProvider({ children }: { children: React.ReactNode }) {
         }
       }
     } catch (error) {
-      console.error('Error loading active session:', error);
+      // Error de red o parsing, no es crítico
+      console.debug('Could not load active session:', error);
     }
   };
 
