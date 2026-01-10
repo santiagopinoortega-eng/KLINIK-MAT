@@ -78,7 +78,7 @@ export default function ComparisonTable({ plans, onSelectPlan, className = '' }:
                       </span>
                     ) : (
                       <span className="font-bold text-green-700 whitespace-nowrap">
-                        ${Math.round(plan.price / (plan.billingPeriod === 'QUARTERLY' ? 3 : plan.billingPeriod === 'BIANNUAL' ? 6 : 1)).toLocaleString('es-CL')}
+                        ${Math.round(plan.price / (plan.billingPeriod === 'SEMIANNUAL' ? 6 : plan.billingPeriod === 'ANNUAL' ? 12 : 1)).toLocaleString('es-CL')}
                       </span>
                     )}
                   </td>

@@ -70,17 +70,17 @@ async function main() {
   });
   console.log('✅ Plan MONTHLY created:', monthlyPlan.id);
 
-  // Plan Trimestral - $11,230 CLP/3 meses (25% descuento)
-  const quarterlyPlan = await prisma.subscriptionPlan.upsert({
-    where: { name: 'QUARTERLY' },
+  // Plan Semestral - $22,990 CLP/6 meses (25% descuento)
+  const semestralPlan = await prisma.subscriptionPlan.upsert({
+    where: { name: 'SEMIANNUAL' },
     update: {},
     create: {
-      name: 'QUARTERLY',
-      displayName: 'Plan Trimestral',
-      description: '3 meses con 25% de descuento - Ahorra $3,740 CLP',
-      price: 11230, // $14,970 - 25% = $11,230
+      name: 'SEMIANNUAL',
+      displayName: 'Plan Semestral',
+      description: '6 meses con 25% de descuento - Ahorra $7,000 CLP',
+      price: 22990,
       currency: 'CLP',
-      billingPeriod: 'QUARTERLY',
+      billingPeriod: 'SEMIANNUAL',
       trialDays: 7,
       isActive: true,
       features: {
@@ -94,30 +94,31 @@ async function main() {
         exportPDF: true,
         offlineMode: true,
         prioritySupport: true,
+        certificateDownload: true
       },
-      maxCasesPerMonth: null, // Ilimitado
+      maxCasesPerMonth: null,
       hasAI: false,
       hasAdvancedStats: true,
       hasPrioritySupport: true,
     },
   });
-  console.log('✅ Plan QUARTERLY created:', quarterlyPlan.id);
+  console.log('✅ Plan SEMIANNUAL created:', semestralPlan.id);
 
-  // Plan Semestral (6 meses) - $24,700 CLP/6 meses (17% descuento) - MEJOR VALOR
-  const biannualPlan = await prisma.subscriptionPlan.upsert({
-    where: { name: 'BIANNUAL' },
+  // Plan Anual (12 meses) - $35,990 CLP/12 meses (40% descuento) - MEJOR VALOR
+  const annualPlan = await prisma.subscriptionPlan.upsert({
+    where: { name: 'ANNUAL' },
     update: {},
     create: {
-      name: 'BIANNUAL',
-      displayName: 'Plan Semestral (6 meses)',
-      description: '6 meses - Mejor valor con acceso anticipado',
-      price: 24700, // $44,910 - 45% = $24,700
+      name: 'ANNUAL',
+      displayName: 'Plan Anual',
+      description: '12 meses con 40% de descuento - Ahorra $24,000 CLP',
+      price: 35990,
       currency: 'CLP',
-      billingPeriod: 'BIANNUAL',
-      trialDays: 14, // Período de prueba más largo
+      billingPeriod: 'ANNUAL',
+      trialDays: 14,
       isActive: true,
       features: {
-        casesPerMonth: -1, // Ilimitado
+        casesPerMonth: -1,
         allAreas: true,
         minsal: true,
         pubmed: true,
@@ -136,14 +137,14 @@ async function main() {
       hasPrioritySupport: true,
     },
   });
-  console.log('✅ Plan BIANNUAL (6 meses) created:', biannualPlan.id);
+  console.log('✅ Plan ANNUAL created:', annualPlan.id);
 
   console.log('');
   console.log('📊 Summary:');
   console.log('  - Plan FREE: GRATIS (10 casos/mes, solo PubMed)');
   console.log('  - Plan MONTHLY: $4,990/mes (~$4,990/mes real)');
-  console.log('  - Plan QUARTERLY: $11,230/3 meses (~$3,743/mes real) - Ahorro 25%');
-  console.log('  - Plan BIANNUAL: $24,700/6 meses (~$4,117/mes real) - 17% desc ⭐ MEJOR VALOR');
+  console.log('  - Plan SEMIANNUAL: $22,990/6 meses (~$3,832/mes real) - 25% desc');
+  console.log('  - Plan ANNUAL: $35,990/12 meses (~$2,999/mes real) - 40% desc ⭐ MEJOR VALOR');
   console.log('');
   console.log('💰 Ahorro máximo con Plan Semestral: $5,240 CLP');
   console.log('');

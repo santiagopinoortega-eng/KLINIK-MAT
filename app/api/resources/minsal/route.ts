@@ -7,6 +7,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getResources, getResourceStats } from '@/lib/data/minsal-resources';
 import { z } from 'zod';
 
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+
 const querySchema = z.object({
   category: z.string().optional(),
   source: z.string().optional(),

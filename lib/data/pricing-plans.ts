@@ -42,9 +42,11 @@ export function calculateDiscount(plan: PricingPlan): PlanDiscount {
   }
 
   const months = {
+    MONTHLY: 1,
     SEMIANNUAL: 6,  // 6 meses
-    ANNUAL: 12      // 12 meses
-  }[plan.billingPeriod] || 1;
+    ANNUAL: 12,     // 12 meses
+    FREE: 1
+  }[plan.billingPeriod];
 
   const originalPrice = BASE_MONTHLY_PRICE * months;
   const savings = originalPrice - plan.price;

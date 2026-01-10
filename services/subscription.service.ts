@@ -352,10 +352,10 @@ export class SubscriptionService {
       case 'MONTHLY':
         periodEnd.setMonth(periodEnd.getMonth() + 1);
         break;
-      case 'QUARTERLY':
-        periodEnd.setMonth(periodEnd.getMonth() + 3);
+      case 'SEMIANNUAL':
+        periodEnd.setMonth(periodEnd.getMonth() + 6);
         break;
-      case 'YEARLY':
+      case 'ANNUAL':
         periodEnd.setFullYear(periodEnd.getFullYear() + 1);
         break;
     }

@@ -12,7 +12,7 @@ export interface PricingPlan {
   displayName: string;
   description: string;
   price: number;
-  billingPeriod: 'MONTHLY' | 'QUARTERLY' | 'BIANNUAL' | 'YEARLY' | 'FREE';
+  billingPeriod: 'MONTHLY' | 'SEMIANNUAL' | 'ANNUAL' | 'FREE';
   features: PlanFeature[];
   benefits: PlanBenefit[];
   maxCasesPerMonth: number | null;
@@ -22,6 +22,12 @@ export interface PricingPlan {
   isBestValue?: boolean;
   isFree?: boolean;
   badge?: PlanBadge;
+}
+
+// Props para el header de pricing (valores opcionales)
+export interface PricingHeaderProps {
+  maxSavings?: number;
+  className?: string;
 }
 
 /**

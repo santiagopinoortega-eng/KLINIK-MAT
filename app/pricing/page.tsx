@@ -229,7 +229,7 @@ export default function PricingPage() {
                       ${selectedPlan.price.toLocaleString('es-CL')} CLP
                     </div>
                     <span className="text-gray-500 text-sm">
-                      por {selectedPlan.billingPeriod === 'BIANNUAL' ? '6 meses' : selectedPlan.billingPeriod === 'QUARTERLY' ? '3 meses' : 'mes'}
+                      por {selectedPlan.billingPeriod === 'SEMIANNUAL' ? '6 meses' : selectedPlan.billingPeriod === 'ANNUAL' ? '12 meses' : 'mes'}
                     </span>
                   </div>
                   {discount.hasDiscount && (
