@@ -61,7 +61,7 @@ export default function FloatingPomodoroWidget() {
             <span className="font-semibold text-sm">{getTypeLabel()}</span>
           </div>
           <button
-            onClick={() => router.push('/pomodoro')}
+            onClick={() => router.push('/recursos/pomodoro')}
             className="p-1 hover:bg-white/20 rounded-lg transition-colors"
             title="Abrir Pomodoro"
           >
@@ -108,7 +108,7 @@ export default function FloatingPomodoroWidget() {
             </button>
           )}
           <button
-            onClick={() => router.push('/pomodoro')}
+            onClick={() => router.push('/recursos/pomodoro')}
             className="flex-1 bg-white text-blue-600 hover:bg-gray-100 rounded-lg py-2 text-sm font-medium transition-colors"
           >
             Ver Detalles

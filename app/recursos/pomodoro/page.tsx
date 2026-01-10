@@ -188,8 +188,8 @@ export default function PomodoroTimer() {
     ? ((totalSeconds - timeRemaining) / totalSeconds) * 100 
     : 0;
 
-  // Mapear tipo a modo visual
-  const currentMode = status === 'IDLE' ? 'idle' : type === 'WORK' ? 'work' : type === 'SHORT_BREAK' ? 'shortBreak' : 'longBreak';
+  // Mapear tipo a modo visual - SIEMPRE usar work (rojo) como base
+  const currentMode = status === 'IDLE' ? 'work' : type === 'WORK' ? 'work' : type === 'SHORT_BREAK' ? 'shortBreak' : 'longBreak';
 
   const modeConfig = {
     idle: {
@@ -199,14 +199,18 @@ export default function PomodoroTimer() {
       bgColor: 'bg-gradient-to-br from-gray-50 to-slate-50',
       textColor: 'text-gray-600',
       buttonColor: 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700',
+      cardBg: 'bg-white',
+      cardText: 'text-gray-900',
     },
     work: {
       title: 'Tiempo de Estudio',
       icon: <BookOpenIcon className="w-6 h-6 sm:w-8 sm:h-8" />,
-      color: 'from-purple-500 to-pink-500',
-      bgColor: 'bg-gradient-to-br from-purple-50 to-pink-50',
-      textColor: 'text-purple-600',
-      buttonColor: 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700',
+      color: 'from-red-600 to-red-700',
+      bgColor: 'bg-gradient-to-br from-red-50 to-orange-50',
+      textColor: 'text-red-700',
+      buttonColor: 'bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800',
+      cardBg: 'bg-gradient-to-br from-red-600 to-red-700',
+      cardText: 'text-white',
     },
     shortBreak: {
       title: 'Descanso Corto',
@@ -215,6 +219,8 @@ export default function PomodoroTimer() {
       bgColor: 'bg-gradient-to-br from-green-50 to-teal-50',
       textColor: 'text-green-600',
       buttonColor: 'bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700',
+      cardBg: 'bg-gradient-to-br from-green-600 to-teal-600',
+      cardText: 'text-white',
     },
     longBreak: {
       title: 'Descanso Largo',
@@ -223,6 +229,8 @@ export default function PomodoroTimer() {
       bgColor: 'bg-gradient-to-br from-blue-50 to-cyan-50',
       textColor: 'text-blue-600',
       buttonColor: 'bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700',
+      cardBg: 'bg-gradient-to-br from-blue-600 to-cyan-600',
+      cardText: 'text-white',
     },
   };
 
@@ -380,9 +388,9 @@ export default function PomodoroTimer() {
         )}
 
         {/* Timer Card */}
-        <div className="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12 border border-gray-100">
+        <div className={`${config.cardBg} rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12`}>
           {/* Mode Title */}
-          <div className={`flex items-center justify-center gap-2 sm:gap-3 mb-6 sm:mb-8 ${config.textColor}`}>
+          <div className={`flex items-center justify-center gap-2 sm:gap-3 mb-6 sm:mb-8 ${config.cardText}`}>
             {config.icon}
             <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">{config.title}</h1>
           </div>
@@ -397,7 +405,7 @@ export default function PomodoroTimer() {
                 stroke="currentColor"
                 strokeWidth="8"
                 fill="transparent"
-                className="text-gray-200"
+                className="text-white/30"
               />
               <circle
                 cx="50%"
@@ -408,17 +416,27 @@ export default function PomodoroTimer() {
                 fill="transparent"
                 strokeDasharray={`${2 * Math.PI * 108}`}
                 strokeDashoffset={`${2 * Math.PI * 108 * (1 - progress / 100)}`}
-                className={config.textColor}
+                className={`text-white ${status === 'ACTIVE' ? 'animate-pulse' : ''}`}
                 strokeLinecap="round"
                 style={{ transition: 'stroke-dashoffset 1s linear' }}
               />
+              {/* Indicador de progreso activo - punto que gira */}
+              {status === 'ACTIVE' && (
+                <circle
+                  cx="50%"
+                  cy="5%"
+                  r="3%"
+                  fill="currentColor"
+                  className="text-yellow-300 animate-pulse"
+                />
+              )}
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold ${config.textColor}`}>
+              <span className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold ${config.cardText} ${status === 'ACTIVE' ? 'animate-pulse' : ''}`}>
                 {formatTime(displayTime)}
               </span>
               {status === 'PAUSED' && (
-                <span className="text-sm text-yellow-600 font-medium mt-2">Pausado</span>
+                <span className={`text-sm font-medium mt-2 ${config.cardText} opacity-80`}>Pausado</span>
               )}
             </div>
           </div>
@@ -427,12 +445,12 @@ export default function PomodoroTimer() {
           {status === 'IDLE' ? (
             // Botones para iniciar
             <div className="space-y-4">
-              <p className="text-center text-gray-600 mb-4 text-sm sm:text-base">Selecciona un modo para comenzar:</p>
+              <p className="text-center mb-4 text-sm sm:text-base text-gray-600">Selecciona un modo para comenzar:</p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
                 <button
                   onClick={() => handleStart('WORK')}
                   disabled={isStarting}
-                  className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all disabled:opacity-50 flex items-center justify-center gap-2"
                 >
                   <BookOpenIcon className="w-5 h-5" />
                   Trabajo ({settings.workDuration}m)
@@ -454,7 +472,7 @@ export default function PomodoroTimer() {
                 {status === 'ACTIVE' ? (
                   <button
                     onClick={pauseTimer}
-                    className={`${config.buttonColor} text-white p-4 sm:p-6 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-105`}
+                    className="bg-white/20 hover:bg-white/30 backdrop-blur-sm border-2 border-white text-white p-4 sm:p-6 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-105"
                     title="Pausar"
                   >
                     <PauseIcon className="w-6 h-6 sm:w-8 sm:h-8" />
@@ -462,7 +480,7 @@ export default function PomodoroTimer() {
                 ) : (
                   <button
                     onClick={resumeTimer}
-                    className={`${config.buttonColor} text-white p-4 sm:p-6 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-105`}
+                    className="bg-white/20 hover:bg-white/30 backdrop-blur-sm border-2 border-white text-white p-4 sm:p-6 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-105"
                     title="Reanudar"
                   >
                     <PlayIcon className="w-6 h-6 sm:w-8 sm:h-8" />
@@ -470,7 +488,7 @@ export default function PomodoroTimer() {
                 )}
                 <button
                   onClick={() => handleStop(false)}
-                  className="bg-red-500 hover:bg-red-600 text-white p-4 sm:p-6 rounded-full shadow-lg hover:shadow-xl transition-all"
+                  className="bg-white/20 hover:bg-white/30 backdrop-blur-sm border-2 border-white text-white p-4 sm:p-6 rounded-full shadow-lg hover:shadow-xl transition-all"
                   title="Detener"
                 >
                   <StopIcon className="w-6 h-6 sm:w-8 sm:h-8" />
