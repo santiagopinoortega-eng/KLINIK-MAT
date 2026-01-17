@@ -1,0 +1,85 @@
+[
+  {
+    // ============================================================================
+    // 📋 CASO 1: NIVEL 1 (BAJA)
+    // Estructura: 6 MCQ | Viñeta: 138 palabras
+    // ============================================================================
+    id: 'tema1-01-ingreso-prenatal-n1',
+    titulo: 'Ingreso a Control Prenatal en APS',
+    area: 'Tema 1: Embarazo y Control Prenatal',
+    modulo: '1.1 Control Prenatal Normal',
+    dificultad: '1',
+    objetivosAprendizaje: [
+      'Identificar los componentes del ingreso prenatal según MINSAL',
+      'Reconocer la suplementación inicial básica en gestantes de bajo riesgo',
+      'Describir la batería de exámenes de laboratorio del primer trimestre'
+    ],
+    vignette: "Paciente: K.L.M., 22 años, primigesta, estudiante de pedagogía. Sin antecedentes mórbidos personales. Acude al CESFAM por presentar un atraso menstrual de tres semanas y un test de embarazo en orina realizado en su domicilio con resultado positivo hace dos días.\n\nRelata una FUR operacional segura y confiable de hace 8 semanas. Refiere buena tolerancia gástrica, aunque manifiesta una leve tensión mamaria y somnolencia diurna. Niega hábitos tabáquicos, consumo de alcohol o sustancias ilícitas. Vive con su pareja en una relación estable, quien apoya activamente la gestación.\n\nAl examen físico: PA: 106/64 mmHg, FC: 68 lpm, T°: 36.5°C. Peso: 58 kg, Talla: 1.62m (IMC: 22.1 kg/m², Normal). Al examen obstétrico, se palpa útero de tamaño consistente con la amenorrea referida, sin signos de dolor ni pérdida de bienestar.",
+    pasos: [
+      {
+        enunciado: 'Según la Guía Perinatal MINSAL 2015, ¿cuál es el objetivo primordial del ingreso prenatal en esta paciente?',
+        opciones: [
+          { texto: 'Establecer la edad gestacional y evaluar el riesgo biopsicosocial', esCorrecta: true, explicacion: '✅ CORRECTO. El ingreso busca definir la cronología del embarazo e identificar factores de riesgo para planificar el seguimiento según la Norma Técnica de Control Prenatal.' },
+          { texto: 'Confirmar el embarazo mediante ecografía transvaginal inmediata', esCorrecta: false, explicacion: '❌ INCORRECTO. El diagnóstico es clínico/químico. La ecografía es un apoyo para datación, no el objetivo único del control de ingreso.' },
+          { texto: 'Derivar a médico obstetra por ser su primer embarazo', esCorrecta: false, explicacion: '❌ INCORRECTO. Gestantes de bajo riesgo se controlan en APS por Matrona/Matrón, reservando el nivel secundario para patologías (ARO).' },
+          { texto: 'Indicar reposo preventivo durante el primer trimestre', esCorrecta: false, explicacion: '❌ INCORRECTO. El embarazo es un proceso fisiológico; el reposo no es normativo en evoluciones normales sin factores de riesgo de aborto.' }
+        ]
+      },
+      {
+        enunciado: '¿Cuál es la dosis recomendada de Ácido Fólico para esta paciente de bajo riesgo?',
+        opciones: [
+          { texto: '0.4 a 1.0 mg al día', esCorrecta: true, explicacion: '✅ CORRECTO. Según MINSAL, es la dosis estándar para prevención de defectos del tubo neural en población general sin antecedentes.' },
+          { texto: '4.0 mg al día', esCorrecta: false, explicacion: '❌ INCORRECTO. Esta dosis se reserva para pacientes con antecedentes de hijos previos con defectos del tubo neural.' },
+          { texto: '5.0 mg al día', esCorrecta: false, explicacion: '❌ INCORRECTO. No es la dosis recomendada en la norma técnica chilena para población de bajo riesgo.' },
+          { texto: 'No requiere, por tener IMC normal', esCorrecta: false, explicacion: '❌ INCORRECTO. La suplementación con ácido fólico es universal y debe iniciarse idealmente periconcepcionalmente.' }
+        ]
+      },
+      {
+        enunciado: '¿Cuál de los siguientes exámenes es obligatorio solicitar en este ingreso según la Norma Chilena?',
+        opciones: [
+          { texto: 'VDRL o RPR', esCorrecta: true, explicacion: '✅ CORRECTO. El tamizaje de sífilis es obligatorio en el ingreso y se repite en el 2do y 3er trimestre.' },
+          { texto: 'Perfil Bioquímico completo', esCorrecta: false, explicacion: '❌ INCORRECTO. No es parte de la batería de rutina inicial en control normal; se solicitan glicemia y función renal específica (orina).' },
+          { texto: 'Cariograma fetal', esCorrecta: false, explicacion: '❌ INCORRECTO. Es un examen invasivo no indicado en tamizaje de población general sin factores de riesgo.' },
+          { texto: 'Radiografía de tórax', esCorrecta: false, explicacion: '❌ INCORRECTO. No es un examen de rutina y se evita en el embarazo a menos que sea estrictamente necesario por sospecha de TBC o neumonía.' }
+        ]
+      },
+      {
+        enunciado: 'La paciente consulta por náuseas matutinas leves. ¿Cuál es la recomendación inicial?',
+        opciones: [
+          { texto: 'Fraccionar la dieta y evitar alimentos grasos o muy condimentados', esCorrecta: true, explicacion: '✅ CORRECTO. Las medidas higiénico-dietéticas son la primera línea de manejo para las náuseas fisiológicas del primer trimestre.' },
+          { texto: 'Indicar Omeprazol cada 12 horas', esCorrecta: false, explicacion: '❌ INCORRECTO. El Omeprazol se reserva para síntomas de reflujo gastroesofágico persistente.' },
+          { texto: 'Mantener ayuno prolongado hasta que desaparezcan las náuseas', esCorrecta: false, explicacion: '❌ INCORRECTO. El estómago vacío tiende a exacerbar las náuseas gestacionales.' },
+          { texto: 'Suspender el Ácido Fólico inmediatamente', esCorrecta: false, explicacion: '❌ INCORRECTO. No se debe suspender por síntomas leves; se puede recomendar ingerirlo con las comidas para mejorar tolerancia.' }
+        ]
+      },
+      {
+        enunciado: '¿Cuál es la frecuencia de controles prenatales recomendada para una gestante de bajo riesgo hasta las 28 semanas?',
+        opciones: [
+          { texto: 'Cada 4 semanas', esCorrecta: true, explicacion: '✅ CORRECTO. Es la periodicidad estándar según la Guía Perinatal para una evolución normal.' },
+          { texto: 'Cada 2 semanas', esCorrecta: false, explicacion: '❌ INCORRECTO. Esta frecuencia es más tardía en el embarazo o para pacientes con riesgos específicos.' },
+          { texto: 'Cada 1 semana', esCorrecta: false, explicacion: '❌ INCORRECTO. Frecuencia propia del control de término (a partir de las 36-37 semanas).' },
+          { texto: 'Trimestralmente', esCorrecta: false, explicacion: '❌ INCORRECTO. Una frecuencia trimestral es insuficiente para la vigilancia adecuada de la madre y el feto.' }
+        ]
+      },
+      {
+        enunciado: '¿Qué vacuna debe ser verificada o administrada si corresponde a partir de la confirmación?',
+        opciones: [
+          { texto: 'Influenza (según campaña anual)', esCorrecta: true, explicacion: '✅ CORRECTO. Las gestantes son grupo prioritario para la vacuna contra la influenza independientemente de su edad gestacional.' },
+          { texto: 'Difteria, Tétanos y Pertussis acelular (dTpa)', esCorrecta: false, explicacion: '❌ INCORRECTO. Se administra a partir de la semana 28 de gestación.' },
+          { texto: 'Virus Papiloma Humano (VPH)', esCorrecta: false, explicacion: '❌ INCORRECTO. No está indicada su administración durante el periodo de gestación.' },
+          { texto: 'Sarampión, paperas y rubéola (Tres vírica)', esCorrecta: false, explicacion: '❌ INCORRECTO. Está contraindicada en el embarazo por ser una vacuna de virus vivos atenuados.' }
+        ]
+      }
+    ],
+    feedbackDinamico: {
+      bajo: 'Repasa los fundamentos del ingreso prenatal en la Guía Perinatal MINSAL 2015. Enfócate en exámenes iniciales y suplementación.',
+      medio: 'Buen trabajo. Refuerza las recomendaciones para molestias del primer trimestre y el calendario de vacunación gestacional.',
+      alto: '¡Excelente! Dominas el protocolo de ingreso en APS para una gestante de bajo riesgo según normativa chilena.'
+    },
+    referencias: [
+      'Guía Perinatal MINSAL 2015',
+      'Schwarcz, R. Obstetricia. 7ª ed. Buenos Aires: Ed. El Ateneo (Bibliografía Básica GIF221)',
+      'Norma Técnica de Control Prenatal, MINSAL Chile'
+    ]
+  }
+]

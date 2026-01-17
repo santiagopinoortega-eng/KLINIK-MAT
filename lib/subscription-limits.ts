@@ -38,6 +38,16 @@ export async function checkCaseAccessLimit(userId: string): Promise<LimitCheckRe
     });
 
     if (!user) {
+      // En desarrollo, permitir acceso si el usuario no está en la BD
+      // (Clerk puede autenticar usuarios que aún no se han sincronizado)
+      if (process.env.NODE_ENV === 'development') {
+        return {
+          allowed: true,
+          reason: 'Usuario en desarrollo sin registro en BD',
+          planName: 'DEV',
+        };
+      }
+      
       return {
         allowed: false,
         reason: 'Usuario no encontrado',

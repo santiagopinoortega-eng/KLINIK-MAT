@@ -36,8 +36,8 @@ const AREAS: ClinicalArea[] = [
     color: 'text-blue-600',
     gradient: 'from-blue-50 via-sky-50 to-cyan-50',
     borderColor: 'border-blue-300 hover:border-blue-500',
-    available: false,
-    caseCount: 0
+    available: true,
+    caseCount: 15
   },
   {
     id: 'parto',
@@ -169,7 +169,7 @@ export default function AreasClient() {
             {/* Badge de disponibilidad */}
             <div className="flex items-center gap-2.5 px-4 py-2 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-lg shadow-green-500/50"></div>
-              <span className="font-semibold text-green-700 text-sm">1 área disponible</span>
+              <span className="font-semibold text-green-700 text-sm">2 áreas disponibles</span>
             </div>
           </div>
         </div>
@@ -210,7 +210,7 @@ export default function AreasClient() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
                   </div>
-                  <div className="text-3xl font-bold text-gray-900">54</div>
+                  <div className="text-3xl font-bold text-gray-900">16</div>
                 </div>
                 <div className="text-xs font-semibold text-gray-600 uppercase tracking-wide">Casos Totales</div>
               </div>

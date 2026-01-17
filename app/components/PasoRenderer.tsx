@@ -248,13 +248,7 @@ export default function PasoRenderer({ pasoId, onAnswer }: Props) {
             </div>
           )}
 
-          {/* Feedback docente general para la pregunta */}
-          {respuestaUsuario && stepData.feedbackDocente && (
-            <div className="mt-4 p-4 rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 text-sm shadow-sm">
-              <h4 className="font-semibold mb-2 text-[#1E3A5F]" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>Feedback docente</h4>
-              <div className="text-gray-700 whitespace-pre-wrap">{stepData.feedbackDocente}</div>
-            </div>
-          )}
+          {/* Feedback docente se muestra solo al FINAL del caso, no aquí */}
       </div>
     );
   }

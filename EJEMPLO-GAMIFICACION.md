@@ -52,9 +52,10 @@
 
 3. **Feedback Final:**
    - `feedbackDinamico` con 3 niveles:
-     - `bajo` (0-30% correctas)
-     - `medio` (31-60% correctas)
-     - `alto` (61-100% correctas)
+     - `bajo` (25-49% correctas)
+     - `medio` (50-74% correctas)
+     - `alto` (75-100% correctas)
+     - 0-24%: usa mensaje predeterminado del sistema
 
 4. **Referencias:**
    - Array `referencias: string[]` con fuentes bibliográficas

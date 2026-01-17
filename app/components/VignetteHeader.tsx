@@ -3,7 +3,13 @@
 import { useState, useMemo } from 'react';
 import cx from 'clsx';
 
-export default function VignetteHeader({ title, vigneta }: { title: string; vigneta?: string | null }) {
+export default function VignetteHeader({ 
+  title, 
+  vigneta
+}: { 
+  title: string; 
+  vigneta?: string | null;
+}) {
   const [open, setOpen] = useState(true);
 
   const tags = useMemo(() => {
@@ -40,6 +46,7 @@ export default function VignetteHeader({ title, vigneta }: { title: string; vign
       <div className="card p-4 md:p-6 flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-6">
         <div className="flex-1">
           <h2 className="text-lg md:text-2xl font-extrabold" style={{ color: 'var(--km-deep)' }}>{title}</h2>
+          
           {vigneta && (
             <div className="mt-3 text-[var(--km-text-700)] leading-relaxed max-w-prose whitespace-pre-wrap">{vigneta}</div>
           )}

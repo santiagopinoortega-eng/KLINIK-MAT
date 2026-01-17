@@ -72,6 +72,7 @@ export type CasoClient = {
   pasos: Paso[];
   referencias?: string[];
   debrief?: string;
+  objetivosAprendizaje?: string[]; // Objetivos de aprendizaje del caso
   feedback_dinamico?: FeedbackDinamico; // Nuevo: feedback por porcentaje
 };
 
@@ -94,11 +95,11 @@ export const isMcq = (p: Paso): p is McqPaso => p.tipo === 'mcq';
 // Comprueba si un paso es Short (Desarrollo)
 export const isShort = (p: Paso): p is ShortPaso => p.tipo === 'short';
 
-// --- Sistema de Feedback Integrado ---
+// --- Sistema de Feedback Integrado (Actualizado enero 2026) ---
 export type FeedbackNivel = {
-  rangoMin: number; // Porcentaje mínimo (ej: 0, 50, 70, 90)
-  rangoMax: number; // Porcentaje máximo (ej: 49, 69, 89, 100)
-  titulo: string;   // Ej: "Necesitas Revisar", "Bien", "Muy Bien", "Excelente"
+  rangoMin: number; // Porcentaje mínimo (ej: 0, 25, 50, 75)
+  rangoMax: number; // Porcentaje máximo (ej: 24, 49, 74, 100)
+  titulo: string;   // Ej: "Necesitas Revisar", "Mejorable", "Bien", "Excelente"
   mensaje: string;  // Feedback específico del caso
-  emoji?: string;   // Ej: "📝", "✓", "⭐", "🏆"
+  emoji?: string;   // Ej: "📝", "⚠️", "✓", "🏆"
 };

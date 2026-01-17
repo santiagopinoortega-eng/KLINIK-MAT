@@ -97,14 +97,20 @@ export function withValidation<T extends ZodSchema>(
     try {
       const body = await req.json();
       
+      // Log detallado del body recibido
+      console.log('🔍 [Validation] Body received:', JSON.stringify(body, null, 2));
+      
       // Validar con Zod
       const validated = schema.parse(body);
+      
+      console.log('✅ [Validation] Body validated successfully');
       
       // Agregar datos validados al contexto
       context.body = validated;
       
       return await handler(req, context, params);
     } catch (error) {
+      console.error('❌ [Validation] Error:', error);
       return handleApiError(error);
     }
   };

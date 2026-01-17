@@ -67,22 +67,42 @@ async function upsertCase(caseObj) {
   const modulo = caseObj.modulo || caseObj.area || 'General';
   const area = caseObj.area || caseObj.modulo || 'General';
   const difficulty = mapDifficulty(caseObj.dificultad || caseObj.difficulty);
-  const vignette = caseObj.vigneta || caseObj.vignette || '';
-  const summary = caseObj.resumen || caseObj.summary || '';
   
-  // Nuevo: Guardar el feedback dinámico como JSON
-  const feedback_dinamico = caseObj.feedbackDinamico || caseObj.feedback_dinamico || null;
+  // dificultad como string para compatibilidad con schema
+  const dificultadText = caseObj.dificultad ? String(caseObj.dificultad) : null;
+  
+  // Procesar vignette: puede ser string u objeto
+  let vignette = '';
+  if (typeof caseObj.vignette === 'string') {
+    vignette = caseObj.vignette;
+  } else if (typeof caseObj.vignette === 'object' && caseObj.vignette !== null) {
+    // Convertir objeto vignette a string formateado
+    const v = caseObj.vignette;
+    vignette = `**Paciente:** ${v.paciente || ''}\n\n` +
+               `**Motivo de Consulta:** ${v.motivoConsulta || ''}\n\n` +
+               `**Anamnesis:** ${v.anamnesis || ''}\n\n` +
+               `**Examen Físico:** ${v.examenFisico || ''}\n\n` +
+               `**Exámenes:** ${Array.isArray(v.examenes) ? v.examenes.join(', ') : ''}\n\n` +
+               `**Contexto:** ${v.contexto || ''}`;
+  } else {
+    vignette = caseObj.vigneta || '';
+  }
+  
+  const summary = caseObj.resumen || caseObj.summary || '';
 
-  // Prepare questions data
-  const pasos = Array.isArray(caseObj.pasos) ? caseObj.pasos : [];
+  // Prepare questions data - adaptado para soportar 'questions' o 'pasos'
+  const pasos = Array.isArray(caseObj.questions) ? caseObj.questions : 
+                Array.isArray(caseObj.pasos) ? caseObj.pasos : [];
   const questionsCreate = pasos.map((p, idx) => {
     const qText = p.enunciado || p.text || `Paso ${idx + 1}`;
     const qOrder = idx + 1;
-    const options = Array.isArray(p.opciones) ? p.opciones.map((opt) => {
+    const qId = p.id || `${caseId}-q${qOrder}`; // Generar ID si no existe
+    const options = Array.isArray(p.opciones) ? p.opciones.map((opt, optIdx) => {
       const text = opt.texto || opt.text || '';
       const feedback = opt.explicacion || opt.feedback || '';
-      const isCorrect = Boolean(opt.esCorrecta ?? opt.isCorrect ?? false);
-      return { text, feedback, isCorrect };
+      const isCorrect = Boolean(opt.esCorrecta ?? opt.correcta ?? opt.isCorrect ?? false);
+      const id = opt.id || `${qId}-opt${optIdx + 1}`; // Generar ID si no existe
+      return { id, text, feedback, isCorrect, order: optIdx + 1 };
     }) : [];
 
     // For non-MCQ (short/other), options may be empty.
@@ -93,8 +113,10 @@ async function upsertCase(caseObj) {
     const feedbackDocente = p.feedbackDocente || p.feedback || p.feedback_docente || undefined;
 
     return {
+      id: qId,
       order: qOrder,
       text: qText,
+      enunciado: qText,
       guia,
       feedbackDocente,
       ...(optionCreate ? { options: optionCreate } : {}),
@@ -117,7 +139,7 @@ async function upsertCase(caseObj) {
       if (!code) continue;
       const norm = await prisma.minsalNorm.upsert({
         where: { code },
-        create: { name, code },
+        create: { id: code, name, code },
         update: { name },
       });
       normConnect.push({ id: norm.id });
@@ -126,6 +148,14 @@ async function upsertCase(caseObj) {
       console.warn('No se pudo crear norma para referencia:', ref, e);
     }
   }
+
+  // Extract feedbackDinamico from case object
+  const feedbackDinamico = caseObj.feedbackDinamico || caseObj.feedback_dinamico || undefined;
+  
+  // Extract objetivosAprendizaje
+  const objetivosAprendizaje = Array.isArray(caseObj.objetivosAprendizaje) 
+    ? caseObj.objetivosAprendizaje 
+    : [];
 
   if (existing) {
     console.log(`🔁 Actualizando caso existente: ${caseId} — ${title}`);
@@ -144,10 +174,11 @@ async function upsertCase(caseObj) {
         area,
         modulo,
         difficulty,
-        dificultad: caseObj.dificultad || null,
+        dificultad: dificultadText,
         summary,
         vignette,
-        feedbackDinamico: feedback_dinamico,
+        objetivosAprendizaje,
+        feedbackDinamico: feedbackDinamico || null,
         isPublic: true,
         questions: { create: questionsCreate },
         norms: normConnect.length > 0 ? { set: [], connect: normConnect } : undefined,
@@ -162,10 +193,11 @@ async function upsertCase(caseObj) {
         area,
         modulo,
         difficulty,
-        dificultad: caseObj.dificultad || null,
+        dificultad: dificultadText,
         summary,
         vignette,
-        feedbackDinamico: feedback_dinamico,
+        objetivosAprendizaje,
+        feedbackDinamico: feedbackDinamico || null,
         isPublic: true,
         questions: { create: questionsCreate },
         norms: normConnect.length > 0 ? { connect: normConnect } : undefined,
@@ -178,37 +210,49 @@ async function main() {
   let allCases = [];
   let loadedFromNewStructure = false;
   
-  // 1. PRIORIDAD: Cargar casos desde prisma/cases/AREA/*.json5 (nueva estructura organizada)
+  // 1. PRIORIDAD: Cargar casos desde prisma/cases/TEMA*/**/*.json (nueva estructura 2026)
   const casesDir = path.resolve(__dirname, '..', 'prisma', 'cases');
   if (fs.existsSync(casesDir)) {
-    // Áreas clínicas
-    const areas = ['GINECOLOGIA', 'SSR', 'OBSTETRICIA', 'NEONATOLOGIA'];
+    // Buscar todas las carpetas que empiezan con TEMA
+    const allItems = fs.readdirSync(casesDir);
+    const temaFolders = allItems.filter(item => {
+      const fullPath = path.join(casesDir, item);
+      return fs.statSync(fullPath).isDirectory() && item.startsWith('TEMA');
+    });
     
-    for (const area of areas) {
-      const areaDir = path.join(casesDir, area);
-      if (!fs.existsSync(areaDir)) continue;
+    for (const temaFolder of temaFolders) {
+      const temaDir = path.join(casesDir, temaFolder);
+      console.log(`\n📁 Tema: ${temaFolder}`);
       
-      const files = fs.readdirSync(areaDir).filter(f => f.endsWith('.json5'));
-      if (files.length === 0) continue;
+      // Buscar subcarpetas dentro de cada TEMA (ej: 01-control-normal)
+      const subfolders = fs.readdirSync(temaDir).filter(item => {
+        const fullPath = path.join(temaDir, item);
+        return fs.statSync(fullPath).isDirectory();
+      });
       
-      console.log(`\n📁 Área: ${area}`);
-      
-      for (const file of files) {
-        const moduleName = path.basename(file, '.json5');
-        console.log(`   📚 Módulo: ${moduleName}`);
+      for (const subfolder of subfolders) {
+        const subfolderPath = path.join(temaDir, subfolder);
+        console.log(`   📚 Submódulo: ${subfolder}`);
         
-        const filePath = path.join(areaDir, file);
-        const raw = fs.readFileSync(filePath, 'utf8');
-        const cases = JSON5.parse(raw);
+        // Buscar archivos .json o .json5 en la subcarpeta
+        const files = fs.readdirSync(subfolderPath).filter(f => 
+          f.endsWith('.json') || f.endsWith('.json5')
+        );
         
-        if (!Array.isArray(cases)) {
-          console.warn(`      ⚠️  ${file} no contiene un array, saltando...`);
-          continue;
+        for (const file of files) {
+          const filePath = path.join(subfolderPath, file);
+          const raw = fs.readFileSync(filePath, 'utf8');
+          let cases = file.endsWith('.json5') ? JSON5.parse(raw) : JSON.parse(raw);
+          
+          // Si es un objeto único, convertirlo a array
+          if (!Array.isArray(cases)) {
+            cases = [cases];
+          }
+          
+          allCases = allCases.concat(cases);
+          console.log(`      ✓ ${cases.length} casos cargados desde ${file}`);
+          loadedFromNewStructure = true;
         }
-        
-        allCases = allCases.concat(cases);
-        console.log(`      ✓ ${cases.length} casos cargados`);
-        loadedFromNewStructure = true;
       }
     }
     

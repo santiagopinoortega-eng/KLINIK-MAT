@@ -80,9 +80,10 @@ Cada archivo debe contener un array de casos con la siguiente estructura:
     ],
     
     "feedback_dinamico": {
-      "bajo": "Mensaje para 0-30% de respuestas correctas",
-      "medio": "Mensaje para 31-60% de respuestas correctas",
-      "alto": "Mensaje para 61-100% de respuestas correctas"
+      "bajo": "Mensaje para 25-49% de respuestas correctas",
+      "medio": "Mensaje para 50-74% de respuestas correctas",
+      "alto": "Mensaje para 75-100% de respuestas correctas"
+      // Nota: 0-24% usa mensaje predeterminado del sistema
     },
     
     "referencias": [

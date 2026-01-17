@@ -63,14 +63,7 @@ export default function CasoDetalleClient() {
     });
 
     // Guardar en base de datos con CSRF protection
-    console.log('🔄 Intentando guardar resultado...', {
-      caseId: caso.id,
-      caseTitle: caso.titulo,
-      score: puntosObtenidos,
-      totalPoints: puntosMaximos,
-    });
-    
-    postJSON('/api/results', {
+    const payload = {
       caseId: caso.id,
       caseTitle: caso.titulo,
       caseArea: mapModuloToArea(caso.modulo || caso.area),
@@ -80,7 +73,17 @@ export default function CasoDetalleClient() {
       timeLimit: timeLimit || null,
       timeSpent: timeSpent || null,
       answers: respuestas,
-    })
+    };
+    
+    console.log('🔄 Intentando guardar resultado...', {
+      caseId: caso.id,
+      caseTitle: caso.titulo,
+      score: puntosObtenidos,
+      totalPoints: puntosMaximos,
+    });
+    console.log('📦 Payload completo:', JSON.stringify(payload, null, 2));
+    
+    postJSON('/api/results', payload)
       .then(async ({ ok, data, error }) => {
         console.log('📡 Respuesta del servidor:', { ok, data, error });
         
@@ -195,21 +198,27 @@ export default function CasoDetalleClient() {
     // Usar feedbackDinamico del caso si existe
     const feedbackDinamico = caso.feedback_dinamico;
     
-    if (porcentaje >= 61) {
+    // Sistema de puntuación actualizado: 0-25 / 25-50 / 50-75 / 75-100
+    if (porcentaje >= 75) {
       nivel = 'Excelente';
       emoji = '🏆';
       badgeColor = 'bg-gradient-to-r from-green-100 to-green-200 text-green-900 border-green-400';
-      feedbackMessage = feedbackDinamico?.alto || 'Dominas los conceptos clave del caso. ¡Felicitaciones!';
-    } else if (porcentaje >= 31) {
+      feedbackMessage = feedbackDinamico?.alto || '¡Excelente! Dominas los conceptos clave del caso. ¡Felicitaciones!';
+    } else if (porcentaje >= 50) {
       nivel = 'Bien';
       emoji = '✓';
+      badgeColor = 'bg-gradient-to-r from-blue-100 to-blue-200 text-blue-900 border-blue-400';
+      feedbackMessage = feedbackDinamico?.medio || 'Buen trabajo. Refuerza algunos detalles para alcanzar la excelencia.';
+    } else if (porcentaje >= 25) {
+      nivel = 'Mejorable';
+      emoji = '⚠️';
       badgeColor = 'bg-gradient-to-r from-yellow-100 to-yellow-200 text-yellow-900 border-yellow-400';
-      feedbackMessage = feedbackDinamico?.medio || 'Buen desempeño. Refuerza algunos detalles para alcanzar la excelencia.';
+      feedbackMessage = feedbackDinamico?.bajo || 'Vas por buen camino. Repasa los conceptos y vuelve a intentarlo.';
     } else {
       nivel = 'Necesitas Revisar';
       emoji = '📝';
       badgeColor = 'bg-gradient-to-r from-red-100 to-orange-100 text-red-900 border-red-400';
-      feedbackMessage = feedbackDinamico?.bajo || 'Repasa los conceptos fundamentales y vuelve a intentarlo.';
+      feedbackMessage = 'Repasa los conceptos fundamentales antes de continuar. ¡No te desanimes, sigue estudiando!';
     }
 
     return (
@@ -401,28 +410,48 @@ export default function CasoDetalleClient() {
   if (!started) {
     return (
       <div className="card p-6 md:p-8 animate-fade-in">
+        {/* Objetivos de Aprendizaje */}
+        {caso.objetivosAprendizaje && caso.objetivosAprendizaje.length > 0 && (
+          <div className="bg-gradient-to-r from-blue-50 via-blue-100 to-indigo-50 border-l-4 border-blue-600 rounded-lg p-5 mb-6 shadow-md">
+            <h2 className="text-lg font-bold text-blue-900 mb-3 flex items-center gap-2" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
+              <span className="text-2xl">🎯</span>
+              Objetivos de Aprendizaje
+            </h2>
+            <ul className="space-y-2.5">
+              {caso.objetivosAprendizaje.map((objetivo, idx) => (
+                <li key={idx} className="flex items-start gap-3 text-sm text-blue-900">
+                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold mt-0.5">
+                    {idx + 1}
+                  </span>
+                  <span className="leading-relaxed">{objetivo}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         {/* Instrucciones claras sin repetir el título */}
-        <div className="bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 border-l-4 border-[#1E3A5F] rounded-lg p-5 mb-6 shadow-sm">
-          <h2 className="text-lg font-bold text-[#1E3A5F] mb-2 flex items-center gap-2" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
+        <div className="bg-gradient-to-r from-purple-50 via-indigo-50 to-blue-50 border-l-4 border-[#1E3A5F] rounded-lg p-5 mb-6 shadow-md">
+          <h2 className="text-lg font-bold text-[#1E3A5F] mb-3 flex items-center gap-2" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
             <span className="text-2xl">📋</span>
             Instrucciones del Caso Clínico
           </h2>
-          <ul className="space-y-2 text-sm text-gray-700">
-            <li className="flex items-start gap-2">
-              <span className="text-[#DC2626] mt-0.5 font-semibold">1.</span>
-              <span>Lee atentamente la <strong>viñeta clínica</strong> que aparece en el panel izquierdo</span>
+          <ul className="space-y-2.5 text-sm text-gray-700">
+            <li className="flex items-start gap-3">
+              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[#DC2626] text-white flex items-center justify-center text-xs font-bold">1</span>
+              <span className="leading-relaxed">Lee atentamente la <strong>viñeta clínica</strong> que aparece en el panel superior</span>
             </li>
-            <li className="flex items-start gap-2">
-              <span className="text-[#DC2626] mt-0.5 font-semibold">2.</span>
-              <span>Analiza los <strong>datos relevantes</strong> del paciente y el contexto clínico</span>
+            <li className="flex items-start gap-3">
+              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[#DC2626] text-white flex items-center justify-center text-xs font-bold">2</span>
+              <span className="leading-relaxed">Analiza los <strong>datos relevantes</strong> del paciente y el contexto clínico</span>
             </li>
-            <li className="flex items-start gap-2">
-              <span className="text-[#DC2626] mt-0.5 font-semibold">3.</span>
-              <span>Responde las preguntas a tu <strong>propio ritmo</strong> usando los botones de navegación</span>
+            <li className="flex items-start gap-3">
+              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[#DC2626] text-white flex items-center justify-center text-xs font-bold">3</span>
+              <span className="leading-relaxed">Responde las preguntas a tu <strong>propio ritmo</strong> usando los botones de navegación</span>
             </li>
-            <li className="flex items-start gap-2">
-              <span className="text-[#DC2626] mt-0.5 font-semibold">4.</span>
-              <span>Revisa el <strong>feedback dinámico</strong> al finalizar para reforzar tu aprendizaje</span>
+            <li className="flex items-start gap-3">
+              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[#DC2626] text-white flex items-center justify-center text-xs font-bold">4</span>
+              <span className="leading-relaxed">Revisa el <strong>feedback dinámico</strong> al finalizar para reforzar tu aprendizaje</span>
             </li>
           </ul>
         </div>

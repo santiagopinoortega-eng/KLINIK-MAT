@@ -317,10 +317,11 @@
   - Heart para indicador gratis
 
 #### Feedback Visual
-- **Mejorado:** Código de color por desempeño
-  - Verde: Excelente (≥61%)
-  - Amarillo: Bien (31-60%)
-  - Rojo: Necesitas Revisar (≤30%)
+- **Mejorado:** Código de color por desempeño (actualizado enero 2026)
+  - Verde: Excelente (≥75%)
+  - Azul: Bien (50-74%)
+  - Amarillo: Mejorable (25-49%)
+  - Rojo: Necesitas Revisar (0-24%)
 - **Removido:** Console.log de debug en CasoDetalleClient
 
 #### Animaciones

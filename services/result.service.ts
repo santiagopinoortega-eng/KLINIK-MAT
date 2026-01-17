@@ -10,6 +10,7 @@
 import { resultRepository } from '@/lib/repositories';
 import { StaticCaseRepository as CaseRepo } from '@/lib/repositories';
 import { logger } from '@/lib/logger';
+import { randomUUID } from 'crypto';
 import type { StudentResult, Prisma } from '@prisma/client';
 
 export type CreateResultData = {
@@ -51,8 +52,12 @@ export class ResultService {
         throw new Error('Case is not public');
       }
 
-      // Crear resultado usando repository (sin id, Prisma lo generará)
+      // Generar UUID para el resultado
+      const resultId = randomUUID();
+
+      // Crear resultado usando repository
       const result = await resultRepository.createResult({
+        id: resultId,
         userId: data.userId,
         caseId: data.caseId,
         caseTitle: data.caseTitle,

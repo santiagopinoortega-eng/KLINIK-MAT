@@ -77,68 +77,66 @@ export default function CaseCard({
 
   return (
     <article 
-      className="card group relative overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-200"
+      className="group relative overflow-hidden flex flex-col bg-gradient-to-br from-red-50 via-white to-rose-50 rounded-xl border-2 border-red-100 hover:border-red-400 transition-all duration-200 hover:shadow-xl hover:shadow-red-100/50"
       style={{
-        border: colors.border,
-        minHeight: '220px', // Reducido ligeramente para mobile
-        maxHeight: '280px', // Más alto en pantallas grandes
-        background: `linear-gradient(to bottom, ${colors.bg}, var(--km-surface-1))`,
-        boxShadow: colors.shadow
+        minHeight: '220px',
+        maxHeight: '280px',
       }}
     >
       {/* Botón de favoritos - Posición absoluta arriba a la derecha */}
-      <div className="absolute top-2 right-2 z-10">
+      <div className="absolute top-3 right-3 z-10">
         <FavoriteButton caseId={id} size="sm" />
       </div>
 
-      {/* Badges superiores - Responsive */}
-      <div className="mb-2 md:mb-3 flex items-center gap-1.5 md:gap-2 flex-wrap">
-        <span className="text-xs px-2 py-1 rounded-md font-medium" style={{ 
-          background: 'rgba(13,148,136,0.12)', 
-          color: 'var(--km-teal)', 
-          border: '1px solid rgba(13,148,136,0.2)' 
-        }}>
-          {area ? String(area) : 'General'}
-        </span>
-        <span className="text-xs px-2 py-1 rounded-md font-bold" style={{
-          background: colors.badgeBg,
-          color: colors.badgeColor,
-          border: colors.badgeBorder
-        }}>
-          {diffLabel(difficulty)}
-        </span>
-        {fecha && (
-          <span className="ml-auto text-xs font-medium hidden sm:inline" style={{color: 'var(--km-text-500)'}}>{fecha}</span>
-        )}
+      {/* Contenido con padding */}
+      <div className="p-5 flex flex-col h-full">
+        {/* Badges superiores */}
+        <div className="mb-3 flex items-center gap-2 flex-wrap">
+          <span className="text-xs px-3 py-1 rounded-full font-medium bg-teal-50 text-teal-700 border border-teal-200">
+            {area ? String(area) : 'General'}
+          </span>
+          <span 
+            className="text-xs px-3 py-1 rounded-full font-bold"
+            style={{
+              background: colors.badgeBg,
+              color: colors.badgeColor,
+              border: colors.badgeBorder
+            }}
+          >
+            {diffLabel(difficulty)}
+          </span>
+        </div>
+
+        {/* Título con color rojo */}
+        <h3 className="text-lg font-bold leading-tight mb-2 text-red-800 group-hover:text-red-600 transition-colors">
+          {title}
+        </h3>
+
+        {/* Resumen con altura fija */}
+        <div className="flex-1 overflow-hidden mb-4">
+          {summary && (
+            <p className="text-sm leading-relaxed text-gray-700 line-clamp-3">
+              {summary}
+            </p>
+          )}
+        </div>
+
+        {/* Botón simple */}
+        <Link 
+          href={`/casos/${id}`} 
+          className="mt-auto inline-flex items-center justify-center gap-2 w-full px-4 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white font-semibold rounded-lg hover:from-red-700 hover:to-red-800 transition-all text-sm"
+          onClick={() => {
+            if (engagementSource === 'recommendation' && recommendationGroup) {
+              trackRecommendationClick(id, recommendationGroup);
+            }
+          }}
+        >
+          <span>Resolver caso</span>
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </Link>
       </div>
-
-      {/* Título con color rojo - Responsive */}
-      <h3 className="text-base sm:text-lg md:text-xl font-bold leading-tight mb-2" style={{color: 'var(--km-cardinal)'}}>
-        {title}
-      </h3>
-
-      {/* Resumen con altura fija - Responsive */}
-      <div className="flex-1 overflow-hidden mb-3">
-        {summary && (
-          <p className="text-xs sm:text-sm leading-relaxed line-clamp-2 md:line-clamp-3" style={{color: 'var(--km-text-700)'}}>
-            {summary}
-          </p>
-        )}
-      </div>
-
-      {/* Botón siempre en la misma posición (al final) - Touch-friendly */}
-      <Link 
-        href={`/casos/${id}`} 
-        className="mt-auto btn btn-sm btn-primary w-full text-xs sm:text-sm py-2.5 md:py-2 min-h-touch md:min-h-0 touch-device:active:scale-95 transition-transform"
-        onClick={() => {
-          // Track engagement cuando se hace clic desde recomendaciones
-          if (engagementSource === 'recommendation' && recommendationGroup) {
-            trackRecommendationClick(id, recommendationGroup);
-          }
-        }}
-      >
-        Resolver caso →
-      </Link>
     </article>
   );
 }

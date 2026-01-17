@@ -1,0 +1,142 @@
+/**
+ * 🏥 PLANTILLA DE CASO CLÍNICO - KLINIK-MAT
+ * 
+ * Versión: 2.0 (Enero 2026)
+ * Sistema: 480 casos / 6 áreas / 24 subáreas
+ * 
+ * ESTRUCTURA DE DIFICULTAD:
+ * - BAJA (1):  6 preguntas MCQ
+ * - MEDIA (2): 6 MCQ + 1 SHORT con criterios
+ * - ALTA (3):  7 MCQ + 1 SHORT con criterios
+ * 
+ * FILOSOFÍA:
+ * - Aprendizaje progresivo
+ * - Toma de decisiones clínicas
+ * - Integración de materias
+ * - Pensamiento clínico estructurado
+ */
+
+{
+  // ============================================================================
+  // 📋 METADATOS DEL CASO
+  // ============================================================================
+  
+  id: 'area-subarea-tema-###',  // Ej: emb-cpn-normal-001
+  version: 1,
+  title: 'Título descriptivo del caso clínico',
+  
+  // Categorización
+  area: 'Embarazo y Control Prenatal', // Ver CLINICAL_AREAS
+  modulo: 'Control Prenatal Normal', // Subárea específica
+  difficulty: 1, // 1=Baja(6 MCQ), 2=Media(6 MCQ+1 SHORT), 3=Alta(7 MCQ+1 SHORT)
+  
+  // ============================================================================
+  // 📖 ESCENARIO CLÍNICO
+  // ============================================================================
+  
+  vignette: `
+Paciente de [edad] años, [antecedentes relevantes], consulta por [motivo de consulta principal].
+  
+**Historia clínica:**
+[Descripción detallada del caso, antecedentes relevantes]
+
+**Examen físico:**
+- Signos vitales: ...
+- Examen segmentario: ...
+
+**Exámenes complementarios:**
+- Laboratorio: ...
+- Imágenes: ...
+
+[Evolución si aplica]
+  `,
+
+  // 🎯 ESTRUCTURA DE PREGUNTAS
+  questions: [
+    // ========================================
+    // MCQ QUESTIONS (6 o 7 según dificultad)
+    // ========================================
+    {
+      id: nanoid(),
+      order: 1,
+      tipo: 'mcq',
+      enunciado: '¿Cuál es el diagnóstico más probable?',
+      opciones: [
+        {
+          id: nanoid(),
+          texto: '[Opción correcta]',
+          esCorrecta: true,
+          explicacion: 'Explicación detallada de por qué es correcta...',
+          order: 1,
+        },
+        {
+          id: nanoid(),
+          texto: 'Opción incorrecta 1',
+          esCorrecta: false,
+          explicacion: 'Esta opción es incorrecta porque...',
+          order: 2,
+        },
+        // ... más opciones
+      ],
+    },
+    // ... más preguntas MCQ según dificultad
+  ],
+  
+  // SHORT questions para dificultad MEDIA y ALTA
+  shortQuestions: [
+    {
+      tipo: 'short',
+      enunciado: '¿Cuál es el criterio diagnóstico más importante que utilizarías para confirmar esta patología?',
+      criteriosEvaluacion: [
+        {
+          criterio: 'Identifica el criterio diagnóstico principal',
+          puntos: 3,
+          esencial: true,
+        },
+        {
+          criterio: 'Menciona valores de corte específicos',
+          puntos: 2,
+          esencial: true,
+        },
+        {
+          criterio: 'Considera diagnóstico diferencial',
+          puntos: 1,
+          esencial: false,
+        },
+      ],
+      respuestaModelo: 'Modelo de respuesta esperada...',
+      feedbackDocente: 'Puntos clave que el docente debe evaluar...',
+    },
+  ],
+} as const;
+
+// ============================================================================
+// 🔧 UTILIDADES
+// ============================================================================
+
+export function getCasePath(area: string, subarea: string, caseId: string): string {
+  return `${CASE_FOLDER_STRUCTURE.BASE_PATH}/${area}/${subarea}/${caseId}.json5`;
+}
+
+export function getCaseCount(): { total: number; byArea: Record<string, number>; byDifficulty: Record<number, number> } {
+  const areas = Object.values(CLINICAL_AREAS);
+  const byArea = areas.reduce((acc, area) => {
+    acc[area.code] = area.totalCases;
+    return acc;
+  }, {} as Record<string, number>);
+
+  return {
+    total: CLINICAL_CASES_CONFIG.TOTAL_CASES,
+    byArea: CLINICAL_CASES_CONFIG.CASES_PER_AREA,
+    bySubarea: CLINICAL_CASES_CONFIG.CASES_PER_SUBAREA,
+    difficultyDistribution: DIFFICULTY_DISTRIBUTION,
+  };
+}
+
+export function getCaseFileName(areaId: string, subareaId: string, caseNumber: number, slug: string): string {
+  return `${slug}-${String(caseNumber).padStart(3, '0')}.json5`;
+}
+
+export function getCaseFolderPath(category: string, areaId: string, subareaId: string): string {
+  return `${CASE_FOLDER_STRUCTURE.BASE_PATH}/${category}/${areaId}/${subareaId}/`;
+}

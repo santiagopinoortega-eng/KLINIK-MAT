@@ -147,6 +147,7 @@ function normalizarDatosDelCaso(casoDesdeDB: any): CasoClient | null {
       vigneta: casoDesdeDB.vignette || casoDesdeDB.vigneta || null,
       pasos: pasosNormalizados,
       referencias: (casoDesdeDB.norms || []).map((n: any) => n.name || n.code || ''),
+      objetivosAprendizaje: casoDesdeDB.objetivosAprendizaje || [],
       debrief: casoDesdeDB.summary || casoDesdeDB.debrief || null,
       feedback_dinamico: casoDesdeDB.feedbackDinamico || casoDesdeDB.feedback_dinamico || undefined,
     };
@@ -190,6 +191,7 @@ function normalizarDatosDelCaso(casoDesdeDB: any): CasoClient | null {
       vigneta: contenido.vigneta || null,
       pasos: pasosNormalizados,
       referencias: contenido.referencias || [],
+      objetivosAprendizaje: casoDesdeDB.objetivosAprendizaje || contenido.objetivosAprendizaje || [],
       debrief: contenido.debrief || null,
       feedback_dinamico: casoDesdeDB.feedbackDinamico || contenido.feedbackDinamico || contenido.feedback_dinamico || undefined,
     };

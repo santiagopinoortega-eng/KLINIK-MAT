@@ -1,0 +1,358 @@
+/**
+ * 🏥 EJEMPLO DE CASO CLÍNICO - NIVEL MEDIA
+ * 
+ * Área: Embarazo y Control Prenatal
+ * Subárea: Patología del Embarazo  
+ * Tema: Preeclampsia
+ * Dificultad: 2 (MEDIA) - 6 MCQ + 1 SHORT
+ * 
+ * Este caso ejemplifica la estructura para dificultad MEDIA:
+ * - Aplicación de criterios diagnósticos
+ * - Interpretación de datos clínicos
+ * - Toma de decisiones basadas en evidencia
+ * - Pregunta SHORT que requiere justificación
+ */
+
+{
+  // ============================================================================
+  // 📋 METADATOS
+  // ============================================================================
+  
+  id: 'emb-pat-preeclampsia-001',
+  version: 1,
+  title: 'Gestante de 32 semanas con hipertensión y proteinuria',
+  area: 'Embarazo y Control Prenatal',
+  modulo: 'Patología del Embarazo',
+  difficulty: 2,
+  
+  // ============================================================================
+  // 📖 ESCENARIO CLÍNICO
+  // ============================================================================
+  
+  vignette: `
+Paciente de 28 años, primigesta, 32+4 semanas por FUM concordante con ecografía precoz.
+
+**Antecedentes:**
+- Personales: Saludable, sin patologías crónicas
+- Familiares: Madre con hipertensión arterial
+- Obstétricos: G1P0A0, embarazo espontáneo
+
+**Motivo de consulta:**
+Consulta en control prenatal de rutina. Refiere cefalea frontal intermitente desde hace 3 días, sin otros síntomas.
+
+**Examen físico:**
+- PA: 148/96 mmHg (PA previa hace 2 semanas: 118/72 mmHg)
+- FC: 82 lpm
+- T°: 36.8°C
+- IMC pregestacional: 23 kg/m²
+- Ganancia de peso: 14 kg
+- Edema: ++/+++ en miembros inferiores bilateral simétrico
+- AU: 30 cm
+- LCF: 142 lpm
+- Dinámica uterina: ausente
+- Sin actividad uterina
+
+**Exámenes solicitados:**
+- Hemograma: Hb 12.2 g/dL, Hto 36%, plaquetas 198.000/mm³
+- Creatinina: 0.9 mg/dL (VN: 0.6-1.2)
+- Transaminasas: GOT 28 U/L, GPT 32 U/L (VN: <40)
+- LDH: 245 U/L (VN: 120-246)
+- Proteinuria 24h: 420 mg/24h (VN: <300)
+- Relación proteína/creatinina en orina: 0.38 (VN: <0.3)
+- Ecografía obstétrica: 
+  - Feto único vivo
+  - Biometría acorde a 31+2 semanas (percentil 25)
+  - ILA: 12 cm (normal)
+  - Placenta normoinserta grado II
+  - Doppler umbilical: IP 0.98 (normal para EG)
+  `,
+
+  // ============================================================================
+  // ❓ PREGUNTAS MCQ (6 preguntas)
+  // ============================================================================
+  
+  questions: [
+    // PREGUNTA 1: Diagnóstico
+    {
+      id: 'q1-diagnostico',
+      order: 1,
+      tipo: 'mcq',
+      enunciado: 'Según los criterios diagnósticos actuales, ¿cuál es el diagnóstico más apropiado para esta paciente?',
+      opciones: [
+        {
+          id: 'q1-a',
+          texto: 'Preeclampsia sin criterios de severidad',
+          esCorrecta: true,
+          explicacion: 'Correcto. La paciente cumple criterios de preeclampsia: PA ≥140/90 mmHg después de las 20 semanas (148/96 mmHg), proteinuria significativa (420 mg/24h y relación P/C 0.38, ambos >punto de corte), en gestante previamente normotensa. No presenta criterios de severidad: PA <160/110, plaquetas >100.000, transaminasas normales, creatinina normal, sin síntomas neurológicos persistentes, sin dolor epigástrico.',
+          order: 1,
+        },
+        {
+          id: 'q1-b',
+          texto: 'Preeclampsia con criterios de severidad',
+          esCorrecta: false,
+          explicacion: 'Incorrecto. Aunque la paciente tiene preeclampsia, no cumple criterios de severidad. Para severidad se requiere: PA ≥160/110 mmHg, plaquetas <100.000, transaminasas >2 veces VN, creatinina >1.1 mg/dL o duplicada, edema pulmonar, síntomas neurológicos persistentes, o dolor epigástrico. Esta paciente solo tiene cefalea intermitente y sus valores de laboratorio son normales.',
+          order: 2,
+        },
+        {
+          id: 'q1-c',
+          texto: 'Hipertensión gestacional',
+          esCorrecta: false,
+          explicacion: 'Incorrecto. La hipertensión gestacional se define como PA ≥140/90 mmHg después de las 20 semanas SIN proteinuria ni otros criterios de preeclampsia. Esta paciente tiene proteinuria significativa (420 mg/24h), por lo que cumple criterios completos de preeclampsia, no solo hipertensión gestacional.',
+          order: 3,
+        },
+        {
+          id: 'q1-d',
+          texto: 'Hipertensión arterial crónica',
+          esCorrecta: false,
+          explicacion: 'Incorrecto. La hipertensión arterial crónica se diagnostica cuando existe hipertensión antes de las 20 semanas o documentada previo al embarazo. Esta paciente tenía PA normal hace 2 semanas (118/72) y la elevación ocurrió después de las 20 semanas (está cursando 32+4 semanas), lo que orienta a una patología propia del embarazo.',
+          order: 4,
+        },
+      ],
+    },
+
+    // PREGUNTA 2: Clasificación de severidad
+    {
+      id: 'q2-severidad',
+      order: 2,
+      tipo: 'mcq',
+      enunciado: '¿Cuál de los siguientes hallazgos NO es un criterio de severidad en preeclampsia?',
+      opciones: [
+        {
+          id: 'q2-a',
+          texto: 'Edema generalizado con ganancia de peso de 2 kg en una semana',
+          esCorrecta: true,
+          explicacion: 'Correcto. El edema y la ganancia de peso, aunque frecuentes en preeclampsia, NO son criterios de severidad porque también ocurren en embarazos normales. Los criterios de severidad actuales se basan en disfunción orgánica demostrada: hipertensión severa, trombocitopenia, alteración hepática/renal, edema pulmonar o síntomas neurológicos persistentes.',
+          order: 1,
+        },
+        {
+          id: 'q2-b',
+          texto: 'Plaquetas de 85.000/mm³',
+          esCorrecta: false,
+          explicacion: 'Incorrecto, esto SÍ es criterio de severidad. Trombocitopenia <100.000/mm³ indica compromiso hematológico y aumenta el riesgo de complicaciones hemorrágicas. Es uno de los componentes del síndrome HELLP y requiere monitoreo estrecho y eventualmente interrupción del embarazo.',
+          order: 2,
+        },
+        {
+          id: 'q2-c',
+          texto: 'Presión arterial de 165/112 mmHg en dos ocasiones',
+          esCorrecta: false,
+          explicacion: 'Incorrecto, esto SÍ es criterio de severidad. PA ≥160/110 mmHg (hipertensión severa) aumenta significativamente el riesgo de accidente cerebrovascular materno y requiere manejo urgente con antihipertensivos y consideración de interrupción del embarazo según edad gestacional.',
+          order: 3,
+        },
+        {
+          id: 'q2-d',
+          texto: 'Creatinina sérica de 1.4 mg/dL',
+          esCorrecta: false,
+          explicacion: 'Incorrecto, esto SÍ es criterio de severidad. Creatinina >1.1 mg/dL o duplicación de la creatinina basal indica compromiso renal, sugiere reducción de la filtración glomerular y es signo de disfunción orgánica que requiere manejo agresivo.',
+          order: 4,
+        },
+      ],
+    },
+
+    // PREGUNTA 3: Manejo inicial
+    {
+      id: 'q3-manejo',
+      order: 3,
+      tipo: 'mcq',
+      enunciado: '¿Cuál es la conducta inmediata más apropiada para esta paciente?',
+      opciones: [
+        {
+          id: 'q3-a',
+          texto: 'Hospitalización para evaluación materna y fetal',
+          esCorrecta: true,
+          explicacion: 'Correcto. Toda paciente con diagnóstico reciente de preeclampsia requiere hospitalización para: 1) Confirmar diagnóstico con PA seriada y proteinuria, 2) Evaluar criterios de severidad (laboratorio completo), 3) Evaluación fetal (monitoreo, perfil biofísico, Doppler), 4) Decidir momento óptimo de interrupción. Aunque no tiene criterios de severidad, la preeclampsia puede progresar rápidamente.',
+          order: 1,
+        },
+        {
+          id: 'q3-b',
+          texto: 'Manejo ambulatorio con control en 48 horas',
+          esCorrecta: false,
+          explicacion: 'Incorrecto y peligroso. El diagnóstico reciente de preeclampsia requiere evaluación hospitalaria, no ambulatoria. La preeclampsia puede progresar rápidamente a formas severas (síndrome HELLP, eclampsia, desprendimiento placentario) y el manejo ambulatorio solo se considera en casos muy seleccionados, después de estudio completo y con condiciones estrictas de seguimiento.',
+          order: 2,
+        },
+        {
+          id: 'q3-c',
+          texto: 'Interrupción inmediata del embarazo por cesárea',
+          esCorrecta: false,
+          explicacion: 'Incorrecto. La interrupción inmediata está indicada en preeclampsia con criterios de severidad o ante compromiso fetal severo. Esta paciente tiene preeclampsia sin criterios de severidad, feto con bienestar conservado y 32 semanas. Se debe hospitalizar para evaluación, considerar maduración pulmonar fetal con corticoides, y planificar interrupción según evolución.',
+          order: 3,
+        },
+        {
+          id: 'q3-d',
+          texto: 'Inicio de antihipertensivos orales y control ambulatorio',
+          esCorrecta: false,
+          explicacion: 'Incorrecto. Aunque la PA está elevada, no alcanza niveles que requieran antihipertensivos inmediatos (se inician con PA ≥150/100 o ≥140/90 si hay daño órgano blanco). Más importante, el manejo ambulatorio no es apropiado en diagnóstico reciente de preeclampsia. Requiere hospitalización para evaluación completa independiente del uso de antihipertensivos.',
+          order: 4,
+        },
+      ],
+    },
+
+    // PREGUNTA 4: Exámenes complementarios
+    {
+      id: 'q4-examenes',
+      order: 4,
+      tipo: 'mcq',
+      enunciado: 'Durante la hospitalización, ¿qué examen adicional es prioritario para evaluar el bienestar fetal?',
+      opciones: [
+        {
+          id: 'q4-a',
+          texto: 'Perfil biofísico y monitoreo electrónico fetal',
+          esCorrecta: true,
+          explicacion: 'Correcto. En preeclampsia, la evaluación fetal es fundamental porque existe riesgo de insuficiencia placentaria. El perfil biofísico (movimientos, tono, respiración fetal, líquido amniótico, NST) y monitoreo electrónico continuo (patrón de frecuencia cardíaca fetal) permiten identificar hipoxia fetal. La biometría ya está actualizada (ecografía reciente) y el Doppler umbilical es normal.',
+          order: 1,
+        },
+        {
+          id: 'q4-b',
+          texto: 'Amniocentesis para evaluar madurez pulmonar fetal',
+          esCorrecta: false,
+          explicacion: 'Incorrecto. La amniocentesis para madurez pulmonar (test de Clements, relación L/E) era útil antiguamente, pero actualmente está en desuso. Se prefiere administrar corticoides prenatales (betametasona) para inducir madurez pulmonar si existe riesgo de parto prematuro inminente. Además, la amniocentesis tiene riesgos (infección, rotura membranas, sangrado) que no se justifican.',
+          order: 2,
+        },
+        {
+          id: 'q4-c',
+          texto: 'Resonancia magnética fetal',
+          esCorrecta: false,
+          explicacion: 'Incorrecto. La resonancia magnética fetal está indicada para evaluación de anomalías estructurales complejas (SNC, tórax) cuando la ecografía es insuficiente. No tiene rol en la evaluación de bienestar fetal en preeclampsia. Para esto se usan métodos más simples, rápidos y accesibles como monitoreo electrónico y perfil biofísico.',
+          order: 3,
+        },
+        {
+          id: 'q4-d',
+          texto: 'Ecocardiografía fetal',
+          esCorrecta: false,
+          explicacion: 'Incorrecto. La ecocardiografía fetal está indicada ante sospecha de cardiopatía congénita (diabetes materna, antecedente familiar, hallazgos ecográficos anormales). No es parte de la evaluación rutinaria de bienestar fetal en preeclampsia. El Doppler umbilical y la evaluación hemodinámica básica son suficientes para detectar compromiso placentario.',
+          order: 4,
+        },
+      ],
+    },
+
+    // PREGUNTA 5: Tratamiento farmacológico
+    {
+      id: 'q5-farmacologico',
+      order: 5,
+      tipo: 'mcq',
+      enunciado: 'Si la presión arterial persistiera en 150/98 mmHg, ¿cuál es el antihipertensivo de primera elección durante el embarazo?',
+      opciones: [
+        {
+          id: 'q5-a',
+          texto: 'Alfametildopa 250-500 mg cada 8 horas',
+          esCorrecta: true,
+          explicacion: 'Correcto. Alfametildopa es el antihipertensivo de primera línea en embarazo por su amplio perfil de seguridad fetal (más de 50 años de uso), efectividad comprobada y disponibilidad. Actúa como agonista alfa-2 central, reduciendo la resistencia vascular periférica sin afectar el flujo uteroplacentario. Dosis inicial: 250 mg c/8h, máximo 2-3 g/día.',
+          order: 1,
+        },
+        {
+          id: 'q5-b',
+          texto: 'Enalapril 5 mg cada 12 horas',
+          esCorrecta: false,
+          explicacion: 'Incorrecto y contraindicado. Los IECA (enalapril, captopril) y ARA-II están CONTRAINDICADOS en embarazo porque causan fetotoxicidad en segundo y tercer trimestre: oligohidramnios, RCIU, hipoplasia pulmonar, insuficiencia renal fetal, hipotensión neonatal y muerte fetal. Son teratogénicos categoría D. Nunca deben usarse en gestantes.',
+          order: 2,
+        },
+        {
+          id: 'q5-c',
+          texto: 'Atenolol 50 mg cada 24 horas',
+          esCorrecta: false,
+          explicacion: 'Incorrecto. Aunque algunos beta-bloqueadores son seguros en embarazo (labetalol), el atenolol está asociado a RCIU y bajo peso al nacer cuando se usa en primer y segundo trimestre. Si se requiere beta-bloqueador, se prefiere labetalol. Alfametildopa sigue siendo primera línea por mayor evidencia de seguridad.',
+          order: 3,
+        },
+        {
+          id: 'q5-d',
+          texto: 'Hidroclorotiazida 25 mg cada 24 horas',
+          esCorrecta: false,
+          explicacion: 'Incorrecto. Los diuréticos no están indicados como antihipertensivos en preeclampsia porque: 1) La preeclampsia cursa con hipovolemia relativa (hemoconcentración), 2) Los diuréticos pueden empeorar la perfusión placentaria, 3) No mejoran los resultados maternos ni fetales. Solo se usan en casos específicos como edema pulmonar o insuficiencia cardíaca.',
+          order: 4,
+        },
+      ],
+    },
+
+    // PREGUNTA 6: Seguimiento
+    {
+      id: 'q6-seguimiento',
+      order: 6,
+      tipo: 'mcq',
+      enunciado: '¿Qué parámetro de laboratorio debe monitorizarse más frecuentemente durante la hospitalización?',
+      opciones: [
+        {
+          id: 'q6-a',
+          texto: 'Plaquetas, creatinina y transaminasas cada 48-72 horas',
+          esCorrecta: true,
+          explicacion: 'Correcto. Estos son los parámetros clave para detectar progresión a preeclampsia severa o síndrome HELLP: 1) Plaquetas: descenso indica consumo (HELLP), 2) Creatinina: elevación indica daño renal, 3) Transaminasas: elevación indica daño hepático (HELLP). Se monitorizan cada 48-72h o más frecuente si hay deterioro. Permiten tomar decisión oportuna de interrupción.',
+          order: 1,
+        },
+        {
+          id: 'q6-b',
+          texto: 'Hemoglobina glicosilada mensual',
+          esCorrecta: false,
+          explicacion: 'Incorrecto. La HbA1c evalúa control glicémico de los últimos 2-3 meses y está indicada en diabetes, no en preeclampsia. Esta paciente no tiene diabetes. En preeclampsia interesan parámetros de daño orgánico agudo (plaquetas, función renal, función hepática) que cambian en horas-días, no meses.',
+          order: 2,
+        },
+        {
+          id: 'q6-c',
+          texto: 'Perfil lipídico semanal',
+          esCorrecta: false,
+          explicacion: 'Incorrecto. El perfil lipídico no tiene rol en el monitoreo de preeclampsia. Aunque las dislipidemias pueden ser factor de riesgo cardiovascular a largo plazo, no son útiles para evaluar severidad o progresión de preeclampsia. Los parámetros críticos son función renal, hepática y plaquetas.',
+          order: 3,
+        },
+        {
+          id: 'q6-d',
+          texto: 'Electroforesis de proteínas cada semana',
+          esCorrecta: false,
+          explicacion: 'Incorrecto. La electroforesis de proteínas no es útil en preeclampsia. La proteinuria ya se cuantificó con proteinuria 24h o relación P/C. No es necesario caracterizar el tipo de proteínas perdidas. El seguimiento se centra en marcadores de daño orgánico (plaquetas, función renal/hepática) y bienestar fetal.',
+          order: 4,
+        },
+      ],
+    },
+
+    // ========================================
+    // PREGUNTA SHORT (1 pregunta)
+    // ========================================
+    {
+      id: 'q7-short',
+      order: 7,
+      tipo: 'short',
+      enunciado: 'Si se decide interrupción del embarazo, ¿cuál es el criterio más importante que considerarías para elegir entre inducción de parto versus cesárea electiva? Justifica tu respuesta mencionando al menos 2 factores.',
+      
+      criteriosEvaluacion: [
+        {
+          criterio: 'Menciona condiciones cervicales y score de Bishop como factor determinante',
+          puntos: 3,
+          esencial: true,
+        },
+        {
+          criterio: 'Identifica estabilidad materna (ausencia de criterios de severidad) como factor que permite intentar parto',
+          puntos: 2,
+          esencial: true,
+        },
+        {
+          criterio: 'Considera bienestar fetal (monitoreo fetal reactivo, Doppler normal) como factor favorable para inducción',
+          puntos: 2,
+          esencial: false,
+        },
+        {
+          criterio: 'Menciona experiencia del centro y disponibilidad de recursos para monitoreo continuo',
+          puntos: 1,
+          esencial: false,
+        },
+      ],
+      
+      respuestaModelo: `
+El criterio más importante es la evaluación de condiciones cervicales mediante el score de Bishop. Si Bishop es favorable (≥6 puntos: cuello con dilatación ≥2cm, borramiento ≥60%, consistencia blanda, posición anterior, altura -1 o menos), la inducción tiene alta probabilidad de éxito y es preferible intentarla.
+
+Los dos factores principales son:
+
+1) **Estabilidad materna**: Esta paciente no tiene criterios de severidad, lo que permite disponer de tiempo para inducción (12-24 horas). Si hubiera criterios de severidad o deterioro agudo, se preferiría cesárea para acortar tiempo.
+
+2) **Bienestar fetal**: El monitoreo fetal es reactivo, Doppler umbilical normal y perfil biofísico adecuado, lo que indica que el feto tolerará trabajo de parto. Si hubiera signos de compromiso fetal severo (Doppler con flujo reverso, desaceleraciones tardías), se preferiría cesárea.
+
+Adicionalmente, se considera la paridad (nulípara tiene menor probabilidad de éxito) y disponibilidad de recursos del centro para monitoreo continuo durante la inducción.
+      `,
+      
+      feedbackDocente: `
+Evalúa que el estudiante:
+1) Identifique que no hay una única respuesta correcta absoluta, sino que depende de factores clínicos
+2) Comprenda que Bishop es el predictor más importante de éxito de inducción
+3) Integre información materna (severidad) y fetal (bienestar) en la decisión
+4) Demuestre pensamiento clínico considerando múltiples variables simultáneamente
+
+No se espera que mencione scores específicos de memoria, sino que razone los factores relevantes.
+      `,
+    },
+  ],
+}

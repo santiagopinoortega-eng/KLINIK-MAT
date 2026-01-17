@@ -46,7 +46,10 @@ function CasoContent() {
       )}
 
       {/* Viñeta horizontal en la parte superior */}
-      <VignetteHeader title={caso.titulo} vigneta={caso.vigneta} />
+      <VignetteHeader 
+        title={caso.titulo} 
+        vigneta={caso.vigneta}
+      />
 
       {/* Grid: preguntas a la izquierda (mayor espacio horizontal), navigator a la derecha (compacto) */}
       <div className="grid lg:grid-cols-[1fr_280px] gap-6 items-start">

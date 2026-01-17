@@ -1,0 +1,170 @@
+/**
+ * 🏥 ESTRUCTURA PURA - CASO CLÍNICO KLINIK-MAT
+ * Versión: 3.0 (Enero 2026)
+ * Sistema: 1200 casos | 6 TEMAs | 24 subáreas | 50 casos por subárea
+ */
+
+{
+  // ============================================================================
+  // 📋 METADATA
+  // ============================================================================
+  
+  id: "tema#-##-[tema-especifico]-###",
+  // Formato: tema1-01-primera-consulta-001
+  // tema# = tema1 a tema6
+  // ## = número de subárea (01-04)
+  // ### = número de caso (001-050)
+  
+  titulo: "Título Descriptivo del Caso Clínico",
+  
+  area: "tema#",
+  // tema1, tema2, tema3, tema4, tema5, tema6
+  
+  modulo: "##-nombre-subarea",
+  // 01-control-normal, 02-patologia-embarazo, etc.
+  
+  dificultad: 1,
+  // 1 = BAJA:  6 preguntas MCQ
+  // 2 = MEDIA: 6 preguntas MCQ + 1 SHORT
+  // 3 = ALTA:  7 preguntas MCQ + 1 SHORT
+  
+  // ============================================================================
+  // 📖 VIÑETA CLÍNICA
+  // ============================================================================
+  
+  vignette: {
+    paciente: "Descripción demográfica: edad, paridad, antecedentes relevantes",
+    
+    motivoConsulta: "Motivo principal de consulta",
+    
+    anamnesis: "Historia clínica detallada: inicio de síntomas, evolución, factores asociados, antecedentes mórbidos y quirúrgicos relevantes",
+    
+    examenFisico: "Signos vitales y hallazgos del examen físico segmentario relevantes para el caso",
+    
+    examenes: [
+      "Resultado de examen 1 con valores y unidades",
+      "Resultado de examen 2 con valores y unidades",
+      "Imagenología con descripción de hallazgos"
+    ],
+    
+    contexto: "Información adicional relevante: contexto socioeconómico, embarazo planificado/no planificado, adherencia a tratamientos, etc."
+  },
+  
+  // ============================================================================
+  // ❓ PREGUNTAS
+  // ============================================================================
+  
+  questions: [
+    
+    // ========================================================================
+    // PREGUNTA MCQ (Multiple Choice Question)
+    // ========================================================================
+    {
+      tipo: "mcq",
+      enunciado: "¿Pregunta clara y específica relacionada con el caso?",
+      
+      opciones: [
+        {
+          texto: "Opción A - Respuesta correcta",
+          correcta: true,
+          explicacion: "Explicación detallada de POR QUÉ esta opción es correcta, fundamentada en evidencia científica, guías clínicas (MINSAL cuando aplique), fisiopatología, etc."
+        },
+        {
+          texto: "Opción B - Respuesta incorrecta",
+          correcta: false,
+          explicacion: "Explicación de POR QUÉ esta opción es incorrecta, qué error conceptual representa, cuándo podría considerarse, etc."
+        },
+        {
+          texto: "Opción C - Respuesta incorrecta",
+          correcta: false,
+          explicacion: "Explicación educativa de por qué no es la mejor opción en este contexto"
+        },
+        {
+          texto: "Opción D - Respuesta incorrecta",
+          correcta: false,
+          explicacion: "Explicación educativa del error en esta opción"
+        }
+      ]
+    },
+    
+    // REPETIR estructura MCQ según nivel:
+    // - BAJA (dificultad: 1):  6 preguntas MCQ
+    // - MEDIA (dificultad: 2): 6 preguntas MCQ
+    // - ALTA (dificultad: 3):  7 preguntas MCQ
+    
+    // Ejemplo de más preguntas MCQ:
+    {
+      tipo: "mcq",
+      enunciado: "Segunda pregunta MCQ...",
+      opciones: [
+        { texto: "...", correcta: true, explicacion: "..." },
+        { texto: "...", correcta: false, explicacion: "..." },
+        { texto: "...", correcta: false, explicacion: "..." },
+        { texto: "...", correcta: false, explicacion: "..." }
+      ]
+    },
+    
+    // ... continuar con las MCQ restantes según dificultad
+    
+    // ========================================================================
+    // PREGUNTA SHORT (Solo para dificultad MEDIA y ALTA)
+    // ========================================================================
+    {
+      tipo: "short",
+      enunciado: "Pregunta abierta que requiere análisis clínico, justificación de decisiones, aplicación de criterios diagnósticos, etc. Debe evaluar pensamiento clínico, no solo memoria.",
+      
+      criteriosEvaluacion: [
+        {
+          criterio: "Criterio 1: Punto clave esencial que el estudiante DEBE mencionar",
+          puntos: 3,
+          esencial: true
+        },
+        {
+          criterio: "Criterio 2: Otro punto esencial que debe incluir en su respuesta",
+          puntos: 2,
+          esencial: true
+        },
+        {
+          criterio: "Criterio 3: Punto complementario importante pero no esencial",
+          puntos: 2,
+          esencial: false
+        },
+        {
+          criterio: "Criterio 4: Punto adicional que suma calidad a la respuesta",
+          puntos: 1,
+          esencial: false
+        }
+      ],
+      // MEDIA: 3-4 criterios (al menos 2 esenciales)
+      // ALTA:  4-5 criterios (al menos 3 esenciales)
+      
+      respuestaModelo: "Respuesta completa modelo que incluye todos los criterios esenciales y complementarios. Debe ser la respuesta ideal que se espera de un estudiante de nivel avanzado, con fundamentación científica y referencias cuando aplique."
+    }
+  ],
+  
+  // ============================================================================
+  // 🎓 INFORMACIÓN EDUCATIVA
+  // ============================================================================
+  
+  objetivosAprendizaje: [
+    "Objetivo específico 1 que este caso permite evaluar",
+    "Objetivo específico 2 relacionado con competencias clínicas",
+    "Objetivo específico 3 sobre integración de conocimientos"
+  ],
+  
+  competenciasEvaluadas: [
+    "Competencia clínica 1 (ej: Anamnesis y examen físico)",
+    "Competencia clínica 2 (ej: Interpretación de exámenes)",
+    "Competencia clínica 3 (ej: Toma de decisiones clínicas)",
+    "Competencia clínica 4 (ej: Manejo de complicaciones)"
+  ],
+  
+  referenciasBibliograficas: [
+    "Guía Perinatal MINSAL Chile 2015",
+    "Williams Obstetrics 25th Edition",
+    "Normas técnicas o guías clínicas aplicables",
+    "Referencias bibliográficas académicas relevantes"
+  ],
+  
+  notasDocente: "Información adicional para el docente: puntos clave a enfatizar durante la retroalimentación, errores conceptuales comunes en estudiantes, conexiones con otros temas del curso, sugerencias para discusión en clase."
+}

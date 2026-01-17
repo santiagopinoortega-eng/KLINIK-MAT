@@ -23,18 +23,20 @@ model CaseImage {
 }
 
 model Case {
-  id         String   @id
-  version    Int      @default(1) // Versionado del caso
-  title      String
-  area       String // Áreas: "Embarazo y control prenatal", etc.
-  difficulty Int // 1=Baja (6 MCQ), 2=Media (6 MCQ + 1 SHORT), 3=Alta (7 MCQ + 1 SHORT)
-  dificultad String? // "Alta", "Media", "Baja" (texto legible)
-  modulo     String? // Submódulo específico (ej: "Hemorragia postparto")
-  summary    String?
-  isPublic   Boolean  @default(false)
-  vignette   String?  @db.Text // Viñeta clínica completa (DEPRECATED - usar escenario)
-  createdAt  DateTime @default(now()) @map("created_at")
-  updatedAt  DateTime @updatedAt @map("updated_at")
+  id               String   @id
+  version          Int      @default(1) // Versionado del caso
+  title            String
+  area             String // Áreas: "Embarazo y control prenatal", etc. (6 áreas × 80 casos = 480 total)
+  difficulty       Int // 1=Baja (6 MCQ), 2=Media (6 MCQ + 1 SHORT), 3=Alta (7 MCQ + 1 SHORT)
+  dificultad       String? // "Alta", "Media", "Baja" (texto legible)
+  modulo           String? // Submódulo específico (24 subáreas × 20 casos)
+  summary              String?
+  isPublic             Boolean  @default(false)
+  vignette             String?  @db.Text // Viñeta clínica completa (DEPRECATED - usar escenario)
+  objetivosAprendizaje String[] // Array de objetivos de aprendizaje del caso
+  feedbackDinamico     Json? // Feedback dinámico: { alto, medio, bajo } según % de respuestas correctas
+  createdAt            DateTime @default(now()) @map("created_at")
+  updatedAt            DateTime @updatedAt @map("updated_at")
 
   // Relaciones
   images            CaseImage[]

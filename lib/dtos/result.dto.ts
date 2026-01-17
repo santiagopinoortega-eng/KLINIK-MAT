@@ -13,13 +13,17 @@ export const CreateResultDto = z.object({
   caseId: z.string().min(1, 'Case ID is required'),
   caseTitle: z.string().min(1, 'Case title is required'),
   caseArea: z.string().min(1, 'Case area is required'),
-  score: z.number().int().min(0).max(100, 'Score must be between 0 and 100'),
-  totalPoints: z.number().int().min(0),
+  score: z.number().int().min(0, 'Score must be non-negative'), // Puntaje absoluto obtenido
+  totalPoints: z.number().int().min(0, 'Total points must be non-negative'), // Puntaje máximo posible
   mode: z.enum(['study', 'exam', 'practice', 'timed']).optional().default('study'),
-  timeSpent: z.number().int().min(0).optional(),
-  timeLimit: z.number().int().min(0).optional(),
+  timeSpent: z.number().int().min(0).nullable().optional(), // Acepta null, undefined o number
+  timeLimit: z.number().int().min(0).nullable().optional(), // Acepta null, undefined o number
   answers: z.any().optional(), // Flexible para mantener compatibilidad
-});
+})
+  .refine(data => data.score <= data.totalPoints, {
+    message: 'Score cannot exceed totalPoints',
+    path: ['score'],
+  });
 
 export type CreateResultDto = z.infer<typeof CreateResultDto>;
 
