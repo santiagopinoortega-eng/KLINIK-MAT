@@ -38,19 +38,35 @@ export async function checkCaseAccessLimit(userId: string): Promise<LimitCheckRe
     });
 
     if (!user) {
-      // En desarrollo, permitir acceso si el usuario no está en la BD
-      // (Clerk puede autenticar usuarios que aún no se han sincronizado)
-      if (process.env.NODE_ENV === 'development') {
-        return {
-          allowed: true,
-          reason: 'Usuario en desarrollo sin registro en BD',
-          planName: 'DEV',
-        };
+      // Usuario no existe en BD: puede ser porque el webhook de Clerk aún no se ha ejecutado
+      // o porque hubo un error en la sincronización.
+      // Creamos el usuario automáticamente para no bloquear la experiencia.
+      console.warn('⚠️ Usuario no encontrado en BD, creándolo automáticamente:', userId);
+      
+      try {
+        await prisma.user.create({
+          data: {
+            id: userId,
+            email: `temp_${userId}@klinikmat.cl`, // Email temporal, se actualizará via webhook
+            role: 'STUDENT',
+            emailVerified: new Date(),
+          },
+        });
+        
+        console.log('✅ Usuario creado automáticamente:', userId);
+      } catch (error: any) {
+        // Si falla (ej: ya existe por race condition), continuamos
+        if (error?.code !== 'P2002') {
+          console.error('❌ Error creando usuario automáticamente:', error);
+        }
       }
       
+      // Usuario nuevo sin suscripción = plan FREE
       return {
-        allowed: false,
-        reason: 'Usuario no encontrado',
+        allowed: true,
+        planName: 'Plan Gratuito',
+        usageCount: 0,
+        limit: 10,
       };
     }
 
