@@ -1,5 +1,6 @@
 // prisma/seed.ts
 const { PrismaClient, Role } = require('@prisma/client');
+const crypto = require('crypto');
 
 const prisma = new PrismaClient();
 
@@ -38,6 +39,7 @@ async function main() {
   // 3. Crear Normas MINSAL
   const normaMEC = await prisma.minsalNorm.create({
     data: {
+      id: crypto.randomUUID(),
       name: 'Criterios de Elegibilidad Médica para el Uso de Anticonceptivos (MEC)',
       code: 'OMS-MEC-5',
     },
@@ -45,6 +47,7 @@ async function main() {
 
   const normaFertilidad = await prisma.minsalNorm.create({
     data: {
+      id: crypto.randomUUID(),
       name: 'Normas Nacionales sobre Regulación de la Fertilidad',
       code: 'MINSAL-FERT-2018',
     },

@@ -1,0 +1,2870 @@
+// Archivo: prisma/cases/TEMA1-EMBARAZO-PRENATAL/02-patologia-embarazo/cases.json5
+
+[
+  {
+    // ============================================================================
+    // 📋 CASO 24: NIVEL 1 (BAJA)
+    // Estructura: 6 MCQ | Viñeta: 135 palabras
+    // ============================================================================
+    id: "tema1-02-she-basico-n1",
+    titulo: "Sospecha de Preeclampsia en APS",
+    area: "Tema 1: Embarazo y Control Prenatal",
+    modulo: "1.2 Patología del Embarazo",
+    dificultad: "1",
+    objetivosAprendizaje: [
+      "Identificar los signos y síntomas de alarma de la Preeclampsia",
+      "Reconocer los criterios diagnósticos de hipertensión en el embarazo",
+      "Determinar la conducta inicial de derivación en APS"
+    ],
+    vignette: "Paciente: M.L., 19 años, primigesta, cursando embarazo de 34 semanas. Acude a control de rutina con matrona en el CESFAM. \n\nRefiere cefalea holocránea intensa que no cede con Paracetamol y 'zumbido de oídos' (tinnitus) desde ayer. Nota que se le han hinchado bruscamente la cara y las manos. \n\nExamen Físico: PA: 145/95 mmHg (confirmada tras reposo). FC: 80 lpm. \nEdema facial y de manos (++). \nLCF: 140 lpm. \n\nUsted sospecha un Síndrome Hipertensivo del Embarazo. Debe aplicar el protocolo MINSAL de manejo inicial y derivación, dado que la hipertensión es la segunda causa de muerte materna en Chile.",
+    pasos: [
+      {
+        enunciado: "Según la Guía Perinatal, ¿cuál es el diagnóstico sindromático inicial con una PA ≥140/90 mmHg después de las 20 semanas?",
+        opciones: [
+          {
+            texto: "Hipertensión Arterial Crónica.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La HTA crónica se presenta antes de las 20 semanas."
+          },
+          {
+            texto: "Hipertensión Inducida por el Embarazo (posible Preeclampsia).",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! La aparición de cifras tensionales elevadas de novo después de las 20 semanas sugiere patología placentaria."
+          },
+          {
+            texto: "Síndrome de HELLP.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Es una complicación grave de laboratorio (hemólisis, enzimas hepáticas, plaquetas bajas), no el diagnóstico inicial solo por PA."
+          },
+          {
+            texto: "Hipertensión de delantal blanco.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Ante síntomas de vasoespasmo (cefalea, tinnitus), no se puede descartar como algo emocional."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Qué síntoma referido por la paciente corresponde a un signo de 'prodromo de eclampsia' (inminencia de convulsión)?",
+        opciones: [
+          {
+            texto: "El edema de pies.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El edema de extremidades inferiores es frecuente y no es signo de gravedad per se."
+          },
+          {
+            texto: "La cefalea intensa y el tinnitus (fotopsias/tinnitus).",
+            esCorrecta: true,
+            explicacion: "✅ ¡EXCELENTE! Los síntomas de irritación del sistema nervioso central (vasoespasmo cerebral) alertan sobre el riesgo de eclampsia (convulsiones)."
+          },
+          {
+            texto: "La acidez estomacal.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Salvo que sea epigastralgia en barra (dolor hepático), la acidez es reflujo."
+          },
+          {
+            texto: "El aumento de peso.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Es un signo de retención hídrica, pero no de compromiso neurológico inminente."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Qué examen de orina es fundamental para clasificar el cuadro como Preeclampsia?",
+        opciones: [
+          {
+            texto: "Urocultivo.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Diagnostica infección, no preeclampsia."
+          },
+          {
+            texto: "Proteinuria (cualitativa o cuantitativa).",
+            esCorrecta: true,
+            explicacion: "✅ ¡MUY BIEN! La presencia de proteinuria significativa (≥300 mg/24h o IPC >0.3) asociada a HTA define clásicamente la Preeclampsia."
+          },
+          {
+            texto: "Glucosuria.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Evalúa diabetes."
+          },
+          {
+            texto: "Cetonuria.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Evalúa ayuno/catabolismo."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Cuál es la conducta inmediata en el CESFAM ante una paciente con HTA sintomática (Crisis Hipertensiva inminente)?",
+        opciones: [
+          {
+            texto: "Dar Paracetamol y mandar a casa.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Riesgo vital materno-fetal."
+          },
+          {
+            texto: "Derivar inmediatamente a Urgencia de Maternidad en ambulancia.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Requiere manejo hospitalario para evaluación, estabilización y eventual interrupción. No es de manejo ambulatorio."
+          },
+          {
+            texto: "Adelantar el control prenatal para la próxima semana.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La paciente puede convulsionar en horas."
+          },
+          {
+            texto: "Iniciar dieta hiposódica estricta.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La dieta no revierte la preeclampsia instalada."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Cuál es el fármaco de elección para prevenir las convulsiones (Eclampsia) durante la hospitalización?",
+        opciones: [
+          {
+            texto: "Diazepam.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Deprime al feto y no trata la causa fisiopatológica."
+          },
+          {
+            texto: "Sulfato de Magnesio.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Es el neuroprotector estándar de oro para prevenir y tratar la eclampsia."
+          },
+          {
+            texto: "Fenitoína.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Segunda línea en casos refractarios."
+          },
+          {
+            texto: "Clonazepam.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. No es de elección."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Cuál es el tratamiento definitivo de la Preeclampsia?",
+        opciones: [
+          {
+            texto: "Reposo absoluto.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Solo prolonga el embarazo, no cura la enfermedad."
+          },
+          {
+            texto: "La interrupción del embarazo (extracción de la placenta).",
+            esCorrecta: true,
+            explicacion: "✅ ¡EXCELENTE! La placenta es el órgano enfermo; la enfermedad remite solo tras el alumbramiento."
+          },
+          {
+            texto: "Antihipertensivos de por vida.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La HTA suele remitir postparto."
+          },
+          {
+            texto: "Diálisis renal.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Solo en falla renal aguda catastrófica."
+          }
+        ]
+      }
+    ],
+    feedbackDinamico: {
+      bajo: "¡Alerta! La Preeclampsia mata. Debes reconocer los síntomas de vasoespasmo (cefalea, alteraciones visuales) al instante. Revisa la Guía SHE.",
+      medio: "¡Bien! Identificas la urgencia. Refuerza los criterios de proteinuria y el manejo con Sulfato de Magnesio.",
+      alto: "¡Excelente! Tienes claro que la preeclampsia es una urgencia obstétrica que requiere derivación inmediata y cuyo único tratamiento definitivo es el parto."
+    },
+    referencias: [
+      "Guía Perinatal MINSAL 2015",
+      "Guía Clínica Síndrome Hipertensivo del Embarazo"
+    ]
+  },
+
+  {
+    // ============================================================================
+    // 📋 CASO 25: NIVEL 2 (MEDIA)
+    // Estructura: 6 MCQ + 1 SHORT | Viñeta: 180 palabras
+    // ============================================================================
+    id: "tema1-02-placenta-previa-n2",
+    titulo: "Metrorragia de la Segunda Mitad: Placenta Previa",
+    area: "Tema 1: Embarazo y Control Prenatal",
+    modulo: "1.2 Patología del Embarazo",
+    dificultad: "2",
+    objetivosAprendizaje: [
+      "Diferenciar clínicamente la Placenta Previa del Desprendimiento Prematuro de Placenta (DPPNI)",
+      "Determinar las contraindicaciones del tacto vaginal ante metrorragia",
+      "Establecer el manejo inicial de la hemorragia obstétrica"
+    ],
+    vignette: "Paciente: S.V., 30 años, multípara de 2 (ambas cesáreas anteriores). Cursa embarazo de 30 semanas. Es traída a Urgencia por su esposo. \n\nRelato: 'Estaba durmiendo y desperté mojada, pensé que se me rompió la bolsa, pero prendí la luz y era pura sangre roja, brillante'. \n\nAnamnesis: Niega dolor abdominal ni contracciones. El sangrado fue abundante (aprox. 1 taza), ahora es escaso. Movimientos fetales presentes. \n\nExamen Físico: PA: 110/70 mmHg, FC: 88 lpm. Abdomen blando, depresible, indoloro. Útero relajado (tono normal). LCF: 144 lpm. \n\nUsted se encuentra en turno y debe realizar la evaluación inicial sin aumentar el riesgo de hemorragia masiva, considerando el antecedente de cesáreas (cicatriz uterina).",
+    pasos: [
+      {
+        enunciado: "Ante el cuadro de metrorragia indolora, sangre roja brillante y útero relajado, ¿cuál es el diagnóstico más probable?",
+        opciones: [
+          {
+            texto: "Desprendimiento Prematuro de Placenta (DPPNI).",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El DPPNI clásicamente presenta dolor intenso, hipertonía uterina ('útero de madera') y sangre oscura."
+          },
+          {
+            texto: "Placenta Previa (oclusiva o marginal).",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! La clínica clásica es el sangrado 'silencioso' (indoloro), rojo rutilante, de inicio súbito, a menudo nocturno."
+          },
+          {
+            texto: "Rotura Uterina.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Cursa con dolor agudo, compromiso hemodinámico materno y pérdida del bienestar fetal grave."
+          },
+          {
+            texto: "Tapón mucoso hemorrágico.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El tapón es mucosidad con estrías, no sangre líquida abundante."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Cuál es la contraindicación ABSOLUTA en el examen físico de esta paciente?",
+        opciones: [
+          {
+            texto: "Palpación abdominal (Maniobras de Leopold).",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Se pueden realizar con suavidad."
+          },
+          {
+            texto: "Realizar Tacto Vaginal.",
+            esCorrecta: true,
+            explicacion: "✅ ¡MUY BIEN! Introducir los dedos en el canal vaginal puede digitalizar la placenta, provocando una hemorragia masiva exanguinante. Se debe diferir hasta tener ubicación placentaria por eco."
+          },
+          {
+            texto: "Auscultación de latidos.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Es vital para evaluar al feto."
+          },
+          {
+            texto: "Instalación de vía venosa.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Es prioritario tener acceso venoso."
+          }
+        ]
+      },
+      {
+        enunciado: "Considerando las 30 semanas de gestación, ¿qué fármaco debe administrarse para maduración pulmonar fetal?",
+        opciones: [
+          {
+            texto: "Betametasona 12 mg IM cada 24 horas por 2 dosis.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Es el esquema estándar de corticoides antenatales para inducir la producción de surfactante y reducir el riesgo de membrana hialina."
+          },
+          {
+            texto: "Progesterona micronizada.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Útil para prevención de parto prematuro por cuello corto, no para maduración pulmonar aguda."
+          },
+          {
+            texto: "Sulfato de Magnesio.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Es neuroprotector, no madurador pulmonar."
+          },
+          {
+            texto: "Antibióticos profilácticos.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. No hay infección demostrada ni RPM."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Qué examen es el 'Gold Standard' para confirmar la ubicación de la placenta?",
+        opciones: [
+          {
+            texto: "Resonancia Magnética.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Útil para acretismo, pero no primera línea."
+          },
+          {
+            texto: "Ecografía Transvaginal (con precaución) o Abdominal.",
+            esCorrecta: true,
+            explicacion: "✅ ¡EXCELENTE! La ecografía permite visualizar la relación del borde placentario con el orificio cervical interno (OCI)."
+          },
+          {
+            texto: "Amniocentesis.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Es para estudio de líquido amniótico."
+          },
+          {
+            texto: "Especuloscopía.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Permite ver el sangrado y el cuello, pero no ve la placenta intrauterina."
+          }
+        ]
+      },
+      {
+        enunciado: "Si la paciente es Rh Negativo (y pareja Rh+ o desconocido), ¿qué medida adicional se requiere ante el sangrado?",
+        opciones: [
+          {
+            texto: "Transfusión de plaquetas.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Administración de Inmunoglobulina Anti-D (Rhogam).",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Toda metrorragia en gestante Rh(-) no sensibilizada es indicación de profilaxis para evitar isoinmunización."
+          },
+          {
+            texto: "Adelantar el parto.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Test de Coombs Directo a la madre.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. A la madre se le hace Indirecto."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Cuál es el factor de riesgo más importante en la historia clínica de esta paciente para tener Placenta Previa?",
+        opciones: [
+          {
+            texto: "La edad de 30 años.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Riesgo bajo."
+          },
+          {
+            texto: "Las cicatrices de cesáreas anteriores.",
+            esCorrecta: true,
+            explicacion: "✅ ¡MUY BIEN! El útero cicatrizado altera la decidua, favoreciendo que la placenta se implante en el segmento inferior sobre la cicatriz (riesgo de acretismo también)."
+          },
+          {
+            texto: "Ser multípara de 2.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Menor peso que la cicatriz."
+          },
+          {
+            texto: "El grupo sanguíneo.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. No influye en la inserción."
+          }
+        ]
+      },
+      {
+        tipo: "short",
+        enunciado: "Justifique anatómicamente por qué está contraindicado el tacto vaginal ante sospecha de Placenta Previa y explique el concepto de 'Segmento Inferior' uterino.",
+        criteriosEvaluacion: [
+          "digitalización placenta",
+          "hemorragia masiva",
+          "desprendimiento provocado",
+          "istmo uterino",
+          "formación segmento inferior",
+          "orificio cervical interno"
+        ],
+        guia: "El tacto vaginal está contraindicado porque el dedo del examinador puede atravesar el cuello y contactar directamente el tejido placentario que ocluye el orificio, provocando un desprendimiento mecánico y una hemorragia masiva materna y fetal exanguinante. El segmento inferior es la porción del útero que se desarrolla a partir del istmo uterino en la segunda mitad del embarazo; es una zona delgada y con menos fibras musculares donde, en la placenta previa, se inserta anómalamente la placenta."
+      }
+    ],
+    feedbackDinamico: {
+      bajo: "¡Peligro! Nunca hagas un tacto vaginal a una embarazada que sangra sin saber dónde está la placenta. Revisa las causas de metrorragia.",
+      medio: "¡Bien! Diferencias la Placenta Previa del DPPNI. Recuerda la importancia de la profilaxis Rh y los corticoides.",
+      alto: "¡Excelente! Manejas el protocolo de hemorragia de segunda mitad con seguridad clínica, priorizando la estabilidad y prevención de iatrogenia."
+    },
+    referencias: [
+      "Guía Perinatal MINSAL 2015",
+      "Manual de Obstetricia y Ginecología PUC",
+      "Schwarcz: Obstetricia"
+    ]
+  },
+
+  {
+    // ============================================================================
+    // 📋 CASO 26: NIVEL 3 (ALTA)
+    // ============================================================================
+    id: "tema1-02-rciu-doppler-n3",
+    titulo: "RCIU con Alteración Doppler: Toma de Decisiones",
+    area: "Tema 1: Embarazo y Control Prenatal",
+    modulo: "1.2 Patología del Embarazo",
+    dificultad: "3",
+    objetivosAprendizaje: [
+      "Diagnosticar Restricción de Crecimiento Intrauterino (RCIU) según biometría",
+      "Interpretar hallazgos del Doppler feto-placentario (IP Arteria Umbilical y Cerebral Media)",
+      "Decidir el momento de la interrupción del embarazo según severidad"
+    ],
+    vignette: "Paciente: K.J., 22 años, primigesta, fumadora crónica (5 cig/día). Cursa embarazo de 33 semanas. \n\nEn control de ARO por sospecha de feto pequeño. Trae Ecografía Doppler actual: \n- Peso Fetal Estimado (PFE): Percentil 3 (Severo). \n- Doppler Arteria Umbilical (AU): Índice de Pulsatilidad (IP) > Percentil 95 (Resistencia aumentada), flujo diastólico presente. \n- Doppler Arteria Cerebral Media (ACM): IP < Percentil 5 (Resistencia disminuida). \n- Relación Cerebro-Placentaria (RCP): Alterada (< p5). \n- Líquido Amniótico: Normal. \n\nUsted debe interpretar la hemodinamia fetal, explicar el fenómeno adaptativo que está ocurriendo y decidir el manejo (hospitalización vs ambulatorio vs interrupción).",
+    pasos: [
+      {
+        enunciado: "Con un PFE bajo el percentil 3 y alteración Doppler, ¿cuál es el diagnóstico preciso?",
+        opciones: [
+          {
+            texto: "Feto Pequeño para la Edad Gestacional (PEG) Constitucional.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El PEG constitucional es un feto sano, pequeño pero con Doppler normal. Aquí hay alteración hemodinámica."
+          },
+          {
+            texto: "Restricción de Crecimiento Intrauterino (RCIU) con redistribución hemodinámica.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! El peso <p10 más signos de adaptación circulatoria (Doppler alterado) confirma que el feto no alcanza su potencial genético por insuficiencia placentaria."
+          },
+          {
+            texto: "Error de la fecha de última regla.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Se asume datación correcta. El Doppler alterado valida la patología."
+          },
+          {
+            texto: "Cromosomopatía.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Aunque posible, la causa más probable en fumadora con Doppler alterado es la insuficiencia placentaria."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Qué significa fisiopatológicamente que la Arteria Cerebral Media tenga resistencia disminuida (vasodilatación)?",
+        opciones: [
+          {
+            texto: "Que el feto tiene hipertensión endocraneana.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Es el fenómeno de 'Redistribución de Flujo' (Brain Sparing Effect).",
+            esCorrecta: true,
+            explicacion: "✅ ¡EXCELENTE! Ante la hipoxia/falta de nutrientes, el feto dilata los vasos cerebrales para asegurar flujo al cerebro, corazón y suprarrenales, sacrificando el flujo a extremidades e intestino."
+          },
+          {
+            texto: "Que el cerebro fetal está maduro.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Es un signo de adaptación a la hipoxia."
+          },
+          {
+            texto: "Que hay una hemorragia cerebral.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          }
+        ]
+      },
+      {
+        enunciado: "Dado el hallazgo de RCIU severo (p3) con redistribución a las 33 semanas, ¿cuál es la conducta clínica?",
+        opciones: [
+          {
+            texto: "Control ambulatorio con eco en 1 mes.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Demasiado riesgo de óbito."
+          },
+          {
+            texto: "Hospitalización, administración de corticoides y vigilancia estricta para interrupción según evolución.",
+            esCorrecta: true,
+            explicacion: "✅ ¡MUY BIEN! Requiere maduración pulmonar inmediata y monitoreo (RBNE/Doppler) frecuente. La interrupción suele planificarse cerca de las 34-37 semanas si se mantiene estable, o antes si empeora el Doppler."
+          },
+          {
+            texto: "Cesárea de urgencia inmediata.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Si el flujo umbilical tiene diástole presente (no ausente ni reverso) y el monitoreo es normal, se puede esperar a madurar pulmones."
+          },
+          {
+            texto: "Indicar aspirina ahora.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La aspirina es preventiva (<16 sem), no curativa a las 33 sem."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Cuál es el signo Doppler de deterioro grave que obligaría a interrumpir el embarazo independientemente de la edad gestacional?",
+        opciones: [
+          {
+            texto: "Flujo diastólico ausente o reverso en la Arteria Umbilical.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Indica que la resistencia placentaria es tan alta que la sangre no entra (ausente) o se devuelve (reverso) en diástole. Es signo de riesgo de muerte inminente."
+          },
+          {
+            texto: "Aumento del flujo en la arteria uterina.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Refleja riesgo materno, no muerte fetal inminente."
+          },
+          {
+            texto: "Disminución del líquido amniótico.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Es signo de cronicidad, pero el Doppler venoso/umbilical marca la urgencia vital."
+          },
+          {
+            texto: "Sexo fetal masculino.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Irrelevante."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Qué recomendación sobre el hábito tabáquico es crucial en este caso?",
+        opciones: [
+          {
+            texto: "Ya no importa, el daño está hecho.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Suspender el tabaco mejora la oxigenación fetal inmediatamente.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Aunque hay daño crónico, el CO del cigarro compite con el oxígeno. Dejar de fumar aumenta la disponibilidad de oxígeno para un feto que ya está hipóxico."
+          },
+          {
+            texto: "Fumar menos de 3 cigarros es seguro.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. No hay dosis segura."
+          },
+          {
+            texto: "Usar parches de nicotina sin supervisión.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La nicotina también es vasoconstrictora."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Qué medida de neuroprotección se indica si se decide interrumpir antes de las 32-34 semanas?",
+        opciones: [
+          {
+            texto: "Sulfato de Magnesio.",
+            esCorrecta: true,
+            explicacion: "✅ ¡EXCELENTE! Reduce el riesgo de parálisis cerebral en prematuros."
+          },
+          {
+            texto: "Vitamina B12.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Antibióticos.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Solo si hay RPM o SGB+."
+          },
+          {
+            texto: "Labetalol.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Es para la presión."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Qué examen complementario permite vigilar el bienestar fetal agudo diariamente en la sala?",
+        opciones: [
+          {
+            texto: "Registro Basal No Estresante (RBNE/Monitoreo).",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Evalúa la frecuencia cardiaca fetal, variabilidad y aceleraciones, siendo el estándar para vigilancia diaria de la oxigenación."
+          },
+          {
+            texto: "Ecografía Doppler diaria.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Los cambios Doppler son más lentos, no se hace diario salvo deterioro crítico."
+          },
+          {
+            texto: "Amniocentesis.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Invasivo e innecesario."
+          },
+          {
+            texto: "Medición de altura uterina.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Poca sensibilidad para cambios agudos."
+          }
+        ]
+      },
+      {
+        tipo: "short",
+        enunciado: "Explique el fenómeno de 'Centralización de Flujo' o 'Redistribución Hemodinámica' en el feto con RCIU. ¿Qué vasos se dilatan y cuáles se contraen?",
+        criteriosEvaluacion: [
+          "hipoxia fetal",
+          "vasodilatación cerebral",
+          "arteria cerebral media",
+          "vasoconstricción periférica",
+          "protección órganos nobles",
+          "mecanismo adaptativo"
+        ],
+        guia: "Ante la hipoxia crónica por insuficiencia placentaria, el feto activa mecanismos quimiorreceptores para sobrevivir. Produce una vasoconstricción de lechos periféricos (aumento de resistencia en arterias umbilicales, femorales, mesentéricas) para reducir el consumo en músculos e intestino, y una vasodilatación selectiva de la Arteria Cerebral Media (disminución de resistencia) para asegurar el flujo de oxígeno y nutrientes al cerebro ('órgano noble'), corazón y glándulas suprarrenales."
+      }
+    ],
+    feedbackDinamico: {
+      bajo: "¡Cuidado! El RCIU es una patología compleja. Debes entender que un feto pequeño con Doppler alterado está luchando por sobrevivir. Revisa la fisiología fetal.",
+      medio: "¡Bien! Reconoces la gravedad. Refuerza los criterios Doppler de interrupción (flujo reverso/ausente).",
+      alto: "¡Excelente! Interpretas correctamente la hemodinamia fetal y tomas decisiones basadas en la evidencia para el mejor momento del parto."
+    },
+    referencias: [
+      "Guía Perinatal MINSAL 2015",
+      "Manual de Medicina Fetal",
+      "Doppler en Obstetricia"
+    ]
+  },
+  {
+    // ============================================================================
+    // 📋 CASO 22: NIVEL 2 (MEDIA)
+    // Estructura: 6 MCQ + 1 SHORT | Viñeta: 155 palabras
+    // ============================================================================
+    id: "tema1-02-dg-diagnostico-n2",
+    titulo: "Diagnóstico y Manejo Inicial de Diabetes Gestacional",
+    area: "Tema 1: Embarazo y Control Prenatal",
+    modulo: "1.2 Patología del Embarazo",
+    dificultad: "2",
+    objetivosAprendizaje: [
+      "Interpretar los resultados de la PTGO según criterios diagnósticos chilenos",
+      "Establecer el manejo inicial no farmacológico (dieta y ejercicio)",
+      "Explicar la fisiopatología de la resistencia a la insulina en el embarazo"
+    ],
+    vignette: "Paciente: R.V., 30 años, chilena, cursando 26 semanas de embarazo. IMC: 29.2 kg/m² (Sobrepeso). Acude a control con resultados de su PTGO (75g de glucosa) realizada la semana pasada por protocolo. \n\nResultados: \n- Glicemia Basal (Ayunas): 92 mg/dL. \n- Glicemia 2 horas post-carga: 155 mg/dL. \n\nLa paciente está asustada porque su madre es diabética y cree que deberá usar insulina de inmediato. Usted debe confirmar el diagnóstico, explicarle su condición metabólica transitoria y definir el plan de manejo inicial en el CESFAM, enfatizando el rol del equipo multidisciplinario en la APS.",
+    pasos: [
+      {
+        enunciado: "Según los criterios de la Guía Perinatal MINSAL, ¿cuál es el diagnóstico con estos resultados (Basal 92, 2h 155)?",
+        opciones: [
+          {
+            texto: "Diabetes Gestacional.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! En Chile, el diagnóstico de Diabetes Gestacional se realiza con una glicemia a las 2 horas post-carga ≥ 140 mg/dL en el 2do o 3er trimestre."
+          },
+          {
+            texto: "Resultado normal, se repite a las 32 semanas.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El valor de 155 mg/dL está francamente alterado."
+          },
+          {
+            texto: "Diabetes Mellitus Tipo 2 manifiesta.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Requeriría glicemia de ayuno ≥126 o post-carga ≥200 mg/dL."
+          },
+          {
+            texto: "Intolerancia a la glucosa, solo observación.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. En el embarazo se clasifica directamente como Diabetes Gestacional por el riesgo perinatal."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Cuál es la primera línea de tratamiento que debe indicarse a esta paciente en APS?",
+        opciones: [
+          {
+            texto: "Metformina 850 mg al día.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. No es la primera línea según norma técnica."
+          },
+          {
+            texto: "Régimen de alimentación fraccionado y ejercicio físico moderado.",
+            esCorrecta: true,
+            explicacion: "✅ ¡MUY BIEN! El manejo inicial se basa en dieta dirigida y actividad física, logrando el control en la mayoría de los casos."
+          },
+          {
+            texto: "Insulina NPH nocturna.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Se reserva para falla del manejo dietético."
+          },
+          {
+            texto: "Solo dieta hiposódica.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El foco es el control de carbohidratos, no solo el sodio."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Cuáles son las metas de glicemia capilar (automonitoreo) para una gestante con DG?",
+        opciones: [
+          {
+            texto: "Ayuno <100 y 1h post-prandial <160 mg/dL.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Metas insuficientes para prevenir macrosomía."
+          },
+          {
+            texto: "Ayuno <95 y 1h post-prandial <140 mg/dL.",
+            esCorrecta: true,
+            explicacion: "✅ ¡EXCELENTE! Son los valores objetivos para minimizar el hiperinsulinismo fetal."
+          },
+          {
+            texto: "Ayuno <70 mg/dL.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Riesgo de hipoglicemia y cetonuria."
+          },
+          {
+            texto: "Cualquier valor menor a 200 mg/dL.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Qué complicación neonatal inmediata se busca prevenir con un buen control glicémico materno?",
+        opciones: [
+          {
+            texto: "Hiperglicemia neonatal.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Hipoglicemia neonatal por hiperinsulinismo fetal.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Si el feto recibe mucha glucosa, produce mucha insulina. Al nacer, se corta la glucosa pero persiste la insulina alta, bajando bruscamente su azúcar."
+          },
+          {
+            texto: "Hernia diafragmática.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Anemia neonatal.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Qué cambio fisiológico del embarazo facilita la aparición de la Diabetes Gestacional?",
+        opciones: [
+          {
+            texto: "La producción de Lactógeno Placentario (hPL) que aumenta la resistencia a la insulina.",
+            esCorrecta: true,
+            explicacion: "✅ ¡EXCELENTE! La placenta secreta hormonas diabetogénicas para asegurar glucosa al feto, desafiando al páncreas materno."
+          },
+          {
+            texto: "El aumento de la filtración glomerular.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "La disminución del gasto cardiaco.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "La absorción intestinal de glucosa disminuida.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Qué se debe realizar a la paciente 6 a 12 semanas después del parto?",
+        opciones: [
+          {
+            texto: "Nueva glicemia de ayuno únicamente.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Prueba de Tolerancia a la Glucosa (PTGO) de carga de 75g para reclasificación.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Es vital para detectar si la paciente quedó con una Diabetes Tipo 2 o intolerancia permanente."
+          },
+          {
+            texto: "Nada, si el bebé nació sano.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Hemoglobina glicosilada mensual.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          }
+        ]
+      },
+      {
+        tipo: "short",
+        enunciado: "Explique la importancia de la 'Cetonuria' en el seguimiento de una paciente con Diabetes Gestacional y qué indicación nutricional daría si esta resulta positiva.",
+        criteriosEvaluacion: [
+          "ayuno prolongado",
+          "hambre celular",
+          "lipólisis",
+          "neurotoxicidad fetal",
+          "aumentar carbohidratos complejos",
+          "colación nocturna"
+        ],
+        guia: "La cetonuria indica que la paciente está realizando ayunos prolongados o una restricción excesiva de carbohidratos, lo que obliga al cuerpo a usar grasas como energía (lipólisis), generando cuerpos cetónicos que son neurotóxicos para el feto. Si es positiva, se debe ajustar la dieta aumentando carbohidratos de absorción lenta y asegurar una colación nocturna antes de dormir."
+      }
+    ],
+    feedbackDinamico: {
+      bajo: "¡Atención! El diagnóstico de DG es un hito crítico. Repasa los puntos de corte de la PTGO (140 mg/dL a las 2 horas).",
+      medio: "¡Bien! Manejas el diagnóstico y tratamiento inicial. Profundiza en las metas de control capilar y complicaciones neonatales.",
+      alto: "¡Excelente! Comprendes integralmente el diagnóstico, manejo en APS y la fisiopatología de la Diabetes Gestacional."
+    },
+    referencias: [
+      "Guía Clínica Diabetes y Embarazo MINSAL",
+      "Guía Perinatal MINSAL 2015"
+    ]
+  },
+
+  {
+    // ============================================================================
+    // 📋 CASO 23: NIVEL 3 (ALTA)
+    // Estructura: 7 MCQ + 1 SHORT | Viñeta: 215 palabras
+    // ============================================================================
+    id: "tema1-02-dg-insulina-n3",
+    titulo: "Falla de Tratamiento en DG y Criterios de Insulinización",
+    area: "Tema 1: Embarazo y Control Prenatal",
+    modulo: "1.2 Patología del Embarazo",
+    dificultad: "3",
+    objetivosAprendizaje: [
+      "Evaluar la efectividad del tratamiento dietético mediante el automonitoreo glicémico",
+      "Identificar criterios de derivación a ARO por falla de manejo en APS",
+      "Analizar las complicaciones fetales de la hiperglicemia sostenida (Macrosomía/PHA)"
+    ],
+    vignette: "Paciente: S.A., 35 años, multípara de 2, cursando 31 semanas de gestación. Diagnosticada con Diabetes Gestacional hace 3 semanas, en manejo con régimen de 1800 kcal fraccionado. \n\nAcude a control en APS trayendo su registro de hemoglucotest de los últimos 7 días: \n- Ayunas: 105 - 110 - 98 - 112 mg/dL. \n- 1 hora post-comidas: 160 - 175 - 150 - 180 mg/dL (en más del 30% de los registros). \n\nRefiere estricto cumplimiento de la dieta pero persistencia de polidipsia. \nTrae Ecografía Obstétrica de ayer: \n- Peso Fetal Estimado (PFE): Percentil 97 (Macrosomía incipiente). \n- Índice de Líquido Amniótico (ILA): 26 cm (Polihidramnios). \n- Biometría: Perímetro abdominal fetal sobre p95. \n\nUsted debe analizar la conducta a seguir considerando que el manejo en APS ha llegado a su límite terapéutico y existe repercusión fetal evidente que pone en riesgo el bienestar del binomio.",
+    pasos: [
+      {
+        enunciado: "Analizando los hemoglucotest (Ayunas >95, Post >140), ¿cuál es el diagnóstico de control metabólico?",
+        opciones: [
+          {
+            texto: "Diabetes Gestacional compensada.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Los valores están francamente fuera de meta terapéutica."
+          },
+          {
+            texto: "Diabetes Gestacional con mal control metabólico (Falla a la dieta).",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Se define falla al tratamiento dietético cuando más del 10-20% de las glicemias están fuera de rango en una semana."
+          },
+          {
+            texto: "Diabetes Mellitus Tipo 1 sobreagregada.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Es una descompensación de su DG diagnóstica."
+          },
+          {
+            texto: "Error en la técnica de toma de muestra.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La concordancia con los hallazgos ecográficos valida los resultados."
+          }
+        ]
+      },
+      {
+        enunciado: "Ante la falla del manejo médico-nutricional en APS, ¿cuál es la conducta prioritaria según la red de salud chilena?",
+        opciones: [
+          {
+            texto: "Aumentar la restricción calórica a 1200 kcal.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Dietas muy restrictivas inducen cetosis perjudicial para el feto."
+          },
+          {
+            texto: "Derivar inmediatamente a Alto Riesgo Obstétrico (ARO) para inicio de insulinoterapia.",
+            esCorrecta: true,
+            explicacion: "✅ ¡EXCELENTE! La falla a la dieta sumada a signos de fetopatía diabética (macrosomía/PHA) son criterios absolutos de derivación a nivel secundario."
+          },
+          {
+            texto: "Iniciar Metformina 500 mg en el CESFAM.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El inicio de fármacos hipoglicemiantes debe ser realizado o supervisado por el equipo de especialidad ARO."
+          },
+          {
+            texto: "Repetir la ecografía en 4 semanas.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El daño ya es evidente y requiere acción inmediata."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Cuál es la causa fisiopatológica del Polihidramnios (ILA 26 cm) en este caso?",
+        opciones: [
+          {
+            texto: "Malformación renal fetal.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Diuresis osmótica fetal secundaria a la hiperglicemia fetal.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! La glucosa materna pasa al feto, este genera hiperinsulinismo y poliuria (orina mucho), aumentando el volumen de líquido amniótico."
+          },
+          {
+            texto: "Infección por CMV.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Exceso de ingesta de agua materna.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Por qué el feto presenta una macrosomía con predominio del perímetro abdominal (p97)?",
+        opciones: [
+          {
+            texto: "Por el depósito de grasa en hígado y tejidos blandos estimulado por el hiperinsulinismo fetal.",
+            esCorrecta: true,
+            explicacion: "✅ ¡MUY BIEN! La insulina fetal actúa como hormona de crecimiento, favoreciendo la lipogénesis y visceromegalia abdominal."
+          },
+          {
+            texto: "Por la genética de los padres.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Es una alteración metabólica adquirida."
+          },
+          {
+            texto: "Por ascitis fetal.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Por madurez pulmonar acelerada.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Qué riesgo neonatal severo se asocia al hiperinsulinismo fetal sostenido al momento del nacimiento?",
+        opciones: [
+          {
+            texto: "Hipoglicemia neonatal grave.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Al cortar el cordón cesa el aporte de glucosa, pero el páncreas fetal sigue hiperfuncionante, consumiendo su propia glucosa rápidamente."
+          },
+          {
+            texto: "Hipertensión neonatal.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Anemia ferropénica.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Diabetes neonatal permanente.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          }
+        ]
+      },
+      {
+        enunciado: "En un parto vaginal de un feto macrosómico de madre diabética, ¿cuál es la emergencia mecánica más frecuente?",
+        opciones: [
+          {
+            texto: "Prolapso de cordón.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Distocia de hombros.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! El diámetro biacromial aumentado (hombros anchos) dificulta el paso por el canal del parto tras la salida de la cabeza."
+          },
+          {
+            texto: "Rotura prematura de membranas.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Presentación de nalgas.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Cuál es el fármaco 'Gold Standard' para el manejo de la DG cuando falla la dieta?",
+        opciones: [
+          {
+            texto: "Glibenclamida.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Atraviesa la placenta."
+          },
+          {
+            texto: "Insulina.",
+            esCorrecta: true,
+            explicacion: "✅ ¡EXCELENTE! No atraviesa la placenta y permite un control glicémico fino y seguro para el feto."
+          },
+          {
+            texto: "Aspirina.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Labetalol.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          }
+        ]
+      },
+      {
+        tipo: "short",
+        enunciado: "Justifique fisiopatológicamente la aparición de macrosomía fetal en la Diabetes Gestacional utilizando la Hipótesis de Pedersen.",
+        criteriosEvaluacion: [
+          "hiperglicemia materna",
+          "difusión facilitada glucosa",
+          "hiperglicemia fetal",
+          "estimulación páncreas fetal",
+          "hiperinsulinismo fetal",
+          "insulina hormona anabólica"
+        ],
+        guia: "La hipótesis de Pedersen explica que la hiperglicemia materna provoca un paso excesivo de glucosa al feto por difusión facilitada (la insulina no cruza la placenta). Esta carga de glucosa estimula el páncreas fetal, generando un hiperinsulinismo compensatorio. Dado que la insulina es una potente hormona anabólica y factor de crecimiento, estimula la captación de nutrientes, la síntesis de proteínas y el depósito de grasa (macrosomía) y visceromegalia."
+      }
+    ],
+    feedbackDinamico: {
+      bajo: "¡Urgente! Debes reconocer cuándo el manejo en APS es insuficiente. El Polihidramnios y la macrosomía son signos de alarma graves.",
+      medio: "¡Buen trabajo! Identificas la falla al tratamiento. Refuerza los mecanismos del hiperinsulinismo fetal y la gestión en red ARO.",
+      alto: "¡Excelente desempeño! Manejas con precisión los criterios de insulinización, la fisiopatología fetal y los riesgos del parto en feto macrosómico."
+    },
+    referencias: [
+      "Guía Clínica Diabetes y Embarazo MINSAL",
+      "Manual de Obstetricia y Ginecología PUC"
+    ]
+  },
+  {
+    // ============================================================================
+    // 📋 CASO 1: NIVEL 1 (BAJA) - Enfoque: Diagnóstico y Protocolo Inicial
+    // Estructura: 6 MCQ | Viñeta: 138 palabras
+    // ============================================================================
+    id: "tema1-02-sifilis-migrante-n1",
+    titulo: "Tamizaje de Sífilis y Realidad Migrante en APS",
+    area: "Tema 1: Embarazo y Control Prenatal",
+    modulo: "1.2 Patología del Embarazo",
+    dificultad: "1",
+    objetivosAprendizaje: [
+      "Identificar el protocolo de tamizaje de sífilis en gestantes sin control previo",
+      "Reconocer el tratamiento de elección para sífilis gestacional según MINSAL",
+      "Describir la relevancia de la notificación obligatoria (ENO)"
+    ],
+    vignette: "Paciente: R.M., 24 años, nacionalidad venezolana, reside en Chile hace 6 meses. Cursa embarazo de 22 semanas por FUR, sin controles previos en el país ni en su país de origen. Acude al CESFAM para 'empezar a controlarse'. \n\nAnamnesis: Refiere encontrarse asintomática, sin lesiones genitales actuales. Relata pareja sexual única en el último año, quien tampoco ha tenido controles de salud. \n\nExamen Físico: PA: 110/70 mmHg. Examen obstétrico normal para la edad gestacional. \n\nExámenes de ingreso (realizados de inmediato): \n- VIH: No reactivo. \n- VDRL: Reactivo 1:32. \n\nUsted debe iniciar el manejo protocolizado para Sífilis Gestacional considerando el riesgo de transmisión vertical y la normativa de salud pública chilena.",
+    pasos: [
+      {
+        enunciado: "Ante un VDRL reactivo (1:32) en una gestante sin controles previos, ¿cuál es la conducta inmediata según la norma MINSAL?",
+        opciones: [
+          {
+            texto: "Esperar un segundo VDRL en un mes para confirmar tendencia.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. En la gestante, cualquier retraso aumenta el riesgo de sífilis congénita. El manejo debe ser proactivo."
+          },
+          {
+            texto: "Iniciar tratamiento inmediato y solicitar prueba treponémica confirmatoria.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! En Chile, ante la sospecha serológica en el embarazo, se debe iniciar tratamiento (primera dosis) de inmediato para prevenir la transmisión vertical, sin esperar la confirmación."
+          },
+          {
+            texto: "Solicitar solo ecografía Doppler fetal.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La ecografía es complementaria, pero no reemplaza el tratamiento antibiótico."
+          },
+          {
+            texto: "Derivar a infectología antes de cualquier acción.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El manejo inicial de la sífilis gestacional es responsabilidad de la APS (Matrona/Médico)."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Cuál es el fármaco de elección para el tratamiento de la Sífilis Gestacional en Chile?",
+        opciones: [
+          {
+            texto: "Azitromicina 1g oral dosis única.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. No es el estándar debido al riesgo de falla en el tratamiento fetal."
+          },
+          {
+            texto: "Penicilina Benzatina 2.400.000 UI intramuscular.",
+            esCorrecta: true,
+            explicacion: "✅ ¡EXCELENTE! Es el único tratamiento que cruza la barrera placentaria de forma efectiva para tratar al feto y prevenir la sífilis congénita."
+          },
+          {
+            texto: "Ceftriaxona 1g intramuscular por 10 días.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Es una alternativa en casos muy específicos, pero la Penicilina Benzatina sigue siendo la primera línea."
+          },
+          {
+            texto: "Doxiciclina 100 mg cada 12 horas.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Está contraindicada en el embarazo por toxicidad ósea y dental fetal."
+          }
+        ]
+      },
+      {
+        enunciado: "Dado que no hay antecedentes de tratamiento previo ni fecha de infección, ¿cuántas dosis de penicilina debe recibir la paciente?",
+        opciones: [
+          {
+            texto: "Dosis única.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Se reserva para sífilis primaria o secundaria con tiempo de evolución claro < 1 año."
+          },
+          {
+            texto: "Dos dosis (una cada 15 días).",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. No es el esquema normado."
+          },
+          {
+            texto: "Tres dosis (una semanal por 3 semanas consecutivas).",
+            esCorrecta: true,
+            explicacion: "✅ ¡MUY BIEN! Ante una sífilis de duración desconocida o latente tardía, la norma MINSAL exige 3 dosis semanales para asegurar la curación."
+          },
+          {
+            texto: "Tratamiento diario por 14 días.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Corresponde a esquemas de neurosífilis (penicilina sódica)."
+          }
+        ]
+      },
+      {
+        enunciado: "Respecto a la pareja de la paciente, ¿cuál es la indicación correcta?",
+        opciones: [
+          {
+            texto: "Tratar solo si su VDRL resulta reactivo.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El tratamiento de la pareja debe ser epidemiológico para evitar la reinfección de la gestante."
+          },
+          {
+            texto: "Citar a la pareja para evaluación, solicitud de exámenes y tratamiento inmediato.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! El tratamiento exitoso de la gestante incluye el tratamiento simultáneo de sus contactos sexuales."
+          },
+          {
+            texto: "No es necesario evaluarlo si la paciente se trata.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Es causa frecuente de falla del tratamiento materno y persistencia de riesgo fetal."
+          },
+          {
+            texto: "Indicar uso de preservativo únicamente.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Es preventivo futuro, pero requiere tratamiento curativo ahora."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Qué acción administrativa debe realizar tras confirmar la reactividad del VDRL?",
+        opciones: [
+          {
+            texto: "Llamar a la embajada de su país.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Realizar la Notificación Obligatoria (ENO) a la SEREMI de Salud.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! La sífilis es una enfermedad de notificación obligatoria diaria en Chile para vigilancia epidemiológica."
+          },
+          {
+            texto: "No se notifica para proteger la privacidad de migrantes.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La notificación es anónima para fines estadísticos y obligatoria por ley para control sanitario."
+          },
+          {
+            texto: "Informar a la policía de investigaciones (PDI).",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Cómo se debe realizar el seguimiento de la paciente post-tratamiento?",
+        opciones: [
+          {
+            texto: "Con VDRL mensual hasta el momento del parto.",
+            esCorrecta: true,
+            explicacion: "✅ ¡EXCELENTE! Se debe monitorizar el descenso de los títulos para confirmar la respuesta al tratamiento y descartar reinfección."
+          },
+          {
+            texto: "Repitiendo la prueba confirmatoria (FTA-ABS).",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Las pruebas treponémicas quedan positivas de por vida (cicatriz serológica)."
+          },
+          {
+            texto: "Solo con examen físico de genitales.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Un solo control a los 6 meses.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El seguimiento debe ser mensual en la gestante."
+          }
+        ]
+      }
+    ],
+    feedbackDinamico: {
+      bajo: "Debes repasar la Norma Técnica de Sífilis Gestacional. Recuerda que en el embarazo el tratamiento con Penicilina Benzatina es una urgencia preventiva.",
+      medio: "¡Buen avance! Manejas bien la terapéutica inicial. Refuerza los criterios de notificación obligatoria y seguimiento mensual.",
+      alto: "¡Excelente desempeño! Dominas el protocolo nacional de manejo de sífilis en APS y comprendes las implicancias del tratamiento de contactos."
+    },
+    referencias: [
+      "Guía Perinatal MINSAL 2015",
+      "Norma Técnica para la Prevención de la Transmisión Vertical de VIH y Sífilis, MINSAL Chile"
+    ]
+  },
+
+  {
+    // ============================================================================
+    // 📋 CASO 2: NIVEL 2 (MEDIA) - Enfoque: Interpretación y Toma de Decisiones
+    // Estructura: 6 MCQ + 1 SHORT | Viñeta: 182 palabras
+    // ============================================================================
+    id: "tema1-02-sifilis-seguimiento-n2",
+    titulo: "Falla de Tratamiento y Reinfección en Sífilis Gestacional",
+    area: "Tema 1: Embarazo y Control Prenatal",
+    modulo: "1.2 Patología del Embarazo",
+    dificultad: "2",
+    objetivosAprendizaje: [
+      "Interpretar curvas de títulos de VDRL en el seguimiento gestacional",
+      "Evaluar criterios de reinfección versus falla de tratamiento",
+      "Determinar la conducta ante una gestante con tratamiento inadecuado"
+    ],
+    vignette: "Paciente: L.G., 28 años, nacionalidad haitiana. Cursa embarazo de 32 semanas. Fue diagnosticada con Sífilis Gestacional a las 14 semanas (VDRL 1:64) y completó 3 dosis de Penicilina Benzatina. Su pareja no acudió a tratamiento a pesar de las citaciones. \n\nEn su control mensual actual, los resultados muestran: \n- VDRL a las 20 semanas: 1:16. \n- VDRL a las 26 semanas: 1:8. \n- VDRL actual (32 semanas): 1:32. \n\nLa paciente está asintomática. Refiere que mantiene relaciones sexuales con su pareja 'a veces con protección'. Usted debe analizar la evolución serológica, explicarle a la paciente por qué sus exámenes han empeorado y definir la conducta clínica para proteger al feto en el tercer trimestre, considerando las barreras culturales y de lenguaje.",
+    pasos: [
+      {
+        enunciado: "¿Cómo interpreta el aumento de títulos de VDRL de 1:8 a 1:32 a las 32 semanas?",
+        opciones: [
+          {
+            texto: "Es una respuesta normal al tratamiento previo.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El tratamiento exitoso debe producir un descenso sostenido de títulos."
+          },
+          {
+            texto: "Sujeto a error de laboratorio, no tiene relevancia.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Un aumento de dos diluciones o más (ej. de 1:8 a 1:32) es clínicamente significativo."
+          },
+          {
+            texto: "Reinfección probable debido a pareja no tratada.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! El aumento de títulos tras un descenso previo, sumado al antecedente de pareja no tratada, confirma una reinfección."
+          },
+          {
+            texto: "Falla biológica de la penicilina.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La resistencia del Treponema pallidum a la penicilina no está descrita; el aumento suele ser por reinfección."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Cuál es la conducta terapéutica indicada para la gestante en este momento?",
+        opciones: [
+          {
+            texto: "Observar y repetir VDRL en el parto.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Dejaría al feto expuesto a infección activa en el tercer trimestre."
+          },
+          {
+            texto: "Reiniciar esquema completo de 3 dosis de Penicilina Benzatina.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Ante reinfección o falla de descenso, se debe retratar a la gestante con el esquema completo según su estadio (en este caso, latente de duración desconocida)."
+          },
+          {
+            texto: "Indicar tratamiento oral con Eritromicina.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La eritromicina no cura al feto."
+          },
+          {
+            texto: "Dar una sola dosis de refuerzo.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El protocolo exige el esquema de 3 dosis en estos casos."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Qué hallazgo ecográfico podría sugerir afectación fetal por sífilis congénita en esta etapa?",
+        opciones: [
+          {
+            texto: "Microcefalia.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Placentomegalia, hepatomegalia fetal o signos de hidrops.",
+            esCorrecta: true,
+            explicacion: "✅ ¡EXCELENTE! Son signos de compromiso fetal severo por infección treponémica diseminada."
+          },
+          {
+            texto: "Gastrosquisis.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Polidactilia.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Cuál es el criterio para considerar que una gestante ha recibido un 'tratamiento adecuado'?",
+        opciones: [
+          {
+            texto: "Recibir al menos una dosis de cualquier antibiótico.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Penicilina Benzatina, dosis según estadio, terminada al menos 30 días antes del parto y con pareja tratada.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! El tiempo previo al parto (30 días) es vital para asegurar que el feto también complete su tratamiento in utero."
+          },
+          {
+            texto: "Tratamiento completo tras el nacimiento del bebé.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Uso de preservativo exclusivamente.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          }
+        ]
+      },
+      {
+        enunciado: "Ante la barrera idiomática con la paciente, ¿qué recurso es el más apropiado en la red de salud chilena?",
+        opciones: [
+          {
+            texto: "Usar señas únicamente.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Solicitar apoyo de un facilitador intercultural o sistema de tele-interpretación.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Asegura el consentimiento informado, la comprensión del tratamiento y la importancia del manejo de la pareja."
+          },
+          {
+            texto: "Pedirle que ella traiga su propio traductor pagado.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Es responsabilidad del sistema de salud garantizar la comunicación efectiva."
+          },
+          {
+            texto: "Atenderla solo si viene con alguien que hable español.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Es discriminatorio y vulnera el derecho a la atención."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Cuál es la complicación más grave de no retratar a esta paciente antes del parto?",
+        opciones: [
+          {
+            texto: "Diabetes gestacional.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Muerte fetal in utero o neurosífilis congénita.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! El riesgo de resultados adversos permanentes es muy alto sin tratamiento oportuno en el tercer trimestre."
+          },
+          {
+            texto: "Alergia materna.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Desprendimiento de placenta.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          }
+        ]
+      },
+      {
+        tipo: "short",
+        enunciado: "Justifique la decisión de retratar a la paciente a pesar de haber recibido 3 dosis previamente y explique por qué el tratamiento de la pareja es un pilar fundamental en este caso.",
+        criteriosEvaluacion: [
+          "aumento de títulos VDRL (2 diluciones)",
+          "diagnóstico de reinfección",
+          "prevención de sífilis congénita",
+          "tratamiento inadecuado por persistencia de riesgo (pareja)",
+          "efecto ping-pong"
+        ],
+        guia: "La decisión de retratar se fundamenta en el aumento de los títulos de VDRL (de 1:8 a 1:32), lo cual constituye evidencia de una reinfección activa. El tratamiento previo pierde su efectividad preventiva si la paciente se re-expone al microorganismo. El tratamiento de la pareja es fundamental porque, al ser la fuente probable de la infección, de no ser tratado, se produce un 'efecto ping-pong' (reinfecciones sucesivas), imposibilitando la curación definitiva de la gestante y manteniendo el riesgo de transmisión vertical hasta el parto."
+      }
+    ],
+    feedbackDinamico: {
+      bajo: "Es necesario reforzar la interpretación de la serología (diluciones) y los criterios de reinfección. Revisa la normativa técnica de transmisión vertical.",
+      medio: "Buen análisis. Identificas la reinfección, pero debes profundizar en los criterios de 'tratamiento adecuado' para el recién nacido.",
+      alto: "¡Excelente razonamiento clínico! Integras los datos serológicos, los factores sociales de la paciente y la normativa vigente con precisión."
+    },
+    referencias: [
+      "Norma Técnica para la Prevención de la Transmisión Vertical de VIH y Sífilis, MINSAL Chile",
+      "Manual de Obstetricia y Ginecología PUC"
+    ]
+  },
+  {
+    // ============================================================================
+    // 📋 CASO 24: NIVEL 1 (BAJA)
+    // ============================================================================
+    id: "tema1-02-vih-screening-n1",
+    titulo: "Screening Universal de VIH y Conducta Inicial",
+    area: "Tema 1: Embarazo y Control Prenatal",
+    modulo: "1.2 Patología del Embarazo",
+    dificultad: "1",
+    objetivosAprendizaje: [
+      "Reconocer el protocolo de tamizaje universal de VIH en la gestante",
+      "Identificar las medidas inmediatas de derivación a UNACESS",
+      "Describir la contraindicación absoluta de la lactancia materna en Chile"
+    ],
+    vignette: "Paciente: J.P., 20 años, primigesta, 14 semanas de gestación. Acude a su control de ingreso en el CESFAM. Se le ofrece y acepta la realización del Test Rápido de VIH como parte de los exámenes de rutina. \n\nA los 15 minutos, el resultado del Test Rápido es: REACTIVO. \n\nLa paciente se muestra muy angustiada. Usted debe manejar la situación clínica y administrativa, explicando los pasos a seguir para confirmar el diagnóstico y proteger al feto, basándose en la garantía GES y el protocolo de prevención de la transmisión vertical.",
+    pasos: [
+      {
+        enunciado: "Ante el resultado 'Reactivo' del Test Rápido en el CESFAM, ¿cuál es la interpretación clínica correcta?",
+        opciones: [
+          {
+            texto: "Es un diagnóstico definitivo de SIDA.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El test rápido es de tamizaje, no confirma diagnóstico ni estadio de la enfermedad."
+          },
+          {
+            texto: "Es un resultado de sospecha (Tamizaje positivo) que requiere confirmación por el Instituto de Salud Pública (ISP).",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Un test rápido reactivo indica presencia de anticuerpos probables, pero por ley en Chile, la confirmación diagnóstica es exclusiva del ISP."
+          },
+          {
+            texto: "Es un falso positivo por el embarazo.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Aunque existen falsos positivos, ante un reactivo se debe actuar asumiendo el riesgo hasta que el ISP diga lo contrario."
+          },
+          {
+            texto: "Indica que el feto ya está infectado.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La transmisión vertical es prevenible y no ocurre necesariamente en el primer trimestre."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Cuál es la conducta de derivación inmediata tras la toma de muestra venosa para confirmación?",
+        opciones: [
+          {
+            texto: "Enviar a domicilio y esperar resultado del ISP en 1 mes.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Se pierde tiempo valioso para el inicio de terapia antiretroviral (TARV)."
+          },
+          {
+            texto: "Derivar inmediatamente a la UNACESS (Unidad de Atención y Control en Salud Sexual) o Centro de Alto Riesgo.",
+            esCorrecta: true,
+            explicacion: "✅ ¡EXCELENTE! La gestión del caso es prioritaria (GES). La paciente debe ingresar a la UNACESS para evaluación infectológica e inicio de TARV profiláctico mientras se confirma."
+          },
+          {
+            texto: "Ingresar a hospitalización en Medicina.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Si está asintomática, el manejo es ambulatorio en unidad de especialidad."
+          },
+          {
+            texto: "Derivar a psicólogo solamente.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El apoyo psicológico es parte del equipo, pero la prioridad es la evaluación infectológica."
+          }
+        ]
+      },
+      {
+        enunciado: "En Chile, ¿cuál es la indicación respecto a la Lactancia Materna en pacientes VIH positivas?",
+        opciones: [
+          {
+            texto: "Permitida si la carga viral es indetectable.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. A diferencia de otras guías internacionales, en Chile la norma mantiene la contraindicación."
+          },
+          {
+            texto: "Contraindicada absolutamente. Se garantiza el acceso a fórmula láctea hasta los 6 meses (y subrogada hasta los 12).",
+            esCorrecta: true,
+            explicacion: "✅ ¡MUY BIEN! Para eliminar el riesgo de transmisión postnatal, se suspende la lactancia y el Estado provee sustituto lácteo gratuito."
+          },
+          {
+            texto: "Permitida solo los primeros días (calostro).",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El riesgo de transmisión existe en cualquier momento."
+          },
+          {
+            texto: "Depende de la decisión de la madre.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Es una indicación sanitaria normativa para protección del menor."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Cuál es el objetivo principal del inicio precoz de la Terapia Antirretroviral (TARV) en el embarazo?",
+        opciones: [
+          {
+            texto: "Curar la infección materna.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El VIH es una condición crónica tratable pero no curable actualmente."
+          },
+          {
+            texto: "Lograr una Carga Viral Indetectable para reducir la transmisión vertical a menos del 1-2%.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! La carga viral materna es el principal factor predictor de transmisión. Si es indetectable, el riesgo de infectar al feto es mínimo."
+          },
+          {
+            texto: "Evitar la preeclampsia.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. No es el objetivo primario."
+          },
+          {
+            texto: "Mejorar el peso fetal.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          }
+        ]
+      },
+      {
+        enunciado: "¿En qué momentos se debe ofrecer el tamizaje de VIH a la gestante según la norma chilena?",
+        opciones: [
+          {
+            texto: "Solo en el primer control.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Existe riesgo de seroconversión durante la gestación."
+          },
+          {
+            texto: "En el primer control prenatal y repetir entre las 32-34 semanas.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Se realiza al ingreso y se repite en el tercer trimestre para detectar infecciones adquiridas durante el embarazo."
+          },
+          {
+            texto: "Solo si tiene conductas de riesgo.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El tamizaje es universal (a todas)."
+          },
+          {
+            texto: "Solo en el parto.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Es muy tarde para la prevención antenatal."
+          }
+        ]
+      },
+      {
+        enunciado: "Si la paciente pregunta si su pareja debe hacerse el examen, ¿qué responde?",
+        opciones: [
+          {
+            texto: "No es necesario.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Sí, es fundamental para detectar discordancia y prevenir reinfección o primoinfección en el embarazo.",
+            esCorrecta: true,
+            explicacion: "✅ ¡EXCELENTE! El control de la pareja es clave. Si la pareja es positiva y la gestante negativa, ella está en alto riesgo de seroconversión (ventana inmunológica)."
+          },
+          {
+            texto: "Solo si la pareja se siente enferma.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El VIH tiene un largo periodo asintomático."
+          },
+          {
+            texto: "Está prohibido por confidencialidad.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Se debe invitar a la pareja al tamizaje voluntario."
+          }
+        ]
+      }
+    ],
+    feedbackDinamico: {
+      bajo: "¡Atención! El tamizaje de VIH es una acción básica de salud pública. Recuerda: Test Reactivo = Derivación Inmediata a UNACESS, no esperar ISP.",
+      medio: "¡Vas bien! Manejas el flujo de derivación. Refuerza los momentos de tamizaje (ingreso y 32-34 sem) y la normativa de lactancia.",
+      alto: "¡Excelente! Comprendes la importancia del diagnóstico precoz y la gestión GES para lograr la meta de transmisión vertical cero."
+    },
+    referencias: [
+      "Norma Conjunta de Prevención de la Transmisión Vertical de VIH y Sífilis, MINSAL",
+      "Guía Clínica GES VIH/SIDA",
+      "Guía Perinatal 2015"
+    ]
+  },
+
+  {
+    // ============================================================================
+    // 📋 CASO 25: NIVEL 3 (ALTA)
+    // ============================================================================
+    id: "tema1-02-vih-parto-carga-viral-n3",
+    titulo: "VIH en el Parto: Decisión de Vía y Profilaxis",
+    area: "Tema 1: Embarazo y Control Prenatal",
+    modulo: "1.2 Patología del Embarazo",
+    dificultad: "3",
+    objetivosAprendizaje: [
+      "Determinar la vía de parto según la Carga Viral (CV) a las 34-38 semanas",
+      "Indicar el protocolo de Zidovudina (AZT) endovenosa intraparto",
+      "Gestionar la prevención en el recién nacido de alto riesgo"
+    ],
+    vignette: "Paciente: A.D., 30 años, G3P2, nacionalidad extranjera. Ingresa a la Maternidad con 38 semanas de gestación para resolución del parto. \n\nAntecedentes: Diagnóstico de VIH conocido, con inicio tardío de Terapia Antirretroviral (TARV) a las 28 semanas por ingreso irregular al país. \n\nExamen Físico: PA: 120/80. Feto en cefálica, sin dinámica uterina. \n\nDatos Clave: \n- Carga Viral (CV) tomada a las 34 semanas: 5.000 copias/ml. \n- No tiene CV más reciente. \n\nUsted como matrona/matrón de turno debe decidir la vía de parto, gestionar la profilaxis farmacológica intraparto y coordinar la atención inmediata del recién nacido.",
+    pasos: [
+      {
+        enunciado: "Considerando una Carga Viral de 5.000 copias/ml a las 34 semanas (último dato disponible), ¿cuál es la vía de parto indicada?",
+        opciones: [
+          {
+            texto: "Parto vaginal con forceps.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El parto vaginal está contraindicado con CV > 1.000 copias por alto riesgo de transmisión."
+          },
+          {
+            texto: "Cesárea Electiva a las 38 semanas, antes del inicio del trabajo de parto.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Con una CV > 1.000 copias/ml (o desconocida cercana al término), se indica cesárea electiva para evitar el contacto del feto con secreciones vaginales y sangre durante el trabajo de parto."
+          },
+          {
+            texto: "Inducción del parto con oxitocina.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Aumenta el riesgo de microtransfusiones y exposición."
+          },
+          {
+            texto: "Parto vaginal si las membranas están íntegras.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Solo se permite parto vaginal si la CV es < 1.000 copias/ml (idealmente indetectable) y hay condiciones obstétricas favorables."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Cuál es el esquema de profilaxis intraparto con Zidovudina (AZT) endovenosa para esta paciente?",
+        opciones: [
+          {
+            texto: "No requiere AZT porque toma pastillas.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Con CV > 1.000 copias, el AZT endovenoso es obligatorio para 'bañar' al feto de antiretroviral antes de nacer."
+          },
+          {
+            texto: "AZT 2 mg/kg en carga (1 hora) y luego 1 mg/kg/hora en mantención hasta ligar el cordón.",
+            esCorrecta: true,
+            explicacion: "✅ ¡EXCELENTE! La infusión debe iniciarse 3 a 4 horas antes de la cesárea electiva para alcanzar niveles plasmáticos terapéuticos en el feto al momento del nacimiento."
+          },
+          {
+            texto: "Bolus único de AZT al momento de la incisión.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. No alcanza niveles tisulares adecuados."
+          },
+          {
+            texto: "AZT oral cada 4 horas.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La absorción oral es errática en el intraparto; se usa la vía endovenosa."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Qué precaución específica se debe tener con las membranas ovulares durante la cesárea?",
+        opciones: [
+          {
+            texto: "Romperlas artificialmente apenas se abre el útero.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Se debe mantener la integridad el mayor tiempo posible."
+          },
+          {
+            texto: "Extracción del feto con las membranas íntegras (cesárea empelotada) en lo posible.",
+            esCorrecta: true,
+            explicacion: "✅ ¡MUY BIEN! Mantener la bolsa íntegra hasta la extracción reduce el contacto directo del feto con la sangre materna del campo quirúrgico."
+          },
+          {
+            texto: "Realizar amniocentesis intraoperatoria.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "No tiene importancia.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La rotura de membranas >4 horas aumenta linealmente el riesgo de transmisión."
+          }
+        ]
+      },
+      {
+        enunciado: "Respecto al recién nacido, al ser hijo de madre con CV > 1.000 (Alto Riesgo), ¿cuál es el esquema profiláctico neonatal?",
+        opciones: [
+          {
+            texto: "Solo Zidovudina (AZT) por 4 semanas.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Ese esquema es para bajo riesgo (madre indetectable)."
+          },
+          {
+            texto: "Esquema multidroga (AZT + Lamivudina o Nevirapina) según protocolo de Infectología.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Al ser un escenario de alto riesgo de transmisión, se intensifica la profilaxis neonatal combinando fármacos."
+          },
+          {
+            texto: "Observación sin fármacos.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Sería negligencia."
+          },
+          {
+            texto: "Vacuna BCG inmediata solamente.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La BCG se difiere hasta descartar infección si hay alto riesgo (aunque la norma varía, la prioridad es el ARV)."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Qué indicación farmacológica post-parto inmediata se debe dar a la madre para inhibir la lactancia?",
+        opciones: [
+          {
+            texto: "Vendaje compresivo de mamas.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Método físico doloroso y menos efectivo que el farmacológico."
+          },
+          {
+            texto: "Cabergolina 0.25 mg cada 12 horas por 2 días o dosis única de 1 mg (según protocolo local).",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! La inhibición farmacológica debe ser inmediata para evitar la bajada de la leche y la mastitis, facilitando la adherencia a la fórmula."
+          },
+          {
+            texto: "Oxitocina endovenosa.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La oxitocina estimula la eyección láctea."
+          },
+          {
+            texto: "Paracetamol.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Qué método anticonceptivo debe ofrecerse para el puerperio inmediato antes del alta?",
+        opciones: [
+          {
+            texto: "Método de la temperatura basal.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Baja eficacia."
+          },
+          {
+            texto: "Anticoncepción efectiva (DIU, Implante o Ligadura) para evitar embarazo no planificado inmediato.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Se debe asegurar la anticoncepción segura antes del alta para planificar futuros embarazos con carga viral indetectable."
+          },
+          {
+            texto: "Lactancia materna exclusiva como método MELA.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La lactancia está contraindicada."
+          },
+          {
+            texto: "Ninguno, el VIH causa infertilidad.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Mito."
+          }
+        ]
+      },
+      {
+        enunciado: "Para el equipo quirúrgico, ¿cuál es una medida de precaución estándar reforzada recomendada en esta cesárea?",
+        opciones: [
+          {
+            texto: "Usar escafandra.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Excesivo."
+          },
+          {
+            texto: "Uso de doble guante quirúrgico.",
+            esCorrecta: true,
+            explicacion: "✅ ¡EXCELENTE! El doble guante reduce significativamente el riesgo de exposición a sangre en caso de pinchazo accidental de la primera capa."
+          },
+          {
+            texto: "No usar bisturí eléctrico.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Se usa para hemostasia."
+          },
+          {
+            texto: "Operar a oscuras.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          }
+        ]
+      },
+      {
+        tipo: "short",
+        enunciado: "Justifique la indicación de Cesárea Electiva a las 38 semanas en esta paciente, explicando la relación entre Carga Viral y riesgo de transmisión intraparto.",
+        criteriosEvaluacion: [
+          "carga viral > 1000 copias",
+          "alto riesgo de transmisión",
+          "evitar trabajo de parto",
+          "evitar rotura de membranas",
+          "microtransfusiones",
+          "cesárea preventiva"
+        ],
+        guia: "La indicación de Cesárea Electiva a las 38 semanas se fundamenta en que la paciente presenta una Carga Viral > 1.000 copias/ml (5.000 en el último control). En este escenario, el riesgo de transmisión vertical durante un parto vaginal es elevado (debido a la exposición del feto a sangre y secreciones maternas infectadas y microtransfusiones durante las contracciones). La cesárea programada evita el inicio del trabajo de parto y la rotura de membranas, mecanismos principales de infección intraparto, reduciendo el riesgo de transmisión en un 50-80% adicional al uso de AZT."
+      }
+    ],
+    feedbackDinamico: {
+      bajo: "¡Cuidado! El manejo del parto en VIH es crítico. Si te equivocas en la vía de parto, expones al niño a una infección de por vida. Revisa los puntos de corte de carga viral.",
+      medio: "¡Bien! Conoces la indicación de cesárea. Refuerza los tiempos de administración del AZT endovenoso y la profilaxis neonatal combinada.",
+      alto: "¡Excelente! Manejas con seguridad el protocolo de alto riesgo obstétrico-infectológico, protegiendo al binomio con decisiones basadas en la evidencia y normativa vigente."
+    },
+    referencias: [
+      "Norma Conjunta de Prevención de la Transmisión Vertical de VIH y Sífilis, MINSAL",
+      "Guía Clínica GES VIH/SIDA"
+    ]
+  },
+  {
+    // ============================================================================
+    // 📋 CASO 26: NIVEL 2 (MEDIA) - Enfoque: TBC y Epidemiología
+    // ============================================================================
+    id: "tema1-02-tbc-gestante-n2",
+    titulo: "Tuberculosis en la Gestante: Pesquisa y Manejo",
+    area: "Tema 1: Embarazo y Control Prenatal",
+    modulo: "1.2 Patología del Embarazo",
+    dificultad: "2",
+    objetivosAprendizaje: [
+      "Identificar a la gestante Sintomática Respiratoria en zonas de alta prevalencia",
+      "Indicar el estudio diagnóstico seguro (Baciloscopía y Radiografía con protección)",
+      "Determinar la seguridad del tratamiento antituberculoso en el embarazo"
+    ],
+    vignette: "Paciente: Y.C., 25 años, extranjera, residente en una comuna céntrica de la Región Metropolitana. Cursa embarazo de 24 semanas. \n\nMotivo de consulta: Tos productiva de más de 3 semanas de evolución, sudoración nocturna y sensación febril no cuantificada. Refiere que vive en una casa compartida con varias familias (hacinamiento). \n\nExamen Físico: PA: 110/70 mmHg. Pulmones: Murmullo pulmonar positivo, estertores en ápice derecho. \n\nUsted sospecha una Tuberculosis (TBC) dada la epidemiología actual en Chile. La paciente tiene miedo de hacerse radiografías 'por la radiación al bebé' y de tomar remedios fuertes.",
+    pasos: [
+      {
+        enunciado: "Según la definición del Programa Nacional de Tuberculosis, ¿cómo se clasifica a esta paciente y cuál es la conducta inmediata?",
+        opciones: [
+          {
+            texto: "Cuadro gripal prolongado; indicar jarabe para la tos.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Una tos > 15 días es criterio de sospecha mayor."
+          },
+          {
+            texto: "Sintomática Respiratoria (SR); solicitar Baciloscopía (o PCR) de expectoración inmediata y muestra rápida.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Toda persona con tos y expectoración por más de 15 días es SR y requiere estudio de esputo inmediato para descartar TBC pulmonar."
+          },
+          {
+            texto: "Neumonía atípica; derivar a urgencia.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El cuadro es crónico (>3 semanas), sugestivo de TBC."
+          },
+          {
+            texto: "Alergia estacional; dar antihistamínicos.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          }
+        ]
+      },
+      {
+        enunciado: "Respecto a la Radiografía de Tórax en el embarazo para estudio de TBC, ¿qué información es correcta?",
+        opciones: [
+          {
+            texto: "Está absolutamente contraindicada en todo el embarazo.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El riesgo de la TBC no tratada supera el riesgo teórico de la radiación."
+          },
+          {
+            texto: "Se puede realizar en cualquier trimestre utilizando protección abdominal (delantal plomado).",
+            esCorrecta: true,
+            explicacion: "✅ ¡MUY BIEN! La dosis de radiación de una Rx de tórax es mínima (<0.01 mGy) y no alcanza el umbral teratogénico, especialmente con protección abdominal."
+          },
+          {
+            texto: "Solo se permite después de las 28 semanas.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Se debe diagnosticar lo antes posible."
+          },
+          {
+            texto: "Se debe reemplazar por Resonancia Magnética.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La Rx es el estándar para TBC pulmonar."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Cuál es el esquema de tratamiento farmacológico estándar para TBC en la embarazada en Chile?",
+        opciones: [
+          {
+            texto: "Está prohibido el tratamiento hasta el parto.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La TBC activa conlleva riesgo de TBC congénita y morbilidad materna grave."
+          },
+          {
+            texto: "Isoniazida, Rifampicina, Pirazinamida y Etambutol (Esquema estándar).",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Los fármacos de primera línea se consideran seguros en el embarazo. El beneficio supera ampliamente los riesgos teóricos."
+          },
+          {
+            texto: "Solo se usa Isoniazida en monoterapia.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La monoterapia genera resistencia bacteriana."
+          },
+          {
+            texto: "Estreptomicina inyectable.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La Estreptomicina está contraindicada por ototoxicidad fetal (sordera congénita)."
+          }
+        ]
+      },
+      {
+        enunciado: "Dado el contexto de riesgo, ¿qué co-infección es mandatorio descartar nuevamente?",
+        opciones: [
+          {
+            texto: "VIH (Virus de Inmunodeficiencia Humana).",
+            esCorrecta: true,
+            explicacion: "✅ ¡EXCELENTE! La coinfección TBC/VIH es frecuente y cambia el pronóstico. Se debe repetir el test de VIH ante el diagnóstico de TBC."
+          },
+          {
+            texto: "Hepatitis A.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Toxoplasmosis.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Rubéola.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          }
+        ]
+      },
+      {
+        enunciado: "Respecto a la lactancia materna si la madre está en tratamiento y ya no es bacilífera (contagiosa), ¿cuál es la indicación?",
+        opciones: [
+          {
+            texto: "Suspender lactancia permanentemente.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Los fármacos pasan poco a la leche y no son tóxicos."
+          },
+          {
+            texto: "Mantener lactancia materna, utilizando mascarilla si aún hay tos residual, y continuar tratamiento.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! La lactancia es segura si la madre no es bacilífera o está en tratamiento efectivo. La profilaxis al RN con Isoniazida se indica según norma."
+          },
+          {
+            texto: "Extraer la leche y pasteurizarla.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Innecesario."
+          },
+          {
+            texto: "Esperar 6 meses post parto.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Qué acción de salud pública es vital realizar con los contactos intradomiciliarios (personas con las que vive)?",
+        opciones: [
+          {
+            texto: "Aislarlos en un hotel sanitario.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Estudio de contactos (tamizaje) para detectar casos activos o latentes.",
+            esCorrecta: true,
+            explicacion: "✅ ¡MUY BIEN! Es fundamental cortar la cadena de transmisión, especialmente si hay niños en el hogar."
+          },
+          {
+            texto: "Vacunarlos con BCG inmediatamente.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Primero se debe descartar enfermedad activa."
+          },
+          {
+            texto: "No se requiere acción si están sanos.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La TBC puede ser subclínica."
+          }
+        ]
+      },
+      {
+        tipo: "short",
+        enunciado: "Explique por qué el embarazo se considera un factor de riesgo para la reactivación o progresión de la Tuberculosis desde el punto de vista inmunológico.",
+        criteriosEvaluacion: [
+          "inmunidad celular",
+          "linfocitos T",
+          "tolerancia inmunológica",
+          "estado pro-inflamatorio",
+          "reactivación bacilar"
+        ],
+        guia: "El embarazo induce un estado de modulación inmunológica fisiológica (disminución de la inmunidad celular mediada por linfocitos Th1) para tolerar el injerto fetal semialogénico. Esta supresión relativa de la inmunidad celular puede facilitar la progresión de una infección tuberculosa latente a una enfermedad activa o agravar un cuadro primario, ya que el control del bacilo de Koch depende precisamente de la respuesta celular."
+      }
+    ],
+    feedbackDinamico: {
+      bajo: "¡Ojo! La TBC está re-emergiendo en Chile. No tengas miedo de pedir una Rx de Tórax con protección si la sospecha es alta. Revisa el Programa de TBC.",
+      medio: "¡Bien! Manejas el diagnóstico. Recuerda que el tratamiento estándar es seguro y prioritario para evitar la TBC congénita.",
+      alto: "¡Excelente! Integras la epidemiología actual con el manejo clínico seguro y las acciones de salud pública necesarias."
+    },
+    referencias: [
+      "Norma Técnica Programa Nacional de Control y Eliminación de la Tuberculosis, MINSAL",
+      "Guía Perinatal 2015"
+    ]
+  },
+
+  {
+    // ============================================================================
+    // 📋 CASO 27: NIVEL 2 (MEDIA) - Enfoque: Ley IVE Causal 3
+    // ============================================================================
+    id: "tema1-02-ive-causal3-n2",
+    titulo: "Ley IVE Causal 3: Embarazo por Violación",
+    area: "Tema 1: Embarazo y Control Prenatal",
+    modulo: "1.2 Patología del Embarazo",
+    dificultad: "2",
+    objetivosAprendizaje: [
+      "Identificar los plazos legales para la interrupción del embarazo en Causal 3",
+      "Reconocer el rol del equipo biopsicosocial en la constitución de la causal",
+      "Aplicar el protocolo de toma de muestras para cadena de custodia"
+    ],
+    vignette: "Paciente: A.R., 16 años. Acude al Servicio de Urgencia Ginecológica solicitando ayuda. Relata haber sido víctima de una agresión sexual hace 10 semanas por un desconocido. No consultó antes por miedo. \n\nSe realiza ecografía que confirma embarazo intrauterino de 10+4 semanas, LCF presentes. La paciente manifiesta su voluntad firme de no continuar con el embarazo invocando la Ley 21.030 (IVE). \n\nUsted debe activar el protocolo de la Causal 3 (Embarazo resultado de una violación), coordinar el equipo y manejar la evidencia.",
+    pasos: [
+      {
+        enunciado: "¿Cuál es el plazo límite de edad gestacional para invocar la Causal 3 (Violación) en esta paciente de 16 años?",
+        opciones: [
+          {
+            texto: "Hasta las 12 semanas de gestación.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Para mayores de 14 años, la ley establece un límite de 12 semanas para la interrupción por causal de violación."
+          },
+          {
+            texto: "Hasta las 14 semanas de gestación.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El plazo de 14 semanas aplica solo para niñas menores de 14 años."
+          },
+          {
+            texto: "Hasta las 22 semanas.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. No corresponde a esta causal."
+          },
+          {
+            texto: "Sin límite de edad gestacional.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Solo la Causal 1 (Riesgo vital) no tiene límite de plazo."
+          }
+        ]
+      },
+      {
+        enunciado: "Para constituir la causal 3, ¿qué se requiere obligatoriamente además del relato de la paciente y la confirmación de la edad gestacional?",
+        opciones: [
+          {
+            texto: "Una denuncia previa en Carabineros.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La ley no exige que la mujer haya denunciado el delito para acceder a la prestación de salud."
+          },
+          {
+            texto: "La evaluación concordante de un equipo de salud (médico + dupla psicosocial).",
+            esCorrecta: true,
+            explicacion: "✅ ¡MUY BIEN! Un equipo biopsicosocial debe evaluar el relato y la consistencia de los hechos para constituir la causal médica-legal."
+          },
+          {
+            texto: "La autorización de los padres notariada.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La adolescente tiene autonomía progresiva; si bien se informa al representante, la voluntad de la menor es central."
+          },
+          {
+            texto: "Un examen ginecológico que demuestre lesiones recientes.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La ausencia de lesiones físicas no descarta la violación, especialmente tras 10 semanas."
+          }
+        ]
+      },
+      {
+        enunciado: "Si el médico obstetra de turno es objetor de conciencia para la Causal 3, ¿cuál es la obligación del establecimiento?",
+        opciones: [
+          {
+            texto: "Negar la atención y dar el alta.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El establecimiento no puede ser objetor institucional (en el sistema público) y debe garantizar la atención."
+          },
+          {
+            texto: "Derivar o reasignar de inmediato a otro profesional no objetor para garantizar la prestación.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! La objeción es personal. El jefe de turno/director debe asegurar que otro profesional realice el procedimiento sin dilaciones."
+          },
+          {
+            texto: "Obligar al médico objetor a realizarlo.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Se debe respetar la objeción declarada, salvo riesgo vital inminente (Causal 1) donde no aplica objeción."
+          },
+          {
+            texto: "Esperar a que cambie el turno al día siguiente.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El tiempo es crítico."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Qué se debe hacer con los tejidos fetales/embrionarios obtenidos tras la interrupción en Causal 3?",
+        opciones: [
+          {
+            texto: "Eliminarlos como desechos biológicos comunes.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Deben ser resguardados para cadena de custodia (muestras de ADN) para eventual investigación penal.",
+            esCorrecta: true,
+            explicacion: "✅ ¡EXCELENTE! En causal de violación, aunque la mujer no denuncie, el establecimiento debe preservar muestras de ADN fetal para cotejo genético futuro si se inicia una causa judicial."
+          },
+          {
+            texto: "Entregarlos a la paciente inmediatamente.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Por ser evidencia potencial, requieren manejo legal."
+          },
+          {
+            texto: "Donarlos a ciencia.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Cuál es el programa de acompañamiento que se debe ofrecer (pero no imponer) a la paciente?",
+        opciones: [
+          {
+            texto: "Programa de Adopción.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Programa de Acompañamiento Psicosocial de la Ley IVE.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! La ley garantiza acompañamiento biopsicosocial antes, durante y después del procedimiento, siendo voluntario para la usuaria aceptarlo."
+          },
+          {
+            texto: "Terapia de conversión.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Antiético."
+          },
+          {
+            texto: "Charlas religiosas.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El acompañamiento debe ser laico y objetivo."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Cuál es el método farmacológico de elección recomendado para la interrupción en el primer trimestre?",
+        opciones: [
+          {
+            texto: "Oxitocina sola.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Poca sensibilidad de receptores en 1er trimestre."
+          },
+          {
+            texto: "Mifepristona seguida de Misoprostol.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! El esquema combinado (antiprogestágeno + prostaglandina) es el más efectivo y seguro para la interrupción médica del embarazo."
+          },
+          {
+            texto: "Metotrexato.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Se usa para ectópicos, no para IVE intrauterino estándar."
+          },
+          {
+            texto: "Legrado instrumental de entrada.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El AMEU o fármacos son preferibles al legrado (cureta) por menor riesgo de sinequias/perforación."
+          }
+        ]
+      },
+      {
+        tipo: "short",
+        enunciado: "Explique el concepto de 'Voluntariedad' en la Ley IVE y el rol del 'Consentimiento Informado' en este caso de una menor de edad (16 años).",
+        criteriosEvaluacion: [
+          "voluntad expresa",
+          "no coacción",
+          "autonomía progresiva",
+          "consentimiento informado escrito",
+          "información veraz",
+          "acompañamiento no disuasivo"
+        ],
+        guia: "La voluntariedad implica que la decisión de interrumpir el embarazo debe ser tomada libremente por la mujer, sin coacción de terceros ni del equipo de salud. En una adolescente de 16 años, se aplica el principio de autonomía progresiva: ella firma su propio Consentimiento Informado tras recibir información veraz y completa. Si bien se debe informar a sus representantes legales, la decisión final recae en la adolescente, salvo que exista riesgo vital o incapacidad mental."
+      }
+    ],
+    feedbackDinamico: {
+      bajo: "Es fundamental conocer el marco legal. Recuerda: Causal 3 tiene plazos estrictos (12 semanas para >14 años). Revisa la Ley 21.030.",
+      medio: "¡Bien! Manejas los plazos y la objeción. No olvides la importancia de la cadena de custodia de muestras para fines legales.",
+      alto: "¡Excelente! Comprendes la complejidad bioética, legal y clínica de la Ley IVE, garantizando los derechos de la paciente."
+    },
+    referencias: [
+      "Ley 21.030 Despenalización de la interrupción voluntaria del embarazo en tres causales",
+      "Norma Técnica Nacional Acompañamiento y Atención Integral Ley IVE, MINSAL"
+    ]
+  },
+
+  {
+    // ============================================================================
+    // 📋 CASO 28: NIVEL 3 (ALTA) - Enfoque: Emergencia Vital
+    // ============================================================================
+    id: "tema1-02-crisis-hta-n3",
+    titulo: "Crisis Hipertensiva y Emergencia Obstétrica",
+    area: "Tema 1: Embarazo y Control Prenatal",
+    modulo: "1.2 Patología del Embarazo",
+    dificultad: "3",
+    objetivosAprendizaje: [
+      "Diagnosticar la Crisis Hipertensiva en el embarazo según cifras tensionales",
+      "Aplicar el protocolo de manejo agudo con drogas endovenosas u orales rápidas",
+      "Gestionar la prevención de eclampsia con Sulfato de Magnesio y monitorizar toxicidad"
+    ],
+    vignette: "Paciente: M.S., 38 años, cursando 36 semanas de gestación. Ingresa a Urgencia Maternidad traída por SAMU. \n\nCuadro clínico: Compromiso del estado general, cefalea explosiva 10/10 y visión borrosa. \n\nSignos Vitales: PA: 170/115 mmHg (repetida y confirmada). FC: 95 lpm. \nROT (Reflejos Osteotendíneos): Hiperreflexia patelar. Clonus (+). \n\nUsted se enfrenta a una Emergencia Hipertensiva con riesgo inminente de Eclampsia. Debe indicar el manejo farmacológico inmediato para reducir la presión arterial a rango seguro y prevenir convulsiones, antes de proceder a la interrupción del embarazo.",
+    pasos: [
+      {
+        enunciado: "¿Cuál es el criterio diagnóstico de 'Crisis Hipertensiva' (Emergencia) en el embarazo?",
+        opciones: [
+          {
+            texto: "PA ≥ 140/90 mmHg.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Eso es hipertensión, pero no crisis."
+          },
+          {
+            texto: "PA Sistólica ≥ 160 mmHg y/o Diastólica ≥ 110 mmHg.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Cifras iguales o superiores a 160/110 mmHg constituyen una emergencia médica por riesgo de Accidente Cerebrovascular (ACV) hemorrágico materno."
+          },
+          {
+            texto: "PA ≥ 180/120 mmHg solamente.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El umbral en la embarazada es más bajo que en la población general."
+          },
+          {
+            texto: "Cualquier alza de presión con dolor de cabeza.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Requiere cumplir el criterio de cifra tensional."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Cuál es el fármaco de primera línea para el manejo agudo de la crisis hipertensiva (bajar la presión) disponible en la urgencia obstétrica chilena?",
+        opciones: [
+          {
+            texto: "Enalapril sublingual.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Contraindicado en embarazo."
+          },
+          {
+            texto: "Labetalol endovenoso (Bolos de 20-40-80 mg) o Nifedipino oral (10-20 mg).",
+            esCorrecta: true,
+            explicacion: "✅ ¡EXCELENTE! El Labetalol EV es el estándar para control rápido. El Nifedipino oral es una alternativa válida si no hay vía venosa inmediata."
+          },
+          {
+            texto: "Metildopa oral.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Su acción es lenta (horas), no sirve para crisis aguda."
+          },
+          {
+            texto: "Furosemida endovenosa.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Los diuréticos no son primera línea y pueden empeorar la hipovolemia relativa."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Cuál es la meta terapéutica de presión arterial en la fase aguda?",
+        opciones: [
+          {
+            texto: "Normalizar a 120/80 mmHg inmediatamente.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Una bajada brusca puede causar hipoperfusión cerebral materna y distress fetal."
+          },
+          {
+            texto: "Bajar la PA a rango seguro (ej. 140-150/90-100 mmHg) de forma controlada.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Se busca salir del rango de riesgo de ACV (<160/110) sin provocar hipotensión que comprometa el flujo placentario."
+          },
+          {
+            texto: "Bajar la sistólica a menos de 100 mmHg.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Peligroso para el feto."
+          },
+          {
+            texto: "Mantener la presión alta para perfundir órganos.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El riesgo de hemorragia cerebral es inminente."
+          }
+        ]
+      },
+      {
+        enunciado: "Ante la hiperreflexia y clonus (inminencia de eclampsia), ¿qué fármaco debe iniciar en paralelo al antihipertensivo?",
+        opciones: [
+          {
+            texto: "Sulfato de Magnesio (Carga 4-5g EV, luego mantención).",
+            esCorrecta: true,
+            explicacion: "✅ ¡MUY BIEN! Es el anticonvulsivante específico para la eclampsia. Estabiliza la membrana neuronal y reduce el vasoespasmo cerebral."
+          },
+          {
+            texto: "Diazepam 10 mg IM.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. No es primera línea y deprime al feto."
+          },
+          {
+            texto: "Fenitoína.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Segunda línea."
+          },
+          {
+            texto: "Gluconato de Calcio.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Ese es el antídoto, no el tratamiento."
+          }
+        ]
+      },
+      {
+        enunciado: "Durante la infusión de Sulfato de Magnesio, la paciente presenta frecuencia respiratoria de 8 rpm y ausencia de reflejo patelar. ¿Qué está ocurriendo?",
+        opciones: [
+          {
+            texto: "Es el efecto esperado del medicamento.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Intoxicación por Sulfato de Magnesio.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! La pérdida de reflejos (arreflexia) y la depresión respiratoria (<12 rpm) son signos de toxicidad grave que precede al paro respiratorio."
+          },
+          {
+            texto: "Está entrando en sueño profundo normal.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Es una reacción alérgica.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Cuál es la conducta inmediata ante la sospecha de intoxicación por Sulfato de Magnesio?",
+        opciones: [
+          {
+            texto: "Aumentar la velocidad de infusión.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Suspender la infusión de Magnesio y administrar Gluconato de Calcio 1g EV lento.",
+            esCorrecta: true,
+            explicacion: "✅ ¡EXCELENTE! El Gluconato de Calcio es el antídoto específico que revierte el bloqueo neuromuscular del magnesio."
+          },
+          {
+            texto: "Administrar Flumazenil.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Antídoto de benzodiacepinas."
+          },
+          {
+            texto: "Solo suspender y observar.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Con depresión respiratoria se requiere antagonista activo."
+          }
+        ]
+      },
+      {
+        "tipo": "short",
+        "enunciado": "Describa los 3 pilares del manejo de la Crisis Hipertensiva en el embarazo antes de la interrupción.",
+        "criteriosEvaluacion": [
+          "control de presión arterial",
+          "prevención de eclampsia",
+          "evaluación bienestar fetal",
+          "Labetalol/Nifedipino",
+          "Sulfato de Magnesio",
+          "estabilización materna"
+        ],
+        "guia": "Los 3 pilares son: 1) Control rápido de la Presión Arterial (Antihipertensivos de acción rápida como Labetalol EV o Nifedipino oral) para prevenir ACV; 2) Prevención de convulsiones/Eclampsia (Neuroprotección con Sulfato de Magnesio); y 3) Evaluación de la unidad feto-placentaria y estabilización materna general antes de proceder a la interrupción del embarazo (la cual es el tratamiento definitivo)."
+      }
+    ],
+    feedbackDinamico: {
+      bajo: "¡Urgencia Vital! La Crisis Hipertensiva requiere acción en minutos. Memoriza las dosis de Labetalol y Sulfato de Magnesio. Revisa la Guía SHE.",
+      medio: "¡Vas bien! Identificas los fármacos. Ten cuidado con los signos de toxicidad del magnesio y el antídoto.",
+      alto: "¡Excelente manejo de la emergencia! Tienes claros los objetivos terapéuticos y la seguridad farmacológica en situaciones críticas."
+    },
+    referencias: [
+      "Guía Clínica Síndrome Hipertensivo del Embarazo, MINSAL",
+      "Protocolo de Emergencias Obstétricas",
+      "Manual ARO"
+    ]
+ },
+  {
+    // ============================================================================
+    // 📋 CASO 29: NIVEL 1 (BAJA)
+    // ============================================================================
+    id: "tema1-02-bacteriuria-asintomatica-n1",
+    titulo: "Tamizaje de Infección Urinaria: Bacteriuria Asintomática",
+    area: "Tema 1: Embarazo y Control Prenatal",
+    modulo: "1.2 Patología del Embarazo",
+    dificultad: "1",
+    objetivosAprendizaje: [
+      "Diferenciar Bacteriuria Asintomática de Cistitis Aguda",
+      "Reconocer el tratamiento antibiótico de primera línea en APS",
+      "Identificar la importancia del urocultivo de control"
+    ],
+    vignette: "Paciente: C.A., 19 años, primigesta, cursando su segundo control prenatal a las 16 semanas en APS. \n\nAnamnesis: La paciente niega disuria, poliaquiuria, tenesmo vesical o fiebre. Se siente bien. \n\nExámenes: Trae resultado de Urocultivo de rutina (tomado al ingreso) que informa: \n- Germen: Escherichia coli. \n- Recuento: > 100.000 UFC/ml. \n- Antibiograma: Sensible a Nitrofurantoína y Cefadroxilo. \n\nUsted debe indicar el manejo según la normativa del Programa de Salud de la Mujer, considerando que la infección urinaria es la causa más frecuente de hospitalización en el embarazo.",
+    pasos: [
+      {
+        enunciado: "Dado que la paciente no tiene síntomas, ¿cuál es el diagnóstico correcto?",
+        opciones: [
+          {
+            texto: "Muestra contaminada.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Un recuento >100.000 UFC de un monomicrobiano (E. coli) se considera patológico, no contaminación."
+          },
+          {
+            texto: "Bacteriuria Asintomática.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Se define como la presencia de bacterias significativas en orina (>100.000 UFC/ml) en ausencia de síntomas clínicos específicos."
+          },
+          {
+            texto: "Cistitis Aguda.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La cistitis requiere la presencia de clínica (disuria, dolor pélvico, urgencia miccional)."
+          },
+          {
+            texto: "Pielonefritis Aguda.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. No hay fiebre, compromiso del estado general ni puño percusión positiva."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Por qué es obligatorio tratar este cuadro aunque la paciente no sienta nada?",
+        opciones: [
+          {
+            texto: "Para evitar que la orina tenga mal olor.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Es un tema estético, no clínico."
+          },
+          {
+            texto: "Porque tiene un 30-40% de riesgo de progresar a Pielonefritis Aguda y causar Parto Prematuro.",
+            esCorrecta: true,
+            explicacion: "✅ ¡EXCELENTE! El tratamiento de la bacteriuria asintomática es una de las medidas más costo-efectivas para prevenir la sepsis materna y la prematuridad."
+          },
+          {
+            texto: "Para evitar la transmisión sexual de la bacteria.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La E. coli urinaria no es una ITS clásica en este contexto."
+          },
+          {
+            texto: "Es opcional, se puede solo observar.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. En el embarazo NUNCA se observa; siempre se trata."
+          }
+        ]
+      },
+      {
+        enunciado: "Según el antibiograma y la edad gestacional (16 semanas), ¿cuál es un tratamiento de primera línea seguro y efectivo?",
+        opciones: [
+          {
+            texto: "Nitrofurantoína 100 mg cada 8-12 horas por 7 días.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Es un antibiótico seguro en el segundo trimestre (Categoría B), concentra bien en orina y cubre E. coli."
+          },
+          {
+            texto: "Ciprofloxacino 500 mg.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Las quinolonas están contraindicadas en el embarazo por daño al cartílago de crecimiento."
+          },
+          {
+            texto: "Gentamicina intramuscular.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Se reserva para pielonefritis hospitalizada."
+          },
+          {
+            texto: "Amoxicilina sola.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Existe alta tasa de resistencia de E. coli a la amoxicilina sola."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Cuál es la conducta de seguimiento indispensable al terminar el antibiótico?",
+        opciones: [
+          {
+            texto: "Solicitar Urocultivo de control a los 3-7 días post-tratamiento.",
+            esCorrecta: true,
+            explicacion: "✅ ¡MUY BIEN! Se debe certificar la erradicación bacteriana. Si persiste positivo, se debe rotar el antibiótico."
+          },
+          {
+            texto: "Solo preguntar si tiene síntomas.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Como era asintomática al inicio, la clínica no sirve para evaluar la cura."
+          },
+          {
+            texto: "Repetir el tratamiento por si acaso.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. No se indica tratamiento repetido a ciegas."
+          },
+          {
+            texto: "Dar el alta urológica definitiva.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Requiere vigilancia periódica (mensual según algunos protocolos) hasta el parto."
+          }
+        ]
+      },
+      {
+        enunciado: "Fisiológicamente, ¿qué hormona favorece la estasis urinaria en el embarazo, predisponiendo a estas infecciones?",
+        opciones: [
+          {
+            texto: "Insulina.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Progesterona.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! La progesterona relaja la musculatura lisa del uréter, causando hidronefrosis fisiológica y estasis, lo que facilita la proliferación bacteriana."
+          },
+          {
+            texto: "Oxitocina.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Contrae el útero."
+          },
+          {
+            texto: "Prolactina.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Estimula la producción de leche."
+          }
+        ]
+      },
+      {
+        enunciado: "¿A qué programa GES/AUGE pertenece la prevención del parto prematuro mediante el tratamiento de esta patología?",
+        opciones: [
+          {
+            texto: "No es patología GES.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "GES Prevención de Parto Prematuro.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! El tratamiento de la infección urinaria es una estrategia clave dentro de las garantías explícitas para prevenir la prematuridad."
+          },
+          {
+            texto: "GES Salud Oral.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "GES Diabetes.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          }
+        ]
+      }
+    ],
+    feedbackDinamico: {
+      bajo: "¡Atención! La infección urinaria es muy frecuente. No subestimes un cultivo positivo solo porque la paciente no tiene dolor. Revisa la Guía Perinatal.",
+      medio: "¡Bien! Conoces el diagnóstico y tratamiento. Recuerda siempre pedir el urocultivo de control para asegurar la cura.",
+      alto: "¡Excelente! Manejas el protocolo de bacteriuria asintomática con precisión, protegiendo a la gestante de complicaciones renales y obstétricas."
+    },
+    referencias: [
+      "Guía Perinatal MINSAL 2015",
+      "Guía Clínica Prevención Parto Prematuro MINSAL"
+    ]
+  },
+
+  {
+    // ============================================================================
+    // 📋 CASO 30: NIVEL 1 (BAJA)
+    // ============================================================================
+    id: "tema1-02-obesidad-atalah-n1",
+    titulo: "Obesidad Materna: Diagnóstico y Manejo Nutricional",
+    area: "Tema 1: Embarazo y Control Prenatal",
+    modulo: "1.2 Patología del Embarazo",
+    dificultad: "1",
+    objetivosAprendizaje: [
+      "Clasificar el estado nutricional de la gestante según Gráfica de Atalah",
+      "Identificar las metas de ganancia de peso para obesidad",
+      "Reconocer la importancia de la pesquisa de patología metabólica"
+    ],
+    vignette: "Paciente: M.S., 32 años, multípara de 2. Acude a control prenatal a las 24 semanas de gestación. \n\nAntecedentes: En su control de ingreso (10 semanas) tenía un IMC de 31 kg/m². \nActualmente pesa 88 kg y mide 1.60 m. Refiere que le da mucha hambre y ansiedad por comer pan. \n\nUsted debe evaluar su estado nutricional actual, establecer las metas de peso y gestionar los exámenes pertinentes para esta edad gestacional, considerando el alto riesgo metabólico de la población chilena.",
+    pasos: [
+      {
+        enunciado: "Según el IMC de ingreso (31 kg/m²) y la Gráfica de Atalah, ¿cuál es el diagnóstico nutricional de la paciente?",
+        opciones: [
+          {
+            texto: "Normal.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Normal es IMC 20-24.9."
+          },
+          {
+            texto: "Obesidad.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Un IMC ≥ 30 en el primer trimestre clasifica a la gestante como Obesa según la normativa chilena (Atalah)."
+          },
+          {
+            texto: "Sobrepeso.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Sobrepeso es IMC 25-29.9."
+          },
+          {
+            texto: "Enflaquecida.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          }
+        ]
+      },
+      {
+        enunciado: "Para una paciente con Obesidad, ¿cuál es el incremento de peso total recomendado para todo el embarazo?",
+        opciones: [
+          {
+            texto: "10 a 13 kg.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Rango para estado nutricional Normal."
+          },
+          {
+            texto: "5 a 9 kg.",
+            esCorrecta: true,
+            explicacion: "✅ ¡EXCELENTE! Se restringe la ganancia de peso para minimizar riesgos de diabetes, hipertensión y macrosomía."
+          },
+          {
+            texto: "15 a 18 kg.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Rango para bajo peso (Enflaquecida)."
+          },
+          {
+            texto: "Debe bajar de peso.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. No se indican dietas hipocalóricas estrictas para bajar de peso durante la gestación."
+          }
+        ]
+      },
+      {
+        enunciado: "A las 24 semanas, ¿qué examen de tamizaje es prioritario solicitar dada su condición de obesidad?",
+        opciones: [
+          {
+            texto: "Prueba de Tolerancia a la Glucosa Oral (PTGO).",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Es el momento del screening universal de Diabetes Gestacional, y ella tiene factores de riesgo aumentados."
+          },
+          {
+            texto: "Perfil lipídico.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Los lípidos suben fisiológicamente en el embarazo y no se solicitan de rutina."
+          },
+          {
+            texto: "Radiografía de tórax.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Ecografía Doppler.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Se pide más adelante si desarrolla complicaciones."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Cuál es la derivación profesional más importante para apoyar el manejo de su peso?",
+        opciones: [
+          {
+            texto: "Kinesiólogo respiratorio.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Nutricionista.",
+            esCorrecta: true,
+            explicacion: "✅ ¡MUY BIEN! La intervención nutricional profesional es clave para ajustar la dieta, controlar la ansiedad y asegurar el aporte de nutrientes críticos."
+          },
+          {
+            texto: "Traumatólogo.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Genetista.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La obesidad es multifactorial/ambiental."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Qué consejo dietético básico le daría respecto al consumo de 'pan' (ansiedad referida)?",
+        opciones: [
+          {
+            texto: "Eliminar el pan por completo.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Genera más ansiedad y rebote."
+          },
+          {
+            texto: "Preferir pan integral (marraqueta o molde integral) y respetar las porciones indicadas (ej. 1/2 unidad por vez).",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Se busca mejorar la calidad (fibra) y controlar la cantidad, no prohibir alimentos culturales básicos."
+          },
+          {
+            texto: "Comer pan solo al desayuno.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. No es una regla nutricional estándar."
+          },
+          {
+            texto: "Reemplazar el pan por galletas de soda.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Las galletas suelen tener grasas procesadas y menos saciedad."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Qué patología materna se asocia fuertemente al aumento excesivo de peso en el embarazo?",
+        opciones: [
+          {
+            texto: "Placenta previa.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Síndrome Hipertensivo del Embarazo (Preeclampsia).",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! El exceso de tejido adiposo y la inflamación sistémica aumentan el riesgo vascular."
+          },
+          {
+            texto: "Hiperemesis.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Infección urinaria.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Aunque puede aumentar algo el riesgo, la asociación cardiovascular es la más crítica."
+          }
+        ]
+      }
+    ],
+    feedbackDinamico: {
+      bajo: "¡Cuidado! La obesidad es una epidemia. Debes manejar la curva de Atalah y las metas de peso al revés y al derecho. Revisa la Norma de Evaluación Nutricional.",
+      medio: "¡Bien! Identificas el diagnóstico. Enfócate en la consejería alimentaria práctica para la realidad chilena.",
+      alto: "¡Excelente! Comprendes la importancia del control metabólico y nutricional para prevenir la programación fetal de enfermedades crónicas."
+    },
+    referencias: [
+      "Norma Técnica de Evaluación Nutricional de la Embarazada, MINSAL",
+      "Guía Perinatal 2015"
+    ]
+  },
+
+  {
+    // ============================================================================
+    // 📋 CASO 31: NIVEL 1 (BAJA)
+    // ============================================================================
+    id: "tema1-02-anemia-ferropenica-n1",
+    titulo: "Anemia Ferropénica y Suplementación en Población Vulnerable",
+    area: "Tema 1: Embarazo y Control Prenatal",
+    modulo: "1.2 Patología del Embarazo",
+    dificultad: "1",
+    objetivosAprendizaje: [
+      "Diagnosticar anemia en el embarazo según valores de hemoglobina por trimestre",
+      "Indicar el tratamiento con Hierro oral y medidas para mejorar su absorción",
+      "Reconocer el rol del PNAC (Purita Mamá) en la nutrición de la gestante"
+    ],
+    vignette: "Paciente: J.L., 28 años, cursando embarazo de 22 semanas. Beneficiaria de FONASA A. \n\nMotivo de consulta: Refiere mucho cansancio, sueño excesivo y ganas de comer tierra (pica). \n\nExámenes de segundo trimestre: \n- Hemoglobina: 10.2 g/dL. \n- Hematocrito: 30%. \n- VCM: 78 fL (Microcitosis). \n\nUsted recibe los exámenes y debe indicar el tratamiento, aprovechando los recursos del sistema público (PNAC y farmacia CESFAM).",
+    pasos: [
+      {
+        enunciado: "Considerando que en el segundo trimestre hay hemodilución fisiológica (límite normal Hb 10.5 g/dL), ¿cuál es el diagnóstico con una Hb de 10.2 g/dL?",
+        opciones: [
+          {
+            texto: "Normal para la edad gestacional.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El límite inferior aceptado por la OMS/MINSAL en el segundo trimestre es 10.5 g/dL."
+          },
+          {
+            texto: "Anemia leve (probablemente ferropénica).",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Valores bajo 10.5 g/dL en el segundo trimestre confirman el diagnóstico de anemia y requieren tratamiento, no solo profilaxis."
+          },
+          {
+            texto: "Anemia severa que requiere transfusión.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. La transfusión se reserva para Hb < 7.0 g/dL o síntomas de descompensación hemodinámica."
+          },
+          {
+            texto: "Anemia megaloblástica.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Tendría VCM alto (>100), aquí hay microcitosis (VCM bajo), típico del déficit de hierro."
+          }
+        ]
+      },
+      {
+        enunciado: "Para el tratamiento de esta anemia, ¿cuál es la conducta con el Sulfato Ferroso (comprimidos de 200 mg)?",
+        opciones: [
+          {
+            texto: "Mantener 1 comprimido al día (profilaxis).",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Esa es dosis preventiva. La anemia instalada requiere dosis terapéutica."
+          },
+          {
+            texto: "Aumentar a 2 o 3 comprimidos al día (Dosis terapéutica).",
+            esCorrecta: true,
+            explicacion: "✅ ¡MUY BIEN! Se debe aumentar el aporte de hierro elemental (aprox 100 mg/día o más) para repletar depósitos y subir la hemoglobina."
+          },
+          {
+            texto: "Suspender el hierro.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Empeoraría el cuadro."
+          },
+          {
+            texto: "Indicar hierro endovenoso de entrada.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Primero se prueba la tolerancia y respuesta a la vía oral."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Qué indicación debe dar para mejorar la absorción del hierro oral?",
+        opciones: [
+          {
+            texto: "Tomarlo con té o café.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Los taninos inhiben la absorción."
+          },
+          {
+            texto: "Tomarlo con jugo de cítricos (Naranja/Limón) o agua, alejado de las comidas.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! El medio ácido y la vitamina C potencian la absorción del hierro no hemínico."
+          },
+          {
+            texto: "Tomarlo con leche.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. El calcio compite por la absorción."
+          },
+          {
+            texto: "Tomarlo junto con el calcio.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Deben separarse por horarios."
+          }
+        ]
+      },
+      {
+        enunciado: "Como beneficiaria del sistema público, ¿qué producto del PNAC debe retirar mensualmente que ayuda a su nutrición?",
+        opciones: [
+          {
+            texto: "Leche Purita Fortificada.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Es para niños."
+          },
+          {
+            texto: "Bebida Láctea 'Purita Mamá'.",
+            esCorrecta: true,
+            explicacion: "✅ ¡EXCELENTE! Es un producto formulado especialmente para gestantes y nodrizas, fortificado con Hierro, Calcio, Omega-3 y Ácido Fólico."
+          },
+          {
+            texto: "Crema Años Dorados.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Es para adultos mayores."
+          },
+          {
+            texto: "Fórmula de inicio.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Es para lactantes."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Qué efecto adverso frecuente del sulfato ferroso debe advertir para evitar el abandono del tratamiento?",
+        opciones: [
+          {
+            texto: "Caída del cabello.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Constipación (estreñimiento) y deposiciones negras.",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! Es muy común. Se maneja aumentando fibra y agua. El color negro de las heces es normal por el pigmento del hierro."
+          },
+          {
+            texto: "Visión borrosa.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Insomnio.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          }
+        ]
+      },
+      {
+        enunciado: "¿Qué síntoma relatado por la paciente es característico de la ferropenia (falta de hierro)?",
+        opciones: [
+          {
+            texto: "Pica (ganas de comer tierra o hielo).",
+            esCorrecta: true,
+            explicacion: "✅ ¡CORRECTO! La pica o pagofagia es un síntoma clásico y específico de la deficiencia de hierro tisular."
+          },
+          {
+            texto: "Náuseas matutinas.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO. Común en embarazo, no específico de anemia."
+          },
+          {
+            texto: "Dolor lumbar.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          },
+          {
+            texto: "Aumento de frecuencia urinaria.",
+            esCorrecta: false,
+            explicacion: "❌ INCORRECTO."
+          }
+        ]
+      }
+    ],
+    feedbackDinamico: {
+      bajo: "¡Repasa! La anemia es muy común. Debes saber los cortes de Hb (11 en 1er/3er trim, 10.5 en 2do) y cómo administrar el hierro correctamente.",
+      medio: "¡Bien! Conoces el tratamiento. No olvides reforzar la importancia de la Leche Purita Mamá como insumo estratégico del Estado.",
+      alto: "¡Excelente! Manejas el diagnóstico diferencial de la anemia y optimizas el tratamiento farmacológico y nutricional disponible en APS."
+    },
+    referencias: [
+      "Norma Técnica de Suplementación con Micronutrientes, MINSAL",
+      "Guía Perinatal 2015",
+      "Norma Técnica PNAC"
+    ]
+  }
+]
+
