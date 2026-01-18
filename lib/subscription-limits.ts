@@ -22,6 +22,7 @@ export interface LimitCheckResult {
 export async function checkCaseAccessLimit(userId: string): Promise<LimitCheckResult> {
   try {
     // Obtener usuario con su suscripción activa
+    // NOTA: El usuario SIEMPRE debe existir gracias a ensureUserExists() en withAuth
     const user = await prisma.user.findUnique({
       where: { id: userId },
       include: {
@@ -38,35 +39,13 @@ export async function checkCaseAccessLimit(userId: string): Promise<LimitCheckRe
     });
 
     if (!user) {
-      // Usuario no existe en BD: puede ser porque el webhook de Clerk aún no se ha ejecutado
-      // o porque hubo un error en la sincronización.
-      // Creamos el usuario automáticamente para no bloquear la experiencia.
-      console.warn('⚠️ Usuario no encontrado en BD, creándolo automáticamente:', userId);
+      // Esto NO debería pasar nunca porque ensureUserExists() en withAuth lo crea
+      // Pero dejamos un fallback por seguridad
+      console.error('❌ Usuario no encontrado en BD después de ensureUserExists', { userId });
       
-      try {
-        await prisma.user.create({
-          data: {
-            id: userId,
-            email: `temp_${userId}@klinikmat.cl`, // Email temporal, se actualizará via webhook
-            role: 'STUDENT',
-            emailVerified: new Date(),
-          },
-        });
-        
-        console.log('✅ Usuario creado automáticamente:', userId);
-      } catch (error: any) {
-        // Si falla (ej: ya existe por race condition), continuamos
-        if (error?.code !== 'P2002') {
-          console.error('❌ Error creando usuario automáticamente:', error);
-        }
-      }
-      
-      // Usuario nuevo sin suscripción = plan FREE
       return {
-        allowed: true,
-        planName: 'Plan Gratuito',
-        usageCount: 0,
-        limit: 10,
+        allowed: false,
+        reason: 'Error del sistema: Usuario no encontrado. Por favor, intenta cerrar sesión y volver a ingresar.',
       };
     }
 

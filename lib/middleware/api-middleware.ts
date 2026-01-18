@@ -11,6 +11,7 @@ import { checkRateLimit, type RateLimitConfig } from '../ratelimit';
 import { handleApiError } from '../errors/error-handler';
 import { UnauthorizedError, RateLimitError, ValidationError } from '../errors/app-errors';
 import { logger } from '../logger';
+import { ensureUserExists } from '../ensure-user';
 
 /**
  * Context compartido entre middlewares
@@ -35,6 +36,7 @@ export type ApiHandler = (
 
 /**
  * Middleware: Autenticación requerida
+ * Garantiza que el usuario autenticado exista en la base de datos
  */
 export function withAuth(handler: ApiHandler): ApiHandler {
   return async (req, context, params) => {
@@ -44,6 +46,10 @@ export function withAuth(handler: ApiHandler): ApiHandler {
       if (!userId) {
         throw new UnauthorizedError('Authentication required');
       }
+
+      // CRÍTICO: Asegurar que el usuario existe en BD
+      // Si no existe, lo crea automáticamente con datos de Clerk
+      await ensureUserExists(userId);
 
       // Agregar userId al contexto
       context.userId = userId;

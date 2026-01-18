@@ -26,6 +26,7 @@ export class ResultRepository extends BaseRepository<StudentResult> {
    * Crear resultado
    */
   async createResult(data: {
+    id: string;
     userId: string;
     caseId: string;
     score: number;

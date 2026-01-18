@@ -10,6 +10,7 @@
 import { resultRepository } from '@/lib/repositories';
 import { StaticCaseRepository as CaseRepo } from '@/lib/repositories';
 import { logger } from '@/lib/logger';
+import { randomUUID } from 'crypto';
 import type { StudentResult, Prisma } from '@prisma/client';
 
 export type CreateResultData = {
@@ -37,12 +38,10 @@ export type ResultStats = {
 export class ResultService {
   /**
    * Crea un nuevo resultado de caso
+   * NOTA: El usuario siempre existe porque ensureUserExists() se ejecuta en withAuth
    */
   static async createResult(data: CreateResultData): Promise<StudentResult> {
     try {
-      // Asegurar que el usuario existe en la BD (auto-crear si no existe)
-      await this.ensureUserExists(data.userId);
-      
       // Validar que el caso existe usando repository
       const caseExists = await CaseRepo.findByIdMinimal(data.caseId);
 
@@ -54,8 +53,12 @@ export class ResultService {
         throw new Error('Case is not public');
       }
 
+      // Generar UUID para el resultado (requerido porque id no tiene @default en schema)
+      const resultId = randomUUID();
+
       // Crear resultado usando repository
       const result = await resultRepository.createResult({
+        id: resultId,
         userId: data.userId,
         caseId: data.caseId,
         caseTitle: data.caseTitle,
@@ -72,42 +75,6 @@ export class ResultService {
     } catch (error) {
       logger.error('Failed to create result', { data, error });
       throw error;
-    }
-  }
-  
-  /**
-   * Asegura que el usuario existe en la base de datos
-   * Si no existe, lo crea automáticamente (fallback para webhooks fallidos)
-   */
-  private static async ensureUserExists(userId: string): Promise<void> {
-    const { prisma } = await import('@/lib/prisma');
-    
-    const user = await prisma.user.findUnique({
-      where: { id: userId },
-      select: { id: true },
-    });
-    
-    if (!user) {
-      logger.warn('Usuario no encontrado en BD, creándolo automáticamente', { userId });
-      
-      try {
-        await prisma.user.create({
-          data: {
-            id: userId,
-            email: `temp_${userId}@klinikmat.cl`, // Se actualizará via webhook
-            role: 'STUDENT',
-            emailVerified: new Date(),
-          },
-        });
-        
-        logger.info('Usuario creado automáticamente', { userId });
-      } catch (error: any) {
-        // Ignorar error de duplicado (race condition)
-        if (error?.code !== 'P2002') {
-          logger.error('Error creando usuario automáticamente', { userId, error });
-          throw error;
-        }
-      }
     }
   }
 

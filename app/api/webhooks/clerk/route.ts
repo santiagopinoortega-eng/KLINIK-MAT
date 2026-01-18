@@ -68,38 +68,45 @@ export async function POST(req: Request) {
 
     // Determine role from metadata or default to STUDENT
     const role = (public_metadata as any)?.role || 'STUDENT';
+    const name = `${first_name || ''} ${last_name || ''}`.trim() || null;
 
     try {
-      console.log('💾 [WEBHOOK] Attempting to create user in DB:', { id, email, role });
+      console.log('💾 [WEBHOOK] Attempting to upsert user in DB:', { id, email, role });
       
-      const newUser = await prisma.user.create({
-        data: {
+      // Usar UPSERT en lugar de CREATE para evitar errores si ya existe
+      // Esto puede pasar si ensureUserExists() ya lo creó antes del webhook
+      const user = await prisma.user.upsert({
+        where: { id },
+        create: {
           id,
           email,
-          name: `${first_name || ''} ${last_name || ''}`.trim() || null,
+          name,
           role,
           emailVerified: new Date(), // Clerk already verified
           updatedAt: new Date(),
         },
+        update: {
+          email,
+          name,
+          role,
+          emailVerified: new Date(),
+          updatedAt: new Date(),
+        },
       });
       
-      console.log('✅ [WEBHOOK] User created successfully in database:', { id, email, dbId: newUser.id });
+      console.log('✅ [WEBHOOK] User upserted successfully in database:', { 
+        id, 
+        email, 
+        dbId: user.id,
+        action: user.createdAt.getTime() === user.updatedAt.getTime() ? 'created' : 'updated'
+      });
     } catch (error: any) {
-      console.error('❌ [WEBHOOK] Error creating user in database:', {
+      console.error('❌ [WEBHOOK] Error upserting user in database:', {
         message: error?.message,
         code: error?.code,
         meta: error?.meta,
         stack: error?.stack,
       });
-      
-      // If user already exists, that's okay
-      if (error?.code === 'P2002') {
-        console.log('⚠️ [WEBHOOK] User already exists (duplicate), skipping:', id);
-        return new Response(JSON.stringify({ message: 'User already exists' }), { 
-          status: 200,
-          headers: { 'Content-Type': 'application/json' }
-        });
-      }
       
       // Return 500 for real errors so Clerk retries
       return new Response(JSON.stringify({ 
@@ -130,22 +137,32 @@ export async function POST(req: Request) {
     }
 
     const role = (public_metadata as any)?.role || 'STUDENT';
+    const name = `${first_name || ''} ${last_name || ''}`.trim() || null;
 
     try {
-      console.log('💾 [WEBHOOK] Attempting to update user in DB:', { id, email });
+      console.log('💾 [WEBHOOK] Attempting to upsert user in DB:', { id, email });
       
-      const updatedUser = await prisma.user.update({
+      // Usar UPSERT: si no existe lo crea, si existe lo actualiza
+      const user = await prisma.user.upsert({
         where: { id },
-        data: {
+        create: {
+          id,
           email,
-          name: `${first_name || ''} ${last_name || ''}`.trim() || null,
+          name,
           role,
+          emailVerified: new Date(),
+        },
+        update: {
+          email,
+          name,
+          role,
+          updatedAt: new Date(),
         },
       });
       
-      console.log('✅ [WEBHOOK] User updated successfully in database:', { id, email });
+      console.log('✅ [WEBHOOK] User upserted successfully in database:', { id, email });
     } catch (error: any) {
-      console.error('❌ [WEBHOOK] Error updating user in database:', {
+      console.error('❌ [WEBHOOK] Error upserting user in database:', {
         message: error?.message,
         code: error?.code,
         meta: error?.meta,
